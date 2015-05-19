@@ -7,6 +7,36 @@ module.exports = function(grunt) {
     var grunt_config = {
     
         pkg: grunt.file.readJSON('package.json'),
+        
+        // https://github.com/gruntjs/grunt-contrib-concat
+        concat: {
+            js: {
+                src: [
+                    './bower_components/Fall-Back-Base/js/no-history.js',
+                    './bower_components/Fall-Back-Base/js/opera-mini.js',
+                    './bower_components/Fall-Back-SVG/js/svg.js'
+                ],
+                dest: './_scripts/script.js'
+            }/*,
+            css: {
+                src: [
+                    'css/normalize.css',
+                    'css/foundation.css'
+                ],
+                dest: 'css/style.css'
+            }*/
+        },
+        
+        // https://github.com/gruntjs/grunt-contrib-cssmin
+        cssmin: {
+            minify: {
+                expand: true,
+                cwd: './_styles/',
+                src: ['style.css'],
+                dest: './css/',
+                ext: '.min.css'
+            }
+        },
                 
         // https://github.com/gruntjs/grunt-contrib-sass
         sass: {
@@ -18,9 +48,9 @@ module.exports = function(grunt) {
                 files: [
                     {
                         expand: true,
-                        cwd: "./",
+                        cwd: "./_styles/",
                         src: ["**/*.scss"],
-                        dest: "./",
+                        dest: "./_styles/",
                         ext: ".css"
                     }
                 ]
@@ -29,13 +59,41 @@ module.exports = function(grunt) {
                 }*/
             } 
         },
+        
+        // https://github.com/gruntjs/grunt-contrib-uglify
+        uglify: {
+            build: {
+                src: './_scripts/script.js',
+                dest: './js/script.min.js'
+            }
+        },
+        /*uglify: {
+            min: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: "./",
+                        src: ["**_____/_scripts/*.js"],
+                        dest: "./js/",
+                        ext: ".min.js",
+                        filter: function (filepath) {
+                            return (
+                                (filepath.indexOf('node_modules') === -1)
+                             && (filepath.indexOf('_archive') === -1)
+                             && (filepath != 'Gruntfile.js')
+                            );
+                        }
+                    }
+                ]
+            }
+        },*/
 
         // https://github.com/gruntjs/grunt-contrib-watch
         // Order is important here:
         watch: {
             css: {
-                files: ['_styles/**/*.scss'],
-                tasks: ['sass'],
+                files: ['**/*.scss'],
+                tasks: ['sass', 'cssmin'],
                 options: {
                     spawn: false
                 }
@@ -45,10 +103,14 @@ module.exports = function(grunt) {
     };
     
     grunt.initConfig(grunt_config);
+    
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-concat');
 
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-sass');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	
+    
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     
     /* ----------------------------------------------------------------------------------------- *\
         NOTE:
@@ -63,6 +125,7 @@ module.exports = function(grunt) {
     
     grunt.registerTask('default', ['watch']);
 
-    grunt.registerTask('css', ['sass']); 
+    grunt.registerTask('css', ['sass', 'cssmin']); 
+    grunt.registerTask('js', ['concat', 'uglify']);
     
 };

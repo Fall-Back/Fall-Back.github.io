@@ -1,0 +1,2075 @@
+@charset "UTF-8";
+/* normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS and IE text size adjust after device orientation change,
+ *    without disabling user zoom.
+ */
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+
+/**
+ * Remove default margin.
+ */
+body {
+  margin: 0;
+}
+
+/* HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined for any HTML5 element in IE 8/9.
+ * Correct `block` display not defined for `details` or `summary` in IE 10/11
+ * and Firefox.
+ * Correct `block` display not defined for `main` in IE 11.
+ */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+
+/**
+ * 1. Correct `inline-block` display not defined in IE 8/9.
+ * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ */
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  /* 1 */
+  vertical-align: baseline;
+  /* 2 */
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9/10.
+ * Hide the `template` element in IE 8/9/10/11, Safari, and Firefox < 22.
+ */
+[hidden],
+template {
+  display: none;
+}
+
+/* Links
+   ========================================================================== */
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+a {
+  background-color: transparent;
+}
+
+/**
+ * Improve readability of focused elements when they are also in an
+ * active/hover state.
+ */
+a:active,
+a:hover {
+  outline: 0;
+}
+
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
+ */
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
+ */
+b,
+strong {
+  font-weight: bold;
+}
+
+/**
+ * Address styling not present in Safari and Chrome.
+ */
+dfn {
+  font-style: italic;
+}
+
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari, and Chrome.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+mark {
+  background: #ff0;
+  color: #000;
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9/10.
+ */
+img {
+  border: 0;
+}
+
+/**
+ * Correct overflow not hidden in IE 9/10/11.
+ */
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* Grouping content
+   ========================================================================== */
+/**
+ * Address margin not present in IE 8/9 and Safari.
+ */
+figure {
+  margin: 1em 40px;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+hr {
+  box-sizing: content-box;
+  height: 0;
+}
+
+/**
+ * Contain overflow in all browsers.
+ */
+pre {
+  overflow: auto;
+}
+
+/**
+ * Address odd `em`-unit font size rendering in all browsers.
+ */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+/* Forms
+   ========================================================================== */
+/**
+ * Known limitation: by default, Chrome and Safari on OS X allow very limited
+ * styling of `select`, unless a `border` property is set.
+ */
+/**
+ * 1. Correct color not being inherited.
+ *    Known issue: affects color of disabled elements.
+ * 2. Correct font properties not being inherited.
+ * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+}
+
+/**
+ * Address `overflow` set to `hidden` in IE 8/9/10/11.
+ */
+button {
+  overflow: visible;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+ * Correct `select` style inheritance in Firefox.
+ */
+button,
+select {
+  text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+input {
+  line-height: normal;
+}
+
+/**
+ * It's recommended that you don't attempt to style these elements.
+ * Firefox's implementation doesn't respect box-sizing, padding, or width.
+ *
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * Fix the cursor style for Chrome's increment/decrement buttons. For certain
+ * `font-size` values of the `input`, it causes the cursor style of the
+ * decrement button to change from `default` to `text`.
+ */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari and Chrome.
+ */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  box-sizing: content-box;
+  /* 2 */
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari and Chrome on OS X.
+ * Safari (but not Chrome) clips the cancel button when the search input has
+ * padding (and `textfield` appearance).
+ */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9/10/11.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * Remove default vertical scrollbar in IE 8/9/10/11.
+ */
+textarea {
+  overflow: auto;
+}
+
+/**
+ * Don't inherit the `font-weight` (applied by a rule above).
+ * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
+ */
+optgroup {
+  font-weight: bold;
+}
+
+/* Tables
+   ========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+/*
+#####  Color Palette by Color Scheme Designer
+#####  Palette URL: http://colorschemedesigner.com/#0w22HycKnvzzE
+#####  Color Space: RGB; 
+
+
+
+*** Primary Color:
+
+   var. 1 = #FF7800 = rgb(255,120,0)
+   var. 2 = #C0742F = rgb(192,116,47)
+   var. 3 = #A74F00 = rgb(167,79,0)
+   var. 4 = #FF9E47 = rgb(255,158,71)
+   var. 5 = #FFBC80 = rgb(255,188,128)
+
+*** Complementary Color:
+
+   var. 1 = #02BACB = rgb(2,186,203)
+   var. 2 = #278F99 = rgb(39,143,153)
+   var. 3 = #017A85 = rgb(1,122,133)
+   var. 4 = #43DAE8 = rgb(67,218,232)
+   var. 5 = #76DEE8 = rgb(118,222,232)
+
+
+#####  Generated by Color Scheme Designer (c) Petr Stanicek 2002-2010
+*/
+* {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*:before,
+*:after {
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-size: 1.4em;
+  padding: 20px;
+  padding: 2rem;
+  line-height: 20px;
+  line-height: 2rem;
+}
+
+h1 {
+  font-size: 2.6em;
+  line-height: 40px;
+  line-height: 4rem;
+  padding: 0;
+  margin: 0 0 20px;
+  margin: 0 0 2rem;
+}
+
+h2 {
+  font-size: 2.2em;
+  line-height: 40px;
+  line-height: 4rem;
+  padding: 0;
+  margin: 0 0 20px;
+  margin: 0 0 2rem;
+}
+
+h3 {
+  font-size: 1.8em;
+  line-height: 20px;
+  line-height: 2rem;
+  padding: 0;
+  margin: 0 0 20px;
+  margin: 0 0 2rem;
+}
+
+ol,
+p,
+ul {
+  margin: 0 0 20px;
+  margin: 0 0 2rem;
+}
+
+p {
+  padding: 0;
+}
+
+img:not([height]) {
+  max-width: 100%;
+  width: auto;
+  max-height: 100%;
+  height: auto;
+  font-style: italic;
+  border: 0 none;
+  line-height: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+hr {
+  clear: both;
+  border: 0;
+  height: 0;
+  border-bottom: 1px solid #999;
+  margin: 20px 0 19px;
+  margin: 2rem 0 1.9rem;
+}
+
+table {
+  border: 0 none;
+  table-layout: fixed;
+  border-spacing: 0;
+}
+
+th,
+td {
+  padding: 20px;
+  padding: 1rem;
+  border: 0;
+}
+
+th {
+  font-weight: bold;
+  background: #eee;
+}
+
+caption {
+  font-size: 1.8em;
+  font-weight: bold;
+  line-height: 20px;
+  line-height: 2rem;
+  padding: 0;
+  margin: 0 0 20px;
+  margin: 0 0 2rem;
+}
+
+/* Replaced this with block below but haven't tested so keep for now.
+label,
+select,
+option,
+button,
+input[type="radio"],
+input[type="checkbox"] {
+  cursor: pointer;
+}*/
+label[for],
+input[type=radio],
+input[type=checkbox],
+button,
+input[type=reset],
+input[type=button],
+input[type=submit] {
+  cursor: pointer;
+}
+
+input[type=file]::-webkit-file-upload-button {
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+/*
+ * Hide from both screenreaders and browsers: h5bp.com/u
+ */
+.hidden {
+  display: none !important;
+  visibility: hidden;
+}
+
+/*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+.visuallyhidden,
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus,
+.visually-hidden.focusable:active,
+.visually-hidden.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+
+/*
+ * Hide visually and from screenreaders, but maintain layout
+ */
+.invisible {
+  visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.no-style-notice {
+  display: none;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+@media only screen and (min-width: 35em) {
+  /* Style adjustments for viewports that meet the condition */
+}
+@media print, (-o-min-device-pixel-ratio: 5 / 4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+  /* Style adjustments for high resolution devices */
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/*------------------------------------------------------------------------------------------------*\
+    Fall-Back Nav Bar Pattern v0.1
+\*------------------------------------------------------------------------------------------------*/
+/* -- Basic/fallback layout --------------------------------------------------------------------- */
+/* -- .nav-bar -------------------------------------------------------------------------------*/
+.nav-bar {
+  background-color: #aaaaaa;
+  min-height:  40px;
+  min-height:  4rem;
+}
+
+.nav-bar:before,
+.nav-bar:after,
+.nav-bar__inner:before,
+.nav-bar__inner:after {
+  content: " ";
+  display: table;
+}
+
+.nav-bar:after,
+.nav-bar__inner:after {
+  clear: both;
+}
+
+/* IE7- hacks (can't use MQ or IE8 Respond applies it): */
+.nav-bar {
+  *zoom: 1;
+}
+
+/* -------------------------------------------------------------------------------------------*/
+/* -- .nav-bar__inner ------------------------------------------------------------------------*/
+/*
+    1. Duplicating parent background-color here. There HAS to be a colour here for the pattern
+       to work, the parent background-color is there to allow things to be NOT BROKEN on
+       browsers that don't support HTML semantic elements.
+*/
+.nav-bar__inner {
+  background-color: #aaaaaa;
+  overflow: hidden;
+}
+
+/* IE7- hacks (can't use MQ or IE8 Respond applies it): */
+.nav-bar__inner {
+  *zoom: 1;
+}
+
+/* -------------------------------------------------------------------------------------------*/
+/* -- .nav-bar__button -----------------------------------------------------------------------*/
+/* Unused? */
+                                 /*.nav-bar__button {
+        -webkit-appearance: none;
+        border-radius: 0;
+        margin: 0;
+        padding: 0;
+        background: #ddd;
+        border: none;
+        @include fallback-rem(height, $fallback--nav-bar--height);
+    }
+
+    .nav-bar__button:hover,
+    .nav-bar__button:active,
+    .nav-bar__button:focus {
+        background-color: #ccc;  /* @var *
+    }
+    */
+/* -------------------------------------------------------------------------------------------*/
+/* -- .nav-bar__items -------------------------------------------------------------------------*/
+.nav-bar__items {
+  width: 100%;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  float: left;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+}
+
+/* -------------------------------------------------------------------------------------------*/
+/* -- .subnav --------------------------------------------------------------------------------*/
+.subnav {
+  list-style-type: none;
+  padding: 0;
+  margin:  0 5px 0 20px;
+  margin:  0 0.5rem 0 2rem;
+  background-color: #666666;
+}
+
+.subnav:before,
+.subnav:after {
+  content: " ";
+  display: table;
+}
+
+.subnav:after {
+  clear: both;
+}
+
+.subnav__item {
+  float: left;
+}
+
+/* IE7- hacks (can't use MQ or IE8 Respond applies it): */
+.subnav__item {
+  *float: none;
+  *display: inline;
+  *zoom: 1;
+}
+
+/* -------------------------------------------------------------------------------------------*/
+/* -- .nav-bar__link, .subnav__link ----------------------------------------------------------*/
+.nav-bar__link,
+.subnav__link,
+.subnav__heading {
+  display: block;
+  margin: 0;
+  padding:  0 10px;
+  padding:  0 1rem;
+  height:  40px;
+  height:  4rem;
+  line-height:  40px;
+  line-height:  4rem;
+}
+
+/*
+    Fix for Opera Mini vertical centering:
+*/
+_:-o-prefocus, body:last-child .nav-bar__link,
+_:-o-prefocus, body:last-child .subnav__link,
+_:-o-prefocus, body:last-child .subnav__heading {
+  line-height: 2.8 !important;
+}
+
+.nav-bar__link {
+  color: white;
+  background-color: transparent;
+  /* @var */
+}
+
+.nav-bar__link svg {
+  display: none;
+}
+
+.subnav__heading {
+  color: white;
+}
+
+.subnav__link {
+  display: inline-block;
+  background-color: #666666;
+  color: white;
+}
+
+/*
+    Don't allow the usual interaction effects on ALL nav-bar links:
+    (this is to allow submenu heading links to appear as a non-link)
+*/
+.nav-bar__link:hover,
+.nav-bar__link:focus,
+.nav-bar__link:active,
+.subnav__link:hover,
+.subnav__link:focus,
+.subnav__link:active {
+  text-decoration: none;
+  outline: 0;
+}
+
+/*
+    Provide interaction effects for nav-bar links that ARE links:
+    (this excludes submenu heading links - note that submenu links should never also be
+    submenu heading links)
+*/
+.nav-bar__link:hover,
+.nav-bar__link:focus,
+.nav-bar__link:active {
+  background-color: #999999;
+}
+
+.subnav__link:hover,
+.subnav__link:focus,
+.subnav__link:active {
+  background-color: #999999;
+}
+
+[href$="#"].nav-bar__link {
+  background-color: transparent;
+  cursor: default;
+}
+
+.subnav__heading {
+  display: none;
+}
+
+.subnav__open:before {
+  content: attr(data-content);
+  display: inline-block;
+}
+
+.subnav__cancel,
+.subnav__open--icon-only {
+  display: none;
+}
+
+/* IE7- hacks (can't use MQ or IE8 Respond applies it): */
+.subnav__heading {
+  *display: block;
+}
+
+.subnav__open--fake {
+  *display: none;
+}
+
+/* -------------------------------------------------------------------------------------------*/
+/* -- Enhanced layout ----------------------------------------------------------------------- */
+@media only screen and (min-width: 720px) {
+  .nav-bar {
+    position: relative;
+    z-index: 1000;
+    /* @var */
+  }
+
+  .nav-bar__inner {
+    min-height:  40px;
+    min-height:  4rem;
+  }
+
+  .nav-bar__item {
+    float: left;
+  }
+
+  .nav-bar__link svg {
+    display: inline;
+  }
+
+  .has-subnav > .nav-bar__link {
+    float: left;
+  }
+
+  /*
+      Allow interaction effects for ALL nav-bar links now we're wide enough to show the nav-bar
+      enhanced version.
+  */
+  .nav-bar__link:hover,
+  .nav-bar__link:focus,
+  .nav-bar__link:active {
+    background-color: #999;
+    cursor: pointer;
+  }
+
+  .subnav {
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding-right:  40px;
+    padding-right:  4rem;
+    top: 0;
+    z-index: -1;
+    padding: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .subnav__link {
+    white-space: nowrap;
+    -webkit-transition: margin-top 0.5s ease;
+    -moz-transition: margin-top 0.5s ease;
+    -o-transition: margin-top 0.5s ease;
+    transition: margin-top 0.5s ease;
+  }
+
+  .subnav__open--icon-only {
+    display: block;
+  }
+
+  .subnav__open:focus + .subnav .subnav__link,
+  .subnav__link:focus {
+    margin-top:  40px;
+    margin-top:  4rem;
+  }
+
+  /*
+      Fixes cancel button behaviour if not using overflow:hidden on .nav-bar__inner
+      (Maybe be temp - I can't quite remember what the overflow:hidden was for.
+      May have been a float-clearing thing but may not need this now?)
+  */
+  .subnav__cancel:focus,
+  .subnav__cancel:active {
+    margin-top: 0;
+  }
+
+  .subnav__item {
+    float: none;
+    display: table-cell;
+  }
+
+  /*
+      1. Make background transparent so transition looks smoother.
+  */
+  .subnav__cancel {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width:  40px;
+    width:  4rem;
+    z-index: -1;
+    background: transparent;
+    /* [1] */
+    -webkit-transition: top 0.5s ease;
+    -moz-transition: top 0.5s ease;
+    -o-transition: top 0.5s ease;
+    transition: top 0.5s ease;
+  }
+
+  .subnav__cancel:focus {
+    margin-top: 0;
+  }
+
+  .subnav__open:focus ~ .subnav__cancel {
+    top:  40px;
+    top:  4rem;
+  }
+
+  /* @micropattern:pseudo-dataicon-middle */
+  .subnav__open:after,
+  .subnav__cancel:after {
+    /* These styles are enough for modern FF to V-center the icon: */
+    content: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj48cGF0aCAgZmlsbD0iIzQ0NDQ0NCIgZD0iTTUuODMzIDguMzMzbDQuMTY3IDQuMTY3IDQuMTY3LTQuMTY3eiI+PC9wYXRoPjwvc3ZnPg==");
+    display: inline-block;
+    vertical-align: middle;
+    /* IE10-11 flexbox chokes without width: */
+    width:  20px;
+    width:  2rem;
+    /* IE11 flexbox stretches icon without height: */
+    height:  20px;
+    height:  2rem;
+    /* But now blink pushes the icon to the bottom without line-height: 0. */
+    line-height: 0;
+  }
+
+  .subnav__open:after {
+    content: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj48cGF0aCAgZmlsbD0iIzQ0NDQ0NCIgZD0iTTUuODMzIDguMzMzbDQuMTY3IDQuMTY3IDQuMTY3LTQuMTY3eiI+PC9wYXRoPjwvc3ZnPg==");
+  }
+
+  .subnav__cancel:after {
+    content: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj48cGF0aCAgZmlsbD0iIzQ0NDQ0NCIgZD0iTTE1LjgzMyA1LjM0NmwtMS4xNzktMS4xNzktNC42NTQgNC42NTQtNC42NTQtNC42NTQtMS4xNzkgMS4xNzkgNC42NTQgNC42NTQtNC42NTQgNC42NTQgMS4xNzkgMS4xNzkgNC42NTQtNC42NTQgNC42NTQgNC42NTQgMS4xNzktMS4xNzktNC42NTQtNC42NTR6Ij48L3BhdGg+PC9zdmc+");
+  }
+
+  .subnav__open svg,
+  .subnav__cancel svg {
+    vertical-align: text-bottom;
+  }
+}
+/* IE8 hacks: */
+/*
+    min-width in place for Respond-friendliness
+    (maybe not, PNG fallbacks shouldn't be JS dependant unless it doesn't matter)
+*/
+@media \0screen and (min-width: 600px) {
+  .subnav {
+    width: 100%;
+  }
+
+  /* @micropattern:pseudo-dataicon-middle-ie8 */
+  .subnav__open:after {
+    content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAFCAMAAABLuo1aAAAAD1BMVEUAAAD///////////////+PQt5oAAAABHRSTlMAcH+PMsL1QgAAACBJREFUeAFjYGKBAiYGIBvGArIhLDBgZmFhBFIQNpgFAA5pAGWVT5gDAAAAAElFTkSuQmCC");
+    /* Positioning tweaks: */
+    text-align: center;
+    line-height: 1;
+  }
+
+  .subnav__cancel:after {
+    content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFuSURBVDiN7ZG/asJQFMa/e3MzKDgEN4c7pEP/rHmBO/gKN2icO3SrYPsQHYqvoGALYsF2Kzj4Ek23ELq4GYpLiBftYAKS3ITSrn7jPef87jnfB5z0X5H8Q7vd5gBulVL3y+VS6YaEEIwx9gBguFgsvo5rVNPfB9BnjE2EEKwENsn68vUC0LKsAYAJANc0zWfHccysJqU0GGMjAC4hZKaUusvPF07OBqMoGgHoEUJm6/Xas217F0XRGIBHCJltt9uuzhItMHeaC2CaPrsApkqpXpm/pcD8pgBQtVkmXSiVn242m8oljLKCEIIlSfIEoIPDyR8AZK1WO+ecz8Mw3P0aKKU0kiQZA+ikaXrNZvMljuMzAF3DMK4sy5qvVqsCtABMfSuk6fv+3nGc1xTaqdfrlzpoAdhqtR4BXOOQpnccgO/7e875G6X0Ij2/EQTBeyXQtu1PAFBK3ejSDMNwxzmfU0obAIZBEHzrbDvp7/oBTO6g1QDr8X4AAAAASUVORK5CYII=");
+  }
+}
+/* -------------------------------------------------------------------------------------------*/
+/* ---------------------------------------------------------------------------------------------- */
+/*------------------------------------------------------------------------------------------------*\
+    Fall-Back Search Form Pattern v0.1
+\*------------------------------------------------------------------------------------------------*/
+/* -- Basic/fallback layout --------------------------------------------------------------------- */
+/* -- .off-canvas ----------------------------------------------------------------------------*/
+.off-canvas__open,
+.off-canvas__close {
+  display: none;
+}
+
+/* -------------------------------------------------------------------------------------------*/
+/* -- .off-canvas__inner ---------------------------------------------------------------------*/
+.off-canvas__inner {
+  width: 100%;
+  background-color: white;
+}
+
+/* -- Enhanced layout --------------------------------------------------------------------------- */
+/*@media only screen and (max-width: 920px) {*/
+@media only screen and (max-width: 719px) {
+  .off-canvas {
+    overflow-x: hidden;
+    height: 100%;
+  }
+
+  /* This div is responsible for sliding the page: */
+  .off-canvas__inner {
+    min-height: 100%;
+    position: relative;
+    left: 0;
+    /*
+        NOTE: `-webkit-transition` OMITTED DELIBERATLY as it seems to prevent android from
+        moving `.off-canvas__inner` at all and is thus broken.
+        If a simple solution is found I can re-instate it, but not having the transition is
+        only a minor difference - not moving at is unusable.
+    */
+    -moz-transition: left 0.5s ease;
+    -o-transition: left 0.5s ease;
+    transition: left 0.5s ease;
+  }
+
+  .off-canvas--left:target .off-canvas__inner {
+    left: 260px;
+  }
+
+  .off-canvas--right:target .off-canvas__inner {
+    left: -260px;
+  }
+
+  /* Style the off-canvas controls: */
+  /* 
+      NOTE: this still isn't finalised and may need to be more flexible as it's quite
+      subjective how these buttons should be presented in terms of position.
+      Will probably not be in isolation, but as part of a navbar or similar so this does
+      need some more thinking.
+  */
+  .off-canvas__controls--left,
+  .off-canvas__controls--right {
+    display: inline-block;
+    /*position: relative; - appears to not be needed. Maybe flex item causes same effect. Keep for now.*/
+  }
+
+  .off-canvas__open,
+  .off-canvas__close {
+            /*display: block;
+            @include fallback-rem(padding, $fallback--off-canvas--spacing);         
+
+            text-align: center;
+            
+            background-color: $fallback--off-canvas__link--bg-color;
+            color: $fallback--off-canvas__link--color;
+            
+            @include fallback-rem(width, $fallback--off-canvas__link--height);
+            @include fallback-rem(height, $fallback--off-canvas__link--height); 
+            @include fallback-rem(line-height, $fallback--off-canvas__link--height);*/
+    background-color: #bbbbbb;
+    color: white;
+    width:  40px;
+    width:  4rem;
+    display: block;
+    margin: 0;
+    padding:  0 10px;
+    padding:  0 1rem;
+    height:  40px;
+    height:  4rem;
+    line-height:  40px;
+    line-height:  4rem;
+  }
+
+  /*
+      Fix for Opera Mini vertical centering:
+  */
+  _:-o-prefocus, body:last-child .off-canvas__open,
+  _:-o-prefocus, body:last-child .off-canvas__close {
+    line-height: 2.8 !important;
+  }
+
+  /*
+      1. Move the close button to the back and position behind open control.
+      2. This is only necessary if the container is block wider than the control.
+         May not be the best place for this, but it doesn't hurt.
+  */
+  .off-canvas__close {
+    position: absolute;
+    /* [1] */
+    z-index: -1;
+    /* [1] */
+    top: 0;
+    /* [1] */
+    right: 0;
+    /* [2] */
+  }
+
+  .off-canvas__open:before,
+  .off-canvas__close:before {
+    /* These styles are enough for modern FF to V-center the icon: */
+    display: inline-block;
+    vertical-align: middle;
+    /* IE10-11 flexbox chokes without width: */
+    width:  20px;
+    width:  2rem;
+    /* IE11 flexbox stretches icon without height: */
+    height:  20px;
+    height:  2rem;
+    /* But now blink pushes the icon to the bottom without line-height: 0. */
+    line-height: 0;
+  }
+
+  .off-canvas__open:before {
+    content: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj48cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNMi41IDE1aDE1di0xLjY2N2gtMTV2MS42Njd6TTIuNSAxMC44MzNoMTV2LTEuNjY3aC0xNXYxLjY2N3pNMi41IDV2MS42NjdoMTV2LTEuNjY3aC0xNXoiPjwvcGF0aD48L3N2Zz4=");
+  }
+
+  .off-canvas__close:before {
+    content: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj48cGF0aCAgZmlsbD0iIzQ0NDQ0NCIgZD0iTTE1LjgzMyA1LjM0NmwtMS4xNzktMS4xNzktNC42NTQgNC42NTQtNC42NTQtNC42NTQtMS4xNzkgMS4xNzkgNC42NTQgNC42NTQtNC42NTQgNC42NTQgMS4xNzkgMS4xNzkgNC42NTQtNC42NTQgNC42NTQgNC42NTQgMS4xNzktMS4xNzktNC42NTQtNC42NTR6Ij48L3BhdGg+PC9zdmc+");
+  }
+
+  /* Move the close control on top of the open control and above the overlay: */
+  .off-canvas--left:target .off-canvas__controls--left .off-canvas__close,
+  .off-canvas--right:target .off-canvas__controls--right .off-canvas__close {
+    z-index: 1002;
+    /* @var */
+  }
+
+  .off-canvas__open:hover,
+  .off-canvas__open:active,
+  .off-canvas__open:focus,
+  .off-canvas__close:hover,
+  .off-canvas__close:active,
+  .off-canvas__close:active {
+    text-decoration: none;
+    background-color: #999999;
+  }
+
+  /* Size and position the overlay, but send it to the back: */
+  .off-canvas__overlay {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    opacity: 0;
+    -webkit-transition: opacity 0.5s ease;
+    -moz-transition: opacity 0.5s ease;
+    -o-transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
+    -webkit-box-shadow: 0 0 10px 5px black;
+    box-shadow: 0 0 10px 5px black;
+  }
+
+  /* Bring the overlay to the front and fade in when there's an off-canvas target: */
+  .off-canvas:target .off-canvas__overlay {
+    z-index: 1001;
+    /* @var */
+    opacity: 0.5;
+  }
+
+  /* Size and position the off-canvas panels: */
+  .off-canvas__panel--left,
+  .off-canvas__panel--right {
+    position: absolute;
+    top: 0;
+    width:  260px;
+    width:  26rem;
+    -webkit-box-sizing: border-box;
+  }
+
+  .off-canvas__panel--left {
+    left: -260px;
+    background-color: #999999;
+    padding:  20px;
+    padding:  2rem;
+  }
+
+  .off-canvas__panel--right {
+    right: -260px;
+    background-color: #999999;
+    padding:  20px;
+    padding:  2rem;
+  }
+}
+/* Old Android hack (also affects Safari 4 it doesn't matter in this case): */
+/* (adapted from http://browserhacks.com/#hack-a60b03e301a67f76a5a22221c739dc64) */
+@media screen and (min-width: 0 \-) {
+  /*
+      Overflow breaks scrolling in old Android, so just allow horizontal scrolling as well.
+  */
+  .off-canvas {
+    overflow: visible;
+  }
+
+        /*
+            PNG Fall-Back for Old Android.
+            (IE8- (and other non-SVG browsers) don't really need the off canvas anyway, and in the 
+            case of IE8- will never encounter it due to lack of Media Query support)
+            (--Actually, with Respond it will so could turn PNG Fall-Back into a mixin to allow it to
+            be used fore IE8 if necessary, but advise to use a min-width instead - if Respond will
+            allow this---). NO! It relies on :target so can't work in IE without JS fallback.
+            Can't see that this is worth it so only use min-width.
+
+            (leaving SVG for reference for now)
+        */
+  .off-canvas__open {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAQUlEQVQ4jWNgGAWDF/z//7/+P/mgHpuBAf///59PJg4YgDCgFPz//7/g////98nEBbQ3cPADqieb/9RO2KNg8AAAUSBpmHUw8UMAAAAASUVORK5CYII=");
+    -background-image: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KPHBhdGggZmlsbD0iI2ZmZmZmZiIgZD0iTTIuNSAxNWgxNXYtMS42NjdoLTE1djEuNjY3ek0yLjUgMTAuODMzaDE1di0xLjY2N2gtMTV2MS42Njd6TTIuNSA1djEuNjY3aDE1di0xLjY2N2gtMTV6Ij48L3BhdGg+Cjwvc3ZnPgo=);
+  }
+
+  .off-canvas__close {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAkklEQVQ4je2TOw6FMAwEKTgAEgWRkKi5awqah1IgTpBDDgVbRMAj5lOyXWJ75LWTovj0ugAHeKA8ySmV4yxAz6p4BBUsKsdbgA0wquAH1EmsAgbFZqDLAg+6iDrv7kywE+h92B/oM5iA6cwAgmmzhu6eWX51KRubE9AmMSfbdvtJgeVhBwuwFzT39QLQZ4GfLmsBYGJNnHhD1RcAAAAASUVORK5CYII=");
+    -background-image: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KPHBhdGggZmlsbD0iI2ZmZmZmZiIgZD0iTTE1LjgzMyA1LjM0NmwtMS4xNzktMS4xNzktNC42NTQgNC42NTQtNC42NTQtNC42NTQtMS4xNzkgMS4xNzkgNC42NTQgNC42NTQtNC42NTQgNC42NTQgMS4xNzkgMS4xNzkgNC42NTQtNC42NTQgNC42NTQgNC42NTQgMS4xNzktMS4xNzktNC42NTQtNC42NTR6Ij48L3BhdGg+Cjwvc3ZnPgo=);
+  }
+}
+/* For Opera Mini and Mobile (affects old desktop too, but that's acceptable): */
+/* (http://browserhacks.com/#hack-a3f166304aafed524566bc6814e1d5c7
+   for Opera ÔëÑ 9.5 but recent desktop Opera (15+) isn't affected) */
+/*
+    Overflow breaks scrolling in Opera Mini, so just allow horizontal scrolling as well.
+*/
+_:-o-prefocus, body:last-child .off-canvas {
+  overflow: visible;
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/*------------------------------------------------------------------------------------------------*\
+    Fall-Back Search Form Pattern v0.1
+\*------------------------------------------------------------------------------------------------*/
+/* -- Basic/fallback layout --------------------------------------------------------------------- */
+/*
+    NOTES:
+    
+    .search-form--right
+    It's not possible to easily re-create this variation so it won't be on the right in 
+    non-flexbox browsers, but that's ok, it's still usable.
+    IE 8 and 9 are forced into submission for this.
+
+*/
+/* -- .search-form ---------------------------------------------------------------------------*/
+.search-form {
+  background: #bbbbbb;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.search-form:before,
+.search-form:after {
+  content: " ";
+  display: table;
+}
+
+.search-form:after {
+  clear: both;
+}
+
+/* IE7- hacks (can't use MQ else IE8's Respond applies it): */
+.search-form {
+  *zoom: 1;
+  *padding-bottom: 5px;
+}
+
+/* -------------------------------------------------------------------------------------------*/
+/* -- .search-form__cancel -------------------------------------------------------------------*/
+.search-form__cancel {
+  display: none;
+}
+
+/* -------------------------------------------------------------------------------------------*/
+/* -- .search-form__field --------------------------------------------------------------------*/
+/*
+    1. This to override normalize.
+*/
+.search-form__field {
+  -webkit-appearance: none !important;
+  /* [1] */
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+  border: 0;
+  -webkit-border-box: content-box;
+  border-box: content-box;
+  height:  20px;
+  height:  2rem;
+  line-height:  20px;
+  line-height:  2rem;
+  margin:  5px 0 5px 5px;
+  margin:  0.5rem 0 0.5rem 0.5rem;
+  padding:  5px;
+  padding:  0.5rem;
+  float: left;
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+
+.search-form--right .search-form__field {
+  -webkit-order: 2;
+  -ms-flex-order: 2;
+  order: 2;
+}
+
+/*
+    Opera Hacks (https://github.com/jeffclayton/css_hack_testing/blob/master/opera_9.5-12_hack.txt)
+    Opera Mini 7- ignores line height.
+    Opera Mini 8 seems to enforce a minimum font size for the search field which forces it to be
+    higher than it should be.
+    min-height and no padding seems to fix it.
+*/
+_:-o-prefocus, body:last-child .search-form__field {
+  padding: 0;
+  min-height:  30px;
+  min-height:  3rem;
+}
+
+/* -------------------------------------------------------------------------------------------*/
+/* -- .search-form__submit -------------------------------------------------------------------*/
+/*
+    1. IE 6/7 needs this.
+*/
+.search-form__submit {
+  -webkit-appearance: none;
+  border-radius: 0;
+  border: 0;
+  -webkit-border-box: content-box;
+  border-box: content-box;
+  background: #dddddd;
+  height:  30px;
+  height:  3rem;
+  line-height: 0;
+  /* [1] */
+  *line-height: 1.5;
+  margin:  5px 5px 5px 0;
+  margin:  0.5rem 0.5rem 0.5rem 0;
+  padding:  0 10px;
+  padding:  0 1rem;
+  float: left;
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+}
+
+.search-form__submit:hover,
+.search-form__submit:active,
+.search-form__submit:focus {
+  background-color: #cccccc;
+}
+
+.search-form--right .search-form__submit {
+  -webkit-order: 2;
+  -ms-flex-order: 2;
+  order: 2;
+}
+
+.search-form__submit svg {
+  height:  20px;
+  height:  2rem;
+  width:  20px;
+  width:  2rem;
+}
+
+/* PNG Fall-Back */
+.no-inlinesvg.datauri .search-form__submit:before {
+  content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABTklEQVQ4T6VT21GDQBTNAv9qBaEDSQUij3+pQNMBnUgHagXJPw+3A0kFxg5SAA/P2VlmFtw4ZmQmA7t377nnsREr40mSJMfyEb9Ab7fjOBZ1Xb+Z58xvwUUYhtee570bjcvzbdd191LK07KgAOI4boUQt5j2hWXe933Lfdd1yaRAbY13W1XV5geApv3MZjQGyylkByAOWA/DsG2a5nUmwZieQevephVnHgCws7EQYDCyCRpvbBq1Rz48+uQ3ZCjZ0/N/gEskwKcDZE4RKxIiiqInx3FeUDzCxM0ZEz/ggW81cRHjEQdz+HHgPnQzWsbo26YrBtokRiV5F2wpsFnXJMAzk+XMUcohgwmIjWTA7JGWBPgdo0R9W5alumwzANv0ac+8UAA9ASRDpPLPAARK0zRAM5lccU1TLwJgE6SEePGPt1JMfqN9rqajLwCw/wY2tMxY4fByDwAAAABJRU5ErkJggg==");
+}
+
+.no-inlinesvg.datauri .search-form__submit span {
+  display: none;
+}
+
+/* -------------------------------------------------------------------------------------------*/
+/* -- .search-form__collapse -----------------------------------------------------------------*/
+.search-form__collapse {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  float: left;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+}
+
+/* -------------------------------------------------------------------------------------------*/
+/* IE8 hacks: */
+@media \0screen {
+  .search-form--right .search-form__submit,
+  .search-form--right .search-form__field {
+    float: right;
+  }
+
+  .search-form--right .search-form__field {
+    margin-left: -340px;
+    /* @var */
+    margin-right: 20px;
+    /* @var */
+  }
+}
+/* IE9 hacks: */
+@media all and (min-width: 0 \0) and (min-resolution: 0.001dpcm) {
+  .search-form--right .search-form__submit,
+  .search-form--right .search-form__field {
+    float: right;
+  }
+
+  .search-form--right .search-form__field {
+    margin-left: -340px;
+    /* @var */
+    margin-right: 20px;
+    /* @var */
+  }
+}
+/* -- Enhanced layout --------------------------------------------------------------------------- */
+@media only screen and (max-width: 719px) {
+  .search-form--right .search-form__submit,
+  .search-form--right .search-form__field {
+    float: left;
+  }
+
+  .search-form--right .search-form__field {
+    margin-left:  5px;
+    margin-left:  0.5rem;
+    margin-right: 0;
+  }
+
+  .search-form__collapse {
+    width: 100%;
+  }
+
+  .no-flexbox .search-form {
+    display: block;
+  }
+}
+@media only screen and (min-width: 720px) {
+  /*
+      Older FF flexbox doesn't support flex wrap so basic layout breaks. Adding old -moz 
+      flexbox for the enhanced width old solves this problem.
+  */
+  .search-form {
+    display: -moz-box;
+    width: 100%;
+  }
+
+  .search-form__field {
+    -moz-box-flex: 1;
+  }
+
+  .search-form__submit {
+    -moz-box-flex: 0;
+  }
+
+  .search-form__collapse {
+    -moz-box-flex: 0;
+  }
+
+  .search-form__cancel {
+    -moz-box-flex: 0;
+    -moz-box-ordinal-group: 0;
+  }
+
+  .search-form--right .search-form__field,
+  .search-form--right .search-form__submit {
+    -moz-box-ordinal-group: 2;
+  }
+
+  .search-form__cancel {
+    display: none;
+    background-color: #bbbbbb;
+    padding-right:  10px;
+    padding-right:  1rem;
+    padding-left:  10px;
+    padding-left:  1rem;
+    height:  40px;
+    height:  4rem;
+    line-height:  40px;
+    line-height:  4rem;
+    width:  40px;
+    width:  4rem;
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    -webkit-order: -1;
+    -ms-flex-order: -1;
+    order: -1;
+  }
+
+  .search-form__cancel:hover,
+  .search-form__cancel:focus,
+  .search-form__cancel:active {
+    background-color: #999999;
+  }
+
+  .search-form__cancel:after {
+    content: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj48cGF0aCAgZmlsbD0iIzQ0NDQ0NCIgZD0iTTE1LjgzMyA1LjM0NmwtMS4xNzktMS4xNzktNC42NTQgNC42NTQtNC42NTQtNC42NTQtMS4xNzkgMS4xNzkgNC42NTQgNC42NTQtNC42NTQgNC42NTQgMS4xNzkgMS4xNzkgNC42NTQtNC42NTQgNC42NTQgNC42NTQgMS4xNzktMS4xNzktNC42NTQtNC42NTR6Ij48L3BhdGg+PC9zdmc+");
+    display: inline-block;
+    vertical-align: middle;
+    /* IE10-11 flexbox chokes without width: */
+    width: 20px;
+    width: 2rem;
+    /* IE11 flexbox stretches icon without height: */
+    height: 20px;
+    height: 2rem;
+    /* But now blink pushes the icon to the bottom without line-height: 0. */
+    line-height: 0;
+  }
+
+  .search-form__field {
+    width: auto;
+  }
+
+  /*
+      Expander
+  */
+  .search-form__field:focus ~ .search-form__collapse {
+    display: none;
+  }
+
+  /*
+      Cancel button
+      Note: only necessary on some touch devices where it can be difficult to un-focus.
+  */
+  .search-form__field:focus ~ .search-form__cancel {
+    display: block;
+  }
+
+        /*
+            Expander issue:
+            Collapse block is hidden but search field doesn't expand so it looks weird.
+            Affects: browsers that DON'T support flexbox, but DO support :focus ~ selector.
+                IE9 - had to use hack - see below.
+                FF3.5 - 21 (note - look into using the -moz prefix for flexbox in this case for 8+)
+                Safari6 (CSS Cutt-off won't load CSS for this browser so shouldn't be an issue any more)
+           
+            
+        
+            --Modernizr adds the .flexbox class. If JS unavailable, expanding doesn't work.
+            That's ok, but I may as well just have used JS to make the expanding working the first
+            place!!!!??? :-(--
+            
+            If no-flexbox, undo Expander and Cancel.
+            Note, without JS the issue described above will still occur, but it's still usable.
+
+        */
+  /*.no-flexbox .search-form__field:focus ~ .search-form__collapse {
+      display: block;
+  }
+  
+  .no-flexbox .search-form__field:focus ~ .search-form__cancel {
+      display: none;
+  }*/
+  .search-form__collapse {
+    width: auto;
+  }
+}
+/* IE9 hacks: */
+/*
+    Expander issue: Collapse block is hidden but search field doesn't expand so it looks weird.
+*/
+@media all and (min-width: 0 \0) and (min-resolution: 0.001dpcm) {
+  .search-form__field:focus ~ .search-form__collapse {
+    display: block;
+  }
+
+  .search-form__field:focus ~ .search-form__cancel {
+    display: none;
+  }
+}
+/*
+Older webkit browsers - those supporting the -webkit-box-flex syntax (Chrome 21-28, Maxthon) 
+- don't let the flex declarations override floats properly, so the the floats applied above
+cause serious breakage, so we need to undo those floats.
+Also the vertical centering of the cancel icon doesn't work properly, so we provide a fix
+for that too.
+Applies to newer webkit too, but works just as well. Mainly this prevents IE10 from
+applying this (where the cancel icon styling fails).
+However, older webkit (Safari, Android) baulk at this so following are some hacks to reset the float.
+Horrid but haven't found a better way yet.
+Can't use JS to detect these either, as it's totally broken if JS isn't available.
+
+*/
+    /* no longer applies due to CSS Cutt-off
+    @media screen and (-webkit-min-device-pixel-ratio: 0) {
+        .search-form__submit,
+        .search-form__field,
+        .search-form__collapse {
+            float: none;
+        }
+
+        .search-form__cancel:after {
+            display: table-cell;
+            height: 40px;
+            height: 4rem;
+        }
+    }*/
+/* Android 2.3+ and Safari 3-4 */
+/*@media screen and (min-width: 0\-) {
+    .search-form__submit,
+    .search-form__field,
+    .search-form__collapse {
+        float: left;
+    }
+}*/
+/* iOS (iOS Safari 3.2+), Android (Base browser 2.1+ & Chrome 22+, Opera Mobile 10+) */
+/*@media screen and (-webkit-min-device-pixel-ratio:1.1) {
+    .search-form__submit,
+    .search-form__field,
+    .search-form__collapse {
+        float: left;
+    }
+}*/
+/* ---------------------------------------------------------------------------------------------- */
+/*------------------------------------------------------------------------------------------------*\
+    Sticky Footer Pattern
+\*------------------------------------------------------------------------------------------------*/
+/*
+    NOTE: `.sticky-footer-outer-wrap` is only used for wrapper elements above `.sticky-footer-wrap` 
+    up to `body` - it's always not required. You DO NOT need to use this class if:
+    
+       * you don't have any wrappers between `.sticky-footer-wrap` and `body`
+       
+       OR
+       
+       * your wrappers already have `height: 100%;` on them from elsewhere
+*/
+.sticky-footer-outer-wrap {
+  height: 100%;
+}
+
+.sticky-footer-wrap {
+  display: table;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.sticky-footer {
+  display: table-row;
+  height: 1px;
+}
+
+/*------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------*\
+    SVG Pattern
+\*------------------------------------------------------------------------------------------------*/
+/*
+    1. Make the link fit the content.
+    2. Provide positioning context for the pseudo element.
+    3. Remove underline on some older browsers (Android 2.x mainly)
+    4. Prevent fallback text from showing unless image fails to load.
+*/
+.svg__link {
+  display: inline-block;
+  /* [1] */
+  position: relative;
+  /* [2] */
+  text-decoration: none;
+  /* [3] */
+  overflow: hidden;
+  /* [4] */
+}
+
+/*
+    Objects inside links prevent the link from functioning, this hack fixes 
+    that. `pointer-events: none;` would solve it but support isn't good 
+    enough (http://caniuse.com/#search=pointer-events).
+    
+    1. This is needed for IE9+ or hover effects don't work over images 
+       embedded in the SVG.
+*/
+.svg__link:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0);
+  /* [1] */
+}
+
+/*
+    1. Remove gap below.
+    2. Prevent pointer-events blocking link action in supporting browsers.
+*/
+.svg__link .svg__image {
+  vertical-align: top;
+  /* [1] */
+  pointer-events: none;
+  /* [2] */
+}
+
+/*
+    1. The br is only useful for non-css fallback display, so we can hide it.
+*/
+.svg__link br {
+  display: none;
+  /* [1] */
+}
+
+/*
+    1. But we may need to be able to insert line breaks inside the text to prevent 
+       the text from pushing the container to wide.
+*/
+.svg__fallback-text br {
+  display: inline;
+  /* [1] */
+}
+
+/*------ Fixed Height ------*/
+/*
+    Set this to your required height.
+    If you need more variants, create separate modification classes instead.
+*/
+/*
+    1. Allow pattern to contract.
+*/
+.svg--fixed-height .svg__link,
+.svg--fixed-height .svg__image {
+  max-width: 100%;
+  /* [1] */
+}
+
+.svg--fixed-height .svg__fallback-image {
+  max-width: 100%;
+  height: auto;
+}
+
+/*
+    1. Force fallback text below object.
+    2. A problem with this technique arises if the fallback text is quite long. For the 
+       fixed-height version of the SVG fallback pattern, long fallback text forces the parent 
+       link to be wider than the SVG image.
+       If this problem occurs try you'll need to either reduce the line-length by reducing the 
+       font-size or adding `<br>`s in the fallback text, or assign a width to the 
+       `.svg__fallback-text` class that you know to be small enough to force the text to wrap.
+*/
+.svg--fixed-height .svg__fallback-text {
+  display: block;
+  /* [1] */
+}
+
+.svg--fixed-height,
+.svg--fixed-height .svg__link,
+.svg--fixed-height .svg__image {
+  height: 100px;
+}
+
+/*
+    Allow the fallback image to scale properly.
+    1. IE6 - can be removed if unnecessary.
+*/
+.svg--fixed-height .svg__fallback-image {
+  max-height: 100px;
+  _height: 100px;
+  /* [1] */
+}
+
+/*------ Fluid ------*/
+/*
+   1. Force the svg wrapper and link to fill their containers.
+*/
+.svg--fluid,
+.svg--fluid .svg__link {
+  display: block;
+  /* [1] */
+  height: 100%;
+  /* [1] */
+  width: 100%;
+  /* [1] */
+}
+
+/*
+    1. Force the children (object and fallback) text onto a single line. 
+       Note they must be inline-block.
+*/
+.svg--fluid .svg__link {
+  white-space: nowrap;
+  /* [1] */
+}
+
+/*
+   1. Force the object and fallback image to proportionally fill their 
+      containers, overriding attribute values.
+*/
+.svg--fluid .svg__image,
+.svg--fluid .svg__fallback-image {
+  height: auto;
+  /* [1] */
+  width: 100%;
+  /* [1] */
+}
+
+/*
+    1. Make the fallback text inline-block so it is forced to the right of the object.
+       This hides it unless the image fails (in which case it collapses to the width of the text 
+       that's revealed).
+    2. Reset the white-space so it can form line-breaks.
+*/
+.svg--fluid .svg__fallback-text {
+  display: inline-block;
+  /* [1] */
+  white-space: normal;
+  /* [2] */
+}
+
+/*----------------------------------------*\
+    Old Browser Hacks - Optional
+\*----------------------------------------*/
+/* IE8- hacks: */
+@media \0screen\,screen\9 {
+  /*
+      PNG fallbacks also show the text (which isn't what we want), but we
+      don't need it as it has `alt` text, so just hide it.
+      Overqualified to increase specificity.
+  */
+  .svg--fixed-height .svg__fallback-text,
+  .svg--fluid .svg__fallback-text {
+    display: none;
+  }
+}
+/* Old Android (2.3) hacks: */
+@media screen and (min-width: 0 \-) {
+  /*
+      PNG fallbacks also show the text (which isn't what we want), but we
+      don't need it as it has `alt` text, so just hide it.
+      Overqualified to increase specificity.
+  */
+  .svg--fixed-height .svg__fallback-text,
+  .svg--fluid .svg__fallback-text {
+    display: none;
+  }
+}
+/*------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------*\
+    Fall-Back Top Bar Combination v0.1
+\*------------------------------------------------------------------------------------------------*/
+/* -- Basic/fallback layout --------------------------------------------------------------------- */
+/* Nav Bar adjustments: */
+/*
+    1. For IE 9.
+*/
+.nav-bar {
+  display: table;
+  /* [1] */
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 20px;
+  margin-bottom: 2rem;
+  /* For -moz-box: */
+  width: 100%;
+}
+
+.nav-bar,
+.nav-bar__title-section {
+  height: 40px;
+  height: 4rem;
+}
+
+/*
+    1. Prevent extra vertical spacing (IE9, ?)
+*/
+.nav-bar__title-section {
+  vertical-align: top;
+  /* [1] */
+  -webkit-flex: 1 0 auto;
+  -moz-box-flex: 1;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+
+.nav-bar__title-text {
+  background: #aaa;
+  display: inline-block;
+  font-size: 2.3rem;
+  font-weight: bold;
+  height: 4rem;
+  line-height: 4rem;
+  text-align: center;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+/* SVG adjustments: */
+.svg-logo {
+  text-align: center;
+  /* For -moz-box: */
+  /*display: inline-block;
+  vertical-align: middle;*/
+}
+
+/* From mixin: */
+.svg-logo,
+.svg-logo .svg__link,
+.svg-logo .svg__image {
+  height: 32px;
+}
+
+/*
+    Allow the fallback image to scale properly.
+    1. IE6 - can be removed if unnecessary.
+*/
+.svg-logo .svg__fallback-image {
+  max-height: 32px;
+  _height: 32px;
+  /* [1] */
+}
+
+.svg-logo .svg__link {
+  background: #fff;
+  border: 1px solid #999;
+  padding: 3px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+.svg-logo .svg__link:hover,
+.svg-logo .svg__link:active,
+.svg-logo .svg__link:focus {
+  background-color: #ffdd79;
+}
+
+/* Off Canvas adjustments: */
+.off-canvas__panel--left {
+  padding: 0;
+}
+
+/* Search Form adjustments: */
+/* For -moz-box: to avoid extra space at the bottom of the topbar */
+.search-form {
+  vertical-align: middle;
+}
+
+/*
+.nav-bar__inner,
+.nav-bar__title-section {
+    vertical-align: middle;
+}
+
+*/
+@media only screen and (max-width: 719px) {
+  /*
+      1. For IE9. Applied all IE but is acceptable.
+      2. For IE9. Applied to all browsers but has no ill-effects. Basically ignored for non-IE.
+      3. Reset the position for non-IE.
+  */
+  .off-canvas__controls--left {
+    position: absolute;
+    /* [1] */
+    left: 0;
+    /* [2] */
+    top: 0;
+    /* [2] */
+    position: initial;
+    /* [3] */
+    -webkit-flex: 0 0 auto;
+    -moz-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    -webkit-order: -1;
+    -moz-box-ordinal-group: 0;
+    -ms-flex-order: -1;
+    order: -1;
+  }
+
+  /*
+      1. For IE9. Applied all IE but is acceptable.
+      2. For IE9. Applied to all browsers but has no ill-effects. Basically ignored for non-IE.
+      3. Reset the position for non-IE.
+  */
+  .off-canvas__controls--right {
+    position: absolute;
+    /* [1] */
+    right: 0;
+    /* [2] */
+    top: 0;
+    /* [2] */
+    position: initial;
+    /* [3] */
+    -webkit-flex: 0 0 auto;
+    -moz-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+  }
+}
+@media only screen and (min-width: 720px) {
+  /*
+      1. For IE 9.
+      2. For IE 9. Affects all browsers but no negative impact due to flexbox.
+  */
+  .nav-bar__title-section {
+    display: table-cell;
+    /* [1] */
+    width: 1px;
+    /* [2] */
+  }
+
+  .nav-bar__inner {
+    -webkit-flex: 1 0 auto;
+    -moz-box-flex: 1;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+  }
+
+  .off-canvas__panel--right {
+    padding: 2rem;
+  }
+}
+/* -- Enhanced layout --------------------------------------------------------------------------- */
+    /*@media only screen and (max-width: ($fallback--search-form--breakpoint--enhanced - 1)) {
+
+    }*/
+/*@media only screen and (min-width: $fallback--search-form--breakpoint--enhanced) {
+
+}*/
+/* ---------------------------------------------------------------------------------------------- */

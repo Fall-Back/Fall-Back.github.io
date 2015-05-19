@@ -6,241 +6,118 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <link rel="stylesheet" href="css/vendor/normalize.css" />
-
-    <style>
-    /*----------------------------------------*\
-        SVG Pattern Styles
-    \*----------------------------------------*/
-    /*
-        1. Make the link fit the content.
-        2. Provide positioning context for the pseudo element.
-        3. Remove underline on some older browsers (Android 2.x mainly)
-        4. Prevent fallback text from showing unless image fails to load.
-    */
-    .svg__link {
-        display: inline-block; /* [1] */
-        position: relative;    /* [2] */
-        text-decoration: none; /* [3] */
-        overflow: hidden;      /* [4] */
-    }
+    <link rel="stylesheet" href="/css/style.min.css" media="only screen and (min-resolution: 0.1dpcm)">
+    <link rel="stylesheet" href="/css/style.min.css" media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)">
     
-    /*
-        Objects inside links prevent the link from functioning, this hack fixes 
-        that. `pointer-events: none;` would solve it but support isn't good 
-        enough (http://caniuse.com/#search=pointer-events).
-        
-        1. This is needed for IE9+ or hover effects don't work over images 
-           embedded in the SVG.
-    */
-    .svg__link:after {
-        content: ""; 
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background: rgba(0,0,0,0); /* [1] */
-    }
-    
-    /*
-        1. Remove gap below.
-        2. Prevent pointer-events blocking link action in supporting browsers.
-    */
-    .svg__link .svg__image {
-        vertical-align: top;  /* [1] */
-        pointer-events: none; /* [2] */
-    }
-    
-    /*
-        1. The br is only useful for non-css fallback display, so we can hide it.
-    */
-    .svg__link br {
-        display: none; /* [1] */
-    }
-
-    
-    /*------ Fixed Height ------*/
-    /*
-        Set this to your required height.
-        If you need more variants, create separate modification classes instead.
-    */
-    .svg--fixed-height,
-    .svg--fixed-height .svg__link,
-    .svg--fixed-height .svg__image {
-        height: 150px;
-    }
-    
-    /*
-        1. Allow pattern to contract.
-    */
-    .svg--fixed-height .svg__link,
-    .svg--fixed-height .svg__image {
-        max-width: 100%; /* [1] */
-    }
-    
-    /*
-        Allow the fallback image to scale properly.
-        1. IE6 - can be removed if unnecessary.
-    */
-    .svg--fixed-height .svg__fallback-image {
-
-        max-width: 100%;
-        max-height: 150px;
-        height: auto;
-        _height: 150px; /* [1] */
-    }
-    
-    /*
-        1. Force fallback text below object.
-        2. Reduce font size to prevent it forcing the container wider than the 
-           object at smaller sizes. This is opinionated change as you see fit.
-    */
-    .svg--fixed-height .svg__fallback-text {
-        display: block;   /* [1] */
-        font-size: 0.6em; /* [2] */
-    }
-    
-
-    /*------ Fluid ------*/
-    /*
-       1. Force the svg wrapper and link to fill their containers.
-    */
-    .svg--fluid,
-    .svg--fluid .svg__link {
-        display: block; /* [1] */
-        height: 100%;   /* [1] */
-        width: 100%;    /* [1] */
-    }
-    
-    /*
-        1. Force the children (object and fallback) text onto a single line. 
-           Note they must be inline-block.
-    */
-    .svg--fluid .svg__link {
-        white-space: nowrap; /* [1] */
-    }
-    
-    /*
-       1. Force the object and fallback image to proportionally fill their 
-          containers, overriding attribute values.
-    */
-    .svg--fluid .svg__image,
-    .svg--fluid .svg__fallback-image {
-        height: auto; /* [1] */
-        width: 100%;  /* [1] */
-    }
-    
-    /*
-        1. Make the fallback text inline-block so it is forced to the right of the object.
-           This hides it unless the image fails (in which case it collapses to the width of the text 
-           that's revealed).
-        2. Reset the white-space to is can form line-breaks.
-    */
-    .svg--fluid .svg__fallback-text {
-        display: inline-block; /* [1] */
-        white-space: normal;   /* [2] */
-    }
-    
-    
-    /*----------------------------------------*\
-        Old Browser Hacks - Optional
-    \*----------------------------------------*/
-       
-    /* IE8- hacks: */
-    @media \0screen\,screen\9 {
-        /*
-            PNG fallbacks also show the text (which isn't what we want), but we
-            don't need it as it has `alt` text, so just hide it.
-        */
-        .svg--fixed-height .svg__fallback-text,
-        .svg--fluid .svg__fallback-text {
-            display: none;
-        }
-    }
-    
-    /* Old Android (2.3) hacks: */
-    @media screen and (min-width:0\-) {
-        /*
-            PNG fallbacks also show the text (which isn't what we want), but we
-            don't need it as it has `alt` text, so just hide it.
-        */
-        .svg--fixed-height .svg__fallback-text,
-        .svg--fluid .svg__fallback-text {
-            display: none;
-        }
-    }
-    
-    
-    
-    /*------ Fixed Height - small variant ------*/
-    /*
-        Set this to your required height.
-        If you need more variants, create separate modification classes instead.
-    */
-    .svg--fixed-height--small,
-    .svg--fixed-height--small .svg__link,
-    .svg--fixed-height--small .svg__image {
-        height: 50px;
-    }
-    
-    /*
-        Allow the fallback image to scale properly.
-        1. IE6 - can be removed if unnecessary.
-    */
-    .svg--fixed-height--small .svg__fallback-image {
-        max-height: 50px;
-        _height: 50px; /* [1] */
-    }
-
-    </style>
 </head>
-<body>
-    <h1>Fall-Back</h1>
-       
-    <div class="svg  svg--fixed-height">
-        <a href="#" class="svg__link  demo-link">
-            <object type="image/svg+xml" data="img/fallback-logo.svg" height="100" class="svg__image" aria-hidden="true" tabindex="-1">
-                <svg display="none">
-                    <image src="img/fallback-logo.png" height="100" class="svg__fallback-image" alt="Fall Back home" />
-                </svg>
-            </object>
-            <br /><i class="svg__fallback-text">Fall Back home</i>
-        </a>
+<body role="document">
+    <div class="no-style-notice">
+		<hr />
+		<p>
+			<b>Notice:</b> You are viewing an unstyled version of this page. Are you using a very old browser? If so, <a href="http://browsehappy.com/">please consider upgrading</a>.
+		</p>
+		<hr />
+	</div>
+
+
+    
+    <div class="off-canvas  off-canvas--left" id="left-panel">
+        <!--<div class="off-canvas  off-canvas--right" id="right-panel">-->
+            <div class="off-canvas__inner">
+                <a href="#" tabindex="-1" class="off-canvas__overlay  js-no-history"></a>
+                
+                <header>
+                
+                    <div class="nav-bar">
+                        
+                        <div class="nav-bar__title-section">
+
+                            <div class="svg  svg--fixed-height  svg-logo">
+                                <a class="svg__link" href="#">
+                                    <object height="60" tabindex="-1" aria-hidden="true" class="svg__image" data="img/fallback-logo-wide.svg" type="image/svg+xml">
+                                        <svg display="none">
+                                            <image alt="Fall-Back home" class="svg__fallback-image" height="60" src="img/fallback-logo-wide.png"/>
+                                        </svg>
+                                    </object>
+                                    <br><i class="svg__fallback-text">Fall-Back home</i>
+                                </a>
+                            </div>
+                            
+                        </div>
+                        <div class="off-canvas__controls--left">
+                            <a href="#left-panel" tabindex="-1" class="off-canvas__open  js-no-history"></a>
+                            <a href="#" tabindex="-1" class="off-canvas__close  js-no-history"> </a>
+                        </div>
+                        <!--<div class="off-canvas__controls--right">
+                            <a href="#right-panel" tabindex="-1" class="off-canvas__open  js-no-history"></a>
+                            <a href="#" tabindex="-1" class="off-canvas__close  js-no-history"> </a>
+                        </div>-->
+                        <nav class="nav-bar__inner">
+                            <h2 class="visually-hidden">Navigation</h2>
+                            <div class="off-canvas__panel--left">
+                                <form action="#search" id="searchform" class="search-form  search-form--right" method="GET">
+                                    <input type="search" class="search-form__field" id="search" placeholder="Search" name="s" value="" aria-label="Search" />
+                                    <button class="search-form__submit" type="submit">
+                                        <span>
+                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+                                                <path fill="#333333" d="M12.917 11.667h-0.662l-0.229-0.229c0.817-0.946 1.308-2.175 1.308-3.521 0-2.992-2.425-5.417-5.417-5.417s-5.417 2.425-5.417 5.417 2.425 5.417 5.417 5.417c1.346 0 2.575-0.492 3.521-1.304l0.229 0.229v0.658l4.167 4.158 1.242-1.242-4.158-4.167zM7.917 11.667c-2.071 0-3.75-1.679-3.75-3.75s1.679-3.75 3.75-3.75 3.75 1.679 3.75 3.75-1.679 3.75-3.75 3.75z"></path>
+                                                <text y="-1">Search</text>
+                                            </svg>
+                                        </span>
+                                    </button>
+                                    <a href="#" tabindex="-1" class="search-form__cancel"></a>
+                                    <ol class="search-form__collapse  nav-bar__items">
+                                        <li class="nav-bar__item"><a href="#1" tabindex="1" class="nav-bar__link">About</a></li>
+                                        <!--<li class="nav-bar__item  has-subnav">
+                                            <a href="#2" tabindex="1" class="nav-bar__link">Link 2</a>
+                                            <a href="#" tabindex="1" class="nav-bar__link  subnav__open   subnav__open--icon-only  js-no-history"></a>
+                                            <ol class="subnav" id="subnav1">
+                                                <li class="subnav__item"><a href="#2.1" tabindex="1" class="subnav__link">Sub link 2.1</a></li>
+                                                <li class="subnav__item"><a href="#2.2" tabindex="1" class="subnav__link">Sub link 2.2</a></li>
+                                                <li class="subnav__item"><a href="#2.3" tabindex="1" class="subnav__link">Sub link 2.3</a></li>
+                                                <li class="subnav__item"><a href="#2.4" tabindex="1" class="subnav__link">Sub link 2.4</a></li>
+                                                <li class="subnav__item"><a href="#2.5" tabindex="1" class="subnav__link">Sub link 2.5</a></li>
+                                                <li class="subnav__item"><a href="#2.6" tabindex="1" class="subnav__link">Sub link 2.6</a></li>
+                                            </ol>
+                                            <a href="#" tabindex="-1" class="subnav__link  subnav__cancel  js-no-history"></a>
+                                        </li>-->
+                                        <li class="nav-bar__item  has-subnav">
+                                            <span class="subnav__heading">Patterns:</span>
+                                            <a href="#" tabindex="1" data-content="Submenu heading:" class="nav-bar__link  subnav__open  subnav__open--fake  js-no-history"></a>
+                                            <ol class="subnav" id="subnav2">
+                                                <li class="subnav__item"><a href="#6.1" tabindex="1" class="subnav__link">Sub link 6.1</a></li>
+                                                <li class="subnav__item"><a href="#6.2" tabindex="1" class="subnav__link">Sub link 6.2</a></li>
+                                                <li class="subnav__item"><a href="#6.3" tabindex="1" class="subnav__link">Sub link 6.3</a></li>
+                                            </ol>
+                                            <a href="#" tabindex="-1" class="subnav__link  subnav__cancel  js-no-history"></a>
+                                        </li>
+                                    </ol>
+                                </form>
+                            </div>
+                        </nav>
+                    </div>
+
+                </header>
+                                
+                <main class="main">
+                    <h1>Fall-Back</h1>
+                    <p>
+                        Progressive enhancement patterns.
+                    </p>
+                </main>
+                
+                <!--<aside class="off-canvas__panel--right">
+                    <h2>Right Panel</h2>
+                    <p>
+                    This content is in the right panel. It could be anything. Probably your navigation but it really could be anything.
+                    </p>
+                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+                </aside>-->
+            </div>
+        <!--</div>-->
     </div>
 
+    <script src="/js/script.min.js"></script>
     
-
-<script>
-    window.onload = function() {
-        if (!(
-            document.body.style.msTouchAction !== undefined /* IE10+ */
-         || (document.all && document.addEventListener && !window.atob) /* IE9 */
-         || Object.prototype.toString.call(window.operamini) === '[object OperaMini]' /* Opera Mini */
-        )) {
-            return;
-        }
- 
-        var objs = document.getElementsByTagName('object');
-        var i = 0
-          , l = objs.length
-          , data
-          , obj;
-
-        for (i; i < l; i++) {
-            obj = objs[i];
-            // Check object is inside of an .svg__link and
-            // not inside of an .svg--fluid
-            if (obj.parentNode.className.indexOf('svg__link') == -1 || obj.parentNode.parentNode.className.indexOf('svg--fluid') >= 0) {
-                continue;
-            }
-            obj.style.maxWidth          = 'none';
-            obj.style.minWidth          = '0';
-            obj.parentNode.style.width  = '100%';
-            obj.parentNode.style.width  = obj.offsetWidth + 'px';
-            obj.style.maxWidth          = '100%';
-        }
-    }
-</script>
 </body>
 </html>

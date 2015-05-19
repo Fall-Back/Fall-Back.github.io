@@ -13,6 +13,7 @@
   "license": "Apache",
   "dependencies": {
     "Fall-Back-Top-Bar": "https://github.com/Fall-Back/Top-Bar.git",
-    "Fall-Back-Sticky-Footer": "https://github.com/Fall-Back/Sticky-Footer.git"
+    "Fall-Back-Sticky-Footer": "https://github.com/Fall-Back/Sticky-Footer.git",
+    "inuit-normalize": "~3.0.3"
   }
 }
