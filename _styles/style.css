@@ -663,12 +663,24 @@ main {
 \*------------------------------------------------------------------------------------------------*/
 /* -- Basic/fallback layout --------------------------------------------------------------------- */
 /* -- .nav-bar -------------------------------------------------------------------------------*/
+/*
+    1. For IE 9.
+    2. For -moz-box.
+*/
 .nav-bar {
   background-color: #aaaaaa;
   min-height:  40px;
   min-height:  4rem;
   margin-bottom:  20px;
   margin-bottom:  2rem;
+  display: table;
+  /* [1] */
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  /* [2] */
 }
 
 .nav-bar:before,
@@ -899,22 +911,10 @@ _:-o-prefocus, body:last-child .subnav__heading {
 /* -------------------------------------------------------------------------------------------*/
 /* -- Enhanced layout ----------------------------------------------------------------------- */
 @media only screen and (min-width: 720px) {
-  /*
-      1. For IE 9.
-      2. For -moz-box.
-  */
   .nav-bar {
     position: relative;
     z-index: 1000;
     /* @var */
-    display: table;
-    /* [1] */
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    width: 100%;
-    /* [2] */
   }
 
   /*
