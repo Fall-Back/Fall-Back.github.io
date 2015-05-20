@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-gb">
+<head>
+    <meta charset="utf-8">
+    <title>{{ page.title }}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="description" content="{{ site.description }}>
+    
+    <link rel="stylesheet" href="/css/style.min.css" media="only screen and (min-resolution: 0.1dpcm)">
+    <link rel="stylesheet" href="/css/style.min.css" media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)">
+    
+</head>
+<body role="document">
+
+    
+
+    
+    <div class="off-canvas  off-canvas--left  sticky-footer-outer-wrap" id="left-panel">
+        <!--<div class="off-canvas  off-canvas--right  sticky-footer-outer-wrap" id="right-panel">-->
+            <div class="off-canvas__inner  sticky-footer-wrap">
+                <a href="#" tabindex="-1" class="off-canvas__overlay  js-no-history"></a>
+                
+                <div class="no-style-notice">
+                    <hr />
+                    <p>
+                        <b>Notice:</b> You are viewing an unstyled version of this page. Are you using a very old browser? If so, <a href="http://browsehappy.com/">please consider upgrading</a>.
+                    </p>
+                    <hr />
+                </div>
+                
+                <header>
+                
+                    <div class="nav-bar">
+                        
+                        <div class="nav-bar__title-section">
+
+                            <div class="svg  svg--fixed-height  svg-logo">
+                                <a class="svg__link" href="#">
+                                    <object height="60" tabindex="-1" aria-hidden="true" class="svg__image" data="img/fallback-logo-wide.svg" type="image/svg+xml">
+                                        <svg display="none">
+                                            <image alt="Fall-Back home" class="svg__fallback-image" height="60" src="img/fallback-logo-wide.png"/>
+                                        </svg>
+                                    </object>
+                                    <br><i class="svg__fallback-text">Fall-Back home</i>
+                                </a>
+                            </div>
+                            
+                        </div>
+                        <div class="off-canvas__controls--left">
+                            <a href="#left-panel" tabindex="-1" class="off-canvas__open  js-no-history"></a>
+                            <a href="#" tabindex="-1" class="off-canvas__close  js-no-history"> </a>
+                        </div>
+                        <!--<div class="off-canvas__controls--right">
+                            <a href="#right-panel" tabindex="-1" class="off-canvas__open  js-no-history"></a>
+                            <a href="#" tabindex="-1" class="off-canvas__close  js-no-history"> </a>
+                        </div>-->
+                        <nav class="nav-bar__inner">
+                            <h2 class="visually-hidden">Navigation</h2>
+                            <div class="off-canvas__panel--left">
+                                <form action="#search" id="searchform" class="search-form  search-form--right" method="GET">
+                                    <input type="search" class="search-form__field" id="search" placeholder="Search" name="s" value="" aria-label="Search" />
+                                    <button class="search-form__submit" type="submit">
+                                        <span>
+                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+                                                <path fill="#333333" d="M12.917 11.667h-0.662l-0.229-0.229c0.817-0.946 1.308-2.175 1.308-3.521 0-2.992-2.425-5.417-5.417-5.417s-5.417 2.425-5.417 5.417 2.425 5.417 5.417 5.417c1.346 0 2.575-0.492 3.521-1.304l0.229 0.229v0.658l4.167 4.158 1.242-1.242-4.158-4.167zM7.917 11.667c-2.071 0-3.75-1.679-3.75-3.75s1.679-3.75 3.75-3.75 3.75 1.679 3.75 3.75-1.679 3.75-3.75 3.75z"></path>
+                                                <text y="-1">Search</text>
+                                            </svg>
+                                        </span>
+                                    </button>
+                                    <a href="#" tabindex="-1" class="search-form__cancel"></a>
+                                    <ol class="search-form__collapse  nav-bar__items">
+                                        <li class="nav-bar__item"><a href="#1" tabindex="1" class="nav-bar__link">About</a></li>
+                                        <!--<li class="nav-bar__item  has-subnav">
+                                            <a href="#2" tabindex="1" class="nav-bar__link">Link 2</a>
+                                            <a href="#" tabindex="1" class="nav-bar__link  subnav__open   subnav__open--icon-only  js-no-history"></a>
+                                            <ol class="subnav" id="subnav1">
+                                                <li class="subnav__item"><a href="#2.1" tabindex="1" class="subnav__link">Sub link 2.1</a></li>
+                                                <li class="subnav__item"><a href="#2.2" tabindex="1" class="subnav__link">Sub link 2.2</a></li>
+                                                <li class="subnav__item"><a href="#2.3" tabindex="1" class="subnav__link">Sub link 2.3</a></li>
+                                                <li class="subnav__item"><a href="#2.4" tabindex="1" class="subnav__link">Sub link 2.4</a></li>
+                                                <li class="subnav__item"><a href="#2.5" tabindex="1" class="subnav__link">Sub link 2.5</a></li>
+                                                <li class="subnav__item"><a href="#2.6" tabindex="1" class="subnav__link">Sub link 2.6</a></li>
+                                            </ol>
+                                            <a href="#" tabindex="-1" class="subnav__link  subnav__cancel  js-no-history"></a>
+                                        </li>-->
+                                        <li class="nav-bar__item  has-subnav">
+                                            <span class="subnav__heading">Patterns:</span>
+                                            <a href="#" tabindex="1" data-content="Submenu heading:" class="nav-bar__link  subnav__open  subnav__open--fake  js-no-history"></a>
+                                            <ol class="subnav" id="subnav2">
+                                                <li class="subnav__item"><a href="#6.1" tabindex="1" class="subnav__link">Sub link 6.1</a></li>
+                                                <li class="subnav__item"><a href="#6.2" tabindex="1" class="subnav__link">Sub link 6.2</a></li>
+                                                <li class="subnav__item"><a href="#6.3" tabindex="1" class="subnav__link">Sub link 6.3</a></li>
+                                            </ol>
+                                            <a href="#" tabindex="-1" class="subnav__link  subnav__cancel  js-no-history"></a>
+                                        </li>
+                                    </ol>
+                                </form>
+                            </div>
+                        </nav>
+                    </div>
+
+                </header>
+                                
+                <main role="main">
+                    <h1>{{ page.title }}</h1>
+                    
+                    {{ content }}
+                </main>
+                
+                <!--<aside class="off-canvas__panel--right">
+                    <h2>Right Panel</h2>
+                    <p>
+                    This content is in the right panel. It could be anything. Probably your navigation but it really could be anything.
+                    </p>
+                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+                </aside>-->
+                
+                <footer class="footer  sticky-footer">
+                    <p>
+                        Footer text
+                    </p>
+                </footer>
+            </div>
+        <!--</div>-->
+    </div>
+
+    <script src="/js/script.min.js"></script>
+    
+</body>
+</html>
