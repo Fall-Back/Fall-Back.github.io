@@ -12,8 +12,7 @@ layout: null
                 "content": {{item.content | markdownify | strip_html | jsonify}},
                 "link": "{{ site.url }}{{ item.url }}",
                 "date": "{{ item.date }}",
-                "excerpt": "{{ item.snippet }}",
-                "search_omit": "{{ item.search_omit }}"
+                "excerpt": "{{ item.snippet }}"
             }
             {% assign first = false %}
             {% endif %}
@@ -29,22 +28,20 @@ layout: null
         "content": {{post.content | markdownify | strip_html | jsonify}},
         "link": "{{ site.url }}{{ post.url }}",
         "date": "{{ post.date }}",
-        "excerpt": "{{ post.snippet }}",
-        "search_omit": "{{ post.search_omit }}"
+        "excerpt": "{{ post.snippet }}"
     }
     {% assign first = false %}
     {% endif %}
 {% endfor %}
 
 {% for page in site.pages %}
-    {% if page.title != null and page.title != empty %}
+    {% if page.search_omit == true and page.title != null and page.title != empty %}
     {% unless first %},{% endunless %}{
         "title": {{page.title | jsonify}},
         "content": {{page.content | strip_html | jsonify}},
         "link": "{{ site.url }}{{ page.url | replace: 'index.html', '' }}",
         "date": {{ page.date | jsonify }},
-        "excerpt": {{ page.description | jsonify }},
-        "search_omit": "{{ page.search_omit }}"
+        "excerpt": {{ page.description | jsonify }}
     }
     {% assign first = false %}
     {% endif %}
