@@ -6,7 +6,7 @@ layout: null
 {% for collection in site.collections %}
     {% for item in collection %}
         {% for item in site.[item.label] %}
-            {% if item.search_omit == true and item.title != null and item.title != empty %}
+            {% if item.search_omit != true and item.title != null and item.title != empty %}
             {% unless first %},{% endunless %}{
                 "title": {{item.title | jsonify}},
                 "content": {{item.content | markdownify | strip_html | jsonify}},
@@ -22,7 +22,7 @@ layout: null
 
 
 {% for post in site.posts %}
-    {% if post.search_omit == true and post.title != null and post.title != empty %}
+    {% if post.search_omit != true and post.title != null and post.title != empty %}
     {% unless first %},{% endunless %}{
         "title": {{post.title | jsonify}},
         "content": {{post.content | markdownify | strip_html | jsonify}},
@@ -35,7 +35,7 @@ layout: null
 {% endfor %}
 
 {% for page in site.pages %}
-    {% if page.search_omit == true and page.title != null and page.title != empty %}
+    {% if page.search_omit != true and page.title != null and page.title != empty %}
     {% unless first %},{% endunless %}{
         "title": {{page.title | jsonify}},
         "content": {{page.content | strip_html | jsonify}},
