@@ -20,6 +20,7 @@ var q, jsonFeedUrl = "/feeds/feed.json",
     $foundContainer = $("[data-search-found]"),
     $foundTerm = $("[data-search-found-term]"),
     $foundCount = $("[data-search-found-count]"),
+    $foundPlural = $("[data-search-found-plural]"),
     allowEmpty = true,
     showLoader = true,
     loadingClass = "is--loading";
@@ -164,8 +165,10 @@ function populateResultContent(html, item) {
  * @return null
  */
 function populateResultsString(count) {
+    var plural = count == 1 ? '' : 's';
     $foundTerm.text(q);
     $foundCount.text(count);
+    $foundPlural.text(plural);
     $foundContainer.show();
 }
 
