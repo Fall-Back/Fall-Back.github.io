@@ -6,6 +6,7 @@
  * @version  0.1
  */
 
+var query_param = 's';
 
  /* ==========================================================================
     Initialisation
@@ -49,8 +50,8 @@ $(document).ready( function() {
 function initSearch() {
 
     // Get search results if q parameter is set in querystring
-    if (getParameterByName('q')) {
-        q = decodeURIComponent(getParameterByName('q'));
+    if (getParameterByName(query_param)) {
+        q = decodeURIComponent(getParameterByName(query_param));
         $searchInput.val(q);
         execSearch(q);
     }
