@@ -39,7 +39,7 @@ layout: null
     {% unless first %},{% endunless %}{
         "title": {{page.title | jsonify}},
         "content": {{page.content | strip_html | jsonify}},
-        "link": "{{ site.url }}{{ page.url | replace: 'index.html', '' }}",
+        "link": "{{ site.url }}{{ page.url | replace: 'index.html', '' | remove_first: '/' }}",
         "date": {{ page.date | jsonify }},
         "excerpt": {{ page.description | jsonify }}
     }
