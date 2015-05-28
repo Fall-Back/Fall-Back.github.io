@@ -3,19 +3,19 @@
 $fallback--base-font-size: 10px;
 $fallback--nav-bar--margin-bottom: 20px;
 
-@import "bower_components/inuit-normalize/generic.normalize";
+@import "../bower_components/inuit-normalize/generic.normalize";
 
 @import "basic";
 
-@import "bower_components/Fall-Back-Base/_fallback-base.scss";
+@import "../bower_components/Fall-Back-Base/_fallback-base.scss";
 
 main {
     @include fallback-rem(padding, $fallback--base-font-size * 2);
 }
 
-@import "bower_components/Fall-Back-Nav-Bar/_nav-bar.scss";
-@import "bower_components/Fall-Back-Off-Canvas/_off-canvas.scss";
-@import "bower_components/Fall-Back-Search-Form/_search-form.scss";
-@import "bower_components/Fall-Back-Sticky-Footer/_sticky-footer.scss";
-@import "bower_components/Fall-Back-SVG/_svg.scss";
-@import "bower_components/Fall-Back-Top-Bar/_top-bar.scss";
+@import "../bower_components/Fall-Back-Nav-Bar/_nav-bar.scss";
+@import "../bower_components/Fall-Back-Off-Canvas/_off-canvas.scss";
+@import "../bower_components/Fall-Back-Search-Form/_search-form.scss";
+@import "../bower_components/Fall-Back-Sticky-Footer/_sticky-footer.scss";
+@import "../bower_components/Fall-Back-SVG/_svg.scss";
+@import "../bower_components/Fall-Back-Top-Bar/_top-bar.scss";

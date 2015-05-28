@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/* normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Set default font family to sans-serif.
  * 2. Prevent iOS and IE text size adjust after device orientation change,
@@ -668,7 +668,7 @@ main {
     2. For -moz-box.
 */
 .nav-bar {
-  background-color: #aaaaaa;
+  background-color: #aaa;
   min-height:  40px;
   min-height:  4rem;
   margin-bottom:  20px;
@@ -709,7 +709,7 @@ main {
 }
 
 .nav-bar__title-text {
-  background: #aaaaaa;
+  background: #aaa;
   display: inline-block;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
@@ -732,7 +732,7 @@ main {
        browsers that don't support HTML semantic elements.
 */
 .nav-bar__inner {
-  background-color: #aaaaaa;
+  background-color: #aaa;
   overflow: hidden;
 }
 
@@ -744,7 +744,7 @@ main {
 /* -------------------------------------------------------------------------------------------*/
 /* -- .nav-bar__button -----------------------------------------------------------------------*/
 /* Unused? */
-                                 /*.nav-bar__button {
+    /*.nav-bar__button {
         -webkit-appearance: none;
         border-radius: 0;
         margin: 0;
@@ -781,7 +781,7 @@ main {
   padding: 0;
   margin:  0 5px 0 20px;
   margin:  0 0.5rem 0 2rem;
-  background-color: #666666;
+  background-color: #666;
 }
 
 .subnav:before,
@@ -830,7 +830,7 @@ _:-o-prefocus, body:last-child .subnav__heading {
 }
 
 .nav-bar__link {
-  color: white;
+  color: #fff;
   background-color: transparent;
   /* @var */
 }
@@ -840,13 +840,13 @@ _:-o-prefocus, body:last-child .subnav__heading {
 }
 
 .subnav__heading {
-  color: white;
+  color: #fff;
 }
 
 .subnav__link {
   display: inline-block;
-  background-color: #666666;
-  color: white;
+  background-color: #666;
+  color: #fff;
 }
 
 /*
@@ -871,13 +871,13 @@ _:-o-prefocus, body:last-child .subnav__heading {
 .nav-bar__link:hover,
 .nav-bar__link:focus,
 .nav-bar__link:active {
-  background-color: #999999;
+  background-color: #999;
 }
 
 .subnav__link:hover,
 .subnav__link:focus,
 .subnav__link:active {
-  background-color: #999999;
+  background-color: #999;
 }
 
 [href$="#"].nav-bar__link {
@@ -1112,7 +1112,7 @@ _:-o-prefocus, body:last-child .subnav__heading {
 /* -- .off-canvas__inner ---------------------------------------------------------------------*/
 .off-canvas__inner {
   width: 100%;
-  background-color: white;
+  background-color: #fff;
 }
 
 /* -- Enhanced layout --------------------------------------------------------------------------- */
@@ -1173,8 +1173,8 @@ _:-o-prefocus, body:last-child .subnav__heading {
             @include fallback-rem(width, $fallback--off-canvas__link--height);
             @include fallback-rem(height, $fallback--off-canvas__link--height); 
             @include fallback-rem(line-height, $fallback--off-canvas__link--height);*/
-    background-color: #bbbbbb;
-    color: white;
+    background-color: #bbb;
+    color: #fff;
     width:  40px;
     width:  4rem;
     display: block;
@@ -1248,7 +1248,7 @@ _:-o-prefocus, body:last-child .subnav__heading {
   .off-canvas__close:active,
   .off-canvas__close:active {
     text-decoration: none;
-    background-color: #999999;
+    background-color: #999;
   }
 
   /* Size and position the overlay, but send it to the back: */
@@ -1268,8 +1268,8 @@ _:-o-prefocus, body:last-child .subnav__heading {
     -moz-transition: opacity 0.5s ease;
     -o-transition: opacity 0.5s ease;
     transition: opacity 0.5s ease;
-    -webkit-box-shadow: 0 0 10px 5px black;
-    box-shadow: 0 0 10px 5px black;
+    -webkit-box-shadow: 0 0 10px 5px #000;
+    box-shadow: 0 0 10px 5px #000;
   }
 
   /* Bring the overlay to the front and fade in when there's an off-canvas target: */
@@ -1291,21 +1291,21 @@ _:-o-prefocus, body:last-child .subnav__heading {
 
   .off-canvas__panel--left {
     left: -260px;
-    background-color: #999999;
+    background-color: #999;
     padding:  20px;
     padding:  2rem;
   }
 
   .off-canvas__panel--right {
     right: -260px;
-    background-color: #999999;
+    background-color: #999;
     padding:  20px;
     padding:  2rem;
   }
 }
 /* Old Android hack (also affects Safari 4 it doesn't matter in this case): */
 /* (adapted from http://browserhacks.com/#hack-a60b03e301a67f76a5a22221c739dc64) */
-@media screen and (min-width: 0 \-) {
+@media screen and (min-width: 0\-) {
   /*
       Overflow breaks scrolling in old Android, so just allow horizontal scrolling as well.
   */
@@ -1363,7 +1363,7 @@ _:-o-prefocus, body:last-child .off-canvas {
     1. Prevent extra bottom space when form is inside a container.
 */
 .search-form {
-  background: #bbbbbb;
+  background: #bbb;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -1452,7 +1452,7 @@ _:-o-prefocus, body:last-child .search-form__field {
   border: 0;
   -webkit-border-box: content-box;
   border-box: content-box;
-  background: #dddddd;
+  background: #ddd;
   height:  30px;
   height:  3rem;
   line-height: 0;
@@ -1471,7 +1471,7 @@ _:-o-prefocus, body:last-child .search-form__field {
 .search-form__submit:hover,
 .search-form__submit:active,
 .search-form__submit:focus {
-  background-color: #cccccc;
+  background-color: #ccc;
 }
 
 .search-form--right .search-form__submit {
@@ -1525,7 +1525,7 @@ _:-o-prefocus, body:last-child .search-form__field {
   }
 }
 /* IE9 hacks: */
-@media all and (min-width: 0 \0) and (min-resolution: 0.001dpcm) {
+@media all and (min-width: 0\0) and (min-resolution: 0.001dpcm) {
   .search-form--right .search-form__submit,
   .search-form--right .search-form__field {
     float: right;
@@ -1593,7 +1593,7 @@ _:-o-prefocus, body:last-child .search-form__field {
 
   .search-form__cancel {
     display: none;
-    background-color: #bbbbbb;
+    background-color: #bbb;
     padding-right:  10px;
     padding-right:  1rem;
     padding-left:  10px;
@@ -1615,7 +1615,7 @@ _:-o-prefocus, body:last-child .search-form__field {
   .search-form__cancel:hover,
   .search-form__cancel:focus,
   .search-form__cancel:active {
-    background-color: #999999;
+    background-color: #999;
   }
 
   .search-form__cancel:after {
@@ -1684,7 +1684,7 @@ _:-o-prefocus, body:last-child .search-form__field {
 /*
     Expander issue: Collapse block is hidden but search field doesn't expand so it looks weird.
 */
-@media all and (min-width: 0 \0) and (min-resolution: 0.001dpcm) {
+@media all and (min-width: 0�) and (min-resolution: 0.001dpcm) {
   .search-form__field:focus ~ .search-form__collapse {
     display: block;
   }
@@ -1802,7 +1802,7 @@ Can't use JS to detect these either, as it's totally broken if JS isn't availabl
   right: 0;
   bottom: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0);
+  background: transparent;
   /* [1] */
 }
 
@@ -1947,7 +1947,7 @@ Can't use JS to detect these either, as it's totally broken if JS isn't availabl
   }
 }
 /* Old Android (2.3) hacks: */
-@media screen and (min-width: 0 \-) {
+@media screen and (min-width: 0\-) {
   /*
       PNG fallbacks also show the text (which isn't what we want), but we
       don't need it as it has `alt` text, so just hide it.
@@ -1967,7 +1967,7 @@ Can't use JS to detect these either, as it's totally broken if JS isn't availabl
 /*
     1. For IE 9.
 */
-        /*.nav-bar {
+    /*.nav-bar {
         display: table; /* [1] *
         
         display: -webkit-flex;
@@ -2090,3 +2090,5 @@ Can't use JS to detect these either, as it's totally broken if JS isn't availabl
 
 }*/
 /* ---------------------------------------------------------------------------------------------- */
+
+/*# sourceMappingURL=style.css.map */
