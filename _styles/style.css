@@ -2102,4 +2102,10 @@ Can't use JS to detect these either, as it's totally broken if JS isn't availabl
   text-align: center;
 }
 
+.footer > p {
+  margin: 0;
+  padding:  10px 0;
+  padding:  1rem 0;
+}
+
 /*# sourceMappingURL=style.css.map */
