@@ -665,8 +665,16 @@ main {
   padding:  2rem;
 }
 
+a {
+  color: #1f547a;
+}
+
+a:hover {
+  color: #80a9c6;
+}
+
 /*------------------------------------------------------------------------------------------------*\
-    Fall-Back Search Form Pattern v0.1
+    Fall-Back Off Canvas Pattern v0.1
 \*------------------------------------------------------------------------------------------------*/
 /* -- Basic/fallback layout --------------------------------------------------------------------- */
 /* -- .off-canvas ----------------------------------------------------------------------------*/
@@ -724,24 +732,14 @@ main {
   .off-canvas__controls--left,
   .off-canvas__controls--right {
     display: inline-block;
-    /*position: relative; - appears to not be needed. Maybe flex item causes same effect. Keep for now.*/
+    position: relative;
+    /* IS needed for when used outside of top-bar. */
   }
 
   .off-canvas__open,
   .off-canvas__close {
-            /*display: block;
-            @include fallback-rem(padding, $fallback--off-canvas--spacing);         
-
-            text-align: center;
-            
-            background-color: $fallback--off-canvas__link--bg-color;
-            color: $fallback--off-canvas__link--color;
-            
-            @include fallback-rem(width, $fallback--off-canvas__link--height);
-            @include fallback-rem(height, $fallback--off-canvas__link--height); 
-            @include fallback-rem(line-height, $fallback--off-canvas__link--height);*/
-    background-color: #bbb;
     color: #fff;
+    background-color: #bbb;
     width:  40px;
     width:  4rem;
     display: block;
@@ -815,6 +813,7 @@ main {
   .off-canvas__close:active,
   .off-canvas__close:active {
     text-decoration: none;
+    color: #fff;
     background-color: #999;
   }
 
@@ -854,6 +853,7 @@ main {
     width:  260px;
     width:  26rem;
     -webkit-box-sizing: border-box;
+    /* Not sure why this is needed. */
   }
 
   .off-canvas__panel--left {
@@ -903,7 +903,7 @@ main {
 }
 /* For Opera Mini and Mobile (affects old desktop too, but that's acceptable): */
 /* (http://browserhacks.com/#hack-a3f166304aafed524566bc6814e1d5c7
-   for Opera ÔëÑ 9.5 but recent desktop Opera (15+) isn't affected) */
+   for Opera â‰¥ 9.5 but recent desktop Opera (15+) isn't affected) */
 /*
     Overflow breaks scrolling in Opera Mini, so just allow horizontal scrolling as well.
 */
@@ -917,24 +917,12 @@ _:-o-prefocus, body:last-child .off-canvas {
 \*------------------------------------------------------------------------------------------------*/
 /* -- Basic/fallback layout --------------------------------------------------------------------- */
 /* -- .nav-bar -------------------------------------------------------------------------------*/
-/*
-    1. For IE 9.
-    2. For -moz-box.
-*/
 .nav-bar {
   background-color: #aaa;
   min-height:  40px;
   min-height:  4rem;
   margin-bottom:  20px;
   margin-bottom:  2rem;
-  display: table;
-  /* [1] */
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  /* [2] */
 }
 
 .nav-bar:before,
@@ -1099,8 +1087,8 @@ _:-o-prefocus, body:last-child .subnav__heading {
 
 .subnav__link {
   display: inline-block;
-  background-color: #666;
   color: #fff;
+  background-color: #666;
 }
 
 /*
@@ -1125,12 +1113,14 @@ _:-o-prefocus, body:last-child .subnav__heading {
 .nav-bar__link:hover,
 .nav-bar__link:focus,
 .nav-bar__link:active {
+  color: #fff;
   background-color: #999;
 }
 
 .subnav__link:hover,
 .subnav__link:focus,
 .subnav__link:active {
+  color: #fff;
   background-color: #999;
 }
 
@@ -1165,10 +1155,22 @@ _:-o-prefocus, body:last-child .subnav__heading {
 /* -------------------------------------------------------------------------------------------*/
 /* -- Enhanced layout ----------------------------------------------------------------------- */
 @media only screen and (min-width: 720px) {
+  /*
+      1. For IE 9.
+      2. For -moz-box.
+  */
   .nav-bar {
     position: relative;
     z-index: 1000;
     /* @var */
+    display: table;
+    /* [1] */
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    /* [2] */
   }
 
   /*
@@ -1413,8 +1415,8 @@ _:-o-prefocus, body:last-child .subnav__heading {
   -webkit-border-radius: 0px;
   border-radius: 0px;
   border: 0;
-  -webkit-border-box: content-box;
-  border-box: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
   height:  20px;
   height:  2rem;
   line-height:  20px;
@@ -1745,7 +1747,7 @@ Can't use JS to detect these either, as it's totally broken if JS isn't availabl
 }*/
 /* ---------------------------------------------------------------------------------------------- */
 /*------------------------------------------------------------------------------------------------*\
-    Sticky Footer Pattern
+    Fall-Back Sticky Footer Pattern v0.1
 \*------------------------------------------------------------------------------------------------*/
 /*
     NOTE: `.sticky-footer-outer-wrap` is only used for wrapper elements above `.sticky-footer-wrap` 
@@ -1970,73 +1972,36 @@ Can't use JS to detect these either, as it's totally broken if JS isn't availabl
     Fall-Back Top Bar Combination v0.1
 \*------------------------------------------------------------------------------------------------*/
 /* -- Basic/fallback layout --------------------------------------------------------------------- */
+/* SVG adjustments: */
+/* Off Canvas adjustments: */
 /* Nav Bar adjustments: */
 /*
-    1. For IE 9.
+    NOTE: the above have all been re-factored out into their respective parent patterns or moved
+    to the site-specific file for now.
+    Need to find a tidier/smarter way of configuring this combination-pattern to make sure all
+    problems are solved in THIS or parent pattern files without being too specific to the
+    example.
 */
-    /*.nav-bar {
-        display: table; /* [1] *
-        
-        display: -webkit-flex;
-        display: -moz-box;
-        display: -ms-flexbox;
-        display: flex;
-        /* For -moz-box: *
-        width: 100%;
-    }
-
-    .nav-bar,
-    .nav-bar__title-section {
-        height: 40px;
-        height: 4rem;
-    }*/
-/* SVG adjustments: */
-.svg-logo {
-  /*text-align: center;*/
-  /* For -moz-box: */
-  /*display: inline-block;
-  vertical-align: middle;*/
-}
-
-/* From mixin: */
-.svg-logo,
-.svg-logo .svg__link,
-.svg-logo .svg__image {
-  height: 32px;
-}
-
 /*
-    Allow the fallback image to scale properly.
-    1. IE6 - can be removed if unnecessary.
+    1. For IE 9.
+    2. For -moz-box.
 */
-.svg-logo .svg__fallback-image {
-  max-height: 32px;
-  _height: 32px;
+.off-canvas .nav-bar {
+  display: table;
   /* [1] */
-}
-
-.svg-logo .svg__link {
-  background: #fff;
-  border: 1px solid #999;
-  padding: 3px;
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-}
-
-.svg-logo .svg__link:hover,
-.svg-logo .svg__link:active,
-.svg-logo .svg__link:focus {
-  background-color: #ffdd79;
-}
-
-/* Off Canvas adjustments: */
-.off-canvas__panel--left {
-  padding: 0;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  /* [2] */
 }
 
 @media only screen and (max-width: 719px) {
-  .nav-bar__title-section {
+  /*
+      Position the title section in the middle of the top-bar:
+  */
+  .off-canvas .nav-bar__title-section {
     /*vertical-align: top; /* [1] */
     -webkit-flex: 1 0 auto;
     -moz-box-flex: 1;
@@ -2046,7 +2011,9 @@ Can't use JS to detect these either, as it's totally broken if JS isn't availabl
   }
 
   /*
-      1. For IE9. Applied all IE but is acceptable.
+      Position the off-canvas controls to the far left/right:
+      
+      1. For IE9. Applied to all IE but is acceptable.
       2. For IE9. Applied to all browsers but has no ill-effects. Basically ignored for non-IE.
       3. Reset the position for non-IE.
   */

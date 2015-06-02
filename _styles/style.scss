@@ -13,6 +13,15 @@ main {
 }
 
 
+a {
+    color: #1f547a;
+}
+
+a:hover {
+    color: #80a9c6;
+}
+
+
 $fallback--off-canvas__left-panel--padding:  0;
 $fallback--off-canvas__right-panel--padding: 20px;
 @import "../bower_components/Fall-Back-Off-Canvas/_off-canvas.scss";
@@ -35,7 +44,6 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
 //@include svg--fixed-height(40px, 'svg-logo', );
 
 @import "../bower_components/Fall-Back-Top-Bar/_top-bar.scss";
-
 
 
 
