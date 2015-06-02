@@ -1797,7 +1797,7 @@ Can't use JS to detect these either, as it's totally broken if JS isn't availabl
   background-color: #fff;
   border-width: 1px;
   border-style: solid;
-  border-color: #666;
+  border-color: #999;
 }
 
 .svg__link:hover,
