@@ -1,21 +1,39 @@
 @charset "UTF-8";
 
-$fallback--base-font-size: 10px;
-$fallback--nav-bar--margin-bottom: 20px;
-
 @import "../bower_components/inuit-normalize/generic.normalize";
 
 @import "basic";
 
+$fallback--base-font-size: 10px;
 @import "../bower_components/Fall-Back-Base/_fallback-base.scss";
+
 
 main {
     @include fallback-rem(padding, $fallback--base-font-size * 2);
 }
 
-@import "../bower_components/Fall-Back-Nav-Bar/_nav-bar.scss";
+
+$fallback--off-canvas__left-panel--padding:  0;
+$fallback--off-canvas__right-panel--padding: 20px;
 @import "../bower_components/Fall-Back-Off-Canvas/_off-canvas.scss";
+
+$fallback--nav-bar--margin-bottom: 20px;
+@import "../bower_components/Fall-Back-Nav-Bar/_nav-bar.scss";
+
 @import "../bower_components/Fall-Back-Search-Form/_search-form.scss";
+
 @import "../bower_components/Fall-Back-Sticky-Footer/_sticky-footer.scss";
+
+$fallback-svg--fixed-height:      40px;
+$fallback-svg--padding:           3px;
+$fallback-svg--border-width:      1px;
+$fallback-svg--border-color:      #666;
+$fallback-svg--link-bg-color:     #fff;
+$fallback-svg--link-bg-color-alt: #ffdd79;
 @import "../bower_components/Fall-Back-SVG/_svg.scss";
+
+//@include svg--fixed-height(40px, 'svg-logo', );
+
 @import "../bower_components/Fall-Back-Top-Bar/_top-bar.scss";
+
+

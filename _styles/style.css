@@ -659,6 +659,253 @@ main {
 }
 
 /*------------------------------------------------------------------------------------------------*\
+    Fall-Back Search Form Pattern v0.1
+\*------------------------------------------------------------------------------------------------*/
+/* -- Basic/fallback layout --------------------------------------------------------------------- */
+/* -- .off-canvas ----------------------------------------------------------------------------*/
+.off-canvas__open,
+.off-canvas__close {
+  display: none;
+}
+
+/* -------------------------------------------------------------------------------------------*/
+/* -- .off-canvas__inner ---------------------------------------------------------------------*/
+.off-canvas__inner {
+  width: 100%;
+  background-color: #fff;
+}
+
+/* -- Enhanced layout --------------------------------------------------------------------------- */
+/*@media only screen and (max-width: 920px) {*/
+@media only screen and (max-width: 719px) {
+  .off-canvas {
+    overflow-x: hidden;
+    height: 100%;
+  }
+
+  /* This div is responsible for sliding the page: */
+  .off-canvas__inner {
+    min-height: 100%;
+    position: relative;
+    left: 0;
+    /*
+        NOTE: `-webkit-transition` OMITTED DELIBERATLY as it seems to prevent android from
+        moving `.off-canvas__inner` at all and is thus broken.
+        If a simple solution is found I can re-instate it, but not having the transition is
+        only a minor difference - not moving at is unusable.
+    */
+    -moz-transition: left 0.5s ease;
+    -o-transition: left 0.5s ease;
+    transition: left 0.5s ease;
+  }
+
+  .off-canvas--left:target .off-canvas__inner {
+    left: 260px;
+  }
+
+  .off-canvas--right:target .off-canvas__inner {
+    left: -260px;
+  }
+
+  /* Style the off-canvas controls: */
+  /* 
+      NOTE: this still isn't finalised and may need to be more flexible as it's quite
+      subjective how these buttons should be presented in terms of position.
+      Will probably not be in isolation, but as part of a navbar or similar so this does
+      need some more thinking.
+  */
+  .off-canvas__controls--left,
+  .off-canvas__controls--right {
+    display: inline-block;
+    /*position: relative; - appears to not be needed. Maybe flex item causes same effect. Keep for now.*/
+  }
+
+  .off-canvas__open,
+  .off-canvas__close {
+            /*display: block;
+            @include fallback-rem(padding, $fallback--off-canvas--spacing);         
+
+            text-align: center;
+            
+            background-color: $fallback--off-canvas__link--bg-color;
+            color: $fallback--off-canvas__link--color;
+            
+            @include fallback-rem(width, $fallback--off-canvas__link--height);
+            @include fallback-rem(height, $fallback--off-canvas__link--height); 
+            @include fallback-rem(line-height, $fallback--off-canvas__link--height);*/
+    background-color: #bbb;
+    color: #fff;
+    width:  40px;
+    width:  4rem;
+    display: block;
+    margin: 0;
+    padding:  0 10px;
+    padding:  0 1rem;
+    height:  40px;
+    height:  4rem;
+    line-height:  40px;
+    line-height:  4rem;
+  }
+
+  /*
+      Fix for Opera Mini vertical centering:
+  */
+  _:-o-prefocus, body:last-child .off-canvas__open,
+  _:-o-prefocus, body:last-child .off-canvas__close {
+    line-height: 2.8 !important;
+  }
+
+  /*
+      1. Move the close button to the back and position behind open control.
+      2. This is only necessary if the container is block wider than the control.
+         May not be the best place for this, but it doesn't hurt.
+  */
+  .off-canvas__close {
+    position: absolute;
+    /* [1] */
+    z-index: -1;
+    /* [1] */
+    top: 0;
+    /* [1] */
+    right: 0;
+    /* [2] */
+  }
+
+  .off-canvas__open:before,
+  .off-canvas__close:before {
+    /* These styles are enough for modern FF to V-center the icon: */
+    display: inline-block;
+    vertical-align: middle;
+    /* IE10-11 flexbox chokes without width: */
+    width:  20px;
+    width:  2rem;
+    /* IE11 flexbox stretches icon without height: */
+    height:  20px;
+    height:  2rem;
+    /* But now blink pushes the icon to the bottom without line-height: 0. */
+    line-height: 0;
+  }
+
+  .off-canvas__open:before {
+    content: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj48cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNMi41IDE1aDE1di0xLjY2N2gtMTV2MS42Njd6TTIuNSAxMC44MzNoMTV2LTEuNjY3aC0xNXYxLjY2N3pNMi41IDV2MS42NjdoMTV2LTEuNjY3aC0xNXoiPjwvcGF0aD48L3N2Zz4=");
+  }
+
+  .off-canvas__close:before {
+    content: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj48cGF0aCAgZmlsbD0iIzQ0NDQ0NCIgZD0iTTE1LjgzMyA1LjM0NmwtMS4xNzktMS4xNzktNC42NTQgNC42NTQtNC42NTQtNC42NTQtMS4xNzkgMS4xNzkgNC42NTQgNC42NTQtNC42NTQgNC42NTQgMS4xNzkgMS4xNzkgNC42NTQtNC42NTQgNC42NTQgNC42NTQgMS4xNzktMS4xNzktNC42NTQtNC42NTR6Ij48L3BhdGg+PC9zdmc+");
+  }
+
+  /* Move the close control on top of the open control and above the overlay: */
+  .off-canvas--left:target .off-canvas__controls--left .off-canvas__close,
+  .off-canvas--right:target .off-canvas__controls--right .off-canvas__close {
+    z-index: 1002;
+    /* @var */
+  }
+
+  .off-canvas__open:hover,
+  .off-canvas__open:active,
+  .off-canvas__open:focus,
+  .off-canvas__close:hover,
+  .off-canvas__close:active,
+  .off-canvas__close:active {
+    text-decoration: none;
+    background-color: #999;
+  }
+
+  /* Size and position the overlay, but send it to the back: */
+  .off-canvas__overlay {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    opacity: 0;
+    -webkit-transition: opacity 0.5s ease;
+    -moz-transition: opacity 0.5s ease;
+    -o-transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
+    -webkit-box-shadow: 0 0 10px 5px #000;
+    box-shadow: 0 0 10px 5px #000;
+  }
+
+  /* Bring the overlay to the front and fade in when there's an off-canvas target: */
+  .off-canvas:target .off-canvas__overlay {
+    z-index: 1001;
+    /* @var */
+    opacity: 0.5;
+  }
+
+  /* Size and position the off-canvas panels: */
+  .off-canvas__panel--left,
+  .off-canvas__panel--right {
+    position: absolute;
+    top: 0;
+    width:  260px;
+    width:  26rem;
+    -webkit-box-sizing: border-box;
+  }
+
+  .off-canvas__panel--left {
+    left: -260px;
+    background-color: #999;
+    padding:  0;
+    padding:  0;
+  }
+
+  .off-canvas__panel--right {
+    right: -260px;
+    background-color: #999;
+    padding:  20px;
+    padding:  2rem;
+  }
+}
+/* Old Android hack (also affects Safari 4 it doesn't matter in this case): */
+/* (adapted from http://browserhacks.com/#hack-a60b03e301a67f76a5a22221c739dc64) */
+@media screen and (min-width: 0\-) {
+  /*
+      Overflow breaks scrolling in old Android, so just allow horizontal scrolling as well.
+  */
+  .off-canvas {
+    overflow: visible;
+  }
+
+        /*
+            PNG Fall-Back for Old Android.
+            (IE8- (and other non-SVG browsers) don't really need the off canvas anyway, and in the 
+            case of IE8- will never encounter it due to lack of Media Query support)
+            (--Actually, with Respond it will so could turn PNG Fall-Back into a mixin to allow it to
+            be used fore IE8 if necessary, but advise to use a min-width instead - if Respond will
+            allow this---). NO! It relies on :target so can't work in IE without JS fallback.
+            Can't see that this is worth it so only use min-width.
+
+            (leaving SVG for reference for now)
+        */
+  .off-canvas__open {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAQUlEQVQ4jWNgGAWDF/z//7/+P/mgHpuBAf///59PJg4YgDCgFPz//7/g////98nEBbQ3cPADqieb/9RO2KNg8AAAUSBpmHUw8UMAAAAASUVORK5CYII=");
+    -background-image: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KPHBhdGggZmlsbD0iI2ZmZmZmZiIgZD0iTTIuNSAxNWgxNXYtMS42NjdoLTE1djEuNjY3ek0yLjUgMTAuODMzaDE1di0xLjY2N2gtMTV2MS42Njd6TTIuNSA1djEuNjY3aDE1di0xLjY2N2gtMTV6Ij48L3BhdGg+Cjwvc3ZnPgo=);
+  }
+
+  .off-canvas__close {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAkklEQVQ4je2TOw6FMAwEKTgAEgWRkKi5awqah1IgTpBDDgVbRMAj5lOyXWJ75LWTovj0ugAHeKA8ySmV4yxAz6p4BBUsKsdbgA0wquAH1EmsAgbFZqDLAg+6iDrv7kywE+h92B/oM5iA6cwAgmmzhu6eWX51KRubE9AmMSfbdvtJgeVhBwuwFzT39QLQZ4GfLmsBYGJNnHhD1RcAAAAASUVORK5CYII=");
+    -background-image: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KPHBhdGggZmlsbD0iI2ZmZmZmZiIgZD0iTTE1LjgzMyA1LjM0NmwtMS4xNzktMS4xNzktNC42NTQgNC42NTQtNC42NTQtNC42NTQtMS4xNzkgMS4xNzkgNC42NTQgNC42NTQtNC42NTQgNC42NTQgMS4xNzkgMS4xNzkgNC42NTQtNC42NTQgNC42NTQgNC42NTQgMS4xNzktMS4xNzktNC42NTQtNC42NTR6Ij48L3BhdGg+Cjwvc3ZnPgo=);
+  }
+}
+/* For Opera Mini and Mobile (affects old desktop too, but that's acceptable): */
+/* (http://browserhacks.com/#hack-a3f166304aafed524566bc6814e1d5c7
+   for Opera ÔëÑ 9.5 but recent desktop Opera (15+) isn't affected) */
+/*
+    Overflow breaks scrolling in Opera Mini, so just allow horizontal scrolling as well.
+*/
+_:-o-prefocus, body:last-child .off-canvas {
+  overflow: visible;
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/*------------------------------------------------------------------------------------------------*\
     Fall-Back Nav Bar Pattern v0.1
 \*------------------------------------------------------------------------------------------------*/
 /* -- Basic/fallback layout --------------------------------------------------------------------- */
@@ -1097,253 +1344,6 @@ _:-o-prefocus, body:last-child .subnav__heading {
   }
 }
 /* -------------------------------------------------------------------------------------------*/
-/* ---------------------------------------------------------------------------------------------- */
-/*------------------------------------------------------------------------------------------------*\
-    Fall-Back Search Form Pattern v0.1
-\*------------------------------------------------------------------------------------------------*/
-/* -- Basic/fallback layout --------------------------------------------------------------------- */
-/* -- .off-canvas ----------------------------------------------------------------------------*/
-.off-canvas__open,
-.off-canvas__close {
-  display: none;
-}
-
-/* -------------------------------------------------------------------------------------------*/
-/* -- .off-canvas__inner ---------------------------------------------------------------------*/
-.off-canvas__inner {
-  width: 100%;
-  background-color: #fff;
-}
-
-/* -- Enhanced layout --------------------------------------------------------------------------- */
-/*@media only screen and (max-width: 920px) {*/
-@media only screen and (max-width: 719px) {
-  .off-canvas {
-    overflow-x: hidden;
-    height: 100%;
-  }
-
-  /* This div is responsible for sliding the page: */
-  .off-canvas__inner {
-    min-height: 100%;
-    position: relative;
-    left: 0;
-    /*
-        NOTE: `-webkit-transition` OMITTED DELIBERATLY as it seems to prevent android from
-        moving `.off-canvas__inner` at all and is thus broken.
-        If a simple solution is found I can re-instate it, but not having the transition is
-        only a minor difference - not moving at is unusable.
-    */
-    -moz-transition: left 0.5s ease;
-    -o-transition: left 0.5s ease;
-    transition: left 0.5s ease;
-  }
-
-  .off-canvas--left:target .off-canvas__inner {
-    left: 260px;
-  }
-
-  .off-canvas--right:target .off-canvas__inner {
-    left: -260px;
-  }
-
-  /* Style the off-canvas controls: */
-  /* 
-      NOTE: this still isn't finalised and may need to be more flexible as it's quite
-      subjective how these buttons should be presented in terms of position.
-      Will probably not be in isolation, but as part of a navbar or similar so this does
-      need some more thinking.
-  */
-  .off-canvas__controls--left,
-  .off-canvas__controls--right {
-    display: inline-block;
-    /*position: relative; - appears to not be needed. Maybe flex item causes same effect. Keep for now.*/
-  }
-
-  .off-canvas__open,
-  .off-canvas__close {
-            /*display: block;
-            @include fallback-rem(padding, $fallback--off-canvas--spacing);         
-
-            text-align: center;
-            
-            background-color: $fallback--off-canvas__link--bg-color;
-            color: $fallback--off-canvas__link--color;
-            
-            @include fallback-rem(width, $fallback--off-canvas__link--height);
-            @include fallback-rem(height, $fallback--off-canvas__link--height); 
-            @include fallback-rem(line-height, $fallback--off-canvas__link--height);*/
-    background-color: #bbb;
-    color: #fff;
-    width:  40px;
-    width:  4rem;
-    display: block;
-    margin: 0;
-    padding:  0 10px;
-    padding:  0 1rem;
-    height:  40px;
-    height:  4rem;
-    line-height:  40px;
-    line-height:  4rem;
-  }
-
-  /*
-      Fix for Opera Mini vertical centering:
-  */
-  _:-o-prefocus, body:last-child .off-canvas__open,
-  _:-o-prefocus, body:last-child .off-canvas__close {
-    line-height: 2.8 !important;
-  }
-
-  /*
-      1. Move the close button to the back and position behind open control.
-      2. This is only necessary if the container is block wider than the control.
-         May not be the best place for this, but it doesn't hurt.
-  */
-  .off-canvas__close {
-    position: absolute;
-    /* [1] */
-    z-index: -1;
-    /* [1] */
-    top: 0;
-    /* [1] */
-    right: 0;
-    /* [2] */
-  }
-
-  .off-canvas__open:before,
-  .off-canvas__close:before {
-    /* These styles are enough for modern FF to V-center the icon: */
-    display: inline-block;
-    vertical-align: middle;
-    /* IE10-11 flexbox chokes without width: */
-    width:  20px;
-    width:  2rem;
-    /* IE11 flexbox stretches icon without height: */
-    height:  20px;
-    height:  2rem;
-    /* But now blink pushes the icon to the bottom without line-height: 0. */
-    line-height: 0;
-  }
-
-  .off-canvas__open:before {
-    content: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj48cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNMi41IDE1aDE1di0xLjY2N2gtMTV2MS42Njd6TTIuNSAxMC44MzNoMTV2LTEuNjY3aC0xNXYxLjY2N3pNMi41IDV2MS42NjdoMTV2LTEuNjY3aC0xNXoiPjwvcGF0aD48L3N2Zz4=");
-  }
-
-  .off-canvas__close:before {
-    content: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj48cGF0aCAgZmlsbD0iIzQ0NDQ0NCIgZD0iTTE1LjgzMyA1LjM0NmwtMS4xNzktMS4xNzktNC42NTQgNC42NTQtNC42NTQtNC42NTQtMS4xNzkgMS4xNzkgNC42NTQgNC42NTQtNC42NTQgNC42NTQgMS4xNzkgMS4xNzkgNC42NTQtNC42NTQgNC42NTQgNC42NTQgMS4xNzktMS4xNzktNC42NTQtNC42NTR6Ij48L3BhdGg+PC9zdmc+");
-  }
-
-  /* Move the close control on top of the open control and above the overlay: */
-  .off-canvas--left:target .off-canvas__controls--left .off-canvas__close,
-  .off-canvas--right:target .off-canvas__controls--right .off-canvas__close {
-    z-index: 1002;
-    /* @var */
-  }
-
-  .off-canvas__open:hover,
-  .off-canvas__open:active,
-  .off-canvas__open:focus,
-  .off-canvas__close:hover,
-  .off-canvas__close:active,
-  .off-canvas__close:active {
-    text-decoration: none;
-    background-color: #999;
-  }
-
-  /* Size and position the overlay, but send it to the back: */
-  .off-canvas__overlay {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background: #fff;
-    opacity: 0;
-    -webkit-transition: opacity 0.5s ease;
-    -moz-transition: opacity 0.5s ease;
-    -o-transition: opacity 0.5s ease;
-    transition: opacity 0.5s ease;
-    -webkit-box-shadow: 0 0 10px 5px #000;
-    box-shadow: 0 0 10px 5px #000;
-  }
-
-  /* Bring the overlay to the front and fade in when there's an off-canvas target: */
-  .off-canvas:target .off-canvas__overlay {
-    z-index: 1001;
-    /* @var */
-    opacity: 0.5;
-  }
-
-  /* Size and position the off-canvas panels: */
-  .off-canvas__panel--left,
-  .off-canvas__panel--right {
-    position: absolute;
-    top: 0;
-    width:  260px;
-    width:  26rem;
-    -webkit-box-sizing: border-box;
-  }
-
-  .off-canvas__panel--left {
-    left: -260px;
-    background-color: #999;
-    padding:  20px;
-    padding:  2rem;
-  }
-
-  .off-canvas__panel--right {
-    right: -260px;
-    background-color: #999;
-    padding:  20px;
-    padding:  2rem;
-  }
-}
-/* Old Android hack (also affects Safari 4 it doesn't matter in this case): */
-/* (adapted from http://browserhacks.com/#hack-a60b03e301a67f76a5a22221c739dc64) */
-@media screen and (min-width: 0\-) {
-  /*
-      Overflow breaks scrolling in old Android, so just allow horizontal scrolling as well.
-  */
-  .off-canvas {
-    overflow: visible;
-  }
-
-        /*
-            PNG Fall-Back for Old Android.
-            (IE8- (and other non-SVG browsers) don't really need the off canvas anyway, and in the 
-            case of IE8- will never encounter it due to lack of Media Query support)
-            (--Actually, with Respond it will so could turn PNG Fall-Back into a mixin to allow it to
-            be used fore IE8 if necessary, but advise to use a min-width instead - if Respond will
-            allow this---). NO! It relies on :target so can't work in IE without JS fallback.
-            Can't see that this is worth it so only use min-width.
-
-            (leaving SVG for reference for now)
-        */
-  .off-canvas__open {
-    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAQUlEQVQ4jWNgGAWDF/z//7/+P/mgHpuBAf///59PJg4YgDCgFPz//7/g////98nEBbQ3cPADqieb/9RO2KNg8AAAUSBpmHUw8UMAAAAASUVORK5CYII=");
-    -background-image: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KPHBhdGggZmlsbD0iI2ZmZmZmZiIgZD0iTTIuNSAxNWgxNXYtMS42NjdoLTE1djEuNjY3ek0yLjUgMTAuODMzaDE1di0xLjY2N2gtMTV2MS42Njd6TTIuNSA1djEuNjY3aDE1di0xLjY2N2gtMTV6Ij48L3BhdGg+Cjwvc3ZnPgo=);
-  }
-
-  .off-canvas__close {
-    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAkklEQVQ4je2TOw6FMAwEKTgAEgWRkKi5awqah1IgTpBDDgVbRMAj5lOyXWJ75LWTovj0ugAHeKA8ySmV4yxAz6p4BBUsKsdbgA0wquAH1EmsAgbFZqDLAg+6iDrv7kywE+h92B/oM5iA6cwAgmmzhu6eWX51KRubE9AmMSfbdvtJgeVhBwuwFzT39QLQZ4GfLmsBYGJNnHhD1RcAAAAASUVORK5CYII=");
-    -background-image: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KPHBhdGggZmlsbD0iI2ZmZmZmZiIgZD0iTTE1LjgzMyA1LjM0NmwtMS4xNzktMS4xNzktNC42NTQgNC42NTQtNC42NTQtNC42NTQtMS4xNzkgMS4xNzkgNC42NTQgNC42NTQtNC42NTQgNC42NTQgMS4xNzkgMS4xNzkgNC42NTQtNC42NTQgNC42NTQgNC42NTQgMS4xNzktMS4xNzktNC42NTQtNC42NTR6Ij48L3BhdGg+Cjwvc3ZnPgo=);
-  }
-}
-/* For Opera Mini and Mobile (affects old desktop too, but that's acceptable): */
-/* (http://browserhacks.com/#hack-a3f166304aafed524566bc6814e1d5c7
-   for Opera ÔëÑ 9.5 but recent desktop Opera (15+) isn't affected) */
-/*
-    Overflow breaks scrolling in Opera Mini, so just allow horizontal scrolling as well.
-*/
-_:-o-prefocus, body:last-child .off-canvas {
-  overflow: visible;
-}
-
 /* ---------------------------------------------------------------------------------------------- */
 /*------------------------------------------------------------------------------------------------*\
     Fall-Back Search Form Pattern v0.1
@@ -1870,7 +1870,7 @@ Can't use JS to detect these either, as it's totally broken if JS isn't availabl
 .svg--fixed-height,
 .svg--fixed-height .svg__link,
 .svg--fixed-height .svg__image {
-  height: 100px;
+  height: 40px;
 }
 
 /*
@@ -1878,8 +1878,8 @@ Can't use JS to detect these either, as it's totally broken if JS isn't availabl
     1. IE6 - can be removed if unnecessary.
 */
 .svg--fixed-height .svg__fallback-image {
-  max-height: 100px;
-  _height: 100px;
+  max-height: 40px;
+  _height: 40px;
   /* [1] */
 }
 
