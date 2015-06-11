@@ -1203,8 +1203,6 @@ _:-o-prefocus, body:last-child .subnav__heading {
 
   /*
       1. Move the close button to the back and position behind open control.
-      2. This is only necessary if the container is block wider than the control.
-         May not be the best place for this, but it doesn't hurt.
   */
   .off-canvas__close {
     position: absolute;
@@ -1213,6 +1211,22 @@ _:-o-prefocus, body:last-child .subnav__heading {
     /* [1] */
     top: 0;
     /* [1] */
+  }
+
+  /*
+      1. This is only necessary if the container is block wider than the control.
+         May not be the best place for this, but it doesn't hurt.
+  */
+  .off-canvas__controls--left .off-canvas__close {
+    left: 0;
+    /* [2] */
+  }
+
+  /*
+      1. This is only necessary if the container is block wider than the control.
+         May not be the best place for this, but it doesn't hurt.
+  */
+  .off-canvas__controls--right .off-canvas__close {
     right: 0;
     /* [2] */
   }
@@ -1344,7 +1358,7 @@ _:-o-prefocus, body:last-child .subnav__heading {
 }
 /* For Opera Mini and Mobile (affects old desktop too, but that's acceptable): */
 /* (http://browserhacks.com/#hack-a3f166304aafed524566bc6814e1d5c7
-   for Opera ÔëÑ 9.5 but recent desktop Opera (15+) isn't affected) */
+   for Opera â‰¥ 9.5 but recent desktop Opera (15+) isn't affected) */
 /*
     Overflow breaks scrolling in Opera Mini, so just allow horizontal scrolling as well.
 */
