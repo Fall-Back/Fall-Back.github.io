@@ -22,7 +22,10 @@ a:hover {
     color: #80a9c6;
 }
 
+
+$fallback--sub-nav--bg-color:      darken($fallback--base-ui-color, 10%);
 $fallback--nav-bar--margin-bottom: 20px;
+
 @import "../bower_components/Fall-Back-Nav-Bar/_nav-bar.scss";
 
 

@@ -784,7 +784,7 @@ a:hover {
   padding: 0;
   margin:  0 5px 0 20px;
   margin:  0 0.5rem 0 2rem;
-  background-color: #314c60;
+  background-color: #426782;
 }
 
 .subnav:before,
@@ -848,7 +848,7 @@ _:-o-prefocus, body:last-child .subnav__heading {
 .subnav__link {
   display: inline-block;
   color: #fff;
-  background-color: #314c60;
+  background-color: #426782;
 }
 
 /*
@@ -881,7 +881,7 @@ _:-o-prefocus, body:last-child .subnav__heading {
 .subnav__link:focus,
 .subnav__link:active {
   color: #fff;
-  background-color: #426782;
+  background-color: #5382a4;
 }
 
 [href$="#"].nav-bar__link {
