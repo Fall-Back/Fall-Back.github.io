@@ -679,7 +679,7 @@ a:hover {
 /* -- Basic/fallback layout --------------------------------------------------------------------- */
 /* -- .nav-bar -------------------------------------------------------------------------------*/
 .nav-bar {
-  background-color: #aaa;
+  background-color: #5382A4;
   min-height:  40px;
   min-height:  4rem;
   margin-bottom:  20px;
@@ -712,7 +712,7 @@ a:hover {
 }
 
 .nav-bar__title-text {
-  background: #aaa;
+  background: #5382A4;
   display: inline-block;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
@@ -735,7 +735,7 @@ a:hover {
        browsers that don't support HTML semantic elements.
 */
 .nav-bar__inner {
-  background-color: #aaa;
+  background-color: #5382A4;
   overflow: hidden;
 }
 
@@ -784,7 +784,7 @@ a:hover {
   padding: 0;
   margin:  0 5px 0 20px;
   margin:  0 0.5rem 0 2rem;
-  background-color: #666;
+  background-color: #314c60;
 }
 
 .subnav:before,
@@ -834,8 +834,7 @@ _:-o-prefocus, body:last-child .subnav__heading {
 
 .nav-bar__link {
   color: #fff;
-  background-color: transparent;
-  /* @var */
+  background-color: #5382A4;
 }
 
 .nav-bar__link svg {
@@ -849,7 +848,7 @@ _:-o-prefocus, body:last-child .subnav__heading {
 .subnav__link {
   display: inline-block;
   color: #fff;
-  background-color: #666;
+  background-color: #314c60;
 }
 
 /*
@@ -875,14 +874,14 @@ _:-o-prefocus, body:last-child .subnav__heading {
 .nav-bar__link:focus,
 .nav-bar__link:active {
   color: #fff;
-  background-color: #999;
+  background-color: #426782;
 }
 
 .subnav__link:hover,
 .subnav__link:focus,
 .subnav__link:active {
   color: #fff;
-  background-color: #999;
+  background-color: #426782;
 }
 
 [href$="#"].nav-bar__link {
@@ -983,7 +982,7 @@ _:-o-prefocus, body:last-child .subnav__heading {
   .nav-bar__link:hover,
   .nav-bar__link:focus,
   .nav-bar__link:active {
-    background-color: #999;
+    background-color: #426782;
     cursor: pointer;
   }
 
@@ -1181,7 +1180,7 @@ _:-o-prefocus, body:last-child .subnav__heading {
   .off-canvas__open,
   .off-canvas__close {
     color: #fff;
-    background-color: #bbb;
+    background-color: #5382A4;
     width:  40px;
     width:  4rem;
     display: block;
@@ -1256,7 +1255,7 @@ _:-o-prefocus, body:last-child .subnav__heading {
   .off-canvas__close:active {
     text-decoration: none;
     color: #fff;
-    background-color: #999;
+    background-color: #426782;
   }
 
   /* Size and position the overlay, but send it to the back: */
@@ -1300,14 +1299,14 @@ _:-o-prefocus, body:last-child .subnav__heading {
 
   .off-canvas__panel--left {
     left: -260px;
-    background-color: #999;
+    background-color: #5382A4;
     padding:  0;
     padding:  0;
   }
 
   .off-canvas__panel--right {
     right: -260px;
-    background-color: #999;
+    background-color: #5382A4;
     padding:  20px;
     padding:  2rem;
   }
@@ -1345,7 +1344,7 @@ _:-o-prefocus, body:last-child .subnav__heading {
 }
 /* For Opera Mini and Mobile (affects old desktop too, but that's acceptable): */
 /* (http://browserhacks.com/#hack-a3f166304aafed524566bc6814e1d5c7
-   for Opera â‰¥ 9.5 but recent desktop Opera (15+) isn't affected) */
+   for Opera ÔëÑ 9.5 but recent desktop Opera (15+) isn't affected) */
 /*
     Overflow breaks scrolling in Opera Mini, so just allow horizontal scrolling as well.
 */
@@ -1372,7 +1371,7 @@ _:-o-prefocus, body:last-child .off-canvas {
     1. Prevent extra bottom space when form is inside a container.
 */
 .search-form {
-  background: #bbb;
+  background: #5382A4;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -1417,6 +1416,7 @@ _:-o-prefocus, body:last-child .off-canvas {
   border: 0;
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
+  background-color: #fff;
   height:  20px;
   height:  2rem;
   line-height:  20px;
@@ -1429,6 +1429,10 @@ _:-o-prefocus, body:last-child .off-canvas {
   -webkit-flex: 1 0 auto;
   -ms-flex: 1 0 auto;
   flex: 1 0 auto;
+}
+
+.search-form__field:focus {
+  background-color: #ffffdc;
 }
 
 .search-form--right .search-form__field {
@@ -1461,7 +1465,7 @@ _:-o-prefocus, body:last-child .search-form__field {
   border: 0;
   -webkit-border-box: content-box;
   border-box: content-box;
-  background: #ddd;
+  background: #b6cbda;
   height:  30px;
   height:  3rem;
   line-height: 0;
@@ -1478,9 +1482,8 @@ _:-o-prefocus, body:last-child .search-form__field {
 }
 
 .search-form__submit:hover,
-.search-form__submit:active,
 .search-form__submit:focus {
-  background-color: #ccc;
+  background-color: #94b3c9;
 }
 
 .search-form--right .search-form__submit {
@@ -1602,7 +1605,7 @@ _:-o-prefocus, body:last-child .search-form__field {
 
   .search-form__cancel {
     display: none;
-    background-color: #bbb;
+    background-color: #94b3c9;
     padding-right:  10px;
     padding-right:  1rem;
     padding-left:  10px;
@@ -1624,7 +1627,7 @@ _:-o-prefocus, body:last-child .search-form__field {
   .search-form__cancel:hover,
   .search-form__cancel:focus,
   .search-form__cancel:active {
-    background-color: #999;
+    background-color: #729bb8;
   }
 
   .search-form__cancel:after {
