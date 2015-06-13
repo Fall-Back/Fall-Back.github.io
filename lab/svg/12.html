@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-gb">
+<head>
+    <meta charset="utf-8">
+    <title>SVG Demo - 12</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="css/vendor/normalize.css" />
+    <link rel="stylesheet" href="css/svg-demo.css" />
+    <style>
+    /*----------------------------------------*\
+        SVG Pattern Styles
+    \*----------------------------------------*/
+    /*
+        1. Make the link fit the content.
+        2. Provide positioning context for the pseudo element.
+        3. Remove underline on some older browsers (Android 2.x mainly)
+        4. Prevent fallback text from showing unless image fails to load.
+    */
+    .svg__link {
+        display: inline-block; /* [1] */
+        position: relative;    /* [2] */
+        text-decoration: none; /* [3] */
+        overflow: hidden;      /* [4] */
+    }
+    
+    /*
+        Objects inside links prevent the link from functioning, this hack fixes 
+        that. `pointer-events: none;` would solve it but support isn't good 
+        enough (http://caniuse.com/#search=pointer-events).
+        
+        1. This is needed for IE9+ or hover effects don't work over images 
+           embedded in the SVG.
+    */
+    .svg__link:after {
+        content: ""; 
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0,0,0,0); /* [1] */
+    }
+    
+    .svg__link:hover {
+        text-decoration: none;
+    }
+    
+    /*
+        1. Remove gap below.
+        2. Prevent pointer-events blocking link action in supporting browsers.
+    */
+    .svg__link .svg__image {
+        vertical-align: top;  /* [1] */
+        pointer-events: none; /* [2] */
+    }
+    
+    /*
+        1. The br is only useful for non-css fallback display, so we can hide it.
+    */
+    .svg__link br {
+        display: none; /* [1] */
+    }
+    
+    /*
+        1. But we may need to be able to insert line breaks inside the text to prevent 
+           the text from pushing the container to wide.
+    */
+    .svg__fallback-text br {
+        display: inline; /* [1] */
+    }
+
+    
+    /*------ Fixed Height ------*/
+    /*
+        Set this to your required height.
+        If you need more variants, create separate modification classes instead.
+    */
+    .svg--fixed-height,
+    .svg--fixed-height .svg__link,
+    .svg--fixed-height .svg__image {
+        height: 150px;
+        max-height: 150px;
+    }
+    
+    /*
+        1. Allow pattern to contract.
+    */
+    .svg--fixed-height .svg__link,
+    .svg--fixed-height .svg__image {
+        max-width: 100%; /* [1] */
+    }
+    
+    /*
+        Allow the fallback image to scale properly.
+        1. IE6 - can be removed if unnecessary.
+    */
+    .svg--fixed-height .svg__fallback-image {
+
+        max-width: 100%;
+        max-height: 150px;
+        height: auto;
+        _height: 150px; /* [1] */
+    }
+    
+    /*
+        1. Force fallback text below object.
+    */
+    .svg--fixed-height .svg__fallback-text {
+        display: block;   /* [1] */
+    }
+    
+
+    /*------ Fluid ------*/
+    /*
+       1. Force the svg wrapper and link to fill their containers.
+    */
+    .svg--fluid,
+    .svg--fluid .svg__link {
+        display: block; /* [1] */
+        height: 100%;   /* [1] */
+        width: 100%;    /* [1] */
+    }
+    
+    /*
+        1. Force the children (object and fallback) text onto a single line. 
+           Note they must be inline-block.
+    */
+    .svg--fluid .svg__link {
+        white-space: nowrap; /* [1] */
+    }
+    
+    /*
+       1. Force the object and fallback image to proportionally fill their 
+          containers, overriding attribute values.
+    */
+    .svg--fluid .svg__image,
+    .svg--fluid .svg__fallback-image {
+        height: auto; /* [1] */
+        width: 100%;  /* [1] */
+    }
+    
+    /*
+        1. Make the fallback text inline-block so it is forced to the right of the object.
+           This hides it unless the image fails (in which case it collapses to the width of the text 
+           that's revealed).
+        2. Reset the white-space to is can form line-breaks.
+    */
+    .svg--fluid .svg__fallback-text {
+        display: inline-block; /* [1] */
+        white-space: normal;   /* [2] */
+    }
+    
+    
+    /*----------------------------------------*\
+        Old Browser Hacks - Optional
+    \*----------------------------------------*/
+       
+    /* IE8- hacks: */
+    @media \0screen\,screen\9 {
+        /*
+            PNG fallbacks also show the text (which isn't what we want), but we
+            don't need it as it has `alt` text, so just hide it.
+        */
+        .svg--fixed-height .svg__fallback-text,
+        .svg--fluid .svg__fallback-text {
+            display: none;
+        }
+    }
+    
+    /* Old Android (2.3) hacks: */
+    @media screen and (min-width:0\-) {
+        /*
+            PNG fallbacks also show the text (which isn't what we want), but we
+            don't need it as it has `alt` text, so just hide it.
+        */
+        .svg--fixed-height .svg__fallback-text,
+        .svg--fluid .svg__fallback-text {
+            display: none;
+        }
+    }
+    
+    
+    
+    /*------ Fixed Height - small variant ------*/
+    /*
+        Set this to your required height.
+        If you need more variants, create separate modification classes instead.
+    */
+    .svg--fixed-height--small,
+    .svg--fixed-height--small .svg__link,
+    .svg--fixed-height--small .svg__image {
+        height: 50px;
+    }
+    
+    /*
+        Allow the fallback image to scale properly.
+        1. IE6 - can be removed if unnecessary.
+    */
+    .svg--fixed-height--small .svg__fallback-image {
+        max-height: 50px;
+        _height: 50px; /* [1] */
+    }
+    
+    
+    
+    
+    
+    
+    
+    /*
+        With padding
+    */
+    /*
+    .svg--fixed-height .svg__link {
+        padding: 10px;
+        height: 130px;
+        max-height: 130px;
+    }
+    
+                .svg--fixed-height--small .svg__link {
+                    padding: 5px;
+                    max-height: 40px;
+                }
+    
+    
+    .svg--fixed-height .svg__image {
+        height: 130px;
+        max-height: 130px;
+    }
+    
+                .svg--fixed-height--small .svg__image {
+                    height: 40px;
+                    max-height: 40px;
+                }
+    
+    
+    .svg--fixed-height .svg__fallback-image {
+        max-height: 130px;
+        _height: 130px;
+    }
+    
+                .svg--fixed-height--small .svg__fallback-image {
+                    max-height: 40px;
+                    _height: 40px;
+                }
+    
+    
+    
+    .svg--fixed-height .svg__fallback-text {
+        position: relative;
+        bottom: -10px;
+    }
+    
+    
+    
+    
+    .svg--fluid .svg__link {
+        padding: 10px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    
+    .svg--fluid .svg__fallback-text {
+        padding-left: 10px;
+    }*/
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /*
+        With border
+    */
+    
+    .svg--fixed-height .svg__link {
+        border: 1px solid #333;
+
+        padding: 10px;
+        height: 128px;
+        max-height: 128px;
+    }
+    
+    .svg--fixed-height--small .svg__link {
+        padding: 5px;
+        height: 38px;
+        max-height: 38px;
+    }
+    
+    
+    .svg--fixed-height .svg__image {
+        height: 128px;
+        max-height: 128px;
+    }
+    
+    .svg--fixed-height--small .svg__image {
+        height: 38px;
+        max-height: 38px;
+    }
+    
+    
+    .svg--fixed-height .svg__fallback-image {
+        max-height: 128px;
+        _height: 128px;
+    }
+    
+    .svg--fixed-height--small .svg__fallback-image {
+        max-height: 38px;
+        _height: 38px;
+    }
+    
+    
+    
+    .svg--fixed-height .svg__fallback-text {
+        position: relative;
+        bottom: -10px;
+    }
+    
+    
+    .svg--fluid .svg__link {
+        border: 1px solid #333;
+    }
+    
+    .svg--fluid .svg__link {
+        padding: 10px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    
+    .svg--fluid .svg__fallback-text {
+        padding-left: 10px;
+    }*/
+    
+
+    </style>
+</head>
+<body>
+    <h1>SVG Demo - 12</h1>
+    
+    <p>
+       Examples of the complete pattern.
+    </p>
+    
+    <h2>Fixed height</h2>
+    
+    <div class="svg  svg--fixed-height">
+        <a href="#" class="svg__link  demo-link">
+            <object type="image/svg+xml" data="img/fallback-logo.svg" height="170" class="svg__image" aria-hidden="true" tabindex="-1">
+                <svg display="none">
+                    <image src="img/fallback-logo.png" height="170" class="svg__fallback-image" alt="Fall Back home" />
+                </svg>
+            </object>
+            <br /><i class="svg__fallback-text">Fall Back home</i>
+        </a>
+    </div>
+    
+    <p>
+        A wider image to illustrate proportional scaling:
+    </p>
+    
+    <div class="svg  svg--fixed-height">
+        <a href="#" class="svg__link  demo-link">
+            <object type="image/svg+xml" data="img/fallback-logo-wide.svg" height="170" class="svg__image" aria-hidden="true" tabindex="-1">
+                <svg display="none">
+                    <image src="img/fallback-logo-wide.png" height="170" class="svg__fallback-image" alt="Fall Back home" />
+                </svg>
+            </object>
+            <br /><i class="svg__fallback-text">Fall Back home</i>
+        </a>
+    </div>
+    
+    <p>
+        Smaller variant:
+    </p>
+    
+    <div class="svg  svg--fixed-height  svg--fixed-height--small">
+        <a href="#" class="svg__link  demo-link">
+            <object type="image/svg+xml" data="img/fallback-logo.svg" height="50" class="svg__image" aria-hidden="true" tabindex="-1">
+                <svg display="none">
+                    <image src="img/fallback-logo.png" height="50" class="svg__fallback-image" alt="Fall Back home" />
+                </svg>
+            </object>
+            <br /><i class="svg__fallback-text">Fall Back<br />home</i>
+        </a>
+    </div>
+    
+    <p>
+        Smaller variant with a wider image to illustrate proportional scaling:
+    </p>
+    
+    <div class="svg  svg--fixed-height  svg--fixed-height--small">
+        <a href="#" class="svg__link  demo-link">
+            <object type="image/svg+xml" data="img/fallback-logo-wide.svg" height="50" class="svg__image" aria-hidden="true" tabindex="-1">
+                <svg display="none">
+                    <image src="img/fallback-logo-wide.png" height="50" class="svg__fallback-image" alt="Fall Back home" />
+                </svg>
+            </object>
+            <br /><i class="svg__fallback-text">Fall Back home</i>
+        </a>
+    </div>
+    
+    <h2>Fluid height</h2>
+    
+    <p>
+        Fluid sizing method to show that a different technique is necessary for hiding the fallback text.
+    </p>
+    
+    <div class="svg  svg--fluid">
+        <a href="#" class="svg__link  demo-link">
+            <object type="image/svg+xml" data="img/fallback-logo.svg" height="170" class="svg__image" aria-hidden="true" tabindex="-1">
+                <svg display="none">
+                    <image src="img/fallback-logo.png" height="170" class="svg__fallback-image" alt="Fall Back home" />
+                </svg>
+            </object>
+            <br /><i class="svg__fallback-text">Fall Back home</i>
+        </a>
+    </div>
+    
+    <p>
+        A wider fluid image to illustrate proportional scaling:
+    </p>
+    
+    <div class="svg  svg--fluid">
+        <a href="#" class="svg__link  demo-link">
+            <object type="image/svg+xml" data="img/fallback-logo-wide.svg" height="170" class="svg__image" aria-hidden="true" tabindex="-1">
+                <svg display="none">
+                    <image src="img/fallback-logo-wide.png" height="170" class="svg__fallback-image" alt="Fall Back home" />
+                </svg>
+            </object>
+            <br /><i class="svg__fallback-text">Fall Back home</i>
+        </a>
+    </div>
+
+    <p>Note the background colors are purely to help illustrate the size of the links and the hover effect.</p>
+    <p>Highlighted code is code that has been added since the previous demo.</p>
+    
+    <p class="code-label">HTML:</p>
+    <pre class="html">&lt;div class="svg  svg--fixed--height  (or-svg--fluid)"&gt;
+    &lt;a href="#" class="svg__link  demo-link"&gt;
+        &lt;object type="image/svg+xml" data="img/fallback-logo.svg" height="170" class="svg__image" aria-hidden="true" tabindex="-1"&gt;
+            &lt;svg display="none"&gt;
+                &lt;image src="img/fallback-logo.png" height="170" alt="Fall Back home"/&gt;
+            &lt;/svg&gt;
+        &lt;/object&gt;
+       &lt;br /&gt;&lt;i class="svg__fallback-text"&gt;Fall Back home&lt;/i&gt;
+    &lt;/a&gt;
+&lt;/div&gt;</pre>
+
+    <p class="code-label">CSS:</p>
+    <pre class="css">/*----------------------------------------*\
+    SVG Pattern Styles
+\*----------------------------------------*/
+    /*
+        1. Make the link fit the content.
+        2. Provide positioning context for the pseudo element.
+        3. Remove underline on some older browsers (Android 2.x mainly)
+        4. Prevent fallback text from showing unless image fails to load.
+    */
+    .svg__link {
+        display: inline-block; /* [1] */
+        position: relative;    /* [2] */
+        text-decoration: none; /* [3] */
+        overflow: hidden;      /* [4] */
+    }
+
+/*
+    Objects inside links prevent the link from functioning, this hack fixes 
+    that. `pointer-events: none;` would solve it but support isn't good 
+    enough (http://caniuse.com/#search=pointer-events).
+    
+    1. This is needed for IE9+ or hover effects don't work over images 
+       embedded in the SVG.
+*/
+.svg__link:after {
+    content: ""; 
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0); /* [1] */
+}
+
+/*
+    1. Remove gap below.
+    2. Prevent pointer-events blocking link action in supporting browsers.
+*/
+.svg__link .svg__image {
+    vertical-align: top;  /* [1] */
+    pointer-events: none; /* [2] */
+}
+
+/*
+    1. The br is only useful for non-css fallback display, so we can hide it.
+*/
+.svg__link br {
+    display: none; /* [1] */
+}
+
+/*
+    1. But we may need to be able to insert line breaks inside the text to prevent 
+       the text from pushing the container to wide.
+*/
+.svg__fallback-text br {
+    display: inline; /* [1] */
+}
+    
+/*------ Fixed Height ------*/
+/*
+    Set this to your required height.
+    If you need more variants, create separate modification classes instead.
+*/
+.svg--fixed-height,
+.svg--fixed-height .svg__link,
+.svg--fixed-height .svg__image {
+    height: 150px;
+} 
+
+/*
+    1. Allow pattern to contract.
+*/
+.svg--fixed-height .svg__link,
+.svg--fixed-height .svg__image {
+    max-width: 100%; /* [1] */
+}
+
+/*
+    Allow the fallback image to scale properly.
+    1. IE6 - can be removed if unnecessary.
+*/
+.svg--fixed-height .svg__fallback-image {
+
+    max-width: 100%;
+    max-height: 150px;
+    height: auto;
+    _height: 150px; /* [1] */
+}
+
+
+/*------ Fluid ------*/
+/*
+   1. Force the svg wrapper and link to fill their containers.
+*/
+.svg--fluid,
+.svg--fluid .svg__link {
+    display: block; /* [1] */
+    height: 100%;   /* [1] */
+    width: 100%;    /* [1] */
+}
+
+/*
+    1. Force the children (object and fallback) text onto a single line. 
+       Note they must be inline-block.
+*/
+.svg--fluid .svg__link {
+    white-space: nowrap; /* [1] */
+}
+
+/*
+   1. Force the object and fallback image to proportionally fill their 
+      containers, overriding attribute values.
+*/
+.svg--fluid .svg__image,
+.svg--fluid .svg__fallback-image {
+    height: auto; /* [1] */
+    width: 100%;  /* [1] */
+}
+
+/*
+    1. Make the fallback text inline-block so it is forced to the right of the object.
+       This hides it unless the image fails (in which case it collapses to the width of the text 
+       that's revealed).
+    2. Reset the white-space to is can form line-breaks.
+*/
+.svg--fluid .svg__fallback-text {
+    display: inline-block; /* [1] */
+    white-space: normal;   /* [2] */
+}
+
+
+/*----------------------------------------*\
+    Old Browser Hacks - Optional
+\*----------------------------------------*/
+
+/* IE8- hacks: */
+@media \0screen\,screen\9 {
+    /*
+        PNG fallbacks also show the text (which isn't what we want), but we
+        don't need it as it has `alt` text, so just hide it.
+    */
+    .svg__fallback-text {
+        display: none;
+    }
+}
+
+/* Old Android (2.3) hacks: */
+@media screen and (min-width:0\-) {
+    /*
+        PNG fallbacks also show the text (which isn't what we want), but we
+        don't need it as it has `alt` text, so just hide it.
+    */
+    .svg__fallback-text {
+        display: none;
+    }
+}</pre>
+
+<p class="code-label">JS:</p>
+    <pre class="html">window.onload = function() {
+    if (!(
+        document.body.style.msTouchAction !== undefined /* IE10+ */
+     || (document.all && document.addEventListener && !window.atob) /* IE9 */
+     || Object.prototype.toString.call(window.operamini) === '[object OperaMini]' /* Opera Mini */
+    )) {
+        return;
+    }
+
+    var objs = document.getElementsByTagName('object');
+    var i = 0
+      , l = objs.length
+      , data
+      , obj;
+
+    for (i; i < l; i++) {
+        obj = objs[i];
+        // Check object is inside of an .svg__link and
+        // not inside of an .svg--fluid
+        if (obj.parentNode.className.indexOf('svg__link') == -1 || obj.parentNode.parentNode.className.indexOf('svg--fluid') >= 0) {
+            continue;
+        }
+        obj.style.maxWidth          = 'none';
+        obj.style.minWidth          = '0';
+        obj.parentNode.style.width  = '100%';
+        obj.parentNode.style.width  = obj.offsetWidth + 'px';
+        obj.style.maxWidth          = '100%';
+    }
+}</pre>
+
+<script>
+    window.onload = function() {
+        if (!(
+            document.body.style.msTouchAction !== undefined /* IE10+ */
+         || (document.all && document.addEventListener && !window.atob) /* IE9 */
+         || Object.prototype.toString.call(window.operamini) === '[object OperaMini]' /* Opera Mini */
+        )) {
+            return;
+        }
+ 
+        var objs = document.getElementsByTagName('object');
+        var i = 0
+          , l = objs.length
+          , data
+          , obj;
+
+        for (i; i < l; i++) {
+            obj = objs[i];
+            // Check object is inside of an .svg__link and
+            // not inside of an .svg--fluid
+            if (obj.parentNode.className.indexOf('svg__link') == -1 || obj.parentNode.parentNode.className.indexOf('svg--fluid') >= 0) {
+                continue;
+            }
+            obj.style.maxWidth          = 'none';
+            obj.style.minWidth          = '0';
+            obj.parentNode.style.width  = '100%';
+            obj.parentNode.style.width  = obj.offsetWidth + 'px';
+            obj.style.maxWidth          = '100%';
+        }
+    }
+</script>
+</body>
+</html>

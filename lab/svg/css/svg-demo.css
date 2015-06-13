@@ -1,0 +1,49 @@
+/*----------------------------------------*\
+    Demo styles
+    Illustration purposes - not part of the
+    pattern
+\*----------------------------------------*/
+
+body {
+    padding: 2em;
+}
+
+.code-label {
+    margin-bottom: .5em;
+}
+
+.html,
+.css {
+    border: 1px dashed #999;
+    background: #eee;
+    padding: 1em;
+    margin: 0 0 2em;
+}
+
+.code-added {
+    background: #90EE90;
+}
+
+    
+/* Illustrate the link area: */
+.demo-link,
+.demo-svg .svg__link {
+    background: #ffdd79;
+    cursor: pointer;
+}
+
+.demo-link svg {
+    cursor: pointer;
+}
+
+
+
+/* Illustrate hover effect: */
+.demo-link:hover,
+.demo-svg .svg__link:hover {
+    background: #c7f3ee;
+}
+
+.demo-svg .svg__image {
+    background: rgba(0,0,0,0.1);
+}
