@@ -1,0 +1,100 @@
+<!doctype html>
+<html class="no-js" lang="en-gb">
+<head>    
+    <meta charset="utf-8" />
+    <title>Support Tests</title>
+    
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/mq-test.css" media="only screen and (min-resolution: 0.1dpcm)">
+    <link rel="stylesheet" href="css/mq-test.css" media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)">
+    <!--<link rel="stylesheet" href="css/mq-test.css" media="screen and (-webkit-min-device-pixel-ratio:1.1)">-->
+
+    <style>
+        #browser_info {
+            border-spacing: 0;
+            border-collapse: collapse;
+            margin: 0 auto;
+            background: #fff;
+        }
+
+        #browser_info caption {
+            font-weight: bold;
+            margin-bottom: 0;
+            padding: 0.5em;
+            background: #aaa;
+            border: 1px solid #666;
+        }
+
+        #browser_info th,
+        #browser_info td {
+            padding: 1em;
+            border: 1px solid #666;
+        }
+    </style>
+    
+    <noscript>
+        <style>            
+            body {
+                padding: 10px;
+            }
+        </style>
+    </noscript>
+    
+</head>
+<body role="document">
+
+		
+    <header class="header">
+        <h1>Support Tests</h1>
+        <p><a href="http://lab.gridlight-design.co.uk/fallback">Fallback experiments home</a></p>
+    </header>
+    
+    <main>
+        
+        <p>This page should be green if the CSS has loaded.</p>
+        
+        <table id="browser_info">
+            <caption>Browser info</caption>
+            <thead>
+                <tr><th>Name</th><th>Value</th></tr>
+            </thead>
+            <tbody  id="browser_info__body">
+                <tr><td colspan="2">No Javascript - unable to detect anything!</td></tr>
+            </tbody>
+        </table>
+        
+        <p>Stylesheet declarations:</p>
+        <pre><code>
+            <link rel="stylesheet" href="css/mq-test.css" media="only screen and (min-resolution: 0.1dpcm)">
+            <link rel="stylesheet" href="css/mq-test.css" media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)">
+        </code></pre>
+    </main>
+    
+    <script>   
+    // Attempt at building a browser-info display tool:
+    window.onload = (function(onload) {
+        return function(event) {
+            
+            var browser_info = {
+                'User agent': navigator.userAgent,
+                'Device pixel ratio': window.devicePixelRatio,
+                'Viewport width': document.documentElement.clientWidth,
+                'Viewport height': document.documentElement.clientHeight,
+                'Device width': window.screen.availWidth,
+                'Device height': window.screen.availHeight
+            };
+
+            var browser_info_body = document.getElementById('browser_info__body');
+            browser_info_body.innerHTML = '';
+  
+            for (i in browser_info) {
+                browser_info_html = '<tr><td>' + i + '</td><td>' + browser_info[i] + '</td></tr>' + "\n";
+                browser_info_body.insertAdjacentHTML('beforeend', browser_info_html);
+            }            
+        }
+    }(window.onload));
+    </script>
+</body>
+</html>
