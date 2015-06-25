@@ -62,19 +62,20 @@
             <thead>
                 <tr><th>Name</th><th>Value</th></tr>
             </thead>
-            <tbody  id="browser_info__body">
+            <tbody>
                 <tr><td colspan="2">No Javascript - unable to detect anything!</td></tr>
             </tbody>
         </table>
         
-        <p>Stylesheet declarations:</p>
+        <h2>Stylesheet declarations:</h2>
         <pre><code>
             &lt;link rel="stylesheet" href="css/mq-test.css" media="only screen and (min-resolution: 0.1dpcm)"&gt;
             &lt;link rel="stylesheet" href="css/mq-test.css" media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)"&gt;
         </code></pre>
     </main>
     
-    <script>   
+
+    <script>
     // Attempt at building a browser-info display tool:
     window.onload = (function(onload) {
         return function(event) {
@@ -88,12 +89,18 @@
                 'Device width': window.screen.availWidth,
                 'Device height': window.screen.availHeight
             };
-            var browser_info_body = document.getElementById('browser_info__body');
-            browser_info_body.innerHTML = '';
-  
+            
+            var browser_info_table = document.getElementById('browser_info');
+            var browser_info_body  = browser_info_table.tBodies[0];
+            var row, cell1, cell2;
+            browser_info_body.deleteRow(0);
+
             for (i in browser_info) {
-                browser_info_html = '<tr><td>' + i + '</td><td>' + browser_info[i] + '</td></tr>' + "\n";
-                browser_info_body.insertAdjacentHTML('beforeend', browser_info_html);
+                row   = browser_info_body.insertRow(-1);
+                cell1 = row.insertCell(-1);
+                cell1.innerHTML = i;
+                cell2 = row.insertCell(-1);
+                cell2.innerHTML = browser_info[i];
             }
         }
     }(window.onload));
