@@ -21,14 +21,6 @@
           link.href = 'mq-test.css';
           document.getElementsByTagName('head')[0].appendChild(link);
         }
-        
-        var is_supported = false;
-        if (window.getComputedStyle) {
-            var val = window.getComputedStyle(document.body).getPropertyValue('clear', null);
-            if (val == 'both') {
-                is_supported = true;
-            }
-        }
     </script>
     
     <!--[if IE 8]>
@@ -105,6 +97,14 @@
     </main>
     
     <script>
+        var is_supported = false;
+        if (window.getComputedStyle) {
+            var val = window.getComputedStyle(document.body).getPropertyValue('clear', null);
+            if (val == 'both') {
+                is_supported = true;
+            }
+        }
+
         if (is_supported) {
             document.getElementById('js-msg').innerHTML = 'Browser support detected by JavaScript.'
         }
