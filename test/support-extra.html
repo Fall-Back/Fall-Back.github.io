@@ -1,0 +1,138 @@
+<!doctype html>
+<html class="no-js" lang="en-gb">
+<head>    
+    <meta charset="utf-8" />
+    <title>Support Tests</title>
+    
+    <meta name="description" content="CSS-Only Mustard Cut support test page">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="mq-test-2.css" media="only screen and (min-resolution: 0.1dpcm)">
+    <link rel="stylesheet" href="mq-test-2.css" media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)">
+    <link rel="stylesheet" href="mq-test-2.css" media="screen and (-webkit-min-device-pixel-ratio:1.1)">
+    <!--[if IE 8]>
+    <link rel="stylesheet" href="mq-test-2.css">
+    <![endif]-->
+    
+    <script>
+        if (navigator.userAgent.indexOf('UCBrowser') > -1) {
+          var link  = document.createElement('link');
+          link.rel  = 'stylesheet';
+          link.href = 'mq-test-2.css';
+          document.getElementsByTagName('head')[0].appendChild(link);
+        }
+        
+        var is_supported = false;
+        if (window.getComputedStyle) {
+            var val = window.getComputedStyle(document.body).getPropertyValue('clear', null);
+            if (val == 'both') {
+                is_supported = true;
+            }
+        }
+    </script>
+    
+    <!--[if IE 8]>
+    <script>
+        is_supported = true;
+    </script>
+    <![endif]-->
+
+
+    <style>
+    	  body {
+            padding: 1em;
+        }
+    
+        #browser_info {
+            border-spacing: 0;
+            border-collapse: collapse;
+            margin: 0 auto;
+            background: #fff;
+        }
+        #browser_info caption {
+            font-weight: bold;
+            margin-bottom: 0;
+            padding: 0.5em;
+            background: #aaa;
+            border: 1px solid #666;
+        }
+        #browser_info th,
+        #browser_info td {
+            padding: 1em;
+            border: 1px solid #666;
+        }
+    </style>
+    
+</head>
+<body role="document">
+    <h1>Support Tests</h1>
+    
+    <main>
+        
+        <p>This page should be green if the CSS has loaded.</p>
+        <p id="js-msg"></p>
+        
+        <h2>Browser support</h2>
+        
+        <ul>
+          <li>IE 8+</li>
+          <li>FF 8+</li>
+          <li>Opera 12+</li>
+          <li>Chrome 29+</li>
+          <li>Safari 6.1+</li>
+          <li>iOS 7+</li>
+          <li>Android 4.4+</li>
+          <li>Android 2.2+ (screens with pixel ratio &gt; 1)</li>
+        </ul>
+        
+        <table id="browser_info">
+            <caption>Browser info</caption>
+            <thead>
+                <tr><th>Name</th><th>Value</th></tr>
+            </thead>
+            <tbody  id="browser_info__body">
+                <tr><td colspan="2">No Javascript - unable to detect anything!</td></tr>
+            </tbody>
+        </table>
+        
+        <p>Stylesheet declarations:</p>
+        <pre><code>
+            &lt;link rel="stylesheet" href="css/mq-test.css" media="only screen and (min-resolution: 0.1dpcm)"&gt;
+            &lt;link rel="stylesheet" href="css/mq-test.css" media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)"&gt;
+        </code></pre>
+        
+        
+    </main>
+    
+    <script>
+        if (is_supported) {
+            document.getElementById('js-msg').innerHTML = 'Browser support detected by JavaScript.'
+        }
+    </script>
+    
+    <script>   
+    // Attempt at building a browser-info display tool:
+    window.onload = (function(onload) {
+        return function(event) {
+            onload && onload(event);
+            
+            var browser_info = {
+                'User agent': navigator.userAgent,
+                'Device pixel ratio': window.devicePixelRatio,
+                'Viewport width': document.documentElement.clientWidth,
+                'Viewport height': document.documentElement.clientHeight,
+                'Device width': window.screen.availWidth,
+                'Device height': window.screen.availHeight
+            };
+            var browser_info_body = document.getElementById('browser_info__body');
+            browser_info_body.innerHTML = '';
+  
+            for (i in browser_info) {
+                browser_info_html = '<tr><td>' + i + '</td><td>' + browser_info[i] + '</td></tr>' + "\n";
+                browser_info_body.insertAdjacentHTML('beforeend', browser_info_html);
+            }
+        }
+    }(window.onload));
+    </script>
+</body>
+</html>
