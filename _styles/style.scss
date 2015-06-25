@@ -22,6 +22,15 @@ a:hover {
     color: #80a9c6;
 }
 
+/* https://perishablepress.com/perfect-pre-tags/ */
+pre {
+    @include fallback-rem(margin, 0 auto ($fallback--base-font-size * 2));
+    overflow: auto;
+    width: 500px;
+    width: 90vw;
+    background: #B5D0E4;
+}
+
 
 $fallback--sub-nav--bg-color:      darken($fallback--base-ui-color, 10%);
 $fallback--nav-bar--margin-bottom: 20px;
