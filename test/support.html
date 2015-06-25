@@ -45,8 +45,7 @@
     <main>
         
         <p>This page should be green if the CSS has loaded.</p>
-        <p id="js-msg"></p>
-        
+
         <h2>Browser support</h2>
         
         <ul>
@@ -75,12 +74,6 @@
             &lt;link rel="stylesheet" href="css/mq-test.css" media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)"&gt;
         </code></pre>
     </main>
-    
-    <script>
-        if (is_supported) {
-            document.getElementById('js-msg').innerHTML = 'Browser support detected by JavaScript.'
-        }
-    </script>
     
     <script>   
     // Attempt at building a browser-info display tool:
