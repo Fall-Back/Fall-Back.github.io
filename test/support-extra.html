@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="mq-test.css" media="only screen and (min-resolution: 0.1dpcm)">
     <link rel="stylesheet" href="mq-test.css" media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)">
     <link rel="stylesheet" href="mq-test.css" media="only screen and (-webkit-min-device-pixel-ratio:1.1)">
+    
     <!--[if IE 8]>
     <link rel="stylesheet" href="mq-test.css">
     <![endif]-->
@@ -22,13 +23,6 @@
           document.getElementsByTagName('head')[0].appendChild(link);
         }
     </script>
-    
-    <!--[if IE 8]>
-    <script>
-        is_supported = true;
-    </script>
-    <![endif]-->
-
 
     <style>
     	  body {
@@ -82,35 +76,80 @@
             <thead>
                 <tr><th>Name</th><th>Value</th></tr>
             </thead>
-            <tbody  id="browser_info__body">
+            <tbody>
                 <tr><td colspan="2">No Javascript - unable to detect anything!</td></tr>
             </tbody>
         </table>
         
-        <p>Stylesheet declarations:</p>
+        <h2>Relevent code:</h2>
         <pre><code>
-            &lt;link rel="stylesheet" href="css/mq-test.css" media="only screen and (min-resolution: 0.1dpcm)"&gt;
-            &lt;link rel="stylesheet" href="css/mq-test.css" media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)"&gt;
+            &lt;head&gt;
+                ...
+                &lt;link rel="stylesheet" href="mq-test.css" media="only screen and (min-resolution: 0.1dpcm)"&gt;
+                &lt;link rel="stylesheet" href="mq-test.css" media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)"&gt;
+                &lt;link rel="stylesheet" href="mq-test.css" media="only screen and (-webkit-min-device-pixel-ratio:1.1)"&gt;
+                &lt;!--[if IE 8]&gt;
+                &lt;link rel="stylesheet" href="mq-test.css"&gt;
+                
+                &lt;script&gt;
+                    var is_ie8 = true;
+                &lt;/script&gt;
+                &lt;![endif]--&gt;
+                
+                &lt;script&gt;
+                    if (navigator.userAgent.indexOf('UCBrowser') &gt; -1) {
+                      var link  = document.createElement('link');
+                      link.rel  = 'stylesheet';
+                      link.href = 'mq-test.css';
+                      document.getElementsByTagName('head')[0].appendChild(link);
+                    }
+                &lt;/script&gt;
+                ...
+            &lt;/head&gt;
+            &lt;body&gt;
+            ...
+                &lt;script&gt;
+                    var is_supported = false;
+                    if (window.getComputedStyle) {
+                        var val = window.getComputedStyle(document.body).getPropertyValue('clear', null);
+                        if (val == 'both') {
+                            is_supported = true;
+                        }
+                    } else if (typeof(is_ie8) != 'undefined') {
+                        is_supported = true;
+                    }
+
+                    if (is_supported) {
+                        document.getElementById('js-msg').innerHTML = 'Browser support detected by JavaScript.'
+                    }
+                &lt;/script&gt;
+            ...
+            &lt;/body&gt;
         </code></pre>
         
         
     </main>
     
     <script>
-        var is_supported = false;
+        var is_supported = false
+          , val = '';
         if (window.getComputedStyle) {
-            var val = window.getComputedStyle(document.body).getPropertyValue('clear', null);
-            if (val == 'both') {
-                is_supported = true;
-            }
+            val = window.getComputedStyle(document.body).getPropertyValue('clear', null);
+        } else if (document.body.currentStyle) {
+            val = document.body.currentStyle.clear;
+        }
+        
+        if (val == 'both') {
+            is_supported = true;
         }
 
         if (is_supported) {
             document.getElementById('js-msg').innerHTML = 'Browser support detected by JavaScript.'
         }
     </script>
+
     
-    <script>   
+    <script>
     // Attempt at building a browser-info display tool:
     window.onload = (function(onload) {
         return function(event) {
@@ -124,12 +163,18 @@
                 'Device width': window.screen.availWidth,
                 'Device height': window.screen.availHeight
             };
-            var browser_info_body = document.getElementById('browser_info__body');
-            browser_info_body.innerHTML = '';
-  
+            
+            var browser_info_table = document.getElementById('browser_info');
+            var browser_info_body  = browser_info_table.tBodies[0];
+            var row, cell1, cell2;
+            browser_info_body.deleteRow(0);
+
             for (i in browser_info) {
-                browser_info_html = '<tr><td>' + i + '</td><td>' + browser_info[i] + '</td></tr>' + "\n";
-                browser_info_body.insertAdjacentHTML('beforeend', browser_info_html);
+                row   = browser_info_body.insertRow(-1);
+                cell1 = row.insertCell(-1);
+                cell1.innerHTML = i;
+                cell2 = row.insertCell(-1);
+                cell2.innerHTML = browser_info[i];
             }
         }
     }(window.onload));
