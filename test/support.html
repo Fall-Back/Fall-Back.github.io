@@ -45,6 +45,19 @@
     <main>
         
         <p>This page should be green if the CSS has loaded.</p>
+        <p id="js-msg"></p>
+        
+        <h2>Browser support</h2>
+        
+        <ul>
+            <li>IE 9+</li>
+            <li>FF 8+</li>
+            <li>Opera 12+</li>
+            <li>Chrome 29+</li>
+            <li>Safari 6.1+</li>
+            <li>iOS 7+</li>
+            <li>Android 4.4+</li>
+        </ul>
         
         <table id="browser_info">
             <caption>Browser info</caption>
@@ -63,10 +76,17 @@
         </code></pre>
     </main>
     
+    <script>
+        if (is_supported) {
+            document.getElementById('js-msg').innerHTML = 'Browser support detected by JavaScript.'
+        }
+    </script>
+    
     <script>   
     // Attempt at building a browser-info display tool:
     window.onload = (function(onload) {
         return function(event) {
+            onload && onload(event);
             
             var browser_info = {
                 'User agent': navigator.userAgent,
@@ -76,14 +96,13 @@
                 'Device width': window.screen.availWidth,
                 'Device height': window.screen.availHeight
             };
-
             var browser_info_body = document.getElementById('browser_info__body');
             browser_info_body.innerHTML = '';
   
             for (i in browser_info) {
                 browser_info_html = '<tr><td>' + i + '</td><td>' + browser_info[i] + '</td></tr>' + "\n";
                 browser_info_body.insertAdjacentHTML('beforeend', browser_info_html);
-            }            
+            }
         }
     }(window.onload));
     </script>
