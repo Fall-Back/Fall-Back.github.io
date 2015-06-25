@@ -7,9 +7,9 @@
     <meta name="description" content="CSS-Only Mustard Cut support test page">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="mq-test-2.css" media="only screen and (min-resolution: 0.1dpcm)">
-    <link rel="stylesheet" href="mq-test-2.css" media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)">
-    <link rel="stylesheet" href="mq-test-2.css" media="screen and (-webkit-min-device-pixel-ratio:1.1)">
+    <link rel="stylesheet" href="mq-test.css" media="only screen and (min-resolution: 0.1dpcm)">
+    <link rel="stylesheet" href="mq-test.css" media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)">
+    <link rel="stylesheet" href="mq-test.css" media="screen and (-webkit-min-device-pixel-ratio:1.1)">
     <!--[if IE 8]>
     <link rel="stylesheet" href="mq-test-2.css">
     <![endif]-->
@@ -18,7 +18,7 @@
         if (navigator.userAgent.indexOf('UCBrowser') > -1) {
           var link  = document.createElement('link');
           link.rel  = 'stylesheet';
-          link.href = 'mq-test-2.css';
+          link.href = 'mq-test.css';
           document.getElementsByTagName('head')[0].appendChild(link);
         }
         
