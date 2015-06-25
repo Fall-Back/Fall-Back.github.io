@@ -1,7 +1,9 @@
-<h1 id="philosophy-and-history">Philosophy and History</h1>
+---
+layout: full
+title: About Fall-Back: Philosophy and History
+---
 
 <p>Ok, so I made up the word 'Philistory'.</p>
-
 
 
 <h2 id="why-i-started">Why I started</h2>
@@ -9,11 +11,9 @@
 <p>UI toolkits or frameworks such as Bootstrap or Foundation have a lot to offer, but I always find myself getting frustrated with them at some point or another, especially when trying to design a bespoke website design for a client. I first turned to using a framework to <em>avoid</em> the frustration of having to solve the same problems again and again, but I feel I just exchanged one set of frustrations with another. Bootstrap and Foundation - out of necessity (or possibly sanity) only claim to support the modern band of browsers. This just doesn't cut it for me - leaving older browsers with what could potentially be an unusable page just doesn't sit right. </p>
 
 
-
 <h2 id="repetitive-strain">Repetitive strain</h2>
 
 <p>The frustrations with repetitive problem solving include things like SVG, menus and navigation bars. These elements of a web page are so common as to be ubiquitous and yet each time I'd throw one together it would break in some browser or other. Turning to framework seemed like a great idea, but ultimately it didn't solve the problem. Something would always break, or I was forced to use extraneous markup and CSS to produce 'near' success. So I've thrown in the towel for using frameworks for websites.</p>
-
 
 
 <h2 id="one-step-at-a-time">One step at a time</h2>
@@ -41,7 +41,6 @@ After all, I was trying to eliminate the need to JS in the name of PE and this j
 After a fair bit of experimentation and adaptation, I came up with a pair of MQs that I've dubbed the CSS-Only Mustard Cut:</p>
 
 
-
 <pre class="prettyprint"><code class=" hljs r"><span class="hljs-keyword">...</span>&lt;head&gt;<span class="hljs-keyword">...</span>
 &lt;link rel=<span class="hljs-string">"stylesheet"</span> href=<span class="hljs-string">"css/your-stylesheet.css"</span> media=<span class="hljs-string">"only screen and (min-resolution: 0.1dpcm)"</span>&gt;
 &lt;link rel=<span class="hljs-string">"stylesheet"</span> href=<span class="hljs-string">"css/your-stylesheet.css"</span> media=<span class="hljs-string">"only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)"</span>&gt;
@@ -60,7 +59,6 @@ After a fair bit of experimentation and adaptation, I came up with a pair of MQs
 <li>iOS 7+</li>
 <li>Android 4.4+</li>
 </ul>
-
 
 
 <h2 id="thats-it-for-now">That's it for now</h2>
