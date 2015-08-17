@@ -25,3 +25,7 @@ term
 another term
 and another term
 : and a definition for the term
+
+
+Thing
+=====
