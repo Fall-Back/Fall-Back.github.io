@@ -4,3 +4,6 @@ email: andy.kirk@gridlight-design.co.uk
 description: "Progressive Enhancement patterns."
 baseurl: ""
 url: "http://fall-back.github.io/"
+
+# Build settings
+markdown: kramdown
