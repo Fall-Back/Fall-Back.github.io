@@ -31,8 +31,8 @@ title: Philosophy and History
 
 <p>But what if JS wasn't available or didn't load? It's not as an occurrence rare as some people think (see Craig Buckler's post on <a href="http://www.sitepoint.com/javascript-dependency-backlash-myth-busting-progressive-enhancement/">“The JavaScript-Dependency Backlash”</a> - heading 'MYTH: No One Disables JavaScript' and the quote from <a href="https://t.co/uTM3255RuW">Jake Archibald</a>: “All your users are non-JS while they're downloading your JS” taken from <a href="http://kryogenix.org/code/browser/everyonehasjs.html">Everyone has JavaScript, right?</a>).</p>
 
-<p>The more I thought about it, the more I felt it was unfair to penalize modern browsers that would be perfectly capable of displaying a fully-styled and functional web page just because they chose to disable JS or it just didn't load for some reason. <br>
-After all, I was trying to eliminate the need to JS in the name of PE and this just puts me back to square one! So I continued looking and I stumbled on an <a href="http://www.sitepoint.com/support-old-browsers-responsive-web-design/">old post by Craig Buckler</a>. It uses Media Queries (MQs) on the <code>&lt;link&gt;</code> tag itself in order to prevent the styles from being applied if the MQ isn't matched. Excellent! That sounded just like what I wanted and no JS. <br>
+<p>The more I thought about it, the more I felt it was unfair to penalize modern browsers that would be perfectly capable of displaying a fully-styled and functional web page but can't just because they chose to disable JS or it just didn't load for some reason. <br>
+After all, I was trying to eliminate the need for JS in the name of PE and this just puts me back to square one! So I continued looking and I stumbled on an <a href="http://www.sitepoint.com/support-old-browsers-responsive-web-design/">old post by Craig Buckler</a>. It uses Media Queries (MQs) on the <code>&lt;link&gt;</code> tag itself in order to prevent the styles from being applied if the MQ isn't matched. Excellent! That sounded just like what I wanted and no JS. <br>
 After a fair bit of experimentation and adaptation, I came up with a pair of MQs that I've dubbed the CSS-Only Mustard Cut:</p>
 
 
@@ -55,6 +55,7 @@ After a fair bit of experimentation and adaptation, I came up with a pair of MQs
     <li>Android 4.4+</li>
 </ul>
 
+<p>Read the artcile on SitePoint for more about <a href="http://www.sitepoint.com/cutting-the-mustard-with-css-media-queries/">Cutting the Mustard with CSS Media Queries.</a>
 
 <h2 id="thats-it-for-now">That's it for now</h2>
 
