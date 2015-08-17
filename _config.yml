@@ -7,3 +7,7 @@ url: "http://fall-back.github.io/"
 
 # Build settings
 markdown: kramdown
+
+
+kramdown:
+  auto_ids:       true
