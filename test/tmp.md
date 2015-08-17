@@ -13,3 +13,11 @@ title: Tmp
   37
 
 Another line.
+
+term
+: definition
+: another definition
+
+another term
+and another term
+: and a definition for the term
