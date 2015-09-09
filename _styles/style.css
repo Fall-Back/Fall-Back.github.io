@@ -661,7 +661,7 @@ body {
 }
 
 main {
-  padding:  20px;
+  padding:  28px;
   padding:  2rem;
 }
 
@@ -675,7 +675,7 @@ a:hover {
 
 /* https://perishablepress.com/perfect-pre-tags/ */
 pre {
-  margin:  0 auto 20px;
+  margin:  0 auto 28px;
   margin:  0 auto 2rem;
   overflow: auto;
   width: 500px;
@@ -684,16 +684,12 @@ pre {
 }
 
 /*------------------------------------------------------------------------------------------------*\
-    Fall-Back Nav Bar Pattern v0.1
+    Fall-Back Nav Bar Pattern v0.5
 \*------------------------------------------------------------------------------------------------*/
 /* -- Basic/fallback layout --------------------------------------------------------------------- */
 /* -- .nav-bar -------------------------------------------------------------------------------*/
 .nav-bar {
   background-color: #5382A4;
-  min-height:  40px;
-  min-height:  4rem;
-  margin-bottom:  20px;
-  margin-bottom:  2rem;
 }
 
 .nav-bar:before,
@@ -716,26 +712,21 @@ pre {
 
 /* -------------------------------------------------------------------------------------------*/
 /* -- .nav-bar__title-section ----------------------------------------------------------------*/
-.nav-bar__title-section {
-  min-height:  40px;
-  min-height:  4rem;
-}
-
 .nav-bar__title-text {
   background: #5382A4;
   display: inline-block;
+  width: 100%;
+  height: 1.9047619em;
+  line-height: 1.9047619em;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   font-style: normal;
-  font-size:  24px;
-  font-size:  2.4rem;
-  height:  40px;
-  height:  4rem;
-  line-height:  40px;
-  line-height:  4rem;
-  width: 100%;
-  padding:  0;
-  padding:  0;
+  font-size: 1.5em;
+}
+
+.nav-bar__title-text .nav-bar__link {
+  height: 1.9047619em;
+  line-height: 1.9047619em;
 }
 
 /* -- .nav-bar__inner ------------------------------------------------------------------------*/
@@ -792,8 +783,7 @@ pre {
 .subnav {
   list-style-type: none;
   padding: 0;
-  margin:  0 5px 0 20px;
-  margin:  0 0.5rem 0 2rem;
+  margin: 0 0.3571429em 0 1.4285714em;
   background-color: #426782;
 }
 
@@ -825,12 +815,9 @@ pre {
 .subnav__heading {
   display: block;
   margin: 0;
-  padding:  0 10px;
-  padding:  0 1rem;
-  height:  40px;
-  height:  4rem;
-  line-height:  40px;
-  line-height:  4rem;
+  padding: 0 0.7142857em;
+  height: 2.8571429em;
+  line-height: 2.8571429em;
 }
 
 /*
@@ -922,12 +909,14 @@ _:-o-prefocus, body:last-child .subnav__heading {
   *display: none;
 }
 
-/* -------------------------------------------------------------------------------------------*/
-/* -- Enhanced layout ----------------------------------------------------------------------- */
+/* -----------------------------------------------------------------------------------------------*/
+/* -- Enhanced layout --------------------------------------------------------------------------- */
 @media only screen and (min-width: 720px) {
   /*
-      1. For IE 9.
-      2. For -moz-box.
+      1. For IE 9 and FF 12-.
+      
+      Note: -moz-box prevents positioning context (position: relative) from working in FF 12-.
+      Need to hack / re-think / drop support
   */
   .nav-bar {
     position: relative;
@@ -936,15 +925,14 @@ _:-o-prefocus, body:last-child .subnav__heading {
     display: table;
     /* [1] */
     display: -webkit-flex;
-    display: -moz-box;
     display: -ms-flexbox;
     display: flex;
     width: 100%;
-    /* [2] */
+    /* [1] */
   }
 
   /*
-      1. For IE 9.
+      1. For IE 9 and FF 12-.
       2. Reset width for modern browsers.
   */
   .nav-bar__title-section {
@@ -959,7 +947,6 @@ _:-o-prefocus, body:last-child .subnav__heading {
     vertical-align: top;
     /* [1] */
     webkit-flex: 0 0 auto;
-    -moz-box-flex: 0;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
   }
@@ -969,8 +956,6 @@ _:-o-prefocus, body:last-child .subnav__heading {
     -moz-box-flex: 1;
     -ms-flex: 1 0 auto;
     flex: 1 0 auto;
-    min-height:  40px;
-    min-height:  4rem;
   }
 
   .nav-bar__item {
@@ -1000,8 +985,6 @@ _:-o-prefocus, body:last-child .subnav__heading {
     position: absolute;
     left: 0;
     right: 0;
-    padding-right:  40px;
-    padding-right:  4rem;
     top: 0;
     z-index: -1;
     padding: 0;
@@ -1023,8 +1006,7 @@ _:-o-prefocus, body:last-child .subnav__heading {
 
   .subnav__open:focus + .subnav .subnav__link,
   .subnav__link:focus {
-    margin-top:  40px;
-    margin-top:  4rem;
+    margin-top: 2.8571429em;
   }
 
   /*
@@ -1050,8 +1032,6 @@ _:-o-prefocus, body:last-child .subnav__heading {
     position: absolute;
     right: 0;
     top: 0;
-    width:  40px;
-    width:  4rem;
     z-index: -1;
     background: transparent;
     /* [1] */
@@ -1066,39 +1046,38 @@ _:-o-prefocus, body:last-child .subnav__heading {
   }
 
   .subnav__open:focus ~ .subnav__cancel {
-    top:  40px;
-    top:  4rem;
+    top: 2.8571429em;
   }
 
   /* @micropattern:pseudo-dataicon-middle */
   .subnav__open:after,
   .subnav__cancel:after {
     /* These styles are enough for modern FF to V-center the icon: */
-    content: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj48cGF0aCAgZmlsbD0iIzQ0NDQ0NCIgZD0iTTUuODMzIDguMzMzbDQuMTY3IDQuMTY3IDQuMTY3LTQuMTY3eiI+PC9wYXRoPjwvc3ZnPg==");
     display: inline-block;
     vertical-align: middle;
+    width: 0.7142857em;
     /* IE10-11 flexbox chokes without width: */
-    width:  20px;
-    width:  2rem;
     /* IE11 flexbox stretches icon without height: */
-    height:  20px;
-    height:  2rem;
     /* But now blink pushes the icon to the bottom without line-height: 0. */
     line-height: 0;
   }
 
   .subnav__open:after {
-    content: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj48cGF0aCAgZmlsbD0iIzQ0NDQ0NCIgZD0iTTUuODMzIDguMzMzbDQuMTY3IDQuMTY3IDQuMTY3LTQuMTY3eiI+PC9wYXRoPjwvc3ZnPg==");
+    content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAyMCI+PHBhdGggZmlsbD0iIzQ0NCIgZD0iTTAgNWwxMCAxMEwyMCA1SDB6Ii8+PC9zdmc+");
   }
 
   .subnav__cancel:after {
-    content: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj48cGF0aCAgZmlsbD0iIzQ0NDQ0NCIgZD0iTTE1LjgzMyA1LjM0NmwtMS4xNzktMS4xNzktNC42NTQgNC42NTQtNC42NTQtNC42NTQtMS4xNzkgMS4xNzkgNC42NTQgNC42NTQtNC42NTQgNC42NTQgMS4xNzkgMS4xNzkgNC42NTQtNC42NTQgNC42NTQgNC42NTQgMS4xNzktMS4xNzktNC42NTQtNC42NTR6Ij48L3BhdGg+PC9zdmc+");
+    content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAyMCI+PHBhdGggZmlsbD0iIzQ0NCIgZD0iTTIwIDIuMDJMMTcuOTggMCAxMCA3Ljk4IDIuMDIgMCAwIDIuMDIgNy45OCAxMCAwIDE3Ljk4IDIuMDIgMjAgMTAgMTIuMDIgMTcuOTggMjAgMjAgMTcuOTggMTIuMDIgMTAgMjAgMi4wMnoiLz48L3N2Zz4=");
   }
 
-  .subnav__open svg,
-  .subnav__cancel svg {
-    vertical-align: text-bottom;
+  .subnav__open--fake:after {
+    margin-left: 0.7142857em;
   }
+
+  /*.subnav__open svg,
+  .subnav__cancel svg {
+      vertical-align: text-bottom;
+  }*/
 }
 /* IE8 hacks: */
 /*
@@ -1122,10 +1101,46 @@ _:-o-prefocus, body:last-child .subnav__heading {
     content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFuSURBVDiN7ZG/asJQFMa/e3MzKDgEN4c7pEP/rHmBO/gKN2icO3SrYPsQHYqvoGALYsF2Kzj4Ek23ELq4GYpLiBftYAKS3ITSrn7jPef87jnfB5z0X5H8Q7vd5gBulVL3y+VS6YaEEIwx9gBguFgsvo5rVNPfB9BnjE2EEKwENsn68vUC0LKsAYAJANc0zWfHccysJqU0GGMjAC4hZKaUusvPF07OBqMoGgHoEUJm6/Xas217F0XRGIBHCJltt9uuzhItMHeaC2CaPrsApkqpXpm/pcD8pgBQtVkmXSiVn242m8oljLKCEIIlSfIEoIPDyR8AZK1WO+ecz8Mw3P0aKKU0kiQZA+ikaXrNZvMljuMzAF3DMK4sy5qvVqsCtABMfSuk6fv+3nGc1xTaqdfrlzpoAdhqtR4BXOOQpnccgO/7e875G6X0Ij2/EQTBeyXQtu1PAFBK3ejSDMNwxzmfU0obAIZBEHzrbDvp7/oBTO6g1QDr8X4AAAAASUVORK5CYII=");
   }
 }
+/* IE9 hacks: */
+/*
+*/
+@media all and (min-width: 0\0) and (min-resolution: 0.001dpcm) {
+  .subnav__open:after,
+  .subnav__cancel:after {
+    /* Increase icon width due to odd cropping: */
+    /* (Temp until something better can be found.) */
+    width: 1.0714286em;
+  }
+}
 /* -------------------------------------------------------------------------------------------*/
 /* ---------------------------------------------------------------------------------------------- */
+/* -- Fit layout -------------------------------------------------------------------------------- */
+.nav-bar--fit .nav-bar__items {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+}
+.nav-bar--fit .nav-bar__item {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  text-align: center;
+}
+.nav-bar--fit .has-subnav {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+/* -----------------------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------------------------*\
-    Fall-Back Off Canvas Pattern v0.1
+    Fall-Back Off Canvas Pattern v0.5
 \*------------------------------------------------------------------------------------------------*/
 /* -- Basic/fallback layout --------------------------------------------------------------------- */
 /* -- .off-canvas ----------------------------------------------------------------------------*/
@@ -1166,11 +1181,11 @@ _:-o-prefocus, body:last-child .subnav__heading {
   }
 
   .off-canvas--left:target .off-canvas__inner {
-    left: 260px;
+    left: 16em;
   }
 
   .off-canvas--right:target .off-canvas__inner {
-    left: -260px;
+    left: -16em;
   }
 
   /* Style the off-canvas controls: */
@@ -1191,16 +1206,13 @@ _:-o-prefocus, body:last-child .subnav__heading {
   .off-canvas__close {
     color: #fff;
     background-color: #5382A4;
-    width:  40px;
-    width:  4rem;
+    width: 2.8571429em;
     display: block;
     margin: 0;
-    padding:  0 10px;
-    padding:  0 1rem;
-    height:  40px;
-    height:  4rem;
-    line-height:  40px;
-    line-height:  4rem;
+    padding: 0 0.7142857em;
+    height: 2.8571429em;
+    line-height: 2.8571429em;
+    text-align: center;
   }
 
   /*
@@ -1246,22 +1258,16 @@ _:-o-prefocus, body:last-child .subnav__heading {
     /* These styles are enough for modern FF to V-center the icon: */
     display: inline-block;
     vertical-align: middle;
-    /* IE10-11 flexbox chokes without width: */
-    width:  20px;
-    width:  2rem;
-    /* IE11 flexbox stretches icon without height: */
-    height:  20px;
-    height:  2rem;
-    /* But now blink pushes the icon to the bottom without line-height: 0. */
+    width: 1.0714286em;
     line-height: 0;
   }
 
   .off-canvas__open:before {
-    content: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj48cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNMi41IDE1aDE1di0xLjY2N2gtMTV2MS42Njd6TTIuNSAxMC44MzNoMTV2LTEuNjY3aC0xNXYxLjY2N3pNMi41IDV2MS42NjdoMTV2LTEuNjY3aC0xNXoiPjwvcGF0aD48L3N2Zz4=");
+    content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAyMCI+PHBhdGggZmlsbD0iIzQ0NCIgZD0iTTE5LjE0MyA4SC44NTdDLjA2NyA4IDAgOC44OTQgMCAxMGMwIDEuMTA0LjA2OCAyIC44NTcgMmgxOC4yODZjLjc5IDAgLjg1Ny0uODk2Ljg1Ny0yIDAtMS4xMDctLjA2OC0yLS44NTctMnptMCA4SC44NTdDLjA2NyAxNiAwIDE2Ljg5NCAwIDE4YzAgMS4xMDUuMDY4IDIgLjg1NyAyaDE4LjI4NmMuNzkgMCAuODU3LS44OTUuODU3LTIgMC0xLjEwNi0uMDY4LTItLjg1Ny0yek0uODU3IDRoMTguMjg2Yy43OSAwIC44NTctLjg5NS44NTctMiAwLTEuMTA2LS4wNjgtMi0uODU3LTJILjg1N0MuMDY3IDAgMCAuODk0IDAgMmMwIDEuMTA1LjA2OCAyIC44NTcgMnoiLz48L3N2Zz4=");
   }
 
   .off-canvas__close:before {
-    content: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj48cGF0aCAgZmlsbD0iIzQ0NDQ0NCIgZD0iTTE1LjgzMyA1LjM0NmwtMS4xNzktMS4xNzktNC42NTQgNC42NTQtNC42NTQtNC42NTQtMS4xNzkgMS4xNzkgNC42NTQgNC42NTQtNC42NTQgNC42NTQgMS4xNzkgMS4xNzkgNC42NTQtNC42NTQgNC42NTQgNC42NTQgMS4xNzktMS4xNzktNC42NTQtNC42NTR6Ij48L3BhdGg+PC9zdmc+");
+    content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAyMCI+PHBhdGggZmlsbD0iIzQ0NCIgZD0iTTIwIDIuMDJMMTcuOTggMCAxMCA3Ljk4IDIuMDIgMCAwIDIuMDIgNy45OCAxMCAwIDE3Ljk4IDIuMDIgMjAgMTAgMTIuMDIgMTcuOTggMjAgMjAgMTcuOTggMTIuMDIgMTAgMjAgMi4wMnoiLz48L3N2Zz4=");
   }
 
   /* Move the close control on top of the open control and above the overlay: */
@@ -1315,24 +1321,21 @@ _:-o-prefocus, body:last-child .subnav__heading {
   .off-canvas__panel--right {
     position: absolute;
     top: 0;
-    width:  260px;
-    width:  26rem;
+    width: 16em;
     -webkit-box-sizing: border-box;
     /* Not sure why this is needed. */
   }
 
   .off-canvas__panel--left {
-    left: -260px;
+    left: -16em;
     background-color: #5382A4;
-    padding:  0;
-    padding:  0;
+    padding: 0;
   }
 
   .off-canvas__panel--right {
-    right: -260px;
+    right: -16em;
     background-color: #5382A4;
-    padding:  20px;
-    padding:  2rem;
+    padding: 20px;
   }
 }
 /* Old Android hack (also affects Safari 4 it doesn't matter in this case): */
@@ -1368,7 +1371,7 @@ _:-o-prefocus, body:last-child .subnav__heading {
 }
 /* For Opera Mini and Mobile (affects old desktop too, but that's acceptable): */
 /* (http://browserhacks.com/#hack-a3f166304aafed524566bc6814e1d5c7
-   for Opera â‰¥ 9.5 but recent desktop Opera (15+) isn't affected) */
+   for Opera ÔëÑ 9.5 but recent desktop Opera (15+) isn't affected) */
 /*
     Overflow breaks scrolling in Opera Mini, so just allow horizontal scrolling as well.
 */
@@ -1378,7 +1381,7 @@ _:-o-prefocus, body:last-child .off-canvas {
 
 /* ---------------------------------------------------------------------------------------------- */
 /*------------------------------------------------------------------------------------------------*\
-    Fall-Back Search Form Pattern v0.1
+    Fall-Back Search Form Pattern v0.5
 \*------------------------------------------------------------------------------------------------*/
 /* -- Basic/fallback layout --------------------------------------------------------------------- */
 /*
@@ -1441,18 +1444,17 @@ _:-o-prefocus, body:last-child .off-canvas {
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
   background-color: #fff;
-  height:  20px;
-  height:  2rem;
-  line-height:  20px;
-  line-height:  2rem;
-  margin:  5px 0 5px 5px;
-  margin:  0.5rem 0 0.5rem 0.5rem;
-  padding:  5px;
-  padding:  0.5rem;
+  height: 2.1428571em;
+  line-height: 2.1428571em;
+  margin: 0.3571429em 0 0.3571429em 0.3571429em;
+  padding: 0.3571429em;
   float: left;
   -webkit-flex: 1 0 auto;
   -ms-flex: 1 0 auto;
   flex: 1 0 auto;
+  /* IE7- hacks (box-model height correction): */
+  *height: 1.4285714em;
+  *line-height: 1.4285714em;
 }
 
 .search-form__field:focus {
@@ -1474,8 +1476,7 @@ _:-o-prefocus, body:last-child .off-canvas {
 */
 _:-o-prefocus, body:last-child .search-form__field {
   padding: 0;
-  min-height:  30px;
-  min-height:  3rem;
+  min-height: 2.8571429em;
 }
 
 /* -------------------------------------------------------------------------------------------*/
@@ -1490,15 +1491,12 @@ _:-o-prefocus, body:last-child .search-form__field {
   -webkit-border-box: content-box;
   border-box: content-box;
   background: #b6cbda;
-  height:  30px;
-  height:  3rem;
+  height: 2.1428571em;
   line-height: 0;
-  /* [1] */
   *line-height: 1.5;
-  margin:  5px 5px 5px 0;
-  margin:  0.5rem 0.5rem 0.5rem 0;
-  padding:  0 10px;
-  padding:  0 1rem;
+  /* [1] */
+  margin: 0.3571429em 0.3571429em 0.3571429em 0;
+  padding: 0 0.7142857em;
   float: left;
   -webkit-flex: 0 1 auto;
   -ms-flex: 0 1 auto;
@@ -1517,10 +1515,8 @@ _:-o-prefocus, body:last-child .search-form__field {
 }
 
 .search-form__submit svg {
-  height:  20px;
-  height:  2rem;
-  width:  20px;
-  width:  2rem;
+  height: 1.4285714em;
+  width: 1.4285714em;
 }
 
 /* PNG Fall-Back */
@@ -1582,8 +1578,7 @@ _:-o-prefocus, body:last-child .search-form__field {
   }
 
   .search-form--right .search-form__field {
-    margin-left:  5px;
-    margin-left:  0.5rem;
+    margin-left: 0.3571429em;
     margin-right: 0;
   }
 
@@ -1630,16 +1625,10 @@ _:-o-prefocus, body:last-child .search-form__field {
   .search-form__cancel {
     display: none;
     background-color: #94b3c9;
-    padding-right:  10px;
-    padding-right:  1rem;
-    padding-left:  10px;
-    padding-left:  1rem;
-    height:  40px;
-    height:  4rem;
-    line-height:  40px;
-    line-height:  4rem;
-    width:  40px;
-    width:  4rem;
+    padding-right: 0.7142857em;
+    padding-left: 0.7142857em;
+    height: 2.8571429em;
+    line-height: 2.8571429em;
     -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
@@ -1655,15 +1644,14 @@ _:-o-prefocus, body:last-child .search-form__field {
   }
 
   .search-form__cancel:after {
-    content: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj48cGF0aCAgZmlsbD0iIzQ0NDQ0NCIgZD0iTTE1LjgzMyA1LjM0NmwtMS4xNzktMS4xNzktNC42NTQgNC42NTQtNC42NTQtNC42NTQtMS4xNzkgMS4xNzkgNC42NTQgNC42NTQtNC42NTQgNC42NTQgMS4xNzkgMS4xNzkgNC42NTQtNC42NTQgNC42NTQgNC42NTQgMS4xNzktMS4xNzktNC42NTQtNC42NTR6Ij48L3BhdGg+PC9zdmc+");
+    content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAyMCI+PHBhdGggZmlsbD0iIzQ0NCIgZD0iTTIwIDIuMDJMMTcuOTggMCAxMCA3Ljk4IDIuMDIgMCAwIDIuMDIgNy45OCAxMCAwIDE3Ljk4IDIuMDIgMjAgMTAgMTIuMDIgMTcuOTggMjAgMjAgMTcuOTggMTIuMDIgMTAgMjAgMi4wMnoiLz48L3N2Zz4=");
     display: inline-block;
     vertical-align: middle;
+    width: 0.7142857em;
     /* IE10-11 flexbox chokes without width: */
-    width: 20px;
-    width: 2rem;
+    /*width:  20px;*/
     /* IE11 flexbox stretches icon without height: */
-    height: 20px;
-    height: 2rem;
+    /*height:  20px;*/
     /* But now blink pushes the icon to the bottom without line-height: 0. */
     line-height: 0;
   }
@@ -1716,11 +1704,21 @@ _:-o-prefocus, body:last-child .search-form__field {
     width: auto;
   }
 }
+/* IE8 hacks: */
+/*
+    Respond:
+    Expander issue: Collapse block is hidden but search field doesn't expand so it looks weird.
+*/
+@media \0screen {
+  .search-form__field:focus ~ .search-form__collapse {
+    display: block;
+  }
+}
 /* IE9 hacks: */
 /*
     Expander issue: Collapse block is hidden but search field doesn't expand so it looks weird.
 */
-@media all and (min-width: 0�) and (min-resolution: 0.001dpcm) {
+@media all and (min-width: 0\0) and (min-resolution: 0.001dpcm) {
   .search-form__field:focus ~ .search-form__collapse {
     display: block;
   }
@@ -1804,13 +1802,28 @@ Can't use JS to detect these either, as it's totally broken if JS isn't availabl
 
 /*------------------------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------------------------*\
-    Fall-Back SVG Pattern v0.1
+    Fall-Back SVG Pattern v1.0
 \*------------------------------------------------------------------------------------------------*/
+/*
+	Make the container fit the content.
+*/
+.svg {
+  display: inline-block;
+  max-width: 100%;
+}
+
+/*
+	Zero out any inherited margins and padding for child elements.
+*/
+.svg > * {
+  margin: 0;
+  padding: 0;
+}
+
 /*
     1. Make the link fit the content.
     2. Provide positioning context for the pseudo element.
     3. Remove underline on some older browsers (Android 2.x mainly)
-    4. Prevent fallback text from showing unless image fails to load.
 */
 .svg__link {
   display: inline-block;
@@ -1819,8 +1832,6 @@ Can't use JS to detect these either, as it's totally broken if JS isn't availabl
   /* [2] */
   text-decoration: none;
   /* [3] */
-  overflow: hidden;
-  /* [4] */
   background-color: #fff;
   border-width: 1px;
   border-style: solid;
@@ -1835,11 +1846,11 @@ Can't use JS to detect these either, as it's totally broken if JS isn't availabl
 }
 
 /*
-    Objects inside links prevent the link from functioning, this hack fixes 
-    that. `pointer-events: none;` would solve it but support isn't good 
+    Objects inside links prevent the link from functioning, this hack fixes
+    that. `pointer-events: none;` would solve it but support isn't good
     enough (http://caniuse.com/#search=pointer-events).
-    
-    1. This is needed for IE9+ or hover effects don't work over images 
+
+    1. This is needed for IE9+ or hover effects don't work over images
        embedded in the SVG.
 */
 .svg__link:after {
@@ -1855,30 +1866,40 @@ Can't use JS to detect these either, as it's totally broken if JS isn't availabl
 
 /*
     1. Remove gap below.
-    2. Prevent pointer-events blocking link action in supporting browsers.
 */
-.svg__link .svg__image {
+.svg__image {
   vertical-align: top;
   /* [1] */
+}
+
+/*
+    1. Prevent pointer-events blocking link action in supporting browsers.
+*/
+.svg__link .svg__image {
   pointer-events: none;
-  /* [2] */
-}
-
-/*
-    1. The br is only useful for non-css fallback display, so we can hide it.
-*/
-.svg__link br {
-  display: none;
   /* [1] */
 }
 
 /*
-    1. But we may need to be able to insert line breaks inside the text to prevent 
-       the text from pushing the container to wide.
+    Allows the fallback text to show ONLY if CSS is available AND the SVG fails to load (the PNG is 
+    hidden if SVG is supported so that won't be an issue).
 */
-.svg__fallback-text br {
-  display: inline;
-  /* [1] */
+.svg__fallback-text-alpha::before {
+  content: attr(data-content);
+}
+
+/*
+    Hide the fallback text ONLY if CSS is available (but not from screenreaders).
+*/
+.svg__fallback-text-beta {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 }
 
 /*------ Fixed Height ------*/
@@ -1887,35 +1908,10 @@ Can't use JS to detect these either, as it's totally broken if JS isn't availabl
     If you need more variants, create separate modification classes instead.
 */
 /*
-    1. Allow pattern to contract.
+    NOTE: FF 32- (XP and Win8) seems to set a 3xheight width on initial page load / force refresh.
+    If any relevent properties are altered or page is normally refreshed, it snaps to the correct 
+    width. UNRESOLVED.
 */
-.svg--fixed-height .svg__link,
-.svg--fixed-height .svg__image {
-  max-width: 100%;
-  /* [1] */
-}
-
-.svg--fixed-height .svg__fallback-image {
-  max-width: 100%;
-  height: auto;
-}
-
-/*
-    1. Force fallback text below object.
-    2. A problem with this technique arises if the fallback text is quite long. For the 
-       fixed-height version of the SVG fallback pattern, long fallback text forces the parent 
-       link to be wider than the SVG image.
-       If this problem occurs try you'll need to either reduce the line-length by reducing the 
-       font-size or adding `<br>`s in the fallback text, or assign a width to the 
-       `.svg__fallback-text` class that you know to be small enough to force the text to wrap.
-*/
-.svg--fixed-height .svg__fallback-text {
-  display: block;
-  /* [1] */
-  position: relative;
-  bottom: -3px;
-}
-
 .svg--fixed-height {
   height: 40px;
   max-height: 40px;
@@ -1935,11 +1931,22 @@ Can't use JS to detect these either, as it's totally broken if JS isn't availabl
 }
 
 /*
+    1. Allow pattern to contract.
+*/
+.svg--fixed-height .svg__link,
+.svg--fixed-height .svg__image {
+  max-width: 100%;
+  /* [1] */
+}
+
+/*
     Allow the fallback image to scale properly.
     1. IE6 - can be removed if unnecessary.
 */
 .svg--fixed-height .svg__fallback-image {
+  max-width: 100%;
   max-height: 32px;
+  height: auto;
   _height: 32px;
   /* [1] */
 }
@@ -1952,19 +1959,11 @@ Can't use JS to detect these either, as it's totally broken if JS isn't availabl
 .svg--fluid .svg__link {
   display: block;
   /* [1] */
-  height: 100%;
-  /* [1] */
   width: 100%;
   /* [1] */
 }
 
-/*
-    1. Force the children (object and fallback) text onto a single line. 
-       Note they must be inline-block.
-*/
 .svg--fluid .svg__link {
-  white-space: nowrap;
-  /* [1] */
   padding: 3px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -1972,7 +1971,7 @@ Can't use JS to detect these either, as it's totally broken if JS isn't availabl
 }
 
 /*
-   1. Force the object and fallback image to proportionally fill their 
+   1. Force the object and fallback image to proportionally fill their
       containers, overriding attribute values.
 */
 .svg--fluid .svg__image,
@@ -1983,45 +1982,21 @@ Can't use JS to detect these either, as it's totally broken if JS isn't availabl
   /* [1] */
 }
 
-/*
-    1. Make the fallback text inline-block so it is forced to the right of the object.
-       This hides it unless the image fails (in which case it collapses to the width of the text 
-       that's revealed).
-    2. Reset the white-space so it can form line-breaks.
-*/
 .svg--fluid .svg__fallback-text {
-  display: inline-block;
-  /* [1] */
-  white-space: normal;
-  /* [2] */
   position: relative;
   left: 3px;
 }
 
 /*----------------------------------------*\
-    Old Browser Hacks - Optional
+    Old Browser Hacks
 \*----------------------------------------*/
-/* IE8- hacks: */
-@media \0screen\,screen\9 {
-  /*
-      PNG fallbacks also show the text (which isn't what we want), but we
-      don't need it as it has `alt` text, so just hide it.
-      Overqualified to increase specificity.
-  */
-  .svg--fixed-height .svg__fallback-text,
-  .svg--fluid .svg__fallback-text {
-    display: none;
-  }
-}
 /* Old Android (2.3) hacks: */
 @media screen and (min-width: 0\-) {
   /*
-      PNG fallbacks also show the text (which isn't what we want), but we
-      don't need it as it has `alt` text, so just hide it.
-      Overqualified to increase specificity.
+      Old Android supports ::pseudo elements but NOT SVG, thus both the PNG AND the fallback text
+      are shown, so we need to hide it: (overqualified to increase specificity.)
   */
-  .svg--fixed-height .svg__fallback-text,
-  .svg--fluid .svg__fallback-text {
+  .svg__fallback-text-alpha {
     display: none;
   }
 }
@@ -2095,7 +2070,7 @@ Can't use JS to detect these either, as it's totally broken if JS isn't availabl
   }
 
   /*
-      1. For IE9. Applied all IE but is acceptable.
+      1. For IE9. Applied to all IE but is acceptable.
       2. For IE9. Applied to all browsers but has no ill-effects. Basically ignored for non-IE.
       3. Reset the position for non-IE.
   */
@@ -2129,7 +2104,7 @@ Can't use JS to detect these either, as it's totally broken if JS isn't availabl
 
 .footer > p {
   margin: 0;
-  padding:  10px 0;
+  padding:  14px 0;
   padding:  1rem 0;
 }
 
