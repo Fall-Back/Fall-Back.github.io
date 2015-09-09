@@ -2,6 +2,12 @@
 
 @import "../bower_components/inuit-normalize/generic.normalize";
 
+input[type="search"] {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 @import "basic";
 
 //$fallback--base-font-size: 10px;
