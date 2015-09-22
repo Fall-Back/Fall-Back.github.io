@@ -10,7 +10,8 @@ Why I started
 
 UI toolkits or frameworks such as Bootstrap or Foundation have a lot to offer, but I always find myself getting frustrated with them at some point or another, especially when trying to design a bespoke website design for a client. I first turned to using a framework to _avoid_ the frustration of having to solve the same problems again and again, but I feel I just exchanged one set of frustrations with another. Bootstrap and Foundation - out of necessity (or possibly sanity) only claim to support the modern band of browsers. This just doesn't cut it for me - leaving older browsers with what could potentially be an unusable page just doesn't sit right.
 
-## Repetitive strain
+Repetitive strain
+-----------------
 
 The frustrations with repetitive problem solving include things like SVG, menus and navigation bars. These elements of a web page are so common as to be ubiquitous and yet each time I'd throw one together it would break in some browser or other. Turning to framework seemed like a great idea, but ultimately it didn't solve the problem. Something would always break, or I was forced to use extraneous markup and CSS to produce 'near' success. So I've thrown in the towel for using frameworks for websites.
 

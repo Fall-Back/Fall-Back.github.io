@@ -689,14 +689,15 @@ a:hover {
   text-decoration: none;
 }
 
+/*
 nav a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 nav a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
-
+*/
 code {
   background: #d8e3eb;
   padding: 0 2px;
