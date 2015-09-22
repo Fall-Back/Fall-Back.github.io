@@ -40,7 +40,7 @@ After all, I was trying to eliminate the need for JS in the name of PE and this 
 
 After a fair bit of experimentation and adaptation, I came up with a pair of MQs that I've dubbed the CSS-Only Mustard Cut:
 
-~~~
+~~~ html
 <link rel="stylesheet" href="css/your-stylesheet.css" media="only screen and (min-resolution: 0.1dpcm)">
 <link rel="stylesheet" href="css/your-stylesheet.css" media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)">
 ~~~
