@@ -689,6 +689,14 @@ a:hover {
   text-decoration: none;
 }
 
+nav a {
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
 code {
   background: #d8e3eb;
   padding: 0 2px;
@@ -1392,7 +1400,7 @@ _:-o-prefocus, body:last-child .subnav__heading {
 }
 /* For Opera Mini and Mobile (affects old desktop too, but that's acceptable): */
 /* (http://browserhacks.com/#hack-a3f166304aafed524566bc6814e1d5c7
-   for Opera â‰¥ 9.5 but recent desktop Opera (15+) isn't affected) */
+   for Opera ÔëÑ 9.5 but recent desktop Opera (15+) isn't affected) */
 /*
     Overflow breaks scrolling in Opera Mini, so just allow horizontal scrolling as well.
 */
