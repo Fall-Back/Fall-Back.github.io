@@ -39,10 +39,12 @@ The more I thought about it, the more I felt it was unfair to penalize modern br
 After all, I was trying to eliminate the need for JS in the name of PE and this just puts me back to square one! So I continued looking and I stumbled on an [old post by Craig Buckler](http://www.sitepoint.com/support-old-browsers-responsive-web-design/). It uses Media Queries (MQs) on the `<link>` tag itself in order to prevent the styles from being applied if the MQ isn't matched. Excellent! That sounded just like what I wanted and no JS. 
 
 After a fair bit of experimentation and adaptation, I came up with a pair of MQs that I've dubbed the CSS-Only Mustard Cut:
+
 ```
 <link rel="stylesheet" href="css/your-stylesheet.css" media="only screen and (min-resolution: 0.1dpcm)">
 <link rel="stylesheet" href="css/your-stylesheet.css" media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)">
 ```
+
 This only allows the modern band of browsers to apply the CSS, leaving old ones with the just HTML. Perfect. I'll no longer have to find hacks and workarounds to avoid breaking things on old browsers! It can be a little bit more involved than that, though, so I've written up a full article for [SitePoint](http://www.sitepoint.com) that I hope will be published soon. I'll post a link here if it is.
 
 Browser support for the CSS-Only Mustard Cut is as follows:
