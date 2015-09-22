@@ -31,7 +31,7 @@ On encountering these inconsistencies and problems, I started using a variety of
 Cutting the mustard
 -------------------
 
-What I wanted to do was only give these old browsers _just_ the HTML. No CSS at all. At least that way it would only look unstlyed, not broken. “Just. Not. Broken.” became a bit of mantra for me from that point on - the fundamental guiding principle when nothing else could be acheived - at least things wouldn't be broken. After a lot of thinking, reading, researching and agonizing, I decided that thew only way I was going to be able to reliably was to use JS to feature detect the browsers capabilities and only load the CSS if the browser wasn't going to have problem with it. I wasn't the only one to think like this. There was already a phrase out there: [Cutting the Mustard](http://responsivenews.co.uk/post/18948466399/cutting-the-mustard). “Brilliant!” I thought - that'll do nicely. I can detect unsupported browsers and give them little or no CSS and then I'd be free and safe to design my modules the way I wanted.
+What I wanted to do was only give these old browsers _just_ the HTML. No CSS at all. At least that way it would only look unstlyed, not broken. “Just. Not. Broken.” became a bit of mantra for me from that point on - the fundamental guiding principle when nothing else could be acheived - at least things wouldn't be broken. After a lot of thinking, reading, researching and agonizing, I decided that the only way I was going to be able to reliably was to use JS to feature detect the browsers capabilities and only load the CSS if the browser wasn't going to have problem with it. I wasn't the only one to think like this. There was already a phrase out there: [Cutting the Mustard](http://responsivenews.co.uk/post/18948466399/cutting-the-mustard). “Brilliant!” I thought - that'll do nicely. I can detect unsupported browsers and give them little or no CSS and then I'd be free and safe to design my modules the way I wanted.
 
 But what if JS wasn't available or didn't load? It's not as rare an occurrence as some people think (see Craig Buckler's post on [“The JavaScript-Dependency Backlash”](http://www.sitepoint.com/javascript-dependency-backlash-myth-busting-progressive-enhancement/) - heading 'MYTH: No One Disables JavaScript' and the quote from [Jake Archibald](https://t.co/uTM3255RuW): “All your users are non-JS while they're downloading your JS” taken from [Everyone has JavaScript, right?](http://kryogenix.org/code/browser/everyonehasjs.html)).
 
@@ -46,7 +46,7 @@ After a fair bit of experimentation and adaptation, I came up with a pair of MQs
 <link rel="stylesheet" href="css/your-stylesheet.css" media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)">
 ~~~
 
-This only allows the modern band of browsers to apply the CSS, leaving old ones with the just HTML. Perfect. I'll no longer have to find hacks and workarounds to avoid breaking things on old browsers! It can be a little bit more involved than that, though, so I've written up a full article for [SitePoint](http://www.sitepoint.com) that I hope will be published soon. I'll post a link here if it is.
+This only allows the modern band of browsers to apply the CSS, leaving old ones with the just HTML. Perfect. I'll no longer have to find hacks and workarounds to avoid breaking things on old browsers! It can be a little bit more involved than that, though, so I've written up a full article that's published on [SitePoint](http://www.sitepoint.com) ([Cutting the Mustard with CSS Media Queries.](http://www.sitepoint.com/cutting-the-mustard-with-css-media-queries/)).
 
 Browser support for the CSS-Only Mustard Cut is as follows:
 
@@ -58,7 +58,6 @@ Browser support for the CSS-Only Mustard Cut is as follows:
 *   iOS 7+
 *   Android 4.4+
 
-Read the article on SitePoint for more about [Cutting the Mustard with CSS Media Queries.](http://www.sitepoint.com/cutting-the-mustard-with-css-media-queries/)
 
 That's it for now
 -----------------
