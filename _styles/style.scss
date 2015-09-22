@@ -40,6 +40,15 @@ a:hover {
     text-decoration: none;
 }
 
+nav a {
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+
 code {
     background: lighten($fallback--base-ui-color, 40%);
     padding: 0 2px;
