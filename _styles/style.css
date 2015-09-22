@@ -659,6 +659,14 @@ input[type=file]::-webkit-file-upload-button {
 @media print, (-o-min-device-pixel-ratio: 5 / 4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
   /* Style adjustments for high resolution devices */
 }
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Merriweather', serif;
+}
+
 html,
 body {
   height: 100%;
@@ -672,11 +680,18 @@ main {
 }
 
 a {
-  color: #1f547a;
+  color: #5382A4;
+  text-decoration: underline;
 }
 
 a:hover {
-  color: #80a9c6;
+  color: #83a7c0;
+  text-decoration: none;
+}
+
+code {
+  background: #d8e3eb;
+  padding: 0 2px;
 }
 
 /* https://perishablepress.com/perfect-pre-tags/ */
@@ -686,7 +701,7 @@ pre {
   overflow: auto;
   width: 500px;
   width: 90vw;
-  background: #B5D0E4;
+  background: #d8e3eb;
 }
 
 /*------------------------------------------------------------------------------------------------*\
@@ -1377,7 +1392,7 @@ _:-o-prefocus, body:last-child .subnav__heading {
 }
 /* For Opera Mini and Mobile (affects old desktop too, but that's acceptable): */
 /* (http://browserhacks.com/#hack-a3f166304aafed524566bc6814e1d5c7
-   for Opera ÔëÑ 9.5 but recent desktop Opera (15+) isn't affected) */
+   for Opera â‰¥ 9.5 but recent desktop Opera (15+) isn't affected) */
 /*
     Overflow breaks scrolling in Opera Mini, so just allow horizontal scrolling as well.
 */
@@ -1440,6 +1455,12 @@ _:-o-prefocus, body:last-child .off-canvas {
 /* -- .search-form__field --------------------------------------------------------------------*/
 /*
     1. This to override normalize.
+    
+    @TODO - box-sizing got a little jumbled somewhere.
+    Either I need to stick with content-box and adjust to the height to take into account
+    the padding, or I need to enforce border-box. The problem wwith this is that the class isn't
+    of a high-enough specifiity to override Normalise's setting of content-box.
+    Oddly, FF doesn't seem to make a difference - only Chrome.
 */
 .search-form__field {
   -webkit-appearance: none !important;
@@ -1820,8 +1841,9 @@ Can't use JS to detect these either, as it's totally broken if JS isn't availabl
 
 /*
 	Zero out any inherited margins and padding for child elements.
+    Note: `*:not(body)` avoids clash with Modernizr-added class.
 */
-.svg > * {
+.svg > *:not(body) {
   margin: 0;
   padding: 0;
 }

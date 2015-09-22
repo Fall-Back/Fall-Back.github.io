@@ -10,6 +10,16 @@ input[type="search"] {
 
 @import "basic";
 
+// Fonts:
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: 'Merriweather', serif;
+}
+
+
 //$fallback--base-font-size: 10px;
 $fallback--base-ui-color:  #5382A4;
 @import "../bower_components/Fall-Back-Base/_fallback-base.scss";
@@ -21,11 +31,18 @@ main {
 
 
 a {
-    color: #1f547a;
+    color: $fallback--base-ui-color;
+    text-decoration: underline;
 }
 
 a:hover {
-    color: #80a9c6;
+    color: lighten($fallback--base-ui-color, 15%);
+    text-decoration: none;
+}
+
+code {
+    background: lighten($fallback--base-ui-color, 40%);
+    padding: 0 2px;
 }
 
 /* https://perishablepress.com/perfect-pre-tags/ */
@@ -34,7 +51,7 @@ pre {
     overflow: auto;
     width: 500px;
     width: 90vw;
-    background: #B5D0E4;
+    background: lighten($fallback--base-ui-color, 40%);
 }
 
 
