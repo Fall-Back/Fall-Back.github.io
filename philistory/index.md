@@ -42,8 +42,12 @@ After all, I was trying to eliminate the need for JS in the name of PE and this 
 After a fair bit of experimentation and adaptation, I came up with a pair of MQs that I've dubbed the CSS-Only Mustard Cut:
 
 ~~~ html
-<link rel="stylesheet" href="css/your-stylesheet.css" media="only screen and (min-resolution: 0.1dpcm)">
-<link rel="stylesheet" href="css/your-stylesheet.css" media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)">
+<link rel="stylesheet" href="css/your-stylesheet.css"
+    media="only screen and (min-resolution: 0.1dpcm)"
+>
+<link rel="stylesheet" href="css/your-stylesheet.css"
+    media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)"
+>
 ~~~
 
 This only allows the modern band of browsers to apply the CSS, leaving old ones with the just HTML. Perfect. I'll no longer have to find hacks and workarounds to avoid breaking things on old browsers! It can be a little bit more involved than that, though, so I've written up a full article that's published on [SitePoint](http://www.sitepoint.com) ([Cutting the Mustard with CSS Media Queries.](http://www.sitepoint.com/cutting-the-mustard-with-css-media-queries/)).

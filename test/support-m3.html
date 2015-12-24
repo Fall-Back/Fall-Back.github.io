@@ -7,8 +7,11 @@
     <meta name="description" content="CSS-Only Mustard Cut support test page">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="mq-test.css" media="only screen and (min-resolution: 0.1dpcm)">
-    <link rel="stylesheet" href="mq-test.css" media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)">
+    <link rel="stylesheet" href="mq-test.css"
+      media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0), (-ms-high-contrast: none),
+             only all and (min--moz-device-pixel-ratio:0) and (min-resolution: 3e1dpcm)
+            "
+    >
 
     <style>
     	body {
@@ -48,13 +51,13 @@
         <h2>Browser support</h2>
 
         <ul>
-            <li>IE 9+ (including Edge)</li>
-            <li>FF 8+</li>
-            <li>Opera 12+</li>
+            <li>IE 10+ (including Edge)</li>
             <li>Chrome 29+</li>
+            <li>FF 29+</li>
+            <li>Opera 16+</li>
             <li>Safari 6.1+</li>
             <li>iOS 7+</li>
-            <li>Android 4.4+</li>
+            <li>Android ~4.3+ (Webkit ~537.36+)</li>
         </ul>
 
         <table id="browser_info">
@@ -68,10 +71,16 @@
         </table>
 
         <h2>Stylesheet declarations:</h2>
-        <pre><code>
-            &lt;link rel="stylesheet" href="css/mq-test.css" media="only screen and (min-resolution: 0.1dpcm)"&gt;
-            &lt;link rel="stylesheet" href="css/mq-test.css" media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)"&gt;
-        </code></pre>
+        <pre><code><link rel="stylesheet" href="mq-test.css"
+      media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0), (-ms-high-contrast: none),
+             only all and (min--moz-device-pixel-ratio:0) and (min-resolution: 3e1dpcm)
+            "
+    ></code></pre>
+
+        <h2>Notes</h2>
+        <p>Also tested on Mac OSX10.8 - Camino 2.1. It doesn't work, of course but good to know for sure.<br />
+        UA: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.9; en; rv:1.9.2.28) Gecko/20120308 Camino/2.1.2 (like Firefox/3.6.28)</p>
+        <p>On crossbrowsertesting.com it doesn't work Android Galaxy S5 / 4.4(.2) (webkit 537.36, Android browser) for some reason. This is a bit of an anomaly as all other tested 537.36 webkits seem to work.</p>
     </main>
 
 
