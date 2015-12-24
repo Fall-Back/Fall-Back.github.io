@@ -1,109 +1,86 @@
 @charset "UTF-8";
+/* --| SETTINGS |-------------------------------------------------------------------------------- */
 
-@import "../bower_components/inuit-normalize/generic.normalize";
 
-input[type="search"] {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-@import "basic";
-
-// Fonts:
-body {
-    font-family: 'Source Sans Pro', sans-serif;
-}
-
-h1, h2, h3 {
-    font-family: 'Merriweather', serif;
-}
-
+// FallBack:
 
 //$fallback--base-font-size: 10px;
-$fallback--base-ui-color:  #5382A4;
-@import "../bower_components/Fall-Back-Base/_fallback-base.scss";
+$fallback--base-ui-color: #5382A4;
+
+// StartCSS:
+$body-padding: 0;
+
+// Inuit:
+
+//$breakpoints: (
+//    "palm"          "screen and (max-width: 44.9375em)",
+//    "lap"           "screen and (min-width: 45em) and (max-width: 63.9375em)",
+//    "lap-and-up"    "screen and (min-width: 45em)",
+//    "portable"      "screen and (max-width: 63.9375em)",
+//    "desk"          "screen and (min-width: 64em)",
+//    "retina"        "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx)"
+//) !default;
+
+////@import "bower_components/inuit-defaults/settings.defaults";
+//@import "bower_components/inuit-responsive-settings/_settings.responsive.scss";
+
+$fallback--base-font-family: 'Source Sans Pro', sans-serif;
 
 
-main {
-    @include fallback-rem(padding, $fallback--base-font-size * 2);
-}
+/* ---------------------------------------------------------------------------------------------- */
+/* --| FUNCTIONS AND MIXINS |-------------------------------------------------------------------- */
+
+@import "../bower_components/Fall-Back-Base/_fallback-base";
 
 
-a {
-    color: $fallback--base-ui-color;
-    text-decoration: underline;
-}
+// Inuit:
+//@import "bower_components/inuit-functions/tools.functions";
+//@import "bower_components/inuit-tools-widths/tools.widths";
+//@import "bower_components/inuit-mixins/tools.mixins";
+//@import "bower_components/inuit-responsive-tools/tools.responsive.scss";
 
-a:hover {
-    color: lighten($fallback--base-ui-color, 15%);
-    text-decoration: none;
-}
-/*
-nav a {
-    text-decoration: none;
-}
+/* ---------------------------------------------------------------------------------------------- */
+/* --| BASE |------------------------------------------------------------------------------------ */
 
-nav a:hover {
-    text-decoration: underline;
-}
-*/
+$max-main-line-length: 0;
+@import "../bower_components/Fall-Back-Start-CSS/_start";
 
-code {
-    background: lighten($fallback--base-ui-color, 40%);
-    padding: 0 2px;
-}
+/* ---------------------------------------------------------------------------------------------- */
+/* --| PATTERNS |-------------------------------------------------------------------------------- */
 
-/* https://perishablepress.com/perfect-pre-tags/ */
-pre {
-    @include fallback-rem(margin, 0 auto ($fallback--base-font-size * 2));
-    overflow: auto;
-    width: 500px;
-    width: 90vw;
-    background: lighten($fallback--base-ui-color, 40%);
-    padding: 0.5em 0;
-}
+$fallback--off-canvas__left-panel--padding:  0;
+$fallback--off-canvas__right-panel--padding: 20px;
+@import "../bower_components/Fall-Back-Off-Canvas/_off-canvas";
+
 
 
 $fallback--sub-nav--bg-color:      darken($fallback--base-ui-color, 10%);
 $fallback--nav-bar--margin-bottom: 20px;
-
-@import "../bower_components/Fall-Back-Nav-Bar/_nav-bar.scss";
-
-
-$fallback--off-canvas__left-panel--padding:  0;
-$fallback--off-canvas__right-panel--padding: 20px;
-@import "../bower_components/Fall-Back-Off-Canvas/_off-canvas.scss";
+@import "../bower_components/Fall-Back-Nav-Bar/_nav-bar";
 
 
-@import "../bower_components/Fall-Back-Search-Form/_search-form.scss";
+//$fallback--search-form--breakpoint--enhanced: 50em;
+@import "../bower_components/Fall-Back-Search-Form/_search-form";
 
+@import "../bower_components/Fall-Back-Top-Bar/_top-bar";
 
-@import "../bower_components/Fall-Back-Sticky-Footer/_sticky-footer.scss";
+@import "../bower_components/Fall-Back-Sticky-Footer/_sticky-footer";
 
-
-$fallback-svg--fixed-height:      40px;
+$fallback-svg--fixed-height:      36px;
 $fallback-svg--padding:           3px;
 $fallback-svg--border-width:      1px;
 $fallback-svg--border-color:      #999;
 $fallback-svg--link-bg-color:     #fff;
 $fallback-svg--link-bg-color-alt: #ffdd79;
-@import "../bower_components/Fall-Back-SVG/_svg.scss";
+@import "../bower_components/Fall-Back-SVG/_svg";
 
 
-//@include svg--fixed-height(40px, 'svg-logo', );
+//@import "../bower_components/Fall-Back-Cookie-Notice/_cookie-notice";
+/* ---------------------------------------------------------------------------------------------- */
 
-@import "../bower_components/Fall-Back-Top-Bar/_top-bar.scss";
+/* --| SHAME |----------------------------------------------------------------------------------- */
+
+@import "_shame";
 
 
-
-
-.footer {
-    background: #eee;
-    text-align: center;
-}
-
-.footer > p {
-    margin: 0;
-    @include fallback-rem(padding, $fallback--base-font-size 0);
-}
+/* ---------------------------------------------------------------------------------------------- */

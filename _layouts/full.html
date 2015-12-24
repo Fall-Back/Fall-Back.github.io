@@ -7,10 +7,13 @@
     <meta name="description" content="{{ site.description }}">
     <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
     
-    <link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css' media="only screen and (min-resolution: 0.1dpcm), only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)">
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic' rel='stylesheet' type='text/css' media="only screen and (min-resolution: 0.1dpcm), only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)">
+    <link href='https://fonts.googleapis.com/css?family=Merriweather|Source+Sans+Pro:400,700,400italic' rel='stylesheet' type='text/css' 
+        media="only screen and (min-resolution: 0.1dpcm), only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)"
+    >
     
-    <link rel="stylesheet" href="/css/style.min.css" media="only screen and (min-resolution: 0.1dpcm), only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)">
+    <link rel="stylesheet" href="/css/style.min.css"
+        media="only screen and (min-resolution: 0.1dpcm), only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)"
+    >
 </head>
 <body role="document">
     
@@ -19,7 +22,7 @@
             <div class="off-canvas__inner  sticky-footer-wrap">
                 <a href="#" tabindex="-1" class="off-canvas__overlay  js-no-history"></a>
                 
-                <div class="no-style-notice">
+                <div class="no-style-notice  no-css-only">
                     <hr />
                     <p>
                         <b>Notice:</b> You are viewing an <em>unstyled</em> version of this page. Are you using a very old browser? If so, <a href="http://browsehappy.com/">please consider upgrading</a>.
@@ -55,7 +58,7 @@
                             <a href="#" tabindex="-1" class="off-canvas__close  js-no-history"> </a>
                         </div>-->
                         <nav class="nav-bar__inner">
-                            <h2 class="visually-hidden">Navigation</h2>
+                            <h2 hidden aria-hidden="false">Navigation</h2>
                             <div class="off-canvas__panel--left">
                                 <form action="/search" id="searchform" class="search-form  search-form--right" method="GET">
                                     <input type="search" class="search-form__field" id="search" placeholder="Search" name="s" value="" aria-label="Search" />

@@ -12,8 +12,11 @@
   ],
   "license": "Apache",
   "dependencies": {
-    "Fall-Back-Top-Bar": "https://github.com/Fall-Back/Top-Bar.git",
+    "Fall-Back-Start-CSS":     "https://github.com/Fall-Back/Start-CSS.git",
+    "Fall-Back-Search-Form":   "https://github.com/Fall-Back/Search-Form.git",
+    "Fall-Back-Top-Bar":       "https://github.com/Fall-Back/Top-Bar.git",
     "Fall-Back-Sticky-Footer": "https://github.com/Fall-Back/Sticky-Footer.git",
-    "inuit-normalize": "~3.0.3"
+    "Fall-Back-Cookie-Notice": "https://github.com/Fall-Back/Cookie-Notice.git",
+    "Fall-Back-SVG":           "https://github.com/Fall-Back/SVG.git"
   }
 }
