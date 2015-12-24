@@ -2330,6 +2330,8 @@ h1, h2, h3 {
 main {
   max-width: 62.5rem;
   margin: 0 auto;
+  padding:  0 14px;
+  padding:  0 1rem;
 }
 
 .footer {
