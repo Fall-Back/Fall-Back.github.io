@@ -884,11 +884,11 @@ body {
   }
 
   .off-canvas--left:target .off-canvas__inner {
-    left: 16em;
+    left: 18em;
   }
 
   .off-canvas--right:target .off-canvas__inner {
-    left: -16em;
+    left: -18em;
   }
 
   /* Style the off-canvas controls: */
@@ -1035,19 +1035,19 @@ body {
   .off-canvas .off-canvas__panel--right {
     position: absolute;
     top: 0;
-    width: 16em;
+    width: 18em;
     -webkit-box-sizing: border-box;
     /* Not sure why this is needed. */
   }
 
   .off-canvas .off-canvas__panel--left {
-    left: -16em;
+    left: -18em;
     background-color: #5382A4;
     padding: 0;
   }
 
   .off-canvas .off-canvas__panel--right {
-    right: -16em;
+    right: -18em;
     background-color: #5382A4;
     padding: 20px;
   }
