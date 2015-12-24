@@ -7,11 +7,11 @@ h1, h2, h3 {
 .off-canvas .nav-bar__title-section {
     text-align: left;
 }
-
-.off-canvas .off-canvas__panel--right {
-    @include fallback-rem(padding, ($fallback--base-font-size / 2));
+@media only screen and (max-width: (minus1px($fallback--off-canvas--breakpoint--enhanced))) {
+    .off-canvas .off-canvas__panel--right {
+        @include fallback-rem(padding, ($fallback--base-font-size / 2));
+    }
 }
-
 
 main {
     @include fallback-rem(max-width, 1000px);
