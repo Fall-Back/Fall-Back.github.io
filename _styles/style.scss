@@ -50,13 +50,13 @@ $max-main-line-length: 0;
 
 $fallback--off-canvas--width:                18em !default;
 $fallback--off-canvas__left-panel--padding:  0;
-$fallback--off-canvas__right-panel--padding: 20px;
+$fallback--off-canvas__right-panel--padding: 7px;
 @import "../bower_components/Fall-Back-Off-Canvas/_off-canvas";
 
 
 
 $fallback--sub-nav--bg-color:      darken($fallback--base-ui-color, 10%);
-$fallback--nav-bar--margin-bottom: 20px;
+$fallback--nav-bar--margin-bottom: 24px;
 @import "../bower_components/Fall-Back-Nav-Bar/_nav-bar";
 
 

@@ -1049,7 +1049,7 @@ body {
   .off-canvas .off-canvas__panel--right {
     right: -18em;
     background-color: #5382A4;
-    padding: 20px;
+    padding: 7px;
   }
 }
 /* IE9 hacks: */
@@ -2331,12 +2331,6 @@ h1, h2, h3 {
   text-align: left;
 }
 
-@media only screen and (max-width: 44.9375em) {
-  .off-canvas .off-canvas__panel--right {
-    padding:  7px;
-    padding:  0.5rem;
-  }
-}
 main {
   max-width:  1000px;
   max-width:  71.4285714rem;
