@@ -2331,8 +2331,14 @@ h1, h2, h3 {
   text-align: left;
 }
 
+.off-canvas .off-canvas__panel--right {
+  padding:  7px;
+  padding:  0.5rem;
+}
+
 main {
-  max-width: 62.5rem;
+  max-width:  1000px;
+  max-width:  71.4285714rem;
   margin: 0 auto;
   padding:  0 14px;
   padding:  0 1rem;

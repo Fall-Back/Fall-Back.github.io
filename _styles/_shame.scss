@@ -8,9 +8,13 @@ h1, h2, h3 {
     text-align: left;
 }
 
+.off-canvas .off-canvas__panel--right {
+    @include fallback-rem(padding, ($fallback--base-font-size / 2));
+}
+
 
 main {
-    max-width: 62.5rem;
+    @include fallback-rem(max-width, 1000px);
     margin: 0 auto;
     @include fallback-rem(padding, 0 $fallback--base-font-size);
 }
