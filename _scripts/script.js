@@ -1,3 +1,74 @@
+/*------------------------------------------------------------------------------------------------*\
+    Fall-Back Cookie Notice Pattern v0.1
+    ------------------------------------
+    
+    To avoid any confusion, it's probably best to copy these settings to another file that you're
+    concatenating and then make any changes to the defaults.
+\*------------------------------------------------------------------------------------------------*/
+
+var cookie_name                   = 'recipies_accept_cookies';
+var cookie_expire_days            = 60;
+var cookie_notice_id              = 'cookie_notice';
+var cookie_button_id              = 'accept_cookies';
+var cookie_notice_class           = 'cookie_notice';
+var cookie_button_class           = '';
+var cookie_close_class            = 'cookie_notice--close';
+var cookie_notice_effect_duration = 1000;
+var cookie_html                   = 
+'<div id="' + cookie_notice_id + '" class="' + cookie_notice_class + '">' + "\n" +
+'<p class="cookie_notice__message">This site uses <a href="http://www.allaboutcookies.org/" rel="external" target="_blank">cookies</a> to improve user experience. By using this site you agree to our use of cookies.</p>' + "\n" +
+'<span class="cookie_notice__action"><button id="' + cookie_button_id + '" class="' + cookie_button_class + '">Dismiss</button></span>' + "\n" +
+'</div>';
+
+/*------------------------------------------------------------------------------------------------*\
+    Fall-Back Cookie Notice Pattern v0.1
+\*------------------------------------------------------------------------------------------------*/
+
+function createCookie(name,value,days) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name+"="+value+expires+"; path=/";
+}
+
+function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
+function eraseCookie(name) {
+    createCookie(name,"",-1);
+}
+
+
+var accepted_cookies = readCookie(cookie_name);
+if (!accepted_cookies) {
+    var body_el = document.getElementsByTagName('body')[0];
+    body_el.insertAdjacentHTML('afterbegin', cookie_html);
+    
+    document.getElementById(cookie_button_id).onclick = function(){
+        createCookie(cookie_name, 'true', cookie_expire_days);
+        document.getElementById(cookie_notice_id).className += '  ' + cookie_close_class;
+        /*
+            Without CSS (or transition suport - IE9) the notice won't disappear, so wait until fade 
+            has finished then remove:
+        */
+        setTimeout(function(){
+            var c = document.getElementById(cookie_notice_id);
+            c.parentNode.removeChild(c);
+        }, cookie_notice_effect_duration);
+    };
+}
+
 /*
     Prevents in-page action link clicks from being added to the browser history.
     If the JS fails to load or doesn't run, the actions still work but history is added to.
@@ -12,6 +83,7 @@
 if (document.getElementsByClassName) {
     window.onload = (function(onload) {
         return function(event) {
+            onload && onload(event);
             
             // Plain JS version:
             var links = document.getElementsByClassName('js-no-history');
@@ -31,72 +103,6 @@ if (document.getElementsByClassName) {
                 location.replace(e.target.href)
             });
             */
-        }
-    }(window.onload));
-}
-/*
-    Adds the Opera Mini class name and provides tweaks for some of the odd Opera Mini behaviour.
-    I've not managed to disable JS on Opera Mini, so I guess this is safe.
-*/
-var isOperaMini  = (navigator.userAgent.indexOf('Opera Mini') > -1);
-/*var isOperaMini8 = (navigator.userAgent.indexOf('Opera Mini/8') > -1);*/
-if (isOperaMini) {
-    var root = document.documentElement;
-    root.className += " opera-mini";
-    
-    /*if (isOperaMini8) {
-        var root = document.documentElement;
-        root.className += "-8";
-    }*/
-    
-    /* Add input size attribute for Opera Mini so that the input can collapse */
-    window.onload = (function(onload) {
-        return function(event) {
-            onload && onload(event);
-
-            var search_fields = document.getElementsByClassName('search-form__field');
-            var i = search_fields.length;
-            while (i--) {
-                search_fields[i].setAttribute("size", "1");
-            }
-        }
-    }(window.onload));
-}
-/*
-    Fix CSS shortcomings in older browsers. Specifically fix the width of the objects container
-    to be the same width as the object.
-*/
-
-if (!!(
-    document.body.style.msTouchSelect !== undefined /* IE10+ */
- || (document.all && document.addEventListener && !window.atob) /* IE9 */
- || Object.prototype.toString.call(window.operamini) === '[object OperaMini]' /* Opera Mini */
-)) {
-
-    //console.log('Applying inline-block fix');
-
-    window.onload = (function(onload) {
-        return function(event) {
-
-            var objs = document.getElementsByTagName('object');
-            var i = 0
-              , l = objs.length
-              , data
-              , obj;
-
-            for (i; i < l; i++) {
-                obj = objs[i];
-                // Check object is inside of an .svg__link and
-                // not inside of an .svg--fluid
-                if (obj.parentNode.className.indexOf('svg__link') == -1 || obj.parentNode.parentNode.className.indexOf('svg--fluid') >= 0) {
-                    continue;
-                }
-                obj.style.maxWidth          = 'none';
-                obj.style.minWidth          = '0';
-                obj.parentNode.style.width  = '100%';
-                obj.parentNode.style.width  = obj.offsetWidth + 'px';
-                obj.style.maxWidth          = '100%';
-            }
         }
     }(window.onload));
 }

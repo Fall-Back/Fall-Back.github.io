@@ -1,22 +1,14 @@
 {
-  "name": "Fall-Back.github.io",
-  "version": "0.0.0",
-  "homepage": "https://github.com/Fall-Back/Fall-Back.github.io",
-  "authors": [
-    "Andy Kirk <andy.kirk@gridlight-design.co.uk>"
-  ],
-  "description": "The Fall-Back website.",
-  "ignore": [],
-  "keywords": [
-    "FalBack"
-  ],
-  "license": "Apache",
-  "dependencies": {
-    "Fall-Back-Start-CSS":     "https://github.com/Fall-Back/Start-CSS.git",
-    "Fall-Back-Search-Form":   "https://github.com/Fall-Back/Search-Form.git",
-    "Fall-Back-Top-Bar":       "https://github.com/Fall-Back/Top-Bar.git",
-    "Fall-Back-Sticky-Footer": "https://github.com/Fall-Back/Sticky-Footer.git",
-    "Fall-Back-Cookie-Notice": "https://github.com/Fall-Back/Cookie-Notice.git",
-    "Fall-Back-SVG":           "https://github.com/Fall-Back/SVG.git"
-  }
+    "name": "Fall-Back.github.io",
+    "description": "This file lists all the front-end packages required for the project.",
+    "dependencies": {
+        "Fall-Back-Base":          "https://github.com/Fall-Back/Base.git",
+        "Fall-Back-Start-CSS":     "https://github.com/Fall-Back/Start-CSS.git",
+        "Fall-Back-Search-Form":   "https://github.com/Fall-Back/Search-Form.git",
+        "Fall-Back-Over-Panel":    "https://github.com/Fall-Back/Over-Panel.git",
+        "Fall-Back-Nav-Bar":       "https://github.com/Fall-Back/Nav-Bar.git",
+        "Fall-Back-Sticky-Footer": "https://github.com/Fall-Back/Sticky-Footer.git",
+        "Fall-Back-Cookie-Notice": "https://github.com/Fall-Back/Cookie-Notice.git",
+        "Fall-Back-SVG":           "https://github.com/Fall-Back/SVG.git"
+    }
 }

@@ -3,7 +3,12 @@ h1, h2, h3 {
     font-weight: normal;
 }
 
+main {
+    padding: 1.5rem;
+}
 
+
+/*
 .off-canvas .nav-bar__title-section {
     text-align: left;
 }
@@ -24,3 +29,4 @@ main {
     margin: 0;
     @include fallback-rem(padding, $fallback--base-font-size 0);
 }
+*/

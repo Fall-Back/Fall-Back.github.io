@@ -12,9 +12,9 @@ module.exports = function(grunt) {
         concat: {
             js: {
                 src: [
-                    './bower_components/Fall-Back-Base/js/no-history.js',
-                    './bower_components/Fall-Back-Base/js/opera-mini.js',
-                    './bower_components/Fall-Back-SVG/js/svg.js'
+                    './_scripts/cookie-notice-settings.js',
+                    './bower_components/Fall-Back-Cookie-Notice/js/cookie-notice.js',
+                    './bower_components/Fall-Back-Base/js/no-history.js'
                 ],
                 dest: './_scripts/script.js'
             }/*,

@@ -48,22 +48,24 @@ $max-main-line-length: 0;
 /* ---------------------------------------------------------------------------------------------- */
 /* --| PATTERNS |-------------------------------------------------------------------------------- */
 
-$fallback--off-canvas--width:                18em !default;
-$fallback--off-canvas__left-panel--padding:  0;
-$fallback--off-canvas__right-panel--padding: 7px;
-@import "../bower_components/Fall-Back-Off-Canvas/_off-canvas";
+//$fallback--off-canvas--width:                18em !default;
+//$fallback--off-canvas__left-panel--padding:  0;
+//$fallback--off-canvas__right-panel--padding: 7px;
+//@import "../bower_components/Fall-Back-Off-Canvas/_off-canvas";
+
+$fallback--over-panel--breakpoint--enhanced: 20em;
+@import "../bower_components/Fall-Back-Over-Panel/_over-panel";
 
 
 
 $fallback--sub-nav--bg-color:      darken($fallback--base-ui-color, 10%);
-$fallback--nav-bar--margin-bottom: 24px;
+//$fallback--nav-bar--margin-bottom: 24px;
 @import "../bower_components/Fall-Back-Nav-Bar/_nav-bar";
 
 
 //$fallback--search-form--breakpoint--enhanced: 50em;
 @import "../bower_components/Fall-Back-Search-Form/_search-form";
 
-@import "../bower_components/Fall-Back-Top-Bar/_top-bar";
 
 @import "../bower_components/Fall-Back-Sticky-Footer/_sticky-footer";
 
@@ -76,7 +78,7 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
 @import "../bower_components/Fall-Back-SVG/_svg";
 
 
-//@import "../bower_components/Fall-Back-Cookie-Notice/_cookie-notice";
+@import "../bower_components/Fall-Back-Cookie-Notice/_cookie-notice";
 /* ---------------------------------------------------------------------------------------------- */
 
 /* --| SHAME |----------------------------------------------------------------------------------- */
