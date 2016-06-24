@@ -148,58 +148,102 @@ _:-o-prefocus, :root .icon {
     Root Styles
 
 \*------------------------------------------------------------------------------------------------*/
-/** SANITIZE
- * S1. Add border box sizing in all browsers (opinionated).
- * S2. Add the default cursor in all browsers (opinionated).
- * --S3. Add a flattened line height in all browsers (opinionated).--
- * S4. Prevent font size adjustments after orientation changes in IE and iOS.
- */
+/*
+  --I1. Set the default `font-size` and `line-height` for the entire project,
+        sourced from our default variables. The `font-size` is calculated to exist
+        in ems, the `line-height` is calculated to exist unitlessly.--
+    I2. Force scrollbars to always be visible to prevent awkward 'jumps' when
+        navigating between pages that do/do not have enough content to produce
+        scrollbars naturally.
+  --I3. Ensure the page always fills at least the entire height of the viewport.--
+    I4. Prevent certain mobile browsers from automatically zooming fonts.
+    I5. Fonts on OSX will look more consistent with other systems that do not
+        render text using sub-pixel anti-aliasing (use with care!).
+
+    S1. Add border box sizing in all browsers (opinionated).
+    S2. Add the default cursor in all browsers (opinionated).
+  --S3. Add a flattened line height in all browsers (opinionated).--
+    S4. Prevent font size adjustments after orientation changes in IE and iOS.
+    S5. Change the default font family in all browsers (opinionated).
+
+    A1. `min-height` _should_ be what we want here (as declared in inuits css), except that
+        `min-height` doesn't works as expected; child elements set to `(min-)height: 100%;` won't
+        increase their height - they'll only do that if the parent has `height: 100%;`.
+        This can lead to situations where sometimes elements (and thus their visible decoration) do
+        not stretch to be tall enough for their content (because they're limited to 100% height).
+*/
 html {
   color: #333;
+  /* I */
   background-color: #fff;
-  border-color: #5382A4;
+  /* I */
   overflow-y: scroll;
+  /* I2 S */
   -moz-box-sizing: border-box;
+  /* S1, Sc, I */
   box-sizing: border-box;
+  /* S1, Sc, I */
   cursor: default;
   /* S2 */
   font-family: "Source Sans Pro", sans-serif;
-  -webkit-text-size-adjust: 100%;
+  /* S5 */
   -ms-text-size-adjust: 100%;
+  /* I4, S4 */
+  -webkit-text-size-adjust: 100%;
+  /* I4, S4 */
   -moz-osx-font-smoothing: grayscale;
+  /* I5 */
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  /* I5 */
+  /* text-rendering: optimizeLegibility; /* S: Removed: text-rendering due to performance issues */
   height: 100%;
+  /* A1 */
 }
 
 * {
   font-size: inherit;
+  /* S */
   line-height: inherit;
+  /* S */
   margin: 0;
+  /* S */
   padding: 0;
+  /* S */
 }
 
-/**
- * S1. Remove repeating backgrounds in all browsers (opinionated).
- * S2. Add box sizing inheritence in all browsers (opinionated).
- */
+/*
+    S1. Remove repeating backgrounds in all browsers (opinionated).
+    S2. Add box sizing inheritence in all browsers (opinionated).
+
+    A1. Supporting FF8+ due to Mustard Cut so including for completeness.
+*/
 *,
 ::before,
 ::after {
   background-repeat: no-repeat;
-  /* 1 */
+  /* S1 */
   -moz-box-sizing: inherit;
+  /* A1 */
   box-sizing: inherit;
+  /* S2 Sc I */
   -webkit-font-smoothing: inherit;
-  border-style: solid;
-  border-width: 0;
-  border-color: inherit;
+  /* Sc */
+  /*border-style: inherit; /* AK */
+  /*border-width: 0; /* AK */
+  border-color: #5382A4;
+  /* AK1 */
 }
 
+/*
+    S1. Add text decoration inheritance in all browsers (opinionated).
+    S1. Add vertical alignment inheritence in all browsers (opinionated).
+*/
 ::before,
 ::after {
   text-decoration: inherit;
+  /* S1 */
   vertical-align: inherit;
+  /* S2 */
 }
 
 body {
@@ -209,6 +253,7 @@ body {
   -height: 100%;
   min-height: 100%;
   min-width: 250px;
+  /* This ensures that absolutely positioned child elements expand to the full height of the body. */
   position: relative;
 }
 
@@ -220,6 +265,7 @@ body {
 /*
 a:link a:visited a:hover a:active a:focus
 */
+/* [N1] Remove the gray background color from active links in IE 10. */
 /**
  * S1. Remove the gray background on active links in IE 10.
  * S2. Remove the gaps in underlines in iOS 8+ and Safari 8+.
@@ -229,10 +275,14 @@ a[href] {
   background-color: transparent;
   /* S1 */
   text-decoration: none;
+  /* S */
   -webkit-text-decoration-skip: objects;
   /* S2 */
   border-bottom: 1px solid #b6cbda;
   padding-bottom: 0.125rem;
+  /* N: Improve readability of focused elements when they are also in an active/hover state. */
+  /* AK added focus and extra styels. */
+  /* S: Remove the tapping delay from clickable elements */
   -ms-touch-action: manipulation;
   /* S: IE10 */
   touch-action: manipulation;
@@ -245,6 +295,7 @@ a[href]:hover, a[href]:active, a[href]:focus {
 
 a[href][rel="external"]::after {
   border-color: transparent  currentColor;
+  border-style: solid;
   border-width: 0 0.4em 0.4em 0;
   content: "";
   display: inline-block;
@@ -257,6 +308,7 @@ a[href][rel="external"]::after {
 
 abbr {
   cursor: help;
+  /* I */
   /**
    * N1. Remove the bottom border in Firefox 39-.
    * N2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
@@ -285,13 +337,20 @@ aside {
   margin-bottom: 1.5rem;
 }
 
+/*
+    N1. Add the correct display in IE 9-.
+*/
 audio {
   display: inline-block;
+  /* N1 */
   vertical-align: middle;
+  /* S */
 }
 audio:not([controls]) {
   display: none;
+  /* S: Chrome 44-, iOS 8+, Safari 9+ */
   height: 0;
+  /* N */
 }
 
 /**
@@ -313,17 +372,34 @@ blockquote {
 
 button {
   display: inline-block;
+  /* AK. IE9 needs this. */
   overflow: visible;
+  /* S: Internet Explorer 11-, N: Show the overflow in Edge, Firefox, and IE. */
   background-color: #5382A4;
+  /* S */
   color: #fff;
+  /* S */
+  /* color: inherit; // S */
   font-family: inherit;
+  /* S */
   font-style: inherit;
+  /* S */
   font-weight: inherit;
+  /* S */
   min-height: 1.875rem;
+  /* S */
   text-transform: none;
+  /* [N0], N: Remove the inheritance of text transform in Edge, Firefox, and IE. */
+  /* -webkit-appearance: button; // [N2] */
   -webkit-appearance: none;
+  /* AK */
   cursor: pointer;
+  /* [N3] */
+  /* padding: ($fallback--base-rem-space-unit / 8) $button-h-padding; */
   margin: 0.1875rem 0;
+  /* margin: calc(0.1875rem * 1.1) 0; // AK: calc for IE rounding issue */
+  border-color: #426782;
+  border-style: solid;
   border-width: 1px;
   border-radius: 3px;
   padding-top: 0.125rem;
@@ -331,6 +407,7 @@ button {
   padding-left: 0.375rem;
   padding-right: 0.375rem;
   vertical-align: baseline;
+  /* S: Remove the tapping delay from clickable elements */
   -ms-touch-action: manipulation;
   /* S: IE10 */
   touch-action: manipulation;
@@ -352,8 +429,12 @@ button:hover, button:active, button:focus {
   background-color: #729bb8;
 }
 
+/*
+    N1. Add the correct display in IE 9-.
+*/
 canvas {
   display: inline-block;
+  /* N1. */
   vertical-align: middle;
 }
 
@@ -366,8 +447,11 @@ caption {
 
 code {
   font-family: monospace, monospace;
+  /* S, N */
   font-size: 1em;
+  /* N: Address odd `em`-unit font size rendering in all browsers. */
   line-height: 0;
+  /* AK: Prevent the element increasing the line-height of the parent. */
 }
 
 dd {
@@ -376,8 +460,10 @@ dd {
 
 details {
   display: block;
+  /* N: IE 10/11 */
 }
 
+/* N: Address styling not present in Safari and Chrome. */
 dfn {
   font-style: italic;
 }
@@ -485,6 +571,8 @@ h6 {
 }
 
 hr {
+  /* box-sizing: content-box; */
+  /* height: 0; */
   height: 0;
   border-top: none;
   border-left: none;
@@ -502,11 +590,22 @@ iframe {
 
 img {
   vertical-align: middle;
+  /* S, I3 */
   border-style: none;
+  /* N: Remove the border on images inside links in IE 10-. */
   max-width: 100%;
+  /* [I1] */
   font-style: italic;
+  /* [I2] */
+  /**
+   * I1. Google Maps breaks if `max-width: 100%` acts upon it; use their selector to remove the
+   *     effects.
+   * I2. If a `width` and/or `height` attribute have been explicitly defined, let's not make the
+   *     image fluid.
+   */
 }
 .gm-style img, img[width], img[height] {
+  /* [I2] */
   max-width: none;
 }
 
@@ -517,20 +616,33 @@ img {
  * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
  */
 input {
+  /* color: inherit; // N1 */
+  /* font: inherit; // N2 */
+  /* margin: 0; // N3 */
   color: inherit;
   font-family: inherit;
+  /* S */
   font-style: inherit;
+  /* S */
   font-weight: inherit;
+  /* S */
   min-height: 1.875rem;
+  /* ~S */
+  /* AK: mainly for IE */
+  /* -webkit-border-radius: 0; // S: iOS 8+ // AK not needed as radius declared below. */
   background-color: #fff;
   border-width: 1px;
   border-radius: 3px;
+  border-color: #426782;
+  border-style: solid;
   padding-top: 0.125rem;
   padding-bottom: 0.125rem;
   padding-left: 0.375rem;
   padding-right: 0.375rem;
   margin: 0.1875rem 0;
+  /* margin: calc(0.1875rem * 1.1) 0; // AK: calc for IE rounding issue */
   vertical-align: top;
+  /* S: Remove the tapping delay from clickable elements */
   -ms-touch-action: manipulation;
   /* S: IE10 */
   touch-action: manipulation;
@@ -558,17 +670,34 @@ html [type="button"],
 [type="reset"],
 [type="submit"] {
   display: inline-block;
+  /* AK. IE9 needs this. */
   overflow: visible;
+  /* S: Internet Explorer 11-, N: Show the overflow in Edge, Firefox, and IE. */
   background-color: #5382A4;
+  /* S */
   color: #fff;
+  /* S */
+  /* color: inherit; // S */
   font-family: inherit;
+  /* S */
   font-style: inherit;
+  /* S */
   font-weight: inherit;
+  /* S */
   min-height: 1.875rem;
+  /* S */
   text-transform: none;
+  /* [N0], N: Remove the inheritance of text transform in Edge, Firefox, and IE. */
+  /* -webkit-appearance: button; // [N2] */
   -webkit-appearance: none;
+  /* AK */
   cursor: pointer;
+  /* [N3] */
+  /* padding: ($fallback--base-rem-space-unit / 8) $button-h-padding; */
   margin: 0.1875rem 0;
+  /* margin: calc(0.1875rem * 1.1) 0; // AK: calc for IE rounding issue */
+  border-color: #426782;
+  border-style: solid;
   border-width: 1px;
   border-radius: 3px;
   padding-top: 0.125rem;
@@ -576,6 +705,7 @@ html [type="button"],
   padding-left: 0.375rem;
   padding-right: 0.375rem;
   vertical-align: baseline;
+  /* S: Remove the tapping delay from clickable elements */
   -ms-touch-action: manipulation;
   /* S: IE10 */
   touch-action: manipulation;
@@ -608,6 +738,7 @@ html [type="button"]:hover, html [type="button"]:active, html [type="button"]:fo
 }
 
 [type="file"] {
+  /* line-height: inherit !important; */
   cursor: pointer;
   padding: 0;
 }
@@ -647,9 +778,10 @@ input[type=file]::-moz-focus-inner {
   cursor: pointer;
   margin: 0 0 0 -2px;
   border-width: 1px;
+  border-color: #426782;
+  border-style: solid;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
-  border-color: #5382A4;
   /* padding-top: 0.125rem; */
   /* padding-bottom: 0.125rem; */
   padding-left: 0.375rem;
@@ -670,9 +802,10 @@ input[type=file]::-moz-focus-inner {
   cursor: pointer;
   margin: 0px 0 0 -2px;
   border-width: 1px;
+  border-color: #426782;
+  border-style: solid;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
-  border-color: #5382A4;
   /* padding-top: 0.125rem; */
   /* padding-bottom: 0.125rem; */
   padding-left: 0.375rem;
@@ -727,15 +860,22 @@ input[type=file]::-moz-focus-inner {
   opacity: .54;
 }
 
+/*
+    A1. Prevent the element increasing the line-height of the parent.
+*/
 kbd {
   font-family: monospace, monospace;
+  /* S, N */
   font-size: 1em;
+  /* N: Address odd `em`-unit font size rendering in all browsers. */
   line-height: 0;
+  /* A1 */
 }
 
 label {
   font-weight: bold;
   cursor: pointer;
+  /* vertical-align: middle; */
   vertical-align: baseline;
 }
 
@@ -746,19 +886,28 @@ label {
  *    `fieldset` elements in all browsers.
  */
 legend {
+  /* box-sizing: border-box; /* N1 */
   color: inherit;
   /* N2 */
   display: table;
   /* N1 */
   max-width: 100%;
   /* N1 */
+  /* padding: 0; /* N3 */
   white-space: normal;
   /* N1 */
   padding: 0 0.375rem;
+  /* AK */
   font-weight: bold;
+  /* AK */
   border-width: 0;
+  /* AK */
   margin-top: 0;
+  /* AK - offset border */
   margin-bottom: 1px;
+  /* AK - offset border */
+  /* Note $fieldset-border-width used deliberately - this is to account for the fact that fieldset
+     top border width is ignored if there's a legend to the spacing is wrong. */
 }
 
 li {
@@ -781,6 +930,7 @@ mark {
 
 nav {
   display: block;
+  /* N */
 }
 
 object {
@@ -793,69 +943,129 @@ ol {
 
 optgroup {
   color: inherit;
+  /*  N, S */
   font-family: inherit;
+  /*  N, S */
   font-style: inherit;
+  /*  N, S */
+  /* N: Don't inherit the `font-weight` (applied by a rule above). */
+  /* NOTE: the default cannot safely be changed in Chrome and Safari on OS X. */
   font-weight: bold;
 }
 
 option {
   cursor: pointer;
+  /* Sc */
   min-height: 1.5rem;
+  /* AK */
   padding-top: 3px;
+  /* AK: help v-center text. */
 }
 
 p {
   margin-bottom: 1.5rem;
 }
 
+/*
+    Note: code is the most probable use for a `<pre>` tag. Other uses may occur (e.g. poem) but t
+    these could be adjusted with a class. Could maybe make this default configurable but leave as it
+    is for now as it's likely that a poem would need a complete re-style (e.g. fonts etc.).
+
+    N1. Correct the inheritance and scaling of font size in all browsers.
+    N2. Correct the odd `em` font sizing in all browsers.
+
+    A1. Keep scrollbar visible to maintain vertical rhythm.
+*/
 pre {
   font-family: monospace, monospace;
+  /* N1 */
   font-size: 1em;
+  /* N2 */
   overflow-y: auto;
+  /* A1 */
   overflow-x: scroll;
+  /* A1 */
   margin-bottom: 1.5rem;
+  /* A */
   background-color: white;
+  /* A */
 }
+
 pre code {
   display: inline-block;
   line-height: 22px;
+  /* Need to calculate this! */
   padding: 1rem 0.75rem;
 }
 
+/*
+    N1. Add the correct vertical alignment in Chrome, Firefox, and Opera.
+
+    S1. Internet Explorer 11-, Windows Phone 8.1+
+*/
 progress {
   display: inline-block;
+  /* S1 */
   vertical-align: middle;
+  /* N1 */
 }
 
 samp {
   font-family: monospace, monospace;
+  /* * S, N */
   font-size: 1em;
+  /* N: Address odd `em`-unit font size rendering in all browsers. */
   line-height: 0;
+  /* AK: Prevent the element increasing the line-height of the parent. */
 }
 
 section {
   display: block;
+  /* N */
   margin-bottom: 1.5rem;
 }
 
 select {
   cursor: pointer;
+  /* Sc */
+  /* background-color: $form-element-background-color; // S */
+  /* AK: height because min-height doesn't change the expand button height in FF: */
   height: 1.875rem;
+  /* ~S */
   line-height: 1.5rem;
   text-transform: none;
+  /* N1 */
+  /* color: inherit; // N1 */
+  /* font: inherit; // N2 */
+  /* margin: 0; // N3 */
   color: inherit;
   font-family: inherit;
+  /* S */
   font-style: inherit;
+  /* S */
   font-weight: inherit;
+  /* S */
   background-color: #fff;
   border-width: 1px;
   border-radius: 3px;
+  border-color: #426782;
+  border-style: solid;
+  /* padding-top: ($fallback--base-rem-space-unit / 8) - calc-rem-from-px($input-border-width); */
+  /* padding-bottom: ($fallback--base-rem-space-unit / 8) - calc-rem-from-px($input-border-width); */
   padding-left: 0.375rem;
+  /* padding-right: $input-h-padding; */
   margin: 0.1875rem 0;
   vertical-align: top;
+  /* AK: For FF */
+  /* S: Remove the tapping delay from clickable elements */
   -ms-touch-action: manipulation;
   /* S: IE10 */
   touch-action: manipulation;
+  /* margin: calc(0.1875rem * 1.1) 0; // AK: calc for IE rounding issue */
+  /* S: */
+  /* -moz-appearance: none;    // Firefox 35+ */
+  /* -webkit-appearance: none; // Chrome 45+ */
+  /* Expand button style for IE. (not sure yet as alterntive means it's more similar to Chrome) */
     /*&::-ms-expand {
 		//display: none;        // Edge 12+, Internet Explorer 11-
         background-color: $ui-color--base;
@@ -869,6 +1079,7 @@ select {
     &::-ms-expand:hover {
 		background-color: $button-background-color--state-1;
 	}*/
+  /* Remove inner padding and border in Firefox 4+. */
 }
 select::-ms-expand {
   background-color: transparent;
@@ -879,6 +1090,7 @@ select::-ms-expand {
 }
 select::-ms-value {
   color: currentColor;
+  /* Edge 12+, Internet Explorer 11- */
 }
 select::-moz-focus-inner {
   border: 0;
@@ -897,7 +1109,9 @@ select[multiple] {
 
 small {
   font-size: 80%;
+  /* All browsers */
   line-height: 0;
+  /* AK: Prevent the element increasing the line-height of the parent. */
 }
 
 /**
@@ -916,8 +1130,11 @@ sub {
 }
 
 summary {
+  /* S: Firefox 40+, Internet Explorer 11-, Windows Phone 8.1+ */
+  /* N: Correct `block` display not defined for `details` or `summary` in IE 10/11 */
   display: block;
   cursor: pointer;
+  /* AK */
 }
 
 sup {
@@ -932,6 +1149,7 @@ sup {
  * S1: Change the fill color to match the text color in all browsers (opinionated).
  */
 svg {
+  /* H, S */
   vertical-align: middle;
   fill: currentColor;
   /* S1 (@UNTESTED)*/
@@ -943,17 +1161,22 @@ svg:not(:root) {
 
 table {
   border-collapse: collapse;
+  /* N */
   border-spacing: 0;
+  /* N */
   border: 1px solid #5382A4;
   background-color: #fff;
+  /* margin-top: -$table-border-width; */
   margin-bottom: 1.4375rem;
   width: 100%;
+  /* @TODO - possibly make this configurable to be 'natural' width but centered instead. */
 }
 
 td {
   border: 1px solid #5382A4;
   padding-top: 0.75rem;
   padding-right: 0.75rem;
+  /* @include calc(padding-bottom, '0.75rem - 1px'); */
   padding-bottom: 0.6875rem;
   padding-left: 0.75rem;
 }
@@ -977,6 +1200,8 @@ textarea {
   background-color: #fff;
   border-width: 1px;
   border-radius: 3px;
+  border-color: #426782;
+  border-style: solid;
   padding-left: 0.375rem;
   padding-right: 0.375rem;
   margin-top: 0.125rem;
@@ -992,6 +1217,7 @@ th {
   border: 1px solid #5382A4;
   padding-top: 0.75rem;
   padding-right: 0.75rem;
+  /* @include calc(padding-bottom, '0.75rem - 1px'); */
   padding-bottom: 0.6875rem;
   padding-left: 0.75rem;
 }
@@ -1000,15 +1226,25 @@ ul {
   margin-bottom: 1.5rem;
 }
 
+/*
+    A1. Allow video to center if container larger than video.
+*/
 video {
   display: block;
+  /* A1 */
   margin: 0 auto;
+  /* A1 */
+  /* vertical-align: $media-element-vertical-align; // Video is now a block so no need for this */
   max-width: 100%;
+  /* Sc */
   height: auto;
+  /* Sc */
   background-color: #333;
+  /* A */
 }
 
 [tabindex] {
+  /* S: Remove the tapping delay from clickable elements */
   -ms-touch-action: manipulation;
   /* S: IE10 */
   touch-action: manipulation;
@@ -1046,6 +1282,7 @@ video {
 
 [hidden] {
   display: none;
+  /* S: Internet Explorer 10- */
 }
 
 [hidden][aria-hidden="false"] {
@@ -1076,7 +1313,9 @@ video {
 .clearfix:before,
 .clearfix:after {
   content: " ";
+  /* 1 */
   display: table;
+  /* 2 */
 }
 
 .clearfix:after {
@@ -1266,10 +1505,14 @@ video {
       Fix for Opera Mini vertical centering:
   */
   /* Hide the open control: */
-  .over-panel:target .over-panel__open.over-panel__open {
-    display: none;
-  }
-
+  /*
+      Taking this out for now is leaving it visible doesn't seem to hurt (though accessiblity?)
+      but hiding it can cause other elements to jump around due to flexbox.
+      Maybe use visibility, not sure.
+  */
+  /*.over-panel:target .over-panel__open.over-panel__open {
+      display: none;
+  }*/
   /* Show the close control and move on above the overlay: */
   .over-panel:target .over-panel__close.over-panel__close {
     z-index: 1002;
@@ -1420,15 +1663,21 @@ video {
   _::selection, .nav-bar__title-section > div {
     display: table-cell\0 !important;
     width: 100% \0;
+    text-align: center;
   }
 
   /*
       Without flexbox positioning doesn't sort itself out, so use text-align to position
-      the title. It can't be done completely without adding a class, but this should help a
-      little to cover the most likely scenarios:
+      the title.
   */
-  _::selection, .nav-bar__title-section > a + div {
-    text-align: center;
+  /* If there's no control to the left: */
+  _::selection, .nav-bar__title-section > div:first-child {
+    text-align: left;
+  }
+
+  /* If there's no control to the right */
+  _::selection, .nav-bar__title-section > div:last-child {
+    text-align: right;
   }
 
   /*
@@ -1713,6 +1962,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
   .nav-bar .nav-bar__item {
     border-style: solid;
     border-color: rgba(0, 0, 0, 0.2);
+    border-width: 0;
     border-right-width: 1px;
   }
 
@@ -1985,9 +2235,9 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
     Any double-classing (e.g. `.class.class`) is deliberatly in place in order to increase specifity.
     This allows Start-CSS declarations to be overidden.
     E.g. `.{pattern}__open.{pattern}__open` overrides `a[href]`.
-    
+
     ISSUES
-    
+
     Firefox 8-27 are the main problem-causers here because of a buggy/incomplete flexbox
     implementation. Below 28 FF doesn't suport felx-wrap even though it supports un-prefixed
     flexbox properties.
@@ -2067,7 +2317,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
 /* -- .search-form__field --------------------------------------------------------------------*/
         /*
             1. This to override normalize.
-            2. Override default size attr value - mainly for Opera mini which wierdley needs both 
+            2. Override default size attr value - mainly for Opera mini which wierdley needs both
                width AND min-width.
 
             @TODO - box-sizing got a little jumbled somewhere.
@@ -2285,7 +2535,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
         */
   /*.search-form--right .search-form__field, /* @deprecated - use after *
   .search-form--right .search-form__submit, /* @deprecated - use after *
-  .search-form--after .search-form__field, 
+  .search-form--after .search-form__field,
   .search-form--after .search-form__submit {
       -moz-box-ordinal-group: 2;
       order: 2;
