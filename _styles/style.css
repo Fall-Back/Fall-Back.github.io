@@ -1374,7 +1374,7 @@ video {
 }
 
 /* -- Enhanced layout --------------------------------------------------------------------------- */
-@media only screen and (max-width: 19.9375em) {
+@media only screen and (max-width: 49.9375em) {
     /*
         This extra wrapper allows the content of the panel to be absolutely positioned so that the
         container doesn't create a positioning context which would prevent the overlay from filling
