@@ -1374,7 +1374,7 @@ video {
 }
 
 /* -- Enhanced layout --------------------------------------------------------------------------- */
-@media only screen and (max-width: 49.9375em) {
+@media only screen and (max-width: 45.9375em) {
     /*
         This extra wrapper allows the content of the panel to be absolutely positioned so that the
         container doesn't create a positioning context which would prevent the overlay from filling
@@ -1651,7 +1651,7 @@ video {
   line-height: 1.7142857em;
 }
 
-@media only screen and (max-width: 50em) {
+@media only screen and (max-width: 46em) {
   /*
       Apply the table-cell hack to IE9.
   */
@@ -1881,7 +1881,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
 
 /* -----------------------------------------------------------------------------------------------*/
 /* -- Enhanced layout --------------------------------------------------------------------------- */
-@media only screen and (min-width: 50em) {
+@media only screen and (min-width: 46em) {
   /*
   */
   .nav-bar {
@@ -2162,7 +2162,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
 /* -----------------------------------------------------------------------------------------------*/
 /* ---------------------------------------------------------------------------------------------- */
 /* -- Fit layout -------------------------------------------------------------------------------- */
-@media only screen and (min-width: 50em) {
+@media only screen and (min-width: 46em) {
   .nav-bar--fit .nav-bar__items {
     width: 100%;
     display: -webkit-flex;
@@ -2468,7 +2468,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
   }
 }
 /* -- Enhanced layout --------------------------------------------------------------------------- */
-@media only screen and (max-width: 49.9375em) {
+@media only screen and (max-width: 45.9375em) {
   .search-form--right .search-form__submit,
   .search-form--right .search-form__field,
   .search-form--after .search-form__submit,
@@ -2490,7 +2490,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
       display: block;
   }*/
 }
-@media only screen and (min-width: 50em) {
+@media only screen and (min-width: 46em) {
   /*
       1. Reinstate all flexbox for enhanced view as no wrapping needs to occure
       (FF8-27 issue describbed above)
