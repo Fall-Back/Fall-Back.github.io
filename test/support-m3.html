@@ -7,11 +7,14 @@
     <meta name="description" content="CSS-Only Mustard Cut support test page">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="mq-test.css"
-      media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0), (-ms-high-contrast: none),
-             only all and (min--moz-device-pixel-ratio:0) and (min-resolution: 3e1dpcm)
-            "
-    >
+    <!--
+        Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+, IE 10+ (including Edge)
+        FF29+ 
+    -->
+    <link rel="stylesheet" href="css/mq-test.css" media="
+        only all and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0), (-ms-high-contrast: none),
+        only all and (min--moz-device-pixel-ratio:0) and (min-resolution: 3e1dpcm)
+    ">
 
     <style>
     	body {
@@ -71,11 +74,14 @@
         </table>
 
         <h2>Stylesheet declarations:</h2>
-        <pre><code><link rel="stylesheet" href="mq-test.css"
-      media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0), (-ms-high-contrast: none),
-             only all and (min--moz-device-pixel-ratio:0) and (min-resolution: 3e1dpcm)
-            "
-    ></code></pre>
+        <pre><code>&lt;!--
+    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+, IE 10+ (including Edge)
+    FF29+ 
+--&gt;
+&lt;link rel="stylesheet" href="css/mq-test.css" media="
+    only all and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0), (-ms-high-contrast: none),
+    only all and (min--moz-device-pixel-ratio:0) and (min-resolution: 3e1dpcm)
+"&gt;</code></pre>
 
         <h2>Notes</h2>
         <p>Also tested on Mac OSX10.8 - Camino 2.1. It doesn't work, of course but good to know for sure.<br />
