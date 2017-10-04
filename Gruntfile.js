@@ -5,28 +5,23 @@ NOTES
 module.exports = function(grunt) {
 
     var grunt_config = {
-    
+
         pkg: grunt.file.readJSON('package.json'),
-        
+
         // https://github.com/gruntjs/grunt-contrib-concat
         concat: {
             js: {
                 src: [
                     './_scripts/cookie-notice-settings.js',
+                    './bower_components/Fall-Back-Nav-Bar/nav-bar.js',
+                    './bower_components/Fall-Back-Over-Panel/over-panel.js',
                     './bower_components/Fall-Back-Cookie-Notice/js/cookie-notice.js',
-                    './bower_components/Fall-Back-Base/js/no-history.js'
+                    './bower_components/Fall-Back-SVG/js/svg.js'
                 ],
                 dest: './_scripts/script.js'
-            }/*,
-            css: {
-                src: [
-                    'css/normalize.css',
-                    'css/foundation.css'
-                ],
-                dest: 'css/style.css'
-            }*/
+            }
         },
-        
+
         // https://github.com/gruntjs/grunt-contrib-cssmin
         cssmin: {
             minify: {
@@ -37,13 +32,48 @@ module.exports = function(grunt) {
                 ext: '.min.css'
             }
         },
-                
+
+        // https://github.com/gruntjs/grunt-contrib-imagemin
+        imagemin: {
+            dynamic: {
+                options: {
+                    pngquant: false,
+                    optimizationLevel: 1 //Compression level
+                },
+                files: [{
+                    expand: true,
+                    cwd: '_images/',
+                    src: ['**/*.{png,jpg,gif}'],
+                    dest: './img/'
+                }]
+            }
+        },
+
+        // https://github.com/yoniholmes/grunt-text-replace
+        replace: {
+            svg_cleanup: {
+                src: ['./img/**/*.svg'],
+                overwrite: true,
+                replacements: [
+                    {
+                        from: /(<svg[^>]*) width=".*?" height=".*?"/,
+                        to: '$1'
+                    },
+                    {
+                        from: /(<svg[^>]*) enable-background="[^"]*"/,
+                        to: '$1'
+                    }
+                ]
+            }
+        },
+
         // https://github.com/gruntjs/grunt-contrib-sass
+        // Default precision is 10
         sass: {
             dist: {
                 options: {
-                    style: 'expanded',
-                    precision: 7
+                    outputStyle: 'expanded',
+                    sourceMap: true
                 },
                 files: [
                     {
@@ -57,9 +87,36 @@ module.exports = function(grunt) {
                 /*files: {
                     '** /*.css': '** /*.scss'
                 }*/
-            } 
+            }
         },
-        
+
+        // https://npmjs.org/package/grunt-svg2png
+        svg2png: {
+            all: {
+                files: [{
+                    src: ['_images/**/*.svg']
+                }]
+            }
+        },
+
+        // https://npmjs.org/package/grunt-svgmin
+        svgmin: {
+            options: {
+                plugins: [{
+                    removeViewBox: false,
+                    removeUnknownsAndDefaults: false
+                }]
+            },
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '_images/',
+                    src: ['**/*.svg'],
+                    dest: './img/'
+                }]
+            }
+        },
+
         // https://github.com/gruntjs/grunt-contrib-uglify
         uglify: {
             build: {
@@ -67,33 +124,14 @@ module.exports = function(grunt) {
                 dest: './js/script.min.js'
             }
         },
-        /*uglify: {
-            min: {
-                files: [
-                    {
-                        expand: true,
-                        cwd: "./",
-                        src: ["**_____/_scripts/*.js"],
-                        dest: "./js/",
-                        ext: ".min.js",
-                        filter: function (filepath) {
-                            return (
-                                (filepath.indexOf('node_modules') === -1)
-                             && (filepath.indexOf('_archive') === -1)
-                             && (filepath != 'Gruntfile.js')
-                            );
-                        }
-                    }
-                ]
-            }
-        },*/
+
 
         // https://github.com/gruntjs/grunt-contrib-watch
         // Order is important here:
         watch: {
             css: {
                 files: ['**/*.scss'],
-                tasks: ['sass', 'cssmin'],
+                tasks: ['sass', 'cssmin'], // , 'ftp-deploy'
                 options: {
                     spawn: false
                 }
@@ -101,31 +139,41 @@ module.exports = function(grunt) {
         }
 
     };
-    
+
     grunt.initConfig(grunt_config);
-    
+    // General tools:
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
-
+    //grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-text-replace');
+    // (S)CSS:
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-contrib-sass');
-    
+    grunt.loadNpmTasks('grunt-sass');
+    // JS:
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    
+    // SVG/PNG:
+    grunt.loadNpmTasks('grunt-svgmin');
+    grunt.loadNpmTasks('grunt-svg2png');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
+    // FTP:
+    //grunt.loadNpmTasks('grunt-ftp-deploy');
+
     /* ----------------------------------------------------------------------------------------- *\
         NOTE:
-        Removing autoprefixer for now as Fall Back, Inuit and Scut include prefixes I don't want 
+        Removing autoprefixer for now as Fall-Back includes deliberate prefixes I don't want
         tampered with.
         Other CSS _MAY_ need this, so I'd have to compile those separately WITH autoprefixer
         then run a CONCAT to join them together before miniying.
         DO THIS as and when.
-    
+
     \* ----------------------------------------------------------------------------------------- */
-    
-    
+
+
     grunt.registerTask('default', ['watch']);
 
-    grunt.registerTask('css', ['sass', 'cssmin']); 
+    grunt.registerTask('css', ['sass', 'cssmin']);
     grunt.registerTask('js', ['concat', 'uglify']);
-    
+    grunt.registerTask('img', ['svg2png', 'imagemin', 'svgmin', 'replace:svg_cleanup']);
+
+    //grunt.registerTask('ftp', ['ftp-deploy']);
 };

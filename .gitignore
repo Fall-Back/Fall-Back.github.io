@@ -1,7 +1,13 @@
-.sass-cache/
 bower_components/
-node_modules/
+
+Gemfile
+Gemfile.lock
+_site
+
+.sass-cache/
 *.css.map
+
+.ftppass
 
 local.html
 local-philistory.html
@@ -11,7 +17,7 @@ local-philistory.html
 # Logs
 logs
 *.log
-npm-debug.log
+npm-debug.log*
 
 # Runtime data
 pids
