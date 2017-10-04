@@ -1,9 +1,11 @@
 # Site settings
-title: Fall-Back
-email: andy.kirk@gridlight-design.co.uk
-description: "Progressive Enhancement patterns."
+title: "Fall-Back"
+email: "andy.kirk@gridlight-design.co.uk"
+description: "Accessible, Progressive Enhancement patterns."
+repository: "Fall-Back/Fall-Back.github.io"
 baseurl: ""
 url: "http://fall-back.github.io/"
+port: 4001
 
 # Build settings
 markdown: kramdown
@@ -11,3 +13,7 @@ markdown: kramdown
 
 kramdown:
   auto_ids:       true
+
+  
+  
+exclude: ["_archive", "node_modules", "bower_components", "Gemfile", "Gemfile.lock", "Gruntfile.js", "bower.json", "package.json", "README.md"]

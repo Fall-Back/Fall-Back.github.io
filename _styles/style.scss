@@ -1,16 +1,31 @@
-@charset "UTF-8";
 /* --| SETTINGS |-------------------------------------------------------------------------------- */
 
+@import url('https://fonts.googleapis.com/css?family=Merriweather|Source+Sans+Pro:400,700,400italic');
+$fallback--base-font-family: 'Lato', sans-serif;
+$fallback--base-font-family: 'Source Sans Pro', sans-serif;
 
-// FallBack:
+$fallback--root-font-size: 10px;
 
-//$fallback--base-font-size: 10px;
 $fallback--base-ui-color: #5382A4;
-$fallback--breakpoint--enhanced: 46em;
+$fallback--breakpoint--enhanced: 33em;
+
+//$body-padding: 0;
+
+//$namespace: '.ugc ';
+//$namespace: 'main ';
 
 
-// StartCSS:
-$body-padding: 0;
+@import '../bower_components/Fall-Back-Start-CSS/_settings.scss';
+
+$max-main-line-length: 0;
+$measure: 64rem;
+
+@import '../bower_components/Fall-Back-Start-CSS/_start.scss';
+
+@import '../bower_components/Fall-Back-Base/_icons.scss';
+
+
+
 
 // Inuit:
 
@@ -26,13 +41,13 @@ $body-padding: 0;
 ////@import "bower_components/inuit-defaults/settings.defaults";
 //@import "bower_components/inuit-responsive-settings/_settings.responsive.scss";
 
-$fallback--base-font-family: 'Source Sans Pro', sans-serif;
+
 
 
 /* ---------------------------------------------------------------------------------------------- */
 /* --| FUNCTIONS AND MIXINS |-------------------------------------------------------------------- */
 
-@import "../bower_components/Fall-Back-Base/_fallback-base";
+//@import "../bower_components/Fall-Back-Base/_fallback-base";
 
 
 // Inuit:
@@ -44,28 +59,24 @@ $fallback--base-font-family: 'Source Sans Pro', sans-serif;
 /* ---------------------------------------------------------------------------------------------- */
 /* --| BASE |------------------------------------------------------------------------------------ */
 
-$max-main-line-length: 0;
-@import "../bower_components/Fall-Back-Start-CSS/_start";
+//$max-main-line-length: 0;
+//@import "../bower_components/Fall-Back-Start-CSS/_start";
 
 /* ---------------------------------------------------------------------------------------------- */
-/* --| PATTERNS |-------------------------------------------------------------------------------- */
+/* --| FALL-BACK PATTERNS |---------------------------------------------------------------------- */
 
-//$fallback--off-canvas--width:                18em !default;
-//$fallback--off-canvas__left-panel--padding:  0;
-//$fallback--off-canvas__right-panel--padding: 7px;
-//@import "../bower_components/Fall-Back-Off-Canvas/_off-canvas";
-
-@import "../bower_components/Fall-Back-Over-Panel/_over-panel";
+$fallback--over-panel__contents--padding: 0;
+@import "../bower_components/Fall-Back-Over-Panel/_over-panel-next";
 
 
 
-$fallback--sub-nav--bg-color:      darken($fallback--base-ui-color, 10%);
+//$fallback--sub-nav--bg-color:      darken($fallback--base-ui-color, 10%);
 //$fallback--nav-bar--margin-bottom: 24px;
-@import "../bower_components/Fall-Back-Nav-Bar/_nav-bar";
+@import "../bower_components/Fall-Back-Nav-Bar/_nav-bar-next";
 
 
 //$fallback--search-form--breakpoint--enhanced: 50em;
-@import "../bower_components/Fall-Back-Search-Form/_search-form";
+@import "../bower_components/Fall-Back-Search-Form/_search-form-next";
 
 
 @import "../bower_components/Fall-Back-Sticky-Footer/_sticky-footer";

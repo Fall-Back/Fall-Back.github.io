@@ -6,135 +6,142 @@
     <meta name="description" content="{{ site.description }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
-    
-    <!-- Built with Jekyll and FallBack patterns -->
+    <style>
+        /*Tiny fallback styles:*/
 
-    <!--
-        Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+, IE 10+ (including Edge)
-        FF29+ 
-    -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather|Source+Sans+Pro:400,700,400italic" media="
-        only all and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0), (-ms-high-contrast: none),
-        only all and (min--moz-device-pixel-ratio:0) and (min-resolution: 3e1dpcm)
-    ">
-    
-    <!--
-        Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+, IE 10+ (including Edge)
-        FF29+ 
-    -->
+        body{padding:1em;margin:0 auto;max-width: 50em;}
+        img{max-width: 100%;}
+
+        /* For YouTube via http://embedresponsively.com. May or may not be needed. */
+        .embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        [hidden]{display:none;}
+
+    </style>
+
+    <!-- Built with Jekyll and Fall-Back patterns -->
+
     <link rel="stylesheet" href="/css/style.min.css" media="
-        only all and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0), (-ms-high-contrast: none),
-        only all and (min--moz-device-pixel-ratio:0) and (min-resolution: 3e1dpcm)
+        only screen and (min-resolution: 0.1dpcm),
+        only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)
     ">
-    
+
+    <script src="/js/script.min.js"></script>
 </head>
 <body role="document">
-    
+
     <svg xmlns="http://www.w3.org/2000/svg" display="none">
-        <symbol id="icon-triangle-down" viewBox="0 0 12 16">
-            <path d="M1,6h10l-5,5L1,6z"></path>
+        <symbol id="icon-triangle-down" viewBox="0 0 24 24">
+            <polyline points="6 9 12 15 18 9"></polyline>
         </symbol>
-        <symbol id="icon-cross" viewBox="0 0 16 16">
-            <path d="M15.5,2L14,0.5l-6,6l-6-6L0.5,2l6,6l-6,6L2,15.5l6-6l6,6l1.5-1.5l-6-6L15.5,2z"></path>
+        <symbol id="icon-triangle-up" viewBox="0 0 24 24">
+            <polyline points="18 15 12 9 6 15"></polyline>
         </symbol>
-        <symbol id="icon-menu" viewBox="0 0 16 16">
-            <rect x="0" width="16" height="3"/>
-            <rect x="0" y="6" width="16" height="3"/>
-            <rect y="12" width="16" height="3"/>
+        <symbol id="icon-cross" viewBox="0 0 24 24">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+			<line x1="6" y1="6" x2="18" y2="18"></line>
         </symbol>
-        <!-- Other <symbol>s? -->
+        <symbol id="icon-menu" viewBox="0 0 24 24">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+			<line x1="3" y1="6" x2="21" y2="6"></line>
+			<line x1="3" y1="18" x2="21" y2="18"></line>
+        </symbol>
     </svg>
-    
-    <div class="no-style-notice  no-css-only" aria-hidden="true">
+
+    <div class="no-style-notice  no-css-only">
         <hr />
         <p>
-            <b>Notice:</b> You are viewing an <em>unstyled</em> version of this page. Are you using a very old browser? If so, <a href="http://browsehappy.com/">please consider upgrading</a>.
+            <b>Notice:</b> You are viewing an unstyled version of this page. Are you using a very old browser? If so, <a href="http://browsehappy.com/">please consider upgrading</a>.
         </p>
         <hr />
     </div>
-    
+
     <div class="sticky-footer-wrap">
 
-        <header class="header">
-
-            <div class="over-panel  over-panel--slide" id="nav">
-                <a href="#" tabindex="-1" class="over-panel__overlay  js-no-history"></a>
-
-                <div class="nav-bar">
-                    <div class="nav-bar__title-section">     
-                    
-                        <div class="svg  svg--fixed-height  svg-logo">
-                            <a class="svg__link" href="/">
-                                <object height="60" tabindex="-1" aria-hidden="true" class="svg__image" data="/img/fallback-logo-wide.svg" type="image/svg+xml">
-                                    <svg display="none">
-                                        <image alt="Fall-Back home" class="svg__fallback-image" height="60" src="/img/fallback-logo-wide.png"/>
-                                    </svg>
-                                    <span class="svg__fallback-text-alpha" data-content="Fall Back home"></span>
-                                </object>
-                                <div><i class="svg__fallback-text-beta">Fall Back home</i></div>
-                            </a>
-                        </div>
-                        
-                        <a href="#nav" class="over-panel__open  js-no-history" hidden><svg display="none" class="icon" aria-label="Open menu"><use xlink:href="#icon-menu"></use></svg></a>
+         <header class="header">
+            <div class="nav-bar">
+                <nav class="nav-bar__title">
+                    <div class="svg  svg--fixed-height  svg-logo">
+                        <a class="svg__link" href="/">
+                            <object height="60" tabindex="-1" aria-hidden="true" class="svg__image" data="/img/fallback-logo-wide.svg" type="image/svg+xml">
+                                <svg display="none">
+                                    <image alt="Fall-Back home" class="svg__fallback-image" height="60" src="/img/fallback-logo-wide.png"/>
+                                </svg>
+                                <span class="svg__fallback-text-alpha" data-content="Fall Back home"></span>
+                            </object>
+                            <div><i class="svg__fallback-text-beta">Fall Back home</i></div>
+                        </a>
                     </div>
-                    <div class="over-panel__wrap">
-                        <a href="#" class="over-panel__close  js-no-history" hidden><svg display="none" class="icon" aria-label="Close menu"><use xlink:href="#icon-cross"></use></svg></a>
 
-                        <nav class="nav-bar__inner">
-                            <h2 class="visually-hidden" hidden aria-hidden="false">Navigation</h2>
-                            <form action="/search" id="searchform" class="search-form  search-form--right" method="GET">
+                    <button class="over-panel-control" hidden aria-controls="sample-panel" aria-label="Main menu" aria-expanded="false"><svg display="none" class="icon  icon--is-closed  feather"><use xlink:href="#icon-menu"></use></svg><svg display="none" class="icon  icon--is-open  feather"><use xlink:href="#icon-cross"></use></svg></button>
+                </nav>
+                <div class="over-panel  over-panel--fade" id="sample-panel">
+                    <button class="over-panel__overlay" hidden aria-hidden="true" tabindex="-1"></button>
+                    <div class="over-panel__contents">
+                        <nav class="nav-bar__main">
+                            <ul class="nav-bar__items">
+                                <li class="nav-bar__item"><a href="/philistory" class="nav-bar__link">Philistory</a></li>
+                                <li class="nav-bar__item"><a href="https://github.com/Fall-Back/Start-CSS" class="nav-bar__link">Start CSS</a></li>
+                                <li class="nav-bar__item"><a href="https://github.com/Fall-Back/CSS-Mustard-Cut" class="nav-bar__link">CSS Mustard Cut</a></li>
+                                <li class="nav-bar__item">
+                                    <span class="subnav__heading">Patterns:</span>
+                                    <button id="patterns-sub-menu-toggle" class="nav-bar__link  subnav__control  subnav__open  js-toggle-button" hidden aria-label="Patterns sub-menu" data-content="Patterns"><svg display="none" class="icon  icon--is-closed  feather"><use xlink:href="#icon-triangle-down"></use></svg><svg display="none" class="icon  icon--is-open  feather"><use xlink:href="#icon-triangle-up"></use></svg></button>
+                                    <div class="subnav" id="patterns-sub-menu-toggle--target">
+                                        <ul class="subnav__items">
+                                            <li class="subnav__item"><a href="https://github.com/Fall-Back/Nav-Bar" class="subnav__link">Nav Bar</a></li>
+                                            <li class="subnav__item"><a href="https://github.com/Fall-Back/Search-Form" class="subnav__link">Search Form</a></li>
+                                            <li class="subnav__item"><a href="https://github.com/Fall-Back/Over-Panel" class="subnav__link">Over Panel</a></li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+                                <!--
+                                <li class="nav-bar__item">
+                                    <a href="about-us" class="nav-bar__link">About us</a>
+                                    <button id="about-us-sub-menu-toggle" class="nav-bar__link  subnav__control  subnav__open  js-toggle-button" hidden aria-label="About Us sub-menu"><svg display="none" class="icon  icon--is-closed  feather"><use xlink:href="#icon-triangle-down"></use></svg><svg display="none" class="icon  icon--is-open  feather"><use xlink:href="#icon-triangle-up"></use></svg></button>
+                                    <div class="subnav" id="about-us-sub-menu-toggle--target">
+                                        <ul class="subnav__items">
+                                            <li class="subnav__item"><a href="what-we-do" class="subnav__link">What we do</a></li>
+                                            <li class="subnav__item"><a href="contact-us" class="subnav__link">Contact us</a></li>
+                                            <li class="subnav__item"><a href="meet-the-team" class="subnav__link">Meet the team</a></li>
+                                            <li class="subnav__item"><a href="testimonials" class="subnav__link">Testimonials</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                -->
+                            </ul>
+                        </nav>
+                        <!--<div class="nav-bar__additional  nav-bar__additional--push-end">
+                            <form action="#search" id="searchform" class="search-form  search-form---restrict-width" method="GET">
                                 <input type="search" class="search-form__field" id="search" placeholder="Search" name="s" value="" aria-label="Search" />
                                 <button class="search-form__submit" type="submit">
                                     <span>
-                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+                                        <svg width="20" height="20" viewBox="0 0 20 20">
                                             <path fill="#333333" d="M12.917 11.667h-0.662l-0.229-0.229c0.817-0.946 1.308-2.175 1.308-3.521 0-2.992-2.425-5.417-5.417-5.417s-5.417 2.425-5.417 5.417 2.425 5.417 5.417 5.417c1.346 0 2.575-0.492 3.521-1.304l0.229 0.229v0.658l4.167 4.158 1.242-1.242-4.158-4.167zM7.917 11.667c-2.071 0-3.75-1.679-3.75-3.75s1.679-3.75 3.75-3.75 3.75 1.679 3.75 3.75-1.679 3.75-3.75 3.75z"></path>
-                                            <text y="-1">Search</text>
+                                            <text y="-10">Search</text>
                                         </svg>
                                     </span>
                                 </button>
-                                <a href="#" tabindex="-1" class="search-form__cancel  icon-wrap  js-no-history"><svg display="none" class="icon"><use xlink:href="#icon-cross"></use></svg></a>
-                                <ul class="search-form__collapse  nav-bar__items">
-                                    <li class="nav-bar__item"><a href="/philistory" class="nav-bar__link">Philistory</a></li>
-                                    <li class="nav-bar__item"><a href="https://github.com/Fall-Back/Start-CSS" class="nav-bar__link">Start CSS</a></li>
-                                    <li class="nav-bar__item"><a href="https://github.com/Fall-Back/CSS-Mustard-Cut" class="nav-bar__link">CSS Mustard Cut</a></li>
-                                    <li class="nav-bar__item  has-subnav">
-                                        <span class="subnav__heading">Patterns:</span>
-                                        <a href="#patterns-submenu" data-content="Patterns:" class="nav-bar__link  subnav__open  js-no-history" aria-label="Patterns Submenu" hidden> <svg display="none" class="icon  icon--narrow"><use xlink:href="#icon-triangle-down"></use></svg></a>
-                                        <ul class="subnav" id="patterns-submenu">
-                                            <li class="subnav__item"><a href="https://github.com/Fall-Back/Nav-Bar" class="subnav__link">Nav Bar</a></li>
-                                            <li class="subnav__item"><a href="https://github.com/Fall-Back/Search-Form" class="subnav__link">Search Form</a></li>
-                                            <li class="subnav__item"><a href="https://github.com/Fall-Back/Off-Canvas" class="subnav__link">Off Canvas</a></li>
-                                            <li class="subnav__item"><a href="https://github.com/Fall-Back/Over-Panel" class="subnav__link">Over Panel</a></li>
-                                        </ul>
-                                        <a href="#" class="subnav__link  subnav__cancel  js-no-history" hidden><svg display="none" class="icon" aria-label="Close submenu"><use xlink:href="#icon-cross"></use></svg></a>
-                                    </li>
-                                </ul>
                             </form>
-                        </nav>
+                        </div>-->
                     </div>
                 </div>
             </div>
-
         </header>
-    
+
         <div class="sticky-footer-expand">
             <main role="main" class="main-container">
-                <h1>{{ page.title }}</h1>
-                
                 {{ content }}
-            </main>    
+            </main>
         </div>
-        
+
         <footer class="sticky-footer" role="contentinfo">
             <p class="page-footer">
                 <a href="https://github.com/Fall-Back/Fall-Back.github.io">GitHub</a> | <a href="/credits">Credits</a> | &copy; Andy Kirk {{ site.time | date: '%Y'}}
             </p>
         </footer>
-  
+
     </div>
 
-    <script src="/js/script.min.js"></script>
-    
 </body>
 </html>

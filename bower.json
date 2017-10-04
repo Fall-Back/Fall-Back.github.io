@@ -1,6 +1,7 @@
 {
     "name": "Fall-Back.github.io",
     "description": "This file lists all the front-end packages required for the project.",
+    "homepage": "http://fall-back.github.io/",
     "dependencies": {
         "Fall-Back-Base":          "https://github.com/Fall-Back/Base.git",
         "Fall-Back-Start-CSS":     "https://github.com/Fall-Back/Start-CSS.git",
