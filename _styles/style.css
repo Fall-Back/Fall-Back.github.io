@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* --| SETTINGS |-------------------------------------------------------------------------------- */
 @import url("https://fonts.googleapis.com/css?family=Merriweather|Source+Sans+Pro:400,700,400italic");
 /*-------------------------------------------------------------------------------------------------|
@@ -14,8 +13,9 @@
     
     
     Any double-classing (e.g. `.class.class`) is deliberate and intended to increase specifity.
-    This allows Start-CSS declarations to be overidden.
-    E.g. `.{pattern}__open.{pattren}__open` overrides `a[href]`.
+    This allows any applicable Start-CSS declarations to be overidden.
+    E.g. `.{pattern} .{pattern}__child` would `a[href]`, but just `.{pattern}` wouldn't, so we use
+    `.{pattern}.{pattren}`
     
 |-------------------------------------------------------------------------------------------------*/
 /*! Start CSS. See SCSS file for documentation. */
@@ -117,10 +117,6 @@
     4. Convert the value to a percentage so as not to override user font settings.
 
     5. Prevent font size adjustments after orientation changes in IE and iOS. (N)
-
-    6. Add the default cursor in all browsers. (S)
-
-    7. Remove margin on Mac Safari 6.1-8.
 */
 html {
   -moz-box-sizing: border-box;
@@ -140,8 +136,6 @@ html {
   /* 5 */
   -webkit-text-size-adjust: 100%;
   /* 5 */
-  cursor: default;
-  /* 6 */
 }
 
 /*
@@ -1140,9 +1134,6 @@ li ol {
 
 main {
   display: block;
-  max-width: 40em;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 mark {
@@ -2000,7 +1991,7 @@ _:-o-prefocus, :root .icon {
 /* ---------------------------------------------------------------------------------------------- */
 /* --| BASE |------------------------------------------------------------------------------------ */
 /* ---------------------------------------------------------------------------------------------- */
-/* --| PATTERNS |-------------------------------------------------------------------------------- */
+/* --| FALL-BACK PATTERNS |---------------------------------------------------------------------- */
 /*-------------------------------------------------------------------------------------------------|
     Fall-Back Start-CSS Settings v1.0.0
 
@@ -2014,8 +2005,9 @@ _:-o-prefocus, :root .icon {
 
 
     Any double-classing (e.g. `.class.class`) is deliberate and intended to increase specifity.
-    This allows Start-CSS declarations to be overidden.
-    E.g. `.{pattern}__open.{pattren}__open` overrides `a[href]`.
+    This allows any applicable Start-CSS declarations to be overidden.
+    E.g. `.{pattern} .{pattern}__child` would `a[href]`, but just `.{pattern}` wouldn't, so we use
+    `.{pattern}.{pattren}`
 
 |-------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------|
@@ -2066,7 +2058,7 @@ _:-o-prefocus, :root .icon {
 .over-panel__contents {
   background-color: #5382A4;
   color: #fff;
-  padding: 2.4rem;
+  padding: 0;
 }
 
 .over-panel__contents a {
@@ -2082,7 +2074,7 @@ _:-o-prefocus, :root .icon {
 /* -----------------------------------------------------------------------------------------------*/
 /* ********************************************************************************************** */
 /* -- Enhanced layout --------------------------------------------------------------------------- */
-@media only screen and (max-width: 50em) {
+@media only screen and (max-width: 32.9375em) {
   /*
             1. Helps compatibiliy with Nav-Bar. No down-sides I can see. May have to revise if some
                become apparent.
@@ -2256,6 +2248,7 @@ _:-o-prefocus, :root .icon {
     margin: 0;
     border: 0;
     text-decoration: none;
+    visibility: hidden;
     background: #fff;
     opacity: 0;
     -webkit-transition: opacity 0.5s ease;
@@ -2269,6 +2262,7 @@ _:-o-prefocus, :root .icon {
   .js-over-panel_is-open .over-panel__overlay {
     z-index: 0;
     opacity: 0.5;
+    visibility: visible;
   }
   .js-over-panel-control .over-panel__overlay:hover,
   .js-over-panel-control .over-panel__overlay:active,
@@ -2285,17 +2279,18 @@ _:-o-prefocus, :root .icon {
 
     Fall-Back is designed for use with the basic
     [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
-    
+
     This determines a browser support base of:
-    
+
     IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
     Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
-    
-    
+
+
     Any double-classing (e.g. `.class.class`) is deliberate and intended to increase specifity.
-    This allows Start-CSS declarations to be overidden.
-    E.g. `.{pattern}__open.{pattren}__open` overrides `a[href]`.
-    
+    This allows any applicable Start-CSS declarations to be overidden.
+    E.g. `.{pattern} .{pattern}__child` would `a[href]`, but just `.{pattern}` wouldn't, so we use
+    `.{pattern}.{pattren}`
+
 |-------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------|
     Fall-Back Nav Bar Pattern v2.0.0
@@ -2303,10 +2298,13 @@ _:-o-prefocus, :root .icon {
 /* -- Basic/fallback layout --------------------------------------------------------------------- */
 /* -- .nav-bar -------------------------------------------------------------------------------*/
 /*
+        1. Helps to position above subsequent elements so subnavs sit on top.
     */
-.nav-bar {
+.nav-bar.nav-bar {
   background-color: #5382A4;
   position: relative;
+  z-index: 9999;
+  /* [1] */
 }
 
 /*
@@ -2320,7 +2318,7 @@ _:-o-prefocus, :root .icon {
 }
 
 /* -------------------------------------------------------------------------------------------*/
-/* -- .nav-bar__title ----------------------------------------------------------------*/
+/* -- .nav-bar__title ------------------------------------------------------------------------*/
 /*
         1. For IE 9 and FF 21-.
     */
@@ -2348,7 +2346,7 @@ _:-o-prefocus, :root .icon {
         //   -ms-flex-pack: justify;
         // justify-content: space-between;
     }
-*/
+****/
 /*
         Note A.
         We want elements to fill the space to maximise actionable areas if it's supported.
@@ -2403,14 +2401,20 @@ _:-o-prefocus, :root .icon {
   white-space: nowrap;
 }
 
-@supports (-webkit-flex-wrap: wrap) or (flex-wrap: wrap) {
+@supports (-webkit-flex-wrap: wrap) or (flex-wrap: wrap) { {
+    /*
+            This is a littel flakey. We generally expeect the first item to be a logo container that
+            should fill all the remaining space. Will have to see how this plays out but may need a
+            rethink.
+        */
+  }
   .nav-bar .nav-bar__title {
     display: -webkit-flex;
     display: flex;
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
   }
-  .nav-bar .nav-bar__title .nav-bar__link {
+  .nav-bar .nav-bar__title :first-child {
     -webkit-flex: 1 0 auto;
     flex: 1 0 auto;
   }
@@ -2454,6 +2458,7 @@ _:-o-prefocus, :root .icon {
         }
     }
 */
+/* -------------------------------------------------------------------------------------------*/
 /* -- .nav-bar__main ------------------------------------------------------------------------*/
 /*
         1. Duplicating parent background-color here. There HAS to be a colour here for the pattern
@@ -2470,7 +2475,7 @@ _:-o-prefocus, :root .icon {
 }
 
 /* -------------------------------------------------------------------------------------------*/
-/* -- .nav-bar__items -------------------------------------------------------------------------*/
+/* -- .nav-bar__items ------------------------------------------------------------------------*/
 /*
         1. Related to Note A. Force this on to its own line.
     */
@@ -2626,6 +2631,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
   display: none;
 }
 
+/* -------------------------------------------------------------------------------------------*/
 /* -----------------------------------------------------------------------------------------------*/
 /* ********************************************************************************************** */
 /* -- Enhanced layout --------------------------------------------------------------------------- */
@@ -2634,7 +2640,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
     (CSS only attempts weren't good enough)
     So, scoping these styles to the 'js-nav-bar' class.
 */
-@media only screen and (min-width: 50em) {
+@media only screen and (min-width: 33em) {
   /*
             1. Flex is only really needed for 'additional' to fill up the space.
                I don't think this would actually do any harm...
@@ -2712,7 +2718,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
                 -ms-flex: 0 0 auto;
                     flex: 0 0 auto;
         }
-*/
+****/
   /*
             Related to Note A. Reset the positioning.
         */
@@ -2879,37 +2885,15 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
     
     
     Any double-classing (e.g. `.class.class`) is deliberate and intended to increase specifity.
-    This allows Start-CSS declarations to be overidden.
-    E.g. `.{pattern}__open.{pattren}__open` overrides `a[href]`.
+    This allows any applicable Start-CSS declarations to be overidden.
+    E.g. `.{pattern} .{pattern}__child` would `a[href]`, but just `.{pattern}` wouldn't, so we use
+    `.{pattern}.{pattren}`
     
 |-------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------|
     Fall-Back Search Form Pattern v2.0.0
-
-    ISSUES
-
-    Firefox 8-27 are the main problem-causers here because of a buggy/incomplete flexbox
-    implementation. Below 28 FF doesn't suport felx-wrap even though it supports un-prefixed
-    flexbox properties.
-    The reason this is a problem is that in the basic view flex wrapping is required to force the
-    search input + button onto a different line from the collapsable area.
-    Using hacks to prevent 8-27 using flexbox for the basic view, and more hacks to reinstate it
-    for 28+.
-
 |-------------------------------------------------------------------------------------------------*/
 /* -- Basic/fallback layout --------------------------------------------------------------------- */
-/*
-        NOTES:
-
-        .search-form--after
-        It's not possible to easily re-create this variation so it won't be after in
-        non-flexbox browsers, but that's ok, it's still usable.
-        These browsers (IE9, FF8-27) are forced into submission for this.
-
-        Nesting is to increase specificity over Start-CSS's element selectors.
-        This helps to override things link Normalize and Cleanse.
-
-    */
 /* -- .search-form ---------------------------------------------------------------------------*/
 /*
         1. Prevent extra bottom space when form is inside a container.
@@ -2954,26 +2938,17 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
   max-width: 25em;
 }
 
-/* ---------------------------------------------------------------------------------------*/
-/* -- .search-form__cancel ---------------------------------------------------------------*/
-/*.search-form .search-form__cancel {
-            display: none;
-        }*/
-/* ---------------------------------------------------------------------------------------*/
-/* -- .search-form__field ----------------------------------------------------------------*/
+/* -------------------------------------------------------------------------------------------*/
+/* -- .search-form__field --------------------------------------------------------------------*/
 /*
-            1. This to override normalize.
-            2. Override default size attr value - mainly for Opera mini which wierdley needs both
-               width AND min-width.
-        */
+        1. Override default size attr value - mainly for Opera mini which wierdley needs both
+           width AND min-width.
+    */
 .search-form .search-form__field {
   position: relative;
   z-index: 1;
-  /*-webkit-appearance: none !important; /* [1] */
   border-radius: 0;
   border: 0;
-  /*-moz-box-sizing: border-box !important;
-            box-sizing: border-box !important;*/
   background-color: #fff;
   color: #333;
   height: 1.5em;
@@ -2986,9 +2961,9 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   width: 1%;
-  /* [2] */
+  /* [1] */
   min-width: 1%;
-  /* [2] */
+  /* [1] */
 }
 
 @media screen and (min--moz-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
@@ -3007,20 +2982,6 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
   background-color: #ffffdc;
 }
 
-/*.search-form .search-form__field.search-form__field:first-child {
-			margin-left: 0.3rem;
-        }*/
-/*
-            Opera Hacks (https://github.com/jeffclayton/css_hack_testing/blob/master/opera_9.5-12_hack.txt)
-            Opera Mini 7- ignores line height.
-            Opera Mini 8 seems to enforce a minimum font size for the search field which forces it to be
-            higher than it should be.
-            min-height and no padding seems to fix it.
-        */
-/*_:-o-prefocus, body:last-child .search-form .search-form__field {
-            padding: 0;
-            min-height: $fallback--search-form--height;
-        }*/
 /* -------------------------------------------------------------------------------------------*/
 /* -- .search-form__submit -------------------------------------------------------------------*/
 /*
@@ -3028,11 +2989,8 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
 .search-form .search-form__submit {
   position: relative;
   z-index: 1;
-  /*-webkit-appearance: none;*/
   border-radius: 0;
   border: 0;
-  /*moz-box-sizing: content-box;
-        box-sizing: content-box;*/
   background: #fafbfc;
   color: #333;
   height: 1.875em;
@@ -3056,60 +3014,17 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
   width: 1.5em;
 }
 
-/* PNG Fall-Back */
-/*.no-inlinesvg.datauri .search-form .search-form__submit:before {
-        content: url($fallback--search-form__submit--png);
-        //vertical-align: middle;
-    }
-
-    .no-inlinesvg.datauri .search-form .search-form__submit span {
-        display: none;
-    }*/
 /* -------------------------------------------------------------------------------------------*/
-/* -- .search-form__collapse -----------------------------------------------------------------*/
-/*.search-form .search-form__collapse {
-
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-        float: left;
-
-
-        -moz-box-flex: 0;
-        -webkit-flex: 0 0 auto;
-            -ms-flex: 0 0 auto;
-                flex: 0 0 auto;
-    }
-*/
-/* -------------------------------------------------------------------------------------------*/
-/* IE9 hacks: */
-/*
-    @media all and (min-width:0\0) and (min-resolution: .001dpcm)
-    {
-        .search-form--right .search-form__submit, /* @deprecated - use after *
-        .search-form--right .search-form__field,  /* @deprecated - use after *
-        .search-form--after .search-form__submit,
-        .search-form--after .search-form__field {
-            float: right;
-        }
-
-        .search-form--right .search-form__field, /* @deprecated - use after *
-        .search-form--after .search-form__field {
-            margin-left: -340px; /* @var *
-            margin-right: 20px; /* @var *
-            width: auto;
-        }
-
-    }
-*/
+/* -----------------------------------------------------------------------------------------------*/
+/* ********************************************************************************************** */
 /* -- Enhanced layout --------------------------------------------------------------------------- */
-@media only screen and (max-width: minus1px(50em)) {
+@media only screen and (max-width: 32.9375em) {
   .search-form .search-form__collapse {
     width: 100%;
   }
 }
 
-@media only screen and (min-width: 50em) {
+@media only screen and (min-width: 33em) {
   /*
             1. Reinstate all flexbox for enhanced view as no wrapping needs to occure
             (FF8-27 issue describbed above)
@@ -3123,106 +3038,9 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
   }
-  /*.search-form {
-            width: 100%;
-            display: -moz-box;
-            display: flex;
-        }
-
-            .search-form .search-form__field {
-                -moz-box-flex: 1;
-                flex: 1 1 auto;
-            }
-
-            .search-form .search-form__submit {
-                -moz-box-flex: 0;
-                flex: 0 0 auto;
-            }
-
-            .search-form .search-form__collapse {
-                -moz-box-flex: 0;
-                flex: 0 0 auto;
-            }
-
-            .search-form .search-form__cancel {
-                -moz-box-flex: 0;
-                flex: 0 0 auto;
-                -moz-box-ordinal-group: 0;
-                order: 0;
-            }
-        */
-  /*.search-form--right .search-form__field, /* @deprecated - use after *
-            .search-form--right .search-form__submit, /* @deprecated - use after *
-            .search-form--after .search-form__field,
-            .search-form--after .search-form__submit {
-                -moz-box-ordinal-group: 2;
-                order: 2;
-            }*/
-  /*
-        .search-form .search-form__cancel {
-            //display: none;
-
-            color: $fallback--search-form__cancel--text-color;
-            background-color: $fallback--search-form__cancel--background-color;
-            padding: 0 ($fallback--search-bar-button--spacing * 2);
-            //padding: ($fallback--search-bar-button--spacing * 1.333333) ($fallback--search-bar-button--spacing * 2);
-            /*padding-right: $fallback--search-form--spacing * 2;
-            padding-left: $fallback--search-form--spacing * 2;
-            padding-top: 0;
-            padding-bottom: 0;*
-            border: 0;
-
-            //height: $fallback--search-form--field-height + ($fallback--search-form--spacing * 4);
-            //height: $fallback--search-bar--height;
-            //line-height: $fallback--search-form--field-height + ($fallback--search-form--spacing * 4);
-            //line-height: $fallback--search-bar--height;
-
-            -moz-box-flex: 0;
-            -webkit-flex: 0 0 auto;
-                -ms-flex: 0 0 auto;
-                    flex: 0 0 auto;
-
-            -moz-box-ordinal-group: 0;
-             -webkit-order: -1;
-            -ms-flex-order: -1;
-                     order: -1;
-        }*/
-  /*
-        .search-form .search-form__cancel:hover,
-        .search-form .search-form__cancel:focus,
-        .search-form .search-form__cancel:active {
-            background-color: $fallback--search-form__cancel--background-color--alt;
-            border: 0;
-        }*/
   .search-form .search-form__field {
     width: auto;
   }
-  /*
-            Expander
-            --Note the selector appears not to work on FF27-. That's ok. Won't fix.--
-            (Only apply if flexbox is supported - older/prefixed support ignored, but that's ok)
-        */
-  /*@supports (display:flex)  {
-            .search-form .search-form__field:focus ~ .search-form__collapse {
-                display: none;
-            }
-        }*/
-  /*_:-ms-input-placeholder, :root .search-form .search-form__field:focus ~ .search-form__collapse {
-            display: none;
-        }*/
-  /*
-            Cancel button
-            Note: only necessary on some touch devices where it can be difficult to un-focus.
-        */
-  /*@supports (display:flex)  {
-            .search-form .search-form__field:focus ~ .search-form__cancel {
-                display: flex;
-            }
-        }*/
-  /*_:-ms-input-placeholder, :root .search-form .search-form__field:focus ~ .search-form__cancel {
-            display: -ms-flexbox;
-            display: flex;
-        }*/
 }
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -3297,7 +3115,7 @@ body {
 }
 
 /* IE9 hacks: */
-@media all and (min-width: 0�) and (min-resolution: 0.001dpcm) {
+@media all and (min-width: 0\0) and (min-resolution: 0.001dpcm) {
   .sticky-footer-wrap {
     display: table;
     width: 100%;
@@ -3561,6 +3379,64 @@ body {
 /* ---------------------------------------------------------------------------------------------- */
 /* ---------------------------------------------------------------------------------------------- */
 /* --| PATTERNS |-------------------------------------------------------------------------------- */
+main > :not(.full-width) {
+  max-width: 64rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.full-width {
+  margin-left: -2.4rem;
+  margin-right: -2.4rem;
+}
+
+.hero.hero {
+  margin-top: -2.4rem;
+  margin-bottom: 2.4rem;
+  min-width: 250px;
+}
+
+.hero .hero__text {
+  position: absolute;
+  top: 2.5rem;
+  left: 4rem;
+  color: #fff;
+}
+
+.hero__text h1 {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 2vw;
+}
+
+.hero__text p {
+  font-size: 1.6rem;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.hero__text p span {
+  white-space: nowrap;
+}
+
+@media only screen and (min-width: 250px) {
+  .hero .hero__text {
+    top: 10vw;
+  }
+  .hero__text h1 {
+    font-size: calc(2rem + 4vw);
+  }
+  .hero__text p {
+    font-size: calc(1.1rem + 2vw);
+  }
+}
+
+@media only screen and (max-width: 100em) {
+  .hero__text p {
+    max-width: 60%;
+  }
+}
+
 .page-footer {
   background-color: #5382A4;
   padding: 0.75em;
@@ -3580,6 +3456,64 @@ body {
   color: #94b3c9;
 }
 
+.proportional-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.proportional-container::before {
+  content: "";
+  display: block;
+  width: 100%;
+}
+
+.proportional-container__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* Make the image fill the width and be vertically centered: */
+/* (in portrait images this will leave gaps at the sides) */
+.proportional-container__image-cover {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* If `object-fit` is supported, use that and override vertical centering: */
+@supports (object-fit: cover) {
+  .proportional-container__image-cover {
+    height: 100%;
+    object-fit: cover;
+    top: 0;
+    transform: none;
+  }
+}
+
+.proportional-container--1-1::before {
+  padding-top: 100%;
+}
+
+.proportional-container--2-1::before {
+  padding-top: 50%;
+}
+
+.proportional-container--3-1::before {
+  padding-top: 33%;
+}
+
+.proportional-container--4-3::before {
+  padding-top: 75%;
+}
+
+.proportional-container--16-9::before {
+  padding-top: 56.25%;
+}
+
 /* ---------------------------------------------------------------------------------------------- */
 /* --| SHAME |----------------------------------------------------------------------------------- */
 h1, h2, h3 {
@@ -3587,11 +3521,20 @@ h1, h2, h3 {
   font-weight: normal;
 }
 
-/*
 main {
-    padding: 1.5rem;
+  padding: 2.4rem;
 }
-*/
+
+.feather {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  width: 1.25em;
+  height: 1.25em;
+}
+
 /*
 .off-canvas .nav-bar__title-section {
     text-align: left;

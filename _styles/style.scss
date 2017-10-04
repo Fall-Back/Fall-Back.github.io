@@ -7,7 +7,7 @@ $fallback--base-font-family: 'Source Sans Pro', sans-serif;
 $fallback--root-font-size: 10px;
 
 $fallback--base-ui-color: #5382A4;
-//$fallback--breakpoint--enhanced: 46em;
+$fallback--breakpoint--enhanced: 33em;
 
 //$body-padding: 0;
 
@@ -16,6 +16,10 @@ $fallback--base-ui-color: #5382A4;
 
 
 @import '../bower_components/Fall-Back-Start-CSS/_settings.scss';
+
+$max-main-line-length: 0;
+$measure: 64rem;
+
 @import '../bower_components/Fall-Back-Start-CSS/_start.scss';
 
 @import '../bower_components/Fall-Back-Base/_icons.scss';
@@ -59,13 +63,9 @@ $fallback--base-ui-color: #5382A4;
 //@import "../bower_components/Fall-Back-Start-CSS/_start";
 
 /* ---------------------------------------------------------------------------------------------- */
-/* --| PATTERNS |-------------------------------------------------------------------------------- */
+/* --| FALL-BACK PATTERNS |---------------------------------------------------------------------- */
 
-//$fallback--off-canvas--width:                18em !default;
-//$fallback--off-canvas__left-panel--padding:  0;
-//$fallback--off-canvas__right-panel--padding: 7px;
-//@import "../bower_components/Fall-Back-Off-Canvas/_off-canvas";
-
+$fallback--over-panel__contents--padding: 0;
 @import "../bower_components/Fall-Back-Over-Panel/_over-panel-next";
 
 

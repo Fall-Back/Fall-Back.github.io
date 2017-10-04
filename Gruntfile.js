@@ -15,8 +15,8 @@ module.exports = function(grunt) {
                     './_scripts/cookie-notice-settings.js',
                     './bower_components/Fall-Back-Nav-Bar/nav-bar.js',
                     './bower_components/Fall-Back-Over-Panel/over-panel.js',
-                    './bower_components/Fall-Back-Cookie-Notice/js/cookie-notice.js',
-                    './bower_components/Fall-Back-SVG/js/svg.js'
+                    './bower_components/Fall-Back-Cookie-Notice/cookie-notice.js',
+                    './bower_components/Fall-Back-SVG/svg.js'
                 ],
                 dest: './_scripts/script.js'
             }
