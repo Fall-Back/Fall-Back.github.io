@@ -2,24 +2,23 @@
 <html class="no-js" lang="en-gb">
 <head>
     <meta charset="utf-8" />
-    <title>Support Tests - M3</title>
+    <title>Support Tests - EM2</title>
 
     <meta name="description" content="CSS-Only Mustard Cut support test page">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--
         Print (Edge doesn't apply to print otherwise)
-        IE 10, 11
-        Edge
-        Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
-        FF29+   
+        Edge, Chrome 39+, Opera 26+, Safari 9+, iOS 9+, Android ~5+*, Android UCBrowser 11.8+**
+        FF47+
+
+        *  (according to caniuse, though it works on ~4.3+ if using Chrome or Samsung)
+        ** (according to caniuse though currently untested. Does not work on Android UCBrowser 11.3.2)
     -->
     <link rel="stylesheet" href="css/mq-test.css" media="
         only print,
-        only all and (-ms-high-contrast: none), only all and (-ms-high-contrast: active),
         only all and (pointer: fine), only all and (pointer: coarse), only all and (pointer: none),
-        only all and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0),
-        only all and (min--moz-device-pixel-ratio:0) and (min-resolution: 3e1dpcm)
+        only all and (min--moz-device-pixel-ratio:0) and (display-mode:browser), (min--moz-device-pixel-ratio:0) and (display-mode:fullscreen)
     ">
 
     <style>
@@ -51,7 +50,7 @@
 
 </head>
 <body role="document">
-    <h1>Support Tests - M3</h1>
+    <h1>Support Tests - EM2</h1>
 
     <main>
 
@@ -61,13 +60,14 @@
         <h2>Browser support</h2>
 
         <ul>
-            <li>IE 10+ (including Edge)</li>
-            <li>Chrome 29+</li>
-            <li>FF 29+</li>
-            <li>Opera 16+</li>
-            <li>Safari 6.1+</li>
-            <li>iOS 7+</li>
-            <li>Android ~4.3+ (Webkit ~537.36+)</li>
+            <li>Edge 12+</li>
+            <li>Chrome 39+</li>
+            <li>FF 47+</li>
+            <li>Opera 26+</li>
+            <li>Safari 9+</li>
+            <li>iOS 9+</li>
+            <li>Android ~5+ (according to caniuse, though it works on ~4.3+ if using Chrome or Samsung)</li>
+            <li>Android UCBrowser 11.8+ (according to caniuse though currently untested. Does not work on Android UCBrowser 11.3.2))</li>
         </ul>
 
         <table id="browser_info">
@@ -83,25 +83,22 @@
         <h2>Stylesheet declarations:</h2>
         <pre><code>&lt;!--
     Print (Edge doesn't apply to print otherwise)
-    IE 10, 11
-    Edge
-    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
-    FF29+   
+    Edge, Chrome 39+, Opera 26+, Safari 9+, iOS 9+, Android ~5+*, Android UCBrowser 11.8+**
+    FF47+
+
+    *  (according to caniuse, though it works on ~4.3+ if using Chrome or Samsung)
+    ** (according to caniuse though currently untested. Does not work on Android UCBrowser 11.3.2)
 --&gt;
 &lt;link rel="stylesheet" href="css/mq-test.css" media="
     only print,
-    only all and (-ms-high-contrast: none), only all and (-ms-high-contrast: active),
     only all and (pointer: fine), only all and (pointer: coarse), only all and (pointer: none),
-    only all and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0),
-    only all and (min--moz-device-pixel-ratio:0) and (min-resolution: 3e1dpcm)
+    only all and (min--moz-device-pixel-ratio:0) and (display-mode:browser), (min--moz-device-pixel-ratio:0) and (display-mode:fullscreen)
 "&gt;</code></pre>
 
         <h2>Notes</h2>
         <p>Also tested on Mac OSX10.8 - Camino 2.1. It doesn't work, of course but good to know for sure.<br />
         UA: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.9; en; rv:1.9.2.28) Gecko/20120308 Camino/2.1.2 (like Firefox/3.6.28)</p>
-        
-        <p>On crossbrowsertesting.com it doesn't work Android Galaxy S5 / 4.4(.2) (webkit 537.36, Android browser) for some reason. This is a bit of an anomaly as all other tested 537.36 webkits seem to work.</p>
-        
+     
         <p>From <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries">MDN</a>:</p>
         <blockquote>
             <p>
