@@ -2,3 +2,7 @@ body {
   background-color: palegreen;
   clear: both;
 }
+
+.not {
+  display: none;
+}
