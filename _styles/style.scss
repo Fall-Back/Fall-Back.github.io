@@ -15,14 +15,15 @@ $fallback--breakpoint--enhanced: 33em;
 //$namespace: 'main ';
 
 
-@import '../bower_components/Fall-Back-Start-CSS/_settings.scss';
+@import '../bower_components/Fall-Back-Start-CSS/dist/scss/_start__settings.scss';
 
 $max-main-line-length: 0;
 $measure: 64rem;
 
-@import '../bower_components/Fall-Back-Start-CSS/_start.scss';
+@import '../bower_components/Fall-Back-Start-CSS/dist/scss/_start.scss';
 
 @import '../bower_components/Fall-Back-Base/_icons.scss';
+//@import '../bower_components/Fall-Back-Start-CSS/dist/scss/_start-icons.scss';
 
 
 
@@ -66,17 +67,17 @@ $measure: 64rem;
 /* --| FALL-BACK PATTERNS |---------------------------------------------------------------------- */
 
 $fallback--over-panel__contents--padding: 0;
-@import "../bower_components/Fall-Back-Over-Panel/_over-panel-next";
+@import "../bower_components/Fall-Back-Over-Panel/_over-panel";
 
 
 
 //$fallback--sub-nav--bg-color:      darken($fallback--base-ui-color, 10%);
 //$fallback--nav-bar--margin-bottom: 24px;
-@import "../bower_components/Fall-Back-Nav-Bar/_nav-bar-next";
+@import "../bower_components/Fall-Back-Nav-Bar/_nav-bar";
 
 
 //$fallback--search-form--breakpoint--enhanced: 50em;
-@import "../bower_components/Fall-Back-Search-Form/_search-form-next";
+@import "../bower_components/Fall-Back-Search-Form/_search-form";
 
 
 @import "../bower_components/Fall-Back-Sticky-Footer/_sticky-footer";

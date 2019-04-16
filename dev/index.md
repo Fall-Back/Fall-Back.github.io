@@ -1,11 +1,6 @@
 ---
 layout: structure--basic
-title: NPEU Mockups
-project_base_url: patterns
+title: Fall-Back developement contents
 ---
 
-* [Component](component)
-* [Decoration](decoration)
-* [Layout](layout)
-* [Navigation](navigation)
-* [Utility](utility)
+* [StartCSS](start-css)

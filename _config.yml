@@ -14,6 +14,17 @@ markdown: kramdown
 kramdown:
   auto_ids:       true
 
-  
-  
-exclude: ["_archive", "node_modules", "bower_components", "Gemfile", "Gemfile.lock", "Gruntfile.js", "bower.json", "package.json", "README.md"]
+
+exclude: [
+    "_archive",
+    "bower.json",
+    "bower_components",
+    "Gemfile",
+    "Gemfile.lock",
+    "gulpfile.js",
+    "local-gulp.bat",
+    "local-jekyll.bat",
+    "node_modules",
+    "package.json",
+    "README.md"
+]

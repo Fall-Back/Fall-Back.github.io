@@ -71,7 +71,7 @@ function do_sass(cb) {
     pump([
         gulp.src([
             './**/*.scss',
-            '!./{node_modules,node_modules/**}'
+            '!./{bower_components,bower_components/**,node_modules,node_modules/**}'
         ]),
         sass({outputStyle: 'expanded'}),
         gulp.dest((file) => {
@@ -82,12 +82,34 @@ function do_sass(cb) {
 }
 
 
-// Then create a minified version in the output folder.
+// Then create a minified version in the output folder for the site.
 function do_cssmin(cb) {
     console.log('Running cssmin...');
 
     pump([
-        gulp.src(css_dest + '**/!(*.min)*.css'),
+        gulp.src('_styles/*.css'),
+        cssmin(),
+        rename({extname: '.min.css'}),
+        gulp.dest((file) => {
+            //return css_dest;
+
+            fs.writeFile('./_data/cache_bust_dev_css.yml', 'date: ' + now, (err) => {
+                if (err) throw err;
+            });
+            return './css/';
+        }),
+        rename({suffix: '.' + now}),
+        gulp.dest('./css/')
+    ],
+    cb);
+}
+
+// And create a minified version in the same folder for dev.
+function do_devcssmin(cb) {
+    console.log('Running devcssmin...');
+
+    pump([
+        gulp.src('./dev/**/!(*.min)*.css'),
         cssmin(),
         rename({extname: '.min.css'}),
         gulp.dest((file) => {
