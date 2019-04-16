@@ -3,8 +3,12 @@ const gulp        = require('gulp');
 const { series }  = require('gulp');
 const { watch }   = require('gulp');
 
+const path        = require('path');
 const pump        = require('pump');
+const fs          = require('fs');
+const del         = require('del');
 
+const now = Date.now();
 
 require('make-promises-safe');
 
@@ -64,14 +68,21 @@ const cssmin = require('gulp-cssmin');
 const rename = require('gulp-rename');
 
 
+// Empty the CSS folder.
+function empty_css_output(cb) {
+    del.sync([css_dest + '*.*']);
+    cb();
+}
+
+
 // Compile SCSS in expanded mode so it's easier to inspect the result.
+//'!./{bower_components,bower_components/**,node_modules,node_modules/**}'
 function do_sass(cb) {
     console.log('Running sass...');
 
     pump([
         gulp.src([
-            './**/*.scss',
-            '!./{bower_components,bower_components/**,node_modules,node_modules/**}'
+            './_styles/**/*.scss'
         ]),
         sass({outputStyle: 'expanded'}),
         gulp.dest((file) => {
@@ -82,24 +93,46 @@ function do_sass(cb) {
 }
 
 
-// Then create a minified version in the output folder for the site.
+// Then create a minified version in the output folder for the site, and cache-bust.
 function do_cssmin(cb) {
     console.log('Running cssmin...');
 
     pump([
-        gulp.src('_styles/*.css'),
+        gulp.src('_styles/**/*.css'),
         cssmin(),
         rename({extname: '.min.css'}),
         gulp.dest((file) => {
             //return css_dest;
 
-            fs.writeFile('./_data/cache_bust_dev_css.yml', 'date: ' + now, (err) => {
+            fs.writeFile('./_data/cache_bust_css.yml', 'date: ' + now, (err) => {
                 if (err) throw err;
             });
-            return './css/';
+            return css_dest;
         }),
         rename({suffix: '.' + now}),
-        gulp.dest('./css/')
+        gulp.dest(css_dest)
+    ],
+    cb);
+}
+
+
+
+// And the same for dev.
+function do_devsass(cb) {
+    console.log('Running devsass...');
+
+    pump([
+        gulp.src([
+            './dev/**/*.scss'
+        ]),
+        sass({outputStyle: 'expanded'}),
+        gulp.dest((file) => {
+            //console.log(Object.keys(file));
+            //console.log(path.dirname(file.path));
+            //console.log(file.base);
+            var cur_dir = path.dirname(file.path);
+            return cur_dir + '/css/../';
+        })
     ],
     cb);
 }
@@ -123,8 +156,13 @@ function do_devcssmin(cb) {
 exports.sass   = do_sass;
 exports.cssmin = do_cssmin;
 
+exports.devsass   = do_devsass;
+exports.devcssmin = do_devcssmin;
+
+exports.empty_css_output = empty_css_output;
+
 // This combined task makes it convenient to run all the steps together.
-exports.css = series(do_sass, do_cssmin, do_ftp);
+exports.css = (empty_css_output, do_sass, do_cssmin, do_devsass, do_devcssmin);
 
 
 
