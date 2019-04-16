@@ -1,0 +1,2290 @@
+/*! Start CSS. See SCSS file for documentation. */
+/*
+
+    Start CSS is designed for use with the basic
+    [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
+
+    This determines a browser support base of:
+
+    IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
+    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
+
+    Notes:
+
+    -moz-calc because this supports FF8+ and I like to be thorough.
+
+    CSS hacks from http://browserstrangeness.com/css_hacks.html
+    (hack and browser support in comments above each usage)
+
+    !!! Maybe don't include custom properties in this, I think it over-complicates things and needs
+    gradient background overlays to lighten/darken background colors dynamically.
+    Possibly include a separate file to add custom property support that overrides what it needs,
+    all wrapped in an `@supports`.
+
+    Resources:
+    * http://www.smashingmagazine.com/2012/12/css-baseline-the-good-the-bad-and-the-ugly/
+    * https://24ways.org/2006/compose-to-a-vertical-rhythm
+
+    NOTE TO SELF.
+    Where borders are concerned, probably best to leave margins alone and use padding to maintain
+    baseline-grid. After all, if there's a border, there will have to be padding too.
+
+    overflow-y makes element focussable in FireFox.
+
+*/
+
+@import '_start__settings.scss';
+
+/*-------------------------------------------------------------------------------------------------|
+
+    FUNCTIONS AND MIXINS
+   (These must come before the Setting, as the settings make use of some of these)
+
+|-------------------------------------------------------------------------------------------------*/
+
+@import '_start__functions.scss';
+//@debug ($fallback--base-rem-space-unit / 8) - ((($input-border-width + 0px) / 1px) * $fallback--base-rem-1px);
+
+
+// This helps with building media query hacks.
+@mixin mq($query) {
+    @media #{$query} {
+        @content
+    }
+}
+
+//@debug calc-px-from-rem(1.5rem);
+
+/*
+    Apply a border and a padding that offsets the border-width from one spacing unit so as not to
+    affect the vertical rhythm.
+    Note the Opera Mini doesn't support `calc` so we need to include normal padding for that
+    browser.
+    Also, since we're supporting FF 8+, we're including -moz-calc for versions up to 16.
+    I may consider removing this as those browsers are dead, but I'm just being thorough for now.
+
+    Note on the 'last margin' issue/hack:
+    The pseudo element is intended to provide a collapsible margin to cancel out any 'trailing'
+    margins from content elements. However, since we're reducing the whole padding space by the
+    border-width to maintain the vertical rhythm, that margin is also less, BUT the content margin
+    is NOT being reduced, so that wins out - the reduction is ignored.
+    If the pseudo element bottom margin is adjusted to cancel out the height (1px) AS WELL AS
+    the amount of border-width, but the last element DOES NOT have a margin, then the space becomes
+    too small.
+    If pseudo-element height is 0, it doesn't work in IE, Chrome, Safari, without inline-block
+*/
+@mixin bordered($padding: 1em, $border-width: 1px, $border-color: uiColor, $border-style: solid) {
+    border-width: $border-width;
+    border-style: $border-style;
+    @if $border-color == uiColor {
+        $border-color: $ui-color--base;
+    }
+    border-color: $border-color;
+
+    padding-top:   #{$padding};
+    padding-top:   -moz-calc(#{$padding} - #{$border-width});
+    padding-top:        calc(#{$padding} - #{$border-width});
+
+    padding-left:  #{$padding};
+    padding-left:  -moz-calc(#{$padding} - #{$border-width});
+    padding-left:       calc(#{$padding} - #{$border-width});
+
+    padding-right: #{$padding};
+    padding-right: -moz-calc(#{$padding} - #{$border-width});
+    padding-right:      calc(#{$padding} - #{$border-width});
+
+    &::after {
+        display: block;
+
+        content: "";
+
+        height: 1px;
+
+        margin-top: $padding;
+
+        margin-bottom: -1px;
+        margin-bottom: -moz-calc(-1px - #{$border-width});
+        margin-bottom:      calc(-1px - #{$border-width});
+    }
+}
+
+/*
+    This button mixin isn't really meant for generating specific/themed _types_ of button - there
+    would be too much code duplication for that.
+    Instead, this is intended to create buttons for new/custom selectors.
+    For example:
+
+    ```
+    [role="button"] {
+        @include button;
+    }
+    ```
+
+    rather than:
+
+    ```
+        .btn--affirmative {
+            @include button(<text-color>, <bg-color>);
+        }
+    ```
+
+    Note - because of this, think about removing parameters (it changed from my original intention -
+    I may change it back or split this into 2 mixins, or even just move things that are meant for
+    input[type="button"] to that ruleset - actually that's not a bad idea).
+
+*/
+/*
+    1. Remove the tapping delay from clickable elements.
+
+    Sort out the height of buttons. At 12px spacing, should be 30px high with 3px top/bottom margin.
+    Note Edge doesn't like: `line-height: calc(3rem - 2px)` if `display: inline-flex`
+    FF8 - ? doesn't like `line-height: -moz-calc()` and ignores
+    Need to make sure height is governed by line-height in case of breaks within buttons.
+*/
+@mixin button(
+        $color: $button-text-color,
+        $bg-color: $button-background-color,
+        $bg-color--alt: $button-background-color--alt,
+        $border-color: $button-border-color
+    ) {
+    display: inline-block; /* AK. IE9 needs this. Hmmm, for what exactly?*/
+
+    min-height: $input-min-height;
+
+    overflow: visible; /* S: Internet Explorer 11-, N: Show the overflow in Edge, Firefox, and IE. */
+
+    margin: ($fallback--base-rem-space-unit / 8) 0;
+
+    padding-top: #{$fallback--base-rem-space-unit / 8}; // Opera Mini needs this:
+    //padding-top: -moz-calc(#{$fallback--base-rem-space-unit / 8} - #{$button-border-width});
+    padding-top: -moz-calc(0);
+    padding-top: calc(#{$fallback--base-rem-space-unit / 8} - #{$button-border-width});
+    padding-right: $button-h-padding;
+    padding-bottom: #{$fallback--base-rem-space-unit / 8}; // Opera Mini needs this:
+    //padding-bottom: -moz-calc(#{$fallback--base-rem-space-unit / 8} - #{$button-border-width});
+    padding-bottom: -moz-calc(0);
+    padding-bottom: calc(#{$fallback--base-rem-space-unit / 8} - #{$button-border-width});
+    padding-left: $button-h-padding;
+
+    border-color: $border-color;
+    border-style: $button-border-style;
+    border-width: $button-border-width;
+    border-radius: $button-border-radius;
+
+    color: $color;
+    background-color: $bg-color;
+
+
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: $fallback--base-rem-space-unit;
+
+    vertical-align: middle; // Keep adjacent elements in the middle:
+
+    text-transform: none; /* [N0], N: Remove the inheritance of text transform in Edge, Firefox, and IE. */
+
+    cursor: pointer;
+
+    -ms-touch-action: manipulation; /* 1 (IE10) */
+    touch-action: manipulation; /* 1 */
+
+    -webkit-appearance: none;
+
+    //$button-background-color--alt: darken !default; // lighten | darken | <colour> | false;
+    @if $bg-color--alt != false {
+        &:hover,
+        &:active {
+            @if is-int($bg-color--alt) {
+                @if $bg-color--alt > 0 {
+                    $bg-color--alt_percent: $bg-color--alt * 1%;
+                    background-color: lighten($bg-color, $bg-color--alt_percent);
+                }
+                @if $bg-color--alt < 0 {
+                    $bg-color--alt_percent: $bg-color--alt * -1%;
+                    background-color: darken($bg-color, $bg-color--alt_percent);
+                }
+            } @else {
+                background-color: $bg-color--alt;
+            }
+        }
+    }
+
+
+    // Thinking about changing my mind how I do this. It's getting too complicated. I've thought
+    // harder about how to handle alternate state from an a11y perspective the old "Don't just rely
+    // on color" keeps going around my head, so a subtle background-color tint-shift doesn't
+    // really cut it. Adding 'inner-lines' via shadows (outline has NO rounded corners) creates a
+    // bigger difference.
+    // I mustn't forget StartCSS isn't supposed to provide configuration to add EVERYTHING directly
+    // to this one file - it's easy enough to add custom styling on top of this - I just want to
+    // make sure everything I DO include is configurable, or turn-off-able.
+    // So, IF the user wants to use my inner-line shadow idea, they can, otherwise, they can set the
+    // var to `false` and add their own however they like.
+    @if $button-focus-shadow != false {
+        &:focus {
+            outline: 0;
+            box-shadow: 0 0 0 $button-focus-shadow-width rgba($bg-color, 0.5);
+        }
+    }
+
+
+
+    /*@if $button-focus-outline-width != false {
+        &:hover,
+        &:active,
+        &:focus {
+            outline-width: $button-focus-outline-width;
+            outline-style: $button-focus-outline-style;
+            outline-color: $button-focus-outline-color;
+            outline-offset: $button-focus-outline-offset;
+        }
+    }*/
+}
+
+/*-------------------------------------------------------------------------------------------------|
+
+    SETTINGS
+
+|-------------------------------------------------------------------------------------------------*/
+
+// Let the other Fall-Back patterns know that start is being used:
+$using-start-css: true;
+
+// Allow suppression of styles so this file can be imported only for its variables etc.
+$suppress_styles: false !default;
+
+$experimental_checkradios: false !default;
+
+// Use $namespace to scope all body > *:not(main) styles:
+$namespace: '' !default;
+
+
+$ui-color--base: $fallback--base-ui-color !default;
+$ui-color--text: $fallback--base-text-color !default;
+
+//?$ui-color--base--inverted: invert($fallback--base-ui-color) !default;
+//?$ui-color--text--inverted: invert($fallback--base-text-color) !default;
+
+//?$ui-color--base--tint-level-1 = 30%;
+
+$ui-border-color: rgba(0,0,0,0.2) !default;
+// IMPORTANT: don't make this LESS than 1px or focus styles will break. If you want the appearance
+// of no border, set the color to transparent.
+$ui-border-width: 1px !default;
+$ui-border-radius: 3px !default;
+$ui-border-style: solid !default;
+
+
+$ui-focus-outline-width: 2px !default;
+$ui-focus-outline-style: solid !default;
+$ui-focus-outline-color: rgba($ui-color--base, 0.6) !default;
+$ui-focus-outline-offset: 2px !default;
+// Note that IE and earlier Edge don't support outline-offset, so aesthetically, outline isn't a
+// great choice.
+
+// Gradient better than shadow, I think, but no IE9 support. (filter is OK, but odd on the corners)
+// Problem with shadow, though is if an actual shadow is needed, it would override this.
+// NOT USING THESE NOW
+//$ui-shadow-dark: rgba(0,0,0,0.3) !default;
+//$ui-shadow-light: rgba(255,255,255,0.3) !default;
+
+$monospace-font-family: monospace !default;
+
+
+//$max-main-line-length: 0 !default;
+$max-main-line-length: 40em !default;
+
+/* Global focus style: */
+//$focus-outline-style: 1px dotted #000 !default;
+//$focus-outline-style: 0 !default;
+
+
+// ELEMENTS
+
+// <a>
+$anchor-text-color: $ui-color--base !default;
+$anchor-text-color--alt: darken($anchor-text-color, 10%) !default;
+$anchor-text-decoration: none !default;
+
+$anchor-border-bottom: 2px solid !default;
+$anchor-border-bottom--alt: 2px dashed !default;
+$anchor-border-bottom-offset: -2px;
+$anchor-padding-bottom: 2px;
+
+$anchor-add-external-link-indicator: true !default;
+
+$anchor-focus-shadow: true !default;
+$anchor-focus-shadow-width: 3px !default;
+
+//$anchor-focus-outline-width: $ui-focus-outline-width !default;
+//$anchor-focus-outline-width: false !default;
+//$anchor-focus-outline-style: $ui-focus-outline-style !default;
+//$anchor-focus-outline-color: $ui-focus-outline-color !default;
+//$anchor-focus-outline-offset: $ui-focus-outline-offset !default;
+
+//$anchor-focus-background-color: false !default;
+// BE CAREFUL: changing the background colors of links is a bad idea if the links contain images
+// with transparent areas.
+//$anchor-focus-background-color: $anchor-text-color !default;
+//$anchor-focus-background-color: lighten($anchor-text-color, 30%) !default;
+
+// This next bit isn't configurable, but keep it as-is for now for reference:
+/*
+$anchor-focus-text-color: false;
+@if $anchor-focus-background-color != false {
+    @if color_light_or_dark($anchor-focus-background-color) == 'light' {
+        $anchor-focus-text-color: darken($anchor-text-color, 50%);
+    } @else {
+        $anchor-focus-text-color: lighten($anchor-text-color, 70%);
+    }
+}
+@debug $anchor-focus-text-color;
+*/
+
+// <body>
+$body-padding: $fallback--base-rem-space-unit !default;
+$body-margin: 0 !default;
+$body-min-width: 250px !default;
+$body-max-width: none !default;
+
+
+
+// <button>
+$button-h-padding: $fallback--base-rem-space-unit / 4 !default;
+
+$button-text-color: #fff !default;
+$button-background-color: $ui-color--base !default;
+$button-background-color--alt: -10 !default; // +n (% lighten) | -n (% darken) | <color> | false;
+//$button-background-color--state-1: lighten($ui-color--base, 10%) !default;
+
+//$button-border-color: darken($ui-color--base, 10%) !default;
+$button-border-color: $ui-border-color !default;
+$button-border-width: $ui-border-width !default;
+$button-border-style: $ui-border-style !default;
+$button-border-radius: $ui-border-radius !default;
+
+
+
+//$button-focus-shadow: false !default;
+$button-focus-shadow: true !default;
+$button-focus-shadow-width: 3px !default;
+
+//unused? $button-focus-border: false !default;
+/*
+//$button-focus-outline-width: $ui-focus-outline-width !default;
+$button-focus-outline-width: false !default;
+$button-focus-outline-style: $ui-focus-outline-style !default;
+$button-focus-outline-color: rgba(255,255,255,0.6) !default;
+//$button-focus-outline-offset: -($ui-focus-outline-offset + $button-border-width) !default;
+$button-focus-outline-offset: -($ui-focus-outline-offset + $button-border-width) !default;
+*/
+
+
+$checkradio-background-color: #fff !default;
+$checkradio-text-color: $ui-color--text !default;
+$checkradio-border-color: $checkradio-text-color !default;
+$checkradio-border-width: $ui-border-width !default;
+$checkradio-border-style: $ui-border-style !default;
+
+// <fieldset>
+$fieldset-border-width: $ui-border-width !default;
+//$fieldset-border-width: 3px !default;
+$fieldset-padding: $fallback--base-rem-space-unit !default;
+
+
+
+// <legend>
+// Note: when a legend is present the width of the top border of the fieldset seems to be ignored,
+// so the padding reduction that's meant to offset the border width is actually too small for the
+// top padding. CSS can't (yet) detect if there is a legend inside the fieldset so there needs to
+// be some corrective style on the legend itself. That would be bottom margin.
+$legend-border-width: 0 !default;
+$legend-h-padding: $fallback--base-rem-space-unit / 4 !default;
+
+
+
+// <input> (also <select>, <option>, <textarea>)
+$input-h-padding: $fallback--base-rem-space-unit / 4 !default;
+
+$input-text-color: $ui-color--text !default;
+$input-background-color: #fff !default;
+$input-background-color--state-1: lighten($ui-color--base, 40%) !default;
+
+$input-border-color: $ui-border-color !default;
+$input-border-width: $ui-border-width !default;
+$input-border-style: $ui-border-style !default;
+$input-border-radius: $ui-border-radius !default;
+
+$input-min-height: ($fallback--base-rem-space-unit * 1.25);
+
+$input-focus-indicator-size: 2px !default;
+$input-focus-indicator-color: lighten($ui-color--base, 30%) !default;
+/*$input-focus-indicator-color: false !default;
+@if color_light_or_dark($input-background-color) == 'light' {
+    $input-focus-indicator-color: darken($input-background-color, 30%);
+} @else {
+    $input-focus-indicator-color: lighten($input-background-color, 30%);
+}
+@debug color_light_or_dark($input-background-color);*/
+
+$input-focus-shadow: true !default;
+$input-focus-shadow-width: 3px !default;
+
+
+//$input-focus-shadow: 0 0 0 $input-focus-indicator-size $input-focus-indicator-color inset !default;
+//$input-focus-shadow: false !default;
+$input-focus-shadow-outset: 0 0 0 $input-focus-indicator-size $input-focus-indicator-color !default;
+
+$input-focus-outline-width: false !default;
+//$input-focus-outline-width: $ui-focus-outline-width !default;
+$input-focus-outline-style: $ui-focus-outline-style !default;
+$input-focus-outline-color: rgba($ui-color--base, 0.3) !default;
+$input-focus-outline-offset: -($ui-focus-outline-offset + $button-border-width) !default;
+
+
+// File inputs' natural width varies between browsers and is too wide for smaller screens.
+// The only way to get it to collapse on smaller screens is to specify `width: 100%;` but this
+// isn't great on larger screens, so setting a `max-width` solves this and produces a consistent
+// width across browsers.
+// Override this with your preferred width or `false`:
+$input-file-max-width: 18.5em !default;
+
+
+
+// <hx>
+$h1-font-size: 52px / $fallback--base-font-size * 1em !default;
+$h1-height:  $fallback--base-rem-space-unit * 2.5 !default;
+
+$h2-font-size: 40px / $fallback--base-font-size * 1em !default;
+$h2-height:  $fallback--base-rem-space-unit * 2 !default;
+
+$h3-font-size: 30px / $fallback--base-font-size * 1em !default;
+$h3-height:  $fallback--base-rem-space-unit * 1.5 !default;
+
+$h4-font-size: 22px / $fallback--base-font-size * 1em !default;
+$h4-height:  $fallback--base-rem-space-unit * 1.5 !default;
+
+$h5-font-size: 18px / $fallback--base-font-size * 1em !default;
+$h5-height:  $fallback--base-rem-space-unit !default;
+
+$h6-font-size: 16px / $fallback--base-font-size * 1em !default;
+$h6-height:  $fallback--base-rem-space-unit !default;
+
+
+
+// <hr>
+$hr-border-width: $ui-border-width !default;
+$hr-border: $hr-border-width solid $ui-color--base !default;
+//$hr-margin-top: calc-rem-from-px($hr-border-width, true);
+$hr-margin-top: -$hr-border-width;
+$hr-margin-bottom: $fallback--base-rem-space-unit;
+
+
+
+// <pre> (and nested <code>)
+$pre-background-color: lighten($ui-color--base, 55%) !default;
+//$pre-margin-bottom: $fallback--base-rem-space-unit !default;
+//$pre-margin-bottom: ($fallback--base-rem-space-unit * 2) - calc-rem-from-px(($fallback--base-line-height * 2) - 17px);
+
+// Adjust bottom margin to  take into account scrollbar height of 17px:
+$pre-margin-bottom: calc-rem-from-px(($fallback--base-line-height * 2) - 17px);
+// Edge has a scrollbar height of 12px:
+$pre-margin-bottom--edge: calc-rem-from-px(($fallback--base-line-height * 2) - 12px);
+
+// (margin to account for scrollbar, we can check for touch in most browsers and change this
+// or use custom scrollbars = see `pre` below)
+
+$pre-code-padding: ($fallback--base-rem-space-unit / 2);
+
+
+
+// <small>
+$small-font-size: 80% !default;
+
+
+
+// <table> etc.
+$table-border-width: $ui-border-width !default;
+$table-border: $table-border-width solid $ui-color--base !default;
+$table-background-color: #fff !default;
+$table-cell-padding: $fallback--base-rem-space-unit / 2;
+$table-caption-background-color: $ui-color--base !default;
+$table-caption-text-color: #fff !default;
+$table-caption-padding: $table-cell-padding !default;
+
+
+
+// <textarea>
+$textarea-resize: vertical !default;
+
+
+
+// <video>
+$video-background-color: #333;
+
+
+
+// <audio>, <canvas>, <iframe>, <img>, <object>, <progress>, <svg>
+$media-element-vertical-align: middle !default;
+
+
+
+// Selections:
+$selection-text-color: #fff;
+$selection-background-color: lighten($ui-color--base, 30%) !default;
+$selection-text-shadow: none;
+
+
+
+
+
+/* Output class for reference (tmp): */
+.ref {
+    fallback--base-rem-space-unit: $fallback--base-rem-space-unit;
+    fallback--base-rem-1px: $fallback--base-rem-1px;
+    fallback--root-font-size: $fallback--root-font-size;
+    fallback--root-font-size-percent: $fallback--root-font-size-percent;
+}
+
+
+@if ($suppress_styles != true) {
+
+
+// Attempt to organise 'normalisation' by tag.
+// All elements are listed, but elements that are non-visual or obsolete are commented out, as are
+// elements where no styles are applied.
+//
+// KEY:
+// !     = non-visual element
+// --x-- = obselete / deprecated element
+
+
+// Normalise, Sanitise, A bit of Reset, Scut and Inuit, plus some other opinionated styles.
+
+/*-------------------------------------------------------------------------------------------------|
+
+    ROOT STYLES
+
+|-------------------------------------------------------------------------------------------------*/
+
+/*
+    https://timkadlec.com/2012/10/ie10-snap-mode-and-responsive-design/
+    https://css-tricks.com/snippets/javascript/fix-ie-10-on-windows-phone-8-viewport/
+
+    The following rule fixes a problem with IE10 on Windows 8 snap mode, but apparently causes
+    problems on Windows Phone where the only fix seems to be a JS one.
+
+    https://nostrongbeliefs.com/why-i-think-we-shouldnt-use-css-viewport-in-ie10-for-now/
+
+    This reckons it's not worth it and as I can't seem to test the Windows Phone problem (emulator
+    on BrowserStack - not real device which is why I _think) I'm not seeing the problem) I think it
+    may be safest to keep this out for now.
+    - Hmmm affect 8.1 IE11 as well... not good.
+    UPDATE: using hack to only apply the viewport declaration to IE10-11 may work?
+
+    https://timkadlec.com/2013/01/windows-phone-8-and-device-width/
+*/
+
+
+//@at-root {
+//  @-ms-viewport { width: device-width; }
+//}
+
+//@media screen and (-ms-view-state: snapped) {
+//    body {
+//        background: red !important;
+//    }
+//}
+
+
+/*
+    1. Change the default box-sizing (-moz prefix for FF8-28).
+
+    2. `min-height` _should_ be what we want here (as declared in inuit css), except that
+       `min-height` doesn't works as expected; child elements set to `(min-)height: 100%;` won't
+       increase their height - they'll only do that if the parent has `height: 100%;`.
+       This can lead to situations where sometimes elements (and thus their visible decoration) do
+       not stretch to be tall enough for their content (because they're limited to 100% height).
+
+    3. Force scrollbars to always be visible to prevent awkward 'jumps' when
+       navigating between pages that do/do not have enough content to produce
+       scrollbars naturally. (I)
+
+    4. Convert the value to a percentage so as not to override user font settings.
+
+    5. Prevent font size adjustments after orientation changes in IE and iOS. (N)
+*/
+html {
+    -moz-box-sizing: border-box; /* 1 */
+    box-sizing: border-box; /* 1 */
+
+    height: 100%; /* 2 */
+
+    overflow-y: scroll; /* 3 */
+
+    color: $fallback--base-text-color;
+    background-color: $fallback--base-background-color;
+
+    font-size: #{$fallback--root-font-size-percent * 1%}; /* 4 */
+    font-family: $fallback--base-font-family;
+
+    -ms-text-size-adjust: 100%; /* 5 */
+    -webkit-text-size-adjust: 100%; /* 5 */
+
+    // -- -moz-osx-font-smoothing: grayscale; --
+    // -- -webkit-font-smoothing: antialiased; --
+
+    // -- text-rendering: optimizeLegibility; --
+}
+/*
+    Fix font size for IE9,10 as it can't calculate % to 1 decimal place! Grrr.
+*/
+@if ($fallback--root-font-size != 16px) {
+    // @media screen and (min-width:0\0) and (min-resolution:.001dpcm) { .selector { property:value; } }
+    // Internet Explorer 9
+    @media screen and (min-width:0\0) and (min-resolution:.001dpcm) { html { font-size: calc(#{($fallback--root-font-size-percent / 100) * 1rem} + 0.1px); } }
+
+    // _:-ms-lang(x), .selector { property:value\9; }
+    // Internet Explorer 10
+    _:-ms-lang(x), html { font-size: calc(#{($fallback--root-font-size-percent / 100) * 1rem} + 0.1px)\9; }
+}
+
+
+/*
+    'Global' reset.
+
+    1. For Mac Safari 6.1-8.
+*/
+* {
+    -webkit-margin-before: 0; /* 1 */
+    -webkit-margin-after: 0;  /* 1 */
+    -webkit-margin-start: 0;  /* 1 */
+    -webkit-margin-end: 0;    /* 1 */
+    margin:  0;
+
+    padding: 0;
+}
+
+
+/*
+    1. Add box sizing inheritance in all browsers.
+       Supporting FF8+ due to Mustard Cut so including for completeness.
+    2. Remove repeating backgrounds in all browsers.
+*/
+*,
+::before,
+::after {
+    -moz-box-sizing: inherit; /* 1 */
+         box-sizing: inherit; /* 1 */
+
+    background-repeat: no-repeat; /* 2 */
+
+    -webkit-font-smoothing: inherit;
+}
+
+/*
+    1. Add text decoration inheritance in all browsers (opinionated). (s)
+    2. Add vertical alignment inheritance in all browsers (s).
+*/
+::before,
+::after {
+    text-decoration: inherit; /* 1 */
+
+    vertical-align: inherit; /* 2 */
+}
+
+/*
+    Remove the inner border and padding from form elements in older Firefox.
+*/
+#{$namespace}::-moz-focus-inner {
+    margin: 0;
+
+    padding: 0;
+
+    border: 0;
+}
+
+/*
+    1. Ensure that absolutely positioned child elements expand to the full height of the body.
+*/
+body {
+    position: relative; /* 1 */
+
+    min-width: $body-min-width;
+    max-width: $body-max-width;
+
+    min-height: 100%;
+
+    margin: $body-margin;
+
+    padding: $body-padding;
+
+    font-size: ($fallback--base-font-size / $fallback--root-font-size * 1em);
+    line-height: $fallback--base-rem-space-unit;
+}
+
+
+/*-------------------------------------------------------------------------------------------------|
+
+    ALL ELEMENTS
+
+|-------------------------------------------------------------------------------------------------*/
+
+/*
+    a:link a:visited a:hover a:active a:focus
+
+    1. Remove the gray background on active links in IE 10.
+    2. Remove the gaps in underlines in iOS 8+ and Safari 8+.
+    3. Remove the tapping delay from clickable elements .
+*/
+#{$namespace}a[href] {
+    margin-bottom: $anchor-border-bottom-offset;
+
+    padding-bottom: $anchor-padding-bottom;
+
+    border-bottom: $anchor-border-bottom;
+
+    color: $anchor-text-color;
+    background-color: transparent; /* 1 */
+
+    text-decoration: $anchor-text-decoration;
+    -webkit-text-decoration-skip: objects; /* 2 */
+
+    -ms-touch-action: manipulation; /* 3 (IE10) */
+    touch-action: manipulation; /* 3 */
+
+    &:hover,
+    &:active {
+        border-bottom: $anchor-border-bottom--alt;
+
+        @if $anchor-text-color--alt != $anchor-text-color {
+            color: $anchor-text-color--alt;
+        }
+    }
+
+    @if $anchor-focus-shadow != false {
+        &:focus {
+            outline: 0;
+            box-shadow: 0 0 0 $anchor-focus-shadow-width rgba($anchor-text-color, 0.5);
+        }
+    }
+
+    /*
+    @if $anchor-focus-outline-width != false {
+        outline: none;
+
+        &:focus {
+            outline-width: $anchor-focus-outline-width;
+            outline-style: $anchor-focus-outline-style;
+            outline-color: $anchor-focus-outline-color;
+            outline-offset: $anchor-focus-outline-offset;
+        }
+    }
+
+    @if $anchor-focus-background-color != false {
+        outline: none;
+
+        &:focus {
+            color: $anchor-focus-text-color;
+            background-color: $anchor-focus-background-color;
+        }
+    }*/
+}
+
+    @if $anchor-add-external-link-indicator == true {
+        #{$namespace}a[href][rel="external"]::after {
+            display: inline;
+
+            content: "";
+
+            padding-left: 1.25em;
+
+            background: linear-gradient(45deg, transparent 50%, currentColor 50%);
+
+            font-size: 0.4em;
+            line-height: 0;
+
+            vertical-align: super;
+        }
+        
+        #{$namespace}a[href][rel="external"]:hover::after {
+            background: linear-gradient(45deg, transparent 50%, currentColor 50%);
+        }
+    }
+
+/*
+    1. Remove the bottom border in Firefox 39-.
+    2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+*/
+#{$namespace}abbr {
+    cursor: help;
+
+    &[title] {
+        border-bottom: none; /* 1 */
+
+        text-decoration: underline; /* 2 */
+
+        text-decoration: underline dotted; /* 2 */
+    }
+}
+
+//--acronym {}--
+
+#{$namespace}address {
+    margin-bottom: $fallback--base-rem-space-unit;
+}
+
+//--applet {}--
+//!area {}
+
+#{$namespace}article {
+    display: block;
+
+    margin-bottom: $fallback--base-rem-space-unit;
+}
+
+#{$namespace}aside {
+    display: block;
+
+    margin-bottom: $fallback--base-rem-space-unit;
+}
+
+/*
+    1. Add the correct display in IE 9-.
+    2. Chrome 44-, iOS 8+, Safari 9+.
+*/
+#{$namespace}audio {
+    display: inline-block; /* 1 */
+
+    vertical-align: $media-element-vertical-align;
+
+    &:not([controls]) {
+        display: none; /* 2 */
+        height: 0;
+    }
+}
+
+
+/*
+    1: Add the correct font weight in Chrome, Edge, and Safari.
+    2. Prevent increase in line-height in IE.
+*/
+#{$namespace}b {
+    font-weight: bolder; /* 1 */
+    line-height: 1; //normal /* 2 */
+}
+
+//base {}
+//--basefont {}--
+//bdi {}
+//bdo {}
+//--bgsound {}
+//--big {}--
+//--blink {}--
+
+#{$namespace}blockquote {
+    margin-bottom: $fallback--base-rem-space-unit;
+    margin-left: $fallback--base-rem-space-unit;
+
+    font-style: italic;
+    /*
+        @TODO - set up vars and styles for the most common quote styles.
+        I.e. left-border, and enclosing quotes.
+    */
+}
+
+//^body {}
+//br {}
+
+#{$namespace}button {
+    @include button;
+}
+
+// _:-o-prefocus, :root .selector { property:value; }
+// Opera 9.5-12, Opera Mini 7.x (Opera 9.80)
+_:-o-prefocus, :root #{$namespace}button {
+    line-height: $fallback--base-rem-space-unit !important;
+}
+
+/*
+    FF15-
+
+    Remove the inner border and padding in Firefox and fix height.
+
+    Early FF doesn't correctly apply the box sizing to inputs (buttons?)
+    Adding margin to -moz-focus-inner helps to force the correct height.
+    It doesn't have any effect in newer FF.
+
+    NOTE: these adjustments don't seem very robust / dependent on font-family and font-size.
+*/
+#{$namespace}button::-moz-focus-inner {
+    margin: -0.0625em 0;
+}
+
+/*
+    Reset for FF16+
+*/
+_:-moz-meter-optimum, :root button::-moz-focus-inner {margin: 0; }
+
+
+/*
+    1. Add the correct display in IE 9-.
+*/
+#{$namespace}canvas {
+    display: inline-block;  /* 1 */
+
+    vertical-align: $media-element-vertical-align;
+}
+
+#{$namespace}caption {
+    display: table-caption;
+
+    padding-top: $table-caption-padding;
+    padding-right: $table-caption-padding;
+    padding-bottom: $table-caption-padding;
+    padding-left: $table-caption-padding;
+
+    color: $table-caption-text-color;
+    background-color: $table-caption-background-color;
+
+    font-weight: bold;
+}
+
+//--center {}
+// cite {}
+
+/*
+    1. Correct the inheritance and scaling of font size in all browsers. (N)
+    2. Address odd `em`-unit font size rendering in all browsers. (N)
+    3. Prevent the element increasing the line-height of the parent.
+*/
+#{$namespace}code {
+    font-family: $monospace-font-family, monospace; /* 1 */
+    font-size: 1em; /* 2 */
+    line-height: 0; /* 3 */
+}
+
+//!col {}
+//!colgroup {}
+//command {}
+//content {}
+//data {}
+//datalist {}
+
+#{$namespace}dd {
+    margin-left:  $fallback--base-rem-space-unit * 1.5;
+}
+
+//del {}
+
+#{$namespace}details {
+    display: block; /* N: IE 10/11 */
+}
+
+/*
+    Address styling not present in Safari and Chrome. (N)
+*/
+#{$namespace}dfn {
+    font-style: italic;
+}
+
+//dialog {}
+//--dir {}--
+//div {}
+
+/*
+    1. Either of these will make lists behave properly next to floated items.
+       (https://paulbakaus.com/tutorials/css/block-formatting-contexts-and-lists)
+       a. This causes problems with some decoration. E.g. if the last element in the list is a link,
+           bottom borders get cropped, so using b instead.
+*/
+#{$namespace}dl {
+    //overflow: hidden; /* 1a */
+
+    margin-bottom: $fallback--base-rem-space-unit;
+
+    display: table; /* 1b */
+}
+
+#{$namespace}dt {
+    font-weight: bold;
+}
+
+//element {}
+//em {}
+/*
+    1. De-italicize nested ems
+*/
+#{$namespace}em em {
+    font-style: normal; /* 1 */
+}
+
+//embed {}
+
+/*
+    Fieldsets and legends can be difficult to style so I'm keeping their appearance basically the
+    same as the default - just a bit of theming.
+    More info here: https://thatemil.com/blog/2015/01/03/reset-your-fieldset/
+*/
+#{$namespace}fieldset {
+    margin-bottom: $fallback--base-rem-space-unit;
+
+    min-width: 0;
+
+    @include bordered($fieldset-padding, $fieldset-border-width);
+}
+
+    #{$namespace}fieldset fieldset {
+        margin: 0;
+
+        padding: 0;
+
+        border-width: 0;
+    }
+        #{$namespace}fieldset fieldset::after {
+            display: none;
+        }
+
+#{$namespace}figcaption {
+    display: block;
+}
+
+#{$namespace}figure {
+    display: block;
+
+    margin-bottom: $fallback--base-rem-space-unit;
+}
+
+//--font {}--
+
+#{$namespace}footer {
+    display: block;
+
+    margin-bottom: $fallback--base-rem-space-unit;
+}
+
+#{$namespace}form {
+    margin-bottom: $fallback--base-rem-space-unit;
+}
+
+//--frame {}--
+//--frameset {}--
+//!head {}
+
+#{$namespace}header {
+    display: block;
+
+    margin-bottom: $fallback--base-rem-space-unit;
+}
+
+#{$namespace}hgroup {
+    display: block;
+}
+
+#{$namespace}h1 {
+    margin-bottom: $fallback--base-rem-space-unit;
+
+    font-size: $h1-font-size;
+    line-height: $h1-height;
+}
+
+#{$namespace}h2 {
+    margin-bottom: $fallback--base-rem-space-unit;
+
+    font-size: $h2-font-size;
+    line-height: $h2-height;
+}
+
+#{$namespace}h3 {
+    margin-bottom: $fallback--base-rem-space-unit;
+
+    font-size: $h3-font-size;
+    line-height: $h3-height;
+}
+
+#{$namespace}h4 {
+    margin-bottom: $fallback--base-rem-space-unit;
+
+    font-size: $h4-font-size;
+    line-height: $h4-height;
+}
+
+#{$namespace}h5 {
+    margin-bottom: $fallback--base-rem-space-unit;
+
+    font-size: $h5-font-size;
+    line-height: $h5-height;
+}
+
+#{$namespace}h6 {
+    margin-bottom: $fallback--base-rem-space-unit;
+
+    font-size: $h6-font-size;
+    line-height: $h6-height;
+}
+
+/*
+    1. Show the overflow in Edge and IE. (N)
+*/
+#{$namespace}hr {
+    height: 0;
+
+    overflow: visible; /* 1 */
+
+    margin-top: $hr-margin-top;
+    margin-bottom: $hr-margin-bottom;
+
+    border-top: none;
+    border-right: none;
+    border-bottom: $hr-border;
+    border-left: none;
+}
+
+//html {} (declared at at the start)
+//i {}
+
+#{$namespace}iframe {
+    vertical-align: $media-element-vertical-align;
+}
+
+//--image {}--
+
+/*
+    1. Fluid images for responsive purposes.
+    2. Remove the border on images inside links in IE 10-.
+    3. Offset `alt` text from surrounding copy.
+    4. Setting `vertical-align` removes the whitespace that appears under `img` elements when they
+       are dropped into a page as-is. Safer alternative to using `display: block;`.
+    5. Google Maps breaks if `max-width: 100%` acts upon it; use their selector to remove the
+       effects.
+    6. If a `width` and/or `height` attribute have been explicitly defined, let's not make the
+       image fluid.
+*/
+#{$namespace}img {
+    max-width: 100%; /* 1 */
+
+    border-style: none; /* 2  */
+
+    font-style: italic; /* 3 */
+
+    vertical-align: $media-element-vertical-align; /* 4 */
+
+    .gm-style &, /* 5 */
+    &[width], /* 6 */
+    &[height] {  /* 6 */
+        max-width: none;
+    }
+}
+
+/*
+    Special treatment for images inside links.
+*/
+#{$namespace}a img {
+    margin-bottom: $anchor-border-bottom-offset;
+
+    border-width: inherit;
+    border-style: inherit;
+}
+
+/*
+    1. Allow inputs to contract to avoid braking containers:
+    2. Opera Mini needs this.
+    3. Remove the tapping delay from clickable elements (S)
+    4. Keep adjacent elements in the middle.
+    5. This helps prevent default 'normal' from increasing element height in webkit.
+*/
+#{$namespace}input {
+    max-width: 100%; /* 1 */
+
+    padding-top: #{$fallback--base-rem-space-unit / 8}; /* 2 */
+    padding-top: calc(#{$fallback--base-rem-space-unit / 8} - #{$input-border-width});
+    padding-right: $input-h-padding;
+    padding-bottom: #{$fallback--base-rem-space-unit / 8}; /* 2 */
+    padding-bottom: calc(#{$fallback--base-rem-space-unit / 8} - #{$input-border-width});
+    padding-left: $input-h-padding;
+
+    border-width: $input-border-width;
+    border-style: $input-border-style;
+    border-color: $input-border-color;
+    border-radius: $input-border-radius;
+
+    color: $input-text-color;
+    background-color: $input-background-color;
+
+    font-size: inherit; // S
+    font-weight: inherit;
+    font-style: inherit;
+    font-family: inherit;
+
+    -ms-touch-action: manipulation; /* 3 (IE10) */
+    touch-action: manipulation; /* 3 */
+
+    vertical-align: middle; /* 4 */
+    line-height: inherit; /* 5 */
+
+    min-height: $input-min-height;
+    margin: ($fallback--base-rem-space-unit / 8) 0;
+}
+
+@if $input-focus-shadow != false {
+    #{$namespace}input:not([type]):focus,
+    #{$namespace}[type="color"]:focus,
+    #{$namespace}[type="date"]:focus,
+    #{$namespace}[type="datetime"]:focus,
+    #{$namespace}[type="datetime-local"]:focus,
+    #{$namespace}[type="file"]:focus,
+    #{$namespace}[type="month"]:focus,
+    #{$namespace}[type="number"]:focus,
+    #{$namespace}[type="password"]:focus,
+    #{$namespace}[type="search"]:focus,
+    #{$namespace}[type="range"]:focus,
+    #{$namespace}[type="tel"]:focus,
+    #{$namespace}[type="text"]:focus,
+    #{$namespace}[type="time"]:focus,
+    #{$namespace}[type="url"]:focus,
+    #{$namespace}[type="week"]:focus {
+        box-shadow: 0 0 0 $input-focus-shadow-width rgba($ui-color--base, 0.5);
+
+        outline: 0;
+    }
+
+    /*
+        Without custom styling (appearance: none), Safari doesn't apply the shadow, so breaks
+        accessibility ...
+    */
+    #{$namespace}[type="checkbox"]:focus,
+    #{$namespace}[type="radio"]:focus {
+        box-shadow: 0 0 0 $input-focus-shadow-width rgba($ui-color--base, 0.5);
+
+        outline: 0;
+    }
+
+    /*
+        ... so reinstating the outline:
+    */
+    // _::-webkit-full-page-media, _:future, :root .selector { property:value; }
+    // Safari 6.2,7.1+
+
+    _::-webkit-full-page-media, _:future, :root #{$namespace}[type="checkbox"]:focus,
+    _::-webkit-full-page-media, _:future, :root #{$namespace}[type="radio"]:focus {
+        outline: auto 5px -webkit-focus-ring-color;
+    }
+}
+
+/*@if $input-focus-outline-width != false {
+    #{$namespace}input:not([type]):focus,
+    #{$namespace}[type="color"]:focus,
+    #{$namespace}[type="date"]:focus,
+    #{$namespace}[type="datetime"]:focus,
+    #{$namespace}[type="datetime-local"]:focus,
+    #{$namespace}[type="file"]:focus,
+    #{$namespace}[type="month"]:focus,
+    #{$namespace}[type="number"]:focus,
+    #{$namespace}[type="password"]:focus,
+    #{$namespace}[type="search"]:focus,
+    #{$namespace}[type="tel"]:focus,
+    #{$namespace}[type="text"]:focus,
+    #{$namespace}[type="time"]:focus,
+    #{$namespace}[type="url"]:focus,
+    #{$namespace}[type="week"]:focus {
+        outline-width: $input-focus-outline-width;
+        outline-style: $input-focus-outline-style;
+        outline-color: $input-focus-outline-color;
+        outline-offset: $input-focus-outline-offset;
+    }
+
+    #{$namespace}[type="checkbox"]:focus,
+    #{$namespace}[type="radio"]:focus {
+        outline-width: $input-focus-outline-width;
+        outline-style: $input-focus-outline-style;
+        outline-color: $input-focus-outline-color;
+        outline-offset: $input-focus-outline-offset;
+    }
+
+    _::-webkit-full-page-media, _:future, :root #{$namespace}[type="checkbox"]:focus,
+    _::-webkit-full-page-media, _:future, :root #{$namespace}[type="radio"]:focus {
+        border: $input-focus-indicator-size solid $input-focus-indicator-color;
+    }
+}*/
+
+/*
+    IE9 adds the border and background:
+*/
+#{$namespace}[type="checkbox"],
+#{$namespace}[type="radio"] {
+    border: 0;
+
+    background: transparent;
+
+    cursor: pointer;
+}
+
+#{$namespace}[type="button"],
+#{$namespace}[type="reset"],
+#{$namespace}[type="submit"] {
+    @include button;
+    // Maybe include fixes for these elements here instead of in the mixin?
+}
+
+/*
+    IE10 makes the line-height massive with calc, but doesn't appear to need it anyway.
+*/
+#{$namespace}[type="button"],
+#{$namespace}[type="reset"],
+#{$namespace}[type="submit"] {
+    line-height:1\9;
+}
+
+/*
+    IE and Edge behave differently (both to other browsers and each other) and so min-height and
+    line-height settings don't seem consistent.
+
+    1. On smaller devices the width of these inputs can force horizontal scrolling.
+       Max-width doesn't work to solve this, but may be needed to restrict width on larger screens.
+    2. Make sure button corners aren't visible.
+*/
+#{$namespace}[type="file"] {
+    width: 100%; /* 1 */
+    @if $input-file-max-width != false {
+        max-width: $input-file-max-width;
+    }
+
+    min-height: $input-min-height;
+
+    overflow: hidden; /* 2 */
+
+    margin: ($fallback--base-rem-space-unit / 8) 0;
+
+    padding: 0;
+
+    cursor: pointer;
+}
+
+/*
+    Fix button height in Firefox.
+*/
+// _:-moz-any-link, :root .selector { property:value; }
+// Firefox (any)
+_:-moz-any-link, :root #{$namespace}[type="file"] {
+    height: $input-min-height;
+}
+
+// This helps avoid white 'bleed-through' between containing element and the pseudo-elements in
+// _:-ms-input-placeholder, :root .selector { property:value; }
+// Internet Explorer 10-11
+_:-ms-input-placeholder, :root #{$namespace}[type="file"] {
+    background-color: $ui-color--base;
+}
+
+// @media screen and (min-width:0\0) and (min-resolution:+72dpi) { .selector { property:value; } }
+// Internet Explorer 9-11
+@media screen and (min-width:0\0) and (min-resolution:+72dpi) {
+    #{$namespace}[type="file"] {
+        padding-left: $input-h-padding;
+    }
+}
+
+
+/*
+    iOS turns these inputs into selects which are a touch too high.
+*/
+#{$namespace}[type="date"],
+#{$namespace}[type="datetime-local"],
+#{$namespace}[type="month"],
+#{$namespace}[type="time"],
+#{$namespace}[type="week"] {
+    height: $fallback--base-rem-space-unit + ($fallback--base-rem-space-unit / 6);
+}
+
+/*
+    Remove extra padding in Chrome
+*/
+#{$namespace}[type="date"]::-webkit-datetime-edit-fields-wrapper,
+#{$namespace}[type="datetime-local"]::-webkit-datetime-edit-fields-wrapper,
+#{$namespace}[type="month"]::-webkit-datetime-edit-fields-wrapper,
+#{$namespace}[type="time"]::-webkit-datetime-edit-fields-wrapper,
+#{$namespace}[type="week"]::-webkit-datetime-edit-fields-wrapper {
+    padding: 0;
+}
+
+/*
+    Tidy spin buttons and apply cursor:
+*/
+#{$namespace}[type="date"]::-webkit-inner-spin-button,
+#{$namespace}[type="datetime-local"]::-webkit-inner-spin-button,
+#{$namespace}[type="month"]::-webkit-inner-spin-button,
+#{$namespace}[type="number"]::-webkit-inner-spin-button,
+#{$namespace}[type="time"]::-webkit-inner-spin-button,
+#{$namespace}[type="week"]::-webkit-inner-spin-button {
+    height: auto;
+    cursor: pointer;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+#{$namespace}[type="search"] {
+    -webkit-appearance: textfield; /* 1 */
+    outline-offset: -2px; /* 2 */
+}
+
+/**
+ * N: Remove the inner padding and cancel buttons in Chrome on OS X and
+ * Safari on OS X.
+ */
+
+#{$namespace}[type="search"]::-webkit-search-cancel-button,
+#{$namespace}[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+/*
+    Correct the text style on placeholders in Chrome, Edge, and Safari.
+*/
+#{$namespace}::-webkit-input-placeholder {
+    color: inherit;
+    opacity: .54;
+}
+
+//ins {}
+
+//--isindex {}--
+
+/*
+    1. Correct the inheritance and scaling of font size in all browsers. (N)
+    2. Address odd `em`-unit font size rendering in all browsers. (N)
+    3. Prevent the element increasing the line-height of the parent.
+*/
+#{$namespace}kbd {
+    font-family: $monospace-font-family, monospace; /* 1 */
+    font-size: 1em; /* 2 */
+    line-height: 0; /* 3 */
+}
+
+//keygen {}
+/*
+    1. Remove the tapping delay from clickable elements.
+*/
+#{$namespace}label {
+    display: inline-block;
+
+    padding-top: $fallback--base-rem-space-unit / 4;
+    padding-bottom: $fallback--base-rem-space-unit / 4;
+
+    font-weight: bold;
+
+    vertical-align: middle;
+
+    cursor: pointer;
+
+    -ms-touch-action: manipulation; /* 1 (IE10) */
+    touch-action: manipulation; /* 1 */
+}
+
+/*
+    Fieldsets and legends can be difficult to style so I'm keep their appearance basically the same
+    as the default - just a bit of theming.
+    More info here: https://thatemil.com/blog/2015/01/03/reset-your-fieldset/
+*/
+/*
+    1. Correct the text wrapping in Edge and IE.
+    2. Offset border width.
+    3. Correct the color inheritance from `fieldset` elements in IE.
+
+    Note $fieldset-border-width used deliberately (not $legend-border-width)- this is to account for
+    the fact that fieldset top border width is ignored if there's a legend so the spacing is wrong.
+*/
+#{$namespace}legend {
+    display: table; /* 1 */
+
+    max-width: 100%; /* 1 */
+
+    margin-top: -$legend-border-width; /* 2 */
+    margin-bottom: $fieldset-border-width; /* 2 */
+
+    padding: 0 $legend-h-padding;
+
+    border-width: $legend-border-width;
+
+    color: inherit; /* 3 */
+
+    font-weight: bold;
+    white-space: normal; /* 1 */
+
+
+    /*  */
+}
+
+
+#{$namespace}li {
+    margin-left:  $fallback--base-rem-space-unit * 1.5;
+}
+
+    #{$namespace}li ul,
+    #{$namespace}li ol {
+        margin-bottom: 0;
+    }
+
+//!link {}
+//--listing {}--
+/*
+    1. Correct `block` display not defined for `main` in IE.
+*/
+main {
+    display: block; /* 1 */
+
+    @if $max-main-line-length > 0 {
+        max-width: $max-main-line-length;
+
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
+//!map {}
+
+/*
+    Address styling not present in IE 8/9.
+*/
+#{$namespace}mark {
+  background: #ff0;
+  color: #000;
+}
+
+//--marquee {}--
+//menu {}
+//menuitem {}
+//!meta {}
+//meter {}
+//--multicol {}--
+
+#{$namespace}nav {
+    display: block;
+}
+
+//--nobr {}--
+//--noembed {}--
+//noframes {}
+//noscript {}
+
+#{$namespace}object {
+    vertical-align: $media-element-vertical-align;
+}
+
+/*
+    1. Either of these will make lists behave properly next to floated items.
+       (https://paulbakaus.com/tutorials/css/block-formatting-contexts-and-lists)
+       a. This causes problems with some decoration. E.g. if the last element in the list is a link,
+          bottom borders get cropped, so using b instead.
+       b. `flow-root` is the better option but support is low, so using table and flex fallbacks
+          as well.
+       Hmmm -moz-box / flex is causing numbering to mess up (always 0) on FF8-50.
+    2. This is the only thing that works in early FF. However, width is content-width, not available
+       width so any 'boxy' decoration on the list might look weird.
+    3. This does a pretty good job of extending coverage:
+       Chrome 29+, Edge 14+ (unable to test earlier)
+    4. Extend support to IE10-11
+*/
+#{$namespace}ol {
+    //overflow: hidden; /* 1a */
+
+    margin-bottom: $fallback--base-rem-space-unit;
+
+    display: table; /* 1b, 2 */
+    //display: -ms-grid; /* 1b */
+    //display: grid; /* 1b */
+
+    display: -webkit-box; /* 1b, 3 */
+    -webkit-box-orient: vertical; /* 1b, 3 */
+
+    display: -ms-flexbox; /* 1b, 4 */
+    -ms-flex-direction: column; /* 1b, 4 */
+
+    //display: -webkit-box; /* 1b */
+    //display: -webkit-flex; /* 1b */
+    //display: -moz-box; /* 1b */
+    //display: -ms-flexbox; /* 1b */
+    //display: flex; /* 1b */
+
+    //-webkit-box-orient: vertical; /* 1b */
+    //-webkit-box-direction: normal; /* 1b */
+    //-webkit-flex-direction: column; /* 1b */
+    //   -moz-box-orient: vertical; /* 1b */
+    //   -moz-box-direction: normal; /* 1b */
+    //    -ms-flex-direction: column; /* 1b */
+    //        flex-direction: column; /* 1b */
+
+    display: flow-root;  /* 1b */
+}
+
+/*
+    1. The default cannot safely be changed in Chrome and Safari on OS X. ?? Not sure what this means now.
+*/
+#{$namespace}optgroup {
+    color: $input-text-color;
+    background-color: $input-background-color;
+
+    font-weight: bold; /* 1 */
+    font-style: inherit;
+    font-size: inherit;
+    font-family: inherit;
+}
+
+/*
+    1. This v-centers the text in FF and Chrome. Edge doesn't apply this but looks ok regardless.
+       Just IE9-11 to sort out?
+*/
+#{$namespace}option {
+    display: flex; /* 1 */
+    align-items: center; /* 1 */
+
+    min-height: $fallback--base-rem-space-unit;
+
+    padding-right: $input-h-padding;
+    padding-left: $input-h-padding;
+
+    cursor: pointer;
+
+
+    &:hover {
+        background-color: $input-background-color--state-1;
+        color: $input-text-color;
+    }
+
+
+}
+
+
+//output {}
+
+#{$namespace}p {
+    margin-bottom: $fallback--base-rem-space-unit;
+}
+
+//!param {}
+//picture {}
+//--plaintext {}--
+
+/*
+    Note: code is the most probable use for a `<pre>` tag. Other uses may occur (e.g. poem) but
+    these could be adjusted with a class. Could maybe make this default configurable but leave as it
+    is for now as it's likely that a poem would need a complete re-style (e.g. fonts etc.).
+
+    1. Keep scrollbar visible to maintain vertical rhythm.
+       Most browsers have a scrollbar height of 17px (calculated in settings section), however Edge
+       appears to have a scrollbar height of 12px, so we override it with a hack.
+    2. Correct the odd `em` font sizing in all browsers.
+    3. Correct the inheritance and scaling of font size in all browsers.
+*/
+#{$namespace}pre {
+    overflow-x: scroll; /* 1 */
+    overflow-y: auto; /* 1 */
+
+    margin-bottom: $pre-margin-bottom; /* 1 */
+
+    background-color: $pre-background-color; /*1 */
+
+    font-size: 1em; /* 2 */
+    font-family: $monospace-font-family, monospace; /* 3 */
+}
+@supports (-ms-ime-align:auto) {
+    #{$namespace}pre {
+        margin-bottom: $pre-margin-bottom--edge; /* 1 */
+    }
+}
+
+    /*
+        1. Revert zeroed line-height (see) `code`.
+    */
+    #{$namespace}pre code {
+        display: inline-block;
+
+        padding: $pre-code-padding;
+
+        line-height: $fallback--base-rem-space-unit; /* 1 */
+    }
+
+
+/*
+    1. Add the correct vertical alignment in Chrome, Firefox, and Opera.
+    2. Internet Explorer 11-, Windows Phone 8.1+
+*/
+#{$namespace}progress {
+    display: inline-block; /* 1 */
+
+    vertical-align: $media-element-vertical-align; /* 2 */
+}
+
+//q {}
+//rp {}
+//rt {}
+//rtc {}
+//ruby {}
+//s {}
+
+/*
+    1. Address odd `em`-unit font size rendering in all browsers.
+    2. Correct the inheritance and scaling of font size in all browsers.
+    3. Prevent the element increasing the line-height of the parent.
+*/
+#{$namespace}samp {
+    font-size: 1em; /* 1 */
+    font-family: $monospace-font-family, monospace; /* 2 */
+    line-height: 0; /* 3 */
+}
+
+//!script {}
+
+#{$namespace}section {
+    display: block;
+
+    margin-bottom: $fallback--base-rem-space-unit;
+}
+
+
+// N1: Address inconsistent `text-transform` inheritance for `select`.
+// All other form control elements do not inherit `text-transform` values.
+//  Correct `select` style inheritance in Firefox.
+/*
+    1. Using height because min-height doesn't change the expand button height in FF.
+    2. For FF.
+    3. Remove the tapping delay from clickable elements.
+*/
+#{$namespace}select {
+    height: $fallback--base-rem-space-unit + ($fallback--base-rem-space-unit / 4); /* 1 */
+
+    margin: ($fallback--base-rem-space-unit / 8) 0;
+
+    border-width: $input-border-width;
+    border-style: $input-border-style;
+    border-color: $input-border-color;
+    border-radius: $input-border-radius;
+
+    color: $input-text-color;
+    background-color: $input-background-color;
+
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: $fallback--base-rem-space-unit;
+
+    vertical-align: top; /* 2 */
+
+    text-transform: none;
+
+    cursor: pointer;
+
+    -ms-touch-action: manipulation; /* 3 (IE10) */
+    touch-action: manipulation; /* 3 */
+
+    &::-ms-expand {
+        background-color: transparent;
+        color: #000;
+        border: 0;
+        padding-left: $input-h-padding;
+        padding-right: $input-h-padding;
+    }
+
+    &::-ms-value {
+        color: currentColor;
+    }
+}
+
+/*
+    Make the arrow indicator the same across browsers.
+
+    1. Give webkit extra padding.
+       (not sure this is the best way but it seems FF and IE add the option padding, but webkit
+       doesn't so this basically works)
+    2. Note - FF needs any # (e.g. fill colors) to be %23 encoded.
+    3. FF48- does not support background-position-x/y.
+    4. FF34- does not remove the arrow but also does not show the background image until FF29-, at
+       which point both are shown. However, removing the right-padding solves this (see below).
+*/
+#{$namespace}select:not([multiple]) {
+    padding-left: $input-h-padding / 2;
+    -webkit-padding-start: $input-h-padding; /* 1 */
+    padding-right: $input-h-padding * 4;
+
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4.95 10" fill="%23444"><polygon points="1.41 4.67 2.48 3.18 3.54 4.67 1.41 4.67"/><polygon points="3.54 5.33 2.48 6.82 1.41 5.33 3.54 5.33"/></svg>'); /* 2 */
+    //background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNC45NSAxMCI+PHBvbHlnb24gZmlsbD0iIzQ0NCIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz48cG9seWdvbiBmaWxsPSIjNDQ0IiBwb2ludHM9IjMuNTQgNS4zMyAyLjQ4IDYuODIgMS40MSA1LjMzIDMuNTQgNS4zMyIvPjwvc3ZnPg==);
+    background-repeat: no-repeat;
+    background-position: right 0.3em bottom 0; /* 3 */
+
+    -moz-appearance: none; /* 4 */
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/*
+    We need to remove right padding before FF34, but there isn't a hack for that.
+    So instead, remove for all FireFox ...
+*/
+_:-moz-tree-row(hover), #{$namespace}select:not([multiple]) {
+    padding-right: 0;
+}
+/*
+    ... and reinstate for FF35+
+*/
+// @supports (-moz-appearance:none) and (mask-type:alpha) { .selector { property:value; } }
+// Firefox 35+
+@supports (-moz-appearance:none) and (mask-type:alpha) {
+    #{$namespace}select:not([multiple]) {
+        padding-right: $input-h-padding * 4;
+    }
+}
+
+/*
+    Undo custom arrow indicator for IE9-11:
+*/
+// @media screen and (min-width:0\0) and (min-resolution:+72dpi) { .selector { property:value; } }
+// Internet Explorer 9-11
+@media screen and (min-width:0\0) and (min-resolution:+72dpi) {
+        #{$namespace}select:not([multiple]) {
+        background-image: none\0;
+        padding-right: 0\0;
+    }
+}
+
+@if $input-focus-shadow != false {
+    #{$namespace}select:focus {
+        box-shadow: 0 0 0 $input-focus-shadow-width rgba($ui-color--base, 0.5);
+
+        outline: 0;
+    }
+}
+
+/*@if $input-focus-outline-width != false {
+    #{$namespace}select:focus {
+        outline-width: $input-focus-outline-width;
+        outline-style: $input-focus-outline-style;
+        outline-color: $input-focus-outline-color;
+        outline-offset: $input-focus-outline-offset;
+    }
+}*/
+
+/*
+    Note that Opera 25- and Safari(all - 11 latest at time of writing) treat select [size]s of
+    less than 4 as 4.
+*/
+#{$namespace}select[multiple] {
+    height: auto;
+
+    margin-top: ($fallback--base-rem-space-unit / 8);
+    margin-right: 0;
+    margin-bottom: -moz-calc(#{($fallback--base-rem-space-unit / 8) * 3} - #{$input-border-width * 2});
+    margin-bottom: calc(#{($fallback--base-rem-space-unit / 8) * 3} - #{$input-border-width * 2});
+    margin-left: 0;
+}
+
+
+/*
+    Apply padding to fudge height in Safari (we need to apply to iOS)...
+*/
+// _::-webkit-full-page-media, _:future, :root .selector { property:value; }
+// Safari 6.2,7.1+
+_::-webkit-full-page-media, _:future, :root select[multiple] {
+    margin-bottom: 0;
+
+    padding: ($fallback--base-rem-space-unit / 12);
+}
+
+/*
+    ... but reset for Mac Safari .
+*/
+// _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root .selector { property:value; }
+// Safari 6.2,7.1+ (Not iOS)
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[multiple] {
+    margin-bottom: calc(#{($fallback--base-rem-space-unit / 8) * 3} - #{$input-border-width * 2});
+
+    padding: 0;
+}
+
+
+/*
+    Various browsers do not allow <option>s height to be specified.
+    The ones I've found are:
+
+    * IE11-
+    * Chrome 38-
+    * Opera 24-
+
+    MAYBE NOT FOR PRODUCTION?
+    The following techniques are messy and break if the font-family or font size changes.
+    Maybe move them to the test CSS only so I can see if OTHER elements are falling off the grid.
+*/
+/* Individual height fixes moved to '_start-experimental.scss' */
+
+
+//shadow {}
+
+/*
+    1. Apply consistent small font size in all browsers.
+    2. Prevent the element increasing the line-height of the parent.
+*/
+#{$namespace}small {
+    font-size: $small-font-size; /* 1 */
+    line-height: normal; /* 2 */
+}
+
+//!source {}
+//--spacer {}--
+//span {}
+//--strike {}--
+
+/*
+    1. Add the correct font weight in Chrome, Edge, and Safari.
+    2. Prevent increase in line-height.
+*/
+#{$namespace}strong {
+    font-weight: bolder; /* 1 */
+    line-height: normal; /* 2 */
+}
+
+//!style {}
+
+/*
+    Prevent `sub` affecting `line-height` in all browsers.
+*/
+#{$namespace}sub {
+    position: relative;
+    bottom: -0.25em;
+
+    font-size: 75%;
+    line-height: 0;
+
+    vertical-align: baseline;
+}
+
+/*
+    1. Correct display in unsupported browsers (https://caniuse.com/#feat=details).
+    2. Remove the tapping delay from clickable elements.
+*/
+#{$namespace}summary {
+    display: block; /* 1 */
+
+    -ms-touch-action: manipulation; /* 2 (IE10) */
+    touch-action: manipulation; /* 2 */
+
+    cursor: pointer;
+
+    &:focus {
+        outline: 2px solid rgba($ui-color--base, 0.6);
+        outline-offset: 2px;
+    }
+}
+
+    /* Hide the details marker as we're supplying our own. */
+    #{$namespace}summary::-webkit-details-marker {
+        display: none;
+    }
+
+    #{$namespace}details > summary::before {
+        display: inline-block;
+
+        content: '\25BA';
+
+        margin-right: 0.5em;
+
+        font-size: 0.75em;
+        font-family: serif;
+
+        vertical-align: top;
+
+        transition: transform 0.2s ease;
+    }
+
+    #{$namespace}details[open] > summary::before {
+        transform: rotate(90deg);
+    }
+
+
+/*
+    Prevent `sup` affecting `line-height` in all browsers.
+*/
+#{$namespace}sup {
+    position: relative;
+    top: -0.5em;
+
+    font-size: 75%;
+    line-height: 0;
+
+    vertical-align: baseline;
+}
+
+/*
+    1. Change the fill color to match the text color in all browsers.
+       (needs more testing)
+*/
+#{$namespace}svg {
+    vertical-align: $media-element-vertical-align;
+
+    fill: currentColor; /* 1 */
+}
+
+/*
+    1. Correct overflow not hidden in IE 9-11.
+*/
+#{$namespace}svg:not(:root) {
+  overflow: hidden; /* 1 */
+}
+
+/*
+    1. Opera Mini (no calc support).
+    2. Calc to deduct any border-width.
+*/
+#{$namespace}table {
+    width: 100%;
+    /* @TODO - possibly make this configurable to be 'natural' width but centered instead. (http://alistapart.com/article/web-typography-tables) */
+
+    border-collapse: collapse;
+
+    margin-bottom: $fallback--base-rem-space-unit; /* 1 */
+    margin-bottom: calc(#{$fallback--base-rem-space-unit} - #{$table-border-width}); /* 2 */
+
+    border: $table-border;
+
+    background-color: $table-background-color;
+
+    border-spacing: 0;
+}
+
+//tbody {}
+/*
+    1. Opera Mini (no calc support).
+    2. Calc to deduct any border-width.
+*/
+#{$namespace}td {
+    padding-top: $table-cell-padding;
+    padding-right: $table-cell-padding;
+    padding-bottom: $table-cell-padding; /* 1 */
+    padding-bottom: calc(#{$table-cell-padding} - #{$table-border-width}); /* 2 */
+    padding-left: $table-cell-padding;
+
+    border: $table-border;
+}
+
+/*
+    1. Hide `template` in unsupported browsers (https://caniuse.com/#feat=template)
+*/
+#{$namespace}template {
+    display: none; /* 1 */
+}
+
+/*
+    1. For IE, mainly.
+    2. Edge 12+, Internet Explorer 11-. Without this it acts like overflow: scroll.
+    3. Remove the margin in Firefox and Safari.
+    4. Keep labels at the top of the container.
+    5. Remove the tapping delay from clickable elements.
+    5a. IE 10.
+*/
+#{$namespace}textarea {
+    min-height: $fallback--base-rem-space-unit * 3.5 - calc-rem-from-px($input-border-width * 2); /* 1 */
+
+    overflow: auto; /* 2 */
+
+    margin-top: $fallback--base-rem-space-unit / 12;
+    margin-bottom: 0; /* 3 */
+
+    padding-left: $input-h-padding;
+    padding-right: $input-h-padding;
+
+    border-width: $input-border-width;
+    border-radius: $input-border-radius;
+    border-color: $input-border-color;
+    border-style: $input-border-style;
+
+    color: $input-text-color;
+    background-color: $input-background-color;
+
+    font-size: inherit;
+    font-family: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+
+    vertical-align: top; /* 4 */
+
+    -ms-touch-action: manipulation; /* 5a */
+    touch-action: manipulation; /* 5 */
+
+    resize: $textarea-resize;
+}
+
+@if $input-focus-shadow != false {
+    #{$namespace}textarea:focus {
+        box-shadow: 0 0 0 $input-focus-shadow-width rgba($ui-color--base, 0.5);
+
+        outline: 0;
+    }
+}
+
+/*@if $input-focus-outline-width != false {
+    #{$namespace}textarea:focus {
+        outline-width: $input-focus-outline-width;
+        outline-style: $input-focus-outline-style;
+        outline-color: $input-focus-outline-color;
+        outline-offset: $input-focus-outline-offset;
+    }
+}*/
+//tfoot {}
+/*
+    1. Opera Mini (no calc support).
+    2. Calc to deduct any border-width.
+*/
+#{$namespace}th {
+    padding-top: $table-cell-padding;
+    padding-right: $table-cell-padding;
+    padding-bottom: $table-cell-padding; /* 1 */
+    padding-bottom: calc(#{$table-cell-padding} - #{$table-border-width}); /* 2 */
+    padding-left: $table-cell-padding;
+
+    border: $table-border;
+}
+
+
+//thead {}
+//time {}
+//!title {}
+//tr {}
+//!track {}
+//--tt {}--
+//u {}
+
+/*
+    1. Either of these will make lists behave properly next to floated items.
+       (https://paulbakaus.com/tutorials/css/block-formatting-contexts-and-lists)
+       a. This causes problems with some decoration. E.g. if the last element in the list is a link,
+          bottom borders get cropped, so using b instead.
+       b. `flow-root` is the better option but support is low, so using table-cell as well.
+*/
+#{$namespace}ul {
+    //overflow: hidden; /* 1a */
+
+    margin-bottom: $fallback--base-rem-space-unit;
+
+    display: table-cell; /* 1b */
+    display: flow-root;  /* 1b */
+}
+
+/*
+    In IE, bullet characters can affect line-height. Also, there are differences in how the bullet
+    characters are displayed, so using custom ones.
+    @TODO - make this configurable.
+    Also - base64 is bad for performance. Using raw svg instead.
+    8px w/h means the bullets won't adjust to font-size.
+    In Chrome, setting w/h to 100% instead gets the desired behavior, but the bullets collapse on
+    other browsers and are invisible. I can't find a fix for this.
+
+    Keep this for reference:
+    #{$namespace}ul li {
+        list-style-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" width="8px" height="8px"><circle fill="currentColor" cx="4" cy="4" r="3"/></svg>');
+    }
+
+        #{$namespace}ul ul li {
+            list-style-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" width="8px" height="8px"><circle fill="none" stroke="currentColor" stroke-miterlimit="10" cx="4" cy="4" r="2.5"/></svg>');
+        }
+
+            #{$namespace}ul ul ul li {
+                list-style-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" width="8px" height="8px"><rect fill="currentColor" x="1" y="1" width="6" height="6"/></svg>');
+            }
+*/
+// @media screen and (min-width:0\0) and (min-resolution:+72dpi) { .selector { property:value; } }
+// Internet Explorer 9-11
+@media screen and (min-width:0\0) and (min-resolution:+72dpi) {
+    #{$namespace}ul li {
+    }
+
+        /*
+            1. 1px at 16px font-size. Should be 0.0625 but IE is 2 decimal-places only.
+        */
+        #{$namespace}ul ul li {
+            margin-bottom: -0.06em; /* 1 */
+        }
+
+            /*
+                1. This is a bit of a magic number. It works - but I'm not sure why.
+                   Probably to do with IE rounding.
+            */
+            #{$namespace}ul ul ul li {
+                margin-bottom: -0.02em; /* 1 */
+            }
+}
+
+/*
+    IE9 needs a further tweak to get it on the baseline:
+*/
+// @media screen and (min-width:0\0) and (min-resolution:.001dpcm) { .selector { property:value; } }
+// Internet Explorer 9
+@media screen and (min-width:0\0) and (min-resolution:.001dpcm) {
+    #{$namespace}ul ul ul li {
+        margin-bottom: -0.04em;
+    }
+}
+
+//var {}
+
+/*
+    1. Allow video to center if container larger than video.
+*/
+#{$namespace}video {
+    display: block; /* 1 */
+
+    max-width: 100%;
+
+    height: auto;
+
+    margin: 0 auto; /* 1 */
+
+    background-color: $video-background-color;
+}
+
+//wbr {}
+//--xmp {}--
+
+/*
+    1. Remove the tapping delay from clickable elements.
+*/
+[tabindex] {
+    -ms-touch-action: manipulation; /* 1 (IE10) */
+    touch-action: manipulation; /* 1 */
+}
+
+
+/*
+    Specify the background color, font color, and drop shadow of text selections.
+*/
+::-moz-selection,
+::selection {
+    color: $selection-text-color;
+    background-color: $selection-background-color;
+
+    text-shadow: $selection-text-shadow;
+}
+
+}
+
+/*-------------------------------------------------------------------------------------------------|
+
+    ACCESSIBILITY / ARIA
+    Moved to it's own file. Still debating this.
+
+|-------------------------------------------------------------------------------------------------*/
+
+@import '_start-accessibility.scss';
+
+
+/*-------------------------------------------------------------------------------------------------|
+
+    UTILITIES
+    Moved to it's own file. Still debating this.
+
+-|------------------------------------------------------------------------------------------------*/
+
+@import '_start-utilities.scss';
+
+/*! End Start CSS */

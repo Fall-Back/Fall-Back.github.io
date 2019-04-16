@@ -1,15 +1,14 @@
-bower_components/
-
-Gemfile.lock
-_site
+package-lock.json
 
 .sass-cache/
 *.css.map
 
-.ftppass
+ftpcrd.json
 
-local.html
-local-philistory.html
+bower_components/
+
+Gemfile.lock
+_site
 
 
 
