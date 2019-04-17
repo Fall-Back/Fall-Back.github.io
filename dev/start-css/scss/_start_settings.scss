@@ -38,9 +38,17 @@ $fallback--base-font-family:       sans-serif !default;
 // https://bitsofco.de/the-new-system-font-stack/ https://github.com/necolas/normalize.css/issues/665
 
 
-$fallback--base-ui-color:          #663399 !default; //rebeccapurple #663399 rgb(102,51,153)
+$fallback--base-ui-color:          #663399 !default;
 
 $fallback--base-background-color:  #fff !default;
 $fallback--base-text-color:        #333 !default;
 
 $fallback--breakpoint--enhanced:   50em !default;
+
+
+
+// MQ hacks (https://browserstrangeness.github.io/css_hacks.html)
+// Hacks with 0\0 encoded to preserve hack so appear as \0030\005C\0030.
+
+$fallback--ie9:                    "all and (min-width: \0030\005C\0030) and (min-resolution: .001dpcm)";
+$fallback--ie9-11:                 "screen and (min-width:\0030\005C\0030) and (min-resolution:+72dpi)";

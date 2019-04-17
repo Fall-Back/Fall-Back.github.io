@@ -124,14 +124,13 @@ function do_devsass(cb) {
     pump([
         gulp.src([
             './dev/**/*.scss'
-        ]),
+        ], {base: process.cwd()}),
         sass({outputStyle: 'expanded'}),
+        rename((path) => {
+            path.dirname += "/css";
+        }),
         gulp.dest((file) => {
-            //console.log(Object.keys(file));
-            //console.log(path.dirname(file.path));
-            //console.log(file.base);
-            var cur_dir = path.dirname(file.path);
-            return cur_dir + '/css/../';
+            return file.base;
         })
     ],
     cb);
