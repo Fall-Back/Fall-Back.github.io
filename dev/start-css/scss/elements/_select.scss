@@ -1,0 +1,183 @@
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: select
+|-------------------------------------------------------------------------------------------------*/
+
+$select-h-padding: $flbk--base-rem-space-unit / 4 !default;
+
+$select-text-color: $flbk--base-text-color !default;
+$select-background-color: #fff !default;
+
+$select-border-color: $flbk-border-color !default;
+$select-border-width: $flbk-border-width !default;
+$select-border-style: $flbk-border-style !default;
+$select-border-radius: $flbk-border-radius !default;
+
+$select-focus-shadow: true !default;
+$select-focus-shadow-width: 3px !default;
+
+
+// N1: Address inconsistent `text-transform` inheritance for `select`.
+// All other form control elements do not inherit `text-transform` values.
+//  Correct `select` style inheritance in Firefox.
+/*
+    1. Using height because min-height doesn't change the expand button height in FF.
+    2. For FF.
+    3. Remove the tapping delay from clickable elements.
+*/
+#{$namespace}select {
+    height: $flbk--base-rem-space-unit + ($flbk--base-rem-space-unit / 4); /* 1 */
+
+    margin: ($flbk--base-rem-space-unit / 8) 0;
+
+    border-width: $select-border-width;
+    border-style: $select-border-style;
+    border-color: $select-border-color;
+    border-radius: $select-border-radius;
+
+    color: $select-text-color;
+    background-color: $select-background-color;
+
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: $flbk--base-rem-space-unit;
+
+    vertical-align: top; /* 2 */
+
+    text-transform: none;
+
+    cursor: pointer;
+
+    -ms-touch-action: manipulation; /* 3 (IE10) */
+    touch-action: manipulation; /* 3 */
+
+    &::-ms-expand {
+        background-color: transparent;
+        color: #000;
+        border: 0;
+        padding-left: $select-h-padding;
+        padding-right: $select-h-padding;
+    }
+
+    &::-ms-value {
+        color: currentColor;
+    }
+}
+
+/*
+    Make the arrow indicator the same across browsers.
+
+    1. Give webkit extra padding.
+       (not sure this is the best way but it seems FF and IE add the option padding, but webkit
+       doesn't so this basically works)
+    2. Note - FF needs any # (e.g. fill colors) to be %23 encoded.
+    3. FF48- does not support background-position-x/y.
+    4. FF34- does not remove the arrow but also does not show the background image until FF29-, at
+       which point both are shown. However, removing the right-padding solves this (see below).
+*/
+#{$namespace}select:not([multiple]) {
+    padding-left: $select-h-padding / 2;
+    -webkit-padding-start: $select-h-padding; /* 1 */
+    padding-right: $select-h-padding * 4;
+
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4.95 10" fill="%23444"><polygon points="1.41 4.67 2.48 3.18 3.54 4.67 1.41 4.67"/><polygon points="3.54 5.33 2.48 6.82 1.41 5.33 3.54 5.33"/></svg>'); /* 2 */
+    //background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNC45NSAxMCI+PHBvbHlnb24gZmlsbD0iIzQ0NCIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz48cG9seWdvbiBmaWxsPSIjNDQ0IiBwb2ludHM9IjMuNTQgNS4zMyAyLjQ4IDYuODIgMS40MSA1LjMzIDMuNTQgNS4zMyIvPjwvc3ZnPg==);
+    background-repeat: no-repeat;
+    background-position: right 0.3em bottom 0; /* 3 */
+
+    -moz-appearance: none; /* 4 */
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/*
+    We need to remove right padding before FF34, but there isn't a hack for that.
+    So instead, remove for all FireFox ...
+*/
+_:-moz-tree-row(hover), #{$namespace}select:not([multiple]) {
+    padding-right: 0;
+}
+/*
+    ... and reinstate for FF35+
+*/
+// @supports (-moz-appearance:none) and (mask-type:alpha) { .selector { property:value; } }
+// Firefox 35+
+@supports (-moz-appearance:none) and (mask-type:alpha) {
+    #{$namespace}select:not([multiple]) {
+        padding-right: $select-h-padding * 4;
+    }
+}
+
+/*
+    Undo custom arrow indicator for IE9-11:
+*/
+// @media screen and (min-width:0\0) and (min-resolution:+72dpi) { .selector { property:value; } }
+// Internet Explorer 9-11
+@media screen and (min-width:0\0) and (min-resolution:+72dpi) {
+        #{$namespace}select:not([multiple]) {
+        background-image: none\0;
+        padding-right: 0\0;
+    }
+}
+
+@if $select-focus-shadow != false {
+    #{$namespace}select:focus {
+        box-shadow: 0 0 0 $select-focus-shadow-width rgba($flbk--base-ui-color, 0.5);
+
+        outline: 0;
+    }
+}
+
+
+/*
+    Note that Opera 25- and Safari(all - 11 latest at time of writing) treat select [size]s of
+    less than 4 as 4.
+*/
+#{$namespace}select[multiple] {
+    height: auto;
+
+    margin-top: ($flbk--base-rem-space-unit / 8);
+    margin-right: 0;
+    margin-bottom: -moz-calc(#{($flbk--base-rem-space-unit / 8) * 3} - #{$select-border-width * 2});
+    margin-bottom: calc(#{($flbk--base-rem-space-unit / 8) * 3} - #{$select-border-width * 2});
+    margin-left: 0;
+}
+
+
+/*
+    Apply padding to fudge height in Safari (we need to apply to iOS)...
+*/
+// _::-webkit-full-page-media, _:future, :root .selector { property:value; }
+// Safari 6.2,7.1+
+_::-webkit-full-page-media, _:future, :root select[multiple] {
+    margin-bottom: 0;
+
+    padding: ($flbk--base-rem-space-unit / 12);
+}
+
+/*
+    ... but reset for Mac Safari .
+*/
+// _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root .selector { property:value; }
+// Safari 6.2,7.1+ (Not iOS)
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[multiple] {
+    margin-bottom: calc(#{($flbk--base-rem-space-unit / 8) * 3} - #{$select-border-width * 2});
+
+    padding: 0;
+}
+
+
+/*
+    Various browsers do not allow <option>s height to be specified.
+    The ones I've found are:
+
+    * IE11-
+    * Chrome 38-
+    * Opera 24-
+
+    MAYBE NOT FOR PRODUCTION?
+    The following techniques are messy and break if the font-family or font size changes.
+    Maybe move them to the test CSS only so I can see if OTHER elements are falling off the grid.
+*/
+/* Individual height fixes moved to '_start-experimental.scss' */

@@ -1,0 +1,10 @@
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: template
+|-------------------------------------------------------------------------------------------------*/
+
+/*
+    1. Hide `template` in unsupported browsers (https://caniuse.com/#feat=template)
+*/
+#{$namespace}template {
+    display: none; /* 1 */
+}

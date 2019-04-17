@@ -1,0 +1,20 @@
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: svg
+|-------------------------------------------------------------------------------------------------*/
+
+/*
+    1. Change the fill color to match the text color in all browsers.
+       (needs more testing)
+*/
+#{$namespace}svg {
+    vertical-align: $media-element-vertical-align;
+
+    fill: currentColor; /* 1 */
+}
+
+/*
+    1. Correct overflow not hidden in IE 9-11.
+*/
+#{$namespace}svg:not(:root) {
+  overflow: hidden; /* 1 */
+}

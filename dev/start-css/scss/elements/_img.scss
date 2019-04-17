@@ -1,0 +1,39 @@
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: img
+|-------------------------------------------------------------------------------------------------*/
+/*
+    1. Fluid images for responsive purposes.
+    2. Remove the border on images inside links in IE 10-.
+    3. Offset `alt` text from surrounding copy.
+    4. Setting `vertical-align` removes the whitespace that appears under `img` elements when they
+       are dropped into a page as-is. Safer alternative to using `display: block;`.
+    5. Google Maps breaks if `max-width: 100%` acts upon it; use their selector to remove the
+       effects.
+    6. If a `width` and/or `height` attribute have been explicitly defined, let's not make the
+       image fluid.
+*/
+#{$namespace}img {
+    max-width: 100%; /* 1 */
+
+    border-style: none; /* 2  */
+
+    font-style: italic; /* 3 */
+
+    vertical-align: $media-element-vertical-align; /* 4 */
+
+    .gm-style &, /* 5 */
+    &[width], /* 6 */
+    &[height] {  /* 6 */
+        max-width: none;
+    }
+}
+
+/*
+    Special treatment for images inside links.
+*/
+#{$namespace}a img {
+    margin-bottom: $anchor-border-bottom-offset;
+
+    border-width: inherit;
+    border-style: inherit;
+}

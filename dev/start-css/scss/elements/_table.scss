@@ -1,0 +1,27 @@
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: table
+|-------------------------------------------------------------------------------------------------*/
+
+$table-border-width: $flbk-border-width !default;
+$table-border: $table-border-width solid $flbk--base-ui-color !default;
+$table-background-color: lighten($flbk--base-ui-color, 50%) !default;
+
+/*
+    1. Opera Mini (no calc support).
+    2. Calc to deduct any border-width.
+*/
+#{$namespace}table {
+    width: 100%;
+    /* @TODO - possibly make this configurable to be 'natural' width but centered instead. (http://alistapart.com/article/web-typography-tables) */
+
+    border-collapse: collapse;
+
+    margin-bottom: $flbk--base-rem-space-unit; /* 1 */
+    margin-bottom: calc(#{$flbk--base-rem-space-unit} - #{$table-border-width}); /* 2 */
+
+    border: $table-border;
+
+    background-color: $table-background-color;
+
+    border-spacing: 0;
+}

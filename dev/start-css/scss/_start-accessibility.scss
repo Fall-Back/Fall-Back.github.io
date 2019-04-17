@@ -14,7 +14,7 @@
 
 |-------------------------------------------------------------------------------------------------*/
 
-@if ($suppress_styles != true) {
+//@if ($suppress_styles != true) {
 
 [aria-busy="true"] {
     cursor: progress;
@@ -71,4 +71,4 @@
         width: auto;*/
     }
     
-}
+//}

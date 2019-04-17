@@ -1,0 +1,45 @@
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: summary
+|-------------------------------------------------------------------------------------------------*/
+
+/*
+    1. Correct display in unsupported browsers (https://caniuse.com/#feat=details).
+    2. Remove the tapping delay from clickable elements.
+*/
+#{$namespace}summary {
+    display: block; /* 1 */
+
+    -ms-touch-action: manipulation; /* 2 (IE10) */
+    touch-action: manipulation; /* 2 */
+
+    cursor: pointer;
+
+    &:focus {
+        outline: 2px solid rgba($flbk--base-ui-color, 0.6);
+        outline-offset: 2px;
+    }
+}
+
+    /* Hide the details marker as we're supplying our own. */
+    #{$namespace}summary::-webkit-details-marker {
+        display: none;
+    }
+
+    #{$namespace}details > summary::before {
+        display: inline-block;
+
+        content: '\25BA';
+
+        margin-right: 0.5em;
+
+        font-size: 0.75em;
+        font-family: serif;
+
+        vertical-align: top;
+
+        transition: transform 0.2s ease;
+    }
+
+    #{$namespace}details[open] > summary::before {
+        transform: rotate(90deg);
+    }

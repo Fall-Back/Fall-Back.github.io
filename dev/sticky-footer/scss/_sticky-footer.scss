@@ -9,8 +9,8 @@
 
 
 $sticky-footer-max-line-length: 50em !default;
-$sticky-footer-text-color: $fallback--base-text-color !default;
-$sticky-footer-background-color: $fallback--base-background-color !default;
+$sticky-footer-text-color: $flbk--base-text-color !default;
+$sticky-footer-background-color: $flbk--base-background-color !default;
 
 
 html,
@@ -29,14 +29,14 @@ body {
 
     width: 100%;
     min-height: 100%;
-    
+
     @if $sticky-footer-max-line-length > 0 {
         max-width: $sticky-footer-max-line-length;
 
         margin-right: auto;
         margin-left: auto;
     }
-    
+
     background-color: $sticky-footer-background-color;
     color: $sticky-footer-text-color;
 
@@ -67,7 +67,7 @@ body {
 
 /* IE9-11 */
 //@media screen and (min-width:0\0) and (min-resolution:+72dpi) {
-@media #{$fallback--ie9-11} {
+@media #{$flbk--ie9-11} {
 
     .sticky-footer-wrap {
         display: table;
@@ -79,5 +79,6 @@ body {
         display: table-row;
         height: 100%;
     }
+
 }
 /*------------------------------------------------------------------------------------------------*/

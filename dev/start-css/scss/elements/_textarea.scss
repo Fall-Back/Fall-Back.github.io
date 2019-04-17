@@ -1,0 +1,65 @@
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: textarea
+|-------------------------------------------------------------------------------------------------*/
+$textarea-h-padding: $flbk--base-rem-space-unit / 4 !default;
+
+$textarea-text-color: $flbk--base-text-color !default;
+$textarea-background-color: #fff !default;
+
+$textarea-border-color: $flbk-border-color !default;
+$textarea-border-width: $flbk-border-width !default;
+$textarea-border-style: $flbk-border-style !default;
+$textarea-border-radius: $flbk-border-radius !default;
+
+$textarea-focus-shadow: true !default;
+$textarea-focus-shadow-width: 3px !default;
+
+$textarea-resize: vertical !default;
+
+/*
+    1. For IE, mainly.
+    2. Edge 12+, Internet Explorer 11-. Without this it acts like overflow: scroll.
+    3. Remove the margin in Firefox and Safari.
+    4. Keep labels at the top of the container.
+    5. Remove the tapping delay from clickable elements.
+    5a. IE 10.
+*/
+#{$namespace}textarea {
+    min-height: $flbk--base-rem-space-unit * 3.5 - calc-rem-from-px($textarea-border-width * 2); /* 1 */
+
+    overflow: auto; /* 2 */
+
+    margin-top: $flbk--base-rem-space-unit / 12;
+    margin-bottom: 0; /* 3 */
+
+    padding-left: $textarea-h-padding;
+    padding-right: $textarea-h-padding;
+
+    border-width: $textarea-border-width;
+    border-radius: $textarea-border-radius;
+    border-color: $textarea-border-color;
+    border-style: $textarea-border-style;
+
+    color: $textarea-text-color;
+    background-color: $textarea-background-color;
+
+    font-size: inherit;
+    font-family: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+
+    vertical-align: top; /* 4 */
+
+    -ms-touch-action: manipulation; /* 5a */
+    touch-action: manipulation; /* 5 */
+
+    resize: $textarea-resize;
+}
+
+@if $textarea-focus-shadow != false {
+    #{$namespace}textarea:focus {
+        box-shadow: 0 0 0 $textarea-focus-shadow-width rgba($flbk--base-ui-color, 0.5);
+
+        outline: 0;
+    }
+}

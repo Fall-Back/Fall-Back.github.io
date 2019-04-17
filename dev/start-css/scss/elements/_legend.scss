@@ -1,0 +1,47 @@
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: legend
+|-------------------------------------------------------------------------------------------------*/
+
+// Note: when a legend is present the width of the top border of the fieldset seems to be ignored,
+// so the padding reduction that's meant to offset the border width is actually too small for the
+// top padding. CSS can't (yet) detect if there is a legend inside the fieldset so there needs to
+// be some corrective style on the legend itself. That would be bottom margin.
+$legend-border-width: 0 !default;
+$legend-h-padding: $flbk--base-rem-space-unit / 4 !default;
+
+// See below as to why this is here:
+$fieldset-border-width: $flbk-border-width !default;
+
+/*
+    Fieldsets and legends can be difficult to style so I'm keep their appearance basically the same
+    as the default - just a bit of theming.
+    More info here: https://thatemil.com/blog/2015/01/03/reset-your-fieldset/
+
+
+    1. Correct the text wrapping in Edge and IE.
+    2. Offset border width.
+    3. Correct the color inheritance from `fieldset` elements in IE.
+
+    Note $fieldset-border-width used deliberately (not $legend-border-width)- this is to account for
+    the fact that fieldset top border width is ignored if there's a legend so the spacing is wrong.
+*/
+#{$namespace}legend {
+    display: table; /* 1 */
+
+    max-width: 100%; /* 1 */
+
+    margin-top: -$legend-border-width; /* 2 */
+    margin-bottom: $fieldset-border-width; /* 2 */
+
+    padding: 0 $legend-h-padding;
+
+    border-width: $legend-border-width;
+
+    color: inherit; /* 3 */
+
+    font-weight: bold;
+    white-space: normal; /* 1 */
+
+
+    /*  */
+}

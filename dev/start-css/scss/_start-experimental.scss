@@ -67,7 +67,7 @@
     border-bottom-right-radius: $input-border-radius - $input-border-width;
 
     color: #fff;
-    background-color: $ui-color--base;
+    background-color: $flbk--base-ui-color;
 
     font-weight: inherit;
     font-style: inherit;
@@ -103,7 +103,7 @@
     1. Spacing height + 2 sets of input padding, minus border width.
 */
 #{$namespace}[type="file"]::-webkit-file-upload-button {
-    height: calc(#{($fallback--base-rem-space-unit * 1.25)} - #{$input-border-width * 2}); /* 1 */
+    height: calc(#{($flbk--base-rem-space-unit * 1.25)} - #{$input-border-width * 2}); /* 1 */
 
     padding-top: 0;
     padding-right: $input-h-padding;
@@ -116,7 +116,7 @@
     border-radius: 0;
 
     color: #fff;
-    background-color: $ui-color--base;
+    background-color: $flbk--base-ui-color;
 
     font-weight: inherit;
     font-style: inherit;
@@ -190,22 +190,22 @@ _:scope, _:future, _:not(*:root), select[size="10"] { margin-bottom: calc(0.8rem
 
 // _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root .selector { property:value; }
 // Safari 6.2,7.1+ (Not iOS)
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="2"]  { margin-bottom: calc(#{$fallback--base-rem-space-unit} - 0.6em - #{$input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="3"]  { margin-bottom: calc(#{$fallback--base-rem-space-unit} - 0.6em - #{$input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="4"]  { margin-bottom: calc(#{$fallback--base-rem-space-unit} - 0.6em - #{$input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="5"]  { margin-bottom: calc(#{$fallback--base-rem-space-unit} - 1.1em - #{$input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="6"]  { margin-bottom: calc(#{$fallback--base-rem-space-unit} - 0.85em - #{$input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="7"]  { margin-bottom: calc(#{$fallback--base-rem-space-unit} - 0.6em - #{$input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="8"]  { margin-bottom: calc(#{$fallback--base-rem-space-unit} - 1.1em - #{$input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="9"]  { margin-bottom: calc(#{$fallback--base-rem-space-unit} - 0.85em - #{$input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="10"] { margin-bottom: calc(#{$fallback--base-rem-space-unit} - 0.6em - #{$input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="2"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 0.6em - #{$input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="3"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 0.6em - #{$input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="4"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 0.6em - #{$input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="5"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 1.1em - #{$input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="6"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 0.85em - #{$input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="7"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 0.6em - #{$input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="8"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 1.1em - #{$input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="9"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 0.85em - #{$input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="10"] { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 0.6em - #{$input-border-width * 2}); }
 
 // Reset Chrome and Opera:
 // @media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) { .selector { property:value; } }
 // Chrome 29+ (and Opera 16+)
 /*
 @media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
-    select[size] { margin-bottom: calc(#{($fallback--base-rem-space-unit / 8) * 3} - #{$input-border-width * 2}); }
+    select[size] { margin-bottom: calc(#{($flbk--base-rem-space-unit / 8) * 3} - #{$input-border-width * 2}); }
 }
 */
 
@@ -217,15 +217,15 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="
 // @media screen and (min-width:0\0) and (min-resolution:+72dpi) { .selector { property:value; } }
 // Internet Explorer 9-11
 @media screen and (min-width:0\0) and (min-resolution:+72dpi) {
-    select[size="2"]  { margin-bottom: calc(#{$fallback--base-rem-space-unit} - 1.1em - #{$input-border-width * 2}); }
-    select[size="3"]  { margin-bottom: calc(#{$fallback--base-rem-space-unit} - 0.75em - #{$input-border-width * 2}); }
-    select[size="4"]  { margin-bottom: calc(#{$fallback--base-rem-space-unit} - 1.25em - #{$input-border-width * 2}); }
-    select[size="5"]  { margin-bottom: calc(#{$fallback--base-rem-space-unit} - 0.95em - #{$input-border-width * 2}); }
-    select[size="6"]  { margin-bottom: calc(#{$fallback--base-rem-space-unit} - 0.65em - #{$input-border-width * 2}); }
-    select[size="7"]  { margin-bottom: calc(#{$fallback--base-rem-space-unit} - 1.1em - #{$input-border-width * 2}); }
-    select[size="8"]  { margin-bottom: calc(#{$fallback--base-rem-space-unit} - 0.75em - #{$input-border-width * 2}); }
-    select[size="9"]  { margin-bottom: calc(#{$fallback--base-rem-space-unit} - 1.25em - #{$input-border-width * 2}); }
-    select[size="10"] { margin-bottom: calc(#{$fallback--base-rem-space-unit} - 0.95em - #{$input-border-width * 2}); }
+    select[size="2"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 1.1em - #{$input-border-width * 2}); }
+    select[size="3"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 0.75em - #{$input-border-width * 2}); }
+    select[size="4"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 1.25em - #{$input-border-width * 2}); }
+    select[size="5"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 0.95em - #{$input-border-width * 2}); }
+    select[size="6"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 0.65em - #{$input-border-width * 2}); }
+    select[size="7"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 1.1em - #{$input-border-width * 2}); }
+    select[size="8"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 0.75em - #{$input-border-width * 2}); }
+    select[size="9"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 1.25em - #{$input-border-width * 2}); }
+    select[size="10"] { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 0.95em - #{$input-border-width * 2}); }
 }
 
 /*

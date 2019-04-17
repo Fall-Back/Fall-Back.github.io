@@ -1,7 +1,7 @@
-/*! Start CSS. See SCSS file for documentation. */
+/*! Fall-Back Start-CSS. See SCSS file for documentation. */
 /*
 
-    Start CSS is designed for use with the basic
+    Start-CSS is designed for use with the basic
     [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
 
     This determines a browser support base of:
@@ -33,7 +33,7 @@
 
 */
 /*-------------------------------------------------------------------------------------------------|
-    Fall-Back Start-CSS Settings v1.0.0
+    Fall-Back Start-CSS Settings
 
     Fall-Back is designed for use with the basic
     [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
@@ -58,6 +58,9 @@
    (These must come before the Setting, as the settings make use of some of these)
 
 |-------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Functions
+|-------------------------------------------------------------------------------------------------*/
 /*
     Colour contrast from https://gist.github.com/FStop/8959422
     
@@ -72,6 +75,9 @@
 /* Awesome contrast ratio function
 * via https://gist.github.com/voxpelli/6304812
 **/
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Mixins
+|-------------------------------------------------------------------------------------------------*/
 /*
     Apply a border and a padding that offsets the border-width from one spacing unit so as not to
     affect the vertical rhythm.
@@ -141,12 +147,12 @@ $anchor-focus-text-color: false;
 @debug $anchor-focus-text-color;
 */
 /*
-//$button-focus-outline-width: $ui-focus-outline-width !default;
+//$button-focus-outline-width: $flbk-focus-outline-width !default;
 $button-focus-outline-width: false !default;
-$button-focus-outline-style: $ui-focus-outline-style !default;
+$button-focus-outline-style: $flbk-focus-outline-style !default;
 $button-focus-outline-color: rgba(255,255,255,0.6) !default;
-//$button-focus-outline-offset: -($ui-focus-outline-offset + $button-border-width) !default;
-$button-focus-outline-offset: -($ui-focus-outline-offset + $button-border-width) !default;
+//$button-focus-outline-offset: -($flbk-focus-outline-offset + $button-border-width) !default;
+$button-focus-outline-offset: -($flbk-focus-outline-offset + $button-border-width) !default;
 */
 /*$input-focus-indicator-color: false !default;
 @if color_light_or_dark($input-background-color) == 'light' {
@@ -157,10 +163,10 @@ $button-focus-outline-offset: -($ui-focus-outline-offset + $button-border-width)
 @debug color_light_or_dark($input-background-color);*/
 /* Output class for reference (tmp): */
 .ref {
-  fallback--base-rem-space-unit: 2.4rem;
-  fallback--base-rem-1px: 0.1rem;
-  fallback--root-font-size: 10px;
-  fallback--root-font-size-percent: 62.5;
+  flbk--base-rem-space-unit: 2.4rem;
+  flbk--base-rem-1px: 0.1rem;
+  flbk--root-font-size: 10px;
+  flbk--root-font-size-percent: 62.5;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -538,6 +544,9 @@ canvas {
   vertical-align: middle;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: caption
+|-------------------------------------------------------------------------------------------------*/
 caption {
   display: table-caption;
   padding-top: 1.2rem;
@@ -654,24 +663,39 @@ figure {
   margin-bottom: 2.4rem;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: footer
+|-------------------------------------------------------------------------------------------------*/
 footer {
   display: block;
   margin-bottom: 2.4rem;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: form
+|-------------------------------------------------------------------------------------------------*/
 form {
   margin-bottom: 2.4rem;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: header
+|-------------------------------------------------------------------------------------------------*/
 header {
   display: block;
   margin-bottom: 2.4rem;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: hgroup
+|-------------------------------------------------------------------------------------------------*/
 hgroup {
   display: block;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: h
+|-------------------------------------------------------------------------------------------------*/
 h1 {
   margin-bottom: 2.4rem;
   font-size: 3.25em;
@@ -708,6 +732,9 @@ h6 {
   line-height: 2.4rem;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: hr
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. Show the overflow in Edge and IE. (N)
 */
@@ -723,10 +750,16 @@ hr {
   border-left: none;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: iframe
+|-------------------------------------------------------------------------------------------------*/
 iframe {
   vertical-align: middle;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: img
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. Fluid images for responsive purposes.
     2. Remove the border on images inside links in IE 10-.
@@ -763,6 +796,9 @@ a img {
   border-style: inherit;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: input
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. Allow inputs to contract to avoid braking containers:
     2. Opera Mini needs this.
@@ -841,41 +877,6 @@ _::-webkit-full-page-media, _:future, :root [type="radio"]:focus {
   outline: auto 5px -webkit-focus-ring-color;
 }
 
-/*@if $input-focus-outline-width != false {
-    input:not([type]):focus,
-    [type="color"]:focus,
-    [type="date"]:focus,
-    [type="datetime"]:focus,
-    [type="datetime-local"]:focus,
-    [type="file"]:focus,
-    [type="month"]:focus,
-    [type="number"]:focus,
-    [type="password"]:focus,
-    [type="search"]:focus,
-    [type="tel"]:focus,
-    [type="text"]:focus,
-    [type="time"]:focus,
-    [type="url"]:focus,
-    [type="week"]:focus {
-        outline-width: $input-focus-outline-width;
-        outline-style: $input-focus-outline-style;
-        outline-color: $input-focus-outline-color;
-        outline-offset: $input-focus-outline-offset;
-    }
-
-    [type="checkbox"]:focus,
-    [type="radio"]:focus {
-        outline-width: $input-focus-outline-width;
-        outline-style: $input-focus-outline-style;
-        outline-color: $input-focus-outline-color;
-        outline-offset: $input-focus-outline-offset;
-    }
-
-    _::-webkit-full-page-media, _:future, :root [type="checkbox"]:focus,
-    _::-webkit-full-page-media, _:future, :root [type="radio"]:focus {
-        border: $input-focus-indicator-size solid $input-focus-indicator-color;
-    }
-}*/
 /*
     IE9 adds the border and background:
 */
@@ -1059,6 +1060,9 @@ _:-ms-input-placeholder, :root [type="file"] {
   opacity: .54;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: kbd
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. Correct the inheritance and scaling of font size in all browsers. (N)
     2. Address odd `em`-unit font size rendering in all browsers. (N)
@@ -1073,6 +1077,9 @@ kbd {
   /* 3 */
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: label
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. Remove the tapping delay from clickable elements.
 */
@@ -1089,12 +1096,15 @@ label {
   /* 1 */
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: legend
+|-------------------------------------------------------------------------------------------------*/
 /*
     Fieldsets and legends can be difficult to style so I'm keep their appearance basically the same
     as the default - just a bit of theming.
     More info here: https://thatemil.com/blog/2015/01/03/reset-your-fieldset/
-*/
-/*
+
+
     1. Correct the text wrapping in Edge and IE.
     2. Offset border width.
     3. Correct the color inheritance from `fieldset` elements in IE.
@@ -1121,6 +1131,9 @@ legend {
   /*  */
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: li
+|-------------------------------------------------------------------------------------------------*/
 li {
   margin-left: 3.6rem;
 }
@@ -1130,6 +1143,9 @@ li ol {
   margin-bottom: 0;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: main
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. Correct `block` display not defined for `main` in IE.
 */
@@ -1157,6 +1173,9 @@ main::before {
   right: 0;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: mark
+|-------------------------------------------------------------------------------------------------*/
 /*
     Address styling not present in IE 8/9.
 */
@@ -1165,20 +1184,29 @@ mark {
   color: #000;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: nav
+|-------------------------------------------------------------------------------------------------*/
 nav {
   display: block;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: object
+|-------------------------------------------------------------------------------------------------*/
 object {
   vertical-align: middle;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: ol
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. Either of these will make lists behave properly next to floated items.
        (https://paulbakaus.com/tutorials/css/block-formatting-contexts-and-lists)
        a. This causes problems with some decoration. E.g. if the last element in the list is a link,
           bottom borders get cropped, so using b instead.
-       b. `flow-root` is the better option but support is low, so using table and flex fallbacks
+       b. `flow-root` is the better option but support is low, so using table and flex flbks
           as well.
        Hmmm -moz-box / flex is causing numbering to mess up (always 0) on FF8-50.
     2. This is the only thing that works in early FF. However, width is content-width, not available
@@ -1203,6 +1231,9 @@ ol {
   /* 1b */
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: optgroup
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. The default cannot safely be changed in Chrome and Safari on OS X. ?? Not sure what this means now.
 */
@@ -1216,6 +1247,9 @@ optgroup {
   font-family: inherit;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: option
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. This v-centers the text in FF and Chrome. Edge doesn't apply this but looks ok regardless.
        Just IE9-11 to sort out?
@@ -1229,6 +1263,7 @@ option {
   padding-right: 0.6rem;
   padding-left: 0.6rem;
   cursor: pointer;
+  background-color: #fff;
 }
 
 option:hover {
@@ -1236,10 +1271,16 @@ option:hover {
   color: #333;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: p
+|-------------------------------------------------------------------------------------------------*/
 p {
   margin-bottom: 2.4rem;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: pre
+|-------------------------------------------------------------------------------------------------*/
 /*
     Note: code is the most probable use for a `<pre>` tag. Other uses may occur (e.g. poem) but
     these could be adjusted with a class. Could maybe make this default configurable but leave as it
@@ -1283,6 +1324,9 @@ pre code {
   /* 1 */
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: progress
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. Add the correct vertical alignment in Chrome, Firefox, and Opera.
     2. Internet Explorer 11-, Windows Phone 8.1+
@@ -1294,6 +1338,9 @@ progress {
   /* 2 */
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: samp
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. Address odd `em`-unit font size rendering in all browsers.
     2. Correct the inheritance and scaling of font size in all browsers.
@@ -1308,11 +1355,17 @@ samp {
   /* 3 */
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: section
+|-------------------------------------------------------------------------------------------------*/
 section {
   display: block;
   margin-bottom: 2.4rem;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: select
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. Using height because min-height doesn't change the expand button height in FF.
     2. For FF.
@@ -1414,14 +1467,6 @@ select:focus {
   outline: 0;
 }
 
-/*@if $input-focus-outline-width != false {
-    select:focus {
-        outline-width: $input-focus-outline-width;
-        outline-style: $input-focus-outline-style;
-        outline-color: $input-focus-outline-color;
-        outline-offset: $input-focus-outline-offset;
-    }
-}*/
 /*
     Note that Opera 25- and Safari(all - 11 latest at time of writing) treat select [size]s of
     less than 4 as 4.
@@ -1464,6 +1509,9 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[multip
     Maybe move them to the test CSS only so I can see if OTHER elements are falling off the grid.
 */
 /* Individual height fixes moved to '_start-experimental.scss' */
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: small
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. Apply consistent small font size in all browsers.
     2. Prevent the element increasing the line-height of the parent.
@@ -1475,6 +1523,9 @@ small {
   /* 2 */
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: strong
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. Add the correct font weight in Chrome, Edge, and Safari.
     2. Prevent increase in line-height.
@@ -1486,6 +1537,9 @@ strong {
   /* 2 */
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: sub
+|-------------------------------------------------------------------------------------------------*/
 /*
     Prevent `sub` affecting `line-height` in all browsers.
 */
@@ -1497,6 +1551,9 @@ sub {
   vertical-align: baseline;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: summary
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. Correct display in unsupported browsers (https://caniuse.com/#feat=details).
     2. Remove the tapping delay from clickable elements.
@@ -1535,6 +1592,9 @@ details[open] > summary::before {
   transform: rotate(90deg);
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: sup
+|-------------------------------------------------------------------------------------------------*/
 /*
     Prevent `sup` affecting `line-height` in all browsers.
 */
@@ -1546,6 +1606,9 @@ sup {
   vertical-align: baseline;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: svg
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. Change the fill color to match the text color in all browsers.
        (needs more testing)
@@ -1564,6 +1627,9 @@ svg:not(:root) {
   /* 1 */
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: table
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. Opera Mini (no calc support).
     2. Calc to deduct any border-width.
@@ -1577,10 +1643,13 @@ table {
   margin-bottom: calc(2.4rem - 1px);
   /* 2 */
   border: 1px solid #247BA0;
-  background-color: #fff;
+  background-color: #cfe9f4;
   border-spacing: 0;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: td
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. Opera Mini (no calc support).
     2. Calc to deduct any border-width.
@@ -1594,8 +1663,12 @@ td {
   /* 2 */
   padding-left: 1.2rem;
   border: 1px solid #247BA0;
+  background-color: #cfe9f4;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: template
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. Hide `template` in unsupported browsers (https://caniuse.com/#feat=template)
 */
@@ -1604,6 +1677,9 @@ template {
   /* 1 */
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: textarea
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. For IE, mainly.
     2. Edge 12+, Internet Explorer 11-. Without this it acts like overflow: scroll.
@@ -1646,14 +1722,9 @@ textarea:focus {
   outline: 0;
 }
 
-/*@if $input-focus-outline-width != false {
-    textarea:focus {
-        outline-width: $input-focus-outline-width;
-        outline-style: $input-focus-outline-style;
-        outline-color: $input-focus-outline-color;
-        outline-offset: $input-focus-outline-offset;
-    }
-}*/
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: th
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. Opera Mini (no calc support).
     2. Calc to deduct any border-width.
@@ -1667,8 +1738,12 @@ th {
   /* 2 */
   padding-left: 1.2rem;
   border: 1px solid #247BA0;
+  background-color: #cfe9f4;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: ul
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. Either of these will make lists behave properly next to floated items.
        (https://paulbakaus.com/tutorials/css/block-formatting-contexts-and-lists)
@@ -1733,6 +1808,9 @@ ul {
   }
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: video
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. Allow video to center if container larger than video.
 */
@@ -1885,7 +1963,7 @@ a[hidden][aria-hidden="false"]:active {
   display: none;
 }
 
-/*! End Start CSS */
+/*! End Start-CSS */
 /*! Start CSS Experimental. See SCSS file for documentation. */
 /*
 

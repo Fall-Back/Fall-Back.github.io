@@ -1,0 +1,14 @@
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: small
+|-------------------------------------------------------------------------------------------------*/
+
+$small-font-size: 80% !default;
+
+/*
+    1. Apply consistent small font size in all browsers.
+    2. Prevent the element increasing the line-height of the parent.
+*/
+#{$namespace}small {
+    font-size: $small-font-size; /* 1 */
+    line-height: normal; /* 2 */
+}

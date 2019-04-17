@@ -1,0 +1,20 @@
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: video
+|-------------------------------------------------------------------------------------------------*/
+
+$video-background-color: #333 !default;
+
+/*
+    1. Allow video to center if container larger than video.
+*/
+#{$namespace}video {
+    display: block; /* 1 */
+
+    max-width: 100%;
+
+    height: auto;
+
+    margin: 0 auto; /* 1 */
+
+    background-color: $video-background-color;
+}

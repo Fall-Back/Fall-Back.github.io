@@ -1,0 +1,22 @@
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: label
+|-------------------------------------------------------------------------------------------------*/
+
+/*
+    1. Remove the tapping delay from clickable elements.
+*/
+#{$namespace}label {
+    display: inline-block;
+
+    padding-top: $flbk--base-rem-space-unit / 4;
+    padding-bottom: $flbk--base-rem-space-unit / 4;
+
+    font-weight: bold;
+
+    vertical-align: middle;
+
+    cursor: pointer;
+
+    -ms-touch-action: manipulation; /* 1 (IE10) */
+    touch-action: manipulation; /* 1 */
+}
