@@ -49,6 +49,8 @@
     E.g. `.{pattern} .{pattern}__child` would `a[href]`, but just `.{pattern}` wouldn't, so we use
     `.{pattern}.{pattren}`
 
+    https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3
+
 |-------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------|
 
@@ -210,7 +212,7 @@ html {
   overflow-y: scroll;
   /* 3 */
   color: #333;
-  background-color: #fff;
+  background-color: #50514F;
   font-size: 62.5%;
   /* 4 */
   font-family: "Lato", sans-serif;
@@ -296,12 +298,14 @@ body {
   position: relative;
   /* 1 */
   min-width: 250px;
-  max-width: none;
   min-height: 100%;
+  max-width: none;
   margin: 0;
-  padding: 2.4rem;
+  padding: 0 2.4rem;
   font-size: 1.6em;
   line-height: 2.4rem;
+  background-color: transparent;
+  color: #333;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -320,7 +324,7 @@ a[href] {
   margin-bottom: -2px;
   padding-bottom: 2px;
   border-bottom: 2px solid;
-  color: #663399;
+  color: #247BA0;
   background-color: transparent;
   /* 1 */
   text-decoration: none;
@@ -354,12 +358,12 @@ a[href] {
 
 a[href]:hover, a[href]:active {
   border-bottom: 2px dashed;
-  color: #4d2673;
+  color: #1b5b76;
 }
 
 a[href]:focus {
   outline: 0;
-  box-shadow: 0 0 0 3px rgba(102, 51, 153, 0.5);
+  box-shadow: 0 0 0 3px rgba(36, 123, 160, 0.5);
 }
 
 a[href][rel="external"]::after {
@@ -463,7 +467,7 @@ button {
   border-width: 1px;
   border-radius: 3px;
   color: #fff;
-  background-color: #663399;
+  background-color: #247BA0;
   font-weight: inherit;
   font-style: inherit;
   font-size: inherit;
@@ -491,12 +495,12 @@ button {
 }
 
 button:hover, button:active {
-  background-color: #4d2673;
+  background-color: #1b5b76;
 }
 
 button:focus {
   outline: 0;
-  box-shadow: 0 0 0 3px rgba(102, 51, 153, 0.5);
+  box-shadow: 0 0 0 3px rgba(36, 123, 160, 0.5);
 }
 
 _:-o-prefocus, :root button {
@@ -541,7 +545,7 @@ caption {
   padding-bottom: 1.2rem;
   padding-left: 1.2rem;
   color: #fff;
-  background-color: #663399;
+  background-color: #247BA0;
   font-weight: bold;
 }
 
@@ -609,7 +613,7 @@ fieldset {
   min-width: 0;
   border-width: 1px;
   border-style: solid;
-  border-color: #663399;
+  border-color: #247BA0;
   padding-top: 2.4rem;
   padding-top: -moz-calc(2.4rem - 1px);
   padding-top: calc(2.4rem - 1px);
@@ -715,7 +719,7 @@ hr {
   margin-bottom: 2.4rem;
   border-top: none;
   border-right: none;
-  border-bottom: 1px solid #663399;
+  border-bottom: 1px solid #247BA0;
   border-left: none;
 }
 
@@ -815,7 +819,7 @@ input:not([type]):focus,
 [type="time"]:focus,
 [type="url"]:focus,
 [type="week"]:focus {
-  box-shadow: 0 0 0 3px rgba(102, 51, 153, 0.5);
+  box-shadow: 0 0 0 3px rgba(36, 123, 160, 0.5);
   outline: 0;
 }
 
@@ -825,7 +829,7 @@ input:not([type]):focus,
     */
 [type="checkbox"]:focus,
 [type="radio"]:focus {
-  box-shadow: 0 0 0 3px rgba(102, 51, 153, 0.5);
+  box-shadow: 0 0 0 3px rgba(36, 123, 160, 0.5);
   outline: 0;
 }
 
@@ -904,7 +908,7 @@ _::-webkit-full-page-media, _:future, :root [type="radio"]:focus {
   border-width: 1px;
   border-radius: 3px;
   color: #fff;
-  background-color: #663399;
+  background-color: #247BA0;
   font-weight: inherit;
   font-style: inherit;
   font-size: inherit;
@@ -936,14 +940,14 @@ _::-webkit-full-page-media, _:future, :root [type="radio"]:focus {
 [type="reset"]:active,
 [type="submit"]:hover,
 [type="submit"]:active {
-  background-color: #4d2673;
+  background-color: #1b5b76;
 }
 
 [type="button"]:focus,
 [type="reset"]:focus,
 [type="submit"]:focus {
   outline: 0;
-  box-shadow: 0 0 0 3px rgba(102, 51, 153, 0.5);
+  box-shadow: 0 0 0 3px rgba(36, 123, 160, 0.5);
 }
 
 /*
@@ -983,7 +987,7 @@ _:-moz-any-link, :root [type="file"] {
 }
 
 _:-ms-input-placeholder, :root [type="file"] {
-  background-color: #663399;
+  background-color: #247BA0;
 }
 
 @media screen and (min-width: 0\0) and (min-resolution: 72dpi) {
@@ -1132,9 +1136,25 @@ li ol {
 main {
   display: block;
   /* 1 */
-  max-width: 40em;
+  max-width: 50em;
   margin-right: auto;
   margin-left: auto;
+  padding: 2.4rem;
+  background-color: #fff;
+  color: #333;
+  position: relative;
+}
+
+main::before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  background: #fff;
+  z-index: -1;
+  left: 0;
+  right: 0;
 }
 
 /*
@@ -1212,7 +1232,7 @@ option {
 }
 
 option:hover {
-  background-color: #ccb3e6;
+  background-color: #a5d6eb;
   color: #333;
 }
 
@@ -1238,7 +1258,7 @@ pre {
   /* 1 */
   margin-bottom: 3.1rem;
   /* 1 */
-  background-color: #f2ecf9;
+  background-color: #e4f3f9;
   /*1 */
   font-size: 1em;
   /* 2 */
@@ -1390,7 +1410,7 @@ _:-moz-tree-row(hover), select:not([multiple]) {
 }
 
 select:focus {
-  box-shadow: 0 0 0 3px rgba(102, 51, 153, 0.5);
+  box-shadow: 0 0 0 3px rgba(36, 123, 160, 0.5);
   outline: 0;
 }
 
@@ -1492,7 +1512,7 @@ summary {
 }
 
 summary:focus {
-  outline: 2px solid rgba(102, 51, 153, 0.6);
+  outline: 2px solid rgba(36, 123, 160, 0.6);
   outline-offset: 2px;
 }
 
@@ -1556,7 +1576,7 @@ table {
   /* 1 */
   margin-bottom: calc(2.4rem - 1px);
   /* 2 */
-  border: 1px solid #663399;
+  border: 1px solid #247BA0;
   background-color: #fff;
   border-spacing: 0;
 }
@@ -1573,7 +1593,7 @@ td {
   padding-bottom: calc(1.2rem - 1px);
   /* 2 */
   padding-left: 1.2rem;
-  border: 1px solid #663399;
+  border: 1px solid #247BA0;
 }
 
 /*
@@ -1622,7 +1642,7 @@ textarea {
 }
 
 textarea:focus {
-  box-shadow: 0 0 0 3px rgba(102, 51, 153, 0.5);
+  box-shadow: 0 0 0 3px rgba(36, 123, 160, 0.5);
   outline: 0;
 }
 
@@ -1646,7 +1666,7 @@ th {
   padding-bottom: calc(1.2rem - 1px);
   /* 2 */
   padding-left: 1.2rem;
-  border: 1px solid #663399;
+  border: 1px solid #247BA0;
 }
 
 /*
@@ -1686,7 +1706,7 @@ ul {
                 list-style-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" width="8px" height="8px"><rect fill="currentColor" x="1" y="1" width="6" height="6"/></svg>');
             }
 */
-@media screen and (min-width: 0\0) and (min-resolution: 72dpi) {
+@media screen and (min-width: 0\0) and (min-resolution: +72dpi) {
   /*
             1. 1px at 16px font-size. Should be 0.0625 but IE is 2 decimal-places only.
         */
@@ -1707,7 +1727,7 @@ ul {
 /*
     IE9 needs a further tweak to get it on the baseline:
 */
-@media screen and (min-width: 0\0) and (min-resolution: 0.001dpcm) {
+@media all and (min-width: 0\0) and (min-resolution: 0.001dpcm) {
   ul ul ul li {
     margin-bottom: -0.04em;
   }
@@ -1742,7 +1762,7 @@ video {
 ::-moz-selection,
 ::selection {
   color: #fff;
-  background-color: #b38cd9;
+  background-color: #7cc3e1;
   text-shadow: none;
 }
 
@@ -1917,7 +1937,7 @@ a[hidden][aria-hidden="false"]:active {
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
   color: #fff;
-  background-color: #663399;
+  background-color: #247BA0;
   font-weight: inherit;
   font-style: inherit;
   font-size: inherit;
@@ -1958,7 +1978,7 @@ a[hidden][aria-hidden="false"]:active {
   border-color: rgba(0, 0, 0, 0.2);
   border-radius: 0;
   color: #fff;
-  background-color: #663399;
+  background-color: #247BA0;
   font-weight: inherit;
   font-style: inherit;
   font-size: inherit;

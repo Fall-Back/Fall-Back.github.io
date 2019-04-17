@@ -1,29 +1,34 @@
-<!DOCTYPE html>
-<html lang="en-gb" class="">
+<!doctype html>
+<html lang="en-gb" class="no-js">
 <head>
     <meta charset="utf-8">
-    <title>{{ page.title }}</title>
-    <meta name="description" content="{Fall-Back Developement">
+    <title>{{ page.title }} | Fall-Back Developement</title>
+    
+    <meta name="description" content="Fall-Back Developement">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    {% assign project_base_url = '/dev' %}
 
     <!-- Built with Jekyll and Fall-Back patterns -->
 
     <!--<base href="http://localhost:4001/">-->
 
     <style>
-        /*Tiny fallback styles:*/
-
+        /* Tiny fallback styles */
+        /* (https://github.com/Fall-Back/Base/edit/master/tiny-fallback-styles.css) */
         body{padding:1em;margin:0 auto;max-width: 50em;}
-        img{max-width: 100%;}
+        img{max-width:100%;-ms-interpolation-mode: bicubic;}
+        [hidden]{display:none;}
+        main{display:block;}
 
         /* For YouTube via http://embedresponsively.com. May or may not be needed. */
         .embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
-        [hidden]{display:none;}
-
     </style>
+    
+    <!--
+        Accessible font loading. FOUT is a lesser evil than FOIT.
+        (https://keithclark.co.uk/articles/loading-css-without-blocking-render/)
+    -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+
 
     <!--
         Print (Edge doesn't apply to print otherwise)
@@ -31,30 +36,24 @@
         Edge, Chrome 39+, Opera 26+, Safari 9+, iOS 9+, Android ~5+, Android UCBrowser 11.8+
         FF 47+
     -->
-    <link rel="stylesheet" href="/css/style.min.{{ site.data.cache_bust_dev_css.date }}.css" media="
-        only print, screen and (min-width: 1vm),
-        only all and (-ms-high-contrast: none), only all and (-ms-high-contrast: active),
-        only all and (pointer: fine), only all and (pointer: coarse), only all and (pointer: none),
-        only all and (min--moz-device-pixel-ratio:0) and (display-mode:browser), (min--moz-device-pixel-ratio:0) and (display-mode:fullscreen)
+    <link rel="stylesheet" href="/dev/start-css/css/start.min.css" media="
+        only screen and (min-resolution: 0.1dpcm),
+        only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)
     ">
-    
-    <link rel="stylesheet" href="/css/theme-all-basic.min.{{ site.data.cache_bust_dev_css.date }}.css" media="
-        only print, screen and (min-width: 1vm),
-        only all and (-ms-high-contrast: none), only all and (-ms-high-contrast: active),
-        only all and (pointer: fine), only all and (pointer: coarse), only all and (pointer: none),
-        only all and (min--moz-device-pixel-ratio:0) and (display-mode:browser), (min--moz-device-pixel-ratio:0) and (display-mode:fullscreen)
+    {% if page.head_stylesheets != false %}
+    {% for stylesheet in page.head_stylesheets %}
+    <link rel="stylesheet" href="{{ stylesheet }}" media="
+        only screen and (min-resolution: 0.1dpcm),
+        only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)
     ">
-
-    {% if page.project != false %}
-        <link rel="stylesheet" href="/css/theme-{{ page.project }}.min.{{ site.data.cache_bust_dev_css.date }}.css" media="
-            only print, screen and (min-width: 1vm),
-            only all and (-ms-high-contrast: none), only all and (-ms-high-contrast: active),
-            only all and (pointer: fine), only all and (pointer: coarse), only all and (pointer: none),
-            only all and (min--moz-device-pixel-ratio:0) and (display-mode:browser), (min--moz-device-pixel-ratio:0) and (display-mode:fullscreen)
-        ">
+    {% endfor %}
     {% endif %}
-
-    <script src="/js/script.min.js"></script>
+    
+    {% if page.head_style != false %}
+    <style>
+    {{ page.head_style }}
+    </style>
+    {% endif %}
     
     {% if page.load_highlighter != false %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css">
@@ -69,30 +68,18 @@
     </style>
     {% endif %}
 
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ project_base_url }}/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ project_base_url }}/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ project_base_url }}/favicon-16x16.png">
-    <link rel="manifest" href="{{ project_base_url }}/site.webmanifest">
-    <link rel="mask-icon" href="{{ project_base_url }}/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="shortcut icon" href="{{ project_base_url }}/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/dev/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/dev/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/dev/favicon-16x16.png">
+    <link rel="manifest" href="/dev/site.webmanifest">
+    <link rel="mask-icon" href="/dev/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/dev/favicon.ico">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-config" content="{{ project_base_url }}/browserconfig.xml">
+    <meta name="msapplication-config" content="/dev/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
-    {% comment %}
-
-    {% endcomment %}
-
-    {% if page.has_map %}
-        <link href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" rel="stylesheet" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
-        <link href="/css/vendor/leaflet-fullscreen.css" rel="stylesheet" />
-        <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
-        <script src="/js/vendor/leaflet-svg-icon.js"></script>
-        <script src="/js/vendor/leaflet-fullscreen.js"></script>
-        <script src="/js/vendor/leaflet-map.js"></script>
-    {% endif %}
 </head>
-<body role="document" class="tb-baselineX tb-outlinesX  Xd-background--very-dark  Xt-neutral" data-layout="{{ page.layout_name }}">
+<body role="document" class="{% if page.body_class != false %}{{ page.body_class }}{% endif %}">
 
     <svg xmlns="http://www.w3.org/2000/svg" display="none">
         <symbol id="icon-building" viewBox="0 0 24 24">
@@ -172,6 +159,12 @@
     {% if page.load_highlighter != false %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
+    {% endif %}
+
+    {% if page.body_end_script != false %}
+    <script>
+    {{ page.body_end_script }}
+    </script>
     {% endif %}
 
 </body>

@@ -161,7 +161,8 @@ exports.devcssmin = do_devcssmin;
 exports.empty_css_output = empty_css_output;
 
 // This combined task makes it convenient to run all the steps together.
-exports.css = (empty_css_output, do_sass, do_cssmin, do_devsass, do_devcssmin);
+exports.css = series(empty_css_output, do_sass, do_cssmin);
+exports.devcss = series(do_devsass, do_devcssmin);
 
 
 
@@ -175,10 +176,16 @@ function do_watch_css(cb) {
 }
 exports.watch_css = do_watch_css;
 
+function do_watch_devcss(cb) {
+    watch(css_src + 'dev/**/*.scss', exports.devcss);
+}
+exports.watch_devcss = do_watch_devcss;
+
 
 // Watch all of the above:
 function do_watch_all(cb) {
     watch(css_src + '**/*.scss', exports.css);
+    watch(css_src + 'dev/**/*.scss', exports.devcss);
     //watch(js_src + '** /!(script)*.js', exports.js);
 }
 exports.watch_all = do_watch_all;

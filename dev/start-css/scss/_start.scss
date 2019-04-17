@@ -46,13 +46,6 @@
 //@debug ($fallback--base-rem-space-unit / 8) - ((($input-border-width + 0px) / 1px) * $fallback--base-rem-1px);
 
 
-// This helps with building media query hacks.
-@mixin mq($query) {
-    @media #{$query} {
-        @content
-    }
-}
-
 //@debug calc-px-from-rem(1.5rem);
 
 /*
@@ -293,9 +286,6 @@ $ui-focus-outline-offset: 2px !default;
 $monospace-font-family: monospace !default;
 
 
-//$max-main-line-length: 0 !default;
-$max-main-line-length: 40em !default;
-
 /* Global focus style: */
 //$focus-outline-style: 1px dotted #000 !default;
 //$focus-outline-style: 0 !default;
@@ -344,10 +334,12 @@ $anchor-focus-text-color: false;
 */
 
 // <body>
-$body-padding: $fallback--base-rem-space-unit !default;
+$body-padding: 0 $fallback--base-rem-space-unit !default;
 $body-margin: 0 !default;
 $body-min-width: 250px !default;
-$body-max-width: none !default;
+$body-max-width: 0 !default;
+$body-text-color: $fallback--base-text-color !default;
+$body-background-color: transparent !default;
 
 
 
@@ -474,6 +466,11 @@ $h6-height:  $fallback--base-rem-space-unit !default;
 
 
 
+
+// <html>
+$html-background-color: $fallback--base-background-color !default;
+
+
 // <hr>
 $hr-border-width: $ui-border-width !default;
 $hr-border: $hr-border-width solid $ui-color--base !default;
@@ -481,6 +478,15 @@ $hr-border: $hr-border-width solid $ui-color--base !default;
 $hr-margin-top: -$hr-border-width;
 $hr-margin-bottom: $fallback--base-rem-space-unit;
 
+
+
+
+// <main>
+//$main-max-line-length: 0 !default;
+$main-max-line-length: 50em !default;
+$main-padding: $fallback--base-rem-space-unit !default;
+$main-text-color: $fallback--base-text-color !default;
+$main-background-color: $fallback--base-background-color !default;
 
 
 // <pre> (and nested <code>)
@@ -625,7 +631,7 @@ html {
     overflow-y: scroll; /* 3 */
 
     color: $fallback--base-text-color;
-    background-color: $fallback--base-background-color;
+    background-color: $html-background-color;
 
     font-size: #{$fallback--root-font-size-percent * 1%}; /* 4 */
     font-family: $fallback--base-font-family;
@@ -713,16 +719,27 @@ body {
     position: relative; /* 1 */
 
     min-width: $body-min-width;
-    max-width: $body-max-width;
 
     min-height: 100%;
+    
+    @if $body-max-width > 0 {
+        max-width: $body-max-width;
 
-    margin: $body-margin;
+        margin: $body-margin auto;
+    } @else {
+        max-width: none;
+        
+        margin: $body-margin;
+    }
 
     padding: $body-padding;
 
     font-size: ($fallback--base-font-size / $fallback--root-font-size * 1em);
     line-height: $fallback--base-rem-space-unit;
+    
+    background-color: $body-background-color;
+    color: $body-text-color;
+    
 }
 
 
@@ -1536,11 +1553,32 @@ _:-ms-input-placeholder, :root #{$namespace}[type="file"] {
 main {
     display: block; /* 1 */
 
-    @if $max-main-line-length > 0 {
-        max-width: $max-main-line-length;
+    @if $main-max-line-length > 0 {
+        max-width: $main-max-line-length;
 
         margin-right: auto;
         margin-left: auto;
+    }
+    
+    padding: $main-padding;
+
+    background-color: $main-background-color;
+    color: $main-text-color;
+    
+    
+    position: relative;
+    
+    
+    &::before {
+        display: block;
+        content: "";
+        position: absolute;
+        top: 0;
+        height: 100vh;
+        background: #fff;
+        z-index: -1;
+        left: 0;
+        right: 0;
     }
 }
 
@@ -2195,7 +2233,7 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[multip
 */
 // @media screen and (min-width:0\0) and (min-resolution:+72dpi) { .selector { property:value; } }
 // Internet Explorer 9-11
-@media screen and (min-width:0\0) and (min-resolution:+72dpi) {
+@media #{$fallback--ie9-11} {
     #{$namespace}ul li {
     }
 
@@ -2220,7 +2258,7 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[multip
 */
 // @media screen and (min-width:0\0) and (min-resolution:.001dpcm) { .selector { property:value; } }
 // Internet Explorer 9
-@media screen and (min-width:0\0) and (min-resolution:.001dpcm) {
+@media #{$fallback--ie9} {
     #{$namespace}ul ul ul li {
         margin-bottom: -0.04em;
     }

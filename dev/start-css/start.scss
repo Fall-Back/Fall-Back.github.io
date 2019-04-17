@@ -55,7 +55,7 @@
 //---
 
 // Note - using @import is bad for performance. I'm using it here to make the final CSS file self-
-// contained, but if you're not using that final (which is likely), but the <link> in the HTL
+// contained, but if you're not using that final (which is likely), put the <link> in the HTL
 // instead, e.g.:
 // <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
 
@@ -74,6 +74,9 @@ $fallback--root-font-size: 10px;
 
 
 $experimental_checkradios: true;
+
+$html-background-color: #50514F;
+
 
 @import 'scss/_start.scss';
 

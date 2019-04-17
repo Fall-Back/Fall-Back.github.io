@@ -15,6 +15,8 @@
     E.g. `.{pattern} .{pattern}__child` would `a[href]`, but just `.{pattern}` wouldn't, so we use
     `.{pattern}.{pattren}`
 
+    https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3
+
 |-------------------------------------------------------------------------------------------------*/
 
 $fallback--root-font-size:         16px !default;
@@ -38,7 +40,7 @@ $fallback--base-font-family:       sans-serif !default;
 // https://bitsofco.de/the-new-system-font-stack/ https://github.com/necolas/normalize.css/issues/665
 
 
-$fallback--base-ui-color:          #663399 !default;
+$fallback--base-ui-color:          #247BA0 !default;
 
 $fallback--base-background-color:  #fff !default;
 $fallback--base-text-color:        #333 !default;
