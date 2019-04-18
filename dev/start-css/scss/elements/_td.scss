@@ -2,22 +2,22 @@
     Fall-Back Start-CSS Element: td
 |-------------------------------------------------------------------------------------------------*/
 
-$td-border-width: $flbk-border-width !default;
-$td-border: $td-border-width solid $flbk--base-ui-color !default;
-$td-background-color: lighten($flbk--base-ui-color, 50%) !default;
-$td-cell-padding: $flbk--base-rem-space-unit / 2;
+$f__td-border-width: $f__border-width !default;
+$f__td-border: $f__td-border-width solid $f__base-ui-color !default;
+$f__td-background-color: #fff !default;
+$f__td-cell-padding: $f__base-rem-space-unit / 2;
 
 /*
     1. Opera Mini (no calc support).
     2. Calc to deduct any border-width.
 */
-#{$namespace}td {
-    padding-top: $td-cell-padding;
-    padding-right: $td-cell-padding;
-    padding-bottom: $td-cell-padding; /* 1 */
-    padding-bottom: calc(#{$td-cell-padding} - #{$td-border-width}); /* 2 */
-    padding-left: $td-cell-padding;
+#{$f__namespace}td {
+    padding-top: $f__td-cell-padding;
+    padding-right: $f__td-cell-padding;
+    padding-bottom: $f__td-cell-padding; /* 1 */
+    padding-bottom: calc(#{$f__td-cell-padding} - #{$f__td-border-width}); /* 2 */
+    padding-left: $f__td-cell-padding;
 
-    border: $td-border;
-    background-color: $td-background-color;
+    border: $f__td-border;
+    background-color: $f__td-background-color;
 }

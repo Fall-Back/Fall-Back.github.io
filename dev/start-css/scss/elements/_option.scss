@@ -2,31 +2,31 @@
     Fall-Back Start-CSS Element: option
 |-------------------------------------------------------------------------------------------------*/
 
-$option-h-padding: $flbk--base-rem-space-unit / 4 !default;
-$option-text-color: $flbk--base-text-color !default;
-$option-background-color: #fff !default;
-$option-background-color--state-1: lighten($flbk--base-ui-color, 40%) !default;
+$f__option-h-padding: $f__base-rem-space-unit / 4 !default;
+$f__option-text-color: $f__base-text-color !default;
+$f__option-background-color: #fff !default;
+$f__option-background-color--state-1: lighten($f__base-ui-color, 40%) !default;
 
 /*
     1. This v-centers the text in FF and Chrome. Edge doesn't apply this but looks ok regardless.
        Just IE9-11 to sort out?
 */
-#{$namespace}option {
+#{$f__namespace}option {
     display: flex; /* 1 */
     align-items: center; /* 1 */
 
-    min-height: $flbk--base-rem-space-unit;
+    min-height: $f__base-rem-space-unit;
 
-    padding-right: $option-h-padding;
-    padding-left: $option-h-padding;
+    padding-right: $f__option-h-padding;
+    padding-left: $f__option-h-padding;
 
     cursor: pointer;
 
-    background-color: $option-background-color;
+    background-color: $f__option-background-color;
 
     &:hover {
-        background-color: $option-background-color--state-1;
-        color: $option-text-color;
+        background-color: $f__option-background-color--state-1;
+        color: $f__option-text-color;
     }
 
 

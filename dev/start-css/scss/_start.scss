@@ -38,16 +38,15 @@
 /*-------------------------------------------------------------------------------------------------|
 
     FUNCTIONS AND MIXINS
-   (These must come before the Setting, as the settings make use of some of these)
 
 |-------------------------------------------------------------------------------------------------*/
 
 @import '_start_functions.scss';
 @import '_start_mixins.scss';
-//@debug ($flbk--base-rem-space-unit / 8) - ((($input-border-width + 0px) / 1px) * $flbk--base-rem-1px);
+//@debug ($f__base-rem-space-unit / 8) - ((($f__input-border-width + 0px) / 1px) * $f__base-rem-1px);
 
 
-//@debug calc-px-from-rem(1.5rem);
+//@debug f__calc-px-from-rem(1.5rem);
 
 
 
@@ -58,209 +57,54 @@
 |-------------------------------------------------------------------------------------------------*/
 
 // Let the other Fall-Back patterns know that start is being used:
-$using-Start-CSS: true;
+$f__using-Start-CSS: true;
 
 // Allow suppression of styles so this file can be imported only for its variables etc.
 //$suppress_styles: false !default;
 
-$experimental_checkradios: false !default;
+$f__experimental_checkradios: false !default;
 
-// Use $namespace to scope all body > *:not(main) styles:
-$namespace: '' !default;
-
-
+// Use $f__namespace to scope all body > *:not(main) styles:
+$f__namespace: '' !default;
 
 
 
+$f__monospace-font-family: monospace !default;
 
-$monospace-font-family: monospace !default;
 
 // <audio>, <canvas>, <iframe>, <img>, <object>, <progress>, <svg>
-$media-element-vertical-align: middle !default;
+$f__media-element-vertical-align: middle !default;
 
-
-/* Global focus style: */
-//$focus-outline-style: 1px dotted #000 !default;
-//$focus-outline-style: 0 !default;
-
-
-// ELEMENTS
-
-// <a>
-$anchor-text-color: $flbk--base-ui-color !default;
-$anchor-text-color--alt: darken($anchor-text-color, 10%) !default;
-$anchor-text-decoration: none !default;
-
-$anchor-border-bottom: 2px solid !default;
-$anchor-border-bottom--alt: 2px dashed !default;
-$anchor-border-bottom-offset: -2px;
-$anchor-padding-bottom: 2px;
-
-$anchor-add-external-link-indicator: true !default;
-
-$anchor-focus-shadow: true !default;
-$anchor-focus-shadow-width: 3px !default;
-
-//$anchor-focus-outline-width: $flbk-focus-outline-width !default;
-//$anchor-focus-outline-width: false !default;
-//$anchor-focus-outline-style: $flbk-focus-outline-style !default;
-//$anchor-focus-outline-color: $flbk-focus-outline-color !default;
-//$anchor-focus-outline-offset: $flbk-focus-outline-offset !default;
-
-//$anchor-focus-background-color: false !default;
-// BE CAREFUL: changing the background colors of links is a bad idea if the links contain images
-// with transparent areas.
-//$anchor-focus-background-color: $anchor-text-color !default;
-//$anchor-focus-background-color: lighten($anchor-text-color, 30%) !default;
-
-// This next bit isn't configurable, but keep it as-is for now for reference:
-/*
-$anchor-focus-text-color: false;
-@if $anchor-focus-background-color != false {
-    @if color_light_or_dark($anchor-focus-background-color) == 'light' {
-        $anchor-focus-text-color: darken($anchor-text-color, 50%);
-    } @else {
-        $anchor-focus-text-color: lighten($anchor-text-color, 70%);
-    }
-}
-@debug $anchor-focus-text-color;
-*/
 
 // <body>
-$body-padding: 0 $flbk--base-rem-space-unit !default;
-$body-margin: 0 !default;
-$body-min-width: 250px !default;
-$body-max-width: 0 !default;
-$body-text-color: $flbk--base-text-color !default;
-$body-background-color: transparent !default;
-
-
-
-// <button>
-$button-h-padding: $flbk--base-rem-space-unit / 4 !default;
-
-$button-text-color: #fff !default;
-$button-background-color: $flbk--base-ui-color !default;
-$button-background-color--alt: -10 !default; // +n (% lighten) | -n (% darken) | <color> | false;
-//$button-background-color--state-1: lighten($flbk--base-ui-color, 10%) !default;
-
-//$button-border-color: darken($flbk--base-ui-color, 10%) !default;
-$button-border-color: $flbk-border-color !default;
-$button-border-width: $flbk-border-width !default;
-$button-border-style: $flbk-border-style !default;
-$button-border-radius: $flbk-border-radius !default;
-
-
-
-//$button-focus-shadow: false !default;
-$button-focus-shadow: true !default;
-$button-focus-shadow-width: 3px !default;
-
-//unused? $button-focus-border: false !default;
-/*
-//$button-focus-outline-width: $flbk-focus-outline-width !default;
-$button-focus-outline-width: false !default;
-$button-focus-outline-style: $flbk-focus-outline-style !default;
-$button-focus-outline-color: rgba(255,255,255,0.6) !default;
-//$button-focus-outline-offset: -($flbk-focus-outline-offset + $button-border-width) !default;
-$button-focus-outline-offset: -($flbk-focus-outline-offset + $button-border-width) !default;
-*/
-
-
-$checkradio-background-color: #fff !default;
-$checkradio-text-color: $flbk--base-text-color !default;
-$checkradio-border-color: $checkradio-text-color !default;
-$checkradio-border-width: $flbk-border-width !default;
-$checkradio-border-style: $flbk-border-style !default;
-
-// <fieldset>
-$fieldset-border-width: $flbk-border-width !default;
-//$fieldset-border-width: 3px !default;
-$fieldset-padding: $flbk--base-rem-space-unit !default;
-
-
-
-// <legend>
-
-
-
-// <input> (also <select>, <option>, <textarea>)
-$input-h-padding: $flbk--base-rem-space-unit / 4 !default;
-
-$input-text-color: $flbk--base-text-color !default;
-$input-background-color: #fff !default;
-$input-background-color--state-1: lighten($flbk--base-ui-color, 40%) !default;
-
-$input-border-color: $flbk-border-color !default;
-$input-border-width: $flbk-border-width !default;
-$input-border-style: $flbk-border-style !default;
-$input-border-radius: $flbk-border-radius !default;
-
-$input-min-height: ($flbk--base-rem-space-unit * 1.25);
-
-$input-focus-indicator-size: 2px !default;
-$input-focus-indicator-color: lighten($flbk--base-ui-color, 30%) !default;
-/*$input-focus-indicator-color: false !default;
-@if color_light_or_dark($input-background-color) == 'light' {
-    $input-focus-indicator-color: darken($input-background-color, 30%);
-} @else {
-    $input-focus-indicator-color: lighten($input-background-color, 30%);
-}
-@debug color_light_or_dark($input-background-color);*/
-
-$input-focus-shadow: true !default;
-$input-focus-shadow-width: 3px !default;
-
-
-//$input-focus-shadow: 0 0 0 $input-focus-indicator-size $input-focus-indicator-color inset !default;
-//$input-focus-shadow: false !default;
-$input-focus-shadow-outset: 0 0 0 $input-focus-indicator-size $input-focus-indicator-color !default;
-
-$input-focus-outline-width: false !default;
-//$input-focus-outline-width: $flbk-focus-outline-width !default;
-$input-focus-outline-style: $flbk-focus-outline-style !default;
-$input-focus-outline-color: rgba($flbk--base-ui-color, 0.3) !default;
-$input-focus-outline-offset: -($flbk-focus-outline-offset + $button-border-width) !default;
-
-
-// File inputs' natural width varies between browsers and is too wide for smaller screens.
-// The only way to get it to collapse on smaller screens is to specify `width: 100%;` but this
-// isn't great on larger screens, so setting a `max-width` solves this and produces a consistent
-// width across browsers.
-// Override this with your preferred width or `false`:
-$input-file-max-width: 18.5em !default;
-
-
-
-// <hx>
-
-
+$f__body-padding: 0 $f__base-rem-space-unit !default;
+$f__body-margin: 0 !default;
+$f__body-min-width: 250px !default;
+$f__body-max-width: 0 !default;
+$f__body-text-color: $f__base-text-color !default;
+$f__body-background-color: transparent !default;
 
 
 // <html>
-$html-background-color: $flbk--base-background-color !default;
-
-
-
-
+$f__html-background-color: $f__base-background-color !default;
 
 
 // Selections:
-$selection-text-color: #fff;
-$selection-background-color: lighten($flbk--base-ui-color, 30%) !default;
-$selection-text-shadow: none;
+$f__selection-text-color: #fff;
+$f__selection-background-color: lighten($f__base-ui-color, 30%) !default;
+$f__selection-text-shadow: none;
 
 
 
 
 
 /* Output class for reference (tmp): */
-.ref {
-    flbk--base-rem-space-unit: $flbk--base-rem-space-unit;
-    flbk--base-rem-1px: $flbk--base-rem-1px;
-    flbk--root-font-size: $flbk--root-font-size;
-    flbk--root-font-size-percent: $flbk--root-font-size-percent;
-}
+/*.ref {
+    flbk--base-rem-space-unit: $f__base-rem-space-unit;
+    flbk--base-rem-1px: $f__base-rem-1px;
+    flbk--root-font-size: $f__root-font-size;
+    flbk--root-font-size-percent: $f__root-font-size-percent;
+}*/
 
 
 //@if ($suppress_styles != true) {
@@ -338,11 +182,11 @@ html {
 
     overflow-y: scroll; /* 3 */
 
-    color: $flbk--base-text-color;
-    background-color: $html-background-color;
+    color: $f__base-text-color;
+    background-color: $f__html-background-color;
 
-    font-size: #{$flbk--root-font-size-percent * 1%}; /* 4 */
-    font-family: $flbk--base-font-family;
+    font-size: #{$f__root-font-size-percent * 1%}; /* 4 */
+    font-family: $f__base-font-family;
 
     -ms-text-size-adjust: 100%; /* 5 */
     -webkit-text-size-adjust: 100%; /* 5 */
@@ -355,14 +199,14 @@ html {
 /*
     Fix font size for IE9,10 as it can't calculate % to 1 decimal place! Grrr.
 */
-@if ($flbk--root-font-size != 16px) {
+@if ($f__root-font-size != 16px) {
     // @media screen and (min-width:0\0) and (min-resolution:.001dpcm) { .selector { property:value; } }
     // Internet Explorer 9
-    @media screen and (min-width:0\0) and (min-resolution:.001dpcm) { html { font-size: calc(#{($flbk--root-font-size-percent / 100) * 1rem} + 0.1px); } }
+    @media screen and (min-width:0\0) and (min-resolution:.001dpcm) { html { font-size: calc(#{($f__root-font-size-percent / 100) * 1rem} + 0.1px); } }
 
     // _:-ms-lang(x), .selector { property:value\9; }
     // Internet Explorer 10
-    _:-ms-lang(x), html { font-size: calc(#{($flbk--root-font-size-percent / 100) * 1rem} + 0.1px)\9; }
+    _:-ms-lang(x), html { font-size: calc(#{($f__root-font-size-percent / 100) * 1rem} + 0.1px)\9; }
 }
 
 
@@ -412,7 +256,7 @@ html {
 /*
     Remove the inner border and padding from form elements in older Firefox.
 */
-#{$namespace}::-moz-focus-inner {
+#{$f__namespace}::-moz-focus-inner {
     margin: 0;
 
     padding: 0;
@@ -426,27 +270,27 @@ html {
 body {
     position: relative; /* 1 */
 
-    min-width: $body-min-width;
+    min-width: $f__body-min-width;
 
     min-height: 100%;
     
-    @if $body-max-width > 0 {
-        max-width: $body-max-width;
+    @if $f__body-max-width > 0 {
+        max-width: $f__body-max-width;
 
-        margin: $body-margin auto;
+        margin: $f__body-margin auto;
     } @else {
         max-width: none;
         
-        margin: $body-margin;
+        margin: $f__body-margin;
     }
 
-    padding: $body-padding;
+    padding: $f__body-padding;
 
-    font-size: ($flbk--base-font-size / $flbk--root-font-size * 1em);
-    line-height: $flbk--base-rem-space-unit;
+    font-size: ($f__base-font-size / $f__root-font-size * 1em);
+    line-height: $f__base-rem-space-unit;
     
-    background-color: $body-background-color;
-    color: $body-text-color;
+    background-color: $f__body-background-color;
+    color: $f__body-text-color;
     
 }
 
@@ -457,150 +301,19 @@ body {
 
 |-------------------------------------------------------------------------------------------------*/
 
-/*
-    a:link a:visited a:hover a:active a:focus
 
-    1. Remove the gray background on active links in IE 10.
-    2. Remove the gaps in underlines in iOS 8+ and Safari 8+.
-    3. Remove the tapping delay from clickable elements .
-*/
-#{$namespace}a[href] {
-    margin-bottom: $anchor-border-bottom-offset;
 
-    padding-bottom: $anchor-padding-bottom;
 
-    border-bottom: $anchor-border-bottom;
-
-    color: $anchor-text-color;
-    background-color: transparent; /* 1 */
-
-    text-decoration: $anchor-text-decoration;
-    -webkit-text-decoration-skip: objects; /* 2 */
-
-    -ms-touch-action: manipulation; /* 3 (IE10) */
-    touch-action: manipulation; /* 3 */
-
-    &:hover,
-    &:active {
-        border-bottom: $anchor-border-bottom--alt;
-
-        @if $anchor-text-color--alt != $anchor-text-color {
-            color: $anchor-text-color--alt;
-        }
-    }
-
-    @if $anchor-focus-shadow != false {
-        &:focus {
-            outline: 0;
-            box-shadow: 0 0 0 $anchor-focus-shadow-width rgba($anchor-text-color, 0.5);
-        }
-    }
-
-    /*
-    @if $anchor-focus-outline-width != false {
-        outline: none;
-
-        &:focus {
-            outline-width: $anchor-focus-outline-width;
-            outline-style: $anchor-focus-outline-style;
-            outline-color: $anchor-focus-outline-color;
-            outline-offset: $anchor-focus-outline-offset;
-        }
-    }
-
-    @if $anchor-focus-background-color != false {
-        outline: none;
-
-        &:focus {
-            color: $anchor-focus-text-color;
-            background-color: $anchor-focus-background-color;
-        }
-    }*/
-}
-
-    @if $anchor-add-external-link-indicator == true {
-        #{$namespace}a[href][rel="external"]::after {
-            display: inline;
-
-            content: "";
-
-            padding-left: 1.25em;
-
-            background: linear-gradient(45deg, transparent 50%, currentColor 50%);
-
-            font-size: 0.4em;
-            line-height: 0;
-
-            vertical-align: super;
-        }
-        
-        #{$namespace}a[href][rel="external"]:hover::after {
-            background: linear-gradient(45deg, transparent 50%, currentColor 50%);
-        }
-    }
-
-/*
-    1. Remove the bottom border in Firefox 39-.
-    2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
-*/
-#{$namespace}abbr {
-    cursor: help;
-
-    &[title] {
-        border-bottom: none; /* 1 */
-
-        text-decoration: underline; /* 2 */
-
-        text-decoration: underline dotted; /* 2 */
-    }
-}
-
+@import 'elements/_a.scss';
+@import 'elements/_abbr.scss';
 //--acronym {}--
-
-#{$namespace}address {
-    margin-bottom: $flbk--base-rem-space-unit;
-}
-
+@import 'elements/_address.scss';
 //--applet {}--
 //!area {}
-
-#{$namespace}article {
-    display: block;
-
-    margin-bottom: $flbk--base-rem-space-unit;
-}
-
-#{$namespace}aside {
-    display: block;
-
-    margin-bottom: $flbk--base-rem-space-unit;
-}
-
-/*
-    1. Add the correct display in IE 9-.
-    2. Chrome 44-, iOS 8+, Safari 9+.
-*/
-#{$namespace}audio {
-    display: inline-block; /* 1 */
-
-    vertical-align: $media-element-vertical-align;
-
-    &:not([controls]) {
-        display: none; /* 2 */
-        height: 0;
-    }
-}
-
-
-/*
-    1: Add the correct font weight in Chrome, Edge, and Safari.
-    2. Prevent increase in line-height in IE.
-*/
-#{$namespace}b {
-    font-weight: bolder; /* 1 */
-    line-height: 1; //normal /* 2 */
-}
-
+@import 'elements/_article.scss';
+@import 'elements/_aside.scss';
+@import 'elements/_audio.scss';
+@import 'elements/_b.scss';
 //base {}
 //--basefont {}--
 //bdi {}
@@ -608,167 +321,36 @@ body {
 //--bgsound {}
 //--big {}--
 //--blink {}--
-
-#{$namespace}blockquote {
-    margin-bottom: $flbk--base-rem-space-unit;
-    margin-left: $flbk--base-rem-space-unit;
-
-    font-style: italic;
-    /*
-        @TODO - set up vars and styles for the most common quote styles.
-        I.e. left-border, and enclosing quotes.
-    */
-}
-
+@import 'elements/_blockquote.scss';
 //^body {}
 //br {}
-
-#{$namespace}button {
-    @include button;
-}
-
-// _:-o-prefocus, :root .selector { property:value; }
-// Opera 9.5-12, Opera Mini 7.x (Opera 9.80)
-_:-o-prefocus, :root #{$namespace}button {
-    line-height: $flbk--base-rem-space-unit !important;
-}
-
-/*
-    FF15-
-
-    Remove the inner border and padding in Firefox and fix height.
-
-    Early FF doesn't correctly apply the box sizing to inputs (buttons?)
-    Adding margin to -moz-focus-inner helps to force the correct height.
-    It doesn't have any effect in newer FF.
-
-    NOTE: these adjustments don't seem very robust / dependent on font-family and font-size.
-*/
-#{$namespace}button::-moz-focus-inner {
-    margin: -0.0625em 0;
-}
-
-/*
-    Reset for FF16+
-*/
-_:-moz-meter-optimum, :root button::-moz-focus-inner {margin: 0; }
-
-
-/*
-    1. Add the correct display in IE 9-.
-*/
-#{$namespace}canvas {
-    display: inline-block;  /* 1 */
-
-    vertical-align: $media-element-vertical-align;
-}
-
+@import 'elements/_button.scss';
+@import 'elements/_canvas.scss';
 @import 'elements/_caption.scss';
 //--center {}
 // cite {}
-
-/*
-    1. Correct the inheritance and scaling of font size in all browsers. (N)
-    2. Address odd `em`-unit font size rendering in all browsers. (N)
-    3. Prevent the element increasing the line-height of the parent.
-*/
-#{$namespace}code {
-    font-family: $monospace-font-family, monospace; /* 1 */
-    font-size: 1em; /* 2 */
-    line-height: 0; /* 3 */
-}
-
+@import 'elements/_code.scss';
 //!col {}
 //!colgroup {}
 //command {}
 //content {}
 //data {}
 //datalist {}
-
-#{$namespace}dd {
-    margin-left:  $flbk--base-rem-space-unit * 1.5;
-}
-
+@import 'elements/_dd.scss';
 //del {}
-
-#{$namespace}details {
-    display: block; /* N: IE 10/11 */
-}
-
-/*
-    Address styling not present in Safari and Chrome. (N)
-*/
-#{$namespace}dfn {
-    font-style: italic;
-}
-
+@import 'elements/_details.scss';
+@import 'elements/_dfn.scss';
 //dialog {}
 //--dir {}--
 //div {}
-
-/*
-    1. Either of these will make lists behave properly next to floated items.
-       (https://paulbakaus.com/tutorials/css/block-formatting-contexts-and-lists)
-       a. This causes problems with some decoration. E.g. if the last element in the list is a link,
-           bottom borders get cropped, so using b instead.
-*/
-#{$namespace}dl {
-    //overflow: hidden; /* 1a */
-
-    margin-bottom: $flbk--base-rem-space-unit;
-
-    display: table; /* 1b */
-}
-
-#{$namespace}dt {
-    font-weight: bold;
-}
-
+@import 'elements/_dl.scss';
+@import 'elements/_dt.scss';
 //element {}
-//em {}
-/*
-    1. De-italicize nested ems
-*/
-#{$namespace}em em {
-    font-style: normal; /* 1 */
-}
-
+@import 'elements/_em.scss';
 //embed {}
-
-/*
-    Fieldsets and legends can be difficult to style so I'm keeping their appearance basically the
-    same as the default - just a bit of theming.
-    More info here: https://thatemil.com/blog/2015/01/03/reset-your-fieldset/
-*/
-#{$namespace}fieldset {
-    margin-bottom: $flbk--base-rem-space-unit;
-
-    min-width: 0;
-
-    @include bordered($fieldset-padding, $fieldset-border-width);
-}
-
-    #{$namespace}fieldset fieldset {
-        margin: 0;
-
-        padding: 0;
-
-        border-width: 0;
-    }
-        #{$namespace}fieldset fieldset::after {
-            display: none;
-        }
-
-#{$namespace}figcaption {
-    display: block;
-}
-
-#{$namespace}figure {
-    display: block;
-
-    margin-bottom: $flbk--base-rem-space-unit;
-}
-
+@import 'elements/_fieldset.scss';
+@import 'elements/_figcaption.scss';
+@import 'elements/_figure.scss';
 //--font {}--
 @import 'elements/_footer.scss';
 @import 'elements/_form.scss';
@@ -877,10 +459,10 @@ _:-moz-meter-optimum, :root button::-moz-focus-inner {margin: 0; }
 */
 ::-moz-selection,
 ::selection {
-    color: $selection-text-color;
-    background-color: $selection-background-color;
+    color: $f__selection-text-color;
+    background-color: $f__selection-background-color;
 
-    text-shadow: $selection-text-shadow;
+    text-shadow: $f__selection-text-shadow;
 }
 
 

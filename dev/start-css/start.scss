@@ -1,8 +1,8 @@
 // Proves that SASS adds `@charset "UTF-8";` if non-ASCII characters are included:
 //.test{content:"∞";}
 
-//$flbk--base-line-height: 24px; // 1.5
-//$flbk--base-ui-color: #663399; //rebeccapurple #663399 rgb(102,51,153)
+//$f__base-line-height: 24px; // 1.5
+//$f__base-ui-color: #663399; //rebeccapurple #663399 rgb(102,51,153)
 
 // Thoughts on setting root font size:
 
@@ -50,8 +50,8 @@
 // renders things correctly.
 
 // Tmp:
-//$button-border-width: 3px;
-//$button-border-width: 0;
+//$f__button-border-width: 3px;
+//$f__button-border-width: 0;
 //---
 
 // Note - using @import is bad for performance. I'm using it here to make the final CSS file self-
@@ -60,22 +60,22 @@
 // <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
 
 //@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800');
-//$flbk--base-font-family: 'Open Sans', sans-serif;
+//$f__base-font-family: 'Open Sans', sans-serif;
 
 //@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900');
-$flbk--base-font-family: 'Lato', sans-serif;
+$f__base-font-family: 'Lato', sans-serif;
 
-$flbk--root-font-size: 10px;
+$f__root-font-size: 10px;
 
-//$flbk--base-ui-color: #2E8B57;
-//$namespace: '.ugc ';
-//$namespace: 'main ';
+//$f__base-ui-color: #2E8B57;
+//$f__namespace: '.ugc ';
+//$f__namespace: 'main ';
 
 
 
-$experimental_checkradios: true;
+$f__experimental_checkradios: true;
 
-$html-background-color: #50514F;
+$f__html-background-color: #50514F;
 
 
 @import 'scss/_start.scss';

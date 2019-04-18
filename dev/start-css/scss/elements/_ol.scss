@@ -16,10 +16,10 @@
        Chrome 29+, Edge 14+ (unable to test earlier)
     4. Extend support to IE10-11
 */
-#{$namespace}ol {
+#{$f__namespace}ol {
     //overflow: hidden; /* 1a */
 
-    margin-bottom: $flbk--base-rem-space-unit;
+    margin-bottom: $f__base-rem-space-unit;
 
     display: table; /* 1b, 2 */
     //display: -ms-grid; /* 1b */

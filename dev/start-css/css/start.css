@@ -55,7 +55,6 @@
 /*-------------------------------------------------------------------------------------------------|
 
     FUNCTIONS AND MIXINS
-   (These must come before the Setting, as the settings make use of some of these)
 
 |-------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------|
@@ -65,7 +64,7 @@
     Colour contrast from https://gist.github.com/FStop/8959422
     
     Usage:
-    @if color_contrast($colour, #fff) < 2 {
+    @if f__color_contrast($colour, #fff) < 2 {
         color: #333;
     }
     @else{
@@ -104,7 +103,7 @@
 
     ```
     [role="button"] {
-        @include button;
+        @include f__button;
     }
     ```
 
@@ -112,7 +111,7 @@
 
     ```
         .btn--affirmative {
-            @include button(<text-color>, <bg-color>);
+            @include f__button(<text-color>, <bg-color>);
         }
     ```
 
@@ -134,41 +133,13 @@
     SETTINGS
 
 |-------------------------------------------------------------------------------------------------*/
-/* Global focus style: */
-/*
-$anchor-focus-text-color: false;
-@if $anchor-focus-background-color != false {
-    @if color_light_or_dark($anchor-focus-background-color) == 'light' {
-        $anchor-focus-text-color: darken($anchor-text-color, 50%);
-    } @else {
-        $anchor-focus-text-color: lighten($anchor-text-color, 70%);
-    }
-}
-@debug $anchor-focus-text-color;
-*/
-/*
-//$button-focus-outline-width: $flbk-focus-outline-width !default;
-$button-focus-outline-width: false !default;
-$button-focus-outline-style: $flbk-focus-outline-style !default;
-$button-focus-outline-color: rgba(255,255,255,0.6) !default;
-//$button-focus-outline-offset: -($flbk-focus-outline-offset + $button-border-width) !default;
-$button-focus-outline-offset: -($flbk-focus-outline-offset + $button-border-width) !default;
-*/
-/*$input-focus-indicator-color: false !default;
-@if color_light_or_dark($input-background-color) == 'light' {
-    $input-focus-indicator-color: darken($input-background-color, 30%);
-} @else {
-    $input-focus-indicator-color: lighten($input-background-color, 30%);
-}
-@debug color_light_or_dark($input-background-color);*/
 /* Output class for reference (tmp): */
-.ref {
-  flbk--base-rem-space-unit: 2.4rem;
-  flbk--base-rem-1px: 0.1rem;
-  flbk--root-font-size: 10px;
-  flbk--root-font-size-percent: 62.5;
-}
-
+/*.ref {
+    flbk--base-rem-space-unit: $f__base-rem-space-unit;
+    flbk--base-rem-1px: $f__base-rem-1px;
+    flbk--root-font-size: $f__root-font-size;
+    flbk--root-font-size-percent: $f__root-font-size-percent;
+}*/
 /*-------------------------------------------------------------------------------------------------|
 
     ROOT STYLES
@@ -319,6 +290,9 @@ body {
     ALL ELEMENTS
 
 |-------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: a
+|-------------------------------------------------------------------------------------------------*/
 /*
     a:link a:visited a:hover a:active a:focus
 
@@ -340,26 +314,6 @@ a[href] {
   /* 3 (IE10) */
   touch-action: manipulation;
   /* 3 */
-  /*
-    @if $anchor-focus-outline-width != false {
-        outline: none;
-
-        &:focus {
-            outline-width: $anchor-focus-outline-width;
-            outline-style: $anchor-focus-outline-style;
-            outline-color: $anchor-focus-outline-color;
-            outline-offset: $anchor-focus-outline-offset;
-        }
-    }
-
-    @if $anchor-focus-background-color != false {
-        outline: none;
-
-        &:focus {
-            color: $anchor-focus-text-color;
-            background-color: $anchor-focus-background-color;
-        }
-    }*/
 }
 
 a[href]:hover, a[href]:active {
@@ -386,6 +340,9 @@ a[href][rel="external"]:hover::after {
   background: linear-gradient(45deg, transparent 50%, currentColor 50%);
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: abbr
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. Remove the bottom border in Firefox 39-.
     2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
@@ -403,20 +360,32 @@ abbr[title] {
   /* 2 */
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: address
+|-------------------------------------------------------------------------------------------------*/
 address {
   margin-bottom: 2.4rem;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: article
+|-------------------------------------------------------------------------------------------------*/
 article {
   display: block;
   margin-bottom: 2.4rem;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: aside
+|-------------------------------------------------------------------------------------------------*/
 aside {
   display: block;
   margin-bottom: 2.4rem;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: audio
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. Add the correct display in IE 9-.
     2. Chrome 44-, iOS 8+, Safari 9+.
@@ -433,6 +402,9 @@ audio:not([controls]) {
   height: 0;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: b
+|-------------------------------------------------------------------------------------------------*/
 /*
     1: Add the correct font weight in Chrome, Edge, and Safari.
     2. Prevent increase in line-height in IE.
@@ -443,6 +415,9 @@ b {
   line-height: 1;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: blockquote
+|-------------------------------------------------------------------------------------------------*/
 blockquote {
   margin-bottom: 2.4rem;
   margin-left: 2.4rem;
@@ -453,6 +428,9 @@ blockquote {
     */
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: button
+|-------------------------------------------------------------------------------------------------*/
 button {
   display: inline-block;
   /* AK. IE9 needs this. Hmmm, for what exactly?*/
@@ -488,14 +466,14 @@ button {
   touch-action: manipulation;
   /* 1 */
   -webkit-appearance: none;
-  /*@if $button-focus-outline-width != false {
+  /*@if $f__button-focus-outline-width != false {
         &:hover,
         &:active,
         &:focus {
-            outline-width: $button-focus-outline-width;
-            outline-style: $button-focus-outline-style;
-            outline-color: $button-focus-outline-color;
-            outline-offset: $button-focus-outline-offset;
+            outline-width: $f__button-focus-outline-width;
+            outline-style: $f__button-focus-outline-style;
+            outline-color: $f__button-focus-outline-color;
+            outline-offset: $f__button-focus-outline-offset;
         }
     }*/
 }
@@ -535,6 +513,9 @@ _:-moz-meter-optimum, :root button::-moz-focus-inner {
   margin: 0;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: canvas
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. Add the correct display in IE 9-.
 */
@@ -558,6 +539,9 @@ caption {
   font-weight: bold;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: code
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. Correct the inheritance and scaling of font size in all browsers. (N)
     2. Address odd `em`-unit font size rendering in all browsers. (N)
@@ -572,15 +556,24 @@ code {
   /* 3 */
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: dd
+|-------------------------------------------------------------------------------------------------*/
 dd {
   margin-left: 3.6rem;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: details
+|-------------------------------------------------------------------------------------------------*/
 details {
   display: block;
   /* N: IE 10/11 */
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: dfn
+|-------------------------------------------------------------------------------------------------*/
 /*
     Address styling not present in Safari and Chrome. (N)
 */
@@ -588,6 +581,9 @@ dfn {
   font-style: italic;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: dl
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. Either of these will make lists behave properly next to floated items.
        (https://paulbakaus.com/tutorials/css/block-formatting-contexts-and-lists)
@@ -600,10 +596,16 @@ dl {
   /* 1b */
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: dt
+|-------------------------------------------------------------------------------------------------*/
 dt {
   font-weight: bold;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: em
+|-------------------------------------------------------------------------------------------------*/
 /*
     1. De-italicize nested ems
 */
@@ -612,6 +614,9 @@ em em {
   /* 1 */
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: fieldset
+|-------------------------------------------------------------------------------------------------*/
 /*
     Fieldsets and legends can be difficult to style so I'm keeping their appearance basically the
     same as the default - just a bit of theming.
@@ -654,10 +659,17 @@ fieldset fieldset::after {
   display: none;
 }
 
-figcaption {
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: figcaption
+|-------------------------------------------------------------------------------------------------*/
+figure {
   display: block;
+  margin-bottom: 2.4rem;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: figure
+|-------------------------------------------------------------------------------------------------*/
 figure {
   display: block;
   margin-bottom: 2.4rem;
@@ -924,14 +936,14 @@ _::-webkit-full-page-media, _:future, :root [type="radio"]:focus {
   touch-action: manipulation;
   /* 1 */
   -webkit-appearance: none;
-  /*@if $button-focus-outline-width != false {
+  /*@if $f__button-focus-outline-width != false {
         &:hover,
         &:active,
         &:focus {
-            outline-width: $button-focus-outline-width;
-            outline-style: $button-focus-outline-style;
-            outline-color: $button-focus-outline-color;
-            outline-offset: $button-focus-outline-offset;
+            outline-width: $f__button-focus-outline-width;
+            outline-style: $f__button-focus-outline-style;
+            outline-color: $f__button-focus-outline-color;
+            outline-offset: $f__button-focus-outline-offset;
         }
     }*/
 }
@@ -1109,7 +1121,7 @@ label {
     2. Offset border width.
     3. Correct the color inheritance from `fieldset` elements in IE.
 
-    Note $fieldset-border-width used deliberately (not $legend-border-width)- this is to account for
+    Note $fieldset-border-width used deliberately (not $f__legend-border-width)- this is to account for
     the fact that fieldset top border width is ignored if there's a legend so the spacing is wrong.
 */
 legend {
@@ -1297,7 +1309,7 @@ pre {
   /* 1 */
   overflow-y: auto;
   /* 1 */
-  margin-bottom: 3.1rem;
+  margin-bottom: calc-rem-from-px(31px);
   /* 1 */
   background-color: #e4f3f9;
   /*1 */
@@ -1309,7 +1321,7 @@ pre {
 
 @supports (-ms-ime-align: auto) {
   pre {
-    margin-bottom: 3.6rem;
+    margin-bottom: calc-rem-from-px(36px);
     /* 1 */
   }
 }
@@ -1663,7 +1675,7 @@ td {
   /* 2 */
   padding-left: 1.2rem;
   border: 1px solid #247BA0;
-  background-color: #cfe9f4;
+  background-color: #fff;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -1689,7 +1701,7 @@ template {
     5a. IE 10.
 */
 textarea {
-  min-height: 8.2rem;
+  min-height: 8.4rem-calc-rem-from-px(2px);
   /* 1 */
   overflow: auto;
   /* 2 */
@@ -2031,16 +2043,6 @@ a[hidden][aria-hidden="false"]:active {
   outline: 0;
 }
 
-/*@if $button-focus-outline-width != false {
-        [type="file"]:hover::-ms-browse,
-        [type="file"]:active::-ms-browse,
-        [type="file"]:focus::-ms-browse {
-            outline-width: $button-focus-outline-width;
-            outline-style: $button-focus-outline-style;
-            outline-color: $button-focus-outline-color;
-            outline-offset: $button-focus-outline-offset;
-        }
-    }*/
 /*
     1. Spacing height + 2 sets of input padding, minus border width.
 */
@@ -2074,16 +2076,6 @@ a[hidden][aria-hidden="false"]:active {
   outline: 0;
 }
 
-/*@if $button-focus-outline-width != false {
-        [type="file"]:hover::-webkit-file-upload-button,
-        [type="file"]:active::-webkit-file-upload-button,
-        [type="file"]:focus::-webkit-file-upload-button {
-            outline-width: $button-focus-outline-width;
-            outline-style: $button-focus-outline-style;
-            outline-color: $button-focus-outline-color;
-            outline-offset: $button-focus-outline-offset;
-        }
-    }*/
 /*
     Safari refuses to adjust the height of select[multiple] options.
     The only way I've managed to get it to adhere to the vertical rhythm is by adjust the font-size

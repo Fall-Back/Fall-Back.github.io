@@ -3,11 +3,11 @@
 |-------------------------------------------------------------------------------------------------*/
 
 
-#{$namespace}li {
-    margin-left:  $flbk--base-rem-space-unit * 1.5;
+#{$f__namespace}li {
+    margin-left:  $f__base-rem-space-unit * 1.5;
 }
 
-    #{$namespace}li ul,
-    #{$namespace}li ol {
+    #{$f__namespace}li ul,
+    #{$f__namespace}li ol {
         margin-bottom: 0;
     }

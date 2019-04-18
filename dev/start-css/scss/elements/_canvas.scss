@@ -1,0 +1,12 @@
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: canvas
+|-------------------------------------------------------------------------------------------------*/
+
+/*
+    1. Add the correct display in IE 9-.
+*/
+#{$f__namespace}canvas {
+    display: inline-block;  /* 1 */
+
+    vertical-align: $f__media-element-vertical-align;
+}

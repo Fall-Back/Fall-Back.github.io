@@ -1,5 +1,5 @@
 /*! Start CSS Classes. See SCSS file for documentation. */
-$custom-input-focus-shadow: 0 0 0 2px lighten($flbk--base-ui-color, 20%) !default;
+$f__custom-input-focus-shadow: 0 0 0 2px lighten($f__base-ui-color, 20%) !default;
 /*
     Resources:
     *
@@ -11,17 +11,17 @@ $custom-input-focus-shadow: 0 0 0 2px lighten($flbk--base-ui-color, 20%) !defaul
 */
 a[href].button,
 a[href].cta {
-    @include button(
-        $button-background-color,
-        $button-text-color,
+    @include f__button(
+        $f__button-background-color,
+        $f__button-text-color,
         20,
-        $button-background-color
+        $f__button-background-color
     );
 
         &:hover,
         &:active,
         &:focus {
-            background-color: lighten($button-background-color, 55%);
+            background-color: lighten($f__button-background-color, 55%);
         }
 }
 
@@ -48,7 +48,7 @@ a[href].cta {
 
     // 'Fake' buttons. Over qualified for clarity.
     .button[data-text][aria-hidden="true"] {
-        @include button;
+        @include f__button;
     }
 
         .button[data-text][aria-hidden="true"]::before {
@@ -56,8 +56,8 @@ a[href].cta {
         }
 
 .bordered {
-    @include bordered($flbk--base-line-height, 6px);
-    //@include bordered($flbk--base-rem-space-unit, $flbk-border-width);
+    @include f__bordered($f__base-line-height, 6px);
+    //@include f__bordered($f__base-rem-space-unit, $f__border-width);
 }
 
 
@@ -67,11 +67,11 @@ a[href].cta {
 // Adding a transparent border seems to fix it, as does setting it to an inline-block.
 // Not sure which is the best / most reliable approach at the moment, so leaving both in for ref.
 .padded {
-    //@include bordered($flbk--base-line-height, 1px);
+    //@include f__bordered($f__base-line-height, 1px);
     //border: 1px solid transparent;
 
-    //@include bordered($flbk--base-line-height, 0);
-    @include bordered($flbk--base-rem-space-unit, 0px);
+    //@include f__bordered($f__base-line-height, 0);
+    @include f__bordered($f__base-rem-space-unit, 0px);
     //display: inline-block;
     //width: 100%;
 }
@@ -94,7 +94,7 @@ b.subtitle {
 p.subtitle {
     font-size: 1.5em;
     font-weight: inherit;
-    margin-top: -#{$flbk--base-rem-space-unit / 2}; /* 1 */
+    margin-top: -#{$f__base-rem-space-unit / 2}; /* 1 */
 }
 
 /*
@@ -102,7 +102,7 @@ p.subtitle {
 */
 .tagline {
     font-size: 1.14285714286em;
-    margin-top: -#{$flbk--base-rem-space-unit / 2}; /* 1 */
+    margin-top: -#{$f__base-rem-space-unit / 2}; /* 1 */
 }
 
 /*
@@ -114,7 +114,7 @@ p.subtitle {
     display: -ms-inline-flexbox; /* 1 */
     display: inline-flex; /* 1 */
     vertical-align: middle; /* 2 */
-    
+
     -webkit-flex-wrap: wrap;
         -ms-flex-wrap: wrap;
             flex-wrap: wrap;
@@ -194,9 +194,9 @@ p.subtitle {
    padding-left: 1.5em;
 }
 
-@if $input-focus-shadow != false {
+@if $f__input-focus-shadow != false {
 	.custom-input:focus + .custom-input-label::before {
-		box-shadow: $custom-input-focus-shadow;
+		box-shadow: $f__custom-input-focus-shadow;
 		outline: 0;
 	}
 }
@@ -228,7 +228,7 @@ p.subtitle {
 
 /* Define the checkbox :checked state: */
 .custom-input[type="checkbox"]:checked + .custom-input-label::before {
-    background: $flbk--base-ui-color;
+    background: $f__base-ui-color;
 }
 
 /* Define the checkbox 'tick': */
@@ -252,7 +252,7 @@ p.subtitle {
 /* Define the radio 'dot': */
 .custom-input[type="radio"]:checked + .custom-input-label::before {
     background: #fff;
-    border-color: $flbk--base-ui-color;
+    border-color: $f__base-ui-color;
     border-width: 0.25em;
     border-style: solid;
 }
@@ -274,16 +274,6 @@ p.subtitle {
 .custom-input--align-end[type="checkbox"]:checked + .custom-input-label::after {
     left: auto;
     right: 0.16em;
-}
-
-
-@if $input-focus-outline-width != false {
-    .custom-input:focus + .custom-input-label {
-        outline-width: $anchor-focus-outline-width;
-        outline-style: $anchor-focus-outline-style;
-        outline-color: $anchor-focus-outline-color;
-        outline-offset: $anchor-focus-outline-offset;
-    }
 }
 
 
@@ -339,5 +329,5 @@ p.subtitle {
     font-family: cursive;
     background: #fff;
     overflow: auto;
-    margin-bottom: $flbk--base-rem-space-unit;
+    margin-bottom: $f__base-rem-space-unit;
 }

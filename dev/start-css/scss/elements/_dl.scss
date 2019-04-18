@@ -1,0 +1,17 @@
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: dl
+|-------------------------------------------------------------------------------------------------*/
+
+/*
+    1. Either of these will make lists behave properly next to floated items.
+       (https://paulbakaus.com/tutorials/css/block-formatting-contexts-and-lists)
+       a. This causes problems with some decoration. E.g. if the last element in the list is a link,
+           bottom borders get cropped, so using b instead.
+*/
+#{$f__namespace}dl {
+    //overflow: hidden; /* 1a */
+
+    margin-bottom: $f__base-rem-space-unit;
+
+    display: table; /* 1b */
+}

@@ -2,63 +2,63 @@
     Fall-Back Start-CSS Element: h
 |-------------------------------------------------------------------------------------------------*/
 
-$h1-font-size: 52px / $flbk--base-font-size * 1em !default;
-$h1-height:  $flbk--base-rem-space-unit * 2.5 !default;
+$f__h1-font-size: 52px / $f__base-font-size * 1em !default;
+$f__h1-height:  $f__base-rem-space-unit * 2.5 !default;
 
-$h2-font-size: 40px / $flbk--base-font-size * 1em !default;
-$h2-height:  $flbk--base-rem-space-unit * 2 !default;
+$f__h2-font-size: 40px / $f__base-font-size * 1em !default;
+$f__h2-height:  $f__base-rem-space-unit * 2 !default;
 
-$h3-font-size: 30px / $flbk--base-font-size * 1em !default;
-$h3-height:  $flbk--base-rem-space-unit * 1.5 !default;
+$f__h3-font-size: 30px / $f__base-font-size * 1em !default;
+$f__h3-height:  $f__base-rem-space-unit * 1.5 !default;
 
-$h4-font-size: 22px / $flbk--base-font-size * 1em !default;
-$h4-height:  $flbk--base-rem-space-unit * 1.5 !default;
+$f__h4-font-size: 22px / $f__base-font-size * 1em !default;
+$f__h4-height:  $f__base-rem-space-unit * 1.5 !default;
 
-$h5-font-size: 18px / $flbk--base-font-size * 1em !default;
-$h5-height:  $flbk--base-rem-space-unit !default;
+$f__h5-font-size: 18px / $f__base-font-size * 1em !default;
+$f__h5-height:  $f__base-rem-space-unit !default;
 
-$h6-font-size: 16px / $flbk--base-font-size * 1em !default;
-$h6-height:  $flbk--base-rem-space-unit !default;
+$f__h6-font-size: 16px / $f__base-font-size * 1em !default;
+$f__h6-height:  $f__base-rem-space-unit !default;
 
 
-#{$namespace}h1 {
-    margin-bottom: $flbk--base-rem-space-unit;
+#{$f__namespace}h1 {
+    margin-bottom: $f__base-rem-space-unit;
 
-    font-size: $h1-font-size;
-    line-height: $h1-height;
+    font-size: $f__h1-font-size;
+    line-height: $f__h1-height;
 }
 
-#{$namespace}h2 {
-    margin-bottom: $flbk--base-rem-space-unit;
+#{$f__namespace}h2 {
+    margin-bottom: $f__base-rem-space-unit;
 
-    font-size: $h2-font-size;
-    line-height: $h2-height;
+    font-size: $f__h2-font-size;
+    line-height: $f__h2-height;
 }
 
-#{$namespace}h3 {
-    margin-bottom: $flbk--base-rem-space-unit;
+#{$f__namespace}h3 {
+    margin-bottom: $f__base-rem-space-unit;
 
-    font-size: $h3-font-size;
-    line-height: $h3-height;
+    font-size: $f__h3-font-size;
+    line-height: $f__h3-height;
 }
 
-#{$namespace}h4 {
-    margin-bottom: $flbk--base-rem-space-unit;
+#{$f__namespace}h4 {
+    margin-bottom: $f__base-rem-space-unit;
 
-    font-size: $h4-font-size;
-    line-height: $h4-height;
+    font-size: $f__h4-font-size;
+    line-height: $f__h4-height;
 }
 
-#{$namespace}h5 {
-    margin-bottom: $flbk--base-rem-space-unit;
+#{$f__namespace}h5 {
+    margin-bottom: $f__base-rem-space-unit;
 
-    font-size: $h5-font-size;
-    line-height: $h5-height;
+    font-size: $f__h5-font-size;
+    line-height: $f__h5-height;
 }
 
-#{$namespace}h6 {
-    margin-bottom: $flbk--base-rem-space-unit;
+#{$f__namespace}h6 {
+    margin-bottom: $f__base-rem-space-unit;
 
-    font-size: $h6-font-size;
-    line-height: $h6-height;
+    font-size: $f__h6-font-size;
+    line-height: $f__h6-height;
 }

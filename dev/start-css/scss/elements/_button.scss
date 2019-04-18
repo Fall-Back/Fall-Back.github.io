@@ -1,0 +1,49 @@
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: button
+|-------------------------------------------------------------------------------------------------*/
+
+$f__button-h-padding: $f__base-rem-space-unit / 4 !default;
+
+$f__button-text-color: #fff !default;
+$f__button-background-color: $f__base-ui-color !default;
+$f__button-background-color--alt: -10 !default; // +n (% lighten) | -n (% darken) | <color> | false;
+
+$f__button-border-color: $f__border-color !default;
+$f__button-border-width: $f__border-width !default;
+$f__button-border-style: $f__border-style !default;
+$f__button-border-radius: $f__border-radius !default;
+
+$f__button-focus-shadow: true !default;
+$f__button-focus-shadow-width: 3px !default;
+
+$f__button-min-height: ($f__base-rem-space-unit * 1.25);
+
+#{$f__namespace}button {
+    @include f__button;
+}
+
+// _:-o-prefocus, :root .selector { property:value; }
+// Opera 9.5-12, Opera Mini 7.x (Opera 9.80)
+_:-o-prefocus, :root #{$f__namespace}button {
+    line-height: $f__base-rem-space-unit !important;
+}
+
+/*
+    FF15-
+
+    Remove the inner border and padding in Firefox and fix height.
+
+    Early FF doesn't correctly apply the box sizing to inputs (buttons?)
+    Adding margin to -moz-focus-inner helps to force the correct height.
+    It doesn't have any effect in newer FF.
+
+    NOTE: these adjustments don't seem very robust / dependent on font-family and font-size.
+*/
+#{$f__namespace}button::-moz-focus-inner {
+    margin: -0.0625em 0;
+}
+
+/*
+    Reset for FF16+
+*/
+_:-moz-meter-optimum, :root button::-moz-focus-inner {margin: 0; }

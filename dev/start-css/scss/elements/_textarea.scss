@@ -1,20 +1,20 @@
 /*-------------------------------------------------------------------------------------------------|
     Fall-Back Start-CSS Element: textarea
 |-------------------------------------------------------------------------------------------------*/
-$textarea-h-padding: $flbk--base-rem-space-unit / 4 !default;
+$f__textarea-h-padding: $f__base-rem-space-unit / 4 !default;
 
-$textarea-text-color: $flbk--base-text-color !default;
-$textarea-background-color: #fff !default;
+$f__textarea-text-color: $f__base-text-color !default;
+$f__textarea-background-color: #fff !default;
 
-$textarea-border-color: $flbk-border-color !default;
-$textarea-border-width: $flbk-border-width !default;
-$textarea-border-style: $flbk-border-style !default;
-$textarea-border-radius: $flbk-border-radius !default;
+$f__textarea-border-color: $f__border-color !default;
+$f__textarea-border-width: $f__border-width !default;
+$f__textarea-border-style: $f__border-style !default;
+$f__textarea-border-radius: $f__border-radius !default;
 
-$textarea-focus-shadow: true !default;
-$textarea-focus-shadow-width: 3px !default;
+$f__textarea-focus-shadow: true !default;
+$f__textarea-focus-shadow-width: 3px !default;
 
-$textarea-resize: vertical !default;
+$f__textarea-resize: vertical !default;
 
 /*
     1. For IE, mainly.
@@ -24,24 +24,24 @@ $textarea-resize: vertical !default;
     5. Remove the tapping delay from clickable elements.
     5a. IE 10.
 */
-#{$namespace}textarea {
-    min-height: $flbk--base-rem-space-unit * 3.5 - calc-rem-from-px($textarea-border-width * 2); /* 1 */
+#{$f__namespace}textarea {
+    min-height: $f__base-rem-space-unit * 3.5 - calc-rem-from-px($f__textarea-border-width * 2); /* 1 */
 
     overflow: auto; /* 2 */
 
-    margin-top: $flbk--base-rem-space-unit / 12;
+    margin-top: $f__base-rem-space-unit / 12;
     margin-bottom: 0; /* 3 */
 
-    padding-left: $textarea-h-padding;
-    padding-right: $textarea-h-padding;
+    padding-left: $f__textarea-h-padding;
+    padding-right: $f__textarea-h-padding;
 
-    border-width: $textarea-border-width;
-    border-radius: $textarea-border-radius;
-    border-color: $textarea-border-color;
-    border-style: $textarea-border-style;
+    border-width: $f__textarea-border-width;
+    border-radius: $f__textarea-border-radius;
+    border-color: $f__textarea-border-color;
+    border-style: $f__textarea-border-style;
 
-    color: $textarea-text-color;
-    background-color: $textarea-background-color;
+    color: $f__textarea-text-color;
+    background-color: $f__textarea-background-color;
 
     font-size: inherit;
     font-family: inherit;
@@ -53,12 +53,12 @@ $textarea-resize: vertical !default;
     -ms-touch-action: manipulation; /* 5a */
     touch-action: manipulation; /* 5 */
 
-    resize: $textarea-resize;
+    resize: $f__textarea-resize;
 }
 
-@if $textarea-focus-shadow != false {
-    #{$namespace}textarea:focus {
-        box-shadow: 0 0 0 $textarea-focus-shadow-width rgba($flbk--base-ui-color, 0.5);
+@if $f__textarea-focus-shadow != false {
+    #{$f__namespace}textarea:focus {
+        box-shadow: 0 0 0 $f__textarea-focus-shadow-width rgba($f__base-ui-color, 0.5);
 
         outline: 0;
     }

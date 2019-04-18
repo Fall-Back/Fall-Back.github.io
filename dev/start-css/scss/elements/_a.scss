@@ -1,0 +1,79 @@
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: a
+|-------------------------------------------------------------------------------------------------*/
+
+$f__anchor-text-color: $f__base-ui-color !default;
+$f__anchor-text-color--alt: darken($f__anchor-text-color, 10%) !default;
+$f__anchor-text-decoration: none !default;
+
+$f__anchor-border-bottom-width: 2px !default;
+$f__anchor-border-bottom: $f__anchor-border-bottom-width solid !default;
+$f__anchor-border-bottom--alt: $f__anchor-border-bottom-width dashed !default;
+$f__anchor-border-bottom-offset: -$f__anchor-border-bottom-width;
+$f__anchor-padding-bottom: $f__anchor-border-bottom-width;
+
+$f__anchor-add-external-link-indicator: true !default;
+
+$f__anchor-focus-shadow: true !default;
+$f__anchor-focus-shadow-width: 3px !default;
+
+/*
+    a:link a:visited a:hover a:active a:focus
+
+    1. Remove the gray background on active links in IE 10.
+    2. Remove the gaps in underlines in iOS 8+ and Safari 8+.
+    3. Remove the tapping delay from clickable elements .
+*/
+#{$f__namespace}a[href] {
+    margin-bottom: $f__anchor-border-bottom-offset;
+
+    padding-bottom: $f__anchor-padding-bottom;
+
+    border-bottom: $f__anchor-border-bottom;
+
+    color: $f__anchor-text-color;
+    background-color: transparent; /* 1 */
+
+    text-decoration: $f__anchor-text-decoration;
+    -webkit-text-decoration-skip: objects; /* 2 */
+
+    -ms-touch-action: manipulation; /* 3 (IE10) */
+    touch-action: manipulation; /* 3 */
+
+    &:hover,
+    &:active {
+        border-bottom: $f__anchor-border-bottom--alt;
+
+        @if $f__anchor-text-color--alt != $f__anchor-text-color {
+            color: $f__anchor-text-color--alt;
+        }
+    }
+
+    @if $f__anchor-focus-shadow != false {
+        &:focus {
+            outline: 0;
+            box-shadow: 0 0 0 $f__anchor-focus-shadow-width rgba($f__anchor-text-color, 0.5);
+        }
+    }
+}
+
+    @if $f__anchor-add-external-link-indicator == true {
+        #{$f__namespace}a[href][rel="external"]::after {
+            display: inline;
+
+            content: "";
+
+            padding-left: 1.25em;
+
+            background: linear-gradient(45deg, transparent 50%, currentColor 50%);
+
+            font-size: 0.4em;
+            line-height: 0;
+
+            vertical-align: super;
+        }
+        
+        #{$f__namespace}a[href][rel="external"]:hover::after {
+            background: linear-gradient(45deg, transparent 50%, currentColor 50%);
+        }
+    }

@@ -6,6 +6,14 @@
     I moved this from Start core - I don't yet know if this was a good idea.
 */
 
+
+$f__checkradio-background-color: #fff !default;
+$f__checkradio-text-color: $f__base-text-color !default;
+$f__checkradio-border-color: $f__checkradio-text-color !default;
+$f__checkradio-border-width: $f__border-width !default;
+$f__checkradio-border-style: $f__border-style !default;
+
+
 /*
     MS pseudo-elements.
 
@@ -13,61 +21,53 @@
     where background colors can show through unexpectedly, so there are some tweaks to rectify
     this.
 */
-#{$namespace}[type="file"]::-ms-value {
+#{$f__namespace}[type="file"]::-ms-value {
     margin-right: 0;
     margin-left: -6px;
 
     padding-left: 0.5em;
 
     border: 0;
-    border-radius: $input-border-radius;
+    border-radius: $f__input-border-radius;
 
-    background: $input-background-color;
+    background: $f__input-background-color;
 }
 // @supports (-ms-ime-align:auto) { .selector { property:value; } }
 // Microsoft Edge 12+ (all MS Edge)
 @supports (-ms-ime-align:auto) {
-    #{$namespace}[type="file"]::-ms-value {
+    #{$f__namespace}[type="file"]::-ms-value {
         background: transparent;
     }
 }
 
 
-@if $input-focus-shadow != false {
-    #{$namespace}[type="file"]:focus::-ms-value {
-        box-shadow: $input-focus-shadow;
+@if $f__input-focus-shadow != false {
+    #{$f__namespace}[type="file"]:focus::-ms-value {
+        box-shadow: $f__input-focus-shadow;
         outline: 0;
     }
 }
 
-@if $input-focus-outline-width != false {
-    #{$namespace}[type="file"]:focus::-ms-value {
-        outline-width: $input-focus-outline-width;
-        outline-style: $input-focus-outline-style;
-        outline-color: $input-focus-outline-color;
-        outline-offset: $input-focus-outline-offset;
-    }
-}
 
 /*
     1. IE10 doesn't like rem so convert to px.
 */
-#{$namespace}[type="file"]::-ms-browse {
-    min-height:  $input-min-height;
+#{$f__namespace}[type="file"]::-ms-browse {
+    min-height:  $f__input-min-height;
 
-    padding-right: $input-h-padding;
-    padding-right: #{calc-px-from-rem($input-h-padding)}\9; /* 1 */
-    padding-left: $input-h-padding;
-    padding-left: #{calc-px-from-rem($input-h-padding)}\9; /* 1 */
+    padding-right: $f__input-h-padding;
+    padding-right: #{f__calc-px-from-rem($f__input-h-padding)}\9; /* 1 */
+    padding-left: $f__input-h-padding;
+    padding-left: #{f__calc-px-from-rem($f__input-h-padding)}\9; /* 1 */
 
-    border-width: 0 0 0 $input-border-width;
-    border-style: $input-border-style;
-    border-color: $input-border-color;
-    border-top-right-radius: $input-border-radius - $input-border-width;
-    border-bottom-right-radius: $input-border-radius - $input-border-width;
+    border-width: 0 0 0 $f__input-border-width;
+    border-style: $f__input-border-style;
+    border-color: $f__input-border-color;
+    border-top-right-radius: $f__input-border-radius - $f__input-border-width;
+    border-bottom-right-radius: $f__input-border-radius - $f__input-border-width;
 
     color: #fff;
-    background-color: $flbk--base-ui-color;
+    background-color: $f__base-ui-color;
 
     font-weight: inherit;
     font-style: inherit;
@@ -79,44 +79,33 @@
     cursor: pointer;
 }
 
-    @if $button-focus-shadow != false {
+    @if $f__button-focus-shadow != false {
         [type="file"]:hover::-ms-browse,
         [type="file"]:active::-ms-browse,
         [type="file"]:focus::-ms-browse {
-            box-shadow: $button-focus-shadow;
+            box-shadow: $f__button-focus-shadow;
             outline: 0;
         }
     }
 
-    /*@if $button-focus-outline-width != false {
-        [type="file"]:hover::-ms-browse,
-        [type="file"]:active::-ms-browse,
-        [type="file"]:focus::-ms-browse {
-            outline-width: $button-focus-outline-width;
-            outline-style: $button-focus-outline-style;
-            outline-color: $button-focus-outline-color;
-            outline-offset: $button-focus-outline-offset;
-        }
-    }*/
-
 /*
     1. Spacing height + 2 sets of input padding, minus border width.
 */
-#{$namespace}[type="file"]::-webkit-file-upload-button {
-    height: calc(#{($flbk--base-rem-space-unit * 1.25)} - #{$input-border-width * 2}); /* 1 */
+#{$f__namespace}[type="file"]::-webkit-file-upload-button {
+    height: calc(#{($f__base-rem-space-unit * 1.25)} - #{$f__input-border-width * 2}); /* 1 */
 
     padding-top: 0;
-    padding-right: $input-h-padding;
+    padding-right: $f__input-h-padding;
     padding-bottom: 0;
-    padding-left: $input-h-padding;
+    padding-left: $f__input-h-padding;
 
-    border-width: 0 $input-border-width 0 0;
-    border-style: $input-border-style;
-    border-color: $input-border-color;
+    border-width: 0 $f__input-border-width 0 0;
+    border-style: $f__input-border-style;
+    border-color: $f__input-border-color;
     border-radius: 0;
 
     color: #fff;
-    background-color: $flbk--base-ui-color;
+    background-color: $f__base-ui-color;
 
     font-weight: inherit;
     font-style: inherit;
@@ -132,27 +121,15 @@
     -webkit-appearance: none;
 }
 
-    @if $button-focus-shadow != false {
-        #{$namespace}[type="file"]:hover::-webkit-file-upload-button,
-        #{$namespace}[type="file"]:active::-webkit-file-upload-button,
-        #{$namespace}[type="file"]:focus::-webkit-file-upload-button {
-            box-shadow: $button-focus-shadow;
+    @if $f__button-focus-shadow != false {
+        #{$f__namespace}[type="file"]:hover::-webkit-file-upload-button,
+        #{$f__namespace}[type="file"]:active::-webkit-file-upload-button,
+        #{$f__namespace}[type="file"]:focus::-webkit-file-upload-button {
+            box-shadow: $f__button-focus-shadow;
 
             outline: 0;
         }
     }
-
-    /*@if $button-focus-outline-width != false {
-        #{$namespace}[type="file"]:hover::-webkit-file-upload-button,
-        #{$namespace}[type="file"]:active::-webkit-file-upload-button,
-        #{$namespace}[type="file"]:focus::-webkit-file-upload-button {
-            outline-width: $button-focus-outline-width;
-            outline-style: $button-focus-outline-style;
-            outline-color: $button-focus-outline-color;
-            outline-offset: $button-focus-outline-offset;
-        }
-    }*/
-
 /*
     Safari refuses to adjust the height of select[multiple] options.
     The only way I've managed to get it to adhere to the vertical rhythm is by adjust the font-size
@@ -190,22 +167,22 @@ _:scope, _:future, _:not(*:root), select[size="10"] { margin-bottom: calc(0.8rem
 
 // _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root .selector { property:value; }
 // Safari 6.2,7.1+ (Not iOS)
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="2"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 0.6em - #{$input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="3"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 0.6em - #{$input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="4"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 0.6em - #{$input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="5"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 1.1em - #{$input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="6"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 0.85em - #{$input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="7"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 0.6em - #{$input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="8"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 1.1em - #{$input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="9"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 0.85em - #{$input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="10"] { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 0.6em - #{$input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="2"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 0.6em - #{$f__input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="3"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 0.6em - #{$f__input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="4"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 0.6em - #{$f__input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="5"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 1.1em - #{$f__input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="6"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 0.85em - #{$f__input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="7"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 0.6em - #{$f__input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="8"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 1.1em - #{$f__input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="9"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 0.85em - #{$f__input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="10"] { margin-bottom: calc(#{$f__base-rem-space-unit} - 0.6em - #{$f__input-border-width * 2}); }
 
 // Reset Chrome and Opera:
 // @media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) { .selector { property:value; } }
 // Chrome 29+ (and Opera 16+)
 /*
 @media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
-    select[size] { margin-bottom: calc(#{($flbk--base-rem-space-unit / 8) * 3} - #{$input-border-width * 2}); }
+    select[size] { margin-bottom: calc(#{($f__base-rem-space-unit / 8) * 3} - #{$f__input-border-width * 2}); }
 }
 */
 
@@ -217,15 +194,15 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="
 // @media screen and (min-width:0\0) and (min-resolution:+72dpi) { .selector { property:value; } }
 // Internet Explorer 9-11
 @media screen and (min-width:0\0) and (min-resolution:+72dpi) {
-    select[size="2"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 1.1em - #{$input-border-width * 2}); }
-    select[size="3"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 0.75em - #{$input-border-width * 2}); }
-    select[size="4"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 1.25em - #{$input-border-width * 2}); }
-    select[size="5"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 0.95em - #{$input-border-width * 2}); }
-    select[size="6"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 0.65em - #{$input-border-width * 2}); }
-    select[size="7"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 1.1em - #{$input-border-width * 2}); }
-    select[size="8"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 0.75em - #{$input-border-width * 2}); }
-    select[size="9"]  { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 1.25em - #{$input-border-width * 2}); }
-    select[size="10"] { margin-bottom: calc(#{$flbk--base-rem-space-unit} - 0.95em - #{$input-border-width * 2}); }
+    select[size="2"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 1.1em - #{$f__input-border-width * 2}); }
+    select[size="3"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 0.75em - #{$f__input-border-width * 2}); }
+    select[size="4"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 1.25em - #{$f__input-border-width * 2}); }
+    select[size="5"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 0.95em - #{$f__input-border-width * 2}); }
+    select[size="6"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 0.65em - #{$f__input-border-width * 2}); }
+    select[size="7"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 1.1em - #{$f__input-border-width * 2}); }
+    select[size="8"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 0.75em - #{$f__input-border-width * 2}); }
+    select[size="9"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 1.25em - #{$f__input-border-width * 2}); }
+    select[size="10"] { margin-bottom: calc(#{$f__base-rem-space-unit} - 0.95em - #{$f__input-border-width * 2}); }
 }
 
 /*
@@ -238,7 +215,7 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="
     1. Safari 9.1 doesn't recognize 'auto' but I suspect others won't recognize 'initial', so
        keeping both for now.
 */
-@if $experimental_checkradios == true {
+@if $f__experimental_checkradios == true {
     @supports (-webkit-appearance: none) or (-moz-appearance: none) {
         input[type="checkbox"],
         input[type="radio"] {
@@ -252,11 +229,11 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="
             min-height: auto; /* 1 */
             min-height: initial; /* 1 */
 
-            border-width: $checkradio-border-width;
-            border-style: $checkradio-border-style;
-            border-color: $checkradio-border-color;
+            border-width: $f__checkradio-border-width;
+            border-style: $f__checkradio-border-style;
+            border-color: $f__checkradio-border-color;
 
-            background-color: $checkradio-background-color;
+            background-color: $f__checkradio-background-color;
 
             -webkit-appearance: none;
                -moz-appearance: none;
@@ -267,9 +244,9 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="
         }
 
         input[type="radio"]:checked {
-            background-image: -moz-radial-gradient(center, ellipse cover, rgba($checkradio-text-color,1) 0%, rgba($checkradio-text-color,1) 35%, rgba(0,0,0,0) 35%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
-            background-image: -webkit-radial-gradient(center, ellipse cover, rgba($checkradio-text-color,1) 0%,rgba($checkradio-text-color,1) 35%,rgba(0,0,0,0) 35%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
-            background-image: radial-gradient(ellipse at center, rgba($checkradio-text-color,1) 0%,rgba($checkradio-text-color,1) 35%,rgba(0,0,0,0) 35%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            background-image: -moz-radial-gradient(center, ellipse cover, rgba($f__checkradio-text-color,1) 0%, rgba($f__checkradio-text-color,1) 35%, rgba(0,0,0,0) 35%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+            background-image: -webkit-radial-gradient(center, ellipse cover, rgba($f__checkradio-text-color,1) 0%,rgba($f__checkradio-text-color,1) 35%,rgba(0,0,0,0) 35%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+            background-image: radial-gradient(ellipse at center, rgba($f__checkradio-text-color,1) 0%,rgba($f__checkradio-text-color,1) 35%,rgba(0,0,0,0) 35%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         }
 
         input[type="checkbox"]:checked::after {
@@ -277,7 +254,7 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="
             display: inline-block;
             width: 0.6em;
             height: 0.3em;
-            border: solid $checkradio-text-color;
+            border: solid $f__checkradio-text-color;
             border-width: 0 0 0.125em 0.125em;
 
             position: absolute;
@@ -292,8 +269,8 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="
         /*
             Turn off the outline we reinstated for non-experimental styles in Safari:
         */
-        _::-webkit-full-page-media, _:future, :root #{$namespace}[type="checkbox"]:focus,
-        _::-webkit-full-page-media, _:future, :root #{$namespace}[type="radio"]:focus {
+        _::-webkit-full-page-media, _:future, :root #{$f__namespace}[type="checkbox"]:focus,
+        _::-webkit-full-page-media, _:future, :root #{$f__namespace}[type="radio"]:focus {
             outline: 0;
         }
     }

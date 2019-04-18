@@ -6,11 +6,11 @@
 // so the padding reduction that's meant to offset the border width is actually too small for the
 // top padding. CSS can't (yet) detect if there is a legend inside the fieldset so there needs to
 // be some corrective style on the legend itself. That would be bottom margin.
-$legend-border-width: 0 !default;
-$legend-h-padding: $flbk--base-rem-space-unit / 4 !default;
+$f__legend-border-width: 0 !default;
+$f__legend-h-padding: $f__base-rem-space-unit / 4 !default;
 
 // See below as to why this is here:
-$fieldset-border-width: $flbk-border-width !default;
+$fieldset-border-width: $f__border-width !default;
 
 /*
     Fieldsets and legends can be difficult to style so I'm keep their appearance basically the same
@@ -22,20 +22,20 @@ $fieldset-border-width: $flbk-border-width !default;
     2. Offset border width.
     3. Correct the color inheritance from `fieldset` elements in IE.
 
-    Note $fieldset-border-width used deliberately (not $legend-border-width)- this is to account for
+    Note $fieldset-border-width used deliberately (not $f__legend-border-width)- this is to account for
     the fact that fieldset top border width is ignored if there's a legend so the spacing is wrong.
 */
-#{$namespace}legend {
+#{$f__namespace}legend {
     display: table; /* 1 */
 
     max-width: 100%; /* 1 */
 
-    margin-top: -$legend-border-width; /* 2 */
+    margin-top: -$f__legend-border-width; /* 2 */
     margin-bottom: $fieldset-border-width; /* 2 */
 
-    padding: 0 $legend-h-padding;
+    padding: 0 $f__legend-h-padding;
 
-    border-width: $legend-border-width;
+    border-width: $f__legend-border-width;
 
     color: inherit; /* 3 */
 

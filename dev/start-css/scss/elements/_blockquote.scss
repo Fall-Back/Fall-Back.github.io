@@ -1,0 +1,14 @@
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: blockquote
+|-------------------------------------------------------------------------------------------------*/
+
+#{$f__namespace}blockquote {
+    margin-bottom: $f__base-rem-space-unit;
+    margin-left: $f__base-rem-space-unit;
+
+    font-style: italic;
+    /*
+        @TODO - set up vars and styles for the most common quote styles.
+        I.e. left-border, and enclosing quotes.
+    */
+}

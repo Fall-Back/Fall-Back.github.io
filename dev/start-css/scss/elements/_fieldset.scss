@@ -1,0 +1,30 @@
+/*-------------------------------------------------------------------------------------------------|
+    Fall-Back Start-CSS Element: fieldset
+|-------------------------------------------------------------------------------------------------*/
+
+$fieldset-border-width: $f__border-width !default;
+$fieldset-padding: $f__base-rem-space-unit !default;
+
+/*
+    Fieldsets and legends can be difficult to style so I'm keeping their appearance basically the
+    same as the default - just a bit of theming.
+    More info here: https://thatemil.com/blog/2015/01/03/reset-your-fieldset/
+*/
+#{$f__namespace}fieldset {
+    margin-bottom: $f__base-rem-space-unit;
+
+    min-width: 0;
+
+    @include f__bordered($fieldset-padding, $fieldset-border-width);
+}
+
+    #{$f__namespace}fieldset fieldset {
+        margin: 0;
+
+        padding: 0;
+
+        border-width: 0;
+    }
+        #{$f__namespace}fieldset fieldset::after {
+            display: none;
+        }

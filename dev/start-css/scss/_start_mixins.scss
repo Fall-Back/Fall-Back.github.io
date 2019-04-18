@@ -20,11 +20,11 @@
     too small.
     If pseudo-element height is 0, it doesn't work in IE, Chrome, Safari, without inline-block
 */
-@mixin bordered($padding: 1em, $border-width: 1px, $border-color: uiColor, $border-style: solid) {
+@mixin f__bordered($padding: 1em, $border-width: 1px, $border-color: uiColor, $border-style: solid) {
     border-width: $border-width;
     border-style: $border-style;
     @if $border-color == uiColor {
-        $border-color: $flbk--base-ui-color;
+        $border-color: $f__base-ui-color;
     }
     border-color: $border-color;
 
@@ -63,7 +63,7 @@
 
     ```
     [role="button"] {
-        @include button;
+        @include f__button;
     }
     ```
 
@@ -71,7 +71,7 @@
 
     ```
         .btn--affirmative {
-            @include button(<text-color>, <bg-color>);
+            @include f__button(<text-color>, <bg-color>);
         }
     ```
 
@@ -88,35 +88,35 @@
     FF8 - ? doesn't like `line-height: -moz-calc()` and ignores
     Need to make sure height is governed by line-height in case of breaks within buttons.
 */
-@mixin button(
-        $color: $button-text-color,
-        $bg-color: $button-background-color,
-        $bg-color--alt: $button-background-color--alt,
-        $border-color: $button-border-color
+@mixin f__button(
+        $color: $f__button-text-color,
+        $bg-color: $f__button-background-color,
+        $bg-color--alt: $f__button-background-color--alt,
+        $border-color: $f__button-border-color
     ) {
     display: inline-block; /* AK. IE9 needs this. Hmmm, for what exactly?*/
 
-    min-height: $input-min-height;
+    min-height: $f__button-min-height;
 
     overflow: visible; /* S: Internet Explorer 11-, N: Show the overflow in Edge, Firefox, and IE. */
 
-    margin: ($flbk--base-rem-space-unit / 8) 0;
+    margin: ($f__base-rem-space-unit / 8) 0;
 
-    padding-top: #{$flbk--base-rem-space-unit / 8}; // Opera Mini needs this:
-    //padding-top: -moz-calc(#{$flbk--base-rem-space-unit / 8} - #{$button-border-width});
+    padding-top: #{$f__base-rem-space-unit / 8}; // Opera Mini needs this:
+    //padding-top: -moz-calc(#{$f__base-rem-space-unit / 8} - #{$f__button-border-width});
     padding-top: -moz-calc(0);
-    padding-top: calc(#{$flbk--base-rem-space-unit / 8} - #{$button-border-width});
-    padding-right: $button-h-padding;
-    padding-bottom: #{$flbk--base-rem-space-unit / 8}; // Opera Mini needs this:
-    //padding-bottom: -moz-calc(#{$flbk--base-rem-space-unit / 8} - #{$button-border-width});
+    padding-top: calc(#{$f__base-rem-space-unit / 8} - #{$f__button-border-width});
+    padding-right: $f__button-h-padding;
+    padding-bottom: #{$f__base-rem-space-unit / 8}; // Opera Mini needs this:
+    //padding-bottom: -moz-calc(#{$f__base-rem-space-unit / 8} - #{$f__button-border-width});
     padding-bottom: -moz-calc(0);
-    padding-bottom: calc(#{$flbk--base-rem-space-unit / 8} - #{$button-border-width});
-    padding-left: $button-h-padding;
+    padding-bottom: calc(#{$f__base-rem-space-unit / 8} - #{$f__button-border-width});
+    padding-left: $f__button-h-padding;
 
     border-color: $border-color;
-    border-style: $button-border-style;
-    border-width: $button-border-width;
-    border-radius: $button-border-radius;
+    border-style: $f__button-border-style;
+    border-width: $f__button-border-width;
+    border-radius: $f__button-border-radius;
 
     color: $color;
     background-color: $bg-color;
@@ -126,7 +126,7 @@
     font-style: inherit;
     font-size: inherit;
     font-family: inherit;
-    line-height: $flbk--base-rem-space-unit;
+    line-height: $f__base-rem-space-unit;
 
     vertical-align: middle; // Keep adjacent elements in the middle:
 
@@ -139,11 +139,11 @@
 
     -webkit-appearance: none;
 
-    //$button-background-color--alt: darken !default; // lighten | darken | <colour> | false;
+    //$f__button-background-color--alt: darken !default; // lighten | darken | <colour> | false;
     @if $bg-color--alt != false {
         &:hover,
         &:active {
-            @if is-int($bg-color--alt) {
+            @if f__is-int($bg-color--alt) {
                 @if $bg-color--alt > 0 {
                     $bg-color--alt_percent: $bg-color--alt * 1%;
                     background-color: lighten($bg-color, $bg-color--alt_percent);
@@ -169,23 +169,23 @@
     // make sure everything I DO include is configurable, or turn-off-able.
     // So, IF the user wants to use my inner-line shadow idea, they can, otherwise, they can set the
     // var to `false` and add their own however they like.
-    @if $button-focus-shadow != false {
+    @if $f__button-focus-shadow != false {
         &:focus {
             outline: 0;
-            box-shadow: 0 0 0 $button-focus-shadow-width rgba($bg-color, 0.5);
+            box-shadow: 0 0 0 $f__button-focus-shadow-width rgba($bg-color, 0.5);
         }
     }
 
 
 
-    /*@if $button-focus-outline-width != false {
+    /*@if $f__button-focus-outline-width != false {
         &:hover,
         &:active,
         &:focus {
-            outline-width: $button-focus-outline-width;
-            outline-style: $button-focus-outline-style;
-            outline-color: $button-focus-outline-color;
-            outline-offset: $button-focus-outline-offset;
+            outline-width: $f__button-focus-outline-width;
+            outline-style: $f__button-focus-outline-style;
+            outline-color: $f__button-focus-outline-color;
+            outline-offset: $f__button-focus-outline-offset;
         }
     }*/
 }

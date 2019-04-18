@@ -8,9 +8,9 @@
 \*------------------------------------------------------------------------------------------------*/
 
 
-$sticky-footer-max-line-length: 50em !default;
-$sticky-footer-text-color: $flbk--base-text-color !default;
-$sticky-footer-background-color: $flbk--base-background-color !default;
+$f__sticky-footer--max-line-length: 50em !default;
+$f__sticky-footer--text-color: $f__base-text-color !default;
+$f__sticky-footer--background-color: $f__base-background-color !default;
 
 
 html,
@@ -30,15 +30,15 @@ body {
     width: 100%;
     min-height: 100%;
 
-    @if $sticky-footer-max-line-length > 0 {
-        max-width: $sticky-footer-max-line-length;
+    @if $f__sticky-footer--max-line-length > 0 {
+        max-width: $f__sticky-footer--max-line-length;
 
         margin-right: auto;
         margin-left: auto;
     }
 
-    background-color: $sticky-footer-background-color;
-    color: $sticky-footer-text-color;
+    background-color: $f__sticky-footer--background-color;
+    color: $f__sticky-footer--text-color;
 
 
     & > * {
@@ -67,7 +67,7 @@ body {
 
 /* IE9-11 */
 //@media screen and (min-width:0\0) and (min-resolution:+72dpi) {
-@media #{$flbk--ie9-11} {
+@media #{$f__ie9-11} {
 
     .sticky-footer-wrap {
         display: table;

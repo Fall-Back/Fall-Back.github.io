@@ -9,10 +9,10 @@
           bottom borders get cropped, so using b instead.
        b. `flow-root` is the better option but support is low, so using table-cell as well.
 */
-#{$namespace}ul {
+#{$f__namespace}ul {
     //overflow: hidden; /* 1a */
 
-    margin-bottom: $flbk--base-rem-space-unit;
+    margin-bottom: $f__base-rem-space-unit;
 
     display: table-cell; /* 1b */
     display: flow-root;  /* 1b */
@@ -28,28 +28,28 @@
     other browsers and are invisible. I can't find a fix for this.
 
     Keep this for reference:
-    #{$namespace}ul li {
+    #{$f__namespace}ul li {
         list-style-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" width="8px" height="8px"><circle fill="currentColor" cx="4" cy="4" r="3"/></svg>');
     }
 
-        #{$namespace}ul ul li {
+        #{$f__namespace}ul ul li {
             list-style-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" width="8px" height="8px"><circle fill="none" stroke="currentColor" stroke-miterlimit="10" cx="4" cy="4" r="2.5"/></svg>');
         }
 
-            #{$namespace}ul ul ul li {
+            #{$f__namespace}ul ul ul li {
                 list-style-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" width="8px" height="8px"><rect fill="currentColor" x="1" y="1" width="6" height="6"/></svg>');
             }
 */
 // @media screen and (min-width:0\0) and (min-resolution:+72dpi) { .selector { property:value; } }
 // Internet Explorer 9-11
-@media #{$flbk--ie9-11} {
-    #{$namespace}ul li {
+@media #{$f__ie9-11} {
+    #{$f__namespace}ul li {
     }
 
         /*
             1. 1px at 16px font-size. Should be 0.0625 but IE is 2 decimal-places only.
         */
-        #{$namespace}ul ul li {
+        #{$f__namespace}ul ul li {
             margin-bottom: -0.06em; /* 1 */
         }
 
@@ -57,7 +57,7 @@
                 1. This is a bit of a magic number. It works - but I'm not sure why.
                    Probably to do with IE rounding.
             */
-            #{$namespace}ul ul ul li {
+            #{$f__namespace}ul ul ul li {
                 margin-bottom: -0.02em; /* 1 */
             }
 }
@@ -67,8 +67,8 @@
 */
 // @media screen and (min-width:0\0) and (min-resolution:.001dpcm) { .selector { property:value; } }
 // Internet Explorer 9
-@media #{$flbk--ie9} {
-    #{$namespace}ul ul ul li {
+@media #{$f__ie9} {
+    #{$f__namespace}ul ul ul li {
         margin-bottom: -0.04em;
     }
 }

@@ -2,18 +2,18 @@
     Fall-Back Start-CSS Element: select
 |-------------------------------------------------------------------------------------------------*/
 
-$select-h-padding: $flbk--base-rem-space-unit / 4 !default;
+$f__select-h-padding: $f__base-rem-space-unit / 4 !default;
 
-$select-text-color: $flbk--base-text-color !default;
-$select-background-color: #fff !default;
+$f__select-text-color: $f__base-text-color !default;
+$f__select-background-color: #fff !default;
 
-$select-border-color: $flbk-border-color !default;
-$select-border-width: $flbk-border-width !default;
-$select-border-style: $flbk-border-style !default;
-$select-border-radius: $flbk-border-radius !default;
+$f__select-border-color: $f__border-color !default;
+$f__select-border-width: $f__border-width !default;
+$f__select-border-style: $f__border-style !default;
+$f__select-border-radius: $f__border-radius !default;
 
-$select-focus-shadow: true !default;
-$select-focus-shadow-width: 3px !default;
+$f__select-focus-shadow: true !default;
+$f__select-focus-shadow-width: 3px !default;
 
 
 // N1: Address inconsistent `text-transform` inheritance for `select`.
@@ -24,24 +24,24 @@ $select-focus-shadow-width: 3px !default;
     2. For FF.
     3. Remove the tapping delay from clickable elements.
 */
-#{$namespace}select {
-    height: $flbk--base-rem-space-unit + ($flbk--base-rem-space-unit / 4); /* 1 */
+#{$f__namespace}select {
+    height: $f__base-rem-space-unit + ($f__base-rem-space-unit / 4); /* 1 */
 
-    margin: ($flbk--base-rem-space-unit / 8) 0;
+    margin: ($f__base-rem-space-unit / 8) 0;
 
-    border-width: $select-border-width;
-    border-style: $select-border-style;
-    border-color: $select-border-color;
-    border-radius: $select-border-radius;
+    border-width: $f__select-border-width;
+    border-style: $f__select-border-style;
+    border-color: $f__select-border-color;
+    border-radius: $f__select-border-radius;
 
-    color: $select-text-color;
-    background-color: $select-background-color;
+    color: $f__select-text-color;
+    background-color: $f__select-background-color;
 
     font-weight: inherit;
     font-style: inherit;
     font-size: inherit;
     font-family: inherit;
-    line-height: $flbk--base-rem-space-unit;
+    line-height: $f__base-rem-space-unit;
 
     vertical-align: top; /* 2 */
 
@@ -56,8 +56,8 @@ $select-focus-shadow-width: 3px !default;
         background-color: transparent;
         color: #000;
         border: 0;
-        padding-left: $select-h-padding;
-        padding-right: $select-h-padding;
+        padding-left: $f__select-h-padding;
+        padding-right: $f__select-h-padding;
     }
 
     &::-ms-value {
@@ -76,10 +76,10 @@ $select-focus-shadow-width: 3px !default;
     4. FF34- does not remove the arrow but also does not show the background image until FF29-, at
        which point both are shown. However, removing the right-padding solves this (see below).
 */
-#{$namespace}select:not([multiple]) {
-    padding-left: $select-h-padding / 2;
-    -webkit-padding-start: $select-h-padding; /* 1 */
-    padding-right: $select-h-padding * 4;
+#{$f__namespace}select:not([multiple]) {
+    padding-left: $f__select-h-padding / 2;
+    -webkit-padding-start: $f__select-h-padding; /* 1 */
+    padding-right: $f__select-h-padding * 4;
 
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4.95 10" fill="%23444"><polygon points="1.41 4.67 2.48 3.18 3.54 4.67 1.41 4.67"/><polygon points="3.54 5.33 2.48 6.82 1.41 5.33 3.54 5.33"/></svg>'); /* 2 */
     //background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNC45NSAxMCI+PHBvbHlnb24gZmlsbD0iIzQ0NCIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz48cG9seWdvbiBmaWxsPSIjNDQ0IiBwb2ludHM9IjMuNTQgNS4zMyAyLjQ4IDYuODIgMS40MSA1LjMzIDMuNTQgNS4zMyIvPjwvc3ZnPg==);
@@ -95,7 +95,7 @@ $select-focus-shadow-width: 3px !default;
     We need to remove right padding before FF34, but there isn't a hack for that.
     So instead, remove for all FireFox ...
 */
-_:-moz-tree-row(hover), #{$namespace}select:not([multiple]) {
+_:-moz-tree-row(hover), #{$f__namespace}select:not([multiple]) {
     padding-right: 0;
 }
 /*
@@ -104,8 +104,8 @@ _:-moz-tree-row(hover), #{$namespace}select:not([multiple]) {
 // @supports (-moz-appearance:none) and (mask-type:alpha) { .selector { property:value; } }
 // Firefox 35+
 @supports (-moz-appearance:none) and (mask-type:alpha) {
-    #{$namespace}select:not([multiple]) {
-        padding-right: $select-h-padding * 4;
+    #{$f__namespace}select:not([multiple]) {
+        padding-right: $f__select-h-padding * 4;
     }
 }
 
@@ -115,15 +115,15 @@ _:-moz-tree-row(hover), #{$namespace}select:not([multiple]) {
 // @media screen and (min-width:0\0) and (min-resolution:+72dpi) { .selector { property:value; } }
 // Internet Explorer 9-11
 @media screen and (min-width:0\0) and (min-resolution:+72dpi) {
-        #{$namespace}select:not([multiple]) {
+        #{$f__namespace}select:not([multiple]) {
         background-image: none\0;
         padding-right: 0\0;
     }
 }
 
-@if $select-focus-shadow != false {
-    #{$namespace}select:focus {
-        box-shadow: 0 0 0 $select-focus-shadow-width rgba($flbk--base-ui-color, 0.5);
+@if $f__select-focus-shadow != false {
+    #{$f__namespace}select:focus {
+        box-shadow: 0 0 0 $f__select-focus-shadow-width rgba($f__base-ui-color, 0.5);
 
         outline: 0;
     }
@@ -134,13 +134,13 @@ _:-moz-tree-row(hover), #{$namespace}select:not([multiple]) {
     Note that Opera 25- and Safari(all - 11 latest at time of writing) treat select [size]s of
     less than 4 as 4.
 */
-#{$namespace}select[multiple] {
+#{$f__namespace}select[multiple] {
     height: auto;
 
-    margin-top: ($flbk--base-rem-space-unit / 8);
+    margin-top: ($f__base-rem-space-unit / 8);
     margin-right: 0;
-    margin-bottom: -moz-calc(#{($flbk--base-rem-space-unit / 8) * 3} - #{$select-border-width * 2});
-    margin-bottom: calc(#{($flbk--base-rem-space-unit / 8) * 3} - #{$select-border-width * 2});
+    margin-bottom: -moz-calc(#{($f__base-rem-space-unit / 8) * 3} - #{$f__select-border-width * 2});
+    margin-bottom: calc(#{($f__base-rem-space-unit / 8) * 3} - #{$f__select-border-width * 2});
     margin-left: 0;
 }
 
@@ -153,7 +153,7 @@ _:-moz-tree-row(hover), #{$namespace}select:not([multiple]) {
 _::-webkit-full-page-media, _:future, :root select[multiple] {
     margin-bottom: 0;
 
-    padding: ($flbk--base-rem-space-unit / 12);
+    padding: ($f__base-rem-space-unit / 12);
 }
 
 /*
@@ -162,7 +162,7 @@ _::-webkit-full-page-media, _:future, :root select[multiple] {
 // _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root .selector { property:value; }
 // Safari 6.2,7.1+ (Not iOS)
 _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[multiple] {
-    margin-bottom: calc(#{($flbk--base-rem-space-unit / 8) * 3} - #{$select-border-width * 2});
+    margin-bottom: calc(#{($f__base-rem-space-unit / 8) * 3} - #{$f__select-border-width * 2});
 
     padding: 0;
 }
