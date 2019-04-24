@@ -31,10 +31,8 @@
 
 
     <!--
-        Print (Edge doesn't apply to print otherwise)
-        IE 10, 11
-        Edge, Chrome 39+, Opera 26+, Safari 9+, iOS 9+, Android ~5+, Android UCBrowser 11.8+
-        FF 47+
+        IE 9+, FF 8+, Opera 12, Chrome 29+, Android ~4.4+
+        Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
     -->
     <link rel="stylesheet" href="/dev/start-css/css/start.min.css" media="
         only screen and (min-resolution: 0.1dpcm),
@@ -53,6 +51,12 @@
     <style>
     {{ page.head_style }}
     </style>
+    {% endif %}
+    
+    {% if page.head_scripts != false %}
+    {% for script in page.head_scripts %}
+    <script src="{{ script }}"></script>
+    {% endfor %}
     {% endif %}
     
     {% if page.load_highlighter != false %}

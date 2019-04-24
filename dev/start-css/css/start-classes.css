@@ -197,6 +197,8 @@ html {
   /* 5 */
   -webkit-text-size-adjust: 100%;
   /* 5 */
+  padding: 0;
+  margin: 0;
 }
 
 /*
@@ -274,6 +276,20 @@ _:-ms-lang(x), html {
 body {
   position: relative;
   /* 1 */
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-box-orient: vertical;
+  -moz-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
   min-width: 250px;
   min-height: 100%;
   max-width: none;
@@ -283,6 +299,13 @@ body {
   line-height: 2.4rem;
   background-color: transparent;
   color: #333;
+}
+
+/* IE9-11 */
+@media screen and (min-width: 0\0) and (min-resolution: +72dpi) {
+  body {
+    height: 100%;
+  }
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -1164,6 +1187,8 @@ li ol {
 main {
   display: block;
   /* 1 */
+  width: 100%;
+  min-height: 100%;
   max-width: 50em;
   margin-right: auto;
   margin-left: auto;
@@ -1171,18 +1196,10 @@ main {
   background-color: #fff;
   color: #333;
   position: relative;
-}
-
-main::before {
-  display: block;
-  content: "";
-  position: absolute;
-  top: 0;
-  height: 100vh;
-  background: #fff;
-  z-index: -1;
-  left: 0;
-  right: 0;
+  -webkit-flex: 1 0 auto;
+  -moz-box-flex: 1;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -1854,125 +1871,6 @@ video {
   color: #fff;
   background-color: #7cc3e1;
   text-shadow: none;
-}
-
-/*-------------------------------------------------------------------------------------------------|
-
-    ACCESSIBILITY / ARIA
-    Moved to it's own file. Still debating this.
-
-|-------------------------------------------------------------------------------------------------*/
-/*! Start CSS Accessibility. See SCSS file for documentation. */
-/*
-
-    Notes:
-
-    I'm debating moving separating this from the core file.
-    I'm not sure which approach I prefer.
-    Will probably go down the route of only having optional stuff in separate files - not sure.
-*/
-/*-------------------------------------------------------------------------------------------------|
-
-    ACCESSIBILITY / ARIA
-
-|-------------------------------------------------------------------------------------------------*/
-[aria-busy="true"] {
-  cursor: progress;
-}
-
-/*
-    Specify the pointer cursor of trigger elements. (S)
-*/
-[aria-controls] {
-  cursor: pointer;
-}
-
-/*
-    Specify the un-styled cursor of disabled, not-editable, or otherwise inoperable elements. (S)
-*/
-[disabled],
-[aria-disabled] {
-  cursor: default;
-}
-
-/*
-    Address `[hidden]` styling not present in IE 8/9/10. (N)
-*/
-[hidden] {
-  display: none;
-}
-
-/*
-    Specify the style of visually hidden yet accessible elements. (S)
-*/
-[hidden][aria-hidden="false"] {
-  clip: rect(0 0 0 0);
-  position: absolute;
-  display: inline;
-  /*border: 0;
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    width: 1px;*/
-}
-
-a[hidden][aria-hidden="false"]:focus,
-a[hidden][aria-hidden="false"]:active {
-  clip: auto;
-  position: static;
-  /*height: auto;
-        margin: 0;
-        overflow: visible;
-        width: auto;*/
-}
-
-/*-------------------------------------------------------------------------------------------------|
-
-    UTILITIES
-    Moved to it's own file. Still debating this.
-
--|------------------------------------------------------------------------------------------------*/
-/*! Start CSS Utilities. See SCSS file for documentation. */
-/*
-
-    Notes:
-
-    I'm debating moving separating this from the core file.
-    I'm not sure which approach I prefer.
-    Will probably go down the route of only having optional stuff in separate files - not sure.
-*/
-/*-------------------------------------------------------------------------------------------------|
-
-    UTILITIES
-
--|------------------------------------------------------------------------------------------------*/
-/*
-    Clearfix: contain floats for modern browsers
-
-    1. The space content is one way to avoid an Opera bug when the `contenteditable` attribute is #
-       included anywhere else in the document.
-       Otherwise it causes space to appear at the top and bottom of elements that receive the#
-       `clearfix` class.
-
-    2. The use of `table` rather than `block` is only necessary if using
-       `:before` to contain the top-margins of child elements.
-*/
-.clearfix:before,
-.clearfix:after {
-  content: " ";
-  /* 1 */
-  display: table;
-  /* 2 */
-}
-
-.clearfix,
-.clearfix:after {
-  clear: both;
-}
-
-.no-css-only {
-  display: none;
 }
 
 /*! End Start-CSS */

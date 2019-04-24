@@ -12,6 +12,9 @@ $f__main-background-color: $f__base-background-color !default;
 */
 main {
     display: block; /* 1 */
+    
+    width: 100%;
+    min-height: 100%;
 
     @if $f__main-max-line-length > 0 {
         max-width: $f__main-max-line-length;
@@ -28,16 +31,8 @@ main {
 
     position: relative;
 
-
-    &::before {
-        display: block;
-        content: "";
-        position: absolute;
-        top: 0;
-        height: 100vh;
-        background: #fff;
-        z-index: -1;
-        left: 0;
-        right: 0;
-    }
+     -webkit-flex: 1 0 auto;
+    -moz-box-flex: 1;
+         -ms-flex: 1 0 auto;
+             flex: 1 0 auto;
 }

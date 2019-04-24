@@ -1,0 +1,232 @@
+// Fall-Back Search Form Pattern v2.0.0
+/*------------------------------------------------------------------------------------------------*\
+
+    Designed for use with the basic [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
+    IE 9+, FF 8+, Opera 12, Chrome 29+, Android ~4.4+
+    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
+
+\*------------------------------------------------------------------------------------------------*/
+
+
+$f__search-form--breakpoint--enhanced:         $f__breakpoint--enhanced;
+
+
+// Colours:
+
+$f__search-form--base-ui-color:                 $f__base-ui-color !default;
+$f__search-form--base-text-color:               $f__base-text-color !default;
+
+$f__search-form--background-color:              $f__search-form--base-ui-color !default;
+
+
+$f__search-form__field--background-color:       $f__base-background-color !default;
+$f__search-form__field--background-color--alt:  #ffffdc !default;
+$f__search-form__field--text-color:             $f__search-form--base-text-color !default;
+
+
+$f__search-form__submit--background-color:      lighten($f__search-form--base-ui-color, 50%) !default;
+$f__search-form__submit--background-color--alt: lighten($f__search-form--base-ui-color, 30%) !default;
+$f__search-form__submit--text-color:            $f__search-form--base-text-color !default;
+
+// Sizes:
+
+$f__search-form--font-size:                     $f__base-font-size !default;
+$f__search-form--field-height:                  $f__base-em-ratio * 1em !default;
+$f__search-form--spacing:                       $f__search-form--field-height / 8 !default;
+$f__search-form--height:                        $f__search-form--field-height + ($f__search-form--spacing * 2) !default;
+
+$f__search-bar--height:                         $f__search-form--height + ($f__search-form--spacing * 2) !default;
+$f__search-bar-button--spacing:                 $f__search-bar--height / 8 !default;
+
+
+
+$f__search-form-max-width:                      25em !default;
+
+
+/* -- Basic/fallback layout --------------------------------------------------------------------- */
+
+    /* -- .search-form ---------------------------------------------------------------------------*/
+
+    /*
+        1. Prevent extra bottom space when form is inside a container.
+    */
+    .search-form.search-form {
+        background: $f__search-form--background-color;
+
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+
+        margin: 0;
+
+        width: 100%;
+
+        -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+
+        vertical-align: top;
+    }
+    // Reset flex display for FF8-27: ...
+    @media screen and (min--moz-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
+        .search-form.search-form {
+            display: block;
+        }
+    }
+    // ... and put it back for FF28+
+    @supports (-moz-appearance:none) and (list-style-type:japanese-formal) {
+        .search-form.search-form {
+            display: flex;
+        }
+    }
+
+
+    .search-form.search-form::before,
+    .search-form.search-form::after {
+        content: " ";
+        display: table;
+    }
+
+    .search-form.search-form::after {
+        clear: both;
+    }
+
+
+    .search-form---restrict-width {
+        max-width: $f__search-form-max-width;
+    }
+
+    /* -------------------------------------------------------------------------------------------*/
+
+
+    /* -- .search-form__field --------------------------------------------------------------------*/
+
+    /*
+        1. Override default size attr value - mainly for Opera mini which wierdley needs both
+           width AND min-width.
+    */
+    .search-form .search-form__field {
+        position: relative;
+        z-index: 1;
+
+        border-radius: 0;
+        border: 0;
+
+
+        background-color: $f__search-form__field--background-color;
+        color: $f__search-form__field--text-color;
+        height: $f__search-form--field-height;
+        line-height: $f__search-form--field-height;
+        margin: $f__search-form--spacing 0 $f__search-form--spacing $f__search-form--spacing;
+        padding: $f__search-form--spacing;
+
+        float: left;
+
+        -moz-box-flex: 1;
+        -webkit-flex: 1 1 auto;
+            -ms-flex: 1 1 auto;
+                flex: 1 1 auto;
+
+
+        width: 1%;     /* [1] */
+        min-width: 1%; /* [1] */
+    }
+
+    // Reset the width for FF8-27: ...
+    @media screen and (min--moz-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
+        .search-form .search-form__field {
+            width: auto;
+        }
+    }
+    // And IE9
+    @media #{$f__ie9} {
+        .search-form .search-form__field {
+            width: auto;
+        }
+    }
+    
+    // ... but put it back for FF28+:
+    @supports (-moz-appearance:none) and (list-style-type:japanese-formal) {
+        .search-form .search-form__field {
+            width: 1%;
+        }
+    }
+
+
+    .search-form .search-form__field:focus {
+        background-color: $f__search-form__field--background-color--alt;
+    }
+
+    /* -------------------------------------------------------------------------------------------*/
+
+
+    /* -- .search-form__submit -------------------------------------------------------------------*/
+
+    /*
+    */
+    .search-form .search-form__submit {
+        position: relative;
+        z-index: 1;
+
+        border-radius: 0;
+        border: 0;
+
+
+        background: $f__search-form__submit--background-color;
+        color: $f__search-form__submit--text-color;
+
+        height: $f__search-form--height;
+        line-height: 0;
+
+        margin: $f__search-form--spacing $f__search-form--spacing $f__search-form--spacing 0;
+        padding:  0 ($f__search-form--spacing * 2);
+
+        float: left;
+
+        -moz-box-flex: 0;
+        -webkit-flex: 0 0 auto;
+            -ms-flex: 0 0 auto;
+                flex: 0 0 auto;
+    }
+
+    .search-form .search-form__submit:hover,
+    .search-form .search-form__submit:focus {
+        background-color: $f__search-form__submit--background-color--alt;
+    }
+
+
+    /* -------------------------------------------------------------------------------------------*/
+
+/* -----------------------------------------------------------------------------------------------*/
+
+/* -- Enhanced layout --------------------------------------------------------------------------- */
+    @media only screen and (max-width: ($f__search-form--breakpoint--enhanced - $f__mq-1-em-px)) {
+
+
+        .search-form .search-form__collapse {
+            width: 100%;
+        }
+    }
+
+    @media only screen and (min-width: $f__search-form--breakpoint--enhanced) {
+
+        /*
+            1. Reinstate all flexbox for enhanced view as no wrapping needs to occure
+            (FF8-27 issue describbed above)
+        */
+        .search-form.search-form {
+            display: -moz-box; /* [1] */
+            display: flex; /* [1] */
+
+            -webkit-flex-wrap: nowrap;
+                -ms-flex-wrap: nowrap;
+                    flex-wrap: nowrap;
+        }
+
+        .search-form .search-form__field {
+            width: auto;
+        }
+
+    }
+/* ---------------------------------------------------------------------------------------------- */

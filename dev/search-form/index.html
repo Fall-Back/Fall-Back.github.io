@@ -1,0 +1,152 @@
+---
+title: Search Form Test Page
+layout: dev/structure--basic
+head_stylesheets: ['/dev/search-form/css/search-form.css']
+head_style: |
+    @media only screen and (min-resolution: 0.1dpcm), only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0) {
+        /*
+            These styles are to help demonstrate the pattern, they aren't part of it.
+        */
+
+        hr {
+            margin-top: 2.4rem;
+        }
+        
+        
+        .sibling-element {
+            color: #fff;
+            display: inline-block;
+            height: 2.25;
+            line-height: 2.25;
+            padding: 0 1em;
+        }
+        
+
+    /*
+        ul.search-form__collapse {
+            margin: 0;
+        }
+        
+        ul.search-form__collapse li {
+            display: -moz-inline-stack;
+            display: inline-block;
+            height: 2.25;
+            line-height: 2.25;
+            margin: 0;
+        }
+
+
+        ul.search-form__collapse li a {
+            display: block;
+            padding: 0 1em;
+            margin: 0;
+            color: #fff;
+            border-bottom: 0;
+        }
+
+        ul.search-form__collapse li a:hover,
+        ul.search-form__collapse li a:active,
+        ul.search-form__collapse li a:focus {
+            border-bottom: 0;
+            color: #fff;
+            background: rgba(255,255,255,0.2);
+        }
+    }*/
+---
+
+<h2>Basic</h2>
+
+<form action="#search" id="searchform" class="search-form" method="GET">
+    <input type="search" class="search-form__field" id="search" placeholder="Search" name="s" value="" aria-label="Search" />
+    <button class="search-form__submit" type="submit">
+        <span>
+            <svg width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#333333" d="M12.917 11.667h-0.662l-0.229-0.229c0.817-0.946 1.308-2.175 1.308-3.521 0-2.992-2.425-5.417-5.417-5.417s-5.417 2.425-5.417 5.417 2.425 5.417 5.417 5.417c1.346 0 2.575-0.492 3.521-1.304l0.229 0.229v0.658l4.167 4.158 1.242-1.242-4.158-4.167zM7.917 11.667c-2.071 0-3.75-1.679-3.75-3.75s1.679-3.75 3.75-3.75 3.75 1.679 3.75 3.75-1.679 3.75-3.75 3.75z"></path>
+                <text y="-10">Search</text>
+            </svg>
+        </span>
+    </button>
+</form>
+
+<hr>
+
+<h2>Example in smaller container</h2>
+<div style="max-width: 500px;">
+    <form action="#search" id="searchform" class="search-form" method="GET">
+        <input type="search" class="search-form__field" id="search" placeholder="Search" name="s" value="" aria-label="Search" />
+        <button class="search-form__submit" type="submit">
+            <span>
+                <svg width="20" height="20" viewBox="0 0 20 20">
+                    <path fill="#333333" d="M12.917 11.667h-0.662l-0.229-0.229c0.817-0.946 1.308-2.175 1.308-3.521 0-2.992-2.425-5.417-5.417-5.417s-5.417 2.425-5.417 5.417 2.425 5.417 5.417 5.417c1.346 0 2.575-0.492 3.521-1.304l0.229 0.229v0.658l4.167 4.158 1.242-1.242-4.158-4.167zM7.917 11.667c-2.071 0-3.75-1.679-3.75-3.75s1.679-3.75 3.75-3.75 3.75 1.679 3.75 3.75-1.679 3.75-3.75 3.75z"></path>
+                    <text y="-10">Search</text>
+                </svg>
+            </span>
+        </button>
+    </form>
+</div>
+
+<hr>
+
+<h2>Example with sibling element</h2>
+
+<form action="#search" id="searchform" class="search-form" method="GET">
+    <input type="search" class="search-form__field" id="search" placeholder="Search" name="s" value="" aria-label="Search" />
+    <button class="search-form__submit" type="submit">
+        <span>
+            <svg width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#333333" d="M12.917 11.667h-0.662l-0.229-0.229c0.817-0.946 1.308-2.175 1.308-3.521 0-2.992-2.425-5.417-5.417-5.417s-5.417 2.425-5.417 5.417 2.425 5.417 5.417 5.417c1.346 0 2.575-0.492 3.521-1.304l0.229 0.229v0.658l4.167 4.158 1.242-1.242-4.158-4.167zM7.917 11.667c-2.071 0-3.75-1.679-3.75-3.75s1.679-3.75 3.75-3.75 3.75 1.679 3.75 3.75-1.679 3.75-3.75 3.75z"></path>
+                <text y="-10">Search</text>
+            </svg>
+        </span>
+    </button>
+    <div class="sibling-element">
+        Test input flex
+    </div>
+</form>
+
+<hr>
+
+<h2>Again, in smaller container</h2>
+
+<div style="max-width: 500px;">
+    <form action="#search" id="searchform" class="search-form" method="GET">
+        <input type="search" class="search-form__field" id="search" placeholder="Search" name="s" value="" aria-label="Search" />
+        <button class="search-form__submit" type="submit">
+            <span>
+                <svg width="20" height="20" viewBox="0 0 20 20">
+                    <path fill="#333333" d="M12.917 11.667h-0.662l-0.229-0.229c0.817-0.946 1.308-2.175 1.308-3.521 0-2.992-2.425-5.417-5.417-5.417s-5.417 2.425-5.417 5.417 2.425 5.417 5.417 5.417c1.346 0 2.575-0.492 3.521-1.304l0.229 0.229v0.658l4.167 4.158 1.242-1.242-4.158-4.167zM7.917 11.667c-2.071 0-3.75-1.679-3.75-3.75s1.679-3.75 3.75-3.75 3.75 1.679 3.75 3.75-1.679 3.75-3.75 3.75z"></path>
+                    <text y="-10">Search</text>
+                </svg>
+            </span>
+        </button>
+        <div class="sibling-element">
+            Test input flex
+        </div>
+    </form>
+</div>
+
+<hr>
+
+<h2>Example with search box after sibling element</h2>
+
+<form action="#search" id="searchform" class="search-form" method="GET">
+    <div class="sibling-element">
+        Test input flex
+    </div>
+    <input type="search" class="search-form__field" id="search" placeholder="Search" name="s" value="" aria-label="Search" />
+    <button class="search-form__submit" type="submit">
+        <span>
+            <svg width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#333333" d="M12.917 11.667h-0.662l-0.229-0.229c0.817-0.946 1.308-2.175 1.308-3.521 0-2.992-2.425-5.417-5.417-5.417s-5.417 2.425-5.417 5.417 2.425 5.417 5.417 5.417c1.346 0 2.575-0.492 3.521-1.304l0.229 0.229v0.658l4.167 4.158 1.242-1.242-4.158-4.167zM7.917 11.667c-2.071 0-3.75-1.679-3.75-3.75s1.679-3.75 3.75-3.75 3.75 1.679 3.75 3.75-1.679 3.75-3.75 3.75z"></path>
+                <text y="-10">Search</text>
+            </svg>
+        </span>
+    </button>            
+</form>
+
+<hr>
+
+<h2>NOTES</h2>
+
+<p>The <code>y="-10"</code> on the <code>&lt;text&gt;</code> elements helps to shift the fallback text out of the viewport properly. In some browsers (iOS) the text bleeds through a little.</p>
+<p>Opera Mini doesn't seem to allow the search field to shrink below some minimum width that seems to be related to the default <code>size</code> attribute setting. Using JS to target Opera Mini and add <code>size="1"</code> attribute to search fields allows it to shrink properly.</p>

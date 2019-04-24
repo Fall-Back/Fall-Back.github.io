@@ -12,6 +12,7 @@ defaults:
     scope:
       path: "" # an empty string here means all files in the project
     values:
+      head_scripts: false
       head_stylesheets: false
       head_style: false
       body_class: false

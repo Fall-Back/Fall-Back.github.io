@@ -77,7 +77,8 @@ $f__media-element-vertical-align: middle !default;
 
 
 // <body>
-$f__body-padding: 0 $f__base-rem-space-unit !default;
+$f__body-padding_size: $f__base-rem-space-unit !default;
+$f__body-padding: 0 $f__body-padding_size !default;
 $f__body-margin: 0 !default;
 $f__body-min-width: 250px !default;
 $f__body-max-width: 0 !default;
@@ -190,6 +191,9 @@ html {
 
     -ms-text-size-adjust: 100%; /* 5 */
     -webkit-text-size-adjust: 100%; /* 5 */
+    
+    padding: 0;
+    margin: 0;
 
     // -- -moz-osx-font-smoothing: grayscale; --
     // -- -webkit-font-smoothing: antialiased; --
@@ -269,7 +273,24 @@ html {
 */
 body {
     position: relative; /* 1 */
+    
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    
+    -webkit-flex-direction: column;
+           -moz-box-orient: vertical;
+        -moz-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+            
+    -webkit-align-items: center;
+         -moz-box-align: center;
+         -ms-flex-align: center;
+            align-items: center;
 
+    width: 100%;
     min-width: $f__body-min-width;
 
     min-height: 100%;
@@ -292,6 +313,15 @@ body {
     background-color: $f__body-background-color;
     color: $f__body-text-color;
     
+}
+
+/* IE9-11 */
+@media #{$f__ie9-11} {
+
+    body {
+        height: 100%;
+    }
+
 }
 
 
@@ -464,25 +494,5 @@ body {
 
     text-shadow: $f__selection-text-shadow;
 }
-
-
-/*-------------------------------------------------------------------------------------------------|
-
-    ACCESSIBILITY / ARIA
-    Moved to it's own file. Still debating this.
-
-|-------------------------------------------------------------------------------------------------*/
-
-@import '_start-accessibility.scss';
-
-
-/*-------------------------------------------------------------------------------------------------|
-
-    UTILITIES
-    Moved to it's own file. Still debating this.
-
--|------------------------------------------------------------------------------------------------*/
-
-@import '_start-utilities.scss';
 
 /*! End Start-CSS */
