@@ -195,6 +195,24 @@
     (CSS only attempts weren't good enough)
     So, scoping these styles to the 'js-nav-bar' class.
 */
+@media only screen and (max-width: 50em) {
+  .js-nav-bar .nav-bar__start {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .js-nav-bar .nav-bar__start > * {
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+  }
+  .js-nav-bar .nav-bar__title {
+    -webkit-flex: 1 0 auto;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+  }
+}
+
 @media only screen and (min-width: 50em) {
   /*.js-nav-bar .nav-bar {
 

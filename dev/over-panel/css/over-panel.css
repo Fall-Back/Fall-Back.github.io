@@ -58,9 +58,6 @@
   background-color: #247BA0;
   color: #fff;
   padding: 0;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
 }
 
 .over-panel__contents > * {
@@ -87,6 +84,12 @@
   -webkit-flex: 1 0 auto;
   -ms-flex: 1 0 auto;
   flex: 1 0 auto;
+}
+
+.js-over-panel .over-panel__contents {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 @media only screen and (max-width: 49.9375em) {

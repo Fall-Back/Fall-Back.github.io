@@ -281,6 +281,26 @@ $f__nav-bar__title--height:                (($f__base-line-height * 1.5) / (($f_
     So, scoping these styles to the 'js-nav-bar' class.
 */
 
+    @media only screen and (max-width: $f__nav-bar--breakpoint--enhanced) {
+        .js-nav-bar .nav-bar__start {
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+        }
+        
+        .js-nav-bar .nav-bar__start > * {
+            -webkit-flex: 0 0 auto;
+                -ms-flex: 0 0 auto;
+                    flex: 0 0 auto;
+        }
+        
+        .js-nav-bar .nav-bar__title {
+            -webkit-flex: 1 0 auto;
+                -ms-flex: 1 0 auto;
+                    flex: 1 0 auto;
+        }
+    
+    }
     
 
     @media only screen and (min-width: $f__nav-bar--breakpoint--enhanced) {
@@ -387,6 +407,10 @@ $f__nav-bar__title--height:                (($f__base-line-height * 1.5) / (($f_
             white-space: nowrap;
             float: left;
         }
+        
+        
+        
+        
         
         .js-nav-bar .nav-bar__end {
             white-space: nowrap;

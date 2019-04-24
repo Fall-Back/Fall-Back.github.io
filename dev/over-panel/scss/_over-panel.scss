@@ -100,12 +100,7 @@ $f__over-panel__overlay-shadow:                  0 0 10px 5px #000 !default;
     .over-panel__contents {
         background-color: $f__over-panel__contents--background-color;
         color: $f__over-panel__contents--text-color;
-        padding: $f__over-panel__contents--padding;
-        
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        
+        padding: $f__over-panel__contents--padding;     
     }
     
     .over-panel__contents > * {
@@ -135,6 +130,13 @@ $f__over-panel__overlay-shadow:                  0 0 10px 5px #000 !default;
             -ms-flex: 1 0 auto;
                 flex: 1 0 auto;
     }
+    
+    .js-over-panel .over-panel__contents {
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+    
     
     @media only screen and (max-width: ($f__over-panel--breakpoint--enhanced - $f__mq-1-em-px)) {
 		/*
