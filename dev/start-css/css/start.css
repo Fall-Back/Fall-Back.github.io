@@ -2085,17 +2085,22 @@ a[hidden][aria-hidden="false"]:active {
 */
 /*
         1. Override display attribute.
+        2. FF55- otherwise fill is applied.
     */
 .icon {
   display: inline;
   /* [1] */
   fill: none;
+  fill-opacity: 0;
+  /* [2] */
   stroke: currentColor;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
   width: 1.25em;
   height: 1.25em;
+  margin: 0;
+  padding: 0;
 }
 
 _:-o-prefocus, :root .icon {

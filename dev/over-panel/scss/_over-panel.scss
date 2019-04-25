@@ -1,4 +1,4 @@
-// Fall-Back Nav Bar Pattern v2.0.0
+// Fall-Back Over Panel Pattern v2.0.0
 /*------------------------------------------------------------------------------------------------*\
 
     Designed for use with the basic [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
@@ -9,7 +9,7 @@
 
 
 $f__over-panel--breakpoint--enhanced:            $f__breakpoint--enhanced !default;
-////$f__over-panel--z-index:               		    9999 !default;
+$f__over-panel__contents--z-index:               9999 !default;
 
 // Colours:
 
@@ -35,10 +35,10 @@ $f__over-panel__control--border-width:           1px !default;
 $f__over-panel__control--border-radius:          0 !default;
 
 
-$f__over-panel__contents--offset-top:             auto !default;
+$f__over-panel__contents--offset-top:            0 !default;
 
 
-$f__over-panel__overlay--background-color:       #fff !default;
+$f__over-panel__overlay--background-color:       #000 !default;
 
 
 
@@ -59,8 +59,8 @@ $f__over-panel__overlay-transition:              opacity 0.5s ease !default;
 
 
 // Other:
-$f__over-panel__overlay-opacity:                 0.5 !default;
-$f__over-panel__overlay-shadow:                  0 0 10px 5px #000 !default;
+$f__over-panel__overlay-opacity:                 0.6 !default;
+//$f__over-panel__overlay-shadow:                  0 0 10px 5px #000 !default;
 
 /* -- Basic/fallback layout --------------------------------------------------------------------- */
 
@@ -101,6 +101,14 @@ $f__over-panel__overlay-shadow:                  0 0 10px 5px #000 !default;
         background-color: $f__over-panel__contents--background-color;
         color: $f__over-panel__contents--text-color;
         padding: $f__over-panel__contents--padding;     
+    }
+    
+    /*
+        iOS/OSX seem to apply mystery margins.
+    */
+    .over-panel,
+    .over-panel__contents {
+        margin: 0;
     }
     
     .over-panel__contents > * {
@@ -172,6 +180,7 @@ $f__over-panel__overlay-shadow:                  0 0 10px 5px #000 !default;
         .js-over-panel .over-panel__contents {
 
             position: absolute;
+            z-index: $f__over-panel__contents--z-index;
             left: 0;
             //top: $f__over-panel__control--height;
             top: $f__over-panel__contents--offset-top;
@@ -202,7 +211,7 @@ $f__over-panel__overlay-shadow:                  0 0 10px 5px #000 !default;
 
         /* Slide effect: */
 
-        .js-over-panel .over-panel--slide .over-panel__contents {
+        /*.js-over-panel .over-panel--slide .over-panel__contents {
             -webkit-transform: translateY(-100%);
             -moz-transform:    translateY(-100%);
             -ms-transform:     translateY(-100%);
@@ -232,12 +241,12 @@ $f__over-panel__overlay-shadow:                  0 0 10px 5px #000 !default;
             -moz-transition:    -moz-transform    $td  $tf;
             -o-transition:      -o-transform      $td  $tf;
             transition:         transform         $td  $tf;
-        }
+        }*/
 
 
         /* Fade effect: */
 
-        .js-over-panel .over-panel--fade .over-panel__contents {
+        /*.js-over-panel .over-panel--fade .over-panel__contents {
             opacity: 0;
         }
 
@@ -253,6 +262,29 @@ $f__over-panel__overlay-shadow:                  0 0 10px 5px #000 !default;
         }
 
         .js-over-panel_is-open.over-panel--fade .over-panel__contents {
+            opacity: 1;
+
+            -webkit-transition: opacity $td  $tf;
+            -moz-transition:    opacity $td  $tf;
+            -o-transition:      opacity $td  $tf;
+            transition:         opacity $td  $tf;
+        }*/
+        .js-over-panel .over-panel .over-panel__contents {
+            opacity: 0;
+        }
+
+        .js-over-panel_is-animating.over-panel .over-panel__contents {
+            -webkit-transition: opacity    $td  $tf,
+                                visibility 0s   $tf  $td;
+            -moz-transition:    opacity    $td  $tf,
+                                visibility 0s   $tf  $td;
+            -o-transition:      opacity    $td  $tf,
+                                visibility 0s   $tf  $td;
+            transition:         opacity    $td  $tf,
+                                visibility 0s   $tf  $td;
+        }
+
+        .js-over-panel_is-open.over-panel .over-panel__contents {
             opacity: 1;
 
             -webkit-transition: opacity $td  $tf;
@@ -290,7 +322,7 @@ $f__over-panel__overlay-shadow:                  0 0 10px 5px #000 !default;
             background-color: $f__over-panel__control--background-color;
 
             position: relative;
-			z-index: 1; /* [2] */
+			z-index: 0;
         }
 
 
@@ -302,6 +334,13 @@ $f__over-panel__overlay-shadow:                  0 0 10px 5px #000 !default;
             border: 0;
         }
 
+        /*
+            1. Ensure the control is above the overlay.
+        */
+        .js-over-panel-control.over-panel-control[aria-expanded="true"] {
+            z-index: 1; /* [1] */
+        }
+        
         .js-over-panel-control.over-panel-control:hover,
         .js-over-panel-control.over-panel-control:active,
         .js-over-panel-control.over-panel-control[aria-expanded="true"] {
@@ -359,7 +398,7 @@ $f__over-panel__overlay-shadow:                  0 0 10px 5px #000 !default;
         }*/
 
         /*
-            1. This is the obvious place for this rule but there's a weird chrome bug that means
+            1. This is the obvious place for this rule but there's a weird Chrome bug that means
                the postiion/dimensions are ignore if it's initiallty hidden.
                Moving to the is-open declaration fixes this, as it only gets applie when it's
                visisble.
@@ -390,8 +429,8 @@ $f__over-panel__overlay-shadow:                  0 0 10px 5px #000 !default;
                  -o-transition: $f__over-panel__overlay-transition;
                     transition: $f__over-panel__overlay-transition;
 
-            -webkit-box-shadow: $f__over-panel__overlay-shadow;
-                    box-shadow: $f__over-panel__overlay-shadow;
+            //-webkit-box-shadow: $f__over-panel__overlay-shadow;
+            //        box-shadow: $f__over-panel__overlay-shadow;
         }
 
         /* Bring the overlay to the front and fade in when there's an over-panel target: */

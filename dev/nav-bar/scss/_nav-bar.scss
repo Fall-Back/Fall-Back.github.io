@@ -119,32 +119,36 @@ $f__nav-bar__title--height:                (($f__base-line-height * 1.5) / (($f_
 
     /* -- Layout ---------------------------------------------------------------------------------*/
 
+    /*
+        iOS/OSX seem to apply mystery margins.
+    */
+    .nav-bar .nav-bar__end,
+    .nav-bar .nav-bar__main,
+    .nav-bar .nav-bar__start,
+    .nav-bar .nav-bar__title {
+        margin: 0;
+    }
+
     .nav-bar .subnav {
         padding: 0;
-        margin-left: $f__nav-bar--spacing * 4;
-        background-color: $f__sub-nav--background-color;
+        margin: 0;
     }
 
 
     /*
-        1. Related to Note A. Force this on to its own line.
     */
     .nav-bar .nav-bar__items,
     .nav-bar .subnav__items {
-        //width: 100%; /* 1 */
-
         display: block;
         list-style-type: none;
         padding: 0;
         margin: 0;
-        /****float: left;
-
-        -webkit-box-flex: 0;
-            -webkit-flex: 0 1 auto;
-                -ms-flex: 0 1 auto;
-                    flex: 0 1 auto;*/
     }
 
+    .nav-bar .subnav__items {
+        margin-left: $f__nav-bar--spacing * 4;
+        background-color: $f__sub-nav--background-color;
+    }
 
 
     .nav-bar .nav-bar__item {
@@ -156,9 +160,9 @@ $f__nav-bar__title--height:                (($f__base-line-height * 1.5) / (($f_
         float: left;
     }
 
-    .nav-bar .subnav__items--stacked .subnav__item {
+    .nav-bar .subnav__items--stacked .subnav__item,
+    .nav-bar .subnav__items--stacked .subnav__link {
         float: none;
-        //margin-left: $f__nav-bar--height / 2;
     }
 
 
@@ -178,10 +182,8 @@ $f__nav-bar__title--height:                (($f__base-line-height * 1.5) / (($f_
     /* -- Links and headings ----------------- ---------------------------------------------------*/
 
     /*
-        1. Related to Note A; in older browsers we just want it pushed left.
     */
     .nav-bar .nav-bar__title .nav-bar__link {
-        //float: left; /* [1] */
         height: $f__nav-bar__title--height;
         line-height: $f__nav-bar__title--height;
 
@@ -217,10 +219,22 @@ $f__nav-bar__title--height:                (($f__base-line-height * 1.5) / (($f_
 		box-shadow: none; /* 1 */
     }
 
+    /*
+        FF15- fix button height.
+    */
+    .nav-bar button.nav-bar__link {
+        min-height: $f__nav-bar--height;
+    }
+
+
 
     .nav-bar .nav-bar__link  {
         color: $f__nav-bar__link--color;
         background-color: $f__nav-bar__link--background-color;
+    }
+
+    .nav-bar__link--centered {
+            text-align: center;
     }
 
     .nav-bar .subnav__heading {
@@ -272,6 +286,20 @@ $f__nav-bar__title--height:                (($f__base-line-height * 1.5) / (($f_
 
 /* -----------------------------------------------------------------------------------------------*/
 
+@media only screen and (max-width: $f__nav-bar--breakpoint--enhanced) {
+    .nav-bar .subnav__items--stacked--only-narrow .subnav__item,
+    .nav-bar .subnav__items--stacked--only-narrow .subnav__link {
+        float: none;
+    }
+}
+
+@media only screen and (min-width: $f__nav-bar--breakpoint--enhanced) {
+    .nav-bar .subnav__items--stacked--only-wide .subnav__item,
+    .nav-bar .subnav__items--stacked--only-wide .subnav__link {
+        float: none;
+    }
+}
+
 
 /* ********************************************************************************************** */
 /* -- Enhanced layout --------------------------------------------------------------------------- */
@@ -281,27 +309,92 @@ $f__nav-bar__title--height:                (($f__base-line-height * 1.5) / (($f_
     So, scoping these styles to the 'js-nav-bar' class.
 */
 
+    @media only screen and (max-width: $f__nav-bar--breakpoint--enhanced) and (min-width:0\0) and (min-resolution:.001dpcm) {
+
+        /* This is all for IE9: */
+        .js-nav-bar .nav-bar,
+        .js-nav-bar .nav-bar__start {
+            width: 100%;
+        }
+
+        .js-nav-bar .nav-bar__start {
+            display: table;
+        }
+
+        .js-nav-bar .nav-bar__start > * {
+            display: table-cell;
+        }
+
+        .js-nav-bar .nav-bar__start .nav-bar__item:last-child {
+            text-align: right;
+        }
+
+        .js-nav-bar .nav-bar__start .nav-bar__item:last-child > * {
+            display: inline-block;
+            vertical-align: top;
+        }
+    }
+
     @media only screen and (max-width: $f__nav-bar--breakpoint--enhanced) {
+        /*
+            1. FF8-21 needs this or is increases the height of this box for some reason.
+            2. FF8-21 needs this.
+        */
         .js-nav-bar .nav-bar__start {
             display: -webkit-flex;
+            display: -moz-box;
             display: -ms-flexbox;
             display: flex;
+
+            -webkit-justify-content: space-between;
+                      -moz-box-pack: justify;
+                      -ms-flex-pack: justify;
+                    justify-content: space-between;
+
+            vertical-align: middle; /* [1] */
+
+            width: 100%; /* [2] */
         }
-        
+
         .js-nav-bar .nav-bar__start > * {
             -webkit-flex: 0 0 auto;
+           -moz-box-flex: 0;
                 -ms-flex: 0 0 auto;
                     flex: 0 0 auto;
         }
-        
+
         .js-nav-bar .nav-bar__title {
             -webkit-flex: 1 0 auto;
+           -moz-box-flex: 1;
                 -ms-flex: 1 0 auto;
                     flex: 1 0 auto;
+
+            margin: 0 auto;
         }
-    
+
+
+        /*
+            FF21- doesn't distribute items even if the -moz properties are set.
+            This hack covers FF3.6+ though thias stylesheet will only be loaded by FF8 or greater
+            depending on the mustart cut.
+        */
+        _:-moz-locale-dir(ltr), .js-nav-bar .nav-bar__start .nav-bar__item + .nav-bar__item:last-child {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        /*
+            Reset properties for FF22+
+        */
+        @supports (display: flex) {
+            .js-nav-bar .nav-bar__start .nav-bar__item + .nav-bar__item:last-child {
+                position: static;
+            }
+        }
+
     }
-    
+
 
     @media only screen and (min-width: $f__nav-bar--breakpoint--enhanced) {
 
@@ -309,14 +402,6 @@ $f__nav-bar__title--height:                (($f__base-line-height * 1.5) / (($f_
         /*.js-nav-bar .nav-bar {
 
         }*/
-
-
-        /*@supports (display: -webkit-flex) or
-                  (display: -ms-flex) or
-                  (display: flex) {
-
-        }*/
-
 
         /*
             Add dividers.
@@ -333,7 +418,7 @@ $f__nav-bar__title--height:                (($f__base-line-height * 1.5) / (($f_
             border-right-width: $f__nav-bar__link--border-width;
         }
 
-        .js-nav-bar .nav-bar__link[href]  + .subnav__control {
+        .js-nav-bar .nav-bar__link[href]  + * {
             border-style: $f__sub-nav__link--border-style;
             border-color: $f__sub-nav__link--border-color;
             border-top-width: 0;
@@ -349,21 +434,27 @@ $f__nav-bar__title--height:                (($f__base-line-height * 1.5) / (($f_
                I don't think this would actually do any harm...
         */
         .js-nav-bar .nav-bar {
-            //display: -webkit-flex; /* 1 */
-            //display: -ms-flexbox; /* 1 */
-            //display: flex; /* 1 */
+            display: -webkit-flex; /* 1 */
+            display: -ms-flexbox; /* 1 */
+            display: flex; /* 1 */
         }
-        
+
         .js-nav-bar .nav-bar > * {
-            -webkit-flex: none;
-                -ms-flex: none;
-                    flex: none;
+            -webkit-flex: 0 0 auto;
+                -ms-flex: 0 0 auto;
+                    flex: 0 0 auto;
+        }
+
+        .js-nav-bar .nav-bar > .nav-bar__fill-at-wide {
+            -webkit-flex: 1 0 auto;
+                -ms-flex: 1 0 auto;
+                    flex: 1 0 auto;
         }
 
 
         // We want to force stacked subnav items back onto a line for Enhanced:
         .js-nav-bar .subnav__items--stacked .subnav__item {
-            float: left;
+            //float: left;
         }
 
 
@@ -393,7 +484,7 @@ $f__nav-bar__title--height:                (($f__base-line-height * 1.5) / (($f_
             display: table;
             clear: both;
 		}
-        
+
         /*
             Prevent anything wrapping (fixed height is crucial to making this work),
             and make things float
@@ -401,7 +492,7 @@ $f__nav-bar__title--height:                (($f__base-line-height * 1.5) / (($f_
         .js-nav-bar .nav-bar__title,
         .js-nav-bar .nav-bar__main,
         .js-nav-bar .nav-bar__item,
-        .js-nav-bar .nav-bar__link ,
+        .js-nav-bar .nav-bar__item > *,
         .js-nav-bar .subnav__link ,
         .js-nav-bar .subnav__heading {
             white-space: nowrap;
@@ -409,20 +500,18 @@ $f__nav-bar__title--height:                (($f__base-line-height * 1.5) / (($f_
         }
         
         
-        
-        
-        
+
         .js-nav-bar .nav-bar__end {
             white-space: nowrap;
             float: right;
-            
+
             -webkit-flex: 1 1 auto;
                 -ms-flex: 1 1 auto;
                     flex: 1 1 auto;
         }
 
-        
-        
+
+
 
         /*
 			This pseudo element helps to cover any subnavs to stop them being visible in the main
@@ -440,8 +529,8 @@ $f__nav-bar__title--height:                (($f__base-line-height * 1.5) / (($f_
 			z-index: -1;
 			background-color: $f__nav-bar--background-color;
 		}
-        
-        
+
+
         /* -- Behaviour: -------------------------------------------------------------------------*/
 
         // Hide the headings - we don't need those in Enhanced:
@@ -479,10 +568,7 @@ $f__nav-bar__title--height:                (($f__base-line-height * 1.5) / (($f_
             left: 0;
             right: 0;
             top: 0;
-            z-index: -2; /* 1 */
-            padding: 0;
-            margin: 0;
-            padding: 0;
+            z-index: -2; /* 1 */          
 
             height: $f__nav-bar--height; /* 2 */
 
@@ -494,6 +580,11 @@ $f__nav-bar__title--height:                (($f__base-line-height * 1.5) / (($f_
                                 visibility 0s   ease 0.5s;
                     transition: margin-top 0.5s ease,
                                 visibility 0s   ease 0.5s;
+        }
+        
+        .js-nav-bar .subnav__items {
+            margin: 0;
+            padding: 0;
         }
 
         .js-nav-bar .subnav__control[aria-expanded="true"] ~ .subnav {

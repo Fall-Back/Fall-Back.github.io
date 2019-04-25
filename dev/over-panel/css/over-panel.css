@@ -60,6 +60,14 @@
   padding: 0;
 }
 
+/*
+        iOS/OSX seem to apply mystery margins.
+    */
+.over-panel,
+.over-panel__contents {
+  margin: 0;
+}
+
 .over-panel__contents > * {
   -webkit-flex: 0 1 auto;
   -ms-flex: 0 1 auto;
@@ -120,8 +128,9 @@
         */
   .js-over-panel .over-panel__contents {
     position: absolute;
+    z-index: 9999;
     left: 0;
-    top: auto;
+    top: 0;
     width: 100%;
     visibility: hidden;
     /* [1] */
@@ -137,41 +146,71 @@
     /* [1] */
   }
   /* Slide effect: */
-  .js-over-panel .over-panel--slide .over-panel__contents {
-    -webkit-transform: translateY(-100%);
-    -moz-transform: translateY(-100%);
-    -ms-transform: translateY(-100%);
-    -o-transform: translateY(-100%);
-    transform: translateY(-100%);
-  }
-  .js-over-panel_is-animating.over-panel--slide .over-panel__contents {
-    -webkit-transition: -webkit-transform ease 0.8s, visibility 0s 0.8s ease;
-    -moz-transition: -moz-transform ease 0.8s, visibility 0s 0.8s ease;
-    -o-transition: -o-transform ease 0.8s, visibility 0s 0.8s ease;
-    transition: transform ease 0.8s, visibility 0s 0.8s ease;
-  }
-  .js-over-panel_is-open.over-panel--slide .over-panel__contents {
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0);
-    transform: translateY(0);
-    -webkit-transition: -webkit-transform ease 0.8s;
-    -moz-transition: -moz-transform ease 0.8s;
-    -o-transition: -o-transform ease 0.8s;
-    transition: transform ease 0.8s;
-  }
+  /*.js-over-panel .over-panel--slide .over-panel__contents {
+            -webkit-transform: translateY(-100%);
+            -moz-transform:    translateY(-100%);
+            -ms-transform:     translateY(-100%);
+            -o-transform:      translateY(-100%);
+            transform:         translateY(-100%);
+        }
+
+        .js-over-panel_is-animating.over-panel--slide .over-panel__contents {
+            -webkit-transition: -webkit-transform $td  $tf,
+                                visibility        0s   $tf  $td;
+            -moz-transition:    -moz-transform    $td  $tf,
+                                visibility        0s   $tf  $td;
+            -o-transition:      -o-transform      $td  $tf,
+                                visibility        0s   $tf  $td;
+            transition:         transform         $td  $tf,
+                                visibility        0s   $tf  $td;
+        }
+
+        .js-over-panel_is-open.over-panel--slide .over-panel__contents {
+            -webkit-transform: translateY(0);
+            -moz-transform:    translateY(0);
+            -ms-transform:     translateY(0);
+            -o-transform:      translateY(0);
+            transform:         translateY(0);
+
+            -webkit-transition: -webkit-transform $td  $tf;
+            -moz-transition:    -moz-transform    $td  $tf;
+            -o-transition:      -o-transform      $td  $tf;
+            transition:         transform         $td  $tf;
+        }*/
   /* Fade effect: */
-  .js-over-panel .over-panel--fade .over-panel__contents {
+  /*.js-over-panel .over-panel--fade .over-panel__contents {
+            opacity: 0;
+        }
+
+        .js-over-panel_is-animating.over-panel--fade .over-panel__contents {
+            -webkit-transition: opacity    $td  $tf,
+                                visibility 0s   $tf  $td;
+            -moz-transition:    opacity    $td  $tf,
+                                visibility 0s   $tf  $td;
+            -o-transition:      opacity    $td  $tf,
+                                visibility 0s   $tf  $td;
+            transition:         opacity    $td  $tf,
+                                visibility 0s   $tf  $td;
+        }
+
+        .js-over-panel_is-open.over-panel--fade .over-panel__contents {
+            opacity: 1;
+
+            -webkit-transition: opacity $td  $tf;
+            -moz-transition:    opacity $td  $tf;
+            -o-transition:      opacity $td  $tf;
+            transition:         opacity $td  $tf;
+        }*/
+  .js-over-panel .over-panel .over-panel__contents {
     opacity: 0;
   }
-  .js-over-panel_is-animating.over-panel--fade .over-panel__contents {
+  .js-over-panel_is-animating.over-panel .over-panel__contents {
     -webkit-transition: opacity ease 0.8s, visibility 0s 0.8s ease;
     -moz-transition: opacity ease 0.8s, visibility 0s 0.8s ease;
     -o-transition: opacity ease 0.8s, visibility 0s 0.8s ease;
     transition: opacity ease 0.8s, visibility 0s 0.8s ease;
   }
-  .js-over-panel_is-open.over-panel--fade .over-panel__contents {
+  .js-over-panel_is-open.over-panel .over-panel__contents {
     opacity: 1;
     -webkit-transition: opacity ease 0.8s;
     -moz-transition: opacity ease 0.8s;
@@ -202,13 +241,19 @@
     color: #fff;
     background-color: #247BA0;
     position: relative;
-    z-index: 1;
-    /* [2] */
+    z-index: 0;
   }
   .js-over-panel-control.over-panel-control:hover,
   .js-over-panel-control.over-panel-control:active,
   .js-over-panel-control.over-panel-control:focus {
     border: 0;
+  }
+  /*
+            1. Ensure the control is above the overlay.
+        */
+  .js-over-panel-control.over-panel-control[aria-expanded="true"] {
+    z-index: 1;
+    /* [1] */
   }
   .js-over-panel-control.over-panel-control:hover,
   .js-over-panel-control.over-panel-control:active,
@@ -252,7 +297,7 @@
             right: 0;
         }*/
   /*
-            1. This is the obvious place for this rule but there's a weird chrome bug that means
+            1. This is the obvious place for this rule but there's a weird Chrome bug that means
                the postiion/dimensions are ignore if it's initiallty hidden.
                Moving to the is-open declaration fixes this, as it only gets applie when it's
                visisble.
@@ -271,20 +316,18 @@
     border: 0;
     text-decoration: none;
     visibility: hidden;
-    background: #fff;
+    background: #000;
     opacity: 0;
     -webkit-transition: opacity 0.5s ease;
     -moz-transition: opacity 0.5s ease;
     -o-transition: opacity 0.5s ease;
     transition: opacity 0.5s ease;
-    -webkit-box-shadow: 0 0 10px 5px #000;
-    box-shadow: 0 0 10px 5px #000;
   }
   /* Bring the overlay to the front and fade in when there's an over-panel target: */
   .js-over-panel_is-open .over-panel__overlay {
     position: fixed;
     z-index: 0;
-    opacity: 0.5;
+    opacity: 0.6;
     visibility: visible;
   }
   .js-over-panel-control .over-panel__overlay:hover,
@@ -292,7 +335,7 @@
   .js-over-panel-control .over-panel__overlay:focus {
     border: 0;
     text-decoration: none;
-    background: #fff;
+    background: #000;
   }
 }
 
