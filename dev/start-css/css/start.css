@@ -1718,7 +1718,7 @@ template {
     5a. IE 10.
 */
 textarea {
-  min-height: 8.4rem-calc-rem-from-px(2px);
+  min-height: 8.2rem;
   /* 1 */
   overflow: auto;
   /* 2 */

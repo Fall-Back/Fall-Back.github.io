@@ -2,11 +2,6 @@
     Fall-Back Start-CSS Element: th
 |-------------------------------------------------------------------------------------------------*/
 
-$f__th-border-width: $f__border-width !default;
-$f__th-border: $f__th-border-width solid $f__base-ui-color !default;
-$f__th-background-color: lighten($f__base-ui-color, 50%) !default;
-$f__th-cell-padding: $f__base-rem-space-unit / 2;
-
 /*
     1. Opera Mini (no calc support).
     2. Calc to deduct any border-width.

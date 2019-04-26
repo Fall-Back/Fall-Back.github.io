@@ -2,16 +2,6 @@
     Fall-Back Start-CSS Element: legend
 |-------------------------------------------------------------------------------------------------*/
 
-// Note: when a legend is present the width of the top border of the fieldset seems to be ignored,
-// so the padding reduction that's meant to offset the border width is actually too small for the
-// top padding. CSS can't (yet) detect if there is a legend inside the fieldset so there needs to
-// be some corrective style on the legend itself. That would be bottom margin.
-$f__legend-border-width: 0 !default;
-$f__legend-h-padding: $f__base-rem-space-unit / 4 !default;
-
-// See below as to why this is here:
-$fieldset-border-width: $f__border-width !default;
-
 /*
     Fieldsets and legends can be difficult to style so I'm keep their appearance basically the same
     as the default - just a bit of theming.
@@ -31,7 +21,7 @@ $fieldset-border-width: $f__border-width !default;
     max-width: 100%; /* 1 */
 
     margin-top: -$f__legend-border-width; /* 2 */
-    margin-bottom: $fieldset-border-width; /* 2 */
+    margin-bottom: $f__fieldset-border-width; /* 2 */
 
     padding: 0 $f__legend-h-padding;
 

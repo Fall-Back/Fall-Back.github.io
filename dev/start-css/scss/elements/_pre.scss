@@ -2,19 +2,6 @@
     Fall-Back Start-CSS Element: pre
 |-------------------------------------------------------------------------------------------------*/
 
-$f__pre-background-color: lighten($f__base-ui-color, 55%) !default;
-
-// Adjust bottom margin to  take into account scrollbar height of 17px:
-$f__pre-margin-bottom: calc-rem-from-px(($f__base-line-height * 2) - 17px);
-
-// Edge has a scrollbar height of 12px:
-$f__pre-margin-bottom--edge: calc-rem-from-px(($f__base-line-height * 2) - 12px);
-
-// (margin to account for scrollbar, we can check for touch in most browsers and change this
-// or use custom scrollbars = see `pre` below)
-
-$f__pre-code-padding: ($f__base-rem-space-unit / 2);
-
 /*
     Note: code is the most probable use for a `<pre>` tag. Other uses may occur (e.g. poem) but
     these could be adjusted with a class. Could maybe make this default configurable but leave as it

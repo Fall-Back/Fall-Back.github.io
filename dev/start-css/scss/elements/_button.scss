@@ -2,22 +2,6 @@
     Fall-Back Start-CSS Element: button
 |-------------------------------------------------------------------------------------------------*/
 
-$f__button-h-padding: $f__base-rem-space-unit / 4 !default;
-
-$f__button-text-color: #fff !default;
-$f__button-background-color: $f__base-ui-color !default;
-$f__button-background-color--alt: -10 !default; // +n (% lighten) | -n (% darken) | <color> | false;
-
-$f__button-border-color: $f__border-color !default;
-$f__button-border-width: $f__border-width !default;
-$f__button-border-style: $f__border-style !default;
-$f__button-border-radius: $f__border-radius !default;
-
-$f__button-focus-shadow: true !default;
-$f__button-focus-shadow-width: 3px !default;
-
-$f__button-min-height: ($f__base-rem-space-unit * 1.25);
-
 #{$f__namespace}button {
     @include f__button;
 }

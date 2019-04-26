@@ -2,21 +2,6 @@
     Fall-Back Start-CSS Element: a
 |-------------------------------------------------------------------------------------------------*/
 
-$f__anchor-text-color: $f__base-ui-color !default;
-$f__anchor-text-color--alt: darken($f__anchor-text-color, 10%) !default;
-$f__anchor-text-decoration: none !default;
-
-$f__anchor-border-bottom-width: 2px !default;
-$f__anchor-border-bottom: $f__anchor-border-bottom-width solid !default;
-$f__anchor-border-bottom--alt: $f__anchor-border-bottom-width dashed !default;
-$f__anchor-border-bottom-offset: -$f__anchor-border-bottom-width;
-$f__anchor-padding-bottom: $f__anchor-border-bottom-width;
-
-$f__anchor-add-external-link-indicator: true !default;
-
-$f__anchor-focus-shadow: true !default;
-$f__anchor-focus-shadow-width: 3px !default;
-
 /*
     a:link a:visited a:hover a:active a:focus
 

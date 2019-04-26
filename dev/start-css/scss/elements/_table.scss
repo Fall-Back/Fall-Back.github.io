@@ -2,10 +2,6 @@
     Fall-Back Start-CSS Element: table
 |-------------------------------------------------------------------------------------------------*/
 
-$f__table-border-width: $f__border-width !default;
-$f__table-border: $f__table-border-width solid $f__base-ui-color !default;
-$f__table-background-color: lighten($f__base-ui-color, 50%) !default;
-
 /*
     1. Opera Mini (no calc support).
     2. Calc to deduct any border-width.

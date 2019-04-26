@@ -2,20 +2,6 @@
     Fall-Back Start-CSS Element: select
 |-------------------------------------------------------------------------------------------------*/
 
-$f__select-h-padding: $f__base-rem-space-unit / 4 !default;
-
-$f__select-text-color: $f__base-text-color !default;
-$f__select-background-color: #fff !default;
-
-$f__select-border-color: $f__border-color !default;
-$f__select-border-width: $f__border-width !default;
-$f__select-border-style: $f__border-style !default;
-$f__select-border-radius: $f__border-radius !default;
-
-$f__select-focus-shadow: true !default;
-$f__select-focus-shadow-width: 3px !default;
-
-
 // N1: Address inconsistent `text-transform` inheritance for `select`.
 // All other form control elements do not inherit `text-transform` values.
 //  Correct `select` style inheritance in Firefox.

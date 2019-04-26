@@ -1,20 +1,6 @@
 /*-------------------------------------------------------------------------------------------------|
     Fall-Back Start-CSS Element: textarea
 |-------------------------------------------------------------------------------------------------*/
-$f__textarea-h-padding: $f__base-rem-space-unit / 4 !default;
-
-$f__textarea-text-color: $f__base-text-color !default;
-$f__textarea-background-color: #fff !default;
-
-$f__textarea-border-color: $f__border-color !default;
-$f__textarea-border-width: $f__border-width !default;
-$f__textarea-border-style: $f__border-style !default;
-$f__textarea-border-radius: $f__border-radius !default;
-
-$f__textarea-focus-shadow: true !default;
-$f__textarea-focus-shadow-width: 3px !default;
-
-$f__textarea-resize: vertical !default;
 
 /*
     1. For IE, mainly.
@@ -25,7 +11,7 @@ $f__textarea-resize: vertical !default;
     5a. IE 10.
 */
 #{$f__namespace}textarea {
-    min-height: $f__base-rem-space-unit * 3.5 - calc-rem-from-px($f__textarea-border-width * 2); /* 1 */
+    min-height: $f__base-rem-space-unit * 3.5 - f__calc-rem-from-px($f__textarea-border-width * 2); /* 1 */
 
     overflow: auto; /* 2 */
 

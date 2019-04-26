@@ -2,25 +2,6 @@
     Fall-Back Start-CSS Element: h
 |-------------------------------------------------------------------------------------------------*/
 
-$f__h1-font-size: 52px / $f__base-font-size * 1em !default;
-$f__h1-height:  $f__base-rem-space-unit * 2.5 !default;
-
-$f__h2-font-size: 40px / $f__base-font-size * 1em !default;
-$f__h2-height:  $f__base-rem-space-unit * 2 !default;
-
-$f__h3-font-size: 30px / $f__base-font-size * 1em !default;
-$f__h3-height:  $f__base-rem-space-unit * 1.5 !default;
-
-$f__h4-font-size: 22px / $f__base-font-size * 1em !default;
-$f__h4-height:  $f__base-rem-space-unit * 1.5 !default;
-
-$f__h5-font-size: 18px / $f__base-font-size * 1em !default;
-$f__h5-height:  $f__base-rem-space-unit !default;
-
-$f__h6-font-size: 16px / $f__base-font-size * 1em !default;
-$f__h6-height:  $f__base-rem-space-unit !default;
-
-
 #{$f__namespace}h1 {
     margin-bottom: $f__base-rem-space-unit;
 

@@ -80,3 +80,220 @@ $f__ie9-11:                 "screen and (min-width:\0030\005C\0030) and (min-res
 
 // @support hacks:
 //$f__22+:                    "(-moz-appearance:none) and (display:flex)";
+
+
+
+// ELEMENTS
+
+$f__anchor-text-color: $f__base-ui-color !default;
+$f__anchor-text-color--alt: darken($f__anchor-text-color, 10%) !default;
+$f__anchor-text-decoration: none !default;
+
+$f__anchor-border-bottom-width: 2px !default;
+$f__anchor-border-bottom: $f__anchor-border-bottom-width solid !default;
+$f__anchor-border-bottom--alt: $f__anchor-border-bottom-width dashed !default;
+$f__anchor-border-bottom-offset: -$f__anchor-border-bottom-width;
+$f__anchor-padding-bottom: $f__anchor-border-bottom-width;
+
+$f__anchor-add-external-link-indicator: true !default;
+
+$f__anchor-focus-shadow: true !default;
+$f__anchor-focus-shadow-width: 3px !default;
+
+
+
+
+$f__button-h-padding: $f__base-rem-space-unit / 4 !default;
+
+$f__button-text-color: #fff !default;
+$f__button-background-color: $f__base-ui-color !default;
+$f__button-background-color--alt: -10 !default; // +n (% lighten) | -n (% darken) | <color> | false;
+
+$f__button-border-color: $f__border-color !default;
+$f__button-border-width: $f__border-width !default;
+$f__button-border-style: $f__border-style !default;
+$f__button-border-radius: $f__border-radius !default;
+
+$f__button-focus-shadow: true !default;
+$f__button-focus-shadow-width: 3px !default;
+
+$f__button-min-height: ($f__base-rem-space-unit * 1.25);
+
+
+
+
+$f__caption-background-color: $f__base-ui-color !default;
+$f__caption-text-color: #fff !default;
+$f__caption-padding: $f__base-rem-space-unit / 2 !default;
+
+
+
+
+$f__fieldset-border-width: $f__border-width !default;
+$f__fieldset-padding: $f__base-rem-space-unit !default;
+
+
+
+
+$f__h1-font-size: 52px / $f__base-font-size * 1em !default;
+$f__h1-height:  $f__base-rem-space-unit * 2.5 !default;
+
+$f__h2-font-size: 40px / $f__base-font-size * 1em !default;
+$f__h2-height:  $f__base-rem-space-unit * 2 !default;
+
+$f__h3-font-size: 30px / $f__base-font-size * 1em !default;
+$f__h3-height:  $f__base-rem-space-unit * 1.5 !default;
+
+$f__h4-font-size: 22px / $f__base-font-size * 1em !default;
+$f__h4-height:  $f__base-rem-space-unit * 1.5 !default;
+
+$f__h5-font-size: 18px / $f__base-font-size * 1em !default;
+$f__h5-height:  $f__base-rem-space-unit !default;
+
+$f__h6-font-size: 16px / $f__base-font-size * 1em !default;
+$f__h6-height:  $f__base-rem-space-unit !default;
+
+
+
+
+$f__hr-border-width: $f__border-width !default;
+$f__hr-border: $f__hr-border-width solid $f__base-ui-color !default;
+$f__hr-margin-top: -$f__hr-border-width;
+$f__hr-margin-bottom: $f__base-rem-space-unit;
+
+
+
+
+$f__input-h-padding: $f__base-rem-space-unit / 4 !default;
+
+$f__input-text-color: $f__base-text-color !default;
+$f__input-background-color: #fff !default;
+$f__input-background-color--state-1: lighten($f__base-ui-color, 40%) !default;
+
+$f__input-border-color: $f__border-color !default;
+$f__input-border-width: $f__border-width !default;
+$f__input-border-style: $f__border-style !default;
+$f__input-border-radius: $f__border-radius !default;
+
+$f__input-min-height: ($f__base-rem-space-unit * 1.25);
+
+
+$f__input-focus-shadow: true !default;
+$f__input-focus-shadow-width: 3px !default;
+
+// File inputs' natural width varies between browsers and is too wide for smaller screens.
+// The only way to get it to collapse on smaller screens is to specify `width: 100%;` but this
+// isn't great on larger screens, so setting a `max-width` solves this and produces a consistent
+// width across browsers.
+// Override this with your preferred width or `false`:
+$f__input-file-max-width: 18.5em !default;
+
+
+
+
+// Note: when a legend is present the width of the top border of the fieldset seems to be ignored,
+// so the padding reduction that's meant to offset the border width is actually too small for the
+// top padding. CSS can't (yet) detect if there is a legend inside the fieldset so there needs to
+// be some corrective style on the legend itself. That would be bottom margin.
+$f__legend-border-width: 0 !default;
+$f__legend-h-padding: $f__base-rem-space-unit / 4 !default;
+
+
+
+
+$f__optgroup-text-color: $f__base-text-color !default;
+$f__optgroup-background-color: #fff !default;
+
+
+
+
+$f__option-h-padding: $f__base-rem-space-unit / 4 !default;
+$f__option-text-color: $f__base-text-color !default;
+$f__option-background-color: #fff !default;
+$f__option-background-color--state-1: lighten($f__base-ui-color, 40%) !default;
+
+
+
+
+$f__pre-background-color: lighten($f__base-ui-color, 55%) !default;
+
+// Adjust bottom margin to  take into account scrollbar height of 17px:
+$f__pre-margin-bottom: calc-rem-from-px(($f__base-line-height * 2) - 17px);
+
+// Edge has a scrollbar height of 12px:
+$f__pre-margin-bottom--edge: calc-rem-from-px(($f__base-line-height * 2) - 12px);
+
+// (margin to account for scrollbar, we can check for touch in most browsers and change this
+// or use custom scrollbars = see `pre` below)
+
+$f__pre-code-padding: ($f__base-rem-space-unit / 2);
+
+
+
+
+
+$f__select-h-padding: $f__base-rem-space-unit / 4 !default;
+
+$f__select-text-color: $f__base-text-color !default;
+$f__select-background-color: #fff !default;
+
+$f__select-border-color: $f__border-color !default;
+$f__select-border-width: $f__border-width !default;
+$f__select-border-style: $f__border-style !default;
+$f__select-border-radius: $f__border-radius !default;
+
+$f__select-focus-shadow: true !default;
+$f__select-focus-shadow-width: 3px !default;
+
+
+
+
+$f__small-font-size: 80% !default;
+
+
+
+
+$f__table-border-width: $f__border-width !default;
+$f__table-border: $f__table-border-width solid $f__base-ui-color !default;
+$f__table-background-color: lighten($f__base-ui-color, 50%) !default;
+
+
+
+
+$f__td-border-width: $f__border-width !default;
+$f__td-border: $f__td-border-width solid $f__base-ui-color !default;
+$f__td-background-color: #fff !default;
+$f__td-cell-padding: $f__base-rem-space-unit / 2;
+
+
+
+
+$f__textarea-h-padding: $f__base-rem-space-unit / 4 !default;
+
+$f__textarea-text-color: $f__base-text-color !default;
+$f__textarea-background-color: #fff !default;
+
+$f__textarea-border-color: $f__border-color !default;
+$f__textarea-border-width: $f__border-width !default;
+$f__textarea-border-style: $f__border-style !default;
+$f__textarea-border-radius: $f__border-radius !default;
+
+$f__textarea-focus-shadow: true !default;
+$f__textarea-focus-shadow-width: 3px !default;
+
+$f__textarea-resize: vertical !default;
+
+
+
+
+$f__th-border-width: $f__border-width !default;
+$f__th-border: $f__th-border-width solid $f__base-ui-color !default;
+$f__th-background-color: lighten($f__base-ui-color, 50%) !default;
+$f__th-cell-padding: $f__base-rem-space-unit / 2;
+
+
+
+
+$f__video-background-color: #333 !default;
+
+

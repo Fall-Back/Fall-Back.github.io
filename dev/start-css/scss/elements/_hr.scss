@@ -2,11 +2,6 @@
     Fall-Back Start-CSS Element: hr
 |-------------------------------------------------------------------------------------------------*/
 
-$f__hr-border-width: $f__border-width !default;
-$f__hr-border: $f__hr-border-width solid $f__base-ui-color !default;
-$f__hr-margin-top: -$f__hr-border-width;
-$f__hr-margin-bottom: $f__base-rem-space-unit;
-
 /*
     1. Show the overflow in Edge and IE. (N)
 */

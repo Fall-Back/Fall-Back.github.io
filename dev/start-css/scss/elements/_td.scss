@@ -2,11 +2,6 @@
     Fall-Back Start-CSS Element: td
 |-------------------------------------------------------------------------------------------------*/
 
-$f__td-border-width: $f__border-width !default;
-$f__td-border: $f__td-border-width solid $f__base-ui-color !default;
-$f__td-background-color: #fff !default;
-$f__td-cell-padding: $f__base-rem-space-unit / 2;
-
 /*
     1. Opera Mini (no calc support).
     2. Calc to deduct any border-width.

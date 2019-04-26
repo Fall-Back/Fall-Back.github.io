@@ -2,31 +2,6 @@
     Fall-Back Start-CSS Element: input
 |-------------------------------------------------------------------------------------------------*/
 
-$f__input-h-padding: $f__base-rem-space-unit / 4 !default;
-
-$f__input-text-color: $f__base-text-color !default;
-$f__input-background-color: #fff !default;
-$f__input-background-color--state-1: lighten($f__base-ui-color, 40%) !default;
-
-$f__input-border-color: $f__border-color !default;
-$f__input-border-width: $f__border-width !default;
-$f__input-border-style: $f__border-style !default;
-$f__input-border-radius: $f__border-radius !default;
-
-$f__input-min-height: ($f__base-rem-space-unit * 1.25);
-
-
-$f__input-focus-shadow: true !default;
-$f__input-focus-shadow-width: 3px !default;
-
-
-// File inputs' natural width varies between browsers and is too wide for smaller screens.
-// The only way to get it to collapse on smaller screens is to specify `width: 100%;` but this
-// isn't great on larger screens, so setting a `max-width` solves this and produces a consistent
-// width across browsers.
-// Override this with your preferred width or `false`:
-$f__input-file-max-width: 18.5em !default;
-
 /*
     1. Allow inputs to contract to avoid braking containers:
     2. Opera Mini needs this.

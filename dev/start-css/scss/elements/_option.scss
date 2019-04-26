@@ -2,11 +2,6 @@
     Fall-Back Start-CSS Element: option
 |-------------------------------------------------------------------------------------------------*/
 
-$f__option-h-padding: $f__base-rem-space-unit / 4 !default;
-$f__option-text-color: $f__base-text-color !default;
-$f__option-background-color: #fff !default;
-$f__option-background-color--state-1: lighten($f__base-ui-color, 40%) !default;
-
 /*
     1. This v-centers the text in FF and Chrome. Edge doesn't apply this but looks ok regardless.
        Just IE9-11 to sort out?
