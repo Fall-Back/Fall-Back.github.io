@@ -1,10 +1,10 @@
 /*! Start CSS Experimental. See SCSS file for documentation. */
-/*
 
-    Notes:
+/*------------------------------------------------------------------------------------------------*\
 
-    I moved this from Start core - I don't yet know if this was a good idea.
-*/
+    Experimental
+
+\*------------------------------------------------------------------------------------------------*/
 
 
 $f__checkradio-background-color: #fff !default;
@@ -12,6 +12,22 @@ $f__checkradio-text-color: $f__base-text-color !default;
 $f__checkradio-border-color: $f__checkradio-text-color !default;
 $f__checkradio-border-width: $f__border-width !default;
 $f__checkradio-border-style: $f__border-style !default;
+
+
+/*
+    From https://github.com/mozdevs/cssremedy/blob/master/remedy.css
+    Immediately jump any animation to the end point if the user has set their device to "prefers 
+    reduced motion".
+    This could create bad, unintended consequences. Remove as needed, and write your own appropriate
+    code for prefers-reduced-motion.
+    
+*/
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.001s !important;
+        transition-duration: 0.001s !important;
+    }
+}
 
 
 /*

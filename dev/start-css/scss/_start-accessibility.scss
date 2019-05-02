@@ -1,18 +1,10 @@
 /*! Start CSS Accessibility. See SCSS file for documentation. */
-/*
 
-    Notes:
-
-    I'm debating moving separating this from the core file.
-    I'm not sure which approach I prefer.
-    Will probably go down the route of only having optional stuff in separate files - not sure.
-*/
-
-/*-------------------------------------------------------------------------------------------------|
+/*------------------------------------------------------------------------------------------------*\
 
     ACCESSIBILITY / ARIA
 
-|-------------------------------------------------------------------------------------------------*/
+\*------------------------------------------------------------------------------------------------*/
 
 //@if ($suppress_styles != true) {
 
