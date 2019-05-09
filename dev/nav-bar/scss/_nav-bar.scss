@@ -78,6 +78,8 @@ $f__nav-bar-z-index:                       9999 !default;
 $f__nav-bar__title--height:                (($f__base-line-height * 1.5) / (($f__nav-bar__title--font-size / 1em) * $f__base-font-size) * 1em);
 
 
+$f__nav-bar-divider-first-item:            false !default;
+
 // Tell the JS that the this CSS has loaded:
 
 /*
@@ -416,6 +418,13 @@ $f__nav-bar__title--height:                (($f__base-line-height * 1.5) / (($f_
             border-bottom-width: 0;
             border-left-width: 0;
             border-right-width: $f__nav-bar__link--border-width;
+        }
+        
+        @if $f__nav-bar-divider-first-item {
+            .js-nav-bar .nav-bar__title:first-child,
+            .js-nav-bar .nav-bar__item:first-child {
+                border-left-width: $f__nav-bar__link--border-width;
+            }
         }
 
         .js-nav-bar .nav-bar__link[href]  + * {
