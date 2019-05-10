@@ -98,9 +98,9 @@ _:-moz-tree-row(hover), #{$f__namespace}select:not([multiple]) {
 /*
     Undo custom arrow indicator for IE9-11:
 */
-// @media screen and (min-width:0\0) and (min-resolution:+72dpi) { .selector { property:value; } }
-// Internet Explorer 9-11
-@media screen and (min-width:0\0) and (min-resolution:+72dpi) {
+
+/* IE9-11 */
+@media #{$f__ie9-11} {
         #{$f__namespace}select:not([multiple]) {
         background-image: none\0;
         padding-right: 0\0;

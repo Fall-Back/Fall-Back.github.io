@@ -1488,7 +1488,8 @@ _:-moz-tree-row(hover), select:not([multiple]) {
 /*
     Undo custom arrow indicator for IE9-11:
 */
-@media screen and (min-width: 0\0) and (min-resolution: 72dpi) {
+/* IE9-11 */
+@media screen and (min-width: 0\0) and (min-resolution: +72dpi) {
   select:not([multiple]) {
     background-image: none\0;
     padding-right: 0\0;
@@ -2636,7 +2637,8 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="
 /*
     Similar problem with IE9-11:
 */
-@media screen and (min-width: 0\0) and (min-resolution: 72dpi) {
+/* IE9-11 */
+@media screen and (min-width: 0\0) and (min-resolution: +72dpi) {
   select[size="2"] {
     margin-bottom: calc(2.4rem - 1.1em - 2px);
   }

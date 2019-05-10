@@ -69,17 +69,16 @@ $f__focus-outline-offset: 2px !default;
 
 
 
-
-
 // MQ hacks (https://browserstrangeness.github.io/css_hacks.html)
-// Hacks with 0\0 encoded to preserve hack so appear as \0030\005C\0030.
-// @media hacks
-$f__ie9:                    "all and (min-width: \0030\005C\0030) and (min-resolution: .001dpcm)";
-$f__ie9-11:                 "screen and (min-width:\0030\005C\0030) and (min-resolution:+72dpi)";
-//$f__ff8+:                   "screen and (min--moz-device-pixel-ratio:0) and (min-resolution:.001dpcm)";
+// Hacks with '0\0' and '+' need encoding, hence these: 
+$f__plus:  "\002b";
+$f__slash: "\005C";
 
-// @support hacks:
-//$f__22+:                    "(-moz-appearance:none) and (display:flex)";
+// @media screen and (min-width:0\0) and (min-resolution:.001dpcm) { .selector { property:value; } }
+$f__ie9:    "all and (min-width: 0#{$f__slash}0) and (min-resolution: .001dpcm)";
+
+// @media screen and (min-width:0\0) and (min-resolution:+72dpi) { .selector { property:value; } }
+$f__ie9-11: "screen and (min-width:0#{$f__slash}0) and (min-resolution: #{$f__plus}72dpi)";
 
 
 

@@ -89,11 +89,11 @@ body {
 
 
 /* IE9-11 */
-//@media screen and (min-width:0\0) and (min-resolution:+72dpi) {
+//@media screen and (min-width:0\0) and (min-resolution:+72dpi) {/*
 @media #{$f__ie9-11} {
 
     .sticky-footer-wrap {
-        display: table;
+        //display: table;
         width: 100%;
         height: 100%;
     }
