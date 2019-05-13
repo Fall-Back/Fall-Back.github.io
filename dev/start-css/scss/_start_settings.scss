@@ -80,6 +80,9 @@ $f__ie9:    "all and (min-width: 0#{$f__slash}0) and (min-resolution: .001dpcm)"
 // @media screen and (min-width:0\0) and (min-resolution:+72dpi) { .selector { property:value; } }
 $f__ie9-11: "screen and (min-width:0#{$f__slash}0) and (min-resolution: #{$f__plus}72dpi)";
 
+// @media screen and (-ms-high-contrast:active), (-ms-high-contrast:none) { .selector { property:value; } }
+$f__ie10-11: "screen and (-ms-high-contrast:active), (-ms-high-contrast:none)";
+
 
 
 // ELEMENTS
