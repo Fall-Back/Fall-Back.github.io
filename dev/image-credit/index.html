@@ -1,0 +1,22 @@
+---
+title: Image Credit Test Page
+layout: dev/structure--basic
+head_stylesheets: ['/dev/image-credit/css/image-credit.css']
+head_scripts: ['/dev/nav-bar/js/nav-bar.js']
+---
+
+<h2>Basic</h2>
+
+<div class="credited-image  credited-image--right">
+    <span class="credited-image__anchor" id="img-credit-1"></span>
+    
+    <div class="credited-image__image">
+        <a class="credited-image__control  credited-image__control--open" href="#img-credit-1" data-content-before="Open credit line" aria-hidden="true"></a>
+        <a class="credited-image__control  credited-image__control--close" href="#close-credit-line" data-content-before="Close credit line" aria-hidden="true"></a>
+        <img src="autumn.jpg" alt="Meaningful alternative text">
+    </div>
+
+    <p class="credited-image__credit-line">
+        Credit line goes here.<br>Probably <a href="https://www.google.co.uk/">a link</a> or two here.
+    </p>
+</div>
