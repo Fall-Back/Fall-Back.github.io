@@ -7,14 +7,13 @@
        (https://paulbakaus.com/tutorials/css/block-formatting-contexts-and-lists)
        a. This causes problems with some decoration. E.g. if the last element in the list is a link,
           bottom borders get cropped, so using b instead.
-       b. `flow-root` is the better option but support is low, so using table and flex flbks
-          as well.
+       b. `flow-root` is the better option but support is low, so using table and flex fallbacks
+          instead (Edge breaks if flow-root is applied, even though it's meant to be ignored).
        Hmmm -moz-box / flex is causing numbering to mess up (always 0) on FF8-50.
     2. This is the only thing that works in early FF. However, width is content-width, not available
        width so any 'boxy' decoration on the list might look weird.
     3. This does a pretty good job of extending coverage:
-       Chrome 29+, Edge 14+ (unable to test earlier)
-    4. Extend support to IE10-11
+       Chrome 29+, Edge 14+ (unable to test earlier), FF48+
 */
 #{$f__namespace}ol {
     //overflow: hidden; /* 1a */
@@ -25,25 +24,23 @@
     //display: -ms-grid; /* 1b */
     //display: grid; /* 1b */
 
+
+
     display: -webkit-box; /* 1b, 3 */
     -webkit-box-orient: vertical; /* 1b, 3 */
 
-    display: -ms-flexbox; /* 1b, 4 */
-    -ms-flex-direction: column; /* 1b, 4 */
 
-    //display: -webkit-box; /* 1b */
-    //display: -webkit-flex; /* 1b */
-    //display: -moz-box; /* 1b */
-    //display: -ms-flexbox; /* 1b */
-    //display: flex; /* 1b */
 
-    //-webkit-box-orient: vertical; /* 1b */
-    //-webkit-box-direction: normal; /* 1b */
-    //-webkit-flex-direction: column; /* 1b */
-    //   -moz-box-orient: vertical; /* 1b */
-    //   -moz-box-direction: normal; /* 1b */
-    //    -ms-flex-direction: column; /* 1b */
-    //        flex-direction: column; /* 1b */
+    //display: flow-root;  /* 1b */
+}
 
-    display: flow-root;  /* 1b */
+
+/*
+    Extend support to IE10-11
+*/
+@media #{$f__ie10-11} {
+    #{$f__namespace}ol {
+        display: -ms-flexbox; /* 1b */
+        -ms-flex-direction: column; /* 1b */
+    }
 }
