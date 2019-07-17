@@ -4,4 +4,9 @@
 
 #{$f__namespace}details {
     display: block; /* N: IE 10/11 */
+    
+    // Fix Chrome bug as described on https://caniuse.com/#feat=details:
+    > * {
+        box-sizing: border-box;
+    }
 }
