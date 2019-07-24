@@ -7,95 +7,18 @@
        (https://paulbakaus.com/tutorials/css/block-formatting-contexts-and-lists)
        a. This causes problems with some decoration. E.g. if the last element in the list is a link,
           bottom borders get cropped, so using b instead.
-       b. `flow-root` is the better option but support is low, so using table and flex fallbacks
-          instead (Edge breaks if flow-root is applied, even though it's meant to be ignored).
-       Hmmm -moz-box / flex is causing numbering to mess up (always 0) on FF8-50.
-    2. This is the only thing that works in early FF. However, width is content-width, not available
-       width so any 'boxy' decoration on the list might look weird.
-    3. This does a pretty good job of extending coverage:
-       Chrome 29+, Edge 14+ (unable to test earlier), FF48+
+       b. `flow-root` is the better option but support is low, so using table.
+          Edge breaks if flow-root is applied, even though it's meant to be ignored.
+          -moz-box / flex causes numbering to mess up (always 0) on FF8-50.
+          This is the only thing that works in early FF. However, width is content-width, not
+          available width so any 'boxy' decoration on the list might look weird.
+          Flex based options cause other problems, i.e. not wrapping properly.
+
 */
 #{$f__namespace}ul {
     //overflow: hidden; /* 1a */
 
     margin-bottom: $f__base-rem-space-unit;
 
-    display: table; /* 1b, 2 */
-    //display: -ms-grid; /* 1b */
-    //display: grid; /* 1b */
-
-
-
-    display: -webkit-box; /* 1b, 3 */
-    -webkit-box-orient: vertical; /* 1b, 3 */
-
-
-
-    //display: flow-root;  /* 1b */
-}
-
-
-/*
-    Extend support to IE10-11
-*/
-@media #{$f__ie10-11} {
-    #{$f__namespace}ol {
-        display: -ms-flexbox; /* 1b */
-        -ms-flex-direction: column; /* 1b */
-    }
-}
-
-/*
-    In IE, bullet characters can affect line-height. Also, there are differences in how the bullet
-    characters are displayed, so using custom ones.
-    @TODO - make this configurable.
-    Also - base64 is bad for performance. Using raw svg instead.
-    8px w/h means the bullets won't adjust to font-size.
-    In Chrome, setting w/h to 100% instead gets the desired behavior, but the bullets collapse on
-    other browsers and are invisible. I can't find a fix for this.
-
-    Keep this for reference:
-    #{$f__namespace}ul li {
-        list-style-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" width="8px" height="8px"><circle fill="currentColor" cx="4" cy="4" r="3"/></svg>');
-    }
-
-        #{$f__namespace}ul ul li {
-            list-style-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" width="8px" height="8px"><circle fill="none" stroke="currentColor" stroke-miterlimit="10" cx="4" cy="4" r="2.5"/></svg>');
-        }
-
-            #{$f__namespace}ul ul ul li {
-                list-style-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" width="8px" height="8px"><rect fill="currentColor" x="1" y="1" width="6" height="6"/></svg>');
-            }
-*/
-// @media screen and (min-width:0\0) and (min-resolution:+72dpi) { .selector { property:value; } }
-// Internet Explorer 9-11
-@media #{$f__ie9-11} {
-    #{$f__namespace}ul li {
-    }
-
-        /*
-            1. 1px at 16px font-size. Should be 0.0625 but IE is 2 decimal-places only.
-        */
-        #{$f__namespace}ul ul li {
-            margin-bottom: -0.06em; /* 1 */
-        }
-
-            /*
-                1. This is a bit of a magic number. It works - but I'm not sure why.
-                   Probably to do with IE rounding.
-            */
-            #{$f__namespace}ul ul ul li {
-                margin-bottom: -0.02em; /* 1 */
-            }
-}
-
-/*
-    IE9 needs a further tweak to get it on the baseline:
-*/
-// @media screen and (min-width:0\0) and (min-resolution:.001dpcm) { .selector { property:value; } }
-// Internet Explorer 9
-@media #{$f__ie9} {
-    #{$f__namespace}ul ul ul li {
-        margin-bottom: -0.04em;
-    }
+    display: table; /* 1b */
 }
