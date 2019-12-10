@@ -1,3 +1,14 @@
+/*
+$f__class-namespace: c-;
+$ff__include_class_cta_button:    false;
+$ff__include_class_bordered:      false;
+$ff__include_class_padded:        false;
+$ff__include_class_subtitle:      false;
+$ff__include_class_tagline:       false;
+$ff__include_class_composite:     false;
+$ff__include_class_custom_inputs: false;
+$ff__include_class_poem:          false;
+*/
 /*! Fall-Back Start-CSS. See SCSS file for documentation. */
 /*
 
@@ -1953,9 +1964,9 @@ _:-o-prefocus, :root .icon {
     *
 */
 /*
-    "Buttons" or "CTAs" that are really links should be distinguished from real buttons, so by
-    default we're swapping the foreground and background colors:
-*/
+        "Buttons" or "CTAs" that are really links should be distinguished from real buttons, so by
+        default we're swapping the foreground and background colors:
+    */
 a[href].button,
 a[href].cta {
   display: inline-block;
@@ -2154,8 +2165,8 @@ a[href].cta--has-icon .icon {
 }
 
 /*
-    1. Prevent element increasing height of parent.
-*/
+        1. Prevent element increasing height of parent.
+    */
 b.subtitle {
   font-size: 0.8em;
   font-weight: inherit;
@@ -2165,8 +2176,8 @@ b.subtitle {
 }
 
 /*
-    1. Negate heading margin.
-*/
+        1. Negate heading margin.
+    */
 p.subtitle {
   font-size: 1.5em;
   font-weight: inherit;
@@ -2175,8 +2186,8 @@ p.subtitle {
 }
 
 /*
-    1. Negate heading margin.
-*/
+        1. Negate heading margin.
+    */
 .tagline {
   font-size: 1.14285714286em;
   margin-top: -1.2rem;
@@ -2184,9 +2195,9 @@ p.subtitle {
 }
 
 /*
-    1. Collapse whitespace.
-    2. Prevent extra height being added.
-*/
+        1. Collapse whitespace.
+        2. Prevent extra height being added.
+    */
 .composite {
   display: -webkit-inline-box;
   /* 1 */
@@ -2202,8 +2213,8 @@ p.subtitle {
 }
 
 /*
-    1. Prevent extra height being added.
-*/
+        1. Prevent extra height being added.
+    */
 .composite > * {
   vertical-align: top;
   /* 1 */
@@ -2213,13 +2224,13 @@ p.subtitle {
 }
 
 /*
-    IE9
+        IE9
 
-    1. Make sure there are no spaces between elements in the markup as the as the whitespace won't
-       collapse.
+        1. Make sure there are no spaces between elements in the markup as the as the white space won't
+           collapse.
 
-    2. Hide button.
-*/
+        2. Hide button.
+    */
 @media screen and (min-width: 0\0) and (min-resolution: 0.001dpcm) {
   .composite {
     display: inline-block;
@@ -2236,14 +2247,14 @@ p.subtitle {
 }
 
 .composite > *:not(:first-child) {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
 }
 
 .composite > *:not(:last-child) {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-right: 0;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-right: 0 !important;
 }
 
 /* CUSTOM INPUTS: RADIOS AND CHECKBOXES */
@@ -2260,11 +2271,11 @@ p.subtitle {
   position: relative;
   vertical-align: top;
   /*display: -webkit-inline-flex;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    -webkit-align-items: center;
-         -ms-flex-align: center;
-           align-items: center;*/
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        -webkit-align-items: center;
+             -ms-flex-align: center;
+               align-items: center;*/
   padding-left: 1.5em;
 }
 
@@ -2372,8 +2383,8 @@ p.subtitle {
 /* IE9 hide the button: (https://jeffclayton.wordpress.com/2014/07/22/internet-explorer-css-hacks-collection/) */
 @media screen and (min-width: 0\0) and (min-resolution: 0.001dpcm) {
   /*
-            So far I haven't managed to get this arrangment working properly in IE9, so hiding it:
-        */
+                So far I haven't managed to get this arrangement working properly in IE9, so hiding it:
+            */
   .button + .custom-input[type=file] {
     margin-left: -5.35em;
   }
