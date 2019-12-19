@@ -2,8 +2,6 @@
     Fall-Back Start-CSS Element: figcaption
 |-------------------------------------------------------------------------------------------------*/
 
-#{$f__namespace}figure {
+#{$f__namespace}figcaption {
     display: block;
-
-    margin-bottom: $f__base-rem-space-unit;
 }
