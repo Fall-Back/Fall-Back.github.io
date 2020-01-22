@@ -269,24 +269,44 @@ $f__over-panel__overlay-opacity:                 0.6 !default;
             -o-transition:      opacity $td  $tf;
             transition:         opacity $td  $tf;
         }*/
+        /*
+            1. This necessary to collapse the element in cases where the page content without
+               the over-panel contents is shorter than the over-panel contents themselves.
+               Take, for example, where short-ish page that's part of a large site, which therefore 
+               has a long menu. When the menu is revealed in the over-panel contents, the end result
+               is higher than the page contents.
+               Without these declarations, the page (with over-panel closed) renders with a
+               scrollbar and what looks like mystery space at the bottom of the page (when in 
+               reality that space is just what's needed to display the over-panel contents).
+               This could be confusing for users (it was confusing for me!) and makes the page look
+               broken.
+               So, collapsing the contents while hidden prevents this space from appearing until
+               needed.
+        */
         .js-over-panel .over-panel .over-panel__contents {
             opacity: 0;
+            transform: scale(0);  /* [1] */
         }
 
         .js-over-panel_is-animating.over-panel .over-panel__contents {
             -webkit-transition: opacity    $td  $tf,
-                                visibility 0s   $tf  $td;
+                                visibility 0s   $tf  $td,
+                                transform  0s   $tf  $td;
             -moz-transition:    opacity    $td  $tf,
-                                visibility 0s   $tf  $td;
+                                visibility 0s   $tf  $td,
+                                transform  0s   $tf  $td;
             -o-transition:      opacity    $td  $tf,
-                                visibility 0s   $tf  $td;
+                                visibility 0s   $tf  $td,
+                                transform  0s   $tf  $td;
             transition:         opacity    $td  $tf,
-                                visibility 0s   $tf  $td;
+                                visibility 0s   $tf  $td,
+                                transform  0s   $tf  $td;
         }
 
         .js-over-panel_is-open.over-panel .over-panel__contents {
             opacity: 1;
-
+            transform: scale(1);  /* [1] */
+            
             -webkit-transition: opacity $td  $tf;
             -moz-transition:    opacity $td  $tf;
             -o-transition:      opacity $td  $tf;
