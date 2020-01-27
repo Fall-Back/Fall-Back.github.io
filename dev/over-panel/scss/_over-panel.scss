@@ -419,20 +419,21 @@ $f__over-panel__overlay-opacity:                 0.6 !default;
 
         /*
             1. This is the obvious place for this rule but there's a weird Chrome bug that means
-               the postiion/dimensions are ignore if it's initiallty hidden.
-               Moving to the is-open declaration fixes this, as it only gets applie when it's
-               visisble.
+               the position/dimensions are ignore if it's initially hidden.
+               Moving to the is-open declaration fixes this, as it only gets applied when it's
+               visible.
+            2. Using absolute instead so that it still collapses, preventing it unintentionally
+               overlapping anything.
         */
         .js-over-panel .over-panel__overlay {
             display: block;
             //position: fixed; /* [1] */
+            position: absolute; /* [2] */
             z-index: -1;
             left: 0;
             top: 0;
-            right: 0;
-            bottom: 0;
-            width: 100%;
-            height: 100%;
+            width: 0;
+            height: 0;
             padding: 0;
             margin: 0;
             border: 0;
@@ -456,6 +457,10 @@ $f__over-panel__overlay-opacity:                 0.6 !default;
         /* Bring the overlay to the front and fade in when there's an over-panel target: */
         .js-over-panel_is-open .over-panel__overlay {
 			position: fixed;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
             z-index: 0;
             opacity: $f__over-panel__overlay-opacity;
 
