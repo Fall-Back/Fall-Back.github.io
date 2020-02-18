@@ -189,3 +189,19 @@
         }
     }*/
 }
+
+
+/*
+    Uni-directional margins (bottom) is fine for most cases, but things like figcaptions that may
+    contain parapgraphs can result in double bottom margins, so flipping that around inside those
+    containers.
+*/
+@mixin f__fix_internal_margins($margin-size) {
+    & * {
+        margin-bottom: 0;
+    }
+    
+    & * + * {
+        margin-top: $margin-size;
+    }
+}

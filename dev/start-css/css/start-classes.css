@@ -139,6 +139,11 @@ $ff__include_class_poem:          false;
     FF8 - ? doesn't like `line-height: -moz-calc()` and ignores
     Need to make sure height is governed by line-height in case of breaks within buttons.
 */
+/*
+    Uni-directional margins (bottom) is fine for most cases, but things like figcaptions that may
+    contain parapgraphs can result in double bottom margins, so flipping that around inside those
+    containers.
+*/
 /*------------------------------------------------------------------------------------------------*\
 
     SETTINGS
@@ -700,6 +705,15 @@ fieldset fieldset::after {
 |-------------------------------------------------------------------------------------------------*/
 figcaption {
   display: block;
+  font-size: 0.875em;
+}
+
+figcaption * {
+  margin-bottom: 0;
+}
+
+figcaption * + * {
+  margin-top: 1.2rem;
 }
 
 /*-------------------------------------------------------------------------------------------------|
