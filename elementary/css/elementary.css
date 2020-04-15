@@ -1,0 +1,49 @@
+/*
+    CSS only message
+*/
+body > div {
+    display: none;
+}
+
+
+/*
+    Sticky Footer 
+*/
+html,
+body {
+    height: 100%;
+}
+
+
+body {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
+main {
+    min-height: 0;
+}
+
+body > header,
+body > footer {
+    margin: 0;
+}
+
+/**/
+
+body > footer {
+    font-size: 0.875em;
+}
+
+/*
+    Greybox
+*/
+
+body > header,
+body > footer {
+    background: #eee;
+}
