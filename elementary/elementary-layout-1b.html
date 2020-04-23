@@ -1,0 +1,158 @@
+<!doctype html>
+<html class="no-js" lang="en-gb">
+<head>
+    <meta charset="utf-8" />
+    <title>Elementary Layout 1b</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        /* FOUC font match fallback */
+        /* Match your final body webfont with this tool: https://meowni.ca/font-style-matcher/ */
+        /* Paste the output here */
+
+        /* Tiny fallback styles */
+        /* (https://github.com/Fall-Back/Base/edit/master/tiny-fallback-styles.css) */
+        body{padding:1em;margin:0 auto;max-width: 50em;}
+        img{max-width:100%;-ms-interpolation-mode: bicubic;}
+        [hidden]{display:none;}
+        main{display:block;}
+
+        /* For YouTube via http://embedresponsively.com. May or may not be needed. */
+        .embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    </style>
+
+    <!--
+        Accessible font loading. FOUT is a lesser evil than FOIT.
+        (https://keithclark.co.uk/articles/loading-css-without-blocking-render/)
+    -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+
+    <!--
+        M3 Mustard Cut
+        (https://github.com/Fall-Back/CSS-Mustard-Cut#the-m3-cut-much-more-modern)
+        Print (Edge doesn't apply to print otherwise)
+        IE 10, 11
+        Edge
+        Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
+        FF 29+
+    -->
+    <link rel="stylesheet" href="/elementary/css/start.min.css" media="
+        only print, screen and (min-width: 1vm),
+        only all and (-ms-high-contrast: none), only all and (-ms-high-contrast: active),
+        only all and (pointer: fine), only all and (pointer: coarse), only all and (pointer: none),
+        only all and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0),
+        only all and (min--moz-device-pixel-ratio:0) and (min-resolution: 3e1dpcm)
+    ">
+    <link rel="stylesheet" href="/elementary/css/elementary.css" media="
+        only print, screen and (min-width: 1vm),
+        only all and (-ms-high-contrast: none), only all and (-ms-high-contrast: active),
+        only all and (pointer: fine), only all and (pointer: coarse), only all and (pointer: none),
+        only all and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0),
+        only all and (min--moz-device-pixel-ratio:0) and (min-resolution: 3e1dpcm)
+    ">
+    <link rel="stylesheet" href="/elementary/css/elementary-layout-1.css" media="
+        only print, screen and (min-width: 1vm),
+        only all and (-ms-high-contrast: none), only all and (-ms-high-contrast: active),
+        only all and (pointer: fine), only all and (pointer: coarse), only all and (pointer: none),
+        only all and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0),
+        only all and (min--moz-device-pixel-ratio:0) and (min-resolution: 3e1dpcm)
+    ">
+</head>
+<body role="document">
+
+    <div>
+        <hr />
+        <p>
+            <b>Notice:</b> You are viewing an unstyled version of this page. Are you using a very old browser? If so, <a href="http://browsehappy.com/">please consider upgrading</a>.
+        </p>
+        <hr />
+    </div>
+
+    <header>
+        <a href="/elementary">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 283.5" aria-labelledby="primary-logo-title" role="img" height="80">
+                <title id="primary-logo-title">Elementary</title>
+                <circle fill="#3C3C3B" cx="141.7" cy="141.7" r="141.7"/>
+                <circle fill="#B2B2B2" cx="141.7" cy="141.7" r="134.6"/>
+                <g>
+                    <path fill="#3C3C3B" d="M100.5,118.5c-0.5,6.3-0.8,10.9-0.8,13.7c0,11.2,1.6,22.1,4.9,32.7c3.3,10.7,7.7,19.5,13.3,26.6
+                        c5.8,7.2,12.9,12.8,21.4,17c8.5,4.1,17.4,6.2,26.8,6.2c6.9,0,13.5-1.2,19.7-3.5c6.2-2.3,11.4-5.5,15.5-9.6
+                        c4.6-4.5,8.6-11.7,11.9-21.6l4,1.3c-3.3,15-10.5,26.4-21.5,34c-11,7.6-25.6,11.5-43.8,11.5c-15.8,0-29.3-2.5-40.6-7.5
+                        c-11.3-5-20.9-12.7-28.7-23.1c-10.9-14.5-16.4-32.4-16.4-53.5c0-28.9,10.3-51.6,31-68c15-11.9,32.2-17.9,51.4-17.9
+                        c10.3,0,19.8,1.8,28.5,5.5c8.7,3.7,16.1,9,22.2,15.9c9.4,10.8,14.1,24.3,14.1,40.4H100.5z M184.5,111c-0.9-12.8-3.3-22.7-7.1-29.7
+                        c-3.5-6.3-8.1-11.3-13.8-14.9c-5.8-3.7-11.9-5.5-18.4-5.5c-11,0-20.6,4.8-28.9,14.3c-8.2,9.5-13.1,21.4-14.7,35.8H184.5z"/>
+                </g>
+                <image src="/elementary/img/elementary-logo.png" xlink:href="" alt="Elementary" height="80"></image>
+            </svg>
+        </a>
+        <!--<p><a href="http://lab.gridlight-design.co.uk/fallback">Fallback experiments home</a></p>-->
+    </header>
+
+    <main id="main">
+        <h1>Elementary Layout 1</h1>
+
+        <p>Example of NO-HEADER, MEASURE-WIDTH-IMAGE</p>
+            
+        <hr>
+        
+        <p>
+            <img src="/elementary/img/sample-1.jpg" alt="Young child looking guilty or upset holding a magnifying glass." width="200">
+        </p>
+        
+        <p><button id="show">Show long content</button> <button id="hide">Hide long content</button></p>    
+        <section id="long-content" style="display: none;">
+            <section>
+                <h2>Long text for scrolling</h2>
+                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+            </section>
+
+            <section>
+                <h2>Long text for scrolling</h2>
+                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        <p>
+            <a href="#">Top</a>
+        </p>
+        <p>
+            &copy; 2020 Andy Kirk
+        </p>
+    </footer>
+    <script>
+    /* Quick toggler - rather verbose but works in old IE */
+
+    function show_long_content () {
+        document.getElementById("long-content").style.display = 'block';
+    }
+
+    function hide_long_content () {
+        document.getElementById("long-content").style.display = 'none';
+    }
+
+    var el = document.getElementById("show");
+    if (el) {
+        if (el.addEventListener) {
+            el.addEventListener("click", show_long_content, false);
+        } else {
+            el.attachEvent('onclick', show_long_content);
+        }
+    }
+
+    var el = document.getElementById("hide");
+    if (el) {
+        if (el.addEventListener) {
+            el.addEventListener("click", hide_long_content, false);
+        } else {
+            el.attachEvent('onclick', hide_long_content);
+        }
+    }
+    </script>
+</body>
+</html>

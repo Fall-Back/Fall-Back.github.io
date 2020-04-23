@@ -1,7 +1,7 @@
 /*
     CSS only message
 */
-body > div {
+body > div:first-child {
     display: none;
 }
 
@@ -16,6 +16,7 @@ body {
 
 
 body {
+    padding: 0;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
@@ -24,8 +25,61 @@ body {
             flex-direction: column;
 }
 
+body > * {
+    -webkit-flex: 0 0 auto;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+}
+
+/*
+    Main should allow for full-width content, so move body colour here, remove max-width, and apply
+    that to direct child (except div which we're using to demarcate full-width content)
+*/
 main {
     min-height: 0;
+    -webkit-flex: 1 0 auto;
+        -ms-flex: 1 0 auto;
+            flex: 1 0 auto;
+            
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    background-color: #50514F;
+}
+
+main::before {
+    content: "";
+    display: block;
+    width: 80rem;
+    height: 100%;
+    background-color: #ffffff;
+    position: absolute;
+    z-index: 0;
+    left: calc(50% - 40rem);
+    top: 0;
+}
+
+main > * {
+    background-color: #ffffff;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+    z-index: 1;
+}
+
+main > *:not(div) {
+    max-width: 80rem;
+    padding-left: 2.4rem;
+    padding-right: 2.4rem;
+}
+
+/*
+    If there's no main header - give the h1 some room:
+*/
+main > h1 {
+    margin-top: 2.4rem;
 }
 
 body > header,
@@ -37,7 +91,17 @@ body > footer {
 
 body > footer {
     font-size: 0.875em;
+    text-align: center;
 }
+
+
+/*
+    Inline elements
+*/
+img {
+    width: 100%;
+}
+
 
 /*
     Greybox
