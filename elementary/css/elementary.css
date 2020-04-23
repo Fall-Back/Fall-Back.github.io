@@ -52,13 +52,26 @@ main {
 main::before {
     content: "";
     display: block;
-    width: 80rem;
+    width: 100%;
+    max-width: 80rem;
     height: 100%;
     background-color: #ffffff;
     position: absolute;
     z-index: 0;
     left: calc(50% - 40rem);
     top: 0;
+}
+
+/*
+    This is an exception to the 'no media queries.
+    Through SASS it'll be calculated properly.
+    Without it the background doesn't behave properly.
+    Maybe if I can figure out a different way, I'll change this.
+*/
+@media (max-width: 50rem) {
+    main::before {
+        left: 0;
+    }
 }
 
 main > * {
