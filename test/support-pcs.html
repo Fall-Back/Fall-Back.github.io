@@ -1,1 +1,45 @@
+<!doctype html>
+<html class="no-js" lang="en-gb">
+<head>
+    <meta charset="utf-8" />
+    <title>Support Tests - M3</title>
+
+    <meta name="description" content="CSS-Only Mustard Cut support test page">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--
+        Print (Edge doesn't apply to print otherwise)
+        ...  
+    -->
+    <link rel="stylesheet" href="mq-test.css" media="
+        only print,
+        only all and (prefers-color-scheme: no-preference)
+    ">
+
+    <style>
+    	body {
+            padding: 1em;
+        }
+
+        #browser_info {
+            border-spacing: 0;
+            border-collapse: collapse;
+            margin: 0 auto;
+            background: #fff;
+        }
+
+        #browser_info caption {
+            font-weight: bold;
+            margin-bottom: 0;
+            padding: 0.5em;
+            background: #aaa;
+            border: 1px solid #666;
+        }
+
+        #browser_info th,
+        #browser_info td {
+            padding: 1em;
+            border: 1px solid #666;
+        }
+    </style>
 
