@@ -1,0 +1,61 @@
+---
+title: SVG Test Page
+layout: dev/structure--basic
+head_style: |
+    .badge {
+        display: block;
+    }
+
+    /*
+        1. This is to provide positioning context for the ::after pseudo-element.
+        2. This is so a broken image is still 100%Z.
+    */
+    .badge img {
+
+        position: relative; /* 1 */
+
+        display: block; /* 2 */
+
+        width: 100%;
+
+        height: auto;
+
+        margin-bottom: 0.5em;
+
+        border-style: none;
+
+---
+
+<h2>Source swap trick</h2>
+        
+<p>
+    This technique is for 'ordinary' SVG images and assumes they <strong>don't</strong> contain rasters.
+    Older Safari (OXS 8-, iOS ~4.3-) won't render the rasters in SVG's via an <code>img</code> tag, so aren't considered 'safe'.
+</p>
+
+<figure style="max-width: 100%;">
+    <a href="#" class="badge">
+                        <img src="npeu-logo.svg" onerror="this.src='npeu-logo.png'; this.onerror=null;" alt="Fallback text" width="180" height="61">
+    </a>
+</figure>
+
+<h3>Broken SVG:</h3>
+
+<figure style="max-width: 100%;">
+    <a href="#" class="badge">
+        <img src="npeu-logox.svg" onerror="this.src='npeu-logo.png'; this.onerror=null;" alt="Fallback text" width="180">
+    </a>
+</figure>
+
+<h3>Broken SVG and PNG:</h3>
+
+<figure style="max-width: 100%;">
+    <a href="#" class="badge">
+        <img src="npeu-logox.svg" onerror="this.src='npeu-logox.png'; this.onerror=null;" alt="Fallback text" width="180">
+    </a>
+</figure>
+
+<hr>
+<hr>
+
+<img src="npeu-logox.png" alt="Test alternate text" />
