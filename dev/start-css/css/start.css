@@ -1,37 +1,3 @@
-/*! Fall-Back Start-CSS. See SCSS file for documentation. */
-/*
-
-    Start-CSS is designed for use with the basic
-    [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
-
-    This determines a browser support base of:
-
-    IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
-    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
-
-    Notes:
-
-    -moz-calc because this supports FF8+ and I like to be thorough.
-
-    CSS hacks from http://browserstrangeness.com/css_hacks.html
-    (hack and browser support in comments above each usage)
-
-    !!! Maybe don't include custom properties in this, I think it over-complicates things and needs
-    gradient background overlays to lighten/darken background colors dynamically.
-    Possibly include a separate file to add custom property support that overrides what it needs,
-    all wrapped in an `@supports`.
-
-    Resources:
-    * http://www.smashingmagazine.com/2012/12/css-baseline-the-good-the-bad-and-the-ugly/
-    * https://24ways.org/2006/compose-to-a-vertical-rhythm
-
-    NOTE TO SELF.
-    Where borders are concerned, probably best to leave margins alone and use padding to maintain
-    baseline-grid. After all, if there's a border, there will have to be padding too.
-
-    overflow-y makes element focussable in FireFox.
-
-*/
 /*-------------------------------------------------------------------------------------------------|
     Fall-Back Start-CSS Settings
 
@@ -52,11 +18,6 @@
     https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3
 
 |-------------------------------------------------------------------------------------------------*/
-/*------------------------------------------------------------------------------------------------*\
-
-    FUNCTIONS AND MIXINS
-
-\*------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------|
     Fall-Back Start-CSS Functions
 |-------------------------------------------------------------------------------------------------*/
@@ -133,11 +94,40 @@
     contain parapgraphs can result in double bottom margins, so flipping that around inside those
     containers.
 */
-/*------------------------------------------------------------------------------------------------*\
+/*! Fall-Back Start-CSS. See SCSS file for documentation. */
+/*
 
-    SETTINGS
+    Start-CSS is designed for use with the basic
+    [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
 
-\*------------------------------------------------------------------------------------------------*/
+    This determines a browser support base of:
+
+    IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
+    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
+
+    Notes:
+
+    -moz-calc because this supports FF8+ and I like to be thorough.
+
+    CSS hacks from http://browserstrangeness.com/css_hacks.html
+    (hack and browser support in comments above each usage)
+
+    !!! Maybe don't include custom properties in this, I think it over-complicates things and needs
+    gradient background overlays to lighten/darken background colors dynamically.
+    Possibly include a separate file to add custom property support that overrides what it needs,
+    all wrapped in an `@supports`.
+
+    Resources:
+    * http://www.smashingmagazine.com/2012/12/css-baseline-the-good-the-bad-and-the-ugly/
+    * https://24ways.org/2006/compose-to-a-vertical-rhythm
+
+    NOTE TO SELF.
+    Where borders are concerned, probably best to leave margins alone and use padding to maintain
+    baseline-grid. After all, if there's a border, there will have to be padding too.
+
+    overflow-y makes element focussable in FireFox.
+
+*/
 /* Output class for reference (tmp): */
 /*.ref {
     flbk--base-rem-space-unit: $f__base-rem-space-unit;
@@ -288,8 +278,8 @@ body {
   width: 100%;
   min-width: 250px;
   min-height: 100%;
-  max-width: none;
-  margin: 0;
+  max-width: 50em;
+  margin: 0 auto;
   padding: 0 2.4rem;
   font-size: 1.6em;
   line-height: 2.4rem;
@@ -1204,9 +1194,6 @@ main {
   /* 1 */
   width: 100%;
   min-height: 100%;
-  max-width: 50em;
-  margin-right: auto;
-  margin-left: auto;
   padding: 2.4rem;
   background-color: #fff;
   color: #333;

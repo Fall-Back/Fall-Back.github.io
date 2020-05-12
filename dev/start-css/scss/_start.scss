@@ -32,72 +32,14 @@
     overflow-y makes element focussable in FireFox.
 
 */
-
-@import '_start_settings.scss';
-
-/*------------------------------------------------------------------------------------------------*\
-
-    FUNCTIONS AND MIXINS
-
-\*------------------------------------------------------------------------------------------------*/
-
-@import '_start_functions.scss';
-@import '_start_mixins.scss';
-//@debug ($f__base-rem-space-unit / 8) - ((($f__input-border-width + 0px) / 1px) * $f__base-rem-1px);
-
-
-//@debug f__calc-px-from-rem(1.5rem);
-
-
-
-/*------------------------------------------------------------------------------------------------*\
-
-    SETTINGS
-
-\*------------------------------------------------------------------------------------------------*/
-
 // Let the other Fall-Back patterns know that start is being used:
 $f__using-Start-CSS: true;
 
-// Allow suppression of styles so this file can be imported only for its variables etc.
-//$suppress_styles: false !default;
-
-$f__experimental_checkradios: false !default;
-
-// Use $f__namespace to scope all body > *:not(main) styles:
-$f__namespace: '' !default;
 
 
+//@debug ($f__base-rem-space-unit / 8) - ((($f__input-border-width + 0px) / 1px) * $f__base-rem-1px);
 
-$f__monospace-font-family: monospace !default;
-
-
-// <audio>, <canvas>, <iframe>, <img>, <object>, <progress>, <svg>
-$f__media-element-vertical-align: middle !default;
-
-
-// <body>
-$f__body-padding_size: $f__base-rem-space-unit !default;
-$f__body-padding: 0 $f__body-padding_size !default;
-$f__body-margin: 0 !default;
-$f__body-min-width: 250px !default;
-$f__body-max-width: 0 !default;
-$f__body-text-color: $f__base-text-color !default;
-$f__body-background-color: transparent !default;
-
-
-// <html>
-$f__html-background-color: $f__base-background-color !default;
-
-
-// Selections:
-$f__selection-text-color: #fff;
-$f__selection-background-color: lighten($f__base-ui-color, 30%) !default;
-$f__selection-text-shadow: none;
-
-
-
-
+//@debug f__calc-px-from-rem(1.5rem);
 
 /* Output class for reference (tmp): */
 /*.ref {

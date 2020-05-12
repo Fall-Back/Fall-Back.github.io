@@ -78,6 +78,9 @@ $f__experimental_checkradios: true;
 $f__html-background-color: #50514F;
 
 
+@import 'scss/_start_settings.scss';
+@import 'scss/_start_functions.scss';
+@import 'scss/_start_mixins.scss';
 @import 'scss/_start.scss';
 
 

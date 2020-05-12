@@ -19,6 +19,10 @@
 
 |-------------------------------------------------------------------------------------------------*/
 
+// Use $f__namespace to scope all body > *:not(main) styles:
+$f__namespace: '' !default;
+
+
 $f__root-font-size:         16px !default;
 $f__base-font-size:         16px !default;
 $f__base-line-height:       24px !default; // 1.25
@@ -39,9 +43,14 @@ $f__base-font-family:       sans-serif !default;
 //$f__base-font-family:       -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif !default;
 // https://bitsofco.de/the-new-system-font-stack/ https://github.com/necolas/normalize.css/issues/665
 
+$f__monospace-font-family: monospace !default;
 
 $f__breakpoint--enhanced:   50em !default;
 
+
+
+
+$f__experimental_checkradios: false !default;
 
 
 // UI:
@@ -86,6 +95,30 @@ $f__ie10-11: "screen and (-ms-high-contrast:active), (-ms-high-contrast:none)";
 
 
 // ELEMENTS
+
+// <html>
+$f__html-background-color: $f__base-background-color !default;
+
+
+
+
+// <body>
+$f__body-padding_size: $f__base-rem-space-unit !default;
+$f__body-padding: 0 $f__body-padding_size !default;
+$f__body-margin: 0 !default;
+$f__body-min-width: 250px !default;
+$f__body-max-width: 50em !default;
+$f__body-text-color: $f__base-text-color !default;
+$f__body-background-color: transparent !default;
+
+
+
+
+// <audio>, <canvas>, <iframe>, <img>, <object>, <progress>, <svg>
+$f__media-element-vertical-align: middle !default;
+
+
+
 
 $f__anchor-text-color: $f__base-ui-color !default;
 $f__anchor-text-color--alt: darken($f__anchor-text-color, 10%) !default;
@@ -203,6 +236,13 @@ $f__legend-h-padding: $f__base-rem-space-unit / 4 !default;
 
 
 
+$f__main-padding: $f__base-rem-space-unit !default;
+$f__main-text-color: $f__base-text-color !default;
+$f__main-background-color: $f__base-background-color !default;
+
+
+
+
 $f__optgroup-text-color: $f__base-text-color !default;
 $f__optgroup-background-color: #fff !default;
 
@@ -299,3 +339,7 @@ $f__th-cell-padding: $f__base-rem-space-unit / 2;
 $f__video-background-color: #333 !default;
 
 
+// Selections:
+$f__selection-text-color: #fff;
+$f__selection-background-color: lighten($f__base-ui-color, 30%) !default;
+$f__selection-text-shadow: none;
