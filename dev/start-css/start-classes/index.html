@@ -1,0 +1,640 @@
+---
+title: StartCSS Classes Test Page
+layout: dev/structure--basic
+head_stylesheets: /dev/start-css/css/start-classes.min.css
+head_style: |
+    /**
+    *:focus {
+        outline: 5px solid red !important;
+    }
+    /**/
+    /**
+    *:focus {
+        box-shadow: 0 0 2px 0 currentColor !important;
+    }
+    /**/
+
+    body {
+        -background-color: #999;
+    }
+
+
+    main {
+        /*background-color: #fff;*/
+    }
+
+    .test_bg {
+        background: rgba(0,0,255,0.1);
+    }
+
+    .box {
+        border: 1px solid #333;
+        background: #fed;
+        /*margin-top: -1px;
+        margin-bottom: calc(1.5rem - 1px);*/
+        /*margin-bottom: -moz-calc(2.4rem - 2px);*/
+        /*margin-bottom: calc(2.4rem - 2px);*/
+        margin-bottom: 2.4rem;
+        height: 14.4rem;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 0.2rem;
+    }
+
+    video {
+        width: 100%;
+        height: auto;
+        margin-bottom: 0.2rem;
+
+         /*max-height: 360px;*/
+    }
+
+    /*
+        Make the outlines fit to the grid for testing only.
+    */
+    h1,h2,h3,h4,h5,h6 {
+        overflow-y: hidden;
+    }
+
+    /* Handling long words */
+
+    * {
+        /* These are technically the same, but use both */
+        /*overflow-wrap: break-word;*/
+        /*word-wrap: break-word;
+
+        /*-ms-word-break: break-all;
+        /* This is the dangerous one in WebKit, as it breaks things wherever */
+        /*word-break: break-all; this applies on FF and isn't what we want. */
+        /* Instead use this non-standard one: */
+        /*word-break: break-word;*/
+
+
+        word-break: break-word;
+        word-wrap: break-word;
+
+
+        /* Adds a hyphen where the word breaks, if supported (No Blink) */
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+    }
+
+    table * {
+        word-break: normal;
+        word-wrap: normal;
+    }
+    /*
+    table {
+        max-width: 100%;
+        overflow-x: scroll;
+    }
+    */
+
+    /* Safari 6.2+ (Not iOS) declared as being for 7.1 but is applied to 6.2 */
+    /*_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root .selector { property:value; }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="2"]  { margin-bottom: 0; }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="3"]  { margin-bottom: 0; }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="4"]  { margin-bottom: 0; }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="5"]  { margin-bottom: calc(0.9rem - 2px); }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="6"]  { margin-bottom: calc(0.4rem - 2px); }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="7"]  { margin-bottom: calc(1.1rem - 2px); }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="8"]  { margin-bottom: calc(0.6rem - 2px); }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="9"]  { margin-bottom: calc(1.3rem - 2px); }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="10"] { margin-bottom: calc(0.8rem - 2px); }
+
+    */
+
+
+    /*
+        Attempt to fix `pre` tag margins due to scrollbar height.
+
+        Part 1.
+        So far, it seems best to assume there are scrollbars (FF and IE desktop) and give a small bottom
+        margin to compensate. That's what's in StartCSS.
+
+        However, browsers without scrollbars (touch) then have the _wrong_ bottom margin.
+
+        So, using -webkit custom scrollbars to set scrollbar height equal to a space-unit.
+        This solves problems on all webkit browsers (even touch browsers that don't normally show
+        scrollbars).
+
+        Problem: setting `pre` bottom margin to a spacing-unit would be best, really, but FF and IE
+        desktop don't have these options.
+        Setting the bottom margin to take into account the scrollbar height fixes those browsers but now
+        breaks the webkit browsers which need a 'normal' margin amount.
+
+        (A) So, targeting all webkit browsers that support custom scrollbars would be the way to solve
+        this. You can't do @supports for pseudo element, (and @supports doesn't have as much support as
+        custom scrollbars anyway) so using a hack that happens to have about the same level of support:
+        http://browserhacks.com/#hack-f4ade0540d8e891e8190065f75acb186
+
+        Part 2.
+        Non-webkit mobile (Window Phone IE, Android Firefox) still has the wrong margin, so need to find
+        hacks for these.
+
+    */
+
+    pre::-webkit-scrollbar {
+        height: 1.2rem;
+    }
+
+    pre::-webkit-scrollbar-track {
+        background-color: #ddd;
+    }
+
+    pre::-webkit-scrollbar-thumb {
+        background: #aaa;
+        border-radius: 0.6rem;
+    }
+
+    /* (^A) */
+
+    pre:not(*:root) {
+        margin-bottom: 2.4rem; /* $fallback--base-rem-space-unit / 2; */
+    }
+
+
+
+
+
+    /* Use hover query to reset margin - not ideal but ot bad! */
+    /*@media (hover: hover) {
+        pre {
+            margin-bottom: -0.75rem; /* $fallback--base-rem-space-unit / 2;/
+        }
+    }*/
+
+    /*@media screen and (min-resolution: 2dppx) {
+        @-moz-document url-prefix() {
+            pre {
+                background: red;
+            }
+        }
+    }*/
+    /*
+    @media not all and ((-moz-os-version:windows-win10) and (-moz-touch-enabled:1)) {
+        pre {
+            background: red;
+            margin-bottom: -0.75rem;
+        }
+
+    }
+    */
+    /* If it's Firefox and touch is enabled: ... */
+    /*@media screen and (-moz-touch-enabled:1) {
+        pre {
+            background: #fee;
+            -margin-bottom: -0.75rem;
+        }
+    }*/
+
+    /* ... but if it's on Windows 10 (e.g. Surface)  */
+    /*
+    @media screen and (-moz-os-version:windows-win10) {
+        pre {
+            background: #eef;
+            -margin-bottom: -1.0625rem;
+        }
+    }*/
+
+
+    /* IE Mobile: */
+    /*@media screen and (min-resolution: 1dppx) and (-ms-high-contrast: none), screen and (min-resolution: 1dppx) and (-ms-high-contrast: active),{
+        @-moz-document url-prefix() {
+            pre {
+                background: yellow;
+                margin-bottom: -0.75rem;
+            }
+        }
+    }*/
+
+    /*
+    figure {
+        snap-height: 1.5rem;
+    }
+
+    figure * {
+        snap-height: 0;
+    }
+
+    figure img {
+        vertical-align: top;
+    }
+
+    */
+
+
+
+    .tb-baseline main {
+        /*background-color: transparent;
+        background-size: 100% 1.2rem;
+        background-repeat: repeat-y;*/
+
+        /*background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.2) 6%, transparent 6%), to(transparent 100%)); /* Chrome, Safari 4+ */
+        /*background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.2) 6%, transparent 6%, transparent 100%); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+        /*background-image:    -moz-linear-gradient(top, rgba(0, 0, 0, 0.2) 6%, transparent 6%, transparent 100%); /* Firefox 3.6-15 */
+        /*background-image:      -o-linear-gradient(top, rgba(0, 0, 0, 0.2) 6%, transparent 6%, transparent 100%); /* Opera 11.10-12.00 */
+        /*background-image:         linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 6%, transparent 6%, transparent 100%); /* Chrome 26, Firefox 16+, IE 10+, Opera 12.50+ */
+
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.2+0,0.2+6,0+7,0+100 */
+        /*background-image: -moz-linear-gradient(top,  rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.2) 6%, rgba(0,0,0,0) 6%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+        /*background-image: -webkit-linear-gradient(top,  rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.2) 6%,rgba(0,0,0,0) 6%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+        /*background-image: linear-gradient(to bottom,  rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.2) 6%,rgba(0,0,0,0) 6%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+
+
+        background-image: url('https://lab.gridlight-design.co.uk/fallback-v1/line-grid-12px.gif');
+        background-repeat: repeat;
+    }
+
+    .tb-outlines h1, .tb-outlines h2, .tb-outlines h3, .tb-outlines h4, .tb-outlines h5, .tb-outlines h6,
+    .tb-outlines p, .tb-outlines li,
+    .tb-outlines dt, .tb-outlines dd,
+    .tb-outlines figcaption {
+        background: rgba(0,0,0,0.05);
+        outline: 1px dashed rgba(0,0,0,0.2);
+    }
+
+
+    .tb-toolbox {
+        padding: 0.5em;
+        background: rgba(255,255,255,0.6);
+        position: fixed;
+        z-index: 999;
+        bottom: 0;
+        left: 0;
+        font-size: 0.8em;
+        line-height: 1.5;
+    }
+
+    .tb-toolbox:hover {
+        background: rgba(255,255,255,0.8);
+    }
+
+    .tb-toolbox input {
+        vertical-align: middle;
+        margin: 0;
+        min-height: none;
+        -webkit-transform: none;
+            -ms-transform: none;
+                transform: none;
+    }
+
+    .tb-toolbox label {
+        font-weight: normal;
+        vertical-align: middle;
+    }
+body_class: tb-baseline  tb-outlines
+body_end_script: |
+    // Attempt at building a browser-info display tool:
+    window.onload = (function(onload) {
+        return function(event) {
+            onload && onload(event);
+
+            var browser_info = {
+                'User agent': navigator.userAgent,
+                'Device pixel ratio': window.devicePixelRatio,
+                'Viewport width': document.documentElement.clientWidth,
+                'Viewport height': document.documentElement.clientHeight,
+                'Device width': window.screen.availWidth,
+                'Device height': window.screen.availHeight
+            };
+
+            var browser_info_table = document.getElementById('browser_info');
+            var browser_info_body  = browser_info_table.tBodies[0];
+            var row, cell1, cell2, i;
+            browser_info_body.deleteRow(0);
+
+            for (i in browser_info) {
+                row   = browser_info_body.insertRow(-1);
+                cell1 = row.insertCell(-1);
+                cell1.innerHTML = i;
+                cell2 = row.insertCell(-1);
+                cell2.innerHTML = browser_info[i];
+            }
+        }
+    }(window.onload));
+
+    /*-- Test pages only: --------------------------------------------------------*/
+    /* Functions */
+    function ready(fn) {
+        if (document.readyState != 'loading'){
+            fn();
+        } else {
+            document.addEventListener('DOMContentLoaded', fn);
+        }
+    }
+
+    function hasClass(el, className) {
+        if (el.classList) {
+            var r = el.classList.contains(className);
+        } else {
+            var r = new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
+        }
+        return r;
+    }
+
+    function toggleClass(el, className) {
+        if (el.classList) {
+            el.classList.toggle(className);
+        } else {
+            var classes = el.className.split(' ');
+            var existingIndex = classes.indexOf(className);
+
+            if (existingIndex >= 0) {
+                classes.splice(existingIndex, 1);
+            } else {
+                classes.push(className);
+            }
+            el.className = classes.join(' ');
+        }
+
+    }
+
+    function preprend(parent, el) {
+        parent.insertBefore(el, parent.firstChild);
+    }
+    /**/
+
+    /* Add toolbox: */
+    ready(function(){
+        var $body = document.querySelectorAll('body')[0];
+        var $main = document.querySelectorAll('main')[0];
+        var toolbox = document.createElement('div');
+        toolbox.id = 'toolbox';
+        toolbox.className = 'tb-toolbox';
+        var tools = [
+            '<input type="checkbox" id="toggleBaseline"' + (hasClass($body, 'tb-baseline') ? ' checked' : '') + ' "> ',
+            '<label for="toggleBaseline">Baseline grid</label><br>',
+            '<input type="checkbox" id="toggleOutlines"' + (hasClass($body, 'tb-outlines') ? ' checked' : '') + ' "> ',
+            '<label for="toggleOutlines">Outline elements</label><br>',
+            '<label for="maxMainWidth">Max main width:</label><br>',
+            '<input type="text" id="maxMainWidth" />',
+        ];
+        //toolbox.innerHtml = tools.join("\n");
+        preprend($body, toolbox);
+        var $toolbox = document.querySelectorAll('#toolbox')[0];
+        $toolbox.innerHTML = tools.join("\n");
+
+        var $toggleBaseline = document.querySelectorAll('#toggleBaseline')[0];
+        var $toggleOutlines = document.querySelectorAll('#toggleOutlines')[0];
+        var $maxMainWidth   = document.querySelectorAll('#maxMainWidth')[0];
+
+        // Set default values:
+        $maxMainWidth.value = getComputedStyle($main)['maxWidth'];
+
+        // Add event handlers:
+        $toggleBaseline.addEventListener('change', function(){
+            toggleClass($body, 'tb-baseline');
+        });
+
+        $toggleOutlines.addEventListener('change', function(){
+            toggleClass($body, 'tb-outlines');
+        });
+
+        $maxMainWidth.addEventListener('change', function(){
+            $main.style.maxWidth = $maxMainWidth.value;
+        });
+
+
+
+
+        /*
+        $("#toggleBaseline").change(function(){
+            $("body").toggleClass('baseline-grid');
+        });
+        $("#toggleHeadingBg").change(function(){
+            $("body").toggleClass('heading-background');
+        });
+        $("#toggleSectionBg").change(function(){
+            $("body").toggleClass('section-background');
+        });*/
+    });
+
+    /*
+    Add margins to 'off-grid' elements to maintain vertical rhythm.
+    Note we're assuming the only 'off-grid' elements -- `pre`, `img`, `video` -- will be contained
+    within `figure`s.
+    We also assume (know) that figures have a 1.5rem bottom margin, and we don't use top margins, so we
+    should be safe to _reduce_ the bottom margin by enough to restore grid alignment.
+    *//*
+    window.onload = (function(onload) {
+        return function(event) {
+            onload && onload(event);
+
+            //var $root = document.querySelectorAll(':root')[0];
+            var $body = document.querySelectorAll('body')[0];
+            var $main   = document.querySelectorAll('main')[0];
+            var figures = $main.querySelectorAll('figure');
+
+            var grid_size = getComputedStyle($body)['line-height'];
+            var grid_unit = parseInt(grid_size, 10) / 2;
+
+            console.log(grid_size, grid_unit);
+
+            figures.forEach(function(item, i){
+                //console.log(item, (item.offsetHeight / grid_unit - Math.floor(item.offsetHeight / grid_unit)) );
+                //var val = grid_unit + (grid_size * (item.offsetHeight / grid_unit - Math.floor(item.offsetHeight / grid_unit))) + 'rem';
+                var diff = item.offsetHeight / grid_unit - (Math.floor(item.offsetHeight / grid_unit));
+                console.log(diff);
+                if (diff > 0) {
+                    var diff_px = (grid_unit * 2 - (grid_unit * diff));
+                    console.log(diff_px);
+                    item.style.marginBottom = diff_px + 'px';
+                }
+
+
+                //item.style.marginBottom = grid_unit + (grid_size * (item.offsetHeight / grid_unit - Math.floor(item.offsetHeight / grid_unit))) + 'rem';
+            });
+        }
+    }(window.onload));*/
+---
+<p><a href="#">Test active link</a></p>
+<p><a href="#bottom">Skip to bottom</a></p>
+
+<!--
+<h2>Notes</h2>
+<p>
+    <strong>Sizing issues:</strong><br>
+    Borders normally should be the same size regardless of font size.<br>
+    Vertical Rhythm (VR) preserved by using either padding or margin tweaks to offset border- Border Compensation Tweaks (BCT).<br>
+    VR is calculated by REMs so adjustment to <code>html</code> font-size should adjust whole VR.<br>
+    However, doing this DOES NOT adjust the BCT.<br>
+    So, perhaps have to consider changing all BCT values to <code>calc()</code> so that <code>html</code>  font-size adjustments (e.g. in Media Queries) will also adjust BCT.<br>
+    Although, it's possible to make font-size changes on the <code>body</code>  font-size, so this may not be necessary.
+</p>
+
+<p>
+    Double bottom space fix needs thought in how it relates to borders.
+    The border/padding combination works fine, but the bottom margin of the inner elements will be a full spacing-unit, not adjusted for border-width.
+    This means the combined margin is 1 full spacing unit and this negates the BCT.
+    Maybe will have to make BCT margin-based and not padding based after all?
+</p>
+-->
+
+<p><a href="#bottom">Skip to bottom</a></p>
+
+<h2>Bordered boxes</h2>
+
+<aside class="bordered">
+    <h3>Aside</h3>
+    <p>Some text</p>
+</aside>
+<aside class="bordered">
+    <h3>Aside</h3>
+    <div>Last element without a bottom margin - should still have a gap below due to pseudo element.</div>
+</aside>
+<aside class="padded  test_bg">
+    <h3>Aside</h3>
+    <p>This box should only have padding, no border.</p>
+</aside>
+<aside class="padded  test_bg">
+    <h3>Aside</h3>
+    <div>And again - last element without a bottom margin - should still have a gap below due to pseudo element.</div>
+</aside>
+
+<h2>Subtitles and taglines</h2>
+<p>
+    <a href="http://html5doctor.com/howto-subheadings/">html5 Doctor: How to mark up subheadings, subtitles, alternative titles and taglines</a>
+</p>
+
+<article class="padded">
+    <header>
+        <h2>This is a title: <b class="subtitle">with an inline subtitle</b></h2>  
+    </header>
+    <p>Some body text.</p>
+</article>
+
+<article class="bordered">
+    <header>
+        <h2>This is a title</h2>
+        <p class="subtitle"><b>With a sub title</b></p>
+    </header>
+    <p>The <code>.subtitle</code> class above is applied to the paragraph so we can move it next to the heading with negative a margin.</p>
+</article>
+
+<article class="padded">
+    <header>
+        <h2>This is a title</h2>
+        <p class="tagline">With a tagline</p>
+    </header>
+    <p><b>A lede (lead) paragraph is marked up using <code>&lt;b&gt;</code> tags.</b></p>
+    <p>Note a tagline and strapline are the same thing, and neither <em>really</em> apply here according to the <a href="https://en.wikipedia.org/wiki/Tagline" rel="external">Wikipedia definition</a>, though it's really just splitting hairs. I don't know what <em>else</em> to call it, and it is different from both a subtitle and a lede paragraph.</p>
+</article>
+
+<h2>CTA</h2>
+<p>
+    CTA's should never look like real buttons, but they can be button-like:</a>
+</p>
+<p>
+    <a href="" class="cta">A CTA &hellip;</a>
+</p>
+
+<p>
+    <a href="" class="cta">A Longer CTA title with an icon<svg class="icon" aria-hidden="true"><use xlink:href="#icon-chevron-right"></use></svg></a>
+</p>
+
+<h2>Forms</h2>
+
+<form>
+    <fieldset>
+        <p>Some inputs would be here, like this:</p>
+        <p>Here's a <button>Button</button></p>
+        <p>This uses the <code>.composite</code> class</p>
+        <p>
+            <label for="input1-1">Enter some text:</label> <span class="composite"><input type="text" id="input1-1"> <button>Button</button> <button>Another button</button></span>
+        </p>
+    </fieldset>
+    
+    <fieldset>
+        <legend>Using the <code>.custom-input-file</code> and <code>.composite</code> classes</legend>
+        <p>The 'fake button' is just a 2nd label. It can be placed on the right...</p>
+        <p>
+            <label for="input1-2">Choose a file:</label> <span class="composite">
+                <input type="file" id="input1-2" class="custom-input">
+                <label for="input1-2" class="button" aria-hidden="true" data-text="Browse..."></label>
+            </span>
+        </p>
+        <p>... or the left - it's governed the markup. It's 'fake' because we only need it for visual purposes. Without CSS and for SR's it's ignored.</p>
+        <p>(this arrangement doesn't work well in IE so I've just hidden the extra button for now)</p>
+        <p>
+            <label for="input1-2a">Choose another file:</label> <span class="composite">
+                <label for="input1-2a" class="button" aria-hidden="true" data-text="Browse..."></label>
+                <input type="file" id="input1-2a" class="custom-input">
+            </span>
+        </p>
+        <p>
+            See <a href="https://gist.github.com/andykirk/b7c9e26dc83edd61cdfa" rel="external">CSS-only File Input Gist</a>.
+        </p>
+        
+        
+        
+        <p>
+            <input type="checkbox" id="input1-4" class="custom-input"> <label for="input1-4" class="custom-input-label">Checkbox next to Label</label>
+        </p>
+        <p>
+            <label><input type="checkbox" class="custom-input"> <span class="custom-input-label">Checkbox inside to Label</span></label>
+        </p>
+        <p>
+            <input type="checkbox" id="input1-5" class="custom-input  custom-input--align-end"> <label for="input1-5" class="custom-input-label">Checkbox next to Label - right</label>
+        </p>
+        <p>
+            <label><input type="checkbox" class="custom-input  custom-input--align-end"> <span class="custom-input-label">Checkbox inside to Label - right</span></label>
+        </p>
+        <p>
+            <input type="radio" id="input1-6a" name="input1-6" class="custom-input"> <label for="input1-6a" class="custom-input-label">Radio 1 next to Label</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" id="input1-6b" name="input1-6" class="custom-input"> <label for="input1-6b" class="custom-input-label">Radio 2 next to Label</label>
+        </p>
+        <p>
+            <label><input type="radio" name="input1-6-1" class="custom-input"> <span class="custom-input-label">Radio 1 inside to Label</span></label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <label><input type="radio" name="input1-6-1" class="custom-input"> <span class="custom-input-label">Radio 2 inside to Label</span></label>
+        </p>
+        <p>
+            <input type="radio" id="input1-7a" name="input1-7" class="custom-input  custom-input--align-end"> <label for="input1-7a" class="custom-input-label">Radio 1 next to Label - right</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" id="input1-7b" name="input1-7" class="custom-input  custom-input--align-end"> <label for="input1-7b" class="custom-input-label">Radio 2 next to Label - right</label>
+        </p>
+        <p>
+            <label><input type="radio" name="input1-7-1" class="custom-input  custom-input--align-end"> <span class="custom-input-label">Radio 1 inside to Label - right</span></label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <label><input type="radio" name="input1-7-1" class="custom-input  custom-input--align-end"> <span class="custom-input-label">Radio 2 inside to Label - right</span></label>
+        </p>
+    </fieldset>
+</form>
+
+<h2>Experimental</h2>
+<h3>A Poem</h3>
+
+<pre class="poem">                maxling
+
+it is with a          heart
+       heavy
+
+that i admit loss of a feline
+so           loved
+
+a friend lost to the
+unknown
+                        (night)
+
+~cdr 11dec07</pre>
+
+<hr>
+
+
+
+<table id="browser_info">
+    <caption>Browser info</caption>
+    <thead>
+        <tr><th>Name</th><th>Value</th></tr>
+    </thead>
+    <tbody>
+        <tr><td colspan="2">No Javascript - unable to detect anything!</td></tr>
+    </tbody>
+</table>
+
+
+<div id="bottom"></div>

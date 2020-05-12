@@ -209,7 +209,7 @@ html {
   overflow-y: scroll;
   /* 3 */
   color: #333;
-  background-color: #fff;
+  background-color: #50514F;
   font-size: 62.5%;
   /* 4 */
   font-family: "Lato", sans-serif;
@@ -2644,3 +2644,76 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="
     1. Safari 9.1 doesn't recognize 'auto' but I suspect others won't recognize 'initial', so
        keeping both for now.
 */
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+  input[type="checkbox"],
+  input[type="radio"] {
+    position: relative;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    min-height: auto;
+    /* 1 */
+    min-height: initial;
+    /* 1 */
+    border-width: 1px;
+    border-style: solid;
+    border-color: #333;
+    background-color: #fff;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  input[type="radio"] {
+    border-radius: 50%;
+  }
+  input[type="radio"]:checked {
+    background-image: -moz-radial-gradient(center, ellipse cover, #333333 0%, #333333 35%, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0) 100%);
+    /* FF3.6-15 */
+    background-image: -webkit-radial-gradient(center, ellipse cover, #333333 0%, #333333 35%, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0) 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background-image: radial-gradient(ellipse at center, #333333 0%, #333333 35%, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  }
+  input[type="checkbox"]:checked::after {
+    content: "";
+    display: inline-block;
+    width: 0.6em;
+    height: 0.3em;
+    border: solid #333;
+    border-width: 0 0 0.125em 0.125em;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -70%) rotate(-50deg);
+    -ms-transform: translate(-50%, -70%) rotate(-50deg);
+    transform: translate(-50%, -70%) rotate(-50deg);
+  }
+  /*
+            Turn off the outline we reinstated for non-experimental styles in Safari:
+        */
+  _::-webkit-full-page-media, _:future, :root [type="checkbox"]:focus,
+  _::-webkit-full-page-media, _:future, :root [type="radio"]:focus {
+    outline: 0;
+  }
+}
+
+/*
+        Turn off checkbox styling for Edge for now.
+    */
+@supports (-ms-ime-align: auto) {
+  input[type="checkbox"] {
+    -webkit-appearance: checkbox;
+  }
+}
+
+/*
+        Turn off checkradio styling for UCBrowser for now.
+    */
+.ucbrowser input[type="checkbox"] {
+  min-height: 0;
+  -webkit-appearance: checkbox;
+}
+
+.ucbrowser input[type="radio"] {
+  min-height: 0;
+  -webkit-appearance: radio;
+}
