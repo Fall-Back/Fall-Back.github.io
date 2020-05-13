@@ -1,6 +1,6 @@
 ---
 layout: dev/structure--basic
-title: Fall-Back developement contents
+title: Fall-Back development contents
 ---
 {% assign root_url = '/dev/' %}
 {% assign pages = site.pages | sort:"title" %}

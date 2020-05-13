@@ -123,6 +123,8 @@ $f__using-Start-CSS: true;
     4. Convert the value to a percentage so as not to override user font settings.
 
     5. Prevent font size adjustments after orientation changes in IE and iOS. (N)
+    
+    6. Use a more readable tab size (opinionated).
 */
 html {
     -moz-box-sizing: border-box; /* 1 */
@@ -148,6 +150,9 @@ html {
     // -- -webkit-font-smoothing: antialiased; --
 
     // -- text-rendering: optimizeLegibility; --
+    
+    -moz-tab-size: $f__tabsize; /* 6 */
+	tab-size: $f__tabsize; /* 6 */
 }
 /*
     Fix font size for IE9,10 as it can't calculate % to 1 decimal place! Grrr.

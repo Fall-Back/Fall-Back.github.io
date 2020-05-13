@@ -177,6 +177,8 @@
     4. Convert the value to a percentage so as not to override user font settings.
 
     5. Prevent font size adjustments after orientation changes in IE and iOS. (N)
+    
+    6. Use a more readable tab size (opinionated).
 */
 html {
   -moz-box-sizing: border-box;
@@ -198,6 +200,10 @@ html {
   /* 5 */
   padding: 0;
   margin: 0;
+  -moz-tab-size: 4;
+  /* 6 */
+  tab-size: 4;
+  /* 6 */
 }
 
 /*
@@ -1195,7 +1201,7 @@ main {
   width: 100%;
   min-height: 100%;
   padding: 2.4rem;
-  background-color: #fff;
+  background-color: #eee;
   color: #333;
   position: relative;
   -webkit-flex: 1 0 auto;
