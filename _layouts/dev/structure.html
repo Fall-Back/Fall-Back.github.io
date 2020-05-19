@@ -138,8 +138,30 @@
     {% endfor %}
     {% endif %}
     
-    {% if page.load_highlighter != false or layout.load_highlighter != false %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css">
+    {% if page.load_highlighter or layout.load_highlighter %}
+    {% if layout.m3cut != false %}
+    <!--
+        Print (Edge doesn't apply to print otherwise)
+        IE 10, 11
+        Edge
+        Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
+        FF 29+
+    -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css" media="
+        only print, screen and (min-width: 1vm),
+        only all and (-ms-high-contrast: none), only all and (-ms-high-contrast: active),
+        only all and (pointer: fine), only all and (pointer: coarse), only all and (pointer: none),
+        only all and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0),
+        only all and (min--moz-device-pixel-ratio:0) and (min-resolution: 3e1dpcm)
+    ">
+    {% else %}
+    <!--
+        IE 9+, FF 8+, Opera 12, Chrome 29+, Android ~4.4+
+        Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
+    -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css" media="only screen and (min-resolution: 0.1dpcm), only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)">
+    {% endif %}   
+    
     <style>
         /* Override hljs styles to reset to StartCSS: */
         .hljs {
@@ -243,7 +265,7 @@
 
     {{ content }}
 
-    {% if page.load_highlighter != false %}
+    {% if page.load_highlighter or layout.load_highlighter %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     {% endif %}
