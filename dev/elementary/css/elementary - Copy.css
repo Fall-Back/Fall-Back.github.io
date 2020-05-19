@@ -1,0 +1,365 @@
+/*
+    CSS only message
+*/
+body > div:first-child {
+    display: none;
+}
+
+
+/*
+    Sticky Footer 
+*/
+html,
+body {
+    height: 100%;
+}
+
+/*
+    Note we still need the flexbox for the sticky footer in the event of no Grid support or narrower
+    viewports where the Grid isn't applied but the content is still small enough to need the sticky
+    footer behavior.
+*/
+body {
+    max-width: 1080px;
+
+    padding: 0;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
+body > * {
+    -webkit-flex: 0 0 auto;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+}
+
+/*---*/
+
+/*
+    Banner
+*/
+body > header {
+    padding: 1.2rem;
+}
+
+/*
+    Banner links
+*/
+
+body > header a[href] {
+    border: 0;
+    padding: 0
+}
+
+body > header a[href]:hover,
+body > header a[href]:active,
+body > header a[href]:focus {
+    border: 0;
+    padding: 0
+}
+
+
+/* Logo */
+
+body > header a[href]:first-child {
+    display: inline-block;
+}
+
+body > header a[href]:first-child:hover,
+body > header a[href]:first-child:active,
+body > header a[href]:first-child:focus {
+    box-shadow: 0 0 0 0.6rem #fff, 0 0 0 1.2rem rgba(0,0,0,.2);
+}
+
+/*
+    ---Main should allow for full-width content, so move body colour here, remove max-width, and apply
+    that to direct child (except div which we're using to demarcate full-width content)---+
+*/
+/*
+    Expand main to sill space - part of stick footer.
+*/
+body > main {
+    min-height: 0;
+    -webkit-flex: 1 0 auto;
+        -ms-flex: 1 0 auto;
+            flex: 1 0 auto;
+            
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    /*background-color: #50514F;*/
+}
+
+/*
+main::before {
+    content: "";
+    display: block;
+    width: 100%;
+    max-width: 80rem;
+    height: 100%;
+    background-color: #ffffff;
+    position: absolute;
+    z-index: 0;
+    left: calc(50% - 40rem);
+    top: 0;
+}
+*/
+/*
+    This is an exception to the 'no media queries.
+    Through SASS it'll be calculated properly.
+    Without it the background doesn't behave properly.
+    Maybe if I can figure out a different way, I'll change this.
+*/
+/*
+@media (max-width: 50rem) {
+    main::before {
+        left: 0;
+    }
+}
+*/
+/*
+main > * {
+    background-color: #fff;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+    z-index: 1;
+}*/
+
+/*
+    Page header
+*/
+main > * > header:first-child {
+    margin: 0;
+    padding: 2.4rem;
+}
+
+/*
+    If there's no main header - give the h1 some room:
+    ??Not sure - may require header?
+*/
+main > * > h1 {
+    margin-top: 2.4rem;
+}
+
+/*
+main > header:first-child + article {
+    outline: 1px solid #f00;
+}
+*/
+
+main > * > header:first-child ~ * {
+    padding-left: 2.4rem;
+    padding-right: 2.4rem;
+}
+
+
+main > article > header:first-child ~ * {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main > * > header:first-child ~ div {
+    max-width: none;
+    padding: 0;
+}
+
+
+main > div > header:first-child ~ ul {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    /*margin: 0;
+    padding: 0;*/
+    list-style-type: none;
+    
+    /* Gutter */
+    margin: -2.4rem 0 0 0;
+    padding: 1.2rem;
+    
+    /* FLush gutter */
+    /*
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+    */
+    
+    /*padding: 1.2rem 1.2rem 0 1.2rem;
+    margin: -2.4rem 0 1.2rem 0;*/
+    
+    /* Centre */
+              -ms-flex-pack: center;
+    -webkit-justify-content: center;
+            justify-content: center;
+}
+
+
+main > div > header:first-child ~ ul > li {
+    margin: 0;
+         -webkit-flex: 1;
+    -ms-flex-positive: 1;
+            flex-grow: 1;
+    -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+            flex-shrink: 0;
+    /*        
+         -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+                 flex-basis: auto
+    */
+        
+    /* Size */
+         -webkit-flex-basis: 15em;
+    -ms-flex-preferred-size: 15em;
+                 flex-basis: 15em;
+    /*
+        flex-basis 15em acts like a min-width.
+        30em-1px is the point at which there isn't room for 2 items side-by-side
+    */
+    max-width: calc(30em - 1px);
+    
+    /* Gutter */
+    margin: 0;
+    padding: 1.2rem;
+    /*padding: 0 0.5rem 1rem 0.5rem;*/
+    /*margin: 1.2rem;*/
+    
+}
+
+
+
+
+/* Sidebar */
+
+
+body > aside {
+    margin: 0;
+    padding: 2.4rem;
+}
+
+
+
+
+
+
+
+
+body > header,
+body > footer {
+    margin: 0;
+}
+
+/**/
+
+body > footer {
+    font-size: 0.875em;
+    text-align: center;
+    padding: 1.2rem;
+}
+
+
+body > footer > * {
+    margin-bottom: 0;
+}
+
+/*
+    Inline elements
+*/
+img {
+    width: 100%;
+}
+
+
+
+/* Grid */
+
+@supports(display:grid) {
+    /*@media only screen and (min-width:60em) {*/
+        
+        body {
+
+            width: auto;
+            -webkit-align-items: stretch;
+                -ms-align-items: stretch;
+                    align-items: stretch; 
+                
+            display: grid;
+            /*grid-template-columns: 1fr fit-content(34%);*/
+            grid-template-columns: 3fr 1fr;
+            grid-template-rows: max-content auto max-content;
+            
+            min-height: 100%;
+            height: auto;
+        }
+        
+        body > header,
+        body > footer {
+            padding: 1.5rem;
+            grid-column: 1 / -1;
+        } 
+
+
+        
+        body > main {
+            grid-column: 1;
+        }
+
+        /*
+            Note this is the *template* sidebar - content in a sidebar that appears on all pages.
+            Not to be confused with th *content* sidebar, which is specific to the current page
+            content.
+        /*
+        body > aside {
+            grid-column: 2;
+        }
+        
+        /*
+            If there's no aside (sidebar) then main has to span both columns:
+            Note this is fragile and depends on following the Elementary pattern absolutely.
+            What it says is that if main is the 3rd from last element, it spans all columns.
+            If there are more elements after the `main` element (as in, there's the extra `aside`),
+            then the selector won't match.
+            
+        */
+        body > main:nth-last-child(3) {
+            grid-column: 1 / -1;
+        }
+        
+        
+   /* }*/
+}
+
+
+
+
+/*---*/
+
+/*
+    Greybox
+*/
+
+body > header,
+body > footer {
+    background: #ddd;
+}
+
+body > aside {
+    background: #ccc;
+}
+
+
+main > div > ul > li > a[href] {
+    
+    padding: 2.4rem;
+    background: #ddd;
+    display: block;
+}

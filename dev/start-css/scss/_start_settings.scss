@@ -54,6 +54,27 @@ $f__tabsize: 4 !default;
 $f__experimental_checkradios: false !default;
 
 
+// Sizes:
+
+$f__sz-xxs : $f__base-rem-space-unit / 8; // 3px
+$f__sz-xs  : $f__base-rem-space-unit / 4; // 6px
+$f__sz-s   : $f__base-rem-space-unit / 2; // 12px
+$f__sz-m   : $f__base-rem-space-unit;     // 24px
+$f__sz-l   : $f__base-rem-space-unit * 2; // 48px
+$f__sz-xl  : $f__base-rem-space-unit * 4; // 96px
+$f__sz-xxl : $f__base-rem-space-unit * 8; // 192px
+
+$f__sizes: (
+    sz-xxs : $f__sz-xxs,
+    sz-xs  : $f__sz-xs,
+    sz-s   : $f__sz-s,
+    sz-m   : $f__sz-m,
+    sz-l   : $f__sz-l,
+    sz-xl  : $f__sz-xl,
+    sz-xxl : $f__sz-xxl
+);
+
+
 // UI:
 $f__base-ui-color:          #247BA0 !default;
 

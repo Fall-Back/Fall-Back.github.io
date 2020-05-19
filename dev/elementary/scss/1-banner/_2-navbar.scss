@@ -1,0 +1,78 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    NAVBAR
+
+|-------------------------------------------------------------------------------------------------*/
+
+body > header > nav {
+    margin: $f__sz-xs 0;
+
+    -webkit-flex: 1 1 auto;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+}
+
+body > header > nav > ul {
+    margin: 0;
+        
+    list-style-type: none;
+    
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+
+}
+
+body > header > nav > ul li {
+    margin: 0;
+    padding: 0;
+
+    -webkit-flex: 0 0 auto;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+}
+
+
+body > header > nav > ul a[href] {
+    display: block;
+    margin: 0;
+    padding-left: $e__nav-bar--spacing * 2;
+    padding-right: $e__nav-bar--spacing * 2;
+    padding-bottom: 0;
+    padding-top: 0;
+
+    border: 0;
+    border-radius: $e__nav-bar__link--border-radius;
+    line-height: $e__nav-bar--height;
+
+    text-decoration: none;
+
+    box-shadow: none; 
+}
+
+
+body > header > nav > ul a[href] {
+    color: $e__nav-bar__link--color;
+    background-color: $e__nav-bar__link--background-color;
+}
+
+
+
+body > header > nav > ul a[href]:hover,
+body > header > nav > ul a[href]:active,
+body > header > nav > ul a[href] [aria-expanded="true"] {
+    color: $e__nav-bar__link--color--alt;
+    background-color: $e__nav-bar__link--background-color--alt;
+    border: 0;
+}
+
+body > header > nav > ul a[href]:focus {
+    color: $e__nav-bar__link--color--alt;
+    background-color: $e__nav-bar__link--background-color--alt2;
+    border: 0;
+    box-shadow: none;
+}

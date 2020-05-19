@@ -1,0 +1,51 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    ELEMENTARY SETTINGS
+
+|-------------------------------------------------------------------------------------------------*/
+
+/* NavBar */
+
+// Colours:
+
+$e__nav-bar--base-ui-color:                $f__base-ui-color !default;
+$e__nav-bar--base-text-color:              $f__base-text-color !default;
+
+
+//$e__nav-bar--background-color:             $e__nav-bar--base-ui-color !default;
+$e__nav-bar--background-color:             transparent !default;
+
+//$e__nav-bar__link--color:                  #fff !default;
+$e__nav-bar__link--color:                  $e__nav-bar--base-text-color !default;
+$e__nav-bar__link--color--alt:             $e__nav-bar__link--color !default;
+$e__nav-bar__link--background-color:       $e__nav-bar--background-color !default;
+//$e__nav-bar__link--background-color--alt:  darken($e__nav-bar--background-color, 14%) !default;
+$e__nav-bar__link--background-color--alt:  lighten($e__nav-bar--base-ui-color, 50%) !default;
+//$e__nav-bar__link--background-color--alt2: darken($e__nav-bar--background-color, 7%) !default;
+$e__nav-bar__link--background-color--alt2: darken($e__nav-bar--base-ui-color, 30%) !default;
+
+$e__nav-bar__link--border-color:           rgba(255,255,255,0.2) !default;
+$e__nav-bar__link--border-style:           solid !default;
+$e__nav-bar__link--border-width:           1px !default;
+$e__nav-bar__link--border-radius:          0 !default;
+
+
+$e__sub-nav--background-color:             darken($e__nav-bar--base-ui-color, 20%) !default;
+
+$e__sub-nav__link--border-color:           rgba(255,255,255,0.3) !default;
+$e__sub-nav__link--border-style:           dashed !default;
+$e__sub-nav__link--border-width:           1px !default;
+
+
+$e__sub-nav__link--color:                  $e__nav-bar__link--color !default;
+$e__sub-nav__link--color--alt:             $e__sub-nav__link--color !default;
+$e__sub-nav__link--background-color:       $e__sub-nav--background-color !default;
+$e__sub-nav__link--background-color--alt:  lighten($e__sub-nav__link--background-color, 10%) !default;
+
+// Sizes:
+
+$e__nav-bar--font-size:                    $f__base-font-size !default;
+$e__nav-bar--height:                       ($f__base-em-ratio * 1.5em) !default;
+$e__nav-bar--spacing:                      ($e__nav-bar--height / 8) !default;
+$e__nav-bar--margin-bottom:                0 !default;
+$e__nav-bar__title--padding:               0 !default;

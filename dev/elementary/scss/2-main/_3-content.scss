@@ -1,0 +1,94 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    CONENT
+
+|-------------------------------------------------------------------------------------------------*/
+
+/*
+    Content wrapper [A] could be anything (so far `article` or `div`): `main > * >.
+    Inside the wrapper there should be `header` (see _1-header.scss).
+    After the header we want to give elements some side padding: `~ *`.
+*/
+main > * > header ~ * {
+    padding-left: $f__sz-m;
+    padding-right: $f__sz-m;
+}
+
+
+/*
+    If the wrapper [A] is an article, the purpose is longform text [B], so we want that to be easier
+    to read, so add `max-width` and center it.
+*/
+main > article > header ~ * {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*
+    We're using `div` (human semantic "divider") to break out of the `max-width`.
+    Use for things like full width images, videos or figures.
+*/
+main > * > header ~ div {
+    max-width: none;
+    padding: 0;
+}
+
+/*
+    If the wrapper [A] is a `div` and the next element after the header is `ul`, we're defining that
+    as a list of card-like objects, so we want a gallery-style grid.
+    Use for things like portfolio images or article cards.
+*/
+main > div > header ~ ul {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+
+    list-style-type: none;
+    
+    /* Gutter */
+    margin: -$f__sz-m 0 0 0;
+    padding: $f__sz-s;
+    
+    /* Centre */
+              -ms-flex-pack: center;
+    -webkit-justify-content: center;
+            justify-content: center;
+}
+
+
+main > div > header:first-child ~ ul > li {
+    margin: 0;
+         -webkit-flex: 1;
+    -ms-flex-positive: 1;
+            flex-grow: 1;
+    -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+            flex-shrink: 0;
+        
+    /* Size */
+         -webkit-flex-basis: 15em;
+    -ms-flex-preferred-size: 15em;
+                 flex-basis: 15em;
+    /*
+        flex-basis 15em acts like a min-width.
+        30em-1px is the point at which there isn't room for 2 items side-by-side
+    */
+    max-width: calc(30em - 1px);
+    
+    /* Gutter */
+    margin: 0;
+    padding: $f__sz-s;   
+}
+
+
+/*
+    Inline elements
+*/
+main img {
+    width: 100%;
+}
+

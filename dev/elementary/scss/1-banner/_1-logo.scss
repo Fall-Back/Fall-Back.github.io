@@ -1,0 +1,21 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    LOGO
+
+|-------------------------------------------------------------------------------------------------*/
+
+body > header > a[href] {
+    display: inline-block;
+    border: 0;
+    padding: 0;
+    margin: 0 $f__sz-m $f__sz-xs 0;
+}
+
+body > header > a[href]:hover,
+body > header > a[href]:active,
+body > header > a[href]:focus {
+    border: 0;
+    padding: 0;
+
+    @include e__ojbect_highlight();
+}

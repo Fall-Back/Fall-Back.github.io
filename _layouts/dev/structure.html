@@ -1,6 +1,59 @@
 <!doctype html>
 <html lang="en-gb" class="no-js">
 <head>
+    {% if layout.head_stylesheets.first and page.head_stylesheets.first %}
+        {% assign head_stylesheets = layout.head_stylesheets | concat: page.head_stylesheets %}
+    {% elsif layout.head_stylesheets.first %}
+        {% assign head_stylesheets = layout.head_stylesheets %}
+    {% elsif page.head_stylesheets.first %}
+        {% assign head_stylesheets = page.head_stylesheets %}
+    {% else %}
+        {% assign head_stylesheets = false %}
+    {% endif %}
+    
+    
+    {% if layout.head_style != false and page.head_style != false %}
+        {% assign head_style = layout.head_style | append: page.head_style %}
+    {% elsif layout.head_style != false %}
+        {% assign head_style = layout.head_style %}
+    {% elsif page.head_style != false %}
+        {% assign head_style = page.head_style %}
+    {% else %}
+        {% assign head_style = false %}
+    {% endif %}
+    
+    
+    {% if layout.head_scripts != false and page.head_scripts != false %}
+        {% assign head_scripts = layout.head_scripts | append: page.head_scripts %}
+    {% elsif layout.head_scripts != false %}
+        {% assign head_scripts = layout.head_scripts %}
+    {% elsif page.head_scripts != false %}
+        {% assign head_scripts = page.head_scripts %}
+    {% else %}
+        {% assign head_scripts = false %}
+    {% endif %}
+    
+    
+    {% if layout.body_class != false and page.body_class != false %}
+        {% assign body_class = layout.body_class | append: page.body_class %}
+    {% elsif layout.body_class != false %}
+        {% assign body_class = layout.body_class %}
+    {% elsif page.body_class != false %}
+        {% assign body_class = page.body_class %}
+    {% else %}
+        {% assign body_class = false %}
+    {% endif %}
+    
+    
+    {% if layout.body_end_script != false and page.body_end_script != false %}
+        {% assign body_end_script = layout.body_end_script | append: page.body_end_script %}
+    {% elsif layout.body_end_script != false %}
+        {% assign body_end_script = layout.body_end_script %}
+    {% elsif page.body_end_script != false %}
+        {% assign body_end_script = page.body_end_script %}
+    {% else %}
+        {% assign body_end_script = false %}
+    {% endif %}
     <meta charset="utf-8">
     <title>{{ page.title }} | Fall-Back Developement</title>
     
@@ -35,8 +88,8 @@
         Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
     -->
     <link rel="stylesheet" href="/dev/start-css/css/start.min.css" media="only screen and (min-resolution: 0.1dpcm), only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)">
-    {% if page.head_stylesheets != false %}
-    {% for stylesheet in page.head_stylesheets %}
+    {% if head_stylesheets != false %}
+    {% for stylesheet in head_stylesheets %}
     <link rel="stylesheet" href="{{ stylesheet }}" media="
         only screen and (min-resolution: 0.1dpcm),
         only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)
@@ -44,19 +97,19 @@
     {% endfor %}
     {% endif %}
     
-    {% if page.head_style != false %}
+    {% if head_style != false %}
     <style>
-    {{ page.head_style }}
+    {{ head_style }}
     </style>
     {% endif %}
     
-    {% if page.head_scripts != false %}
-    {% for script in page.head_scripts %}
+    {% if head_scripts != false %}
+    {% for script in head_scripts %}
     <script src="{{ script }}"></script>
     {% endfor %}
     {% endif %}
     
-    {% if page.load_highlighter != false %}
+    {% if page.load_highlighter != false or layout.load_highlighter != false %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css">
     <style>
         /* Override hljs styles to reset to StartCSS: */
@@ -166,9 +219,9 @@
     <script>hljs.initHighlightingOnLoad();</script>
     {% endif %}
 
-    {% if page.body_end_script != false %}
+    {% if body_end_script != false %}
     <script>
-    {{ page.body_end_script }}
+    {{ body_end_script }}
     </script>
     {% endif %}
 

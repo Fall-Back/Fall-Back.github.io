@@ -17,6 +17,7 @@ defaults:
       head_style: false
       body_class: false
       body_end_script: false
+      load_highlighter: false
 
 
 # Build settings

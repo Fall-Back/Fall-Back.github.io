@@ -1,0 +1,141 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    ELEMENTARY
+
+|-------------------------------------------------------------------------------------------------*/
+
+@import '_00-settings.scss';
+@import '_00-mixins.scss';
+
+/*
+    CSS only message
+*/
+body > div:first-child {
+    display: none;
+}
+
+
+/*
+    Sticky Footer needs this
+*/
+html,
+body {
+    height: 100%;
+}
+
+/*
+    Note we still need the flexbox for the sticky footer in the event of no Grid support or narrower
+    viewports where the Grid isn't applied but the content is still small enough to need the sticky
+    footer behavior.
+*/
+body {
+    max-width: 1080px;
+
+    padding: 0;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
+body > * {
+    -webkit-flex: 0 0 auto;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+}
+    
+
+/* Grid */
+
+@supports(display:grid) {
+    @media only screen and (min-width:60em) {
+        
+        body {
+
+            width: auto;
+            -webkit-align-items: stretch;
+                -ms-align-items: stretch;
+                    align-items: stretch; 
+                
+            display: grid;
+            /*grid-template-columns: 1fr fit-content(34%);*/
+            grid-template-columns: 3fr 1fr;
+            grid-template-rows: max-content auto max-content;
+            
+            min-height: 100%;
+            height: auto;
+        }
+        
+        body > header,
+        body > footer {
+            padding: $f__sz-s;
+            grid-column: 1 / -1;
+        } 
+
+
+        
+        body > main {
+            grid-column: 1;
+        }
+
+        /*
+            Note this is the *template* sidebar - content in a sidebar that appears on all pages.
+            Not to be confused with th *content* sidebar, which is specific to the current page
+            content.
+        /*
+        body > aside {
+            grid-column: 2;
+        }
+        
+        /*
+            If there's no aside (sidebar) then main has to span both columns:
+            Note this is fragile and depends on following the Elementary pattern absolutely.
+            What it says is that if main is the 3rd from last element, it spans all columns.
+            If there are more elements after the `main` element (as in, there's the extra `aside`),
+            then the selector won't match.
+            
+        */
+        body > main:nth-last-child(3) {
+            grid-column: 1 / -1;
+        }
+        
+        
+    }
+}
+
+
+/*------------------------------------------------------------------------------------------------*/
+
+@import '_1-banner.scss';
+@import '_2-main.scss';
+@import '_3-sidebar.scss';
+@import '_4-footer.scss';
+
+
+
+
+
+/*---*/
+
+/*
+    Greybox
+*/
+
+body > header,
+body > footer {
+    background: #ddd;
+}
+
+body > aside {
+    background: #ccc;
+}
+
+
+main > div > ul > li > a[href] {
+    
+    padding: $f__sz-m;
+    background: #ddd;
+    display: block;
+}

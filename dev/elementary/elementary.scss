@@ -1,0 +1,23 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    ELEMENTARY
+
+-|------------------------------------------------------------------------------------------------*/
+
+$f__base-font-family: 'Lato', sans-serif;
+
+$f__root-font-size: 10px;
+
+//$f__base-ui-color: #2E8B57;
+//$f__namespace: '.ugc ';
+//$f__namespace: 'main ';
+
+
+
+$f__experimental_checkradios: true;
+
+@import '../start-css/scss/_start_settings.scss';
+@import '../start-css/scss/_start_functions.scss';
+@import '../start-css/scss/_start_mixins.scss';
+
+@import 'scss/_0-elementary.scss';

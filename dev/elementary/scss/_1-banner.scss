@@ -1,0 +1,38 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    BANNER
+
+|-------------------------------------------------------------------------------------------------*/
+
+
+/*
+    Banner
+*/
+body > header {
+    padding: $f__sz-s $f__sz-s $f__sz-xs $f__sz-s;
+    margin: 0;
+    
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    
+    -webkit-align-items: center;
+         -ms-flex-align: center;
+            align-items: center;
+            
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+}
+
+body > header > * {
+    -webkit-flex: 0 0 auto;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+}
+
+
+/*------------------------------------------------------------------------------------------------*/
+
+@import 'scss/1-banner/_1-logo.scss';
+@import 'scss/1-banner/_2-navbar.scss';

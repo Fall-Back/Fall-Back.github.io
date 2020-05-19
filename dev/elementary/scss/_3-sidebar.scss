@@ -1,0 +1,18 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    LAYOUT SIDEBAR
+    This should be used for site-wide content. I.e. content that doesn't change from page-to-page.
+    Examples include:
+    * Site-wide navigation if not putting in Banner.#
+    * Search
+    * Sign-up
+    * Donate
+    * Featured / Promoted content
+    * Ads :-(
+
+|-------------------------------------------------------------------------------------------------*/
+
+body > aside {
+    margin: 0;
+    padding: $f__sz-m;
+}

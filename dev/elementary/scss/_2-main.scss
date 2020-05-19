@@ -1,0 +1,28 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    MAIN
+
+|-------------------------------------------------------------------------------------------------*/
+
+/*
+    Expand main to sill space - part of stick footer.
+*/
+body > main {
+    min-height: 0;
+    -webkit-flex: 1 0 auto;
+        -ms-flex: 1 0 auto;
+            flex: 1 0 auto;
+            
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/*------------------------------------------------------------------------------------------------*/
+
+@import 'scss/2-main/_1-header.scss';
+@import 'scss/2-main/_2-breadcrumbs.scss';
+@import 'scss/2-main/_3-content.scss';
+@import 'scss/2-main/_4-content-sidebar.scss';
+@import 'scss/2-main/_5-content-footer.scss';
