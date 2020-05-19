@@ -378,9 +378,15 @@ main > * > header ~ * {
 /*
     If the wrapper [A] is an article, the purpose is longform text [B], so we want that to be easier
     to read, so add `max-width` and center it.
+    
+    1. Some items from StartCSS are `display: table` for other fixes. Because of that they're
+       intrinsically sized so may not appear full width, and therefore look odd, so expand them.
+    
 */
 main > article > header ~ * {
-  max-width: 80rem;
+  width: 100%;
+  /* 1 */
+  max-width: 70rem;
   margin-left: auto;
   margin-right: auto;
 }

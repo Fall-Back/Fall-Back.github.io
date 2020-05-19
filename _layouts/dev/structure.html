@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en-gb" class="no-js">
 <head>
+    {% capture ignore %}
     {% if layout.head_stylesheets.first and page.head_stylesheets.first %}
         {% assign head_stylesheets = layout.head_stylesheets | concat: page.head_stylesheets %}
     {% elsif layout.head_stylesheets.first %}
@@ -54,8 +55,8 @@
     {% else %}
         {% assign body_end_script = false %}
     {% endif %}
-    <meta charset="utf-8">
-    <title>{{ page.title }} | Fall-Back Developement</title>
+    {% endcapture %}<meta charset="utf-8">
+    <title>{{ page.title }} | Fall-Back Development</title>
     
     <meta name="description" content="Fall-Back Developement">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -65,6 +66,10 @@
     <!--<base href="http://localhost:4001/">-->
 
     <style>
+        /* FOUC font match fallback */
+        /* Match your final body webfont with this tool: https://meowni.ca/font-style-matcher/ */
+        /* Paste the output here */
+        
         /* Tiny fallback styles */
         /* (https://github.com/Fall-Back/Base/edit/master/tiny-fallback-styles.css) */
         body{padding:1em;margin:0 auto;max-width: 50em;}
@@ -80,7 +85,7 @@
         Accessible font loading. FOUT is a lesser evil than FOIT.
         (https://keithclark.co.uk/articles/loading-css-without-blocking-render/)
     -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
 
     {% if layout.m3cut != false %}
     <!--
@@ -171,6 +176,8 @@
             background: transparent;
         }
     </style>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
     {% endif %}
 
     <link rel="apple-touch-icon" sizes="180x180" href="/dev/apple-touch-icon.png">
@@ -265,16 +272,16 @@
 
     {{ content }}
 
-    {% if page.load_highlighter or layout.load_highlighter %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-    {% endif %}
-
-    {% if body_end_script != false %}
+    
     <script>
-    {{ body_end_script }}
-    </script>
+    {% if page.load_highlighter or layout.load_highlighter %}
+    hljs.initHighlightingOnLoad();
     {% endif %}
-
+    
+    {% if body_end_script != false %}
+    {{ body_end_script }}
+    {% endif %}
+    </script>
+    
 </body>
 </html>
