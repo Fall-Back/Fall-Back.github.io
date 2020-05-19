@@ -1650,11 +1650,14 @@ sup {
 /*
     1. Change the fill color to match the text color in all browsers.
        (needs more testing)
+       
+    2. iOS7 (at least) adds a mystery top margin.
 */
 svg {
   vertical-align: middle;
   fill: currentColor;
   /* 1 */
+  margin-top: 0;
 }
 
 /*
