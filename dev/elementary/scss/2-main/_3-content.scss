@@ -5,11 +5,11 @@
 |-------------------------------------------------------------------------------------------------*/
 
 /*
-    Content wrapper [A] could be anything (so far `article` or `div`): `main > * >.
+    Content wrapper [A] could be anything (so far `article` or `div`): `#{$es__page_main} > * >.
     Inside the wrapper there should be `header` (see _1-header.scss).
     After the header we want to give elements some side padding: `~ *`.
 */
-main > * > header ~ * {
+#{$es__page_main} > * > header ~ * {
     padding-left: $f__sz-m;
     padding-right: $f__sz-m;
 }
@@ -23,7 +23,7 @@ main > * > header ~ * {
        intrinsically sized so may not appear full width, and therefore look odd, so expand them.
     
 */
-main > article > header ~ * {
+#{$es__page_main} > article > header ~ * {
     width: 100%; /* 1 */
     max-width: 70rem;
     margin-left: auto;
@@ -34,39 +34,43 @@ main > article > header ~ * {
     We're using `div` (human semantic "divider") to break out of the `max-width`.
     Use for things like full width images, videos or figures.
 */
-main > * > header ~ div {
+#{$es__page_main} > * > header ~ div {
     max-width: none;
     padding: 0;
 }
 
 /*
-    If the wrapper [A] is a `div` and the next element after the header is `ul`, we're defining that
+    If the wrapper [A] is a `div` and the next 'trigger' header sibling is `ul`, we're defining that
     as a list of card-like objects, so we want a gallery-style grid.
     Use for things like portfolio images or article cards.
 */
-main > div > header ~ ul {
+#{$es__page_main} > div > header ~ ul {
+    list-style-type: none;
+    
+
+    /*
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     -webkit-flex-wrap: wrap;
         -ms-flex-wrap: wrap;
             flex-wrap: wrap;
-
-    list-style-type: none;
-    
-    /* Gutter */
+        
+    /* Gutter *
     margin: -$f__sz-m 0 0 0;
     padding: $f__sz-s;
     
-    /* Centre */
+    /* Centre *
               -ms-flex-pack: center;
     -webkit-justify-content: center;
             justify-content: center;
+    */
 }
 
 
-main > div > header:first-child ~ ul > li {
+#{$es__page_main} > div > header ~ ul > li {
     margin: 0;
+    /*
          -webkit-flex: 1;
     -ms-flex-positive: 1;
             flex-grow: 1;
@@ -74,26 +78,27 @@ main > div > header:first-child ~ ul > li {
       -ms-flex-negative: 0;
             flex-shrink: 0;
         
-    /* Size */
+    /* Size *
          -webkit-flex-basis: 15em;
     -ms-flex-preferred-size: 15em;
                  flex-basis: 15em;
     /*
         flex-basis 15em acts like a min-width.
         30em-1px is the point at which there isn't room for 2 items side-by-side
-    */
+    *
     max-width: calc(30em - 1px);
     
-    /* Gutter */
+    /* Gutter *
     margin: 0;
-    padding: $f__sz-s;   
+    padding: $f__sz-s;  
+    */
 }
 
 
 /*
     Inline elements
 */
-main img {
+#{$es__page_main} img {
     width: 100%;
 }
 

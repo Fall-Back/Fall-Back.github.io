@@ -4,7 +4,7 @@
 
 |-------------------------------------------------------------------------------------------------*/
 
-body > footer {
+#{$es__page_footer} {
     margin: 0;
     padding: $f__sz-s;
     
@@ -12,6 +12,6 @@ body > footer {
     text-align: center;
 }
 
-body > footer > * {
+#{$es__page_footer} > * {
     margin-bottom: 0;
 }

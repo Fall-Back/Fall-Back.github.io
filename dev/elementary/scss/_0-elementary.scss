@@ -2,6 +2,32 @@
 
     ELEMENTARY
 
+    Expected structure for core Elementary to work:
+
+    <html>
+    <head>
+        ...
+    </head>
+    <body>
+        <hidden elements like svg and css-only message>
+        <header>
+        <main>
+        ?<aside> [1]
+        <footer>
+        ?<script> [1]
+    </body>
+    </html>
+
+    NOTES
+    -----
+
+    1.  These elements are optional, and there could be more than one <script> element, but the
+        MAIN POSITION SELECTOR (below) needs to be altered via the $main_position_selector variable
+        so that it takes into account the number of elements invoked.
+        Note that the way this works accounts for there *sometimes* being an aside present or not
+        (so if it's not there the selector matches the main element and makes it span both columns).
+
+
 |-------------------------------------------------------------------------------------------------*/
 
 @import '_00-settings.scss';
@@ -10,7 +36,7 @@
 /*
     CSS only message
 */
-body > div:first-child {
+#{$es__css-only} {
     display: none;
 }
 
@@ -45,38 +71,38 @@ body > * {
         -ms-flex: 0 0 auto;
             flex: 0 0 auto;
 }
-    
+
 
 /* Grid */
 
 @supports(display:grid) {
     @media only screen and (min-width:50em) {
-        
+
         body {
 
             width: auto;
             -webkit-align-items: stretch;
                 -ms-align-items: stretch;
-                    align-items: stretch; 
-                
+                    align-items: stretch;
+
             display: grid;
             /*grid-template-columns: 1fr fit-content(34%);*/
             grid-template-columns: 3fr 1fr;
             grid-template-rows: max-content auto max-content;
-            
+
             min-height: 100%;
             height: auto;
         }
-        
-        body > header,
-        body > footer {
+
+        #{$es__page_banner},
+        #{$es__page_footer} {
             padding: $f__sz-s;
             grid-column: 1 / -1;
-        } 
+        }
 
 
-        
-        body > main {
+
+        #{$es__page_main} {
             grid-column: 1;
         }
 
@@ -88,21 +114,22 @@ body > * {
         body > aside {
             grid-column: 2;
         }
-        
+
         /*
+            MAIN POSITION SELECTOR
+
             If there's no aside (sidebar) then main has to span both columns:
             Note this is fragile and depends on following the Elementary pattern absolutely.
             What it says is that if main is the X from last element, it spans all columns.
             If there are more elements after the `main` element (as in, there's the extra `aside`),
             then the selector won't match. Change this in local SCSS and be wary of adding or
             removing elements via JS.
-            
+
         */
-        body > main:nth-last-child(#{$e__main-position}) {
+        #{$es__page_main}:nth-last-child(#{$e__main-position}) {
             grid-column: 1 / -1;
         }
-        
-        
+
     }
 }
 
@@ -124,8 +151,8 @@ body > * {
     Greybox
 */
 
-body > header,
-body > footer {
+#{$es__page_banner},
+#{$es__page_footer} {
     background: #ddd;
 }
 
@@ -135,7 +162,7 @@ body > aside {
 
 
 main > div > ul > li > a[href] {
-    
+
     padding: $f__sz-m;
     background: #ddd;
     display: block;

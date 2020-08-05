@@ -4,16 +4,17 @@
 
 |-------------------------------------------------------------------------------------------------*/
 
-body > header > a[href] {
+//#{$es__page_banner $es__page_banner__logo} {
+#{$es__page_banner} #{$es__page_banner__logo} {
     display: inline-block;
     border: 0;
     padding: 0;
     margin: 0 $f__sz-m $f__sz-xs 0;
 }
 
-body > header > a[href]:hover,
-body > header > a[href]:active,
-body > header > a[href]:focus {
+#{$es__page_banner} #{$es__page_banner__logo}:hover,
+#{$es__page_banner} #{$es__page_banner__logo}:active,
+#{$es__page_banner} #{$es__page_banner__logo}:focus {
     border: 0;
     padding: 0;
 

@@ -4,7 +4,7 @@
 
 |-------------------------------------------------------------------------------------------------*/
 
-body > header > nav {
+#{$es__page_banner} > nav {
     margin: $f__sz-xs 0;
 
     -webkit-flex: 1 1 auto;
@@ -12,7 +12,7 @@ body > header > nav {
             flex: 1 1 auto;
 }
 
-body > header > nav > ul {
+#{$es__page_banner} > nav > ul {
     margin: 0;
         
     list-style-type: none;
@@ -27,7 +27,7 @@ body > header > nav > ul {
 
 }
 
-body > header > nav > ul li {
+#{$es__page_banner} > nav > ul li {
     margin: 0;
     padding: 0;
 
@@ -37,7 +37,7 @@ body > header > nav > ul li {
 }
 
 
-body > header > nav > ul a[href] {
+#{$es__page_banner} > nav > ul a[href] {
     display: block;
     margin: 0;
     padding-left: $e__nav-bar--spacing * 2;
@@ -55,22 +55,22 @@ body > header > nav > ul a[href] {
 }
 
 
-body > header > nav > ul a[href] {
+#{$es__page_banner} > nav > ul a[href] {
     color: $e__nav-bar__link--color;
     background-color: $e__nav-bar__link--background-color;
 }
 
 
 
-body > header > nav > ul a[href]:hover,
-body > header > nav > ul a[href]:active,
-body > header > nav > ul a[href] [aria-expanded="true"] {
+#{$es__page_banner} > nav > ul a[href]:hover,
+#{$es__page_banner} > nav > ul a[href]:active,
+#{$es__page_banner} > nav > ul a[href] [aria-expanded="true"] {
     color: $e__nav-bar__link--color--alt;
     background-color: $e__nav-bar__link--background-color--alt;
     border: 0;
 }
 
-body > header > nav > ul a[href]:focus {
+#{$es__page_banner} > nav > ul a[href]:focus {
     color: $e__nav-bar__link--color--alt;
     background-color: $e__nav-bar__link--background-color--alt2;
     border: 0;

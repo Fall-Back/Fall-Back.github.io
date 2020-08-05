@@ -191,7 +191,7 @@
     <meta name="theme-color" content="#ffffff">
 
 </head>
-<body role="document" class="{% if page.body_class != false %}{{ page.body_class }}{% endif %}">
+<body role="document"{% if page.body_class != false %} class="{{ page.body_class }}"{% endif %}>
 
     <svg xmlns="http://www.w3.org/2000/svg" display="none">
         <symbol id="icon-building" viewBox="0 0 24 24">
@@ -262,8 +262,8 @@
         </symbol>
     </svg>
 
-    <div class="no-style-notice  no-css-only">
-        <hr />
+    <div{% if layout.elementary != true %} class="no-style-notice  no-css-only"{% endif %}>
+        <hr aria-hidden="true" />
         <p>
             <b>Notice:</b> You are viewing an unstyled version of this page. Are you using a very old browser? If so, <a href="http://browsehappy.com/">please consider upgrading</a>.
         </p>

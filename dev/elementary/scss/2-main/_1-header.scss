@@ -8,7 +8,7 @@
     Page header
     (note may consider qualifying this with `:first-child` but I don't think it's needed)
 */
-main > * > header {
+#{$es__page_main} > * > header {
     margin: 0;
     padding: $f__sz-m;
 }
