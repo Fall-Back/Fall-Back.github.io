@@ -2216,6 +2216,7 @@ p.subtitle {
   /* 1 */
   vertical-align: middle;
   /* 2 */
+  max-width: 100%;
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;

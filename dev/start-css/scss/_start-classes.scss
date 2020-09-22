@@ -144,6 +144,7 @@ $ff__include_class_poem:          true !default;
         display: -ms-inline-flexbox; /* 1 */
         display: inline-flex; /* 1 */
         vertical-align: middle; /* 2 */
+        max-width: 100%;
 
         -webkit-flex-wrap: wrap;
             -ms-flex-wrap: wrap;
