@@ -121,6 +121,7 @@ $f__using-Start-CSS: true;
        scrollbars naturally. (I)
 
     4. Convert the value to a percentage so as not to override user font settings.
+       This needs to be on the root node.
 
     5. Prevent font size adjustments after orientation changes in IE and iOS. (N)
     
@@ -138,7 +139,7 @@ html {
     background-color: $f__html-background-color;
 
     font-size: #{$f__root-font-size-percent * 1%}; /* 4 */
-    font-family: $f__base-font-family;
+
 
     -ms-text-size-adjust: 100%; /* 5 */
     -webkit-text-size-adjust: 100%; /* 5 */
@@ -224,6 +225,7 @@ html {
 
 /*
     1. Ensure that absolutely positioned child elements expand to the full height of the body.
+    2. Reset any FOUC font match fallback. @TODO Make these vars.
 */
 body {
     position: relative; /* 1 */
@@ -245,8 +247,11 @@ body {
 
     padding: $f__body-padding;
 
+    font-family: $f__base-font-family;
     font-size: ($f__base-font-size / $f__root-font-size * 1em);
     line-height: $f__base-rem-space-unit;
+    letter-spacing: initial; /* 2 */
+    word-spacing: initial; /* 2 */
     
     background-color: $f__body-background-color;
     color: $f__body-text-color;

@@ -23,7 +23,7 @@
 |-------------------------------------------------------------------------------------------------*/
 /*
     Colour contrast from https://gist.github.com/FStop/8959422
-    
+
     Usage:
     @if f__color_contrast($colour, #fff) < 2 {
         color: #333;
@@ -175,6 +175,7 @@
        scrollbars naturally. (I)
 
     4. Convert the value to a percentage so as not to override user font settings.
+       This needs to be on the root node.
 
     5. Prevent font size adjustments after orientation changes in IE and iOS. (N)
     
@@ -193,7 +194,6 @@ html {
   background-color: #50514F;
   font-size: 62.5%;
   /* 4 */
-  font-family: "Lato", sans-serif;
   -ms-text-size-adjust: 100%;
   /* 5 */
   -webkit-text-size-adjust: 100%;
@@ -277,6 +277,7 @@ _:-ms-lang(x), html {
 
 /*
     1. Ensure that absolutely positioned child elements expand to the full height of the body.
+    2. Reset any FOUC font match fallback. @TODO Make these vars.
 */
 body {
   position: relative;
@@ -287,8 +288,13 @@ body {
   max-width: 50em;
   margin: 0 auto;
   padding: 0 2.4rem;
+  font-family: "Lato", sans-serif;
   font-size: 1.6em;
   line-height: 2.4rem;
+  letter-spacing: initial;
+  /* 2 */
+  word-spacing: initial;
+  /* 2 */
   background-color: transparent;
   color: #333;
 }

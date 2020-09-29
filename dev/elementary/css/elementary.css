@@ -28,7 +28,7 @@
 |-------------------------------------------------------------------------------------------------*/
 /*
     Colour contrast from https://gist.github.com/FStop/8959422
-    
+
     Usage:
     @if f__color_contrast($colour, #fff) < 2 {
         color: #333;

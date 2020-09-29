@@ -33,7 +33,7 @@
 
 /*
     Colour contrast from https://gist.github.com/FStop/8959422
-    
+
     Usage:
     @if f__color_contrast($colour, #fff) < 2 {
         color: #333;
@@ -84,7 +84,7 @@
     $light-color: round((red(#ffffff) * 299) + (green(#ffffff) * 587) + (blue(#ffffff) * 114) / 1000);
 
     @if abs($color-brightness) < ($light-color/2) {
-        //@debug #{$color} 'is dark'; 
+        //@debug #{$color} 'is dark';
         @return 'dark';
     }
 
@@ -108,4 +108,9 @@
             @return false;
         }
     }
+}
+
+
+@function f__strip-unit($value) {
+  @return $value / ($value * 0 + 1);
 }
