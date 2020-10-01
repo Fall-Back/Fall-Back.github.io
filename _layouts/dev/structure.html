@@ -24,11 +24,11 @@
     {% endif %}
     
     
-    {% if layout.head_scripts != false and page.head_scripts != false %}
-        {% assign head_scripts = layout.head_scripts | append: page.head_scripts %}
-    {% elsif layout.head_scripts != false %}
+    {% if layout.head_scripts.first and page.head_scripts.first %}
+        {% assign head_scripts = layout.head_scripts | concat: page.head_scripts %}
+    {% elsif layout.head_scripts.first %}
         {% assign head_scripts = layout.head_scripts %}
-    {% elsif page.head_scripts != false %}
+    {% elsif page.head_scripts.first %}
         {% assign head_scripts = page.head_scripts %}
     {% else %}
         {% assign head_scripts = false %}
