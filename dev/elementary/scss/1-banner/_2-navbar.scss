@@ -4,40 +4,29 @@
 
 |-------------------------------------------------------------------------------------------------*/
 
-#{$es__page_banner} > nav {
+#{$es__page_banner__navbar} {
     margin: $f__sz-xs 0;
-
-    -webkit-flex: 1 1 auto;
-        -ms-flex: 1 1 auto;
-            flex: 1 1 auto;
+    flex: 1 1 auto;
 }
 
-#{$es__page_banner} > nav > ul {
+#{$es__page_banner__navbar} > ul {
     margin: 0;
         
     list-style-type: none;
-    
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    
-    -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
 
+    display: flex;
+    flex-wrap: wrap;
 }
 
-#{$es__page_banner} > nav > ul li {
+#{$es__page_banner__navbar} > ul li {
     margin: 0;
     padding: 0;
 
-    -webkit-flex: 0 0 auto;
-        -ms-flex: 0 0 auto;
-            flex: 0 0 auto;
+    flex: 0 0 auto;
 }
 
 
-#{$es__page_banner} > nav > ul a[href] {
+#{$es__page_banner__navbar} > ul a[href] {
     display: block;
     margin: 0;
     padding-left: $e__nav-bar--spacing * 2;
@@ -55,22 +44,22 @@
 }
 
 
-#{$es__page_banner} > nav > ul a[href] {
+#{$es__page_banner__navbar} > ul a[href] {
     color: $e__nav-bar__link--color;
     background-color: $e__nav-bar__link--background-color;
 }
 
 
 
-#{$es__page_banner} > nav > ul a[href]:hover,
-#{$es__page_banner} > nav > ul a[href]:active,
-#{$es__page_banner} > nav > ul a[href] [aria-expanded="true"] {
+#{$es__page_banner__navbar} > ul a[href]:hover,
+#{$es__page_banner__navbar} > ul a[href]:active,
+#{$es__page_banner__navbar} > ul a[href] [aria-expanded="true"] {
     color: $e__nav-bar__link--color--alt;
     background-color: $e__nav-bar__link--background-color--alt;
     border: 0;
 }
 
-#{$es__page_banner} > nav > ul a[href]:focus {
+#{$es__page_banner__navbar} > ul a[href]:focus {
     color: $e__nav-bar__link--color--alt;
     background-color: $e__nav-bar__link--background-color--alt2;
     border: 0;

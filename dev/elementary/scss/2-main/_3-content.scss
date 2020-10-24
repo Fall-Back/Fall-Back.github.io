@@ -2,28 +2,39 @@
 
     CONTENT
 
+    ```
+    <main> <!-- OUTER WRAPPER -->
+        <?> <!-- INNER WRAPPER [A] e.g. article or div -->
+            <header>
+                <h1>...</h1>
+                ?...?
+            </header>
+        </?>
+    </main>
+    ```
+
 |-------------------------------------------------------------------------------------------------*/
 
 /*
     Content wrapper [A] could be anything (so far `article` or `div`): `#{$es__page_main} > * >.
     Inside the wrapper there should be `header` (see _1-header.scss).
-    After the header we want to give elements some side padding: `~ *`.
+    After the header} we want to give elements some side padding: `~ *`.
 */
-#{$es__page_main} > * > header ~ * {
+#{$es__page_main__header} ~ * {
     padding-left: $f__sz-m;
     padding-right: $f__sz-m;
 }
 
 
 /*
-    If the wrapper [A] is an article, the purpose is longform text [B], so we want that to be easier
-    to read, so add `max-width` and center it.
-    
+    If the wrapper [A] is an article, the purpose is longform text [PAGE TYPE Article], so we want
+    that to be easier to read, so add `max-width` and center it.
+
     1. Some items from StartCSS are `display: table` for other fixes. Because of that they're
        intrinsically sized so may not appear full width, and therefore look odd, so expand them.
-    
+
 */
-#{$es__page_main} > article > header ~ * {
+#{$es__page_main__header--article} ~ * {
     width: 100%; /* 1 */
     max-width: 70rem;
     margin-left: auto;
@@ -34,19 +45,19 @@
     We're using `div` (human semantic "divider") to break out of the `max-width`.
     Use for things like full width images, videos or figures.
 */
-#{$es__page_main} > * > header ~ div {
+#{$es__page_main__header} ~ div {
     max-width: none;
     padding: 0;
 }
 
 /*
-    If the wrapper [A] is a `div` and the next 'trigger' header sibling is `ul`, we're defining that
-    as a list of card-like objects, so we want a gallery-style grid.
+    If the wrapper [A] is a `div` [PAGE TYPE Listing] we're saying we want `ul`s to be a
+    gallery-style grid list of card-like object.
     Use for things like portfolio images or article cards.
 */
-#{$es__page_main} > div > header ~ ul {
+#{$es__page_main__header--listing} ~ ul {
     list-style-type: none;
-    
+
 
     /*
     display: -webkit-flex;
@@ -55,11 +66,11 @@
     -webkit-flex-wrap: wrap;
         -ms-flex-wrap: wrap;
             flex-wrap: wrap;
-        
+
     /* Gutter *
     margin: -$f__sz-m 0 0 0;
     padding: $f__sz-s;
-    
+
     /* Centre *
               -ms-flex-pack: center;
     -webkit-justify-content: center;
@@ -68,7 +79,7 @@
 }
 
 
-#{$es__page_main} > div > header ~ ul > li {
+#{$es__page_main__header--listing} ~ ul > li {
     margin: 0;
     /*
          -webkit-flex: 1;
@@ -77,7 +88,7 @@
     -webkit-flex-shrink: 0;
       -ms-flex-negative: 0;
             flex-shrink: 0;
-        
+
     /* Size *
          -webkit-flex-basis: 15em;
     -ms-flex-preferred-size: 15em;
@@ -87,10 +98,10 @@
         30em-1px is the point at which there isn't room for 2 items side-by-side
     *
     max-width: calc(30em - 1px);
-    
+
     /* Gutter *
     margin: 0;
-    padding: $f__sz-s;  
+    padding: $f__sz-s;
     */
 }
 

@@ -2418,6 +2418,149 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="
     ELEMENTARY MIXINS
 
 |-------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------|
+
+    ELEMENTARY SELECTORS
+    ====================
+    
+    Elementary relies solely on context and relative DOM position. This is why it should only be
+    for 'light' projects, where there isn't much variety and patterns can be closely adhered to.
+    
+    With that in mind, if the conventions are learned, there is some flexibility in the system,
+    particularly in regards to the extract DOM elements that are used, so long as any changes to 
+    the selectors below are carefully considered so as not to introduce conflicts.
+    
+    
+    Conventions
+    -----------
+
+    DIV
+        DIV's are semantically meaningless/neutral as far as AT is concerned, but since 'div' is
+        short for DIVIDER it makes logical sense to the HTML author that it is a division of content
+        and thus is appropriate for situations where content may need to be visually separated from
+        it's surroundings.
+        
+    Specificity
+    -----------
+    
+    Some of the selectors may look overly specific, but it's really important in such a fragile
+    system to be as specific as possible; to really say exactly what we mean.
+    For example, on a Listing page when writing the selector we could could say:
+    "Any `ul` that is a direct child of the inner wrapper should be a Gallery"
+    This would be `div > ul`. However, we use `div > header ~ ul` because what we really mean to say
+    is "Any `ul` AFTER the `header`", because if there was a list BEFORE the `header` for some
+    reason, it will not need to be a Gallery.
+
+|-------------------------------------------------------------------------------------------------*/
+/*
+    This container shows a message is CSS is unavailable. It is normally the first element on the
+    page after the SVG Icons.
+    
+    ```
+    <body>
+        <svg ... />
+        <div>
+            [CSS message]
+        </div>
+        ...
+    </body>
+    ```
+*/
+/*
+    The page is broken into sections: BANNER, MAIN, SIDEBAR (optional) and FOOTER.
+    
+    ```
+    <body>
+        ...
+        <header/>
+        <main/>
+        ?<aside/>?
+        <footer>
+        ...
+    </body>
+    ```
+    
+    BANNER
+        A fairly typical page banner where you'd expect to find a logo, primary navigation,
+        search, and maybe Calls to Action.
+    MAIN
+        The main content of the page. This may be one of several types (more on that later);
+        those types are patterns in their own right and should be declared with their own
+        unique markup.
+    ASIDE
+        An optional sidebar. It con be omitted on all or only some pages and the layout should 
+        retain it's integrity. This means the DOM is quite fragile and sensitive to change so be 
+        careful. More on that later.
+    FOOTER
+        This is a typical page footer and would contain the usual Copyright notice and key links
+        etc.
+*/
+/*
+    BANNER > LOGO
+    -------------
+    
+    This is the pattern needed to match the logo <a> in the banner.
+    
+    ```
+        <header>
+            <a/>
+            ...
+        </header>
+    ```
+*/
+/*
+    BANNER > NAVBAR
+    ---------------
+    
+    This is the pattern needed to match primary navigation. The links are expected to be in an
+    unordered list.
+    
+    ```
+    <header>
+        ...
+        <nav>
+            <ul>
+                <li>
+                    <a/>
+                </li>
+                ...
+            </ul>
+        </nav>
+    </header>
+    ```
+*/
+/*------------------------------------------------------------------------------------------------*/
+/*
+    MAIN
+    ----
+    
+    The MAIN area is both a semantic landmark and a content wrapper.
+    The MAIN pattern expects there to be *another* wrapper immediately inside it. What this wrapper
+    is determines how the content inside that is handled. In other words the markup chosen for this
+    internal wrapper should be appropriate to the rest of the content.
+    This choice determines the PAGE TYPE.
+    
+    ELEMENTARY attempts to provide common PAGE TYPES - PAGE TYPES can display any content, of
+    course, but the layout, focus and functionality of each TYPE is quite different.
+    
+    PAGE TYPES
+    
+    Article
+        This pattern should use `<article>` as the inner wrapper and should be used for pages where
+        longform text is the primary focus of the page. E.g. a Blog Post or Documentation Page.
+        
+    Listing
+        This pattern should use a `<div>` as the inner wrapper (since no other semantic element is
+        more appropriate) and is primarily intended as a Gallery Page. This could be a grid of 
+        cards or images, for example. It's possible to use this pattern for arbitrary markup, but
+        all `<ul>`s that are direct children of the inner `<div>` will be displayed as a gallery.
+        
+    More?...
+*/
+/*
+    MAIN > HEADER
+    -------------
+*/
 /*
     CSS only message
 */
@@ -2441,17 +2584,11 @@ body {
 body {
   max-width: 1080px;
   padding: 0;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
 }
 
 body > * {
-  -webkit-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
   flex: 0 0 auto;
 }
 
@@ -2460,8 +2597,6 @@ body > * {
   @media only screen and (min-width: 50em) {
     body {
       width: auto;
-      -webkit-align-items: stretch;
-      -ms-align-items: stretch;
       align-items: stretch;
       display: grid;
       /*grid-template-columns: 1fr fit-content(34%);*/
@@ -2480,7 +2615,7 @@ body > * {
     }
     /*
             Note this is the *template* sidebar - content in a sidebar that appears on all pages.
-            Not to be confused with th *content* sidebar, which is specific to the current page
+            Not to be confused with the *content* sidebar, which is specific to the current page
             content.
         /*
         body > aside {
@@ -2516,20 +2651,12 @@ body > * {
 body > header {
   padding: 1.2rem 1.2rem 0.6rem 1.2rem;
   margin: 0;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
 body > header > * {
-  -webkit-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
   flex: 0 0 auto;
 }
 
@@ -2561,27 +2688,19 @@ body > header > a[href]:focus {
 |-------------------------------------------------------------------------------------------------*/
 body > header > nav {
   margin: 0.6rem 0;
-  -webkit-flex: 1 1 auto;
-  -ms-flex: 1 1 auto;
   flex: 1 1 auto;
 }
 
 body > header > nav > ul {
   margin: 0;
   list-style-type: none;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
 body > header > nav > ul li {
   margin: 0;
   padding: 0;
-  -webkit-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
   flex: 0 0 auto;
 }
 
@@ -2629,8 +2748,6 @@ body > header > nav > ul a[href]:focus {
 */
 body > main {
   min-height: 0;
-  -webkit-flex: 1 0 auto;
-  -ms-flex: 1 0 auto;
   flex: 1 0 auto;
   max-width: none;
   width: 100%;
@@ -2668,13 +2785,24 @@ main > * > h1 {
 |-------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------|
 
-    CONENT
+    CONTENT
+
+    ```
+    <main> <!-- OUTER WRAPPER -->
+        <?> <!-- INNER WRAPPER [A] e.g. article or div -->
+            <header>
+                <h1>...</h1>
+                ?...?
+            </header>
+        </?>
+    </main>
+    ```
 
 |-------------------------------------------------------------------------------------------------*/
 /*
     Content wrapper [A] could be anything (so far `article` or `div`): `body > main > * >.
     Inside the wrapper there should be `header` (see _1-header.scss).
-    After the header we want to give elements some side padding: `~ *`.
+    After the header} we want to give elements some side padding: `~ *`.
 */
 body > main > * > header ~ * {
   padding-left: 2.4rem;
@@ -2682,12 +2810,12 @@ body > main > * > header ~ * {
 }
 
 /*
-    If the wrapper [A] is an article, the purpose is longform text [B], so we want that to be easier
-    to read, so add `max-width` and center it.
-    
+    If the wrapper [A] is an article, the purpose is longform text [PAGE TYPE Article], so we want
+    that to be easier to read, so add `max-width` and center it.
+
     1. Some items from StartCSS are `display: table` for other fixes. Because of that they're
        intrinsically sized so may not appear full width, and therefore look odd, so expand them.
-    
+
 */
 body > main > article > header ~ * {
   width: 100%;
@@ -2707,8 +2835,8 @@ body > main > * > header ~ div {
 }
 
 /*
-    If the wrapper [A] is a `div` and the next 'trigger' header sibling is `ul`, we're defining that
-    as a list of card-like objects, so we want a gallery-style grid.
+    If the wrapper [A] is a `div` [PAGE TYPE Listing] we're saying we want `ul`s to be a
+    gallery-style grid list of card-like object.
     Use for things like portfolio images or article cards.
 */
 body > main > div > header ~ ul {
@@ -2720,11 +2848,11 @@ body > main > div > header ~ ul {
     -webkit-flex-wrap: wrap;
         -ms-flex-wrap: wrap;
             flex-wrap: wrap;
-        
+
     /* Gutter *
     margin: -$f__sz-m 0 0 0;
     padding: $f__sz-s;
-    
+
     /* Centre *
               -ms-flex-pack: center;
     -webkit-justify-content: center;
@@ -2741,7 +2869,7 @@ body > main > div > header ~ ul > li {
     -webkit-flex-shrink: 0;
       -ms-flex-negative: 0;
             flex-shrink: 0;
-        
+
     /* Size *
          -webkit-flex-basis: 15em;
     -ms-flex-preferred-size: 15em;
@@ -2751,10 +2879,10 @@ body > main > div > header ~ ul > li {
         30em-1px is the point at which there isn't room for 2 items side-by-side
     *
     max-width: calc(30em - 1px);
-    
+
     /* Gutter *
     margin: 0;
-    padding: $f__sz-s;  
+    padding: $f__sz-s;
     */
 }
 
@@ -2765,138 +2893,223 @@ body > main img {
   width: 100%;
 }
 
+/*
+    Distribute items inside a container.
+
+*/
+/*
+    1. This is a hack for IE11, otherwise the container goes as wide as the children in a row.
+*/
 body > main > div > header ~ ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  margin: -0.5rem;
-  background: #eee;
+  justify-content: space-around;
+  align-items: stretch;
+  width: 0;
+  /* [1] */
+  min-width: 100%;
+  /* [1] */
+  flex-basis: 15em;
+  max-width: 20em;
   padding: 0.5rem;
-  /* Perhaps use this if setting a max-width on the items.
-    justify-content: space-evenly;
-    */
-  /*
-      Note 1-2 is mid-way between 1 and 2, it's only used on '12 items' thus far.
-    */
-  --bp1: 35rem;
-  --bp1-2: 45rem;
-  --bp2: 65rem;
+  --s: 1rem;
 }
 
 body > main > div > header ~ ul > * {
-  height: 20vh;
-  margin: 0.5rem;
-  flex-grow: 1;
-  /* This may do a reasonable job browsers that don't support min()/max() functions. Use !important to test this */
-  flex-basis: 15em;
-  color: #fff;
-  background-color: #000;
-  /* You may want a max-width, maybe not:
-    max-width: 25em;
-    */
+  flex: 0 1 auto;
+  margin: 0;
+  padding: 0;
+  padding: 0.5rem;
 }
 
-@supports (width: 1px) {
+/* Don't have classes here, so need to pick one.
+   Possible have it as a flag and allow selectors to be specified so could build multiple versions
+   of the patter?   
+    &--start {
+        justify-content: flex-start;
+    }
+
+    &--end {
+        justify-content: flex-end;
+    }
+    
+    &--limit-10 > * {
+        flex-basis: 7.5em;
+         max-width: 10em;
+    }
+
+    &--limit-15 > *  {
+        flex-basis: 11.25em;
+         max-width: 15em;
+    }
+
+    &--limit-20 > *  {
+        flex-basis: 15em;
+         max-width: 20em;
+    }
+
+    &--limit-25 > *  {
+        flex-basis: 18.75em;
+         max-width: 25em;
+    }
+
+    &--limit-30 > *  {
+        flex-basis: 22.5em;
+         max-width: 30em;
+    }
+
+    &--limit-35 > *  {
+        flex-basis: 26.25em;
+         max-width: 35em;
+    }
+
+    &--limit-40 > *  {
+        flex-basis: 30em;
+         max-width: 40em;
+    }
+    
+    // Add gutters:
+
+    &--gutter--s,
+    &--gutter--s > * {
+        padding: $distribute-spacing-unit--s / 2;
+        --s: 1rem;
+    }
+
+    &--gutter,
+    &--gutter > *,
+    &--gutter--m,
+    &--gutter--m > * {
+        padding: $distribute-spacing-unit / 2;
+        --s: 2rem;
+    }
+
+
+    &--gutter--l,
+    &--gutter--l > * {
+        padding: $distribute-spacing-unit--l / 2;
+        --s: 4rem;
+    }
+    
+*/
+@supports (width: max(1px, 1px)) {
   body > main > div > header ~ ul {
     flex-basis: auto;
+  }
+  /* 1 or more: */
+  body > main > div > header ~ ul > * {
+    flex-basis: 100%;
+    flex-grow: 1;
   }
   /* 2 or more: */
   body > main > div > header ~ ul > :nth-last-child(n+2),
   body > main > div > header ~ ul > :nth-last-child(n+2) ~ * {
-    flex-basis: max(50% - 1rem, (var(--bp1) - 100%) * 999);
+    flex-basis: max(50%, ((var(--b) * 2) - 100%) * 999);
   }
   /* 3 or more: */
   body > main > div > header ~ ul > :nth-last-child(n+3),
   body > main > div > header ~ ul > :nth-last-child(n+3) ~ * {
-    flex-basis: max(33% - 1rem, (var(--bp1) - 100%) * 999);
+    flex-basis: min(max(50%, ((var(--b) * 2) - 100%) * 999), max(33%, ((var(--b) * 3) - 100%) * 999));
+  }
+  /* 3 or more, different values for the first one: */
+  body > main > div > header ~ ul > :nth-last-child(n+3) {
+    flex-basis: max(33%, ((var(--b) * 3) - 100%) * 999);
   }
   /* 4 or more: */
   body > main > div > header ~ ul > :nth-last-child(n+4),
   body > main > div > header ~ ul > :nth-last-child(n+4) ~ * {
-    flex-basis: min(max(50% - 1rem, (var(--bp1) - 100%) * 999), max(25% - 1rem, (var(--bp2) - 100%) * 999));
+    flex-basis: min(max(50%, ((var(--b) * 2) - 100%) * 999), max(25%, ((var(--b) * 4) - 100%) * 999));
   }
   /*
-        From here on in there are increasingly more possibilities on how things can be laid out.
-        More items = more possibilities. I've tried to go for what I consider to be the most balanced option but almost all other possibilities are achievable.
+    From here on in there are increasingly more possibilities on how things can be laid out.
+    More items = more possibilities. I've tried to go for what I consider to be the most balanced option but almost all other possibilities are achievable.
     */
   /* 5 or more: */
   body > main > div > header ~ ul > :nth-last-child(n+5),
   body > main > div > header ~ ul > :nth-last-child(n+5) ~ * {
-    flex-basis: min(max(33% - 1rem, (var(--bp1) - 100%) * 999), max(20% - 1rem, (var(--bp2) - 100%) * 999));
+    flex-basis: min(max(50%, ((var(--b) * 2) - 100%) * 999), max(33%, ((var(--b) * 3) - 100%) * 999), max(25%, ((var(--b) * 4) - 100%) * 999), max(20%, ((var(--b) * 5) - 100%) * 999));
   }
   /* 5 or more, different values for the first two: */
   body > main > div > header ~ ul > :nth-last-child(n+5),
   body > main > div > header ~ ul > :nth-last-child(n+5) + * {
-    flex-basis: min(max(50% - 1rem, (var(--bp1) - 100%) * 999), max(20% - 1rem, (var(--bp2) - 100%) * 999));
+    flex-basis: min(max(50%, ((var(--b) * 2) - 100%) * 999), max(20%, ((var(--b) * 5) - 100%) * 999));
   }
-  /* 6 or more: (from here on we're assuming all items on one row is too many, but it can be done) */
+  /* 5 or more, different values for the first one: */
+  body > main > div > header ~ ul > :nth-last-child(n+5) {
+    flex-basis: min(max(50%, ((var(--b) * 3) - 100%) * 999), max(100%, ((var(--b) * 4) - 100%) * 999), max(20%, ((var(--b) * 5) - 100%) * 999));
+  }
+  /* 6 or more: */
   body > main > div > header ~ ul > :nth-last-child(n+6),
   body > main > div > header ~ ul > :nth-last-child(n+6) ~ * {
-    flex-basis: max(33% - 1rem, (var(--bp1) - 100%) * 999);
+    flex-basis: min(max(50%, ((var(--b) * 2) - 100%) * 999), max(33%, ((var(--b) * 3) - 100%) * 999), max(16%, ((var(--b) * 6) - 100%) * 999));
   }
-  /* 7 or more: (7 is tricky) */
+  /*
+        It's worth noting here that things get especially tricky and messy. We've already seen
+        with 6 we've had to skip some steps, and things like 7 and 11 are quite hard too.
+        Also with ANY amount, the practicalities of allowing all arrangements up to a single
+        row become limiting.
+        If you assume you have items that are quite small - and can therefore fit into a single
+        row - a small reduction in available width that causes wrapping would leave a very large
+        item on it's own row. This is the whole reason we want to balance things in the first
+        place, so that this doesn't happen - we want a reduction in available width that causes
+        wrapping to lead to MORE items being wrapped and thus creating a better balance.
+        It's just very hard to know where things SHOULD land.
+
+    */
+  /* 7 or more: (1x7 | 1,2x3 | 1,3x2 | 3,4) */
   body > main > div > header ~ ul > :nth-last-child(n+7),
   body > main > div > header ~ ul > :nth-last-child(n+7) ~ * {
-    flex-basis: min(max(50% - 1rem, (var(--bp1) - 100%) * 999), max(25% - 1rem, (var(--bp2) - 100%) * 999));
+    flex-basis: min(max(50%, ((var(--b) * 2) - 100%) * 999), max(33%, ((var(--b) * 3) - 100%) * 999), max(25%, ((var(--b) * 4) - 100%) * 999), max(14%, ((var(--b) * 7) - 100%) * 999));
   }
-  /* 7 or more, different values for the first three: */
-  body > main > div > header ~ ul > :nth-last-child(n+7),
+  /* 7 or more, different values for the second and third: */
   body > main > div > header ~ ul > :nth-last-child(n+7) + *,
   body > main > div > header ~ ul > :nth-last-child(n+7) + * + * {
-    flex-basis: max(33% - 1rem, (var(--bp2) - 100%) * 999);
+    flex-basis: min(max(50%, ((var(--b) * 2) - 100%) * 999), max(33%, ((var(--b) * 3) - 100%) * 999), max(14%, ((var(--b) * 7) - 100%) * 999));
   }
-  /* Note I really like this way of doing 7 but it's a less consitent progression to the others. Just keeping for reference.
-    7 or more, different values for the first two: *
-    body > main > div > header ~ ul > :nth-last-child(n+7),
-    body > main > div > header ~ ul > :nth-last-child(n+7) ~ * {
-      flex-basis: max(33% - 1rem, (var(--bp1) - 100%) * 999);
-    }
-      /* 7 or more, different values for the first two: *
-    body > main > div > header ~ ul > :nth-last-child(n+7),
-    body > main > div > header ~ ul > :nth-last-child(n+7) + * {
-      flex-basis: max(50% - 1rem, (var(--bp1) - 100%) * 999);
-    }*/
+  /* 7 or more, different values for the first one: */
+  body > main > div > header ~ ul > :nth-last-child(n+7) {
+    flex-basis: min(max(33%, ((var(--b) * 4) - 100%) * 999), max(14%, ((var(--b) * 7) - 100%) * 999));
+  }
   /* 8 or more: */
   body > main > div > header ~ ul > :nth-last-child(n+8),
   body > main > div > header ~ ul > :nth-last-child(n+8) ~ * {
-    flex-basis: min(max(50% - 1rem, (var(--bp1) - 100%) * 999), max(25% - 1rem, (var(--bp2) - 100%) * 999));
+    flex-basis: min(max(50%, ((var(--b) * 2) - 100%) * 999), max(25%, ((var(--b) * 4) - 100%) * 999), max(12%, ((var(--b) * 8) - 100%) * 999));
   }
   /* 9 or more: */
-  /*body > main > div > header ~ ul > :nth-last-child(n+9),
-    body > main > div > header ~ ul > :nth-last-child(n+9) ~ * {
-      flex-basis: max(33% - 1rem, (var(--bp1) - 100%) * 999);
-    }*/
   body > main > div > header ~ ul > :nth-last-child(n+9),
   body > main > div > header ~ ul > :nth-last-child(n+9) ~ * {
-    flex-basis: min(max(33% - 1rem, (var(--bp1) - 100%) * 999), max(20% - 1rem, (var(--bp2) - 100%) * 999));
+    flex-basis: min(max(50%, ((var(--b) * 2) - 100%) * 999), max(33%, ((var(--b) * 3) - 100%) * 999), max(11%, ((var(--b) * 9) - 100%) * 999));
   }
-  /* 9 or more, different values for the first three: */
-  body > main > div > header ~ ul > :nth-last-child(n+9),
-  body > main > div > header ~ ul > :nth-last-child(n+9) + *,
-  body > main > div > header ~ ul > :nth-last-child(n+9) + * + * {
-    flex-basis: min(max(33% - 1rem, (var(--bp1) - 100%) * 999), max(25% - 1rem, (var(--bp2) - 100%) * 999));
+  /* 9 or more, different values for the first one: */
+  body > main > div > header ~ ul > :nth-last-child(n+9) {
+    flex-basis: min(max(33%, ((var(--b) * 3) - 100%) * 999), max(11%, ((var(--b) * 9) - 100%) * 999));
   }
   /* 10 or more: */
   body > main > div > header ~ ul > :nth-last-child(n+10),
   body > main > div > header ~ ul > :nth-last-child(n+10) ~ * {
-    flex-basis: min(max(50% - 1rem, (var(--bp1) - 100%) * 999), max(20% - 1rem, (var(--bp2) - 100%) * 999));
+    flex-basis: min(max(50%, ((var(--b) * 2)- 100%) * 999), max(20%, ((var(--b) * 5) - 100%) * 999), max(10%, ((var(--b) * 10) - 100%) * 999));
   }
   /* 11 or more: */
   body > main > div > header ~ ul > :nth-last-child(n+11),
   body > main > div > header ~ ul > :nth-last-child(n+11) ~ * {
-    flex-basis: min(max(50% - 1rem, (var(--bp1) - 100%) * 999), max(25% - 1rem, (var(--bp2) - 100%) * 999));
+    flex-basis: min(max(50%, ((var(--b) * 2) - 100%) * 999), max(33%, ((var(--b) * 3) - 100%) * 999), max(9%, ((var(--b) * 11) - 100%) * 999));
   }
-  /* 11 or more, different values for the first ...: */
-  body > main > div > header ~ ul > :nth-last-child(n+11),
-  body > main > div > header ~ ul > :nth-last-child(n+11) + *,
-  body > main > div > header ~ ul > :nth-last-child(n+11) + * + *,
-  body > main > div > header ~ ul > :nth-last-child(n+11) + * + * + *,
-  body > main > div > header ~ ul > :nth-last-child(n+11) + * + * + * + * {
-    flex-basis: max(50% - 1rem, (var(--bp2) - 100%) * 999);
+  /* 11 or more, different values for the second one: */
+  body > main > div > header ~ ul > :nth-last-child(n+11) + * {
+    flex-basis: min(max(50%, ((var(--b) * 2) - 100%) * 999), max(9%, ((var(--b) * 11) - 100%) * 999));
   }
-  /* 12 or more: */
-  body > main > div > header ~ ul > :nth-last-child(n+12),
-  body > main > div > header ~ ul > :nth-last-child(n+12) ~ * {
-    flex-basis: min(max(50% - 1rem, (var(--bp1) - 100%) * 999), max(33% - 1rem, (var(--bp1-2) - 100%) * 999), max(25% - 1rem, (var(--bp2) - 100%) * 999));
+  /* 11 or more, different values for the first one: */
+  body > main > div > header ~ ul > :nth-last-child(n+11) {
+    flex-basis: min(max(50%, ((var(--b) * 3) - 100%) * 999), max(9%, ((var(--b) * 11) - 100%) * 999));
+  }
+  /* 12 or more: double class to boost specificity - ugh.*/
+  --balance-top > :nth-last-child(n+12),
+  --balance-top > :nth-last-child(n+12) ~ * {
+    flex-basis: min(max(50%, ((var(--b) * 2) - 100%) * 999), max(33%, ((var(--b) * 3) - 100%) * 999), max(25%, ((var(--b) * 4) - 100%) * 999), max(16%, ((var(--b) * 6) - 100%) * 999), max(8%, ((var(--b) * 12) - 100%) * 999));
   }
 }
 

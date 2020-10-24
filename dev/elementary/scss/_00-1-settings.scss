@@ -53,14 +53,3 @@ $e__nav-bar__title--padding:               0 !default;
 // Grid
 // Allow main position to be set based on actually markup in use:
 $e__main-position: 3;
-
-// Selectors:
-// (I may move this to it's own file)
-$es__css-only: "body > div:first-of-type" !default;
-
-$es__page_banner:  "body > header" !default;
-$es__page_main:    "body > main" !default;
-$es__page_sidebar: "body > aside" !default;
-$es__page_footer:  "body > footer" !default;
-
-$es__page_banner__logo: "> a[href]" !default;

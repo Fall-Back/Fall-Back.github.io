@@ -30,8 +30,9 @@
 
 |-------------------------------------------------------------------------------------------------*/
 
-@import '_00-settings.scss';
-@import '_00-mixins.scss';
+@import '_00-1-settings.scss';
+@import '_00-2-mixins.scss';
+@import '_00-3-selectors.scss';
 
 /*
     CSS only message
@@ -58,18 +59,12 @@ body {
     max-width: 1080px;
 
     padding: 0;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    flex-direction: column;
 }
 
 body > * {
-    -webkit-flex: 0 0 auto;
-        -ms-flex: 0 0 auto;
-            flex: 0 0 auto;
+    flex: 0 0 auto;
 }
 
 
@@ -81,9 +76,7 @@ body > * {
         body {
 
             width: auto;
-            -webkit-align-items: stretch;
-                -ms-align-items: stretch;
-                    align-items: stretch;
+            align-items: stretch;
 
             display: grid;
             /*grid-template-columns: 1fr fit-content(34%);*/

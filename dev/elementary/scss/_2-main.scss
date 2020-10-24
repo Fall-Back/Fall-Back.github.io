@@ -9,9 +9,7 @@
 */
 #{$es__page_main} {
     min-height: 0;
-    -webkit-flex: 1 0 auto;
-        -ms-flex: 1 0 auto;
-            flex: 1 0 auto;
+    flex: 1 0 auto;
             
     max-width: none;
     width: 100%;
