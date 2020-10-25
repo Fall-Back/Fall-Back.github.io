@@ -562,53 +562,6 @@ body > main > * > header ~ div {
     gallery-style grid list of card-like object.
     Use for things like portfolio images or article cards.
 */
-body > main > div > header ~ ul {
-  list-style-type: none;
-  /*
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-
-    /* Gutter *
-    margin: -$f__sz-m 0 0 0;
-    padding: $f__sz-s;
-
-    /* Centre *
-              -ms-flex-pack: center;
-    -webkit-justify-content: center;
-            justify-content: center;
-    */
-}
-
-body > main > div > header ~ ul > li {
-  margin: 0;
-  /*
-         -webkit-flex: 1;
-    -ms-flex-positive: 1;
-            flex-grow: 1;
-    -webkit-flex-shrink: 0;
-      -ms-flex-negative: 0;
-            flex-shrink: 0;
-
-    /* Size *
-         -webkit-flex-basis: 15em;
-    -ms-flex-preferred-size: 15em;
-                 flex-basis: 15em;
-    /*
-        flex-basis 15em acts like a min-width.
-        30em-1px is the point at which there isn't room for 2 items side-by-side
-    *
-    max-width: calc(30em - 1px);
-
-    /* Gutter *
-    margin: 0;
-    padding: $f__sz-s;
-    */
-}
-
 /*
     Inline elements
 */
@@ -617,237 +570,81 @@ body > main img {
 }
 
 /*
-    Distribute items inside a container.
+    What should be the default behaviour for this?
+    
+    I mean, you'll want to choose the behaviour based on use case and number of items.
+    
+    I've covered this before, and there are different 'classes' of behaviour to consider:
+    
+    1. **Gallery Grid**. KNOW/UNKNOWN QUANTITY (doesn't matter) Use CSS Grid for this. 
+       USES: (Where the are more than X items ?), the items need to be given equal weighting, they 
+       should appear as a list (so uneven trailing items are left-aligned and do not expand to the 
+       fill the bottom row). VARIABLE/UNDETERMINED quantity. E.g People/PRU People, SHEER badge 
+       list.
 
-*/
-/*
-    1. This is a hack for IE11, otherwise the container goes as wide as the children in a row.
+    2. **Selected Balanced Display**. KNOWN QUANTITY. Items should be considered a 'Display' and
+       should be balanced properly. The correct display pattern class should be applied depending on
+       the quantity and behaviour required. E.g footer logo lists (if number changes, change the 
+       class - the number isn't ever unknown). KNOWN card lists, e.g. PRU (7, weighted bottom) / 
+       Contact Cards (6, 1x6, 2x3, 3x2)
+
+    3. **Auto Balanced Display**. UNKNOWN QUANTITY. This is the trickiest, and will ALWAYS have the 
+       potential to be broken. E.g. News cards - we KNOW it's 6 or less so we can account for that
+       using QQ's etc, but there's nothing to stop an unknowing admin changing this to something
+       like 20. If the max assumed quantity for the pattern is, say 16, then 20 is outside,
+       so the behaviour is undefined. This is SO unlikely though
 */
 body > main > div > header ~ ul {
-  margin: 0;
-  padding: 0;
   list-style-type: none;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: stretch;
-  width: 0;
-  /* [1] */
-  min-width: 100%;
-  /* [1] */
-  flex-basis: 15em;
-  max-width: 20em;
   padding: 0.5rem;
-  --s: 1rem;
 }
 
 body > main > div > header ~ ul > * {
-  flex: 0 1 auto;
-  margin: 0;
-  padding: 0;
-  padding: 0.5rem;
+  margin: 0.5rem;
+  flex-shrink: 0;
+  flex-grow: 1;
+  flex-basis: 15rem;
+  background-color: #ccc;
 }
 
-/* Don't have classes here, so need to pick one.
-   Possible have it as a flag and allow selectors to be specified so could build multiple versions
-   of the patter?   
-    &--start {
-        justify-content: flex-start;
-    }
-
-    &--end {
-        justify-content: flex-end;
-    }
-    
-    &--limit-10 > * {
-        flex-basis: 7.5em;
-         max-width: 10em;
-    }
-
-    &--limit-15 > *  {
-        flex-basis: 11.25em;
-         max-width: 15em;
-    }
-
-    &--limit-20 > *  {
-        flex-basis: 15em;
-         max-width: 20em;
-    }
-
-    &--limit-25 > *  {
-        flex-basis: 18.75em;
-         max-width: 25em;
-    }
-
-    &--limit-30 > *  {
-        flex-basis: 22.5em;
-         max-width: 30em;
-    }
-
-    &--limit-35 > *  {
-        flex-basis: 26.25em;
-         max-width: 35em;
-    }
-
-    &--limit-40 > *  {
-        flex-basis: 30em;
-         max-width: 40em;
-    }
-    
-    // Add gutters:
-
-    &--gutter--s,
-    &--gutter--s > * {
-        padding: $distribute-spacing-unit--s / 2;
-        --s: 1rem;
-    }
-
-    &--gutter,
-    &--gutter > *,
-    &--gutter--m,
-    &--gutter--m > * {
-        padding: $distribute-spacing-unit / 2;
-        --s: 2rem;
-    }
-
-
-    &--gutter--l,
-    &--gutter--l > * {
-        padding: $distribute-spacing-unit--l / 2;
-        --s: 4rem;
-    }
-    
-*/
-@supports (width: max(1px, 1px)) {
-  body > main > div > header ~ ul {
-    flex-basis: auto;
-  }
-  /* 1 or more: */
-  body > main > div > header ~ ul > * {
-    flex-basis: 100%;
-    flex-grow: 1;
-  }
-  /* 2 or more: */
-  body > main > div > header ~ ul > :nth-last-child(n+2),
-  body > main > div > header ~ ul > :nth-last-child(n+2) ~ * {
-    flex-basis: max(50%, ((var(--b) * 2) - 100%) * 999);
-  }
-  /* 3 or more: */
-  body > main > div > header ~ ul > :nth-last-child(n+3),
-  body > main > div > header ~ ul > :nth-last-child(n+3) ~ * {
-    flex-basis: min(max(50%, ((var(--b) * 2) - 100%) * 999), max(33%, ((var(--b) * 3) - 100%) * 999));
-  }
-  /* 3 or more, different values for the first one: */
-  body > main > div > header ~ ul > :nth-last-child(n+3) {
-    flex-basis: max(33%, ((var(--b) * 3) - 100%) * 999);
-  }
-  /* 4 or more: */
-  body > main > div > header ~ ul > :nth-last-child(n+4),
-  body > main > div > header ~ ul > :nth-last-child(n+4) ~ * {
-    flex-basis: min(max(50%, ((var(--b) * 2) - 100%) * 999), max(25%, ((var(--b) * 4) - 100%) * 999));
-  }
-  /*
-    From here on in there are increasingly more possibilities on how things can be laid out.
-    More items = more possibilities. I've tried to go for what I consider to be the most balanced option but almost all other possibilities are achievable.
-    */
-  /* 5 or more: */
-  body > main > div > header ~ ul > :nth-last-child(n+5),
-  body > main > div > header ~ ul > :nth-last-child(n+5) ~ * {
-    flex-basis: min(max(50%, ((var(--b) * 2) - 100%) * 999), max(33%, ((var(--b) * 3) - 100%) * 999), max(25%, ((var(--b) * 4) - 100%) * 999), max(20%, ((var(--b) * 5) - 100%) * 999));
-  }
-  /* 5 or more, different values for the first two: */
-  body > main > div > header ~ ul > :nth-last-child(n+5),
-  body > main > div > header ~ ul > :nth-last-child(n+5) + * {
-    flex-basis: min(max(50%, ((var(--b) * 2) - 100%) * 999), max(20%, ((var(--b) * 5) - 100%) * 999));
-  }
-  /* 5 or more, different values for the first one: */
-  body > main > div > header ~ ul > :nth-last-child(n+5) {
-    flex-basis: min(max(50%, ((var(--b) * 3) - 100%) * 999), max(100%, ((var(--b) * 4) - 100%) * 999), max(20%, ((var(--b) * 5) - 100%) * 999));
-  }
-  /* 6 or more: */
-  body > main > div > header ~ ul > :nth-last-child(n+6),
-  body > main > div > header ~ ul > :nth-last-child(n+6) ~ * {
-    flex-basis: min(max(50%, ((var(--b) * 2) - 100%) * 999), max(33%, ((var(--b) * 3) - 100%) * 999), max(16%, ((var(--b) * 6) - 100%) * 999));
-  }
-  /*
-        It's worth noting here that things get especially tricky and messy. We've already seen
-        with 6 we've had to skip some steps, and things like 7 and 11 are quite hard too.
-        Also with ANY amount, the practicalities of allowing all arrangements up to a single
-        row become limiting.
-        If you assume you have items that are quite small - and can therefore fit into a single
-        row - a small reduction in available width that causes wrapping would leave a very large
-        item on it's own row. This is the whole reason we want to balance things in the first
-        place, so that this doesn't happen - we want a reduction in available width that causes
-        wrapping to lead to MORE items being wrapped and thus creating a better balance.
-        It's just very hard to know where things SHOULD land.
-
-    */
-  /* 7 or more: (1x7 | 1,2x3 | 1,3x2 | 3,4) */
-  body > main > div > header ~ ul > :nth-last-child(n+7),
-  body > main > div > header ~ ul > :nth-last-child(n+7) ~ * {
-    flex-basis: min(max(50%, ((var(--b) * 2) - 100%) * 999), max(33%, ((var(--b) * 3) - 100%) * 999), max(25%, ((var(--b) * 4) - 100%) * 999), max(14%, ((var(--b) * 7) - 100%) * 999));
-  }
-  /* 7 or more, different values for the second and third: */
-  body > main > div > header ~ ul > :nth-last-child(n+7) + *,
-  body > main > div > header ~ ul > :nth-last-child(n+7) + * + * {
-    flex-basis: min(max(50%, ((var(--b) * 2) - 100%) * 999), max(33%, ((var(--b) * 3) - 100%) * 999), max(14%, ((var(--b) * 7) - 100%) * 999));
-  }
-  /* 7 or more, different values for the first one: */
-  body > main > div > header ~ ul > :nth-last-child(n+7) {
-    flex-basis: min(max(33%, ((var(--b) * 4) - 100%) * 999), max(14%, ((var(--b) * 7) - 100%) * 999));
-  }
-  /* 8 or more: */
-  body > main > div > header ~ ul > :nth-last-child(n+8),
-  body > main > div > header ~ ul > :nth-last-child(n+8) ~ * {
-    flex-basis: min(max(50%, ((var(--b) * 2) - 100%) * 999), max(25%, ((var(--b) * 4) - 100%) * 999), max(12%, ((var(--b) * 8) - 100%) * 999));
-  }
-  /* 9 or more: */
-  body > main > div > header ~ ul > :nth-last-child(n+9),
-  body > main > div > header ~ ul > :nth-last-child(n+9) ~ * {
-    flex-basis: min(max(50%, ((var(--b) * 2) - 100%) * 999), max(33%, ((var(--b) * 3) - 100%) * 999), max(11%, ((var(--b) * 9) - 100%) * 999));
-  }
-  /* 9 or more, different values for the first one: */
-  body > main > div > header ~ ul > :nth-last-child(n+9) {
-    flex-basis: min(max(33%, ((var(--b) * 3) - 100%) * 999), max(11%, ((var(--b) * 9) - 100%) * 999));
-  }
-  /* 10 or more: */
-  body > main > div > header ~ ul > :nth-last-child(n+10),
-  body > main > div > header ~ ul > :nth-last-child(n+10) ~ * {
-    flex-basis: min(max(50%, ((var(--b) * 2)- 100%) * 999), max(20%, ((var(--b) * 5) - 100%) * 999), max(10%, ((var(--b) * 10) - 100%) * 999));
-  }
-  /* 11 or more: */
-  body > main > div > header ~ ul > :nth-last-child(n+11),
-  body > main > div > header ~ ul > :nth-last-child(n+11) ~ * {
-    flex-basis: min(max(50%, ((var(--b) * 2) - 100%) * 999), max(33%, ((var(--b) * 3) - 100%) * 999), max(9%, ((var(--b) * 11) - 100%) * 999));
-  }
-  /* 11 or more, different values for the second one: */
-  body > main > div > header ~ ul > :nth-last-child(n+11) + * {
-    flex-basis: min(max(50%, ((var(--b) * 2) - 100%) * 999), max(9%, ((var(--b) * 11) - 100%) * 999));
-  }
-  /* 11 or more, different values for the first one: */
-  body > main > div > header ~ ul > :nth-last-child(n+11) {
-    flex-basis: min(max(50%, ((var(--b) * 3) - 100%) * 999), max(9%, ((var(--b) * 11) - 100%) * 999));
-  }
-  /* 12 or more: double class to boost specificity - ugh.*/
-  --balance-top > :nth-last-child(n+12),
-  --balance-top > :nth-last-child(n+12) ~ * {
-    flex-basis: min(max(50%, ((var(--b) * 2) - 100%) * 999), max(33%, ((var(--b) * 3) - 100%) * 999), max(25%, ((var(--b) * 4) - 100%) * 999), max(16%, ((var(--b) * 6) - 100%) * 999), max(8%, ((var(--b) * 12) - 100%) * 999));
-  }
+body > main > div > header ~ ul > * > * {
+  display: block;
+  height: 100%;
 }
 
-/* Just for the demo */
 /*
-body {
-    padding: 2rem;
-    margin: 0 auto;
-    max-width: 80rem;
-}
+@supports (width: unquote("max(1px, 1px)")) {
+    body > main > div > header ~ ul {
+        
+    }
+
     body > main > div > header ~ ul > * {
-    height: 20vh;
-    background-color: #000;
+        flex-basis: unquote("max(50% - 1rem, (var(--bp1) - 100%) * 999)");
+    }
+
+
+    body > main > div > header ~ ul > :nth-last-child(odd):first-child {
+        flex-basis: 100%;
+    }
 }
 */
+/*
+
+*/
+@supports (display: grid) {
+  body > main > div > header ~ ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    grid-gap: 1rem;
+    padding: 1rem;
+  }
+  body > main > div > header ~ ul > * {
+    margin: 0;
+  }
+}
+
 /*-------------------------------------------------------------------------------------------------|
 
     CONTENT SIDEBAR

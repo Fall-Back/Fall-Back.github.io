@@ -166,8 +166,9 @@ $es__page_banner__navbar: "#{$es__page_banner} > nav" !default;
     -------------
 */
 
-$es__page_main__header: "#{$es__page_main}  > * > header" !default;
+$es__page_main__header: "#{$es__page_main} > * > header" !default;
 
-$es__page_main__header--article: "#{$es__page_main}  > article > header" !default;
+$es__page_main__header--article: "#{$es__page_main} > article > header" !default;
 
-$es__page_main__header--listing: "#{$es__page_main}  > div > header" !default;
+$es__page_main__header--listing: "#{$es__page_main} > div > header" !default;
+$es__page_main__header--listing__list: "#{$es__page_main__header--listing} ~ ul" !default;

@@ -47,10 +47,11 @@ $distribute-bases: (
 }
     
 #{$es__page_main__header--listing} ~ ul > * {
-    flex: 0 1 auto;
+    flex-shrink: 0;
+    flex-grow: 1;
 
     margin: 0;
-    padding: 0;
+    //padding: 0;
 
     //
     padding: $distribute-spacing-unit--s / 2;
@@ -135,7 +136,7 @@ $distribute-bases: (
 
 @supports (width: unquote("max(1px, 1px)")) {
     #{$es__page_main__header--listing} ~ ul {
-      flex-basis: auto;
+        //flex-basis: auto;
     }
 
 

@@ -55,55 +55,7 @@
     gallery-style grid list of card-like object.
     Use for things like portfolio images or article cards.
 */
-#{$es__page_main__header--listing} ~ ul {
-    list-style-type: none;
-
-
-    /*
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-
-    /* Gutter *
-    margin: -$f__sz-m 0 0 0;
-    padding: $f__sz-s;
-
-    /* Centre *
-              -ms-flex-pack: center;
-    -webkit-justify-content: center;
-            justify-content: center;
-    */
-}
-
-
-#{$es__page_main__header--listing} ~ ul > li {
-    margin: 0;
-    /*
-         -webkit-flex: 1;
-    -ms-flex-positive: 1;
-            flex-grow: 1;
-    -webkit-flex-shrink: 0;
-      -ms-flex-negative: 0;
-            flex-shrink: 0;
-
-    /* Size *
-         -webkit-flex-basis: 15em;
-    -ms-flex-preferred-size: 15em;
-                 flex-basis: 15em;
-    /*
-        flex-basis 15em acts like a min-width.
-        30em-1px is the point at which there isn't room for 2 items side-by-side
-    *
-    max-width: calc(30em - 1px);
-
-    /* Gutter *
-    margin: 0;
-    padding: $f__sz-s;
-    */
-}
+// See listing file
 
 
 /*
