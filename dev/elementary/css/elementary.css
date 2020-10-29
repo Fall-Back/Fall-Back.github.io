@@ -598,11 +598,11 @@ body > main > div > header ~ ul {
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
-  padding: 0.5rem;
+  padding: 1.2rem;
 }
 
 body > main > div > header ~ ul > * {
-  margin: 0.5rem;
+  margin: 1.2rem;
   flex-shrink: 0;
   flex-grow: 1;
   flex-basis: 15rem;
@@ -633,18 +633,24 @@ body > main > div > header ~ ul > * > * {
 /*
 
 */
-@supports (display: grid) {
+@supports (columns: 1) {
   body > main > div > header ~ ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-    grid-gap: 1rem;
-    padding: 1rem;
+    display: block;
+    columns: 15rem auto;
+    column-gap: 2.4rem;
+    padding: 2.4rem;
   }
   body > main > div > header ~ ul > * {
-    margin: 0;
+    margin: 0 0 2.4rem 0;
+    -webkit-column-break-inside: avoid;
+    -moz-column-break-inside: avoid;
+    break-inside: avoid;
   }
 }
 
+/*
+
+*/
 /*-------------------------------------------------------------------------------------------------|
 
     CONTENT SIDEBAR
@@ -708,8 +714,10 @@ body > aside {
   background: #ccc;
 }
 
-main > div > ul > li > a[href] {
+main > div > ul > li > a[href],
+main > div > ul > li > article {
   padding: 2.4rem;
   background: #ddd;
   display: block;
+  margin: 0;
 }

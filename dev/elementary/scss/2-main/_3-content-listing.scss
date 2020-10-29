@@ -25,7 +25,7 @@
 */
 
 $e__listing__display-type: false !default; // false | grid | balance-top
-$e__listing__gutter: 1rem !default;
+$e__listing__gutter: $f__sz-m !default;
 
 $e__listing__item-basis: calc(100% - #{$e__listing__gutter}) !default;
 $e__listing__item-backgroud-color: #ccc !default;
@@ -72,9 +72,17 @@ $e__listing__item-backgroud-color: #ccc !default;
 }
 */
 
+
+@import '_3-content-listing--columns.scss';
+@if $e__listing__display-type == columns {
+    @include content-listing--columns((
+        selector: $es__page_main__header--listing__list,
+        basis:    $e__listing__item-basis,
+        gutter:   $e__listing__gutter
+    ))
+}
+
 @import '_3-content-listing--grid.scss';
-
-
 @if $e__listing__display-type == grid {
     @include content-listing--grid((
         selector: $es__page_main__header--listing__list,

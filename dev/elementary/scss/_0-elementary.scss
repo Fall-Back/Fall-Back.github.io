@@ -154,9 +154,11 @@ body > aside {
 }
 
 
-main > div > ul > li > a[href] {
+main > div > ul > li > a[href],
+main > div > ul > li > article {
 
     padding: $f__sz-m;
     background: #ddd;
     display: block;
+    margin: 0;
 }

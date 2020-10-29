@@ -1,0 +1,22 @@
+/*
+
+*/
+
+
+@mixin content-listing--columns($options: ()) {
+    @supports (columns: 1) {
+        #{map-get($options, selector)} {
+            display: block;
+            columns: #{map-get($options, basis)} auto;
+            column-gap: #{map-get($options, gutter)};
+            padding: #{map-get($options, gutter)};
+        }
+        
+        #{map-get($options, selector)} > * {
+            margin: 0 0 #{map-get($options, gutter)} 0;
+            -webkit-column-break-inside: avoid;
+               -moz-column-break-inside: avoid;
+                           break-inside: avoid
+        }
+    }
+}

@@ -2878,14 +2878,14 @@ body > main > div > header ~ ul {
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
-  padding: 0.5rem;
+  padding: 1.2rem;
 }
 
 body > main > div > header ~ ul > * {
-  margin: 0.5rem;
+  margin: 1.2rem;
   flex-shrink: 0;
   flex-grow: 1;
-  flex-basis: calc(100% - 1rem);
+  flex-basis: calc(100% - 2.4rem);
   background-color: #ccc;
 }
 
@@ -2909,6 +2909,9 @@ body > main > div > header ~ ul > * > * {
         flex-basis: 100%;
     }
 }
+*/
+/*
+
 */
 /*
 
@@ -2976,8 +2979,10 @@ body > aside {
   background: #ccc;
 }
 
-main > div > ul > li > a[href] {
+main > div > ul > li > a[href],
+main > div > ul > li > article {
   padding: 2.4rem;
   background: #ddd;
   display: block;
+  margin: 0;
 }
