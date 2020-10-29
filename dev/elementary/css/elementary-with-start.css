@@ -2382,6 +2382,7 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="
 /*-------------------------------------------------------------------------------------------------|
 
     ELEMENTARY
+    ==========
 
     Expected structure for core Elementary to work:
 
@@ -2413,12 +2414,14 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="
 /*-------------------------------------------------------------------------------------------------|
 
     ELEMENTARY SETTINGS
+    ===================
 
 |-------------------------------------------------------------------------------------------------*/
 /* NavBar */
 /*-------------------------------------------------------------------------------------------------|
 
     ELEMENTARY MIXINS
+    =================
 
 |-------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------|
@@ -2565,6 +2568,12 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="
     -------------
 */
 /*
+    COMPONENTS - CARD
+*/
+/*
+    COMPONENTS - IMAGES
+*/
+/*
     CSS only message
 */
 body > div:first-of-type {
@@ -2646,6 +2655,7 @@ body > * {
 /*-------------------------------------------------------------------------------------------------|
 
     BANNER
+    ======
 
 |-------------------------------------------------------------------------------------------------*/
 /*
@@ -2667,6 +2677,7 @@ body > header > * {
 /*-------------------------------------------------------------------------------------------------|
 
     LOGO
+    ====
 
 |-------------------------------------------------------------------------------------------------*/
 body > header > a[href] {
@@ -2687,6 +2698,7 @@ body > header > a[href]:focus {
 /*-------------------------------------------------------------------------------------------------|
 
     NAVBAR
+    ======
 
 |-------------------------------------------------------------------------------------------------*/
 body > header > nav {
@@ -2744,10 +2756,11 @@ body > header > nav > ul a[href]:focus {
 /*-------------------------------------------------------------------------------------------------|
 
     MAIN
+    ====
 
 |-------------------------------------------------------------------------------------------------*/
 /*
-    Expand main to sill space - part of stick footer.
+    Expand main to fill space - part of stick footer.
 */
 body > main {
   min-height: 0;
@@ -2762,6 +2775,7 @@ body > main {
 /*-------------------------------------------------------------------------------------------------|
 
     MAIN HEADER
+    ===========
 
 |-------------------------------------------------------------------------------------------------*/
 /*
@@ -2784,11 +2798,13 @@ main > * > h1 {
 /*-------------------------------------------------------------------------------------------------|
 
     BREADCRUMBS
+    ===========
 
 |-------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------|
 
     CONTENT
+    =======
 
     ```
     <main> <!-- OUTER WRAPPER -->
@@ -2835,6 +2851,7 @@ body > main > article > header ~ * {
 body > main > * > header ~ div {
   max-width: none;
   padding: 0;
+  margin-bottom: 2.4rem;
 }
 
 /*
@@ -2849,7 +2866,12 @@ body > main img {
   width: 100%;
 }
 
-/*
+/*-------------------------------------------------------------------------------------------------|
+
+    CONTENT LISTING
+    ===============
+
+
     What should be the default behaviour for this?
     
     I mean, you'll want to choose the behaviour based on use case and number of items.
@@ -2873,7 +2895,8 @@ body > main img {
        using QQ's etc, but there's nothing to stop an unknowing admin changing this to something
        like 20. If the max assumed quantity for the pattern is, say 16, then 20 is outside,
        so the behaviour is undefined. This is SO unlikely though
-*/
+
+|-------------------------------------------------------------------------------------------------*/
 body > main > div > header ~ ul {
   list-style-type: none;
   display: flex;
@@ -2886,7 +2909,7 @@ body > main > div > header ~ ul > * {
   flex-shrink: 0;
   flex-grow: 1;
   flex-basis: calc(100% - 2.4rem);
-  background-color: #ccc;
+  background-color: transparent;
 }
 
 body > main > div > header ~ ul > * > * {
@@ -2910,15 +2933,23 @@ body > main > div > header ~ ul > * > * {
     }
 }
 */
-/*
+/*-------------------------------------------------------------------------------------------------|
 
-*/
-/*
+    CONTENT LISTING - COLUMNS
+    =========================
 
-*/
+|-------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------|
+
+    CONTENT LISTING - GRID
+    ======================
+
+|-------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------|
 
     CONTENT SIDEBAR
+    ===============
+    
     Use this for page/content specific content - it should be different on each page and relevant
     or related to the current main content.
     For example:
@@ -2930,11 +2961,14 @@ body > main > div > header ~ ul > * > * {
 /*-------------------------------------------------------------------------------------------------|
 
     CONTENT FOOTER
+    ==============
 
 |-------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------|
 
     LAYOUT SIDEBAR
+    ==============
+
     This should be used for site-wide content. I.e. content that doesn't change from page-to-page.
     Examples include:
     * Site-wide navigation if not putting in Banner.#
@@ -2953,6 +2987,7 @@ body > aside {
 /*-------------------------------------------------------------------------------------------------|
 
     FOOTER
+    ======
 
 |-------------------------------------------------------------------------------------------------*/
 body > footer {
@@ -2964,6 +2999,101 @@ body > footer {
 
 body > footer > * {
   margin-bottom: 0;
+}
+
+/*-------------------------------------------------------------------------------------------------|
+
+    COMPONENTS
+    ==========
+
+|-------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------|
+
+    CARD
+    ====
+
+|-------------------------------------------------------------------------------------------------*/
+article > span:only-child {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  overflow: hidden;
+  height: 100%;
+  padding: 2.4rem;
+  background: linear-gradient(to bottom, #ffffff 60%, #f8fcfe 100%);
+  border: 1px solid #247BA0;
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+article > span:only-child > header > :last-child {
+  margin-bottom: 2.4rem;
+}
+
+article > span:only-child > header > :last-child {
+  margin-bottom: 0;
+}
+
+article > span:only-child > header > :last-child > :last-child {
+  margin-bottom: 0;
+}
+
+article > span:only-child > header > div:first-child {
+  margin: -2.4rem -2.4rem 2.4rem -2.4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+article > span:only-child > header > div:first-child::before {
+  content: "";
+  display: block;
+  width: 100%;
+  padding-top: 33%;
+}
+
+article > span:only-child > header > div:first-child > img {
+  position: absolute;
+  top: 0;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+article > span:only-child > div > :last-child {
+  margin-bottom: 0;
+}
+
+article > span:only-child > div > :last-child > :last-child {
+  margin-bottom: 0;
+}
+
+article > span:only-child > footer {
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+article > span:only-child > footer > :last-child {
+  margin-bottom: 0;
+}
+
+article > span:only-child > footer > :last-child > :last-child {
+  margin-bottom: 0;
+}
+
+/*-------------------------------------------------------------------------------------------------|
+
+    IMAGES
+    ======
+
+|-------------------------------------------------------------------------------------------------*/
+b > img:only-child {
+  border: 1px solid #247BA0;
+}
+
+b > i:only-child > img:only-child {
+  padding: 2.4rem;
+  border: 1px solid #247BA0;
+  background: #fff;
 }
 
 /*---*/
@@ -2979,10 +3109,13 @@ body > aside {
   background: #ccc;
 }
 
+/*
 main > div > ul > li > a[href],
 main > div > ul > li > article {
-  padding: 2.4rem;
-  background: #ddd;
-  display: block;
-  margin: 0;
+
+    padding: $f__sz-m;
+    background: #ddd;
+    display: block;
+    margin: 0;
 }
+*/

@@ -172,3 +172,18 @@ $es__page_main__header--article: "#{$es__page_main} > article > header" !default
 
 $es__page_main__header--listing: "#{$es__page_main} > div > header" !default;
 $es__page_main__header--listing__list: "#{$es__page_main__header--listing} ~ ul" !default;
+
+
+
+/*
+    COMPONENTS - CARD
+*/
+
+$es__component__card: "article > span:only-child" !default;
+
+/*
+    COMPONENTS - IMAGES
+*/
+
+$es__component__images--border: "b > img:only-child" !default;
+$es__component__images--inset:  "b > i:only-child > img:only-child" !default;

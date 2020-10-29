@@ -1,6 +1,7 @@
 /*-------------------------------------------------------------------------------------------------|
 
     ELEMENTARY
+    ==========
 
     Expected structure for core Elementary to work:
 
@@ -133,8 +134,7 @@ body > * {
 @import '_2-main.scss';
 @import '_3-sidebar.scss';
 @import '_4-footer.scss';
-
-
+@import '_5-components.scss';
 
 
 
@@ -153,7 +153,7 @@ body > aside {
     background: #ccc;
 }
 
-
+/*
 main > div > ul > li > a[href],
 main > div > ul > li > article {
 
@@ -162,3 +162,4 @@ main > div > ul > li > article {
     display: block;
     margin: 0;
 }
+*/

@@ -1,0 +1,95 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    CARD
+    ====
+
+|-------------------------------------------------------------------------------------------------*/
+$e__component__card__background:    linear-gradient(to bottom, #ffffff 60%, lighten($f__base-ui-color, 60%) 100%) !default;
+$e__component__card__border:        $f__border-width $f__border-style $f__base-ui-color !default;
+$e__component__card__border-radius: $f__border-radius !default;
+
+$e__component__card__box-shadow:    none !default;
+
+//$e__component__card__image-ratio:   50% !default;
+$e__component__card__image-ratio:   33% !default;
+
+@mixin component__card($options: ()) {
+    #{map-get($options, selector)} {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        overflow: hidden;
+        
+        height: 100%;
+
+        padding:       #{map-get($options, padding)};
+        background:    #{map-get($options, background)};
+        border:        #{map-get($options, border)};
+        border-radius: #{map-get($options, border-radius)};
+
+        box-shadow:    #{map-get($options, box-shadow)};
+
+    }
+    
+    // Header:
+    #{map-get($options, selector)} > header > :last-child {
+        margin-bottom: #{map-get($options, padding)}
+    }
+    
+    #{map-get($options, selector)} > header > :last-child {
+        margin-bottom: 0;
+    }
+    
+    #{map-get($options, selector)} > header > :last-child > :last-child  {
+        margin-bottom: 0;
+    }
+
+
+    // Headline image:
+    #{map-get($options, selector)} > header > div:first-child {
+        margin: -2.4rem -2.4rem 2.4rem -2.4rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    #{map-get($options, selector)} > header > div:first-child::before {
+        content: "";
+        display: block;
+        width: 100%;
+        padding-top: $e__component__card__image-ratio;
+    }
+
+    #{map-get($options, selector)} > header > div:first-child > img {
+        position: absolute;
+        top: 0;
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
+    
+    
+    // Body:
+    #{map-get($options, selector)} > div > :last-child {
+        margin-bottom: 0;
+    }
+    
+    #{map-get($options, selector)} > div > :last-child > :last-child  {
+        margin-bottom: 0;
+    }
+    
+    
+    
+    // Footer:
+    #{map-get($options, selector)} > footer {
+        margin-top: auto;
+        margin-bottom: 0;
+    }
+    
+    #{map-get($options, selector)} > footer > :last-child {
+        margin-bottom: 0;
+    }
+    
+    #{map-get($options, selector)} > footer > :last-child > :last-child  {
+        margin-bottom: 0;
+    }
+}

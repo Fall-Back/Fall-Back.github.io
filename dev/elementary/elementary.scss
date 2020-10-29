@@ -16,12 +16,17 @@ $f__root-font-size: 10px;
 //$f__html-background-color: #50514F;
 $f__experimental_checkradios: true;
 
-//$e__listing__display-type: grid;
-$e__listing__display-type: columns;
+
+
+$e__listing__display-type: grid;
+//$e__listing__display-type: columns;
 $e__listing__item-basis: 15rem;
 
 @import '../start-css/scss/_start_settings.scss';
 @import '../start-css/scss/_start_functions.scss';
 @import '../start-css/scss/_start_mixins.scss';
+
+$e__component__card__border-radius: $f__sz-s;
+$e__component__card__box-shadow: 0 0 $f__sz-xs 0 rgba(0,0,0,0.2);
 
 @import 'scss/_0-elementary.scss';

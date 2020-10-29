@@ -1,0 +1,27 @@
+<article>
+    <span>
+        <header>
+            {% if include.img_src %}
+            <div>
+                <img src="{{ include.img_src }}"{% if include.img_alt %} alt="{{ include.img_alt }}"{% endif %}>
+            </div>
+            {% endif %}
+            <h{{ include.hx | default: 2 }}>{{ include.title }}</h{{ include.hx | default: 2 }}>
+        </header>
+        {% if include.content %}
+        <div>
+            {{ include.content }}
+            {% if include.cta_url and include.cta_text %}
+            <p>
+                <b><a href="{{ include.cta_url }}">{{ include.cta_text }}</a></b>
+            </p>
+            {% endif %}
+        </div>
+        {% endif %}
+        {% if include.footer %}
+        <footer>
+            {{ include.footer }}
+        </footer>
+        {% endif %}
+    </span>
+</article>

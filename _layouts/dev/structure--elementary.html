@@ -110,7 +110,7 @@ body_end_script: |
             <b id="primary-navigation" hidden>Primary</b>
             <ul>
                 <li>
-                    <a href="#">A link</a>
+                    <a href="components/">Components</a>
                 </li>
                 <li>
                     <a href="#">Somewhere</a>
@@ -129,10 +129,12 @@ body_end_script: |
     <main id="main">
         {{ content }}
     </main>
-
+    
+    {% if page.sidebar %}
     <aside id="sidebar">
         <p>Could be anything here.</p>
     </aside>
+    {% endif %}
 
     <footer>
         <p>

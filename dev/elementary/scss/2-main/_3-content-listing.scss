@@ -1,4 +1,9 @@
-/*
+/*-------------------------------------------------------------------------------------------------|
+
+    CONTENT LISTING
+    ===============
+
+
     What should be the default behaviour for this?
     
     I mean, you'll want to choose the behaviour based on use case and number of items.
@@ -22,13 +27,14 @@
        using QQ's etc, but there's nothing to stop an unknowing admin changing this to something
        like 20. If the max assumed quantity for the pattern is, say 16, then 20 is outside,
        so the behaviour is undefined. This is SO unlikely though
-*/
+
+|-------------------------------------------------------------------------------------------------*/
 
 $e__listing__display-type: false !default; // false | grid | balance-top
 $e__listing__gutter: $f__sz-m !default;
 
 $e__listing__item-basis: calc(100% - #{$e__listing__gutter}) !default;
-$e__listing__item-backgroud-color: #ccc !default;
+$e__listing__item-backgroud-color: transparent !default;
 
 
 

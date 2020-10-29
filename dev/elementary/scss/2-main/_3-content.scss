@@ -1,6 +1,7 @@
 /*-------------------------------------------------------------------------------------------------|
 
     CONTENT
+    =======
 
     ```
     <main> <!-- OUTER WRAPPER -->
@@ -48,6 +49,7 @@
 #{$es__page_main__header} ~ div {
     max-width: none;
     padding: 0;
+    margin-bottom: $f__sz-m;
 }
 
 /*

@@ -1,0 +1,21 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    COMPONENTS
+    ==========
+
+|-------------------------------------------------------------------------------------------------*/
+
+@import '5-components/_card.scss';
+@if $es__component__card != false {
+    @include component__card((
+        selector:      $es__component__card,
+        padding:       $f__sz-m,
+        background:    $e__component__card__background,
+        border:        $e__component__card__border,
+        border-radius: $e__component__card__border-radius,
+        box-shadow:    $e__component__card__box-shadow
+    ))
+}
+
+
+@import '5-components/_images.scss';

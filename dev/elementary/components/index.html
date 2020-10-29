@@ -1,0 +1,102 @@
+---
+title: Elementary Components
+layout: dev/structure--elementary
+---
+
+        <article>
+
+            <header>
+                <h1>Elementary Components</h1>
+            </header>
+            
+            <p>
+                <details>
+                    <summary>Semantics</summary>
+                    <div>
+                        <p>Some of these patterns make use of (abuse?) the vague semantics of <code>b</code> and <code>i</code> elements.</p>
+
+                        <blockquote>
+                            The i element represents a span of text in an alternate voice or mood, or otherwise offset from the normal prose in a manner indicating a different quality of text, such as a taxonomic designation, a technical term, an idiomatic phrase from another language, transliteration, a thought, or a ship name in Western texts.
+                        </blockquote>
+
+                        <blockquote>
+                            The b element represents a span of text to which attention is being drawn for utilitarian purposes without conveying any extra importance and with no implication of an alternate voice or mood, such as key words in a document abstract, product names in a review, actionable words in interactive text-driven software, or an article lede.
+                        </blockquote>      
+                        
+                        <p>In the context of images, the above <code>b</code> and <code>i</code> elements can really offer no spoken semantics so I'm re-purposing them to represent visual border and inset.</p>
+
+                        <p>I make the argument that border around an image "draws attention for utilitarian purposes" and that an inset creates and "alternative mood" for those images.</p>
+                    </div>
+                </details>
+            </p>
+            
+            <h2 id="cards">Cards</h2>
+            
+            <div style="max-width: 50%;">
+                {% include card.html
+                    title="Sample Card"
+                    hx="3"
+                %}
+            </div>
+            
+            <div style="max-width: 50%;">
+                {% include card.html
+                    title="Another Sample Card - this time with content"
+                    hx="3"
+                    content="<p>This card tells you something about something.</p>"
+                %}
+            </div>
+            
+            <div style="max-width: 50%;">
+                {% include card.html
+                    title="Another - with footer"
+                    hx="3"
+                    content="<p>This card tells you something else about something else.</p>"
+                    footer="<p>- by Some Author</p>"
+                %}
+            </div>
+            
+            <div style="max-width: 50%;">
+                {% include card.html
+                    title="Again - this time with a CTA"
+                    hx="3"
+                    content="<p>This card tells you something else about something else.</p>"
+                    cta_url="/components"
+                    cta_text="Do a Thing"
+                %}
+            </div>
+            
+            <div style="max-width: 50%;">
+                {% include card.html
+                    title="This time with an Image"
+                    hx="3"
+                    content="<p>This card tells you something else about something else.</p>"
+                    cta_url="/components"
+                    cta_text="Do a Thing"
+                    img_src="/dev/elementary/img/sample-1.jpg"
+                    img_alt="Cute kid - looks lost."
+                %}
+            </div>
+            
+            <h2 id="images">Images</h2>
+            
+            <h3>Plain image</h3>
+            <p>
+                <img src="/dev/elementary/img/sample-1.jpg" alt="Young child looking guilty or upset holding a magnifying glass." width="200">
+            </p>
+            
+            <h3>Bordered image</h3>
+            <p>
+                <b><img src="/dev/elementary/img/sample-1.jpg" alt="Young child looking guilty or upset holding a magnifying glass." width="200"></b>
+            </p>
+            
+            <h3>Bordered image with inset</h3>
+            <p>
+                <b><i><img src="/dev/elementary/img/sample-1.jpg" alt="Young child looking guilty or upset holding a magnifying glass." width="200"></i></b>
+            </p>
+            
+            <p>
+                Note that there's no "Inset image without border" as this option didn't make much sense to me.
+            </p>
+
+        </article>
