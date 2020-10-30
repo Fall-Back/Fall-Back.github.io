@@ -8,59 +8,59 @@
 \*------------------------------------------------------------------------------------------------*/
 
 
-$f__image-credit--breakpoint--enhanced:         $f__breakpoint--enhanced;
+$s__image-credit--breakpoint--enhanced:         $s__breakpoint--enhanced;
 
 
 // Colours:
 
 // Note that the UI colour isn't used by this pattern.
-$f__image-credit__open--bg-color:             rgba(0,0,0,0.2) !default;
-$f__image-credit__open--bg-color--alt:        rgba(0,0,0,0.4) !default;
+$s__image-credit__open--bg-color:             rgba(0,0,0,0.2) !default;
+$s__image-credit__open--bg-color--alt:        rgba(0,0,0,0.4) !default;
 
-$f__image-credit__close--bg-color:            $f__image-credit__open--bg-color;
-$f__image-credit__close--bg-color--alt:       rgba(255,255,255,0.1) !default;
+$s__image-credit__close--bg-color:            $s__image-credit__open--bg-color;
+$s__image-credit__close--bg-color--alt:       rgba(255,255,255,0.1) !default;
 
-$f__image-credit__credit-line--text-color:    #fff;
-$f__image-credit__credit-line--bg-color:      rgba(0,0,0,0.8);
+$s__image-credit__credit-line--text-color:    #fff;
+$s__image-credit__credit-line--bg-color:      rgba(0,0,0,0.8);
 
 // Sizes:
-$f__image-credit__control-size:               1.5rem !default;//$f__image-credit--spacing * 2 !default;
-$f__image-credit__control-radius:             50% !default;
+$s__image-credit__control-size:               1.5rem !default;//$s__image-credit--spacing * 2 !default;
+$s__image-credit__control-radius:             50% !default;
 
-$f__image-credit__credit-line--padding:       0.75rem;
+$s__image-credit__credit-line--padding:       0.75rem;
 
 // Not sure I need this:
-//$f__nav-bar__title--background-color:      $f__nav-bar--background-color !default;
+//$s__nav-bar__title--background-color:      $s__nav-bar--background-color !default;
 
 
 
 // Sizes:
 
-$f__image-credit__control-size:               1.5rem !default;//$f__image-credit--spacing * 2 !default;
-$f__image-credit__control-radius:             50% !default;
+$s__image-credit__control-size:               1.5rem !default;//$s__image-credit--spacing * 2 !default;
+$s__image-credit__control-radius:             50% !default;
 
-$f__image-credit__credit-line--padding:       0.75rem;
+$s__image-credit__credit-line--padding:       0.75rem;
 
 
 
 // Position:
-$f__image-credit__control-v-position:         top !default;
-$f__image-credit__control-h-position:         right !default;
+$s__image-credit__control-v-position:         top !default;
+$s__image-credit__control-h-position:         right !default;
 
-$f__image-credit__control-spacing:            0.1875rem !default;
+$s__image-credit__control-spacing:            0.1875rem !default;
 
 
 
 // Transitions:
 
-$f__image-credit--transition-duration:        0.8 !default;
-$f__image-credit--transition-timing-function: ease !default;
+$s__image-credit--transition-duration:        0.8 !default;
+$s__image-credit--transition-timing-function: ease !default;
 
 
 
 // SVG's
-$f__image-credit__open--svg:                  "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJjNS41MTQgMCAxMCA0LjQ4NiAxMCAxMHMtNC40ODYgMTAtMTAgMTAtMTAtNC40ODYtMTAtMTAgNC40ODYtMTAgMTAtMTB6bTAtMmMtNi42MjcgMC0xMiA1LjM3My0xMiAxMnM1LjM3MyAxMiAxMiAxMiAxMi01LjM3MyAxMi0xMi01LjM3My0xMi0xMi0xMnptLTIuMDMzIDE2LjAxYy41NjQtMS43ODkgMS42MzItMy45MzIgMS44MjEtNC40NzQuMjczLS43ODctLjIxMS0xLjEzNi0xLjc0LjIwOWwtLjM0LS42NGMxLjc0NC0xLjg5NyA1LjMzNS0yLjMyNiA0LjExMy42MTMtLjc2MyAxLjgzNS0xLjMwOSAzLjA3NC0xLjYyMSA0LjAzLS40NTUgMS4zOTMuNjk0LjgyOCAxLjgxOS0uMjExLjE1My4yNS4yMDMuMzMxLjM1Ni42MTktMi40OTggMi4zNzgtNS4yNzEgMi41ODgtNC40MDgtLjE0NnptNC43NDItOC4xNjljLS41MzIuNDUzLTEuMzIuNDQzLTEuNzYxLS4wMjItLjQ0MS0uNDY1LS4zNjctMS4yMDguMTY0LTEuNjYxLjUzMi0uNDUzIDEuMzItLjQ0MiAxLjc2MS4wMjIuNDM5LjQ2Ni4zNjcgMS4yMDktLjE2NCAxLjY2MXoiIGZpbGw9IiNmZmZmZmYiLz48L3N2Zz4=" !default;
-$f__image-credit__close--svg:                 "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQo8cGF0aCBkPSJNMTIsMmM1LjUsMCwxMCw0LjUsMTAsMTBzLTQuNSwxMC0xMCwxMFMyLDE3LjUsMiwxMlM2LjUsMiwxMiwyeiBNMTIsMEM1LjQsMCwwLDUuNCwwLDEyczUuNCwxMiwxMiwxMiBzMTItNS40LDEyLTEyUzE4LjYsMCwxMiwweiBNMTcuNyw3LjdsLTEuNC0xLjRMMTIsMTAuNkw3LjcsNi4zTDYuMyw3LjdsNC4zLDQuM2wtNC4zLDQuM2wxLjQsMS40bDQuMy00LjNsNC4zLDQuM2wxLjQtMS40TDEzLjQsMTIgTDE3LjcsNy43eiIgZmlsbD0iI2ZmZmZmZiIvPg0KPC9zdmc+" !default;
+$s__image-credit__open--svg:                  "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJjNS41MTQgMCAxMCA0LjQ4NiAxMCAxMHMtNC40ODYgMTAtMTAgMTAtMTAtNC40ODYtMTAtMTAgNC40ODYtMTAgMTAtMTB6bTAtMmMtNi42MjcgMC0xMiA1LjM3My0xMiAxMnM1LjM3MyAxMiAxMiAxMiAxMi01LjM3MyAxMi0xMi01LjM3My0xMi0xMi0xMnptLTIuMDMzIDE2LjAxYy41NjQtMS43ODkgMS42MzItMy45MzIgMS44MjEtNC40NzQuMjczLS43ODctLjIxMS0xLjEzNi0xLjc0LjIwOWwtLjM0LS42NGMxLjc0NC0xLjg5NyA1LjMzNS0yLjMyNiA0LjExMy42MTMtLjc2MyAxLjgzNS0xLjMwOSAzLjA3NC0xLjYyMSA0LjAzLS40NTUgMS4zOTMuNjk0LjgyOCAxLjgxOS0uMjExLjE1My4yNS4yMDMuMzMxLjM1Ni42MTktMi40OTggMi4zNzgtNS4yNzEgMi41ODgtNC40MDgtLjE0NnptNC43NDItOC4xNjljLS41MzIuNDUzLTEuMzIuNDQzLTEuNzYxLS4wMjItLjQ0MS0uNDY1LS4zNjctMS4yMDguMTY0LTEuNjYxLjUzMi0uNDUzIDEuMzItLjQ0MiAxLjc2MS4wMjIuNDM5LjQ2Ni4zNjcgMS4yMDktLjE2NCAxLjY2MXoiIGZpbGw9IiNmZmZmZmYiLz48L3N2Zz4=" !default;
+$s__image-credit__close--svg:                 "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQo8cGF0aCBkPSJNMTIsMmM1LjUsMCwxMCw0LjUsMTAsMTBzLTQuNSwxMC0xMCwxMFMyLDE3LjUsMiwxMlM2LjUsMiwxMiwyeiBNMTIsMEM1LjQsMCwwLDUuNCwwLDEyczUuNCwxMiwxMiwxMiBzMTItNS40LDEyLTEyUzE4LjYsMCwxMiwweiBNMTcuNyw3LjdsLTEuNC0xLjRMMTIsMTAuNkw3LjcsNi4zTDYuMyw3LjdsNC4zLDQuM2wtNC4zLDQuM2wxLjQsMS40bDQuMy00LjNsNC4zLDQuM2wxLjQtMS40TDEzLjQsMTIgTDE3LjcsNy43eiIgZmlsbD0iI2ZmZmZmZiIvPg0KPC9zdmc+" !default;
 
 
 

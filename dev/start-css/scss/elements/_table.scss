@@ -6,18 +6,18 @@
     1. Opera Mini (no calc support).
     2. Calc to deduct any border-width.
 */
-#{$f__namespace}table {
+#{$s__namespace}table {
     width: 100%;
     /* @TODO - possibly make this configurable to be 'natural' width but centered instead. (http://alistapart.com/article/web-typography-tables) */
 
     border-collapse: collapse;
 
-    margin-bottom: $f__base-rem-space-unit; /* 1 */
-    margin-bottom: calc(#{$f__base-rem-space-unit} - #{$f__table-border-width}); /* 2 */
+    margin-bottom: $s__base-rem-space-unit; /* 1 */
+    margin-bottom: calc(#{$s__base-rem-space-unit} - #{$s__table-border-width}); /* 2 */
 
-    border: $f__table-border;
+    border: $s__table-border;
 
-    background-color: $f__table-background-color;
+    background-color: $s__table-background-color;
 
     border-spacing: 0;
 }

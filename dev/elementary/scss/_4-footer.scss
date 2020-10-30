@@ -7,12 +7,27 @@
 
 #{$es__page_footer} {
     margin: 0;
-    padding: $f__sz-s;
-    
+
+    padding: $s__sz-s;
+
     font-size: 0.875em;
+
     text-align: center;
+
+    color: $e__footer--base-text-color;
+    background: $e__footer--background-color;
 }
 
 #{$es__page_footer} > * {
     margin-bottom: 0;
+}
+
+#{$es__page_footer} a[href] {
+    color: $e__footer--base-text-color;
+    
+    &:hover,
+    &:active,
+    &:focus {
+        color: lighten($e__footer--base-text-color, 20%);
+    }
 }

@@ -57,11 +57,12 @@ body {
     footer behavior.
 */
 body {
+    display: flex;
+    flex-direction: column;
+
     max-width: 1080px;
 
     padding: 0;
-    display: flex;
-    flex-direction: column;
 }
 
 body > * {
@@ -75,22 +76,22 @@ body > * {
     @media only screen and (min-width:50em) {
 
         body {
-
-            width: auto;
+            display: grid;
             align-items: stretch;
 
-            display: grid;
-            /*grid-template-columns: 1fr fit-content(34%);*/
+            width: auto;
+
+            height: auto;
+            min-height: 100%;
+
             grid-template-columns: 3fr 1fr;
             grid-template-rows: max-content auto max-content;
-
-            min-height: 100%;
-            height: auto;
         }
 
         #{$es__page_banner},
         #{$es__page_footer} {
-            padding: $f__sz-s;
+            padding: $s__sz-s;
+
             grid-column: 1 / -1;
         }
 
@@ -143,7 +144,7 @@ body > * {
 /*
     Greybox
 */
-
+/*
 #{$es__page_banner},
 #{$es__page_footer} {
     background: #ddd;
@@ -157,7 +158,7 @@ body > aside {
 main > div > ul > li > a[href],
 main > div > ul > li > article {
 
-    padding: $f__sz-m;
+    padding: $s__sz-m;
     background: #ddd;
     display: block;
     margin: 0;

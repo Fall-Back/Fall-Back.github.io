@@ -5,8 +5,8 @@
 /*
     1. Add the correct display in IE 9-.
 */
-#{$f__namespace}canvas {
+#{$s__namespace}canvas {
     display: inline-block;  /* 1 */
 
-    vertical-align: $f__media-element-vertical-align;
+    vertical-align: $s__media-element-vertical-align;
 }

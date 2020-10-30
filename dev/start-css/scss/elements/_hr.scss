@@ -5,16 +5,16 @@
 /*
     1. Show the overflow in Edge and IE. (N)
 */
-#{$f__namespace}hr {
+#{$s__namespace}hr {
     height: 0;
 
     overflow: visible; /* 1 */
 
-    margin-top: $f__hr-margin-top;
-    margin-bottom: $f__hr-margin-bottom;
+    margin-top: $s__hr-margin-top;
+    margin-bottom: $s__hr-margin-bottom;
 
     border-top: none;
     border-right: none;
-    border-bottom: $f__hr-border;
+    border-bottom: $s__hr-border;
     border-left: none;
 }

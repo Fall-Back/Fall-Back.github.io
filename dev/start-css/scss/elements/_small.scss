@@ -6,7 +6,7 @@
     1. Apply consistent small font size in all browsers.
     2. Prevent the element increasing the line-height of the parent.
 */
-#{$f__namespace}small {
-    font-size: $f__small-font-size; /* 1 */
+#{$s__namespace}small {
+    font-size: $s__small-font-size; /* 1 */
     line-height: normal; /* 2 */
 }

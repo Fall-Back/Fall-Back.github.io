@@ -6,13 +6,13 @@
     1. Opera Mini (no calc support).
     2. Calc to deduct any border-width.
 */
-#{$f__namespace}th {
-    padding-top: $f__th-cell-padding;
-    padding-right: $f__th-cell-padding;
-    padding-bottom: $f__th-cell-padding; /* 1 */
-    padding-bottom: calc(#{$f__th-cell-padding} - #{$f__th-border-width}); /* 2 */
-    padding-left: $f__th-cell-padding;
+#{$s__namespace}th {
+    padding-top: $s__th-cell-padding;
+    padding-right: $s__th-cell-padding;
+    padding-bottom: $s__th-cell-padding; /* 1 */
+    padding-bottom: calc(#{$s__th-cell-padding} - #{$s__th-border-width}); /* 2 */
+    padding-left: $s__th-cell-padding;
 
-    border: $f__th-border;
-    background-color: $f__th-background-color;
+    border: $s__th-border;
+    background-color: $s__th-background-color;
 }

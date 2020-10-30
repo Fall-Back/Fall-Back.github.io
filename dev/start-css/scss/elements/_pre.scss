@@ -13,31 +13,31 @@
     2. Correct the odd `em` font sizing in all browsers.
     3. Correct the inheritance and scaling of font size in all browsers.
 */
-#{$f__namespace}pre {
+#{$s__namespace}pre {
     overflow-x: scroll; /* 1 */
     overflow-y: auto; /* 1 */
 
-    margin-bottom: $f__pre-margin-bottom; /* 1 */
+    margin-bottom: $s__pre-margin-bottom; /* 1 */
 
-    background-color: $f__pre-background-color; /*1 */
+    background-color: $s__pre-background-color; /*1 */
 
     font-size: 1em; /* 2 */
-    font-family: $f__monospace-font-family, monospace; /* 3 */
+    font-family: $s__monospace-font-family, monospace; /* 3 */
 }
 
 @supports (-ms-ime-align:auto) {
-    #{$f__namespace}pre {
-        margin-bottom: $f__pre-margin-bottom--edge; /* 1 */
+    #{$s__namespace}pre {
+        margin-bottom: $s__pre-margin-bottom--edge; /* 1 */
     }
 }
 
     /*
         1. Revert zeroed line-height (see) `code`.
     */
-    #{$f__namespace}pre code {
+    #{$s__namespace}pre code {
         display: inline-block;
 
-        padding: $f__pre-code-padding;
+        padding: $s__pre-code-padding;
 
-        line-height: $f__base-rem-space-unit; /* 1 */
+        line-height: $s__base-rem-space-unit; /* 1 */
     }

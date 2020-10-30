@@ -9,23 +9,23 @@
     4. Keep adjacent elements in the middle.
     5. This helps prevent default 'normal' from increasing element height in webkit.
 */
-#{$f__namespace}input {
+#{$s__namespace}input {
     max-width: 100%; /* 1 */
 
-    padding-top: #{$f__base-rem-space-unit / 8}; /* 2 */
-    padding-top: calc(#{$f__base-rem-space-unit / 8} - #{$f__input-border-width});
-    padding-right: $f__input-h-padding;
-    padding-bottom: #{$f__base-rem-space-unit / 8}; /* 2 */
-    padding-bottom: calc(#{$f__base-rem-space-unit / 8} - #{$f__input-border-width});
-    padding-left: $f__input-h-padding;
+    padding-top: #{$s__base-rem-space-unit / 8}; /* 2 */
+    padding-top: calc(#{$s__base-rem-space-unit / 8} - #{$s__input-border-width});
+    padding-right: $s__input-h-padding;
+    padding-bottom: #{$s__base-rem-space-unit / 8}; /* 2 */
+    padding-bottom: calc(#{$s__base-rem-space-unit / 8} - #{$s__input-border-width});
+    padding-left: $s__input-h-padding;
 
-    border-width: $f__input-border-width;
-    border-style: $f__input-border-style;
-    border-color: $f__input-border-color;
-    border-radius: $f__input-border-radius;
+    border-width: $s__input-border-width;
+    border-style: $s__input-border-style;
+    border-color: $s__input-border-color;
+    border-radius: $s__input-border-radius;
 
-    color: $f__input-text-color;
-    background-color: $f__input-background-color;
+    color: $s__input-text-color;
+    background-color: $s__input-background-color;
 
     font-size: inherit; // S
     font-weight: inherit;
@@ -38,28 +38,28 @@
     vertical-align: middle; /* 4 */
     line-height: inherit; /* 5 */
 
-    min-height: $f__input-min-height;
-    margin: ($f__base-rem-space-unit / 8) 0;
+    min-height: $s__input-min-height;
+    margin: ($s__base-rem-space-unit / 8) 0;
 }
 
-@if $f__input-focus-shadow != false {
-    #{$f__namespace}input:not([type]):focus,
-    #{$f__namespace}[type="color"]:focus,
-    #{$f__namespace}[type="date"]:focus,
-    #{$f__namespace}[type="datetime"]:focus,
-    #{$f__namespace}[type="datetime-local"]:focus,
-    #{$f__namespace}[type="file"]:focus,
-    #{$f__namespace}[type="month"]:focus,
-    #{$f__namespace}[type="number"]:focus,
-    #{$f__namespace}[type="password"]:focus,
-    #{$f__namespace}[type="search"]:focus,
-    #{$f__namespace}[type="range"]:focus,
-    #{$f__namespace}[type="tel"]:focus,
-    #{$f__namespace}[type="text"]:focus,
-    #{$f__namespace}[type="time"]:focus,
-    #{$f__namespace}[type="url"]:focus,
-    #{$f__namespace}[type="week"]:focus {
-        box-shadow: 0 0 0 $f__input-focus-shadow-width rgba($f__base-ui-color, 0.5);
+@if $s__input-focus-shadow != false {
+    #{$s__namespace}input:not([type]):focus,
+    #{$s__namespace}[type="color"]:focus,
+    #{$s__namespace}[type="date"]:focus,
+    #{$s__namespace}[type="datetime"]:focus,
+    #{$s__namespace}[type="datetime-local"]:focus,
+    #{$s__namespace}[type="file"]:focus,
+    #{$s__namespace}[type="month"]:focus,
+    #{$s__namespace}[type="number"]:focus,
+    #{$s__namespace}[type="password"]:focus,
+    #{$s__namespace}[type="search"]:focus,
+    #{$s__namespace}[type="range"]:focus,
+    #{$s__namespace}[type="tel"]:focus,
+    #{$s__namespace}[type="text"]:focus,
+    #{$s__namespace}[type="time"]:focus,
+    #{$s__namespace}[type="url"]:focus,
+    #{$s__namespace}[type="week"]:focus {
+        box-shadow: 0 0 0 $s__input-focus-shadow-width rgba($s__base-ui-color, 0.5);
 
         outline: 0;
     }
@@ -68,9 +68,9 @@
         Without custom styling (appearance: none), Safari doesn't apply the shadow, so breaks
         accessibility ...
     */
-    #{$f__namespace}[type="checkbox"]:focus,
-    #{$f__namespace}[type="radio"]:focus {
-        box-shadow: 0 0 0 $f__input-focus-shadow-width rgba($f__base-ui-color, 0.5);
+    #{$s__namespace}[type="checkbox"]:focus,
+    #{$s__namespace}[type="radio"]:focus {
+        box-shadow: 0 0 0 $s__input-focus-shadow-width rgba($s__base-ui-color, 0.5);
 
         outline: 0;
     }
@@ -81,8 +81,8 @@
     // _::-webkit-full-page-media, _:future, :root .selector { property:value; }
     // Safari 6.2,7.1+
 
-    _::-webkit-full-page-media, _:future, :root #{$f__namespace}[type="checkbox"]:focus,
-    _::-webkit-full-page-media, _:future, :root #{$f__namespace}[type="radio"]:focus {
+    _::-webkit-full-page-media, _:future, :root #{$s__namespace}[type="checkbox"]:focus,
+    _::-webkit-full-page-media, _:future, :root #{$s__namespace}[type="radio"]:focus {
         outline: auto 5px -webkit-focus-ring-color;
     }
 }
@@ -90,8 +90,8 @@
 /*
     IE9 adds the border and background:
 */
-#{$f__namespace}[type="checkbox"],
-#{$f__namespace}[type="radio"] {
+#{$s__namespace}[type="checkbox"],
+#{$s__namespace}[type="radio"] {
     border: 0;
 
     background: transparent;
@@ -99,9 +99,9 @@
     cursor: pointer;
 }
 
-#{$f__namespace}[type="button"],
-#{$f__namespace}[type="reset"],
-#{$f__namespace}[type="submit"] {
+#{$s__namespace}[type="button"],
+#{$s__namespace}[type="reset"],
+#{$s__namespace}[type="submit"] {
     @include f__button;
     // Maybe include fixes for these elements here instead of in the mixin?
 }
@@ -109,9 +109,9 @@
 /*
     IE10 makes the line-height massive with calc, but doesn't appear to need it anyway.
 */
-#{$f__namespace}[type="button"],
-#{$f__namespace}[type="reset"],
-#{$f__namespace}[type="submit"] {
+#{$s__namespace}[type="button"],
+#{$s__namespace}[type="reset"],
+#{$s__namespace}[type="submit"] {
     line-height:1\9;
 }
 
@@ -123,17 +123,17 @@
        Max-width doesn't work to solve this, but may be needed to restrict width on larger screens.
     2. Make sure button corners aren't visible.
 */
-#{$f__namespace}[type="file"] {
+#{$s__namespace}[type="file"] {
     width: 100%; /* 1 */
-    @if $f__input-file-max-width != false {
-        max-width: $f__input-file-max-width;
+    @if $s__input-file-max-width != false {
+        max-width: $s__input-file-max-width;
     }
 
-    min-height: $f__input-min-height;
+    min-height: $s__input-min-height;
 
     overflow: hidden; /* 2 */
 
-    margin: ($f__base-rem-space-unit / 8) 0;
+    margin: ($s__base-rem-space-unit / 8) 0;
 
     padding: 0;
 
@@ -145,22 +145,22 @@
 */
 // _:-moz-any-link, :root .selector { property:value; }
 // Firefox (any)
-_:-moz-any-link, :root #{$f__namespace}[type="file"] {
-    height: $f__input-min-height;
+_:-moz-any-link, :root #{$s__namespace}[type="file"] {
+    height: $s__input-min-height;
 }
 
 // This helps avoid white 'bleed-through' between containing element and the pseudo-elements in
 // _:-ms-input-placeholder, :root .selector { property:value; }
 // Internet Explorer 10-11
-_:-ms-input-placeholder, :root #{$f__namespace}[type="file"] {
-    background-color: $f__base-ui-color;
+_:-ms-input-placeholder, :root #{$s__namespace}[type="file"] {
+    background-color: $s__base-ui-color;
 }
 
 // @media screen and (min-width:0\0) and (min-resolution:+72dpi) { .selector { property:value; } }
 // Internet Explorer 9-11
 @media screen and (min-width:0\0) and (min-resolution:+72dpi) {
-    #{$f__namespace}[type="file"] {
-        padding-left: $f__input-h-padding;
+    #{$s__namespace}[type="file"] {
+        padding-left: $s__input-h-padding;
     }
 }
 
@@ -168,34 +168,34 @@ _:-ms-input-placeholder, :root #{$f__namespace}[type="file"] {
 /*
     iOS turns these inputs into selects which are a touch too high.
 */
-#{$f__namespace}[type="date"],
-#{$f__namespace}[type="datetime-local"],
-#{$f__namespace}[type="month"],
-#{$f__namespace}[type="time"],
-#{$f__namespace}[type="week"] {
-    height: $f__base-rem-space-unit + ($f__base-rem-space-unit / 6);
+#{$s__namespace}[type="date"],
+#{$s__namespace}[type="datetime-local"],
+#{$s__namespace}[type="month"],
+#{$s__namespace}[type="time"],
+#{$s__namespace}[type="week"] {
+    height: $s__base-rem-space-unit + ($s__base-rem-space-unit / 6);
 }
 
 /*
     Remove extra padding in Chrome
 */
-#{$f__namespace}[type="date"]::-webkit-datetime-edit-fields-wrapper,
-#{$f__namespace}[type="datetime-local"]::-webkit-datetime-edit-fields-wrapper,
-#{$f__namespace}[type="month"]::-webkit-datetime-edit-fields-wrapper,
-#{$f__namespace}[type="time"]::-webkit-datetime-edit-fields-wrapper,
-#{$f__namespace}[type="week"]::-webkit-datetime-edit-fields-wrapper {
+#{$s__namespace}[type="date"]::-webkit-datetime-edit-fields-wrapper,
+#{$s__namespace}[type="datetime-local"]::-webkit-datetime-edit-fields-wrapper,
+#{$s__namespace}[type="month"]::-webkit-datetime-edit-fields-wrapper,
+#{$s__namespace}[type="time"]::-webkit-datetime-edit-fields-wrapper,
+#{$s__namespace}[type="week"]::-webkit-datetime-edit-fields-wrapper {
     padding: 0;
 }
 
 /*
     Tidy spin buttons and apply cursor:
 */
-#{$f__namespace}[type="date"]::-webkit-inner-spin-button,
-#{$f__namespace}[type="datetime-local"]::-webkit-inner-spin-button,
-#{$f__namespace}[type="month"]::-webkit-inner-spin-button,
-#{$f__namespace}[type="number"]::-webkit-inner-spin-button,
-#{$f__namespace}[type="time"]::-webkit-inner-spin-button,
-#{$f__namespace}[type="week"]::-webkit-inner-spin-button {
+#{$s__namespace}[type="date"]::-webkit-inner-spin-button,
+#{$s__namespace}[type="datetime-local"]::-webkit-inner-spin-button,
+#{$s__namespace}[type="month"]::-webkit-inner-spin-button,
+#{$s__namespace}[type="number"]::-webkit-inner-spin-button,
+#{$s__namespace}[type="time"]::-webkit-inner-spin-button,
+#{$s__namespace}[type="week"]::-webkit-inner-spin-button {
     height: auto;
     cursor: pointer;
 }
@@ -204,7 +204,7 @@ _:-ms-input-placeholder, :root #{$f__namespace}[type="file"] {
  * 1. Correct the odd appearance in Chrome and Safari.
  * 2. Correct the outline style in Safari.
  */
-#{$f__namespace}[type="search"] {
+#{$s__namespace}[type="search"] {
     -webkit-appearance: textfield; /* 1 */
     outline-offset: -2px; /* 2 */
 }
@@ -214,15 +214,15 @@ _:-ms-input-placeholder, :root #{$f__namespace}[type="file"] {
  * Safari on OS X.
  */
 
-#{$f__namespace}[type="search"]::-webkit-search-cancel-button,
-#{$f__namespace}[type="search"]::-webkit-search-decoration {
+#{$s__namespace}[type="search"]::-webkit-search-cancel-button,
+#{$s__namespace}[type="search"]::-webkit-search-decoration {
     -webkit-appearance: none;
 }
 
 /*
     Correct the text style on placeholders in Chrome, Edge, and Safari.
 */
-#{$f__namespace}::-webkit-input-placeholder {
+#{$s__namespace}::-webkit-input-placeholder {
     color: inherit;
     opacity: .54;
 }

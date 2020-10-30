@@ -24,7 +24,7 @@
     border-width: $border-width;
     border-style: $border-style;
     @if $border-color == uiColor {
-        $border-color: $f__base-ui-color;
+        $border-color: $s__base-ui-color;
     }
     border-color: $border-color;
 
@@ -89,34 +89,34 @@
     Need to make sure height is governed by line-height in case of breaks within buttons.
 */
 @mixin f__button(
-        $color: $f__button-text-color,
-        $bg-color: $f__button-background-color,
-        $bg-color--alt: $f__button-background-color--alt,
-        $border-color: $f__button-border-color
+        $color: $s__button-text-color,
+        $bg-color: $s__button-background-color,
+        $bg-color--alt: $s__button-background-color--alt,
+        $border-color: $s__button-border-color
     ) {
     display: inline-block; /* AK. IE9 needs this. Hmmm, for what exactly?*/
 
-    min-height: $f__button-min-height;
+    min-height: $s__button-min-height;
 
     overflow: visible; /* S: Internet Explorer 11-, N: Show the overflow in Edge, Firefox, and IE. */
 
-    margin: ($f__base-rem-space-unit / 8) 0;
+    margin: ($s__base-rem-space-unit / 8) 0;
 
-    padding-top: #{$f__base-rem-space-unit / 8}; // Opera Mini needs this:
-    //padding-top: -moz-calc(#{$f__base-rem-space-unit / 8} - #{$f__button-border-width});
+    padding-top: #{$s__base-rem-space-unit / 8}; // Opera Mini needs this:
+    //padding-top: -moz-calc(#{$s__base-rem-space-unit / 8} - #{$s__button-border-width});
     padding-top: -moz-calc(0);
-    padding-top: calc(#{$f__base-rem-space-unit / 8} - #{$f__button-border-width});
-    padding-right: $f__button-h-padding;
-    padding-bottom: #{$f__base-rem-space-unit / 8}; // Opera Mini needs this:
-    //padding-bottom: -moz-calc(#{$f__base-rem-space-unit / 8} - #{$f__button-border-width});
+    padding-top: calc(#{$s__base-rem-space-unit / 8} - #{$s__button-border-width});
+    padding-right: $s__button-h-padding;
+    padding-bottom: #{$s__base-rem-space-unit / 8}; // Opera Mini needs this:
+    //padding-bottom: -moz-calc(#{$s__base-rem-space-unit / 8} - #{$s__button-border-width});
     padding-bottom: -moz-calc(0);
-    padding-bottom: calc(#{$f__base-rem-space-unit / 8} - #{$f__button-border-width});
-    padding-left: $f__button-h-padding;
+    padding-bottom: calc(#{$s__base-rem-space-unit / 8} - #{$s__button-border-width});
+    padding-left: $s__button-h-padding;
 
     border-color: $border-color;
-    border-style: $f__button-border-style;
-    border-width: $f__button-border-width;
-    border-radius: $f__button-border-radius;
+    border-style: $s__button-border-style;
+    border-width: $s__button-border-width;
+    border-radius: $s__button-border-radius;
 
     color: $color;
     background-color: $bg-color;
@@ -126,7 +126,7 @@
     font-style: inherit;
     font-size: inherit;
     font-family: inherit;
-    line-height: $f__base-rem-space-unit;
+    line-height: $s__base-rem-space-unit;
 
     vertical-align: middle; // Keep adjacent elements in the middle:
 
@@ -139,7 +139,7 @@
 
     -webkit-appearance: none;
 
-    //$f__button-background-color--alt: darken !default; // lighten | darken | <colour> | false;
+    //$s__button-background-color--alt: darken !default; // lighten | darken | <colour> | false;
     @if $bg-color--alt != false {
         &:hover,
         &:active {
@@ -169,23 +169,23 @@
     // make sure everything I DO include is configurable, or turn-off-able.
     // So, IF the user wants to use my inner-line shadow idea, they can, otherwise, they can set the
     // var to `false` and add their own however they like.
-    @if $f__button-focus-shadow != false {
+    @if $s__button-focus-shadow != false {
         &:focus {
             outline: 0;
-            box-shadow: 0 0 0 $f__button-focus-shadow-width rgba($bg-color, 0.5);
+            box-shadow: 0 0 0 $s__button-focus-shadow-width rgba($bg-color, 0.5);
         }
     }
 
 
 
-    /*@if $f__button-focus-outline-width != false {
+    /*@if $s__button-focus-outline-width != false {
         &:hover,
         &:active,
         &:focus {
-            outline-width: $f__button-focus-outline-width;
-            outline-style: $f__button-focus-outline-style;
-            outline-color: $f__button-focus-outline-color;
-            outline-offset: $f__button-focus-outline-offset;
+            outline-width: $s__button-focus-outline-width;
+            outline-style: $s__button-focus-outline-style;
+            outline-color: $s__button-focus-outline-color;
+            outline-offset: $s__button-focus-outline-offset;
         }
     }*/
 }

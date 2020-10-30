@@ -7,11 +7,11 @@
 \*------------------------------------------------------------------------------------------------*/
 
 
-$f__checkradio-background-color: #fff !default;
-$f__checkradio-text-color: $f__base-text-color !default;
-$f__checkradio-border-color: $f__checkradio-text-color !default;
-$f__checkradio-border-width: $f__border-width !default;
-$f__checkradio-border-style: $f__border-style !default;
+$s__checkradio-background-color: #fff !default;
+$s__checkradio-text-color: $s__base-text-color !default;
+$s__checkradio-border-color: $s__checkradio-text-color !default;
+$s__checkradio-border-width: $s__border-width !default;
+$s__checkradio-border-style: $s__border-style !default;
 
 
 /*
@@ -37,29 +37,29 @@ $f__checkradio-border-style: $f__border-style !default;
     where background colors can show through unexpectedly, so there are some tweaks to rectify
     this.
 */
-#{$f__namespace}[type="file"]::-ms-value {
+#{$s__namespace}[type="file"]::-ms-value {
     margin-right: 0;
     margin-left: -6px;
 
     padding-left: 0.5em;
 
     border: 0;
-    border-radius: $f__input-border-radius;
+    border-radius: $s__input-border-radius;
 
-    background: $f__input-background-color;
+    background: $s__input-background-color;
 }
 // @supports (-ms-ime-align:auto) { .selector { property:value; } }
 // Microsoft Edge 12+ (all MS Edge)
 @supports (-ms-ime-align:auto) {
-    #{$f__namespace}[type="file"]::-ms-value {
+    #{$s__namespace}[type="file"]::-ms-value {
         background: transparent;
     }
 }
 
 
-@if $f__input-focus-shadow != false {
-    #{$f__namespace}[type="file"]:focus::-ms-value {
-        box-shadow: $f__input-focus-shadow;
+@if $s__input-focus-shadow != false {
+    #{$s__namespace}[type="file"]:focus::-ms-value {
+        box-shadow: $s__input-focus-shadow;
         outline: 0;
     }
 }
@@ -68,22 +68,22 @@ $f__checkradio-border-style: $f__border-style !default;
 /*
     1. IE10 doesn't like rem so convert to px.
 */
-#{$f__namespace}[type="file"]::-ms-browse {
-    min-height:  $f__input-min-height;
+#{$s__namespace}[type="file"]::-ms-browse {
+    min-height:  $s__input-min-height;
 
-    padding-right: $f__input-h-padding;
-    padding-right: #{f__calc-px-from-rem($f__input-h-padding)}\9; /* 1 */
-    padding-left: $f__input-h-padding;
-    padding-left: #{f__calc-px-from-rem($f__input-h-padding)}\9; /* 1 */
+    padding-right: $s__input-h-padding;
+    padding-right: #{f__calc-px-from-rem($s__input-h-padding)}\9; /* 1 */
+    padding-left: $s__input-h-padding;
+    padding-left: #{f__calc-px-from-rem($s__input-h-padding)}\9; /* 1 */
 
-    border-width: 0 0 0 $f__input-border-width;
-    border-style: $f__input-border-style;
-    border-color: $f__input-border-color;
-    border-top-right-radius: $f__input-border-radius - $f__input-border-width;
-    border-bottom-right-radius: $f__input-border-radius - $f__input-border-width;
+    border-width: 0 0 0 $s__input-border-width;
+    border-style: $s__input-border-style;
+    border-color: $s__input-border-color;
+    border-top-right-radius: $s__input-border-radius - $s__input-border-width;
+    border-bottom-right-radius: $s__input-border-radius - $s__input-border-width;
 
     color: #fff;
-    background-color: $f__base-ui-color;
+    background-color: $s__base-ui-color;
 
     font-weight: inherit;
     font-style: inherit;
@@ -95,11 +95,11 @@ $f__checkradio-border-style: $f__border-style !default;
     cursor: pointer;
 }
 
-    @if $f__button-focus-shadow != false {
+    @if $s__button-focus-shadow != false {
         [type="file"]:hover::-ms-browse,
         [type="file"]:active::-ms-browse,
         [type="file"]:focus::-ms-browse {
-            box-shadow: $f__button-focus-shadow;
+            box-shadow: $s__button-focus-shadow;
             outline: 0;
         }
     }
@@ -107,21 +107,21 @@ $f__checkradio-border-style: $f__border-style !default;
 /*
     1. Spacing height + 2 sets of input padding, minus border width.
 */
-#{$f__namespace}[type="file"]::-webkit-file-upload-button {
-    height: calc(#{($f__base-rem-space-unit * 1.25)} - #{$f__input-border-width * 2}); /* 1 */
+#{$s__namespace}[type="file"]::-webkit-file-upload-button {
+    height: calc(#{($s__base-rem-space-unit * 1.25)} - #{$s__input-border-width * 2}); /* 1 */
 
     padding-top: 0;
-    padding-right: $f__input-h-padding;
+    padding-right: $s__input-h-padding;
     padding-bottom: 0;
-    padding-left: $f__input-h-padding;
+    padding-left: $s__input-h-padding;
 
-    border-width: 0 $f__input-border-width 0 0;
-    border-style: $f__input-border-style;
-    border-color: $f__input-border-color;
+    border-width: 0 $s__input-border-width 0 0;
+    border-style: $s__input-border-style;
+    border-color: $s__input-border-color;
     border-radius: 0;
 
     color: #fff;
-    background-color: $f__base-ui-color;
+    background-color: $s__base-ui-color;
 
     font-weight: inherit;
     font-style: inherit;
@@ -137,11 +137,11 @@ $f__checkradio-border-style: $f__border-style !default;
     -webkit-appearance: none;
 }
 
-    @if $f__button-focus-shadow != false {
-        #{$f__namespace}[type="file"]:hover::-webkit-file-upload-button,
-        #{$f__namespace}[type="file"]:active::-webkit-file-upload-button,
-        #{$f__namespace}[type="file"]:focus::-webkit-file-upload-button {
-            box-shadow: $f__button-focus-shadow;
+    @if $s__button-focus-shadow != false {
+        #{$s__namespace}[type="file"]:hover::-webkit-file-upload-button,
+        #{$s__namespace}[type="file"]:active::-webkit-file-upload-button,
+        #{$s__namespace}[type="file"]:focus::-webkit-file-upload-button {
+            box-shadow: $s__button-focus-shadow;
 
             outline: 0;
         }
@@ -183,22 +183,22 @@ _:scope, _:future, _:not(*:root), select[size="10"] { margin-bottom: calc(0.8rem
 
 // _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root .selector { property:value; }
 // Safari 6.2,7.1+ (Not iOS)
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="2"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 0.6em - #{$f__input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="3"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 0.6em - #{$f__input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="4"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 0.6em - #{$f__input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="5"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 1.1em - #{$f__input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="6"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 0.85em - #{$f__input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="7"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 0.6em - #{$f__input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="8"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 1.1em - #{$f__input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="9"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 0.85em - #{$f__input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="10"] { margin-bottom: calc(#{$f__base-rem-space-unit} - 0.6em - #{$f__input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="2"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.6em - #{$s__input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="3"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.6em - #{$s__input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="4"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.6em - #{$s__input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="5"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 1.1em - #{$s__input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="6"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.85em - #{$s__input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="7"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.6em - #{$s__input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="8"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 1.1em - #{$s__input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="9"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.85em - #{$s__input-border-width * 2}); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="10"] { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.6em - #{$s__input-border-width * 2}); }
 
 // Reset Chrome and Opera:
 // @media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) { .selector { property:value; } }
 // Chrome 29+ (and Opera 16+)
 /*
 @media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
-    select[size] { margin-bottom: calc(#{($f__base-rem-space-unit / 8) * 3} - #{$f__input-border-width * 2}); }
+    select[size] { margin-bottom: calc(#{($s__base-rem-space-unit / 8) * 3} - #{$s__input-border-width * 2}); }
 }
 */
 
@@ -209,16 +209,16 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="
 */
 
 /* IE9-11 */
-@media #{$f__ie9-11} {
-    select[size="2"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 1.1em - #{$f__input-border-width * 2}); }
-    select[size="3"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 0.75em - #{$f__input-border-width * 2}); }
-    select[size="4"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 1.25em - #{$f__input-border-width * 2}); }
-    select[size="5"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 0.95em - #{$f__input-border-width * 2}); }
-    select[size="6"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 0.65em - #{$f__input-border-width * 2}); }
-    select[size="7"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 1.1em - #{$f__input-border-width * 2}); }
-    select[size="8"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 0.75em - #{$f__input-border-width * 2}); }
-    select[size="9"]  { margin-bottom: calc(#{$f__base-rem-space-unit} - 1.25em - #{$f__input-border-width * 2}); }
-    select[size="10"] { margin-bottom: calc(#{$f__base-rem-space-unit} - 0.95em - #{$f__input-border-width * 2}); }
+@media #{$s__ie9-11} {
+    select[size="2"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 1.1em - #{$s__input-border-width * 2}); }
+    select[size="3"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.75em - #{$s__input-border-width * 2}); }
+    select[size="4"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 1.25em - #{$s__input-border-width * 2}); }
+    select[size="5"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.95em - #{$s__input-border-width * 2}); }
+    select[size="6"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.65em - #{$s__input-border-width * 2}); }
+    select[size="7"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 1.1em - #{$s__input-border-width * 2}); }
+    select[size="8"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.75em - #{$s__input-border-width * 2}); }
+    select[size="9"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 1.25em - #{$s__input-border-width * 2}); }
+    select[size="10"] { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.95em - #{$s__input-border-width * 2}); }
 }
 
 /*
@@ -231,7 +231,7 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="
     1. Safari 9.1 doesn't recognize 'auto' but I suspect others won't recognize 'initial', so
        keeping both for now.
 */
-@if $f__experimental_checkradios == true {
+@if $s__experimental_checkradios == true {
     @supports (-webkit-appearance: none) or (-moz-appearance: none) {
         input[type="checkbox"],
         input[type="radio"] {
@@ -245,11 +245,11 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="
             min-height: auto; /* 1 */
             min-height: initial; /* 1 */
 
-            border-width: $f__checkradio-border-width;
-            border-style: $f__checkradio-border-style;
-            border-color: $f__checkradio-border-color;
+            border-width: $s__checkradio-border-width;
+            border-style: $s__checkradio-border-style;
+            border-color: $s__checkradio-border-color;
 
-            background-color: $f__checkradio-background-color;
+            background-color: $s__checkradio-background-color;
 
             -webkit-appearance: none;
                -moz-appearance: none;
@@ -260,9 +260,9 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="
         }
 
         input[type="radio"]:checked {
-            background-image: -moz-radial-gradient(center, ellipse cover, rgba($f__checkradio-text-color,1) 0%, rgba($f__checkradio-text-color,1) 35%, rgba(0,0,0,0) 35%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
-            background-image: -webkit-radial-gradient(center, ellipse cover, rgba($f__checkradio-text-color,1) 0%,rgba($f__checkradio-text-color,1) 35%,rgba(0,0,0,0) 35%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
-            background-image: radial-gradient(ellipse at center, rgba($f__checkradio-text-color,1) 0%,rgba($f__checkradio-text-color,1) 35%,rgba(0,0,0,0) 35%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            background-image: -moz-radial-gradient(center, ellipse cover, rgba($s__checkradio-text-color,1) 0%, rgba($s__checkradio-text-color,1) 35%, rgba(0,0,0,0) 35%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+            background-image: -webkit-radial-gradient(center, ellipse cover, rgba($s__checkradio-text-color,1) 0%,rgba($s__checkradio-text-color,1) 35%,rgba(0,0,0,0) 35%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+            background-image: radial-gradient(ellipse at center, rgba($s__checkradio-text-color,1) 0%,rgba($s__checkradio-text-color,1) 35%,rgba(0,0,0,0) 35%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         }
 
         input[type="checkbox"]:checked::after {
@@ -270,7 +270,7 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="
             display: inline-block;
             width: 0.6em;
             height: 0.3em;
-            border: solid $f__checkradio-text-color;
+            border: solid $s__checkradio-text-color;
             border-width: 0 0 0.125em 0.125em;
 
             position: absolute;
@@ -285,8 +285,8 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="
         /*
             Turn off the outline we reinstated for non-experimental styles in Safari:
         */
-        _::-webkit-full-page-media, _:future, :root #{$f__namespace}[type="checkbox"]:focus,
-        _::-webkit-full-page-media, _:future, :root #{$f__namespace}[type="radio"]:focus {
+        _::-webkit-full-page-media, _:future, :root #{$s__namespace}[type="checkbox"]:focus,
+        _::-webkit-full-page-media, _:future, :root #{$s__namespace}[type="radio"]:focus {
             outline: 0;
         }
     }

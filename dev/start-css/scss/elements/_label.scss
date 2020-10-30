@@ -5,11 +5,11 @@
 /*
     1. Remove the tapping delay from clickable elements.
 */
-#{$f__namespace}label {
+#{$s__namespace}label {
     display: inline-block;
 
-    padding-top: $f__base-rem-space-unit / 4;
-    padding-bottom: $f__base-rem-space-unit / 4;
+    padding-top: $s__base-rem-space-unit / 4;
+    padding-bottom: $s__base-rem-space-unit / 4;
 
     font-weight: bold;
 

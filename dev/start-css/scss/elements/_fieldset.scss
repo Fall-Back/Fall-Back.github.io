@@ -7,21 +7,21 @@
     same as the default - just a bit of theming.
     More info here: https://thatemil.com/blog/2015/01/03/reset-your-fieldset/
 */
-#{$f__namespace}fieldset {
-    margin-bottom: $f__base-rem-space-unit;
+#{$s__namespace}fieldset {
+    margin-bottom: $s__base-rem-space-unit;
 
     min-width: 0;
 
-    @include f__bordered($f__fieldset-padding, $f__fieldset-border-width);
+    @include f__bordered($s__fieldset-padding, $s__fieldset-border-width);
 }
 
-    #{$f__namespace}fieldset fieldset {
+    #{$s__namespace}fieldset fieldset {
         margin: 0;
 
         padding: 0;
 
         border-width: 0;
     }
-        #{$f__namespace}fieldset fieldset::after {
+        #{$s__namespace}fieldset fieldset::after {
             display: none;
         }

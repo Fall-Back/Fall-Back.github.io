@@ -8,39 +8,39 @@
 \*------------------------------------------------------------------------------------------------*/
 
 
-$f__search-form--breakpoint--enhanced:         $f__breakpoint--enhanced;
+$s__search-form--breakpoint--enhanced:         $s__breakpoint--enhanced;
 
 
 // Colours:
 
-$f__search-form--base-ui-color:                 $f__base-ui-color !default;
-$f__search-form--base-text-color:               $f__base-text-color !default;
+$s__search-form--base-ui-color:                 $s__base-ui-color !default;
+$s__search-form--base-text-color:               $s__base-text-color !default;
 
-$f__search-form--background-color:              $f__search-form--base-ui-color !default;
-
-
-$f__search-form__field--background-color:       $f__base-background-color !default;
-$f__search-form__field--background-color--alt:  #ffffdc !default;
-$f__search-form__field--text-color:             $f__search-form--base-text-color !default;
+$s__search-form--background-color:              $s__search-form--base-ui-color !default;
 
 
-$f__search-form__submit--background-color:      lighten($f__search-form--base-ui-color, 50%) !default;
-$f__search-form__submit--background-color--alt: lighten($f__search-form--base-ui-color, 30%) !default;
-$f__search-form__submit--text-color:            $f__search-form--base-text-color !default;
+$s__search-form__field--background-color:       $s__base-background-color !default;
+$s__search-form__field--background-color--alt:  #ffffdc !default;
+$s__search-form__field--text-color:             $s__search-form--base-text-color !default;
+
+
+$s__search-form__submit--background-color:      lighten($s__search-form--base-ui-color, 50%) !default;
+$s__search-form__submit--background-color--alt: lighten($s__search-form--base-ui-color, 30%) !default;
+$s__search-form__submit--text-color:            $s__search-form--base-text-color !default;
 
 // Sizes:
 
-$f__search-form--font-size:                     $f__base-font-size !default;
-$f__search-form--field-height:                  $f__base-em-ratio * 1em !default;
-$f__search-form--spacing:                       $f__search-form--field-height / 8 !default;
-$f__search-form--height:                        $f__search-form--field-height + ($f__search-form--spacing * 2) !default;
+$s__search-form--font-size:                     $s__base-font-size !default;
+$s__search-form--field-height:                  $s__base-em-ratio * 1em !default;
+$s__search-form--spacing:                       $s__search-form--field-height / 8 !default;
+$s__search-form--height:                        $s__search-form--field-height + ($s__search-form--spacing * 2) !default;
 
-$f__search-bar--height:                         $f__search-form--height + ($f__search-form--spacing * 2) !default;
-$f__search-bar-button--spacing:                 $f__search-bar--height / 8 !default;
+$s__search-bar--height:                         $s__search-form--height + ($s__search-form--spacing * 2) !default;
+$s__search-bar-button--spacing:                 $s__search-bar--height / 8 !default;
 
 
 
-$f__search-form-max-width:                      25em !default;
+$s__search-form-max-width:                      25em !default;
 
 
 /* -- Basic/fallback layout --------------------------------------------------------------------- */
@@ -51,7 +51,7 @@ $f__search-form-max-width:                      25em !default;
         1. Prevent extra bottom space when form is inside a container.
     */
     .search-form.search-form {
-        background: $f__search-form--background-color;
+        background: $s__search-form--background-color;
 
         display: -moz-box;
         display: -webkit-flex;
@@ -94,7 +94,7 @@ $f__search-form-max-width:                      25em !default;
 
 
     .search-form---restrict-width {
-        max-width: $f__search-form-max-width;
+        max-width: $s__search-form-max-width;
     }
 
     /* -------------------------------------------------------------------------------------------*/
@@ -114,12 +114,12 @@ $f__search-form-max-width:                      25em !default;
         border: 0;
 
 
-        background-color: $f__search-form__field--background-color;
-        color: $f__search-form__field--text-color;
-        height: $f__search-form--field-height;
-        line-height: $f__search-form--field-height;
-        margin: $f__search-form--spacing 0 $f__search-form--spacing $f__search-form--spacing;
-        padding: $f__search-form--spacing;
+        background-color: $s__search-form__field--background-color;
+        color: $s__search-form__field--text-color;
+        height: $s__search-form--field-height;
+        line-height: $s__search-form--field-height;
+        margin: $s__search-form--spacing 0 $s__search-form--spacing $s__search-form--spacing;
+        padding: $s__search-form--spacing;
 
         float: left;
 
@@ -140,7 +140,7 @@ $f__search-form-max-width:                      25em !default;
         }
     }
     // And IE9
-    @media #{$f__ie9} {
+    @media #{$s__ie9} {
         .search-form .search-form__field {
             width: auto;
         }
@@ -155,7 +155,7 @@ $f__search-form-max-width:                      25em !default;
 
 
     .search-form .search-form__field:focus {
-        background-color: $f__search-form__field--background-color--alt;
+        background-color: $s__search-form__field--background-color--alt;
     }
 
     /* -------------------------------------------------------------------------------------------*/
@@ -173,14 +173,14 @@ $f__search-form-max-width:                      25em !default;
         border: 0;
 
 
-        background: $f__search-form__submit--background-color;
-        color: $f__search-form__submit--text-color;
+        background: $s__search-form__submit--background-color;
+        color: $s__search-form__submit--text-color;
 
-        height: $f__search-form--height;
+        height: $s__search-form--height;
         line-height: 0;
 
-        margin: $f__search-form--spacing $f__search-form--spacing $f__search-form--spacing 0;
-        padding:  0 ($f__search-form--spacing * 2);
+        margin: $s__search-form--spacing $s__search-form--spacing $s__search-form--spacing 0;
+        padding:  0 ($s__search-form--spacing * 2);
 
         float: left;
 
@@ -192,7 +192,7 @@ $f__search-form-max-width:                      25em !default;
 
     .search-form .search-form__submit:hover,
     .search-form .search-form__submit:focus {
-        background-color: $f__search-form__submit--background-color--alt;
+        background-color: $s__search-form__submit--background-color--alt;
     }
 
 
@@ -201,7 +201,7 @@ $f__search-form-max-width:                      25em !default;
 /* -----------------------------------------------------------------------------------------------*/
 
 /* -- Enhanced layout --------------------------------------------------------------------------- */
-    @media only screen and (max-width: ($f__search-form--breakpoint--enhanced - $f__mq-1-em-px)) {
+    @media only screen and (max-width: ($s__search-form--breakpoint--enhanced - $s__mq-1-em-px)) {
 
 
         .search-form .search-form__collapse {
@@ -209,7 +209,7 @@ $f__search-form-max-width:                      25em !default;
         }
     }
 
-    @media only screen and (min-width: $f__search-form--breakpoint--enhanced) {
+    @media only screen and (min-width: $s__search-form--breakpoint--enhanced) {
 
         /*
             1. Reinstate all flexbox for enhanced view as no wrapping needs to occure

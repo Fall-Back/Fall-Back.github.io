@@ -1,5 +1,5 @@
 /*
-$f__class-namespace: c-;
+$s__class-namespace: c-;
 $ff__include_class_cta_button:    false;
 $ff__include_class_bordered:      false;
 $ff__include_class_padded:        false;
@@ -276,14 +276,14 @@ a[href].cta {
   touch-action: manipulation;
   /* 1 */
   -webkit-appearance: none;
-  /*@if $f__button-focus-outline-width != false {
+  /*@if $s__button-focus-outline-width != false {
         &:hover,
         &:active,
         &:focus {
-            outline-width: $f__button-focus-outline-width;
-            outline-style: $f__button-focus-outline-style;
-            outline-color: $f__button-focus-outline-color;
-            outline-offset: $f__button-focus-outline-offset;
+            outline-width: $s__button-focus-outline-width;
+            outline-style: $s__button-focus-outline-style;
+            outline-color: $s__button-focus-outline-color;
+            outline-offset: $s__button-focus-outline-offset;
         }
     }*/
 }
@@ -362,14 +362,14 @@ a[href].cta--has-icon .icon {
   touch-action: manipulation;
   /* 1 */
   -webkit-appearance: none;
-  /*@if $f__button-focus-outline-width != false {
+  /*@if $s__button-focus-outline-width != false {
         &:hover,
         &:active,
         &:focus {
-            outline-width: $f__button-focus-outline-width;
-            outline-style: $f__button-focus-outline-style;
-            outline-color: $f__button-focus-outline-color;
-            outline-offset: $f__button-focus-outline-offset;
+            outline-width: $s__button-focus-outline-width;
+            outline-style: $s__button-focus-outline-style;
+            outline-color: $s__button-focus-outline-color;
+            outline-offset: $s__button-focus-outline-offset;
         }
     }*/
 }

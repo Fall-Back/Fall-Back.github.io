@@ -8,59 +8,59 @@
 \*------------------------------------------------------------------------------------------------*/
 
 
-$f__over-panel--breakpoint--enhanced:            $f__breakpoint--enhanced !default;
-$f__over-panel__contents--z-index:               9999 !default;
+$s__over-panel--breakpoint--enhanced:            $s__breakpoint--enhanced !default;
+$s__over-panel__contents--z-index:               9999 !default;
 
 // Colours:
 
-$f__over-panel--base-ui-color:                   $f__base-ui-color !default;
-$f__over-panel--base-text-color:                 $f__base-text-color !default;
+$s__over-panel--base-ui-color:                   $s__base-ui-color !default;
+$s__over-panel--base-text-color:                 $s__base-text-color !default;
 
 
-$f__over-panel__contents--text-color:            #fff !default;
-$f__over-panel__contents--background-color:      $f__over-panel--base-ui-color !default;
+$s__over-panel__contents--text-color:            #fff !default;
+$s__over-panel__contents--background-color:      $s__over-panel--base-ui-color !default;
 
-$f__over-panel__contents--link-color:            darken($f__over-panel__contents--text-color, 14%) !default;
-$f__over-panel__contents--link-color--alt:       darken($f__over-panel__contents--text-color, 7%) !default;
+$s__over-panel__contents--link-color:            darken($s__over-panel__contents--text-color, 14%) !default;
+$s__over-panel__contents--link-color--alt:       darken($s__over-panel__contents--text-color, 7%) !default;
 
-$f__over-panel__control--color:                  #fff !default;
-$f__over-panel__control--color--alt:             $f__over-panel__control--color !default;
-$f__over-panel__control--background-color:       $f__over-panel--base-ui-color !default;
-$f__over-panel__control--background-color--alt:  darken($f__over-panel__control--background-color, 14%) !default;
-$f__over-panel__control--background-color--alt2: darken($f__over-panel__control--background-color, 7%) !default;
+$s__over-panel__control--color:                  #fff !default;
+$s__over-panel__control--color--alt:             $s__over-panel__control--color !default;
+$s__over-panel__control--background-color:       $s__over-panel--base-ui-color !default;
+$s__over-panel__control--background-color--alt:  darken($s__over-panel__control--background-color, 14%) !default;
+$s__over-panel__control--background-color--alt2: darken($s__over-panel__control--background-color, 7%) !default;
 
-$f__over-panel__control--border-color:           rgba(255,255,255,0.2) !default;
-$f__over-panel__control--border-style:           solid !default;
-$f__over-panel__control--border-width:           1px !default;
-$f__over-panel__control--border-radius:          0 !default;
-
-
-$f__over-panel__contents--offset-top:            0 !default;
+$s__over-panel__control--border-color:           rgba(255,255,255,0.2) !default;
+$s__over-panel__control--border-style:           solid !default;
+$s__over-panel__control--border-width:           1px !default;
+$s__over-panel__control--border-radius:          0 !default;
 
 
-$f__over-panel__overlay--background-color:       #000 !default;
+$s__over-panel__contents--offset-top:            0 !default;
+
+
+$s__over-panel__overlay--background-color:       #000 !default;
 
 
 
 // Sizes:
 
-$f__over-panel__control--height:                 ($f__base-em-ratio * 1.5em) !default;
-$f__over-panel--spacing:                         ($f__over-panel__control--height / 8) !default;
+$s__over-panel__control--height:                 ($s__base-em-ratio * 1.5em) !default;
+$s__over-panel--spacing:                         ($s__over-panel__control--height / 8) !default;
 
 
-$f__over-panel__contents--padding:                0 !default; //$f__base-rem-space-unit !default;
+$s__over-panel__contents--padding:                0 !default; //$s__base-rem-space-unit !default;
 
 
 // Transitions:
-$f__over-panel--transition-duration:             ease;
-$f__over-panel--transition-timing-function:      0.8s;
+$s__over-panel--transition-duration:             ease;
+$s__over-panel--transition-timing-function:      0.8s;
 
-$f__over-panel__overlay-transition:              opacity 0.5s ease !default;
+$s__over-panel__overlay-transition:              opacity 0.5s ease !default;
 
 
 // Other:
-$f__over-panel__overlay-opacity:                 0.6 !default;
-//$f__over-panel__overlay-shadow:                  0 0 10px 5px #000 !default;
+$s__over-panel__overlay-opacity:                 0.6 !default;
+//$s__over-panel__overlay-shadow:                  0 0 10px 5px #000 !default;
 
 /* -- Basic/fallback layout --------------------------------------------------------------------- */
 
@@ -98,9 +98,9 @@ $f__over-panel__overlay-opacity:                 0.6 !default;
     // Not 100% sure about this.
     // May consider removing this, or making the whole section optional if user doesn't want to use:
     .over-panel__contents {
-        background-color: $f__over-panel__contents--background-color;
-        color: $f__over-panel__contents--text-color;
-        padding: $f__over-panel__contents--padding;     
+        background-color: $s__over-panel__contents--background-color;
+        color: $s__over-panel__contents--text-color;
+        padding: $s__over-panel__contents--padding;     
     }
     
     /*
@@ -118,13 +118,13 @@ $f__over-panel__overlay-opacity:                 0.6 !default;
         }
 
     .over-panel__contents a {
-        color: $f__over-panel__contents--link-color;
+        color: $s__over-panel__contents--link-color;
     }
 
     .over-panel__contents a:hover,
     .over-panel__contents a:active,
     .over-panel__contents a:focus {
-        color: $f__over-panel__contents--link-color--alt;
+        color: $s__over-panel__contents--link-color--alt;
     }
 
 /* -----------------------------------------------------------------------------------------------*/
@@ -146,7 +146,7 @@ $f__over-panel__overlay-opacity:                 0.6 !default;
     }
     
     
-    @media only screen and (max-width: ($f__over-panel--breakpoint--enhanced - $f__mq-1-em-px)) {
+    @media only screen and (max-width: ($s__over-panel--breakpoint--enhanced - $s__mq-1-em-px)) {
 		/*
 			1. Make sure the over-panel is on top.
 		*/
@@ -155,7 +155,7 @@ $f__over-panel__overlay-opacity:                 0.6 !default;
             left: 0;
             //top: 0;
             width: 100%;
-			////z-index: $f__over-panel--z-index; /* [1] */
+			////z-index: $s__over-panel--z-index; /* [1] */
 		}
 
 
@@ -180,10 +180,10 @@ $f__over-panel__overlay-opacity:                 0.6 !default;
         .js-over-panel .over-panel__contents {
 
             position: absolute;
-            z-index: $f__over-panel__contents--z-index;
+            z-index: $s__over-panel__contents--z-index;
             left: 0;
-            //top: $f__over-panel__control--height;
-            top: $f__over-panel__contents--offset-top;
+            //top: $s__over-panel__control--height;
+            top: $s__over-panel__contents--offset-top;
             width: 100%;
             //overflow: auto; Not sure why I needed this.
 
@@ -206,8 +206,8 @@ $f__over-panel__overlay-opacity:                 0.6 !default;
 
 
         // Variable aliases for ease of comprehension:
-        $td: $f__over-panel--transition-duration;
-        $tf: $f__over-panel--transition-timing-function;
+        $td: $s__over-panel--transition-duration;
+        $tf: $s__over-panel--transition-timing-function;
 
         /* Slide effect: */
 
@@ -323,23 +323,23 @@ $f__over-panel__overlay-opacity:                 0.6 !default;
             display: block;
             margin: 0;
 
-            padding-left: $f__over-panel--spacing * 2;
-            padding-right: $f__over-panel--spacing * 2;
+            padding-left: $s__over-panel--spacing * 2;
+            padding-right: $s__over-panel--spacing * 2;
             padding-bottom: 0; /* 1 */
             padding-top: 0; /* 1 */
 
             border: 0;
-            border-radius: $f__over-panel__control--border-radius;
+            border-radius: $s__over-panel__control--border-radius;
 
-            line-height: $f__over-panel__control--height;
+            line-height: $s__over-panel__control--height;
 
             text-decoration: none;
             outline: 0;
 
             box-shadow: none; /* 1 */
 
-            color: $f__over-panel__control--color;
-            background-color: $f__over-panel__control--background-color;
+            color: $s__over-panel__control--color;
+            background-color: $s__over-panel__control--background-color;
 
             position: relative;
 			z-index: 0;
@@ -364,13 +364,13 @@ $f__over-panel__overlay-opacity:                 0.6 !default;
         .js-over-panel-control.over-panel-control:hover,
         .js-over-panel-control.over-panel-control:active,
         .js-over-panel-control.over-panel-control[aria-expanded="true"] {
-            color: $f__over-panel__control--color--alt;
-            background-color: $f__over-panel__control--background-color--alt;
+            color: $s__over-panel__control--color--alt;
+            background-color: $s__over-panel__control--background-color--alt;
         }
 
         .js-over-panel-control.over-panel-control:focus {
-            color: $f__over-panel__control--color--alt;
-            background-color: $f__over-panel__control--background-color--alt2;
+            color: $s__over-panel__control--color--alt;
+            background-color: $s__over-panel__control--background-color--alt2;
         }
 
 		.js-over-panel-control.over-panel-control .icon--is-open,
@@ -442,16 +442,16 @@ $f__over-panel__overlay-opacity:                 0.6 !default;
             visibility: hidden;
 
 
-            background: $f__over-panel__overlay--background-color;
+            background: $s__over-panel__overlay--background-color;
             opacity: 0;
 
-            -webkit-transition: $f__over-panel__overlay-transition;
-               -moz-transition: $f__over-panel__overlay-transition;
-                 -o-transition: $f__over-panel__overlay-transition;
-                    transition: $f__over-panel__overlay-transition;
+            -webkit-transition: $s__over-panel__overlay-transition;
+               -moz-transition: $s__over-panel__overlay-transition;
+                 -o-transition: $s__over-panel__overlay-transition;
+                    transition: $s__over-panel__overlay-transition;
 
-            //-webkit-box-shadow: $f__over-panel__overlay-shadow;
-            //        box-shadow: $f__over-panel__overlay-shadow;
+            //-webkit-box-shadow: $s__over-panel__overlay-shadow;
+            //        box-shadow: $s__over-panel__overlay-shadow;
         }
 
         /* Bring the overlay to the front and fade in when there's an over-panel target: */
@@ -462,7 +462,7 @@ $f__over-panel__overlay-opacity:                 0.6 !default;
             width: 100%;
             height: 100%;
             z-index: 0;
-            opacity: $f__over-panel__overlay-opacity;
+            opacity: $s__over-panel__overlay-opacity;
 
             visibility: visible;
         }
@@ -472,7 +472,7 @@ $f__over-panel__overlay-opacity:                 0.6 !default;
         .js-over-panel-control .over-panel__overlay:focus {
             border: 0;
             text-decoration: none;
-            background: $f__over-panel__overlay--background-color;
+            background: $s__over-panel__overlay--background-color;
         }
     }
 

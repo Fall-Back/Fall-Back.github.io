@@ -33,20 +33,20 @@
 
 */
 // Let the other Fall-Back patterns know that start is being used:
-$f__using-Start-CSS: true;
+$s__using-Start-CSS: true;
 
 
 
-//@debug ($f__base-rem-space-unit / 8) - ((($f__input-border-width + 0px) / 1px) * $f__base-rem-1px);
+//@debug ($s__base-rem-space-unit / 8) - ((($s__input-border-width + 0px) / 1px) * $s__base-rem-1px);
 
 //@debug f__calc-px-from-rem(1.5rem);
 
 /* Output class for reference (tmp): */
 /*.ref {
-    flbk--base-rem-space-unit: $f__base-rem-space-unit;
-    flbk--base-rem-1px: $f__base-rem-1px;
-    flbk--root-font-size: $f__root-font-size;
-    flbk--root-font-size-percent: $f__root-font-size-percent;
+    flbk--base-rem-space-unit: $s__base-rem-space-unit;
+    flbk--base-rem-1px: $s__base-rem-1px;
+    flbk--root-font-size: $s__root-font-size;
+    flbk--root-font-size-percent: $s__root-font-size-percent;
 }*/
 
 
@@ -135,10 +135,10 @@ html {
 
     overflow-y: scroll; /* 3 */
 
-    color: $f__base-text-color;
-    background-color: $f__html-background-color;
+    color: $s__base-text-color;
+    background-color: $s__html-background-color;
 
-    font-size: #{$f__root-font-size-percent * 1%}; /* 4 */
+    font-size: #{$s__root-font-size-percent * 1%}; /* 4 */
 
 
     -ms-text-size-adjust: 100%; /* 5 */
@@ -152,20 +152,20 @@ html {
 
     // -- text-rendering: optimizeLegibility; --
     
-    -moz-tab-size: $f__tabsize; /* 6 */
-	tab-size: $f__tabsize; /* 6 */
+    -moz-tab-size: $s__tabsize; /* 6 */
+	tab-size: $s__tabsize; /* 6 */
 }
 /*
     Fix font size for IE9,10 as it can't calculate % to 1 decimal place! Grrr.
 */
-@if ($f__root-font-size != 16px) {
+@if ($s__root-font-size != 16px) {
     // @media screen and (min-width:0\0) and (min-resolution:.001dpcm) { .selector { property:value; } }
     // Internet Explorer 9
-    @media screen and (min-width:0\0) and (min-resolution:.001dpcm) { html { font-size: calc(#{($f__root-font-size-percent / 100) * 1rem} + 0.1px); } }
+    @media screen and (min-width:0\0) and (min-resolution:.001dpcm) { html { font-size: calc(#{($s__root-font-size-percent / 100) * 1rem} + 0.1px); } }
 
     // _:-ms-lang(x), .selector { property:value\9; }
     // Internet Explorer 10
-    _:-ms-lang(x), html { font-size: calc(#{($f__root-font-size-percent / 100) * 1rem} + 0.1px)\9; }
+    _:-ms-lang(x), html { font-size: calc(#{($s__root-font-size-percent / 100) * 1rem} + 0.1px)\9; }
 }
 
 
@@ -215,7 +215,7 @@ html {
 /*
     Remove the inner border and padding from form elements in older Firefox.
 */
-#{$f__namespace}::-moz-focus-inner {
+#{$s__namespace}::-moz-focus-inner {
     margin: 0;
 
     padding: 0;
@@ -231,35 +231,35 @@ body {
     position: relative; /* 1 */
 
     width: 100%;
-    min-width: $f__body-min-width;
+    min-width: $s__body-min-width;
 
     min-height: 100%;
     
-    @if $f__body-max-width > 0 {
-        max-width: $f__body-max-width;
+    @if $s__body-max-width > 0 {
+        max-width: $s__body-max-width;
 
-        margin: $f__body-margin auto;
+        margin: $s__body-margin auto;
     } @else {
         max-width: none;
         
-        margin: $f__body-margin;
+        margin: $s__body-margin;
     }
 
-    padding: $f__body-padding;
+    padding: $s__body-padding;
 
-    font-family: $f__base-font-family;
-    font-size: ($f__base-font-size / $f__root-font-size * 1em);
-    line-height: $f__base-rem-space-unit;
+    font-family: $s__base-font-family;
+    font-size: ($s__base-font-size / $s__root-font-size * 1em);
+    line-height: $s__base-rem-space-unit;
     letter-spacing: initial; /* 2 */
     word-spacing: initial; /* 2 */
     
-    background-color: $f__body-background-color;
-    color: $f__body-text-color;
+    background-color: $s__body-background-color;
+    color: $s__body-text-color;
     
 }
 
 /* IE9-11 */
-@media #{$f__ie9-11} {
+@media #{$s__ie9-11} {
 
     body {
         height: 100%;
@@ -432,10 +432,10 @@ body {
 */
 ::-moz-selection,
 ::selection {
-    color: $f__selection-text-color;
-    background-color: $f__selection-background-color;
+    color: $s__selection-text-color;
+    background-color: $s__selection-background-color;
 
-    text-shadow: $f__selection-text-shadow;
+    text-shadow: $s__selection-text-shadow;
 }
 
 /*! End Start-CSS */

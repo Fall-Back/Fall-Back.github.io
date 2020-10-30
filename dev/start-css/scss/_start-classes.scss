@@ -7,10 +7,10 @@
 \*------------------------------------------------------------------------------------------------*/
 
 
-$f__custom-input-focus-shadow: 0 0 0 2px lighten($f__base-ui-color, 20%) !default;
+$s__custom-input-focus-shadow: 0 0 0 2px lighten($s__base-ui-color, 20%) !default;
 
 
-$f__class-namespace: null !default;
+$s__class-namespace: null !default;
 
 // Allow individual classes to be turned off if they're not needed.
 $ff__include_class_cta_button:    true !default;
@@ -32,37 +32,37 @@ $ff__include_class_poem:          true !default;
         "Buttons" or "CTAs" that are really links should be distinguished from real buttons, so by
         default we're swapping the foreground and background colors:
     */
-    a[href].#{$f__class-namespace}button,
-    a[href].#{$f__class-namespace}cta {
+    a[href].#{$s__class-namespace}button,
+    a[href].#{$s__class-namespace}cta {
         @include f__button(
-            $f__button-background-color,
-            $f__button-text-color,
+            $s__button-background-color,
+            $s__button-text-color,
             20,
-            $f__button-background-color
+            $s__button-background-color
         );
 
             &:hover,
             &:active,
             &:focus {
-                background-color: lighten($f__button-background-color, 55%);
+                background-color: lighten($s__button-background-color, 55%);
             }
     }
 
-        a[href].#{$f__class-namespace}button--has-icon,
-        a[href].#{$f__class-namespace}cta--has-icon {
+        a[href].#{$s__class-namespace}button--has-icon,
+        a[href].#{$s__class-namespace}cta--has-icon {
             position: relative;
         }
 
-        a[href].#{$f__class-namespace}button--has-icon::after,
-        a[href].#{$f__class-namespace}cta--has-icon::after {
+        a[href].#{$s__class-namespace}button--has-icon::after,
+        a[href].#{$s__class-namespace}cta--has-icon::after {
             content: "";
             display: inline;
             padding-left: 1.25em;
             line-height: 0;
         }
 
-        a[href].#{$f__class-namespace}button--has-icon .icon,
-        a[href].#{$f__class-namespace}cta--has-icon .icon {
+        a[href].#{$s__class-namespace}button--has-icon .icon,
+        a[href].#{$s__class-namespace}cta--has-icon .icon {
             position: absolute;
             bottom: 0;
             transform: translateY(-15%);
@@ -70,19 +70,19 @@ $ff__include_class_poem:          true !default;
 
 
         // 'Fake' buttons. Over qualified for clarity.
-        .#{$f__class-namespace}button[data-text][aria-hidden="true"] {
+        .#{$s__class-namespace}button[data-text][aria-hidden="true"] {
             @include f__button;
         }
 
-            .#{$f__class-namespace}button[data-text][aria-hidden="true"]::before {
+            .#{$s__class-namespace}button[data-text][aria-hidden="true"]::before {
                 content: attr(data-text);
             }
 }
 
 @if $ff__include_class_bordered {
-    .#{$f__class-namespace}bordered {
-        @include f__bordered($f__base-line-height, 6px);
-        //@include f__bordered($f__base-rem-space-unit, $f__border-width);
+    .#{$s__class-namespace}bordered {
+        @include f__bordered($s__base-line-height, 6px);
+        //@include f__bordered($s__base-rem-space-unit, $s__border-width);
     }
 }
 
@@ -92,12 +92,12 @@ $ff__include_class_poem:          true !default;
     // Works if pseudo element height is 1px.
     // Adding a transparent border seems to fix it, as does setting it to an inline-block.
     // Not sure which is the best / most reliable approach at the moment, so leaving both in for ref.
-    .#{$f__class-namespace}padded {
-        //@include f__bordered($f__base-line-height, 1px);
+    .#{$s__class-namespace}padded {
+        //@include f__bordered($s__base-line-height, 1px);
         //border: 1px solid transparent;
 
-        //@include f__bordered($f__base-line-height, 0);
-        @include f__bordered($f__base-rem-space-unit, 0px);
+        //@include f__bordered($s__base-line-height, 0);
+        @include f__bordered($s__base-rem-space-unit, 0px);
         //display: inline-block;
         //width: 100%;
     }
@@ -107,7 +107,7 @@ $ff__include_class_poem:          true !default;
     /*
         1. Prevent element increasing height of parent.
     */
-    b.#{$f__class-namespace}subtitle {
+    b.#{$s__class-namespace}subtitle {
         font-size: 0.8em;
         font-weight: inherit;
         font-style: normal;
@@ -117,10 +117,10 @@ $ff__include_class_poem:          true !default;
     /*
         1. Negate heading margin.
     */
-    p.#{$f__class-namespace}subtitle {
+    p.#{$s__class-namespace}subtitle {
         font-size: 1.5em;
         font-weight: inherit;
-        margin-top: -#{$f__base-rem-space-unit / 2}; /* 1 */
+        margin-top: -#{$s__base-rem-space-unit / 2}; /* 1 */
     }
 }
 
@@ -128,9 +128,9 @@ $ff__include_class_poem:          true !default;
     /*
         1. Negate heading margin.
     */
-    .#{$f__class-namespace}tagline {
+    .#{$s__class-namespace}tagline {
         font-size: 1.14285714286em;
-        margin-top: -#{$f__base-rem-space-unit / 2}; /* 1 */
+        margin-top: -#{$s__base-rem-space-unit / 2}; /* 1 */
     }
 }
 
@@ -139,7 +139,7 @@ $ff__include_class_poem:          true !default;
         1. Collapse whitespace.
         2. Prevent extra height being added.
     */
-    .#{$f__class-namespace}composite {
+    .#{$s__class-namespace}composite {
         display: -webkit-inline-box; /* 1 */
         display: -ms-inline-flexbox; /* 1 */
         display: inline-flex; /* 1 */
@@ -155,7 +155,7 @@ $ff__include_class_poem:          true !default;
     /*
         1. Prevent extra height being added.
     */
-    .#{$f__class-namespace}composite > * {
+    .#{$s__class-namespace}composite > * {
         vertical-align: top; /* 1 */
         -webkit-flex: 0 1 auto;
             -ms-flex: 0 1 auto;
@@ -171,19 +171,19 @@ $ff__include_class_poem:          true !default;
         2. Hide button.
     */
     @media screen and (min-width:0\0) and (min-resolution:.001dpcm) {
-        .#{$f__class-namespace}composite {
+        .#{$s__class-namespace}composite {
             display: inline-block; /* 1 */
             white-space: nowrap; /* 1 */
             overflow: hidden; /* 2 */
         }
 
-        .#{$f__class-namespace}composite > * {
+        .#{$s__class-namespace}composite > * {
             vertical-align: top;
             display: inline-block;
         }
     }
 
-        .#{$f__class-namespace}composite > *:not(:first-child) {
+        .#{$s__class-namespace}composite > *:not(:first-child) {
             border-top-left-radius: 0 !important;
             border-bottom-left-radius: 0 !important;
             // This looks odd in Edge...
@@ -192,7 +192,7 @@ $ff__include_class_poem:          true !default;
             //margin-left: -1px;
         }
 
-        .#{$f__class-namespace}composite > *:not(:last-child) {
+        .#{$s__class-namespace}composite > *:not(:last-child) {
             border-top-right-radius: 0 !important;
             border-bottom-right-radius: 0 !important;
             border-right: 0 !important;
@@ -205,14 +205,14 @@ $ff__include_class_poem:          true !default;
 
     /* Hide the real inputs: */
     /* (note this method is important to persist accessibility and keyboard navigation) */
-    .#{$f__class-namespace}custom-input[type="checkbox"],
-    .#{$f__class-namespace}custom-input[type="radio"] {
+    .#{$s__class-namespace}custom-input[type="checkbox"],
+    .#{$s__class-namespace}custom-input[type="radio"] {
         position: absolute;
         opacity: 0;
     }
 
     /* Prepare for positioning the pseudo-elements: */
-    .#{$f__class-namespace}custom-input-label {
+    .#{$s__class-namespace}custom-input-label {
         position: relative;
         //vertical-align: middle;
         vertical-align: top;
@@ -227,16 +227,16 @@ $ff__include_class_poem:          true !default;
        padding-left: 1.5em;
     }
 
-    @if $f__input-focus-shadow != false {
-        .#{$f__class-namespace}custom-input:focus + .c#{$f__class-namespace}ustom-input-label::before {
-            box-shadow: $f__custom-input-focus-shadow;
+    @if $s__input-focus-shadow != false {
+        .#{$s__class-namespace}custom-input:focus + .c#{$s__class-namespace}ustom-input-label::before {
+            box-shadow: $s__custom-input-focus-shadow;
             outline: 0;
         }
     }
 
     /* Common psuedo-element styles: */
-    .#{$f__class-namespace}custom-input[type="checkbox"] + .#{$f__class-namespace}custom-input-label::before,
-    .#{$f__class-namespace}custom-input[type="radio"] + .#{$f__class-namespace}custom-input-label::before {
+    .#{$s__class-namespace}custom-input[type="checkbox"] + .#{$s__class-namespace}custom-input-label::before,
+    .#{$s__class-namespace}custom-input[type="radio"] + .#{$s__class-namespace}custom-input-label::before {
         display: inline-block;
         content: "";
         width: 1em;
@@ -255,17 +255,17 @@ $ff__include_class_poem:          true !default;
     }
 
     /* Make the radio elements circular: */
-    .#{$f__class-namespace}custom-input[type="radio"] + .#{$f__class-namespace}custom-input-label::before {
+    .#{$s__class-namespace}custom-input[type="radio"] + .#{$s__class-namespace}custom-input-label::before {
         border-radius: 50%;
     }
 
     /* Define the checkbox :checked state: */
-    .#{$f__class-namespace}custom-input[type="checkbox"]:checked + .#{$f__class-namespace}custom-input-label::before {
-        background: $f__base-ui-color;
+    .#{$s__class-namespace}custom-input[type="checkbox"]:checked + .#{$s__class-namespace}custom-input-label::before {
+        background: $s__base-ui-color;
     }
 
     /* Define the checkbox 'tick': */
-    .#{$f__class-namespace}custom-input[type="checkbox"]:checked + .#{$f__class-namespace}custom-input-label::after {
+    .#{$s__class-namespace}custom-input[type="checkbox"]:checked + .#{$s__class-namespace}custom-input-label::after {
         content: "";
         display: inline-block;
         width: 0.6em;
@@ -283,28 +283,28 @@ $ff__include_class_poem:          true !default;
     }
 
     /* Define the radio 'dot': */
-    .#{$f__class-namespace}custom-input[type="radio"]:checked + .#{$f__class-namespace}custom-input-label::before {
+    .#{$s__class-namespace}custom-input[type="radio"]:checked + .#{$s__class-namespace}custom-input-label::before {
         background: #fff;
-        border-color: $f__base-ui-color;
+        border-color: $s__base-ui-color;
         border-width: 0.25em;
         border-style: solid;
     }
 
     /* Adjustments for end (right) alignment: */
-    .#{$f__class-namespace}custom-input--align-end[type="checkbox"] + .#{$f__class-namespace}custom-input-label,
-    .#{$f__class-namespace}custom-input--align-end[type="radio"] + .#{$f__class-namespace}custom-input-label {
+    .#{$s__class-namespace}custom-input--align-end[type="checkbox"] + .#{$s__class-namespace}custom-input-label,
+    .#{$s__class-namespace}custom-input--align-end[type="radio"] + .#{$s__class-namespace}custom-input-label {
         padding-left: 0;
         padding-right: 1.5em;
     }
 
 
-    .#{$f__class-namespace}custom-input--align-end[type="checkbox"] + .#{$f__class-namespace}custom-input-label::before,
-    .#{$f__class-namespace}custom-input--align-end[type="radio"] + .#{$f__class-namespace}custom-input-label::before {
+    .#{$s__class-namespace}custom-input--align-end[type="checkbox"] + .#{$s__class-namespace}custom-input-label::before,
+    .#{$s__class-namespace}custom-input--align-end[type="radio"] + .#{$s__class-namespace}custom-input-label::before {
         left: auto;
         right: 0;
     }
 
-    .#{$f__class-namespace}custom-input--align-end[type="checkbox"]:checked + .#{$f__class-namespace}custom-input-label::after {
+    .#{$s__class-namespace}custom-input--align-end[type="checkbox"]:checked + .#{$s__class-namespace}custom-input-label::after {
         left: auto;
         right: 0.16em;
     }
@@ -312,11 +312,11 @@ $ff__include_class_poem:          true !default;
 
 
     /* CUSTOM INPUTS: FILE */
-    .#{$f__class-namespace}custom-input[type="file"] {
+    .#{$s__class-namespace}custom-input[type="file"] {
     }
 
         /* -webkit hide the button: */
-        .#{$f__class-namespace}custom-input[type="file"]::-webkit-file-upload-button {
+        .#{$s__class-namespace}custom-input[type="file"]::-webkit-file-upload-button {
             border: 0;
             padding: 0;
             margin: 0 ;
@@ -326,14 +326,14 @@ $ff__include_class_poem:          true !default;
 
         /* Firefox hide the button: */
         @supports (-moz-appearance:meterbar) {
-            .#{$f__class-namespace}custom-input[type=file] {
+            .#{$s__class-namespace}custom-input[type=file] {
                 text-indent: -5.6em;
                 padding-right: 0.375rem;
             }
         }
 
         /* IE10-11, Edge hide the button: */
-        .#{$f__class-namespace}custom-input[type=file]::-ms-browse {
+        .#{$s__class-namespace}custom-input[type=file]::-ms-browse {
             padding: 0;
             margin: -1px;
             width: 0;
@@ -346,11 +346,11 @@ $ff__include_class_poem:          true !default;
             /*
                 So far I haven't managed to get this arrangement working properly in IE9, so hiding it:
             */
-            .#{$f__class-namespace}button + .#{$f__class-namespace}custom-input[type=file] {
+            .#{$s__class-namespace}button + .#{$s__class-namespace}custom-input[type=file] {
                 margin-left: -5.35em;
             }
 
-            .#{$f__class-namespace}custom-input[type="file"] + .#{$f__class-namespace}button {
+            .#{$s__class-namespace}custom-input[type="file"] + .#{$s__class-namespace}button {
                 min-width: 7em;
                 margin-left: -7em;
                 text-align: center;
@@ -359,10 +359,10 @@ $ff__include_class_poem:          true !default;
 }
 
 @if $ff__include_class_poem {
-    .#{$f__class-namespace}poem {
+    .#{$s__class-namespace}poem {
         font-family: cursive;
         background: #fff;
         overflow: auto;
-        margin-bottom: $f__base-rem-space-unit;
+        margin-bottom: $s__base-rem-space-unit;
     }
 }

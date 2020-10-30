@@ -1,13 +1,9 @@
 /*-------------------------------------------------------------------------------------------------|
 
-    IMAGES
-    ======
+    COMPONENTS - IMAGES
+    ===================
 
 |-------------------------------------------------------------------------------------------------*/
-
-$e__image-border:     $f__border-width $f__border-style $f__base-ui-color !default;
-$e__image-inset:      $f__sz-m !default;
-$e__image-background: #fff !default;
 
 #{$es__component__images--border} {
     border: $e__image-border;
@@ -15,6 +11,8 @@ $e__image-background: #fff !default;
 
 #{$es__component__images--inset} {
     padding: $e__image-inset;
+
     border: $e__image-border;
+
     background: $e__image-background;
 };

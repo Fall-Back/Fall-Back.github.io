@@ -8,77 +8,77 @@
 \*------------------------------------------------------------------------------------------------*/
 
 
-$f__nav-bar--breakpoint--enhanced:         $f__breakpoint--enhanced;
+$s__nav-bar--breakpoint--enhanced:         $s__breakpoint--enhanced;
 
 
 // Colours:
 
-$f__nav-bar--base-ui-color:                $f__base-ui-color !default;
-$f__nav-bar--base-text-color:              $f__base-text-color !default;
+$s__nav-bar--base-ui-color:                $s__base-ui-color !default;
+$s__nav-bar--base-text-color:              $s__base-text-color !default;
 
 
-$f__nav-bar--background-color:             $f__nav-bar--base-ui-color !default;
+$s__nav-bar--background-color:             $s__nav-bar--base-ui-color !default;
 
-$f__nav-bar__link--color:                  #fff !default;
-$f__nav-bar__link--color--alt:             $f__nav-bar__link--color !default;
-$f__nav-bar__link--background-color:       $f__nav-bar--background-color !default;
-$f__nav-bar__link--background-color--alt:  darken($f__nav-bar--background-color, 14%) !default;
-$f__nav-bar__link--background-color--alt2: darken($f__nav-bar--background-color, 7%) !default;
+$s__nav-bar__link--color:                  #fff !default;
+$s__nav-bar__link--color--alt:             $s__nav-bar__link--color !default;
+$s__nav-bar__link--background-color:       $s__nav-bar--background-color !default;
+$s__nav-bar__link--background-color--alt:  darken($s__nav-bar--background-color, 14%) !default;
+$s__nav-bar__link--background-color--alt2: darken($s__nav-bar--background-color, 7%) !default;
 
-$f__nav-bar__link--border-color:           rgba(255,255,255,0.2) !default;
-$f__nav-bar__link--border-style:           solid !default;
-$f__nav-bar__link--border-width:           1px !default;
-$f__nav-bar__link--border-radius:          0 !default;
-
-
-$f__sub-nav--background-color:             darken($f__nav-bar--base-ui-color, 20%) !default;
-
-$f__sub-nav__link--border-color:           rgba(255,255,255,0.3) !default;
-$f__sub-nav__link--border-style:           dashed !default;
-$f__sub-nav__link--border-width:           1px !default;
+$s__nav-bar__link--border-color:           rgba(255,255,255,0.2) !default;
+$s__nav-bar__link--border-style:           solid !default;
+$s__nav-bar__link--border-width:           1px !default;
+$s__nav-bar__link--border-radius:          0 !default;
 
 
-$f__sub-nav__link--color:                  $f__nav-bar__link--color !default;
-$f__sub-nav__link--color--alt:             $f__sub-nav__link--color !default;
-$f__sub-nav__link--background-color:       $f__sub-nav--background-color !default;
-$f__sub-nav__link--background-color--alt:  lighten($f__sub-nav__link--background-color, 10%) !default;
+$s__sub-nav--background-color:             darken($s__nav-bar--base-ui-color, 20%) !default;
+
+$s__sub-nav__link--border-color:           rgba(255,255,255,0.3) !default;
+$s__sub-nav__link--border-style:           dashed !default;
+$s__sub-nav__link--border-width:           1px !default;
+
+
+$s__sub-nav__link--color:                  $s__nav-bar__link--color !default;
+$s__sub-nav__link--color--alt:             $s__sub-nav__link--color !default;
+$s__sub-nav__link--background-color:       $s__sub-nav--background-color !default;
+$s__sub-nav__link--background-color--alt:  lighten($s__sub-nav__link--background-color, 10%) !default;
 
 
 // Not sure I need this:
-//$f__nav-bar__title--background-color:      $f__nav-bar--background-color !default;
+//$s__nav-bar__title--background-color:      $s__nav-bar--background-color !default;
 
 
 
 // Sizes:
 
-$f__nav-bar--font-size:                    $f__base-font-size !default;
-$f__nav-bar--height:                       ($f__base-em-ratio * 1.5em) !default;
-$f__nav-bar--spacing:                      ($f__nav-bar--height / 8) !default;
-$f__nav-bar--margin-bottom:                0 !default;
-$f__nav-bar__title--padding:               0 !default;
+$s__nav-bar--font-size:                    $s__base-font-size !default;
+$s__nav-bar--height:                       ($s__base-em-ratio * 1.5em) !default;
+$s__nav-bar--spacing:                      ($s__nav-bar--height / 8) !default;
+$s__nav-bar--margin-bottom:                0 !default;
+$s__nav-bar__title--padding:               0 !default;
 
 
 
 // Transitions:
 
-$f__sub-nav--transition:                   margin-top 0.5s ease !default;
+$s__sub-nav--transition:                   margin-top 0.5s ease !default;
 
 
 
 // Other:
 
-$f__nav-bar__title--font-size:             1.5em !default;
-$f__nav-bar__title--font-style:            normal !default;
-$f__nav-bar__title--font-weight:           bold !default;
-$f__nav-bar__title--font-family:           Arial, Helvetica, sans-serif !default;
+$s__nav-bar__title--font-size:             1.5em !default;
+$s__nav-bar__title--font-style:            normal !default;
+$s__nav-bar__title--font-weight:           bold !default;
+$s__nav-bar__title--font-family:           Arial, Helvetica, sans-serif !default;
 
-$f__nav-bar-z-index:                       9999 !default;
+$s__nav-bar-z-index:                       9999 !default;
 
 // Calculate title heights based on IT'S font size:
-$f__nav-bar__title--height:                (($f__base-line-height * 1.5) / (($f__nav-bar__title--font-size / 1em) * $f__base-font-size) * 1em);
+$s__nav-bar__title--height:                (($s__base-line-height * 1.5) / (($s__nav-bar__title--font-size / 1em) * $s__base-font-size) * 1em);
 
 
-$f__nav-bar-divider-first-item:            false !default;
+$s__nav-bar-divider-first-item:            false !default;
 
 // Tell the JS that the this CSS has loaded:
 
@@ -108,12 +108,12 @@ $f__nav-bar-divider-first-item:            false !default;
         1. Helps to position above subsequent elements so subnavs sit on top.
     */
     .nav-bar.nav-bar {
-        background-color: $f__nav-bar--background-color;
+        background-color: $s__nav-bar--background-color;
         position: relative;
-        z-index: $f__nav-bar-z-index; /* [1] */
+        z-index: $s__nav-bar-z-index; /* [1] */
 
-        @if $f__nav-bar--font-size != $f__base-font-size {
-            font-size: $f__nav-bar--font-size;
+        @if $s__nav-bar--font-size != $s__base-font-size {
+            font-size: $s__nav-bar--font-size;
         }
     }
 
@@ -148,8 +148,8 @@ $f__nav-bar-divider-first-item:            false !default;
     }
 
     .nav-bar .subnav__items {
-        margin-left: $f__nav-bar--spacing * 4;
-        background-color: $f__sub-nav--background-color;
+        margin-left: $s__nav-bar--spacing * 4;
+        background-color: $s__sub-nav--background-color;
     }
 
 
@@ -186,13 +186,13 @@ $f__nav-bar-divider-first-item:            false !default;
     /*
     */
     .nav-bar .nav-bar__title .nav-bar__link {
-        height: $f__nav-bar__title--height;
-        line-height: $f__nav-bar__title--height;
+        height: $s__nav-bar__title--height;
+        line-height: $s__nav-bar__title--height;
 
-        font-family: $f__nav-bar__title--font-family;
-        font-weight: $f__nav-bar__title--font-weight;
-        font-style: $f__nav-bar__title--font-style;
-        font-size: $f__nav-bar__title--font-size;
+        font-family: $s__nav-bar__title--font-family;
+        font-weight: $s__nav-bar__title--font-weight;
+        font-style: $s__nav-bar__title--font-style;
+        font-size: $s__nav-bar__title--font-size;
 
         white-space: nowrap;
     }
@@ -206,14 +206,14 @@ $f__nav-bar-divider-first-item:            false !default;
     .nav-bar .subnav__heading {
         display: block;
         margin: 0;
-        padding-left: $f__nav-bar--spacing * 2;
-        padding-right: $f__nav-bar--spacing * 2;
+        padding-left: $s__nav-bar--spacing * 2;
+        padding-right: $s__nav-bar--spacing * 2;
 		padding-bottom: 0; /* 1 */
 		padding-top: 0; /* 1 */
 
         border: 0;
-        border-radius: $f__nav-bar__link--border-radius;
-        line-height: $f__nav-bar--height;
+        border-radius: $s__nav-bar__link--border-radius;
+        line-height: $s__nav-bar--height;
 
         text-decoration: none;
         outline: 0;
@@ -225,14 +225,14 @@ $f__nav-bar-divider-first-item:            false !default;
         FF15- fix button height.
     */
     .nav-bar button.nav-bar__link {
-        min-height: $f__nav-bar--height;
+        min-height: $s__nav-bar--height;
     }
 
 
 
     .nav-bar .nav-bar__link  {
-        color: $f__nav-bar__link--color;
-        background-color: $f__nav-bar__link--background-color;
+        color: $s__nav-bar__link--color;
+        background-color: $s__nav-bar__link--background-color;
     }
 
     .nav-bar__link--centered {
@@ -240,12 +240,12 @@ $f__nav-bar-divider-first-item:            false !default;
     }
 
     .nav-bar .subnav__heading {
-        color: $f__nav-bar__link--color;
+        color: $s__nav-bar__link--color;
     }
 
     .nav-bar .subnav__link {
-        color: $f__sub-nav__link--color;
-        background-color: $f__sub-nav__link--background-color;
+        color: $s__sub-nav__link--color;
+        background-color: $s__sub-nav__link--background-color;
     }
 
 
@@ -258,14 +258,14 @@ $f__nav-bar-divider-first-item:            false !default;
     .nav-bar .nav-bar__link:hover,
     .nav-bar .nav-bar__link:active,
     .nav-bar .nav-bar__link [aria-expanded="true"] {
-        color: $f__nav-bar__link--color--alt;
-        background-color: $f__nav-bar__link--background-color--alt;
+        color: $s__nav-bar__link--color--alt;
+        background-color: $s__nav-bar__link--background-color--alt;
         border: 0;
     }
 
     .nav-bar .nav-bar__link:focus {
-        color: $f__nav-bar__link--color--alt;
-        background-color: $f__nav-bar__link--background-color--alt2;
+        color: $s__nav-bar__link--color--alt;
+        background-color: $s__nav-bar__link--background-color--alt2;
         border: 0;
         box-shadow: none;
     }
@@ -273,8 +273,8 @@ $f__nav-bar-divider-first-item:            false !default;
     .nav-bar .subnav__link:hover,
     .nav-bar .subnav__link:focus,
     .nav-bar .subnav__link:active {
-        color: $f__sub-nav__link--color--alt;
-        background-color: $f__sub-nav__link--background-color--alt;
+        color: $s__sub-nav__link--color--alt;
+        background-color: $s__sub-nav__link--background-color--alt;
         border: 0;
         box-shadow: none;
     }
@@ -288,14 +288,14 @@ $f__nav-bar-divider-first-item:            false !default;
 
 /* -----------------------------------------------------------------------------------------------*/
 
-@media only screen and (max-width: $f__nav-bar--breakpoint--enhanced) {
+@media only screen and (max-width: $s__nav-bar--breakpoint--enhanced) {
     .nav-bar .subnav__items--stacked--only-narrow .subnav__item,
     .nav-bar .subnav__items--stacked--only-narrow .subnav__link {
         float: none;
     }
 }
 
-@media only screen and (min-width: $f__nav-bar--breakpoint--enhanced) {
+@media only screen and (min-width: $s__nav-bar--breakpoint--enhanced) {
     .nav-bar .subnav__items--stacked--only-wide .subnav__item,
     .nav-bar .subnav__items--stacked--only-wide .subnav__link {
         float: none;
@@ -311,7 +311,7 @@ $f__nav-bar-divider-first-item:            false !default;
     So, scoping these styles to the 'js-nav-bar' class.
 */
 
-    @media only screen and (max-width: $f__nav-bar--breakpoint--enhanced) and (min-width:0\0) and (min-resolution:.001dpcm) {
+    @media only screen and (max-width: $s__nav-bar--breakpoint--enhanced) and (min-width:0\0) and (min-resolution:.001dpcm) {
 
         /* This is all for IE9: */
         .js-nav-bar .nav-bar,
@@ -337,7 +337,7 @@ $f__nav-bar-divider-first-item:            false !default;
         }
     }
 
-    @media only screen and (max-width: $f__nav-bar--breakpoint--enhanced) {
+    @media only screen and (max-width: $s__nav-bar--breakpoint--enhanced) {
         /*
             1. FF8-21 needs this or is increases the height of this box for some reason.
             2. FF8-21 needs this.
@@ -398,7 +398,7 @@ $f__nav-bar-divider-first-item:            false !default;
     }
 
 
-    @media only screen and (min-width: $f__nav-bar--breakpoint--enhanced) {
+    @media only screen and (min-width: $s__nav-bar--breakpoint--enhanced) {
 
 
         /*.js-nav-bar .nav-bar {
@@ -412,27 +412,27 @@ $f__nav-bar-divider-first-item:            false !default;
 
         .js-nav-bar .nav-bar__title,
         .js-nav-bar .nav-bar__item {
-            border-style: $f__nav-bar__link--border-style;
-            border-color: $f__nav-bar__link--border-color;
+            border-style: $s__nav-bar__link--border-style;
+            border-color: $s__nav-bar__link--border-color;
             border-top-width: 0;
             border-bottom-width: 0;
             border-left-width: 0;
-            border-right-width: $f__nav-bar__link--border-width;
+            border-right-width: $s__nav-bar__link--border-width;
         }
         
-        @if $f__nav-bar-divider-first-item {
+        @if $s__nav-bar-divider-first-item {
             .js-nav-bar .nav-bar__title:first-child,
             .js-nav-bar .nav-bar__item:first-child {
-                border-left-width: $f__nav-bar__link--border-width;
+                border-left-width: $s__nav-bar__link--border-width;
             }
         }
 
         .js-nav-bar .nav-bar__link[href]  + * {
-            border-style: $f__sub-nav__link--border-style;
-            border-color: $f__sub-nav__link--border-color;
+            border-style: $s__sub-nav__link--border-style;
+            border-color: $s__sub-nav__link--border-color;
             border-top-width: 0;
             border-bottom-width: 0;
-            border-left-width: $f__sub-nav__link--border-width;
+            border-left-width: $s__sub-nav__link--border-width;
             border-right-width: 0;
         }
 
@@ -536,7 +536,7 @@ $f__nav-bar-divider-first-item:            false !default;
 			top: 0;
 			bottom: 0;
 			z-index: -1;
-			background-color: $f__nav-bar--background-color;
+			background-color: $s__nav-bar--background-color;
 		}
 
 
@@ -579,7 +579,7 @@ $f__nav-bar-divider-first-item:            false !default;
             top: 0;
             z-index: -2; /* 1 */          
 
-            height: $f__nav-bar--height; /* 2 */
+            height: $s__nav-bar--height; /* 2 */
 
             -webkit-transition: margin-top 0.5s ease,
                                 visibility 0s   ease 0.5s;
@@ -598,7 +598,7 @@ $f__nav-bar-divider-first-item:            false !default;
 
         .js-nav-bar .subnav__control[aria-expanded="true"] ~ .subnav {
             visibility: visible;
-            margin-top: $f__nav-bar--height;
+            margin-top: $s__nav-bar--height;
 
             -webkit-transition: margin-top 0.5s ease;
                -moz-transition: margin-top 0.5s ease;

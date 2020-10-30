@@ -12,20 +12,20 @@
     2. Offset border width.
     3. Correct the color inheritance from `fieldset` elements in IE.
 
-    Note $fieldset-border-width used deliberately (not $f__legend-border-width)- this is to account for
+    Note $fieldset-border-width used deliberately (not $s__legend-border-width)- this is to account for
     the fact that fieldset top border width is ignored if there's a legend so the spacing is wrong.
 */
-#{$f__namespace}legend {
+#{$s__namespace}legend {
     display: table; /* 1 */
 
     max-width: 100%; /* 1 */
 
-    margin-top: -$f__legend-border-width; /* 2 */
-    margin-bottom: $f__fieldset-border-width; /* 2 */
+    margin-top: -$s__legend-border-width; /* 2 */
+    margin-bottom: $s__fieldset-border-width; /* 2 */
 
-    padding: 0 $f__legend-h-padding;
+    padding: 0 $s__legend-h-padding;
 
-    border-width: $f__legend-border-width;
+    border-width: $s__legend-border-width;
 
     color: inherit; /* 3 */
 

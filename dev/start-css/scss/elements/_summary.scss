@@ -6,7 +6,7 @@
     1. Correct display in unsupported browsers (https://caniuse.com/#feat=details).
     2. Remove the tapping delay from clickable elements.
 */
-#{$f__namespace}summary {
+#{$s__namespace}summary {
     display: block; /* 1 */
 
     -ms-touch-action: manipulation; /* 2 (IE10) */
@@ -15,17 +15,17 @@
     cursor: pointer;
 
     &:focus {
-        outline: 2px solid rgba($f__base-ui-color, 0.6);
+        outline: 2px solid rgba($s__base-ui-color, 0.6);
         outline-offset: 2px;
     }
 }
 
     /* Hide the details marker as we're supplying our own. */
-    #{$f__namespace}summary::-webkit-details-marker {
+    #{$s__namespace}summary::-webkit-details-marker {
         display: none;
     }
 
-    #{$f__namespace}details > summary::before {
+    #{$s__namespace}details > summary::before {
         display: inline-block;
 
         content: '\25BA';
@@ -40,6 +40,10 @@
         transition: transform 0.2s ease;
     }
 
-    #{$f__namespace}details[open] > summary::before {
+    #{$s__namespace}details[open] > summary {
+        margin-bottom: $s__base-rem-space-unit;
+    }
+    
+    #{$s__namespace}details[open] > summary::before {
         transform: rotate(90deg);
     }

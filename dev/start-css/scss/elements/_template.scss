@@ -5,6 +5,6 @@
 /*
     1. Hide `template` in unsupported browsers (https://caniuse.com/#feat=template)
 */
-#{$f__namespace}template {
+#{$s__namespace}template {
     display: none; /* 1 */
 }

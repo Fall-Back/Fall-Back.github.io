@@ -2417,7 +2417,54 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="
     ===================
 
 |-------------------------------------------------------------------------------------------------*/
-/* NavBar */
+/*-------------------------------------------------------------------------------------------------|
+
+    BANNER
+    ======
+
+|-------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------|
+
+    NAVBAR
+    ======
+
+|-------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------|
+
+    MAIN
+    ====
+
+|-------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------|
+
+    CONTENT LISTING
+    ===============
+
+|-------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------|
+
+    COMPONENTS - CARD
+    =================
+
+|-------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------|
+
+    COMPONENTS - CTA
+    ================
+
+|-------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------|
+
+    COMPONENTS - IMAGES
+    ===================
+
+|-------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------|
+
+    FOOTER
+    ======
+
+|-------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------|
 
     ELEMENTARY MIXINS
@@ -2571,6 +2618,9 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="
     COMPONENTS - CARD
 */
 /*
+    COMPONENTS - CTA
+*/
+/*
     COMPONENTS - IMAGES
 */
 /*
@@ -2594,10 +2644,10 @@ body {
     footer behavior.
 */
 body {
-  max-width: 1080px;
-  padding: 0;
   display: flex;
   flex-direction: column;
+  max-width: 1080px;
+  padding: 0;
 }
 
 body > * {
@@ -2608,14 +2658,13 @@ body > * {
 @supports (display: grid) {
   @media only screen and (min-width: 50em) {
     body {
-      width: auto;
-      align-items: stretch;
       display: grid;
-      /*grid-template-columns: 1fr fit-content(34%);*/
+      align-items: stretch;
+      width: auto;
+      height: auto;
+      min-height: 100%;
       grid-template-columns: 3fr 1fr;
       grid-template-rows: max-content auto max-content;
-      min-height: 100%;
-      height: auto;
     }
     body > header,
     body > footer {
@@ -2662,11 +2711,13 @@ body > * {
     Banner
 */
 body > header {
-  padding: 1.2rem 1.2rem 0.6rem 1.2rem;
-  margin: 0;
   display: flex;
-  align-items: center;
   flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding: 1.2rem 1.2rem 0.6rem 1.2rem;
+  color: #fff;
+  background: #247BA0;
 }
 
 body > header > * {
@@ -2682,17 +2733,17 @@ body > header > * {
 |-------------------------------------------------------------------------------------------------*/
 body > header > a[href] {
   display: inline-block;
-  border: 0;
-  padding: 0;
   margin: 0 2.4rem 0.6rem 0;
+  padding: 0;
+  border: 0;
 }
 
 body > header > a[href]:hover,
 body > header > a[href]:active,
 body > header > a[href]:focus {
-  border: 0;
   padding: 0;
-  box-shadow: 0 0 0 0.6rem #fff, 0 0 0 1.2rem rgba(0, 0, 0, 0.2);
+  border: 0;
+  box-shadow: 0 0 0 0.6rem rgba(255, 255, 255, 0.4), 0 0 0 1.2rem rgba(0, 0, 0, 0.2);
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -2702,57 +2753,83 @@ body > header > a[href]:focus {
 
 |-------------------------------------------------------------------------------------------------*/
 body > header > nav {
-  margin: 0.6rem 0;
   flex: 1 1 auto;
+  margin: 0.6rem 0 0 0;
 }
 
 body > header > nav > ul {
-  margin: 0;
-  list-style-type: none;
   display: flex;
   flex-wrap: wrap;
+  margin: 0;
+  list-style-type: none;
 }
 
 body > header > nav > ul li {
-  margin: 0;
-  padding: 0;
   flex: 0 0 auto;
+  margin: 0 0 0.6rem 0;
+  padding: 0;
+}
+
+body > header > nav > ul {
+  margin-left: -1.2rem;
+}
+
+body > header > nav > ul li {
+  margin-left: 1.2rem;
 }
 
 body > header > nav > ul a[href] {
   display: block;
   margin: 0;
-  padding-left: 0.5625em;
+  padding-top: 0;
   padding-right: 0.5625em;
   padding-bottom: 0;
-  padding-top: 0;
+  padding-left: 0.5625em;
   border: 0;
-  border-radius: 0;
+  border-radius: 0.6rem;
+  box-shadow: none;
   line-height: 2.25em;
   text-decoration: none;
-  box-shadow: none;
 }
 
 body > header > nav > ul a[href] {
-  color: #333;
-  background-color: transparent;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+body > header > nav > ul a[href][aria-current] {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 body > header > nav > ul a[href]:hover,
 body > header > nav > ul a[href]:active,
-body > header > nav > ul a[href] [aria-expanded="true"] {
-  color: #333;
-  background-color: #cfe9f4;
+body > header > nav > ul a[href]:focus {
   border: 0;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/*
+
+body > header > nav > ul a[href]:hover,
+body > header > nav > ul a[href]:active,
+body > header > nav > ul a[href] [aria-expanded="true"] {
+    border: 0;
+
+    color: $e__nav-bar__link--color--alt;
+    background-color: $e__nav-bar__link--background-color--alt;
 }
 
 body > header > nav > ul a[href]:focus {
-  color: #333;
-  background-color: #081b23;
-  border: 0;
-  box-shadow: none;
-}
+    border: 0;
 
+    color: $e__nav-bar__link--color--alt;
+    background-color: $e__nav-bar__link--background-color--alt2;
+
+    box-shadow: none;
+}
+*/
 /*-------------------------------------------------------------------------------------------------|
 
     MAIN
@@ -2763,10 +2840,10 @@ body > header > nav > ul a[href]:focus {
     Expand main to fill space - part of stick footer.
 */
 body > main {
-  min-height: 0;
   flex: 1 0 auto;
-  max-width: none;
   width: 100%;
+  max-width: none;
+  min-height: 0;
   margin: 0;
   padding: 0;
 }
@@ -2840,8 +2917,8 @@ body > main > article > header ~ * {
   width: 100%;
   /* 1 */
   max-width: 70rem;
-  margin-left: auto;
   margin-right: auto;
+  margin-left: auto;
 }
 
 /*
@@ -2850,8 +2927,8 @@ body > main > article > header ~ * {
 */
 body > main > * > header ~ div {
   max-width: none;
-  padding: 0;
   margin-bottom: 2.4rem;
+  padding: 0;
 }
 
 /*
@@ -2873,24 +2950,24 @@ body > main img {
 
 
     What should be the default behaviour for this?
-    
+
     I mean, you'll want to choose the behaviour based on use case and number of items.
-    
+
     I've covered this before, and there are different 'classes' of behaviour to consider:
-    
-    1. **Gallery Grid**. KNOW/UNKNOWN QUANTITY (doesn't matter) Use CSS Grid for this. 
-       USES: (Where the are more than X items ?), the items need to be given equal weighting, they 
-       should appear as a list (so uneven trailing items are left-aligned and do not expand to the 
-       fill the bottom row). VARIABLE/UNDETERMINED quantity. E.g People/PRU People, SHEER badge 
+
+    1. **Gallery Grid**. KNOW/UNKNOWN QUANTITY (doesn't matter) Use CSS Grid for this.
+       USES: (Where the are more than X items ?), the items need to be given equal weighting, they
+       should appear as a list (so uneven trailing items are left-aligned and do not expand to the
+       fill the bottom row). VARIABLE/UNDETERMINED quantity. E.g People/PRU People, SHEER badge
        list.
 
     2. **Selected Balanced Display**. KNOWN QUANTITY. Items should be considered a 'Display' and
        should be balanced properly. The correct display pattern class should be applied depending on
-       the quantity and behaviour required. E.g footer logo lists (if number changes, change the 
-       class - the number isn't ever unknown). KNOWN card lists, e.g. PRU (7, weighted bottom) / 
+       the quantity and behaviour required. E.g footer logo lists (if number changes, change the
+       class - the number isn't ever unknown). KNOWN card lists, e.g. PRU (7, weighted bottom) /
        Contact Cards (6, 1x6, 2x3, 3x2)
 
-    3. **Auto Balanced Display**. UNKNOWN QUANTITY. This is the trickiest, and will ALWAYS have the 
+    3. **Auto Balanced Display**. UNKNOWN QUANTITY. This is the trickiest, and will ALWAYS have the
        potential to be broken. E.g. News cards - we KNOW it's 6 or less so we can account for that
        using QQ's etc, but there's nothing to stop an unknowing admin changing this to something
        like 20. If the max assumed quantity for the pattern is, say 16, then 20 is outside,
@@ -2898,17 +2975,17 @@ body > main img {
 
 |-------------------------------------------------------------------------------------------------*/
 body > main > div > header ~ ul {
-  list-style-type: none;
   display: flex;
   flex-wrap: wrap;
   padding: 1.2rem;
+  list-style-type: none;
 }
 
 body > main > div > header ~ ul > * {
-  margin: 1.2rem;
-  flex-shrink: 0;
   flex-grow: 1;
+  flex-shrink: 0;
   flex-basis: calc(100% - 2.4rem);
+  margin: 1.2rem;
   background-color: transparent;
 }
 
@@ -2917,22 +2994,6 @@ body > main > div > header ~ ul > * > * {
   height: 100%;
 }
 
-/*
-@supports (width: unquote("max(1px, 1px)")) {
-    body > main > div > header ~ ul {
-        
-    }
-
-    body > main > div > header ~ ul > * {
-        flex-basis: unquote("max(50% - 1rem, (var(--bp1) - 100%) * 999)");
-    }
-
-
-    body > main > div > header ~ ul > :nth-last-child(odd):first-child {
-        flex-basis: 100%;
-    }
-}
-*/
 /*-------------------------------------------------------------------------------------------------|
 
     CONTENT LISTING - COLUMNS
@@ -2995,10 +3056,20 @@ body > footer {
   padding: 1.2rem;
   font-size: 0.875em;
   text-align: center;
+  color: #fff;
+  background: #247BA0;
 }
 
 body > footer > * {
   margin-bottom: 0;
+}
+
+body > footer a[href] {
+  color: #fff;
+}
+
+body > footer a[href]:hover, body > footer a[href]:active, body > footer a[href]:focus {
+  color: white;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -3009,20 +3080,20 @@ body > footer > * {
 |-------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------|
 
-    CARD
-    ====
+    COMPONENTS - CARD
+    =================
 
 |-------------------------------------------------------------------------------------------------*/
 article > span:only-child {
   display: flex;
   flex-direction: column;
-  margin: 0;
-  overflow: hidden;
   height: 100%;
+  overflow: hidden;
+  margin: 0;
   padding: 2.4rem;
-  background: linear-gradient(to bottom, #ffffff 60%, #f8fcfe 100%);
   border: 1px solid #247BA0;
   border-radius: 3px;
+  background: linear-gradient(to bottom, #ffffff 60%, #f8fcfe 100%);
   box-shadow: none;
 }
 
@@ -3039,14 +3110,14 @@ article > span:only-child > header > :last-child > :last-child {
 }
 
 article > span:only-child > header > div:first-child {
-  margin: -2.4rem -2.4rem 2.4rem -2.4rem;
   position: relative;
   overflow: hidden;
+  margin: -2.4rem -2.4rem 2.4rem -2.4rem;
 }
 
 article > span:only-child > header > div:first-child::before {
-  content: "";
   display: block;
+  content: "";
   width: 100%;
   padding-top: 33%;
 }
@@ -3054,9 +3125,9 @@ article > span:only-child > header > div:first-child::before {
 article > span:only-child > header > div:first-child > img {
   position: absolute;
   top: 0;
-  object-fit: cover;
-  height: 100%;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 article > span:only-child > div > :last-child {
@@ -3065,6 +3136,11 @@ article > span:only-child > div > :last-child {
 
 article > span:only-child > div > :last-child > :last-child {
   margin-bottom: 0;
+}
+
+article > span:only-child > div > p:last-child > b:only-child {
+  display: block;
+  text-align: right;
 }
 
 article > span:only-child > footer {
@@ -3082,8 +3158,32 @@ article > span:only-child > footer > :last-child > :last-child {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    IMAGES
-    ======
+    CTA
+    ===
+
+|-------------------------------------------------------------------------------------------------*/
+b > a[href]:only-child {
+  display: inline-block;
+  overflow: hidden;
+  margin: 0;
+  padding: calc(0.6rem - 1px) 1.2rem;
+  border: 1px solid #247BA0;
+  border-radius: 3px;
+  background: #fff;
+  box-shadow: none;
+  font-weight: normal;
+  line-height: 2.4rem;
+  vertical-align: middle;
+}
+
+b > a[href]:only-child:hover, b > a[href]:only-child:active, b > a[href]:only-child:focus {
+  background: #e4f3f9;
+}
+
+/*-------------------------------------------------------------------------------------------------|
+
+    COMPONENTS - IMAGES
+    ===================
 
 |-------------------------------------------------------------------------------------------------*/
 b > img:only-child {
@@ -3100,13 +3200,14 @@ b > i:only-child > img:only-child {
 /*
     Greybox
 */
+/*
 body > header,
 body > footer {
-  background: #ddd;
+    background: #ddd;
 }
 
 body > aside {
-  background: #ccc;
+    background: #ccc;
 }
 
 /*

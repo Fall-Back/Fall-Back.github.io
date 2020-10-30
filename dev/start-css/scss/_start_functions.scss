@@ -4,11 +4,11 @@
 
 
 @function f__calc-rem-from-px($px, $negative: false) {
-    // e.g. $px = 16px (and $f__base-rem-1px = 0.0625rem)
+    // e.g. $px = 16px (and $s__base-rem-1px = 0.0625rem)
     // 16px + 0px = 16px | 16 + 0px = 16px (add unit if necessary)
     // 16px / 1px = 16 (strip unit)
     // 16px * 0.0625rem = 1rem
-    $value: ((($px + 0px) / 1px) * $f__base-rem-1px);
+    $value: ((($px + 0px) / 1px) * $s__base-rem-1px);
 
     @if $negative {
         $value: -#{$value};
@@ -22,7 +22,7 @@
     // 1.5rem  + 0rem = 1.5rem | 1.5 + 0rem = 1.5rem (add unit if necessary)
     // 1.5rem / 1rem = 1 (strip unit)
     // 1.5 * 16px = 24px
-    $value: ((($rem + 0rem) / 1rem) * $f__root-font-size);
+    $value: ((($rem + 0rem) / 1rem) * $s__root-font-size);
 
     @if $negative {
         $value: -#{$value};

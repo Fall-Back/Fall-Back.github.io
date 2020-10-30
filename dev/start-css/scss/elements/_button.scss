@@ -2,14 +2,14 @@
     Fall-Back Start-CSS Element: button
 |-------------------------------------------------------------------------------------------------*/
 
-#{$f__namespace}button {
+#{$s__namespace}button {
     @include f__button;
 }
 
 // _:-o-prefocus, :root .selector { property:value; }
 // Opera 9.5-12, Opera Mini 7.x (Opera 9.80)
-_:-o-prefocus, :root #{$f__namespace}button {
-    line-height: $f__base-rem-space-unit !important;
+_:-o-prefocus, :root #{$s__namespace}button {
+    line-height: $s__base-rem-space-unit !important;
 }
 
 /*
@@ -23,7 +23,7 @@ _:-o-prefocus, :root #{$f__namespace}button {
 
     NOTE: these adjustments don't seem very robust / dependent on font-family and font-size.
 */
-#{$f__namespace}button::-moz-focus-inner {
+#{$s__namespace}button::-moz-focus-inner {
     margin: -0.0625em 0;
 }
 

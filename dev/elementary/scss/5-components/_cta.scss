@@ -1,0 +1,36 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    CTA
+    ===
+
+|-------------------------------------------------------------------------------------------------*/
+
+@mixin component__cta($options: ()) {
+    #{map-get($options, selector)} {
+        display: inline-block;
+
+        overflow: hidden;
+
+        margin: 0;
+
+        padding:       #{map-get($options, padding)};
+
+        border:        #{map-get($options, border)};
+        border-radius: #{map-get($options, border-radius)};
+
+        background:    #{map-get($options, background)};
+
+        box-shadow:    #{map-get($options, box-shadow)};
+
+        font-weight:   normal;
+        line-height:   $s__sz-m;
+
+        vertical-align: middle;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background: #{map-get($options, background--alt)};
+        }
+    }
+}

@@ -10,24 +10,24 @@
     5. Remove the tapping delay from clickable elements.
     5a. IE 10.
 */
-#{$f__namespace}textarea {
-    min-height: $f__base-rem-space-unit * 3.5 - f__calc-rem-from-px($f__textarea-border-width * 2); /* 1 */
+#{$s__namespace}textarea {
+    min-height: $s__base-rem-space-unit * 3.5 - f__calc-rem-from-px($s__textarea-border-width * 2); /* 1 */
 
     overflow: auto; /* 2 */
 
-    margin-top: $f__base-rem-space-unit / 12;
+    margin-top: $s__base-rem-space-unit / 12;
     margin-bottom: 0; /* 3 */
 
-    padding-left: $f__textarea-h-padding;
-    padding-right: $f__textarea-h-padding;
+    padding-left: $s__textarea-h-padding;
+    padding-right: $s__textarea-h-padding;
 
-    border-width: $f__textarea-border-width;
-    border-radius: $f__textarea-border-radius;
-    border-color: $f__textarea-border-color;
-    border-style: $f__textarea-border-style;
+    border-width: $s__textarea-border-width;
+    border-radius: $s__textarea-border-radius;
+    border-color: $s__textarea-border-color;
+    border-style: $s__textarea-border-style;
 
-    color: $f__textarea-text-color;
-    background-color: $f__textarea-background-color;
+    color: $s__textarea-text-color;
+    background-color: $s__textarea-background-color;
 
     font-size: inherit;
     font-family: inherit;
@@ -39,12 +39,12 @@
     -ms-touch-action: manipulation; /* 5a */
     touch-action: manipulation; /* 5 */
 
-    resize: $f__textarea-resize;
+    resize: $s__textarea-resize;
 }
 
-@if $f__textarea-focus-shadow != false {
-    #{$f__namespace}textarea:focus {
-        box-shadow: 0 0 0 $f__textarea-focus-shadow-width rgba($f__base-ui-color, 0.5);
+@if $s__textarea-focus-shadow != false {
+    #{$s__namespace}textarea:focus {
+        box-shadow: 0 0 0 $s__textarea-focus-shadow-width rgba($s__base-ui-color, 0.5);
 
         outline: 0;
     }

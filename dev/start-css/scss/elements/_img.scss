@@ -12,14 +12,14 @@
     6. If a `width` and/or `height` attribute have been explicitly defined, let's not make the
        image fluid.
 */
-#{$f__namespace}img {
+#{$s__namespace}img {
     max-width: 100%; /* 1 */
 
     border-style: none; /* 2  */
 
     font-style: italic; /* 3 */
 
-    vertical-align: $f__media-element-vertical-align; /* 4 */
+    vertical-align: $s__media-element-vertical-align; /* 4 */
 
     .gm-style &, /* 5 */
     &[width], /* 6 */
@@ -31,8 +31,8 @@
 /*
     Special treatment for images inside links.
 */
-#{$f__namespace}a img {
-    margin-bottom: $f__anchor-border-bottom-offset;
+#{$s__namespace}a img {
+    margin-bottom: $s__anchor-border-bottom-offset;
 
     border-width: inherit;
     border-style: inherit;

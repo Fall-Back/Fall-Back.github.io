@@ -2,31 +2,72 @@
 
     ELEMENTARY
 
--|------------------------------------------------------------------------------------------------*/
+|-------------------------------------------------------------------------------------------------*/
 
-$f__base-font-family: 'Lato', sans-serif;
+$s__base-font-family: 'Lato', sans-serif;
 
-$f__root-font-size: 10px;
+$s__root-font-size: 10px;
 
-//$f__base-ui-color: #2E8B57;
-//$f__namespace: '.ugc ';
-//$f__namespace: 'main ';
-
-
-//$f__html-background-color: #50514F;
-$f__experimental_checkradios: true;
-
-
+$s__experimental_checkradios: true;
 
 $e__listing__display-type: grid;
 //$e__listing__display-type: columns;
-$e__listing__item-basis: 15rem;
+$e__listing__item-basis: 25rem;
 
 @import '../start-css/scss/_start_settings.scss';
 @import '../start-css/scss/_start_functions.scss';
 @import '../start-css/scss/_start_mixins.scss';
 
-$e__component__card__border-radius: $f__sz-s;
-$e__component__card__box-shadow: 0 0 $f__sz-xs 0 rgba(0,0,0,0.2);
+$s__html-background-color: darken($s__base-ui-color, 25%);
+$s__main-background-color: lighten($s__base-ui-color, 61%);
+
+@import '../start-css/scss/_start.scss';
+
+
+
+$e__component__card__border-radius: $s__sz-s;
+$e__component__card__box-shadow: 0 0 $s__sz-xs 0 rgba(0,0,0,0.2);
+
+/*-------------------------------------------------------------------------------------------------|
+
+    ACCESSIBILITY / ARIA
+
+|-------------------------------------------------------------------------------------------------*/
+
+@import '../start-css/scss/_start-accessibility.scss';
+
+
+/*-------------------------------------------------------------------------------------------------|
+
+    UTILITIES
+
+|-------------------------------------------------------------------------------------------------*/
+
+@import '../start-css/scss/_start-utilities.scss';
+
+
+/*-------------------------------------------------------------------------------------------------|
+
+    ICONS
+
+|-------------------------------------------------------------------------------------------------*/
+
+@import '../start-css/scss/_start-icons.scss';
+
+
+/*-------------------------------------------------------------------------------------------------|
+
+    EXPERIMENTAL
+
+|-------------------------------------------------------------------------------------------------*/
+
+@import '../start-css/scss/_start-experimental.scss';
+
+
+/*-------------------------------------------------------------------------------------------------|
+
+    ELEMENTARY
+
+|-------------------------------------------------------------------------------------------------*/
 
 @import 'scss/_0-elementary.scss';

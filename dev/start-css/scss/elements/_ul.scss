@@ -15,10 +15,10 @@
           Flex based options cause other problems, i.e. not wrapping properly.
 
 */
-#{$f__namespace}ul {
+#{$s__namespace}ul {
     //overflow: hidden; /* 1a */
 
-    margin-bottom: $f__base-rem-space-unit;
+    margin-bottom: $s__base-rem-space-unit;
 
     display: table; /* 1b */
 }

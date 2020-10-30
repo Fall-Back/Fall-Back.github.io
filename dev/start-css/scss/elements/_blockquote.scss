@@ -2,9 +2,9 @@
     Fall-Back Start-CSS Element: blockquote
 |-------------------------------------------------------------------------------------------------*/
 
-#{$f__namespace}blockquote {
-    margin-bottom: $f__base-rem-space-unit;
-    margin-left: $f__base-rem-space-unit;
+#{$s__namespace}blockquote {
+    margin-bottom: $s__base-rem-space-unit;
+    margin-left: $s__base-rem-space-unit;
 
     font-style: italic;
     /*

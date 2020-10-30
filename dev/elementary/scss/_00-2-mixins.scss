@@ -6,5 +6,5 @@
 |-------------------------------------------------------------------------------------------------*/
 
 @mixin e__ojbect_highlight() {
-    box-shadow: 0 0 0 0.6rem #fff, 0 0 0 1.2rem rgba(0,0,0,.2);
+    box-shadow: $e__ojbect_highlight;
 }

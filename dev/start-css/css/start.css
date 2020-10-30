@@ -130,10 +130,10 @@
 */
 /* Output class for reference (tmp): */
 /*.ref {
-    flbk--base-rem-space-unit: $f__base-rem-space-unit;
-    flbk--base-rem-1px: $f__base-rem-1px;
-    flbk--root-font-size: $f__root-font-size;
-    flbk--root-font-size-percent: $f__root-font-size-percent;
+    flbk--base-rem-space-unit: $s__base-rem-space-unit;
+    flbk--base-rem-1px: $s__base-rem-1px;
+    flbk--root-font-size: $s__root-font-size;
+    flbk--root-font-size-percent: $s__root-font-size-percent;
 }*/
 /*------------------------------------------------------------------------------------------------*\
 
@@ -487,14 +487,14 @@ button {
   touch-action: manipulation;
   /* 1 */
   -webkit-appearance: none;
-  /*@if $f__button-focus-outline-width != false {
+  /*@if $s__button-focus-outline-width != false {
         &:hover,
         &:active,
         &:focus {
-            outline-width: $f__button-focus-outline-width;
-            outline-style: $f__button-focus-outline-style;
-            outline-color: $f__button-focus-outline-color;
-            outline-offset: $f__button-focus-outline-offset;
+            outline-width: $s__button-focus-outline-width;
+            outline-style: $s__button-focus-outline-style;
+            outline-color: $s__button-focus-outline-color;
+            outline-offset: $s__button-focus-outline-offset;
         }
     }*/
 }
@@ -590,6 +590,29 @@ dd {
 details {
   display: block;
   /* N: IE 10/11 */
+  margin-bottom: 2.4rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #247BA0;
+  padding-top: 2.4rem;
+  padding-top: -moz-calc(2.4rem - 1px);
+  padding-top: calc(2.4rem - 1px);
+  padding-left: 2.4rem;
+  padding-left: -moz-calc(2.4rem - 1px);
+  padding-left: calc(2.4rem - 1px);
+  padding-right: 2.4rem;
+  padding-right: -moz-calc(2.4rem - 1px);
+  padding-right: calc(2.4rem - 1px);
+}
+
+details::after {
+  display: block;
+  content: "";
+  height: 1px;
+  margin-top: 2.4rem;
+  margin-bottom: -1px;
+  margin-bottom: -moz-calc(-1px - 1px);
+  margin-bottom: calc(-1px - 1px);
 }
 
 details > * {
@@ -976,14 +999,14 @@ _::-webkit-full-page-media, _:future, :root [type="radio"]:focus {
   touch-action: manipulation;
   /* 1 */
   -webkit-appearance: none;
-  /*@if $f__button-focus-outline-width != false {
+  /*@if $s__button-focus-outline-width != false {
         &:hover,
         &:active,
         &:focus {
-            outline-width: $f__button-focus-outline-width;
-            outline-style: $f__button-focus-outline-style;
-            outline-color: $f__button-focus-outline-color;
-            outline-offset: $f__button-focus-outline-offset;
+            outline-width: $s__button-focus-outline-width;
+            outline-style: $s__button-focus-outline-style;
+            outline-color: $s__button-focus-outline-color;
+            outline-offset: $s__button-focus-outline-offset;
         }
     }*/
 }
@@ -1161,7 +1184,7 @@ label {
     2. Offset border width.
     3. Correct the color inheritance from `fieldset` elements in IE.
 
-    Note $fieldset-border-width used deliberately (not $f__legend-border-width)- this is to account for
+    Note $fieldset-border-width used deliberately (not $s__legend-border-width)- this is to account for
     the fact that fieldset top border width is ignored if there's a legend so the spacing is wrong.
 */
 legend {
@@ -1619,6 +1642,10 @@ details > summary::before {
   font-family: serif;
   vertical-align: top;
   transition: transform 0.2s ease;
+}
+
+details[open] > summary {
+  margin-bottom: 2.4rem;
 }
 
 details[open] > summary::before {

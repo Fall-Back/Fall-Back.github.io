@@ -9,12 +9,15 @@
     Expand main to fill space - part of stick footer.
 */
 #{$es__page_main} {
-    min-height: 0;
     flex: 1 0 auto;
-            
-    max-width: none;
+
     width: 100%;
+    max-width: none;
+
+    min-height: 0;
+
     margin: 0;
+
     padding: 0;
 }
 

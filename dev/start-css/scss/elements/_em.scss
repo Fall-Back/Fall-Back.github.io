@@ -5,6 +5,6 @@
 /*
     1. De-italicize nested ems
 */
-#{$f__namespace}em em {
+#{$s__namespace}em em {
     font-style: normal; /* 1 */
 }

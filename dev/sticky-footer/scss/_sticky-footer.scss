@@ -8,9 +8,9 @@
 \*------------------------------------------------------------------------------------------------*/
 
 
-$f__sticky-footer--max-line-length: 50em !default;
-$f__sticky-footer--text-color: $f__base-text-color !default;
-$f__sticky-footer--background-color: $f__base-background-color !default;
+$s__sticky-footer--max-line-length: 50em !default;
+$s__sticky-footer--text-color: $s__base-text-color !default;
+$s__sticky-footer--background-color: $s__base-background-color !default;
 
 
 html,
@@ -47,18 +47,18 @@ body {
     margin-top: 0;
     margin-bottom: 0;
 
-    @if $f__sticky-footer--max-line-length > 0 {
+    @if $s__sticky-footer--max-line-length > 0 {
         margin-right: auto;
         margin-left: auto;
         
-        max-width: $f__sticky-footer--max-line-length;
+        max-width: $s__sticky-footer--max-line-length;
     } @else {
         margin-left: 0;
         margin-right: 0;
     }
 
-    background-color: $f__sticky-footer--background-color;
-    color: $f__sticky-footer--text-color;
+    background-color: $s__sticky-footer--background-color;
+    color: $s__sticky-footer--text-color;
 
 
     & > * {
@@ -90,7 +90,7 @@ body {
 
 /* IE9-11 */
 //@media screen and (min-width:0\0) and (min-resolution:+72dpi) {/*
-@media #{$f__ie9-11} {
+@media #{$s__ie9-11} {
 
     .sticky-footer-wrap {
         //display: table;
@@ -106,7 +106,7 @@ body {
 }
 
 /* Firefox 8-21 doesn't center the block if it has a max-width. *
-@if $f__sticky-footer--max-line-length > 0 {
+@if $s__sticky-footer--max-line-length > 0 {
     /* Firefox 8+ *
     @media screen and (min--moz-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
         .sticky-footer-wrap {

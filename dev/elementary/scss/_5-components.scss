@@ -9,11 +9,37 @@
 @if $es__component__card != false {
     @include component__card((
         selector:      $es__component__card,
-        padding:       $f__sz-m,
+        padding:       $s__sz-m,
         background:    $e__component__card__background,
         border:        $e__component__card__border,
         border-radius: $e__component__card__border-radius,
-        box-shadow:    $e__component__card__box-shadow
+        box-shadow:    $e__component__card__box-shadow,
+        image-ratio:   $e__component__card__image-ratio
+    ))
+}
+
+
+@import '5-components/_cta.scss';
+@if $es__component__cta != false {
+    @include component__cta((
+        selector:        $es__component__cta,
+        padding:         $e__component__cta__padding,
+        background:      $e__component__cta__background,
+        background--alt: $e__component__cta__background--alt,
+        border:          $e__component__cta__border,
+        border-radius:   $e__component__cta__border-radius,
+        box-shadow:      $e__component__cta__box-shadow
+    ))
+}
+
+
+@import '5-components/_hero.scss';
+@if $es__component__hero != false {
+    @include component__card((
+        selector:      $es__component__hero,
+        padding:       $s__sz-m,
+        background:    $e__component__hero__background,
+        image-ratio:   $e__component__hero__image-ratio
     ))
 }
 

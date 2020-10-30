@@ -7,50 +7,50 @@
 
 \*------------------------------------------------------------------------------------------------*/
 
-$f__dropdown--breakpoint--enhanced:          $f__breakpoint--enhanced;
+$s__dropdown--breakpoint--enhanced:          $s__breakpoint--enhanced;
 
 
 // Colours:
 
-$f__dropdown--base-ui-color:                 $f__base-ui-color !default;
-$f__dropdown--base-text-color:               $f__base-text-color !default;
+$s__dropdown--base-ui-color:                 $s__base-ui-color !default;
+$s__dropdown--base-text-color:               $s__base-text-color !default;
 
 
-$f__dropdown--background-color:              $f__dropdown--base-ui-color !default;
-$f__dropdown--text-color:                    #fff !default;
+$s__dropdown--background-color:              $s__dropdown--base-ui-color !default;
+$s__dropdown--text-color:                    #fff !default;
 
-$f__dropdown__button--color:                  #fff !default;
-$f__dropdown__button--color--alt:             $f__dropdown__button--color !default;
-$f__dropdown__button--background-color:       $f__dropdown--background-color !default;
-$f__dropdown__button--background-color--alt:  darken($f__dropdown--background-color, 14%) !default;
-$f__dropdown__button--background-color--alt2: darken($f__dropdown--background-color, 7%) !default;
+$s__dropdown__button--color:                  #fff !default;
+$s__dropdown__button--color--alt:             $s__dropdown__button--color !default;
+$s__dropdown__button--background-color:       $s__dropdown--background-color !default;
+$s__dropdown__button--background-color--alt:  darken($s__dropdown--background-color, 14%) !default;
+$s__dropdown__button--background-color--alt2: darken($s__dropdown--background-color, 7%) !default;
 
-$f__dropdown__button--border-color:           rgba(255,255,255,0.2) !default;
-$f__dropdown__button--border-style:           solid !default;
-$f__dropdown__button--border-width:           1px !default;
-$f__dropdown__button--border-radius:          0 !default;
+$s__dropdown__button--border-color:           rgba(255,255,255,0.2) !default;
+$s__dropdown__button--border-style:           solid !default;
+$s__dropdown__button--border-width:           1px !default;
+$s__dropdown__button--border-radius:          0 !default;
 
 
 
 
 // Sizes:
-$f__dropdown__button--height:                 ($f__base-em-ratio * 1.5em) !default;
-$f__dropdown--spacing:                        ($f__dropdown__button--height / 8) !default;
+$s__dropdown__button--height:                 ($s__base-em-ratio * 1.5em) !default;
+$s__dropdown--spacing:                        ($s__dropdown__button--height / 8) !default;
 
 
-$f__dropdown--padding:                        0 !default;
-//$f__dropdown--padding:                        $f__base-rem-space-unit !default;
+$s__dropdown--padding:                        0 !default;
+//$s__dropdown--padding:                        $s__base-rem-space-unit !default;
 
 // Transitions:
-$f__dropdown--transition-duration:            ease;
-$f__dropdown--transition-timing-function:     0.8s;
+$s__dropdown--transition-duration:            ease;
+$s__dropdown--transition-timing-function:     0.8s;
 
 
 
 // Other:
 
 
-$f__dropdown-z-index:                         9999 !default;
+$s__dropdown-z-index:                         9999 !default;
 
 
 /* -- Basic/fallback layout --------------------------------------------------------------------- */
@@ -85,10 +85,10 @@ $f__dropdown-z-index:                         9999 !default;
         2. Prevent any overflow and possible contain floats.
     */
     .dropdown .dropdown__area {
-        background-color: $f__dropdown--background-color; /* 1 */
-        color: $f__dropdown--text-color;
+        background-color: $s__dropdown--background-color; /* 1 */
+        color: $s__dropdown--text-color;
         overflow: hidden; /* 2 */
-        padding: $f__dropdown--padding;
+        padding: $s__dropdown--padding;
     }
 
     /* -------------------------------------------------------------------------------------------*/
@@ -104,16 +104,16 @@ $f__dropdown-z-index:                         9999 !default;
     .dropdown .dropdown__button {
         display: block;
         margin: 0;
-        //padding: ($f__dropdown--spacing * 1.333333) ($f__dropdown--spacing * 2);
-        padding-left: $f__dropdown--spacing * 2;
-        padding-right: $f__dropdown--spacing * 2;
+        //padding: ($s__dropdown--spacing * 1.333333) ($s__dropdown--spacing * 2);
+        padding-left: $s__dropdown--spacing * 2;
+        padding-right: $s__dropdown--spacing * 2;
 		padding-bottom: 0; /* 1 */
 		padding-top: 0; /* 1 */
 
         border: 0;
-        border-radius: $f__dropdown__button--border-radius;
+        border-radius: $s__dropdown__button--border-radius;
 
-        line-height: $f__dropdown__button--height;
+        line-height: $s__dropdown__button--height;
 
         text-decoration: none;
         outline: 0;
@@ -139,15 +139,15 @@ $f__dropdown-z-index:                         9999 !default;
     */
     _:-o-prefocus, body:last-child .dropdown .dropdown__button {
         //line-height: 1.71428571429 !important;
-        line-height: $f__dropdown__button--height !important;
+        line-height: $s__dropdown__button--height !important;
 
 
     }
 
 
     .dropdown .dropdown__button {
-        color: $f__dropdown__button--color;
-        background-color: $f__dropdown__button--background-color;
+        color: $s__dropdown__button--color;
+        background-color: $s__dropdown__button--background-color;
     }
 
     /*
@@ -159,13 +159,13 @@ $f__dropdown-z-index:                         9999 !default;
     .dropdown .dropdown__button:hover,
     .dropdown .dropdown__button:active,
     .dropdown .dropdown__button[aria-expanded="true"] {
-        color: $f__dropdown__button--color--alt;
-        background-color: $f__dropdown__button--background-color--alt;
+        color: $s__dropdown__button--color--alt;
+        background-color: $s__dropdown__button--background-color--alt;
     }
 
     .dropdown .dropdown__button:focus {
-        color: $f__dropdown__button--color--alt;
-        background-color: $f__dropdown__button--background-color--alt2;
+        color: $s__dropdown__button--color--alt;
+        background-color: $s__dropdown__button--background-color--alt2;
     }
 
 
@@ -196,8 +196,8 @@ $f__dropdown-z-index:                         9999 !default;
     @mixin activate-dropdown ($namespace: "") {
    
         // Variable aliases for ease of comprehension:
-        $td:$f__dropdown--transition-duration;
-        $tf:$f__dropdown--transition-timing-function;
+        $td:$s__dropdown--transition-duration;
+        $tf:$s__dropdown--transition-timing-function;
 
         .js-dropdown .dropdown#{$namespace} {
 
@@ -247,13 +247,13 @@ $f__dropdown-z-index:                         9999 !default;
     
     @include activate-dropdown("--all-widths");
     
-    @media only screen and (max-width:$f__dropdown--breakpoint--enhanced) {
+    @media only screen and (max-width:$s__dropdown--breakpoint--enhanced) {
 
        @include activate-dropdown("--only-narrow");
         
     }
     
-    @media only screen and (min-width:$f__dropdown--breakpoint--enhanced) {
+    @media only screen and (min-width:$s__dropdown--breakpoint--enhanced) {
 
        @include activate-dropdown("--only-wide");
         

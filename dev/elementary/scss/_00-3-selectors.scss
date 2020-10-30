@@ -182,6 +182,18 @@ $es__page_main__header--listing__list: "#{$es__page_main__header--listing} ~ ul"
 $es__component__card: "article > span:only-child" !default;
 
 /*
+    COMPONENTS - CTA
+*/
+
+$es__component__cta: "b > a[href]:only-child" !default;
+
+/*
+    COMPONENTS - HERO
+*/
+
+$es__component__hero: "#{$es__page_main__header--article} > div:first-child" !default;
+
+/*
     COMPONENTS - IMAGES
 */
 

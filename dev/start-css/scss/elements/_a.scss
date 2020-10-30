@@ -9,17 +9,17 @@
     2. Remove the gaps in underlines in iOS 8+ and Safari 8+.
     3. Remove the tapping delay from clickable elements .
 */
-#{$f__namespace}a[href] {
-    margin-bottom: $f__anchor-border-bottom-offset;
+#{$s__namespace}a[href] {
+    margin-bottom: $s__anchor-border-bottom-offset;
 
-    padding-bottom: $f__anchor-padding-bottom;
+    padding-bottom: $s__anchor-padding-bottom;
 
-    border-bottom: $f__anchor-border-bottom;
+    border-bottom: $s__anchor-border-bottom;
 
-    color: $f__anchor-text-color;
+    color: $s__anchor-text-color;
     background-color: transparent; /* 1 */
 
-    text-decoration: $f__anchor-text-decoration;
+    text-decoration: $s__anchor-text-decoration;
     -webkit-text-decoration-skip: objects; /* 2 */
 
     -ms-touch-action: manipulation; /* 3 (IE10) */
@@ -27,23 +27,23 @@
 
     &:hover,
     &:active {
-        border-bottom: $f__anchor-border-bottom--alt;
+        border-bottom: $s__anchor-border-bottom--alt;
 
-        @if $f__anchor-text-color--alt != $f__anchor-text-color {
-            color: $f__anchor-text-color--alt;
+        @if $s__anchor-text-color--alt != $s__anchor-text-color {
+            color: $s__anchor-text-color--alt;
         }
     }
 
-    @if $f__anchor-focus-shadow != false {
+    @if $s__anchor-focus-shadow != false {
         &:focus {
             outline: 0;
-            box-shadow: 0 0 0 $f__anchor-focus-shadow-width rgba($f__anchor-text-color, 0.5);
+            box-shadow: 0 0 0 $s__anchor-focus-shadow-width rgba($s__anchor-text-color, 0.5);
         }
     }
 }
 
-    @if $f__anchor-add-external-link-indicator == true {
-        #{$f__namespace}a[href][rel="external"]::after {
+    @if $s__anchor-add-external-link-indicator == true {
+        #{$s__namespace}a[href][rel="external"]::after {
             display: inline;
 
             content: "";
@@ -58,7 +58,7 @@
             vertical-align: super;
         }
         
-        #{$f__namespace}a[href][rel="external"]:hover::after {
+        #{$s__namespace}a[href][rel="external"]:hover::after {
             background: linear-gradient(45deg, transparent 50%, currentColor 50%);
         }
     }
