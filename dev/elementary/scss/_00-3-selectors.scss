@@ -191,7 +191,13 @@ $es__component__cta: "b > a[href]:only-child" !default;
     COMPONENTS - HERO
 */
 
-$es__component__hero: "#{$es__page_main__header--article} > div:first-child" !default;
+$es__component__hero: "#{$es__page_main__header} > div:first-child" !default;
+
+/*
+    COMPONENTS - ICON
+*/
+
+$es__component__icon: "i > svg:only-child" !default; 
 
 /*
     COMPONENTS - IMAGES
@@ -199,3 +205,10 @@ $es__component__hero: "#{$es__page_main__header--article} > div:first-child" !de
 
 $es__component__images--border: "b > img:only-child" !default;
 $es__component__images--inset:  "b > i:only-child > img:only-child" !default;
+
+
+/*
+    COMPONENTS - INFO OVERLAY
+*/
+
+$es__component__info-overlay: "small > details:only-child" !default; 

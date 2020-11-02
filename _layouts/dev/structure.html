@@ -2,6 +2,16 @@
 <html lang="en-gb" class="no-js">
 <head>
     {% capture ignore %}
+
+    {% if layout.cut %}
+        {% assign cut = layout.cut %}
+    {% else %}
+        {% assign cut = "original" %}
+    {% endif %}
+
+    {% assign cut_file = "cut_" | append: cut | append: ".html" %}
+
+
     {% if layout.head_stylesheets.first and page.head_stylesheets.first %}
         {% assign head_stylesheets = layout.head_stylesheets | concat: page.head_stylesheets %}
     {% elsif layout.head_stylesheets.first %}
@@ -11,8 +21,8 @@
     {% else %}
         {% assign head_stylesheets = false %}
     {% endif %}
-    
-    
+
+
     {% if layout.head_style != false and page.head_style != false %}
         {% assign head_style = layout.head_style | append: page.head_style %}
     {% elsif layout.head_style != false %}
@@ -22,8 +32,8 @@
     {% else %}
         {% assign head_style = false %}
     {% endif %}
-    
-    
+
+
     {% if layout.head_scripts.first and page.head_scripts.first %}
         {% assign head_scripts = layout.head_scripts | concat: page.head_scripts %}
     {% elsif layout.head_scripts.first %}
@@ -33,8 +43,8 @@
     {% else %}
         {% assign head_scripts = false %}
     {% endif %}
-    
-    
+
+
     {% if layout.body_class != false and page.body_class != false %}
         {% assign body_class = layout.body_class | append: page.body_class %}
     {% elsif layout.body_class != false %}
@@ -44,8 +54,8 @@
     {% else %}
         {% assign body_class = false %}
     {% endif %}
-    
-    
+
+
     {% if layout.body_end_script != false and page.body_end_script != false %}
         {% assign body_end_script = layout.body_end_script | append: page.body_end_script %}
     {% elsif layout.body_end_script != false %}
@@ -57,7 +67,7 @@
     {% endif %}
     {% endcapture %}<meta charset="utf-8">
     <title>{{ page.title }} | Fall-Back Development</title>
-    
+
     <meta name="description" content="Fall-Back Developement">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -66,21 +76,17 @@
     <!--<base href="http://localhost:4001/">-->
 
     <style>
-        /* FOUC font match fallback */
-        /* Match your final body webfont with this tool: https://meowni.ca/font-style-matcher/ */
-        /* Paste the output here */
-        
         /* Tiny fallback styles */
         /* (https://github.com/Fall-Back/Base/edit/master/tiny-fallback-styles.css) */
-        body{padding:1em;margin:0 auto;max-width: 50em;}
-        img{max-width:100%;-ms-interpolation-mode: bicubic;}
+        body{font-family:sans-serif;padding:1em;margin:0 auto;max-width:50em;}
+        img{max-width:100%;-ms-interpolation-mode:bicubic;}
         [hidden]{display:none;}
         main{display:block;}
 
         /* For YouTube via http://embedresponsively.com. May or may not be needed. */
-        .embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .embed-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;} .embed-container iframe, .embed-container object, .embed-container embed{position:absolute;top 0;left:0;width:100%;height:100%;}
     </style>
-    
+
     <!--
         Accessible font loading. FOUT is a lesser evil than FOIT.
         (https://keithclark.co.uk/articles/loading-css-without-blocking-render/)
@@ -88,87 +94,30 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
 
     {% if layout.startcss != false %}
-    {% if layout.m3cut != false %}
-    <!--
-        Print (Edge doesn't apply to print otherwise)
-        IE 10, 11
-        Edge
-        Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
-        FF 29+
-    -->
-    <link rel="stylesheet" href="/dev/start-css/css/start.min.css" media="
-        only print, screen and (min-width: 1vm),
-        only all and (-ms-high-contrast: none), only all and (-ms-high-contrast: active),
-        only all and (pointer: fine), only all and (pointer: coarse), only all and (pointer: none),
-        only all and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0),
-        only all and (min--moz-device-pixel-ratio:0) and (min-resolution: 3e1dpcm)
-    ">
-    {% else %}
-    <!--
-        IE 9+, FF 8+, Opera 12, Chrome 29+, Android ~4.4+
-        Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
-    -->
-    <link rel="stylesheet" href="/dev/start-css/css/start.min.css" media="only screen and (min-resolution: 0.1dpcm), only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)">
+    {% include {{ cut_file }} css="/dev/start-css/css/start.min.css" %}
     {% endif %}
-    {% endif %}
-    
+
     {% if head_stylesheets != false %}
-    {% if layout.m3cut != false %}
     {% for stylesheet in head_stylesheets %}
-    <link rel="stylesheet" href="{{ stylesheet }}" media="
-        only print, screen and (min-width: 1vm),
-        only all and (-ms-high-contrast: none), only all and (-ms-high-contrast: active),
-        only all and (pointer: fine), only all and (pointer: coarse), only all and (pointer: none),
-        only all and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0),
-        only all and (min--moz-device-pixel-ratio:0) and (min-resolution: 3e1dpcm)
-    ">
-    {% endfor %}
-    {% else %}
-    {% for stylesheet in head_stylesheets %}
-    <link rel="stylesheet" href="{{ stylesheet }}" media="
-        only screen and (min-resolution: 0.1dpcm),
-        only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)
-    ">
+    {% include {{ cut_file }} css=stylesheet %}
     {% endfor %}
     {% endif %}
-    {% endif %}
-    
+
     {% if head_style != false %}
     <style>
     {{ head_style }}
     </style>
     {% endif %}
-    
+
     {% if head_scripts != false %}
     {% for script in head_scripts %}
     <script src="{{ script }}"></script>
     {% endfor %}
     {% endif %}
-    
+
     {% if page.load_highlighter or layout.load_highlighter %}
-    {% if layout.m3cut != false %}
-    <!--
-        Print (Edge doesn't apply to print otherwise)
-        IE 10, 11
-        Edge
-        Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
-        FF 29+
-    -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css" media="
-        only print, screen and (min-width: 1vm),
-        only all and (-ms-high-contrast: none), only all and (-ms-high-contrast: active),
-        only all and (pointer: fine), only all and (pointer: coarse), only all and (pointer: none),
-        only all and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0),
-        only all and (min--moz-device-pixel-ratio:0) and (min-resolution: 3e1dpcm)
-    ">
-    {% else %}
-    <!--
-        IE 9+, FF 8+, Opera 12, Chrome 29+, Android ~4.4+
-        Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
-    -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css" media="only screen and (min-resolution: 0.1dpcm), only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)">
-    {% endif %}   
-    
+    {% include {{ cut_file }} css="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css" %}
+
     <style>
         /* Override hljs styles to reset to StartCSS: */
         .hljs {
@@ -178,7 +127,7 @@
             background: transparent;
         }
     </style>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
     {% endif %}
 
@@ -196,71 +145,137 @@
 <body role="document"{% if page.body_class != false %} class="{{ page.body_class }}"{% endif %}>
 
     <svg xmlns="http://www.w3.org/2000/svg" display="none">
-        <symbol id="icon-building" viewBox="0 0 24 24">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        <style>
+            svg {
+                display: inline;
+                fill: none;
+                fill-opacity: 0;
+                stroke: currentColor;
+                stroke-width: 2;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                width: 1.25em;
+                height: 1.25em;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+        <symbol id="icon-building" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"        
+        >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
         </symbol>
-        <symbol id="icon-calendar" viewBox="0 0 24 24">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-            <line x1="16" y1="2" x2="16" y2="6"></line>
-            <line x1="8" y1="2" x2="8" y2="6"></line>
-            <line x1="3" y1="10" x2="21" y2="10"></line>
+        <symbol id="icon-calendar" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"        
+        >
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
         </symbol>
-        <symbol id="icon-chevron-down" viewBox="0 0 24 24">
-            <polyline points="6 9 12 15 18 9"></polyline>
+        <symbol id="icon-chevron-down" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"        
+        >
+            <polyline points="6 9 12 15 18 9"/>
         </symbol>
-        <symbol id="icon-chevron-up" viewBox="0 0 24 24">
-            <polyline points="18 15 12 9 6 15"></polyline>
+        <symbol id="icon-chevron-up" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"        
+        >
+            <polyline points="18 15 12 9 6 15"/>
         </symbol>
-        <symbol id="icon-chevron-left" viewBox="0 0 24 24">
-            <polyline points="15 18 9 12 15 6"></polyline>
+        <symbol id="icon-chevron-left" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"        
+        >
+            <polyline points="15 18 9 12 15 6"/>
         </symbol>
-        <symbol id="icon-chevron-right" viewBox="0 0 24 24">
-            <polyline points="9 18 15 12 9 6"></polyline>
+        <symbol id="icon-chevron-right" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"        
+        >
+            <polyline points="9 18 15 12 9 6"/>
         </symbol>
-        <symbol id="icon-cross" viewBox="0 0 24 24">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-			<line x1="6" y1="6" x2="18" y2="18"></line>
+        <symbol id="icon-cross" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"        
+        >
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
         </symbol>
-        <symbol id="icon-email" viewBox="0 0 24 24">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-            <polyline points="22,6 12,13 2,6"></polyline>
+        <symbol id="icon-edit" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"        
+        >
+            <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
         </symbol>
-        <symbol id="icon-facebook" viewBox="0 0 24 24">
-            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+        <symbol id="icon-email" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"        
+        >
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
         </symbol>
-        <symbol id="icon-fax" viewBox="0 0 24 24">
-            <path class="st0" d="M6,18H4c-1.1,0-2-0.7-2-1.6v-4c0-0.9,0.9-1.6,2-1.6h16c1.1,0,2,0.7,2,1.6v4c0,0.9-0.9,1.6-2,1.6h-2"></path>
-            <rect x="6" y="14" class="st0" width="12" height="8"></rect>
-            <path class="st0" d="M6,7.4L4.8,6.2C4.4,5.7,4.4,5,4.8,4.6c0,0,0.1,0,0.1-0.1c1.4-1.1,3-1.9,4.7-2.2c1.6-0.4,3.2-0.4,4.8,0 c1.7,0.4,3.3,1.1,4.7,2.2c0.5,0.4,0.5,1.1,0.1,1.6c0,0,0,0.1-0.1,0.1L18,7.4c-0.4,0.4-1,0.5-1.5,0.1c-0.4-0.3-0.9-0.6-1.4-0.8 c-0.4-0.2-0.7-0.6-0.7-1v-1c-1.6-0.4-3.2-0.4-4.8,0v1c0,0.4-0.3,0.8-0.7,1C8.4,6.9,8,7.2,7.5,7.5C7.1,7.8,6.4,7.8,6,7.4z"></path>
+        <symbol id="icon-facebook" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"        
+        >
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
         </symbol>
-        <symbol id="icon-file" viewBox="0 0 24 24">
-            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
-            <polyline points="13 2 13 9 20 9"></polyline>
+        <symbol id="icon-fax" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"        
+        >
+            <path class="st0" d="M6,18H4c-1.1,0-2-0.7-2-1.6v-4c0-0.9,0.9-1.6,2-1.6h16c1.1,0,2,0.7,2,1.6v4c0,0.9-0.9,1.6-2,1.6h-2"/>
+            <rect x="6" y="14" class="st0" width="12" height="8"/>
+            <path class="st0" d="M6,7.4L4.8,6.2C4.4,5.7,4.4,5,4.8,4.6c0,0,0.1,0,0.1-0.1c1.4-1.1,3-1.9,4.7-2.2c1.6-0.4,3.2-0.4,4.8,0 c1.7,0.4,3.3,1.1,4.7,2.2c0.5,0.4,0.5,1.1,0.1,1.6c0,0,0,0.1-0.1,0.1L18,7.4c-0.4,0.4-1,0.5-1.5,0.1c-0.4-0.3-0.9-0.6-1.4-0.8 c-0.4-0.2-0.7-0.6-0.7-1v-1c-1.6-0.4-3.2-0.4-4.8,0v1c0,0.4-0.3,0.8-0.7,1C8.4,6.9,8,7.2,7.5,7.5C7.1,7.8,6.4,7.8,6,7.4z"/>
         </symbol>
-        <symbol id="icon-linkedin" viewBox="0 0 24 24">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-            <rect x="2" y="9" width="4" height="12"></rect>
-            <circle cx="4" cy="4" r="2"></circle>
+        <symbol id="icon-file" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"        
+        >
+            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+            <polyline points="13 2 13 9 20 9"/>
         </symbol>
-        <symbol id="icon-menu" viewBox="0 0 24 24">
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-			<line x1="3" y1="6" x2="21" y2="6"></line>
-			<line x1="3" y1="18" x2="21" y2="18"></line>
+        <symbol id="icon-info" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"        
+        >
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="16" x2="12" y2="12"/>
+            <line x1="12" y1="8" x2="12.01" y2="8"/>
         </symbol>
-        <symbol id="icon-person" viewBox="0 0 24 24">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
+        <symbol id="icon-linkedin" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"        
+        >            
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
         </symbol>
-        <symbol id="icon-phone" viewBox="0 0 24 24">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        <symbol id="icon-menu" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"        
+        >
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
         </symbol>
-        <symbol id="icon-search" viewBox="0 0 24 24">
-            <circle cx="10.5" cy="10.5" r="7.5"></circle>
-            <line x1="21" y1="21" x2="15.8" y2="15.8"></line>
+        <symbol id="icon-person" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"        
+        >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
         </symbol>
-        <symbol id="icon-twitter" viewBox="0 0 24 24">
-            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+        <symbol id="icon-phone" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"        
+        >
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </symbol>
+        <symbol id="icon-rss" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"        
+        >
+            <path class="st0" d="M5.6,9.1c4,0,7.2,3.2,7.2,7.2"/><path class="st0" d="M5.6,3.5c7,0,12.8,5.7,12.8,12.8"/><circle class="st0" cx="6.4" cy="15.5" r="0.8"/>
+        </symbol>
+        <symbol id="icon-search" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"        
+        >
+            <circle cx="10.5" cy="10.5" r="7.5"/>
+            <line x1="21" y1="21" x2="15.8" y2="15.8"/>
+        </symbol>
+        <symbol id="icon-twitter" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"        
+        >
+            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
         </symbol>
     </svg>
 
@@ -274,16 +289,16 @@
 
     {{ content }}
 
-    
+
     <script>
     {% if page.load_highlighter or layout.load_highlighter %}
     hljs.initHighlightingOnLoad();
     {% endif %}
-    
+
     {% if body_end_script != false %}
     {{ body_end_script }}
     {% endif %}
     </script>
-    
+
 </body>
 </html>

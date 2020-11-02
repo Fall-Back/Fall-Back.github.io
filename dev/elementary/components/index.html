@@ -6,10 +6,19 @@ layout: dev/structure--elementary
         <article>
 
             <header>
+                <div>
+                    <img src="/dev/elementary/img/sample-1.jpg" alt="Cute kid - looks lost.">
+                    <small>
+                        <details>
+                            <summary><i><svg display="none" focusable="false"><use xlink:href="#icon-info"></use></svg></i><i><svg display="none" focusable="false"><use xlink:href="#icon-cross"></use></svg></i></summary>
+                            <div>Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please.</div>
+                        </details>
+                    </small>
+                </div>
                 <h1>Elementary Components</h1>
             </header>
 
-            <p>
+            <figure>
                 <details>
                     <summary>Semantics</summary>
                     <div>
@@ -28,18 +37,18 @@ layout: dev/structure--elementary
                         <p>I make the argument that border around an image "draws attention for utilitarian purposes" and that an inset creates and "alternative mood" for those images.</p>
                     </div>
                 </details>
-            </p>
+            </figure>
 
             <h2 id="cards">Cards</h2>
 
-            <div style="max-width: 50%;">
+            <div style="min-width: 50%; max-width: calc(100% - 4.8rem); width: calc((30em - 100%) * 9999)">
                 {% include card.html
                     title="Sample Card"
                     hx="3"
                 %}
             </div>
 
-            <div style="max-width: 50%;">
+            <div style="min-width: 50%; max-width: calc(100% - 4.8rem); width: calc((30em - 100%) * 9999)">
                 {% include card.html
                     title="Another Sample Card - this time with content"
                     hx="3"
@@ -47,7 +56,7 @@ layout: dev/structure--elementary
                 %}
             </div>
 
-            <div style="max-width: 50%;">
+            <div style="min-width: 50%; max-width: calc(100% - 4.8rem); width: calc((30em - 100%) * 9999)">
                 {% include card.html
                     title="Another - with footer"
                     hx="3"
@@ -56,7 +65,7 @@ layout: dev/structure--elementary
                 %}
             </div>
 
-            <div style="max-width: 50%;">
+            <div style="min-width: 50%; max-width: calc(100% - 4.8rem); width: calc((30em - 100%) * 9999)">
                 {% include card.html
                     title="Again - this time with a CTA"
                     hx="3"
@@ -66,7 +75,7 @@ layout: dev/structure--elementary
                 %}
             </div>
 
-            <div style="max-width: 50%;">
+            <div style="min-width: 50%; max-width: calc(100% - 4.8rem); width: calc((30em - 100%) * 9999)">
                 {% include card.html
                     title="This time with an Image"
                     hx="3"
@@ -105,8 +114,72 @@ layout: dev/structure--elementary
                 </figure>
             </div>
 
-            <hr>
+            <h2 id="hero">Hero</h2>
+            
+            <p>See top of this page for an example of a hero image.</p>
+            <p>Omit the <code>small > details</code> element if no info overlay is required.</p>
+            
+            <div>
+                <figure>
+                    <details>
+                        <summary>Code example</summary>
+                        <pre></code>&lt;header&gt;
+    &lt;div&gt;
+        &lt;img src=&quot;/dev/elementary/img/sample-1.jpg&quot; alt=&quot;Cute kid - looks lost.&quot;&gt;
+        &lt;small&gt;
+            &lt;details&gt;
+                &lt;summary&gt;&lt;i&gt;&lt;svg display=&quot;none&quot; focusable=&quot;false&quot;&gt;&lt;use xlink:href=&quot;#icon-info&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/i&gt;&lt;i&gt;&lt;svg display=&quot;none&quot; focusable=&quot;false&quot;&gt;&lt;use xlink:href=&quot;#icon-cross&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/i&gt;&lt;/summary&gt;
+                &lt;div&gt;Image credit info goes here. Can contain &lt;a href=&quot;#&quot;&gt;links&lt;/a&gt; and so on. Just not too long please.&lt;/div&gt;
+            &lt;/details&gt;
+        &lt;/small&gt;
+    &lt;/div&gt;
+    &lt;h1&gt;...&lt;/h1&gt;
+&lt;/header&gt;
+</code></pre>
+                    </details>
+                </figure>
+            </div>
+            
 
+            <h2 id="icons">Icons</h2>
+            
+            <p>Icons are a subset of <a href="https://feathericons.com/">Feather Icons</a> with the addition of a couple of custom ones.</p>
+            <p>Add any other icons you want to use to the <code>svg</code> block after the body tag.</p>
+            
+            <p>
+                <i><svg focusable="false"><use xlink:href="#icon-building"></use></svg></i>
+                <i><svg focusable="false"><use xlink:href="#icon-calendar"></use></svg></i>
+                <i><svg focusable="false"><use xlink:href="#icon-chevron-down"></use></svg></i>
+                <i><svg focusable="false"><use xlink:href="#icon-chevron-up"></use></svg></i>
+                <i><svg focusable="false"><use xlink:href="#icon-chevron-left"></use></svg></i>
+                <i><svg focusable="false"><use xlink:href="#icon-chevron-right"></use></svg></i>
+                <i><svg focusable="false"><use xlink:href="#icon-cross"></use></svg></i>
+                <i><svg focusable="false"><use xlink:href="#icon-edit"></use></svg></i>
+                <i><svg focusable="false"><use xlink:href="#icon-email"></use></svg></i>
+                <i><svg focusable="false"><use xlink:href="#icon-facebook"></use></svg></i>
+                <i><svg focusable="false"><use xlink:href="#icon-fax"></use></svg></i>
+                <i><svg focusable="false"><use xlink:href="#icon-file"></use></svg></i>
+                <i><svg focusable="false"><use xlink:href="#icon-info"></use></svg></i>
+                <i><svg focusable="false"><use xlink:href="#icon-linkedin"></use></svg></i>
+                <i><svg focusable="false"><use xlink:href="#icon-info"></use></svg></i>
+                <i><svg focusable="false"><use xlink:href="#icon-menu"></use></svg></i>
+                <i><svg focusable="false"><use xlink:href="#icon-person"></use></svg></i>
+                <i><svg focusable="false"><use xlink:href="#icon-phone"></use></svg></i>
+                <i><svg focusable="false"><use xlink:href="#icon-rss"></use></svg></i>
+                <i><svg focusable="false"><use xlink:href="#icon-search"></use></svg></i>
+                <i><svg focusable="false"><use xlink:href="#icon-twitter"></use></svg></i>
+            </p>
+            
+            <div>
+                <figure>
+                    <details>
+                        <summary>Code example</summary>
+                        <pre></code>&lt;i&gt;&lt;svg focusable=&quot;false&quot;&gt;&lt;use xlink:href=&quot;#icon-info&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/i&gt;</code></pre>
+                    </details>
+                </figure>
+            </div>
+            
+            
             <h2 id="images">Images</h2>
 
             <h3>Plain image</h3>
@@ -137,6 +210,12 @@ layout: dev/structure--elementary
 &lt;/p&gt;</code></pre>
                     </details>
                 </figure>
+            </div>
+            
+            <h3>Full-width Image</h3>
+            <p>Place the image inside a <code>div</code> to make it full-width.</p>
+            <div>
+                <img src="/dev/elementary/img/sample-1.jpg" alt="Young child looking guilty or upset holding a magnifying glass." width="200">
             </div>
 
         </article>

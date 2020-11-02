@@ -35,7 +35,7 @@
 
 @import '5-components/_hero.scss';
 @if $es__component__hero != false {
-    @include component__card((
+    @include component__hero((
         selector:      $es__component__hero,
         padding:       $s__sz-m,
         background:    $e__component__hero__background,
@@ -44,4 +44,16 @@
 }
 
 
+@import '5-components/_icon.scss';
+
 @import '5-components/_images.scss';
+
+
+
+@import '5-components/_info-overlay.scss';
+@if $es__component__info-overlay != false {
+    @include component__info-overlay((
+        selector:      $es__component__info-overlay,
+        icon-size:     $s__sz-m
+    ))
+}

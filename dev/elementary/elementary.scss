@@ -28,6 +28,8 @@ $s__main-background-color: lighten($s__base-ui-color, 61%);
 $e__component__card__border-radius: $s__sz-s;
 $e__component__card__box-shadow: 0 0 $s__sz-xs 0 rgba(0,0,0,0.2);
 
+
+
 /*-------------------------------------------------------------------------------------------------|
 
     ACCESSIBILITY / ARIA
@@ -71,3 +73,14 @@ $e__component__card__box-shadow: 0 0 $s__sz-xs 0 rgba(0,0,0,0.2);
 |-------------------------------------------------------------------------------------------------*/
 
 @import 'scss/_0-elementary.scss';
+
+// Logo colour invert trick:
+// (White logos don't show up if styles don't load, so the trick is to keep them black in the SVG 
+// source and then invert them with CSS.)
+#{$es__page_banner__logo} circle {
+    stroke: #fff;
+}
+
+#{$es__page_banner__logo} path {
+    fill: #fff;
+}
