@@ -7,6 +7,11 @@
             </div>
             {% endif %}
             <h{{ include.hx | default: 2 }}>{{ include.title }}</h{{ include.hx | default: 2 }}>
+            {% if include.date %}
+            <p>
+                <time datetime="{{ date | date: '%Y-%m-%d' }}">{{ date | date: '%-d %B, %Y' }}</time>
+            </p>
+            {% endif %}
         </header>
         {% if include.content %}
         <div>
