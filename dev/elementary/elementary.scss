@@ -1,70 +1,20 @@
-/*-------------------------------------------------------------------------------------------------|
 
-    ELEMENTARY
 
-|-------------------------------------------------------------------------------------------------*/
+$s__base-ui-color: #79260D;
 
-$s__base-font-family: 'Lato', sans-serif;
+$e__listing__item--basis: 25rem;
 
-$s__root-font-size: 10px;
-
-$s__experimental_checkradios: true;
-
-$e__listing__display-type: grid;
-//$e__listing__display-type: columns;
-$e__listing__item-basis: 25rem;
-
-@import '../start-css/scss/_start_settings.scss';
-@import '../start-css/scss/_start_functions.scss';
-@import '../start-css/scss/_start_mixins.scss';
-
-$s__html-background-color: darken($s__base-ui-color, 25%);
+$s__html-background-color: darken($s__base-ui-color, 15%);
 $s__main-background-color: lighten($s__base-ui-color, 61%);
 
+
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS
+
+|-------------------------------------------------------------------------------------------------*/
+
 @import '../start-css/scss/_start.scss';
-
-
-
-$e__component__card__border-radius: $s__sz-s;
-$e__component__card__box-shadow: 0 0 $s__sz-xs 0 rgba(0,0,0,0.2);
-
-
-
-/*-------------------------------------------------------------------------------------------------|
-
-    ACCESSIBILITY / ARIA
-
-|-------------------------------------------------------------------------------------------------*/
-
-@import '../start-css/scss/_start-accessibility.scss';
-
-
-/*-------------------------------------------------------------------------------------------------|
-
-    UTILITIES
-
-|-------------------------------------------------------------------------------------------------*/
-
-@import '../start-css/scss/_start-utilities.scss';
-
-
-/*-------------------------------------------------------------------------------------------------|
-
-    ICONS
-
-|-------------------------------------------------------------------------------------------------*/
-
-@import '../start-css/scss/_start-icons.scss';
-
-
-/*-------------------------------------------------------------------------------------------------|
-
-    EXPERIMENTAL
-
-|-------------------------------------------------------------------------------------------------*/
-
-@import '../start-css/scss/_start-experimental.scss';
-
 
 /*-------------------------------------------------------------------------------------------------|
 
@@ -77,10 +27,24 @@ $e__component__card__box-shadow: 0 0 $s__sz-xs 0 rgba(0,0,0,0.2);
 // Logo colour invert trick:
 // (White logos don't show up if styles don't load, so the trick is to keep them black in the SVG 
 // source and then invert them with CSS.)
-#{$es__page_banner__logo} circle {
+#{$es__page_banner__logo} circle,
+#{$es__page_banner__logo} path {
     stroke: #fff;
 }
 
-#{$es__page_banner__logo} path {
-    fill: #fff;
-}
+
+// Apply grid to the Listing - Grid page:
+
+@include content-listing--grid((
+    selector: "#page-layout-listing-grid #{$es__page_main__header--listing__list}",
+    basis:    $e__listing__item--basis,
+    gutter:   $e__listing__gutter
+))
+
+// Apply columns to the Listing - Columns page:
+
+@include content-listing--columns((
+        selector: "#page-layout-listing-columns #{$es__page_main__header--listing__list}",
+        basis:    $e__listing__item--basis,
+        gutter:   $e__listing__gutter
+    ))

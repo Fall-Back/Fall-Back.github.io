@@ -1,10 +1,10 @@
-/*! Start CSS Experimental. See SCSS file for documentation. */
+/*! Start-CSS Experimental. See SCSS file for documentation. */
+/*-------------------------------------------------------------------------------------------------|
 
-/*------------------------------------------------------------------------------------------------*\
+    EXPERIMENTAL
+    ============================================================================================
 
-    Experimental
-
-\*------------------------------------------------------------------------------------------------*/
+|-------------------------------------------------------------------------------------------------*/
 
 
 $s__checkradio-background-color: #fff !default;
@@ -13,212 +13,214 @@ $s__checkradio-border-color: $s__checkradio-text-color !default;
 $s__checkradio-border-width: $s__border-width !default;
 $s__checkradio-border-style: $s__border-style !default;
 
-
-/*
-    From https://github.com/mozdevs/cssremedy/blob/master/remedy.css
-    Immediately jump any animation to the end point if the user has set their device to "prefers 
-    reduced motion".
-    This could create bad, unintended consequences. Remove as needed, and write your own appropriate
-    code for prefers-reduced-motion.
-    
-*/
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.001s !important;
-        transition-duration: 0.001s !important;
+@if $s__experimental == true {
+    /*
+        From https://github.com/mozdevs/cssremedy/blob/master/remedy.css
+        Immediately jump any animation to the end point if the user has set their device to "prefers 
+        reduced motion".
+        This could create bad, unintended consequences. Remove as needed, and write your own appropriate
+        code for prefers-reduced-motion.
+        
+    */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation-duration: 0.001s !important;
+            transition-duration: 0.001s !important;
+        }
     }
-}
 
 
-/*
-    MS pseudo-elements.
+    /*
+        MS pseudo-elements.
 
-    Note - there's some odd spacing issues between the containing element and the pseudo-elements,
-    where background colors can show through unexpectedly, so there are some tweaks to rectify
-    this.
-*/
-#{$s__namespace}[type="file"]::-ms-value {
-    margin-right: 0;
-    margin-left: -6px;
-
-    padding-left: 0.5em;
-
-    border: 0;
-    border-radius: $s__input-border-radius;
-
-    background: $s__input-background-color;
-}
-// @supports (-ms-ime-align:auto) { .selector { property:value; } }
-// Microsoft Edge 12+ (all MS Edge)
-@supports (-ms-ime-align:auto) {
+        Note - there's some odd spacing issues between the containing element and the pseudo-elements,
+        where background colors can show through unexpectedly, so there are some tweaks to rectify
+        this.
+    */
     #{$s__namespace}[type="file"]::-ms-value {
-        background: transparent;
+        margin-right: 0;
+        margin-left: -6px;
+
+        padding-left: 0.5em;
+
+        border: 0;
+        border-radius: $s__input-border-radius;
+
+        background: $s__input-background-color;
     }
-}
-
-
-@if $s__input-focus-shadow != false {
-    #{$s__namespace}[type="file"]:focus::-ms-value {
-        box-shadow: $s__input-focus-shadow;
-        outline: 0;
+    // @supports (-ms-ime-align:auto) { .selector { property:value; } }
+    // Microsoft Edge 12+ (all MS Edge)
+    @supports (-ms-ime-align:auto) {
+        #{$s__namespace}[type="file"]::-ms-value {
+            background: transparent;
+        }
     }
-}
 
 
-/*
-    1. IE10 doesn't like rem so convert to px.
-*/
-#{$s__namespace}[type="file"]::-ms-browse {
-    min-height:  $s__input-min-height;
-
-    padding-right: $s__input-h-padding;
-    padding-right: #{f__calc-px-from-rem($s__input-h-padding)}\9; /* 1 */
-    padding-left: $s__input-h-padding;
-    padding-left: #{f__calc-px-from-rem($s__input-h-padding)}\9; /* 1 */
-
-    border-width: 0 0 0 $s__input-border-width;
-    border-style: $s__input-border-style;
-    border-color: $s__input-border-color;
-    border-top-right-radius: $s__input-border-radius - $s__input-border-width;
-    border-bottom-right-radius: $s__input-border-radius - $s__input-border-width;
-
-    color: #fff;
-    background-color: $s__base-ui-color;
-
-    font-weight: inherit;
-    font-style: inherit;
-    font-size: inherit;
-    font-family: inherit;
-
-    text-transform: none;
-
-    cursor: pointer;
-}
-
-    @if $s__button-focus-shadow != false {
-        [type="file"]:hover::-ms-browse,
-        [type="file"]:active::-ms-browse,
-        [type="file"]:focus::-ms-browse {
-            box-shadow: $s__button-focus-shadow;
+    @if $s__input-focus-shadow != false {
+        #{$s__namespace}[type="file"]:focus::-ms-value {
+            box-shadow: $s__input-focus-shadow;
             outline: 0;
         }
     }
 
-/*
-    1. Spacing height + 2 sets of input padding, minus border width.
-*/
-#{$s__namespace}[type="file"]::-webkit-file-upload-button {
-    height: calc(#{($s__base-rem-space-unit * 1.25)} - #{$s__input-border-width * 2}); /* 1 */
 
-    padding-top: 0;
-    padding-right: $s__input-h-padding;
-    padding-bottom: 0;
-    padding-left: $s__input-h-padding;
+    /*
+        1. IE10 doesn't like rem so convert to px.
+    */
+    #{$s__namespace}[type="file"]::-ms-browse {
+        min-height:  $s__input-min-height;
 
-    border-width: 0 $s__input-border-width 0 0;
-    border-style: $s__input-border-style;
-    border-color: $s__input-border-color;
-    border-radius: 0;
+        padding-right: $s__input-h-padding;
+        padding-right: #{s__calc-px-from-rem($s__input-h-padding)}\9; /* 1 */
+        padding-left: $s__input-h-padding;
+        padding-left: #{s__calc-px-from-rem($s__input-h-padding)}\9; /* 1 */
 
-    color: #fff;
-    background-color: $s__base-ui-color;
+        border-width: 0 0 0 $s__input-border-width;
+        border-style: $s__input-border-style;
+        border-color: $s__input-border-color;
+        border-top-right-radius: $s__input-border-radius - $s__input-border-width;
+        border-bottom-right-radius: $s__input-border-radius - $s__input-border-width;
 
-    font-weight: inherit;
-    font-style: inherit;
-    font-size: inherit;
-    font-family: inherit;
+        color: #fff;
+        background-color: $s__base-ui-color;
 
-    vertical-align: top;
+        font-weight: inherit;
+        font-style: inherit;
+        font-size: inherit;
+        font-family: inherit;
 
-    text-transform: none;
+        text-transform: none;
 
-    cursor: pointer;
+        cursor: pointer;
+    }
 
-    -webkit-appearance: none;
-}
-
-    @if $s__button-focus-shadow != false {
-        #{$s__namespace}[type="file"]:hover::-webkit-file-upload-button,
-        #{$s__namespace}[type="file"]:active::-webkit-file-upload-button,
-        #{$s__namespace}[type="file"]:focus::-webkit-file-upload-button {
-            box-shadow: $s__button-focus-shadow;
-
-            outline: 0;
+        @if $s__button-focus-shadow != false {
+            [type="file"]:hover::-ms-browse,
+            [type="file"]:active::-ms-browse,
+            [type="file"]:focus::-ms-browse {
+                box-shadow: $s__button-focus-shadow;
+                outline: 0;
+            }
         }
+
+    /*
+        1. Spacing height + 2 sets of input padding, minus border width.
+    */
+    #{$s__namespace}[type="file"]::-webkit-file-upload-button {
+        height: calc(#{($s__base-rem-space-unit * 1.25)} - #{$s__input-border-width * 2}); /* 1 */
+
+        padding-top: 0;
+        padding-right: $s__input-h-padding;
+        padding-bottom: 0;
+        padding-left: $s__input-h-padding;
+
+        border-width: 0 $s__input-border-width 0 0;
+        border-style: $s__input-border-style;
+        border-color: $s__input-border-color;
+        border-radius: 0;
+
+        color: #fff;
+        background-color: $s__base-ui-color;
+
+        font-weight: inherit;
+        font-style: inherit;
+        font-size: inherit;
+        font-family: inherit;
+
+        vertical-align: top;
+
+        text-transform: none;
+
+        cursor: pointer;
+
+        -webkit-appearance: none;
     }
-/*
-    Safari refuses to adjust the height of select[multiple] options.
-    The only way I've managed to get it to adhere to the vertical rhythm is by adjust the font-size
-    on the select:
-    select[multiple] {
-        font-size: 20px;
-        margin-bottom: 8px;
+
+        @if $s__button-focus-shadow != false {
+            #{$s__namespace}[type="file"]:hover::-webkit-file-upload-button,
+            #{$s__namespace}[type="file"]:active::-webkit-file-upload-button,
+            #{$s__namespace}[type="file"]:focus::-webkit-file-upload-button {
+                box-shadow: $s__button-focus-shadow;
+
+                outline: 0;
+            }
+        }
+    /*
+        Safari refuses to adjust the height of select[multiple] options.
+        The only way I've managed to get it to adhere to the vertical rhythm is by adjust the font-size
+        on the select:
+        select[multiple] {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        This is no good, of course as it makes the text HUGE. Scaling it back with transform works:
+
+            transform-origin: top;
+            transform: scale(0.7);
+
+        but of course the gaps around it are huge as well.
+
+        Hand-adjusting margins here so I can test the rest of the elements on grid properly and moving
+        on:
+    */
+    // _:scope, _:future, _:not(*:root), .selector { property:value; }
+    // Chrome 27+, Safari 6.1+ (and Opera 14+)
+    /*
+    _:scope, _:future, _:not(*:root), select[size="2"]  { margin-bottom: 0; }
+    _:scope, _:future, _:not(*:root), select[size="3"]  { margin-bottom: 0; }
+    _:scope, _:future, _:not(*:root), select[size="4"]  { margin-bottom: 0; }
+    _:scope, _:future, _:not(*:root), select[size="5"]  { margin-bottom: calc(0.9rem - 2px); }
+    _:scope, _:future, _:not(*:root), select[size="6"]  { margin-bottom: calc(0.4rem - 2px); }
+    _:scope, _:future, _:not(*:root), select[size="7"]  { margin-bottom: calc(1.1rem - 2px); }
+    _:scope, _:future, _:not(*:root), select[size="8"]  { margin-bottom: calc(0.6rem - 2px); }
+    _:scope, _:future, _:not(*:root), select[size="9"]  { margin-bottom: calc(1.3rem - 2px); }
+    _:scope, _:future, _:not(*:root), select[size="10"] { margin-bottom: calc(0.8rem - 2px); }
+    */
+
+
+
+    // _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root .selector { property:value; }
+    // Safari 6.2,7.1+ (Not iOS)
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="2"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.6em - #{$s__input-border-width * 2}); }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="3"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.6em - #{$s__input-border-width * 2}); }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="4"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.6em - #{$s__input-border-width * 2}); }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="5"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 1.1em - #{$s__input-border-width * 2}); }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="6"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.85em - #{$s__input-border-width * 2}); }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="7"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.6em - #{$s__input-border-width * 2}); }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="8"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 1.1em - #{$s__input-border-width * 2}); }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="9"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.85em - #{$s__input-border-width * 2}); }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="10"] { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.6em - #{$s__input-border-width * 2}); }
+
+    // Reset Chrome and Opera:
+    // @media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) { .selector { property:value; } }
+    // Chrome 29+ (and Opera 16+)
+    /*
+    @media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
+        select[size] { margin-bottom: calc(#{($s__base-rem-space-unit / 8) * 3} - #{$s__input-border-width * 2}); }
+    }
+    */
+
+
+
+    /*
+        Similar problem with IE9-11:
+    */
+
+    /* IE9-11 */
+    @media #{$s__ie9-11} {
+        select[size="2"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 1.1em - #{$s__input-border-width * 2}); }
+        select[size="3"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.75em - #{$s__input-border-width * 2}); }
+        select[size="4"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 1.25em - #{$s__input-border-width * 2}); }
+        select[size="5"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.95em - #{$s__input-border-width * 2}); }
+        select[size="6"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.65em - #{$s__input-border-width * 2}); }
+        select[size="7"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 1.1em - #{$s__input-border-width * 2}); }
+        select[size="8"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.75em - #{$s__input-border-width * 2}); }
+        select[size="9"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 1.25em - #{$s__input-border-width * 2}); }
+        select[size="10"] { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.95em - #{$s__input-border-width * 2}); }
     }
 
-    This is no good, of course as it makes the text HUGE. Scaling it back with transform works:
-
-        transform-origin: top;
-        transform: scale(0.7);
-
-    but of course the gaps around it are huge as well.
-
-    Hand-adjusting margins here so I can test the rest of the elements on grid properly and moving
-    on:
-*/
-// _:scope, _:future, _:not(*:root), .selector { property:value; }
-// Chrome 27+, Safari 6.1+ (and Opera 14+)
-/*
-_:scope, _:future, _:not(*:root), select[size="2"]  { margin-bottom: 0; }
-_:scope, _:future, _:not(*:root), select[size="3"]  { margin-bottom: 0; }
-_:scope, _:future, _:not(*:root), select[size="4"]  { margin-bottom: 0; }
-_:scope, _:future, _:not(*:root), select[size="5"]  { margin-bottom: calc(0.9rem - 2px); }
-_:scope, _:future, _:not(*:root), select[size="6"]  { margin-bottom: calc(0.4rem - 2px); }
-_:scope, _:future, _:not(*:root), select[size="7"]  { margin-bottom: calc(1.1rem - 2px); }
-_:scope, _:future, _:not(*:root), select[size="8"]  { margin-bottom: calc(0.6rem - 2px); }
-_:scope, _:future, _:not(*:root), select[size="9"]  { margin-bottom: calc(1.3rem - 2px); }
-_:scope, _:future, _:not(*:root), select[size="10"] { margin-bottom: calc(0.8rem - 2px); }
-*/
-
-
-
-// _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root .selector { property:value; }
-// Safari 6.2,7.1+ (Not iOS)
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="2"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.6em - #{$s__input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="3"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.6em - #{$s__input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="4"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.6em - #{$s__input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="5"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 1.1em - #{$s__input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="6"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.85em - #{$s__input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="7"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.6em - #{$s__input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="8"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 1.1em - #{$s__input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="9"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.85em - #{$s__input-border-width * 2}); }
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="10"] { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.6em - #{$s__input-border-width * 2}); }
-
-// Reset Chrome and Opera:
-// @media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) { .selector { property:value; } }
-// Chrome 29+ (and Opera 16+)
-/*
-@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
-    select[size] { margin-bottom: calc(#{($s__base-rem-space-unit / 8) * 3} - #{$s__input-border-width * 2}); }
-}
-*/
-
-
-
-/*
-    Similar problem with IE9-11:
-*/
-
-/* IE9-11 */
-@media #{$s__ie9-11} {
-    select[size="2"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 1.1em - #{$s__input-border-width * 2}); }
-    select[size="3"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.75em - #{$s__input-border-width * 2}); }
-    select[size="4"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 1.25em - #{$s__input-border-width * 2}); }
-    select[size="5"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.95em - #{$s__input-border-width * 2}); }
-    select[size="6"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.65em - #{$s__input-border-width * 2}); }
-    select[size="7"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 1.1em - #{$s__input-border-width * 2}); }
-    select[size="8"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.75em - #{$s__input-border-width * 2}); }
-    select[size="9"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 1.25em - #{$s__input-border-width * 2}); }
-    select[size="10"] { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.95em - #{$s__input-border-width * 2}); }
 }
 
 /*

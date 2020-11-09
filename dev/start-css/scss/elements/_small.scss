@@ -1,5 +1,8 @@
 /*-------------------------------------------------------------------------------------------------|
-    Fall-Back Start-CSS Element: small
+
+    START=CSS ELEMENT: small
+    ============================================================================================
+
 |-------------------------------------------------------------------------------------------------*/
 
 /*
@@ -9,4 +12,18 @@
 #{$s__namespace}small {
     font-size: $s__small-font-size; /* 1 */
     line-height: normal; /* 2 */
+    
+    a[href] {
+        margin-bottom: $s__anchor-border-bottom-offset / 2;
+
+        padding-bottom: $s__anchor-padding-bottom / 2;
+
+        border-bottom: #{$s__anchor-border-bottom-width / 2} $s__anchor-border-bottom-style;
+    }
+    
+    a[href]:hover,
+    a[href]:focus,
+    a[href]:active {
+        border-bottom: #{$s__anchor-border-bottom-width / 2} $s__anchor-border-bottom-style--alt;
+    }
 }

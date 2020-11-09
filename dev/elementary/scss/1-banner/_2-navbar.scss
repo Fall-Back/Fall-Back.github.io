@@ -11,7 +11,8 @@
     margin: $s__sz-xs 0 0 0;
 }
 
-#{$es__page_banner__navbar} > ul {
+#{$es__page_banner__navbar} > ul,
+#{$es__page_banner__navbar} > details > ul {
     display: flex;
     flex-wrap: wrap;
 
@@ -20,7 +21,8 @@
     list-style-type: none;
 }
 
-#{$es__page_banner__navbar} > ul li {
+#{$es__page_banner__navbar} > ul li,
+#{$es__page_banner__navbar} > details > ul li {
     flex: 0 0 auto;
 
     margin: 0 0 $s__sz-xs 0;
@@ -29,17 +31,20 @@
 }
 
 @if $e__nav-bar__link--spacing != false {
-    #{$es__page_banner__navbar} > ul {
+    #{$es__page_banner__navbar} > ul,
+    #{$es__page_banner__navbar} > details > ul {
         margin-left: -$e__nav-bar__link--spacing;
     }
-    
-    #{$es__page_banner__navbar} > ul li {
+
+    #{$es__page_banner__navbar} > ul li,
+    #{$es__page_banner__navbar} > details > ul li {
         margin-left: $e__nav-bar__link--spacing;
     }
 }
 
 
-#{$es__page_banner__navbar} > ul a[href] {
+#{$es__page_banner__navbar} > ul a[href],
+#{$es__page_banner__navbar} > details > ul a[href] {
     display: block;
 
     margin: 0;
@@ -60,12 +65,15 @@
 }
 
 
-#{$es__page_banner__navbar} > ul a[href] {
+#{$es__page_banner__navbar} > ul a[href],
+#{$es__page_banner__navbar} > details > ul a[href] {
     color: $e__nav-bar__link--color;
     background-color: $e__nav-bar__link--background-color;
 }
 
-#{$es__page_banner__navbar} > ul a[href][aria-current] {
+#{$es__page_banner__navbar} > ul a[href][aria-current],
+#{$es__page_banner__navbar} > details > ul a[href][aria-current],
+#{$es__page_banner__navbar} > details > summary {
     color: $e__nav-bar__link--color--alt;
     background-color: $e__nav-bar__link--background-color--alt2;
 }
@@ -73,12 +81,86 @@
 
 #{$es__page_banner__navbar} > ul a[href]:hover,
 #{$es__page_banner__navbar} > ul a[href]:active,
-#{$es__page_banner__navbar} > ul a[href]:focus {
+#{$es__page_banner__navbar} > details > ul a[href]:hover,
+#{$es__page_banner__navbar} > details > ul a[href]:active,
+#{$es__page_banner__navbar} > details > summary:hover,
+#{$es__page_banner__navbar} > details > summary:active {
     border: 0;
 
     color: $e__nav-bar__link--color--alt;
     background-color: $e__nav-bar__link--background-color--alt;
 }
+
+
+#{$es__page_banner__navbar} > ul a[href]:focus,
+#{$es__page_banner__navbar} > details > ul a[href]:focus,
+#{$es__page_banner__navbar} > details > summary:focus {
+    box-shadow: 0 0 0 $s__sz-xs rgba(0,0,0,.3);
+}
+
+
+
+#{$es__page_banner__navbar} > details {
+
+    margin: 0;
+
+    /*
+        1. `align-items: center;` is the obvious choice for vertical-center aligning the icons, but
+           for some reason iOS doesn't get it right, so I'm using padding instead for now since the
+           icon or container sizes shouldn't change.
+    */
+    & > summary {
+        position: absolute;
+        right: $s__sz-s;
+        top: $s__sz-s;
+        z-index: 1;
+
+        display: flex;
+        justify-content: center;
+        // align-items: center; /* [1] */
+
+        width: $s__sz-l;
+
+        height: $s__sz-l;
+
+        margin: 0;
+
+        //padding: 0; /* [1] */
+        //padding: 0.2rem; /* [1] */
+        padding: $s__sz-s; /* [1] */
+
+
+        & > :first-child {
+            display: inline;
+        }
+
+        & > :last-child {
+            display: none;
+        }
+
+        &::before {
+            display: none;
+        }
+    }
+
+    &[open] {
+        & > summary {
+
+            & > :first-child {
+                display: none;
+            }
+
+            & > :last-child {
+                display: inline;
+            }
+        }
+    }
+}
+
+
+
+
+
 
 /*
 

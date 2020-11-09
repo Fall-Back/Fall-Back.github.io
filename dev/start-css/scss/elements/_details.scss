@@ -1,12 +1,15 @@
 /*-------------------------------------------------------------------------------------------------|
-    Fall-Back Start-CSS Element: details
+
+    START=CSS ELEMENT: details
+    ============================================================================================
+
 |-------------------------------------------------------------------------------------------------*/
 
 #{$s__namespace}details {
     display: block; /* N: IE 10/11 */
     margin-bottom: $s__base-rem-space-unit;
     
-    @include f__bordered($s__details-padding, $s__details-border-width);
+    @include s__bordered($s__details-padding, $s__details-border-width);
     
     // Fix Chrome bug as described on https://caniuse.com/#feat=details:
     > * {

@@ -16,8 +16,13 @@
             column-gap: #{map-get($options, gutter)};
         }
 
+        /*
+            1. This fixes an issue where box-shadows break across columns.
+        */
         #{map-get($options, selector)} > * {
             margin: 0 0 #{map-get($options, gutter)} 0;
+
+            transform: translateZ(0); /* [1] */
 
             break-inside: avoid;
         }

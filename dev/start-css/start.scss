@@ -63,58 +63,17 @@
 //$s__base-font-family: 'Open Sans', sans-serif;
 
 //@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900');
-$s__base-font-family: 'Lato', sans-serif;
 
-$s__root-font-size: 10px;
+
 
 //$s__base-ui-color: #2E8B57;
 //$s__namespace: '.ugc ';
 //$s__namespace: 'main ';
 
 
-
+//$s__root-font-size:         10px;
 $s__experimental_checkradios: true;
 
-$s__html-background-color: #50514F;
 
-
-@import 'scss/_start_settings.scss';
-@import 'scss/_start_functions.scss';
-@import 'scss/_start_mixins.scss';
 @import 'scss/_start.scss';
 
-
-/*-------------------------------------------------------------------------------------------------|
-
-    ACCESSIBILITY / ARIA
-
-|-------------------------------------------------------------------------------------------------*/
-
-@import 'scss/_start-accessibility.scss';
-
-
-/*-------------------------------------------------------------------------------------------------|
-
-    UTILITIES
-
--|------------------------------------------------------------------------------------------------*/
-
-@import 'scss/_start-utilities.scss';
-
-
-/*-------------------------------------------------------------------------------------------------|
-
-    ICONS
-
--|------------------------------------------------------------------------------------------------*/
-
-@import 'scss/_start-icons.scss';
-
-
-/*-------------------------------------------------------------------------------------------------|
-
-    EXPERIMENTAL
-
--|------------------------------------------------------------------------------------------------*/
-
-@import 'scss/_start-experimental.scss';

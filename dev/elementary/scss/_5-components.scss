@@ -44,7 +44,7 @@
 }
 
 
-@import '5-components/_icon.scss';
+//@import '5-components/_icon.scss';
 
 @import '5-components/_images.scss';
 
@@ -53,7 +53,9 @@
 @import '5-components/_info-overlay.scss';
 @if $es__component__info-overlay != false {
     @include component__info-overlay((
-        selector:      $es__component__info-overlay,
-        icon-size:     $s__sz-m
+        selector:     $es__component__info-overlay,
+        spacing-unit: $e__component__info-overlay__spacing-unit,
+        x-position:   $e__component__info-overlay__x-position,
+        y-position:   $e__component__info-overlay__y-position
     ))
 }

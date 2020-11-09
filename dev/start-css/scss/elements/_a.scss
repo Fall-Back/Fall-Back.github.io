@@ -1,5 +1,8 @@
 /*-------------------------------------------------------------------------------------------------|
-    Fall-Back Start-CSS Element: a
+
+    START=CSS ELEMENT: a
+    ============================================================================================
+
 |-------------------------------------------------------------------------------------------------*/
 
 /*
@@ -48,11 +51,13 @@
 
             content: "";
 
-            padding-left: 1.25em;
+            padding-left: 1.16666666667em;
+            
+            margin: 0 0.5em;
 
             background: linear-gradient(45deg, transparent 50%, currentColor 50%);
 
-            font-size: 0.4em;
+            font-size: 0.375em;
             line-height: 0;
 
             vertical-align: super;

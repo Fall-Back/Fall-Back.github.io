@@ -61,9 +61,9 @@
 */
 #{$es__page_main__header} ~ figure,
 #{$es__page_main__header} ~ div > figure {
-    background: $__e_content__figure-0background;
+    background: $__e__content__figure-background;
     
-    @include f__bordered($s__sz-m, 0);
+    @include s__bordered($s__sz-m, 0);
 }
 
 /*

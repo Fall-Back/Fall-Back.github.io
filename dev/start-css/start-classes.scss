@@ -1,39 +1,7 @@
-//$s__base-line-height: 24px; // 1.5
-//$s__base-ui-color: #663399; //rebeccapurple #663399 rgb(102,51,153)
-
-
-$s__base-font-family: 'Lato', sans-serif;
-
-$s__root-font-size: 10px;
-
-//$s__base-ui-color: #2E8B57;
-//$s__namespace: '.ugc ';
-//$s__namespace: 'main ';
-
-
-
 $s__experimental_checkradios: true;
 
-$s__html-background-color: #50514F;
 
-/*
-$s__class-namespace: c-;
-$ff__include_class_cta_button:    false;
-$ff__include_class_bordered:      false;
-$ff__include_class_padded:        false;
-$ff__include_class_subtitle:      false;
-$ff__include_class_tagline:       false;
-$ff__include_class_composite:     false;
-$ff__include_class_custom_inputs: false;
-$ff__include_class_poem:          false;
-*/
-
-@import 'scss/_start_settings.scss';
-@import 'scss/_start_functions.scss';
-@import 'scss/_start_mixins.scss';
 @import 'scss/_start.scss';
-@import 'scss/_start-icons.scss';
-@import 'scss/_start-classes.scss';
 
-@import 'scss/_start-experimental.scss';
+@import 'scss/_start-classes.scss';
 

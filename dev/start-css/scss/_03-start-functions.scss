@@ -1,9 +1,12 @@
 /*-------------------------------------------------------------------------------------------------|
-    Fall-Back Start-CSS Functions
+
+    START-CSS FUNCTIONS
+    ============================================================================================
+
 |-------------------------------------------------------------------------------------------------*/
 
 
-@function f__calc-rem-from-px($px, $negative: false) {
+@function s__calc-rem-from-px($px, $negative: false) {
     // e.g. $px = 16px (and $s__base-rem-1px = 0.0625rem)
     // 16px + 0px = 16px | 16 + 0px = 16px (add unit if necessary)
     // 16px / 1px = 16 (strip unit)
@@ -17,7 +20,7 @@
     @return $value;
 }
 
-@function f__calc-px-from-rem($rem, $negative: false) {
+@function s__calc-px-from-rem($rem, $negative: false) {
     // e.g. $rem = 1.5rem
     // 1.5rem  + 0rem = 1.5rem | 1.5 + 0rem = 1.5rem (add unit if necessary)
     // 1.5rem / 1rem = 1 (strip unit)
@@ -35,7 +38,7 @@
     Colour contrast from https://gist.github.com/FStop/8959422
 
     Usage:
-    @if f__color_contrast($colour, #fff) < 2 {
+    @if s__color_contrast($colour, #fff) < 2 {
         color: #333;
     }
     @else{
@@ -45,7 +48,7 @@
 /* Awesome contrast ratio function
 * via https://gist.github.com/voxpelli/6304812
 **/
-@function f__color_luminance($color) {
+@function s__color_luminance($color) {
     // Adapted from: https://github.com/LeaVerou/contrast-ratio/blob/gh-pages/color.js
     // Formula: http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
     $rgba: red($color), green($color), blue($color);
@@ -63,11 +66,11 @@
     @return .2126 * nth($rgba2, 1) + .7152 * nth($rgba2, 2) + 0.0722 * nth($rgba2, 3);
 }
 
-@function f__color_contrast($color1, $color2) {
+@function s__color_contrast($color1, $color2) {
     // Adapted from: https://github.com/LeaVerou/contrast-ratio/blob/gh-pages/color.js
     // Formula: http://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef
-    $luminance1: f__color_luminance($color1) + .05;
-    $luminance2: f__color_luminance($color2) + .05;
+    $luminance1: s__color_luminance($color1) + .05;
+    $luminance2: s__color_luminance($color2) + .05;
     $ratio: $luminance1 / $luminance2;
 
     @if $luminance2 > $luminance1 {
@@ -79,7 +82,7 @@
     @return $ratio;
 }
 
-@function f__color_light_or_dark($color) {
+@function s__color_light_or_dark($color) {
     $color-brightness: round((red($color) * 299) + (green($color) * 587) + (blue($color) * 114) / 1000);
     $light-color: round((red(#ffffff) * 299) + (green(#ffffff) * 587) + (blue(#ffffff) * 114) / 1000);
 
@@ -94,8 +97,8 @@
     }
 }
 
-// https://github.com/pentzzsolt/sass-f__is-int/blob/master/_f__is-int.scss
-@function f__is-int($value) {
+// https://github.com/pentzzsolt/sass-s__is-int/blob/master/_s__is-int.scss
+@function s__is-int($value) {
     @if type-of($value) != number {
         @warn '`#{$value}` is not a valid number!';
         @return null;
@@ -111,6 +114,6 @@
 }
 
 
-@function f__strip-unit($value) {
+@function s__strip-unit($value) {
   @return $value / ($value * 0 + 1);
 }

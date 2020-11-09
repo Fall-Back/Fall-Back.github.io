@@ -1,5 +1,8 @@
 /*-------------------------------------------------------------------------------------------------|
-    Fall-Back Start-CSS Mixins
+
+    START-CSS MIXINS
+    ============================================================================================
+
 |-------------------------------------------------------------------------------------------------*/
 
 /*
@@ -20,7 +23,7 @@
     too small.
     If pseudo-element height is 0, it doesn't work in IE, Chrome, Safari, without inline-block
 */
-@mixin f__bordered($padding: 1em, $border-width: 1px, $border-color: uiColor, $border-style: solid) {
+@mixin s__bordered($padding: 1em, $border-width: 1px, $border-color: uiColor, $border-style: solid) {
     border-width: $border-width;
     border-style: $border-style;
     @if $border-color == uiColor {
@@ -63,7 +66,7 @@
 
     ```
     [role="button"] {
-        @include f__button;
+        @include s__button;
     }
     ```
 
@@ -71,7 +74,7 @@
 
     ```
         .btn--affirmative {
-            @include f__button(<text-color>, <bg-color>);
+            @include s__button(<text-color>, <bg-color>);
         }
     ```
 
@@ -88,7 +91,7 @@
     FF8 - ? doesn't like `line-height: -moz-calc()` and ignores
     Need to make sure height is governed by line-height in case of breaks within buttons.
 */
-@mixin f__button(
+@mixin s__button(
         $color: $s__button-text-color,
         $bg-color: $s__button-background-color,
         $bg-color--alt: $s__button-background-color--alt,
@@ -143,7 +146,7 @@
     @if $bg-color--alt != false {
         &:hover,
         &:active {
-            @if f__is-int($bg-color--alt) {
+            @if s__is-int($bg-color--alt) {
                 @if $bg-color--alt > 0 {
                     $bg-color--alt_percent: $bg-color--alt * 1%;
                     background-color: lighten($bg-color, $bg-color--alt_percent);
@@ -196,7 +199,7 @@
     contain parapgraphs can result in double bottom margins, so flipping that around inside those
     containers.
 */
-@mixin f__fix_internal_margins($margin-size) {
+@mixin s__fix_internal_margins($margin-size) {
     & * {
         margin-bottom: 0;
     }
@@ -210,7 +213,7 @@
 // Fluid Typography
 // https://css-tricks.com/snippets/css/fluid-typography/
 
-@mixin f__fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+@mixin s__fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
     $u1: unit($min-vw);
     $u2: unit($max-vw);
     $u3: unit($min-font-size);
@@ -220,7 +223,7 @@
             & {
             font-size: $min-font-size;
             @media screen and (min-width: $min-vw) {
-                font-size: calc(#{$min-font-size} + #{f__strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{f__strip-unit($max-vw - $min-vw)}));
+                font-size: calc(#{$min-font-size} + #{s__strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{s__strip-unit($max-vw - $min-vw)}));
             }
             @media screen and (min-width: $max-vw) {
                 font-size: $max-font-size;

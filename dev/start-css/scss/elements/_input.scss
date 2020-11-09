@@ -1,5 +1,8 @@
 /*-------------------------------------------------------------------------------------------------|
-    Fall-Back Start-CSS Element: input
+
+    START=CSS ELEMENT: input
+    ============================================================================================
+
 |-------------------------------------------------------------------------------------------------*/
 
 /*
@@ -102,7 +105,7 @@
 #{$s__namespace}[type="button"],
 #{$s__namespace}[type="reset"],
 #{$s__namespace}[type="submit"] {
-    @include f__button;
+    @include s__button;
     // Maybe include fixes for these elements here instead of in the mixin?
 }
 

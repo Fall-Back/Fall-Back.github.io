@@ -1,5 +1,7 @@
 /*-------------------------------------------------------------------------------------------------|
-    Fall-Back Start-CSS Settings
+
+    START-CSS SETTINGS
+    ============================================================================================
 
     Fall-Back is designed for use with the basic
     [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
@@ -22,35 +24,19 @@
 // Use $s__namespace to scope all body > *:not(main) styles:
 $s__namespace: '' !default;
 
-
-$s__root-font-size:         16px !default;
-$s__base-font-size:         16px !default;
-$s__base-line-height:       24px !default; // 1.25
-
 $s__base-em-ratio:          $s__base-line-height / $s__base-font-size; // 1.71428571429
 $s__root-font-size-percent: ($s__root-font-size / 16px) * 100;
-//@debug $s__base-line-height;
-//@debug ($s__base-line-height / $s__root-font-size);
-//@debug ($s__base-line-height / $s__root-font-size) * 1rem;
 
-$s__base-rem-space-unit:    ($s__base-line-height / $s__root-font-size) * 1rem;
+
 $s__base-rem-1px:           1px / $s__root-font-size * 1rem;
 $s__base-em-1px:            1px / $s__root-font-size * 1em;
 $s__mq-1-em-px:             0.0625em;
-
-$s__base-font-family:       sans-serif !default;
-// Consider:
-//$s__base-font-family:       -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif !default;
-// https://bitsofco.de/the-new-system-font-stack/ https://github.com/necolas/normalize.css/issues/665
-
-$s__monospace-font-family: monospace !default;
-
-$s__breakpoint--enhanced:   50em !default;
 
 
 
 $s__tabsize: 4 !default;
 
+$s__experimental: false !default;
 $s__experimental_checkradios: false !default;
 
 
@@ -76,11 +62,6 @@ $s__sizes: (
 
 
 // UI:
-$s__base-ui-color:          #247BA0 !default;
-
-$s__base-background-color:  #eee !default;
-$s__base-text-color:        #333 !default;
-
 
 $s__border-color: rgba(0,0,0,0.2) !default;
 // IMPORTANT: don't make this LESS than 1px or focus styles will break. If you want the appearance
@@ -119,7 +100,7 @@ $s__ie10-11: "screen and (-ms-high-contrast:active), (-ms-high-contrast:none)";
 // ELEMENTS
 
 // <html>
-$s__html-background-color: $s__base-background-color !default;
+$s__html-background-color: darken($s__base-ui-color, 25%) !default;
 
 
 
@@ -147,8 +128,10 @@ $s__anchor-text-color--alt: darken($s__anchor-text-color, 10%) !default;
 $s__anchor-text-decoration: none !default;
 
 $s__anchor-border-bottom-width: 2px !default;
-$s__anchor-border-bottom: $s__anchor-border-bottom-width solid !default;
-$s__anchor-border-bottom--alt: $s__anchor-border-bottom-width dashed !default;
+$s__anchor-border-bottom-style: solid !default;
+$s__anchor-border-bottom-style--alt: dashed !default;
+$s__anchor-border-bottom: $s__anchor-border-bottom-width $s__anchor-border-bottom-style !default;
+$s__anchor-border-bottom--alt: $s__anchor-border-bottom-width $s__anchor-border-bottom-style--alt !default;
 $s__anchor-border-bottom-offset: -$s__anchor-border-bottom-width;
 $s__anchor-padding-bottom: $s__anchor-border-bottom-width;
 
@@ -318,7 +301,7 @@ $s__select-focus-shadow-width: 3px !default;
 
 
 
-$s__small-font-size: 80% !default;
+$s__small-font-size: 81.25% !default;
 
 
 

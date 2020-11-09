@@ -83,7 +83,8 @@
 	}
 
     // no-print helper class:
-    .no-print {
+    .no-print,
+    [data="no-print"] {
 		display: none !important;
 	}
 
@@ -100,7 +101,8 @@
 
 // AK: hide print-only elements when media is not print:
 @media not print {
-    .print-only {
+    .print-only,
+    [data="print-only"] {
         display: none !important;
     }
 }

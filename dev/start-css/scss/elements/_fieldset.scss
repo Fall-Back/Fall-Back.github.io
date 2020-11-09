@@ -1,5 +1,8 @@
 /*-------------------------------------------------------------------------------------------------|
-    Fall-Back Start-CSS Element: fieldset
+
+    START=CSS ELEMENT: fieldset
+    ============================================================================================
+
 |-------------------------------------------------------------------------------------------------*/
 
 /*
@@ -12,7 +15,7 @@
 
     min-width: 0;
 
-    @include f__bordered($s__fieldset-padding, $s__fieldset-border-width);
+    @include s__bordered($s__fieldset-padding, $s__fieldset-border-width);
 }
 
     #{$s__namespace}fieldset fieldset {

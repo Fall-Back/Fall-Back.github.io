@@ -1,5 +1,8 @@
 /*-------------------------------------------------------------------------------------------------|
-    Fall-Back Start-CSS Element: textarea
+
+    START=CSS ELEMENT: textarea
+    ============================================================================================
+
 |-------------------------------------------------------------------------------------------------*/
 
 /*
@@ -11,7 +14,7 @@
     5a. IE 10.
 */
 #{$s__namespace}textarea {
-    min-height: $s__base-rem-space-unit * 3.5 - f__calc-rem-from-px($s__textarea-border-width * 2); /* 1 */
+    min-height: $s__base-rem-space-unit * 3.5 - s__calc-rem-from-px($s__textarea-border-width * 2); /* 1 */
 
     overflow: auto; /* 2 */
 

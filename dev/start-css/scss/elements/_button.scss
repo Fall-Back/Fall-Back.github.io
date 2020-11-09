@@ -1,9 +1,16 @@
 /*-------------------------------------------------------------------------------------------------|
-    Fall-Back Start-CSS Element: button
+
+    START=CSS ELEMENT: button
+    ============================================================================================
+
 |-------------------------------------------------------------------------------------------------*/
 
 #{$s__namespace}button {
-    @include f__button;
+    @include s__button;
+}
+
+#{$s__namespace}button svg {
+    vertical-align: text-bottom;
 }
 
 // _:-o-prefocus, :root .selector { property:value; }

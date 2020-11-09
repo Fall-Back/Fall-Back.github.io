@@ -1,0 +1,178 @@
+---
+title: Page Layout - Listing - Columns
+layout: dev/structure--elementary
+---
+
+        <div>
+
+            <header>
+                <h1>{{ page.title }}</h1>
+            </header>
+
+            <p>This page is an example of the listing page using the 'columns' option. By default you simple choose which type you want, but if you need more than one type (as is the case with these examples) then you can supply another, more specific selector and call the mixin for the other types.</p>
+
+            <p>Columns might be an unusual choice but it can allow older items to appear at the top of the page which is is quite nice.</p>
+
+            <ul>
+                <li>
+                    {% include card.html
+                        title="Card Title"
+                        hx="3"
+                        content="<p>This card tells you something else about something else.</p>"
+                        cta_url="/components"
+                        cta_text="Do a Thing"
+                        footer="<p>- by Some Author</p>"
+                    %}
+                </li>
+                <li>
+                    {% include card.html
+                        title="Card Title Thing"
+                        hx="3"
+                        content="<p>This card tells you something else about something else. This card tells you something else about something else.</p>"
+                        cta_url="/components"
+                        cta_text="Do a Thing"
+                    %}
+                </li>
+                <li>
+                    {% include card.html
+                        title="Card Title"
+                        hx="3"
+                        content="<p>This card tells you something else about something else.</p>"
+                        cta_url="/components"
+                        cta_text="Do a Thing"
+                        footer="<p>- by Some Author</p>"
+                    %}
+                </li>
+                <li>
+                    {% include card.html
+                        title="Longer Card Title"
+                        hx="3"
+                        content="<p>This card tells you something else about something else.</p>"
+                        cta_url="/components"
+                        cta_text="Do a Thing"
+                    %}
+                </li>
+                <li>
+                    {% include card.html
+                        title="Card Title"
+                        hx="3"
+                        content="<p>This card tells you something else about something else.</p>"
+                        cta_url="/components"
+                        cta_text="Do a Thing"
+                    %}
+                </li>
+                <li>
+                    {% include card.html
+                        title="Card Title"
+                        hx="3"
+                        content="<p>This card tells you something else about something else. <a href=\"#\">Thisisalinkonalongwordtoshowwrapping</a>. This card tells you something else about something else.</p>"
+                        cta_url="/components"
+                        cta_text="Do a Thing"
+                    %}
+                </li>
+                <li>
+                    {% include card.html
+                        title="Card Title"
+                        hx="3"
+                        content="<p>This card tells you something else about something else.</p>"
+                        cta_url="/components"
+                        cta_text="Do a Thing"
+                        footer="<p>- by Some Author</p>"
+                    %}
+                </li>
+                <li>
+                    {% include card.html
+                        title="Card Longer Title"
+                        hx="3"
+                        content="<p>This card tells you something else about something else.</p>"
+                        cta_url="/components"
+                        cta_text="Do a Thing"
+                    %}
+                </li>
+                <li>
+                    {% include card.html
+                        title="Card Longer Longer Title"
+                        hx="3"
+                        content="<p>This card tells you something else about something else. This card tells you something else about something else.</p>"
+                        cta_url="/components"
+                        cta_text="Do a Thing"
+                        footer="<p>- by Some Author</p>"
+                    %}
+                </li>
+                <li>
+                    {% include card.html
+                        title="Card Title"
+                        hx="3"
+                        content="<p>This card tells you something else about something else.</p>"
+                        cta_url="/components"
+                        cta_text="Do a Thing"
+                    %}
+                </li>
+                <li>
+                    {% include card.html
+                        title="Card Title"
+                        hx="3"
+                        content="<p>This card tells you something else about something else.</p>"
+                        cta_url="/components"
+                        cta_text="Do a Thing"
+                    %}
+                </li>
+                <li>
+                    {% include card.html
+                        title="Longer Longer Longer Longer Card Title"
+                        hx="3"
+                        content="<p>This card tells you something else about something else. This card tells you something else about something else. This card tells you something else about something else. This card tells you something else about something else.</p>"
+                        cta_url="/components"
+                        cta_text="Do a Thing"
+                    %}
+                </li>
+                <li>
+                    {% include card.html
+                        title="Card Title"
+                        hx="3"
+                        content="<p>This card tells you something else about something else.</p>"
+                        cta_url="/components"
+                        cta_text="Do a Thing"
+                        footer="<p>- by Some Author</p>"
+                    %}
+                </li>
+                <li>
+                    {% include card.html
+                        title="Longer Card Title"
+                        hx="3"
+                        content="<p>This card tells you something else about something else.</p>"
+                        cta_url="/components"
+                        cta_text="Do a Thing"
+                    %}
+                </li>
+                <li>
+                    {% include card.html
+                        title="Card Title"
+                        hx="3"
+                        content="<p>This card tells.</p>"
+                        cta_url="/components"
+                        cta_text="Do a Thing"
+                    %}
+                </li>
+                <li>
+                    {% include card.html
+                        title="Card Longer Title"
+                        hx="3"
+                        content="<p>This card tells you something else about something else.</p>"
+                        cta_url="/components"
+                        cta_text="Do a Thing"
+                    %}
+                </li>
+                <li>
+                    {% include card.html
+                        title="Longer Card Longer Longer Title"
+                        hx="3"
+                        content="<p>This tells you something.</p>"
+                        cta_url="/components"
+                        cta_text="Do a Thing"
+                    %}
+                </li>
+
+            </ul>
+
+        </div>
