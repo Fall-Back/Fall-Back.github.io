@@ -4,6 +4,7 @@ elementary: true
 cut: em2
 startcss: false
 head_stylesheets: ['/dev/elementary/css/elementary.css']
+head_scripts: ['/dev/elementary/js/script.min.js']
 head_style: |
     #controls ~ * {
         display: none;
@@ -46,15 +47,15 @@ body_end_script: |
         }
     }
 
-    var sidebar = document.getElementById("sidebar").innerHTML;
+    var sidebar = document.getElementById("sidebar") ? false : document.getElementById("sidebar");
 
     function show_sidebar () {
-        if (document.getElementById("sidebar")) {
+        if (!sidebar) {
             return;
         }
         var el = document.createElement('aside');
         el.id = 'sidebar';
-        el.innerHTML = sidebar
+        el.innerHTML = sidebar.innerHTML;
         
         document.getElementById("main").insertAdjacentElement('afterend', el);
     }

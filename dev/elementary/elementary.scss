@@ -16,6 +16,18 @@ $s__main-background-color: lighten($s__base-ui-color, 61%);
 
 @import '../start-css/scss/_start.scss';
 
+
+/*-------------------------------------------------------------------------------------------------|
+
+    COOKIE NOTICE
+
+|-------------------------------------------------------------------------------------------------*/
+
+$s__cookie-notice__link--color:      lighten($s__base-ui-color, 60%);
+$s__cookie-notice__link--color--alt: lighten($s__base-ui-color, 50%);
+
+@import '../cookie-notice/_cookie-notice.scss';
+
 /*-------------------------------------------------------------------------------------------------|
 
     ELEMENTARY
@@ -25,7 +37,7 @@ $s__main-background-color: lighten($s__base-ui-color, 61%);
 @import 'scss/_0-elementary.scss';
 
 // Logo colour invert trick:
-// (White logos don't show up if styles don't load, so the trick is to keep them black in the SVG 
+// (White logos don't show up if styles don't load, so the trick is to keep them black in the SVG
 // source and then invert them with CSS.)
 #{$es__page_banner__logo} circle,
 #{$es__page_banner__logo} path {

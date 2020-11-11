@@ -167,6 +167,63 @@ exports.devcss = series(do_devsass, do_devcssmin);
 
 
 /*------------------------------------------------------------------------------------------------*\
+    JS
+\*------------------------------------------------------------------------------------------------*/
+//const js_src                 = './_scripts/';
+const js_elementary_dest     = './dev/elementary/js/';
+const js_elementary_filename = 'script.js';
+
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
+
+
+// Concat all JS files.
+function do_concat_js(cb) {
+    console.log('Running concat_js...');
+
+    gulp.src([
+        './dev/cookie-notice/cookie-notice-settings.js',
+        './dev/cookie-notice/cookie-notice.js'
+    ])
+    .pipe(concat(js_elementary_filename))
+    .pipe(gulp.dest(js_elementary_dest));
+
+    // Callback:
+    cb();
+}
+
+// And minify them.
+function do_uglify(cb) {
+    console.log('Running uglify...');
+
+    pump([
+        /*gulp.src([
+            js_src + js_filename,
+            js_src + js_map_filename,
+            js_src + js_filter_filename
+        ]),*/
+        gulp.src([
+            js_elementary_dest + js_elementary_filename
+        ]),
+        uglify(),
+        rename({extname: '.min.js'}),
+        gulp.dest(js_elementary_dest)
+    ],
+    cb);
+}
+
+exports.concat_js = do_concat_js;
+exports.uglify    = do_uglify;
+
+// This combined task makes it convenient to run all the steps together.
+exports.js = series(do_concat_js, do_uglify);
+
+exports.js_concat = do_concat_js;
+exports.js_uglify = do_uglify;
+
+
+
+/*------------------------------------------------------------------------------------------------*\
     WATCHERS
 \*------------------------------------------------------------------------------------------------*/
 
@@ -180,6 +237,13 @@ function do_watch_devcss(cb) {
     watch(css_src + 'dev/**/*.scss', exports.devcss);
 }
 exports.watch_devcss = do_watch_devcss;
+
+
+// Watch JS:
+function do_watch_js(cb) {
+    watch(js_src + '**/!(script|map)*.js', exports.js);
+}
+exports.watch_js = do_watch_js;
 
 
 // Watch all of the above:
