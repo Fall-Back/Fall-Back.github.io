@@ -291,7 +291,7 @@ a[hidden][aria-hidden="false"]:active {
        This needs to be on the root node.
 
     5. Prevent font size adjustments after orientation changes in IE and iOS. (N)
-    
+
     6. Use a more readable tab size (opinionated).
 */
 html {

@@ -136,7 +136,7 @@ $s__using-Start-CSS: true;
        This needs to be on the root node.
 
     5. Prevent font size adjustments after orientation changes in IE and iOS. (N)
-    
+
     6. Use a more readable tab size (opinionated).
 */
 html {
@@ -155,7 +155,7 @@ html {
 
     -ms-text-size-adjust: 100%; /* 5 */
     -webkit-text-size-adjust: 100%; /* 5 */
-    
+
     padding: 0;
     margin: 0;
 
@@ -163,7 +163,7 @@ html {
     // -- -webkit-font-smoothing: antialiased; --
 
     // -- text-rendering: optimizeLegibility; --
-    
+
     -moz-tab-size: $s__tabsize; /* 6 */
 	tab-size: $s__tabsize; /* 6 */
 }
@@ -246,14 +246,14 @@ body {
     min-width: $s__body-min-width;
 
     min-height: 100%;
-    
+
     @if $s__body-max-width > 0 {
         max-width: $s__body-max-width;
 
         margin: $s__body-margin auto;
     } @else {
         max-width: none;
-        
+
         margin: $s__body-margin;
     }
 
@@ -264,10 +264,10 @@ body {
     line-height: $s__base-rem-space-unit;
     letter-spacing: initial; /* 2 */
     word-spacing: initial; /* 2 */
-    
+
     background-color: $s__body-background-color;
     color: $s__body-text-color;
-    
+
 }
 
 /* IE9-11 */
