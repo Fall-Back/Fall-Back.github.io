@@ -166,81 +166,6 @@
     contain parapgraphs can result in double bottom margins, so flipping that around inside those
     containers.
 */
-/*! Start-CSS Accessibility. See SCSS file for documentation. */
-/*-------------------------------------------------------------------------------------------------|
-
-    ACCESSIBILITY / ARIA
-    ============================================================================================
-
-|-------------------------------------------------------------------------------------------------*/
-[aria-busy="true"] {
-  cursor: progress;
-}
-
-/*
-    Specify the pointer cursor of trigger elements. (S)
-*/
-[aria-controls] {
-  cursor: pointer;
-}
-
-/*
-    Specify the un-styled cursor of disabled, not-editable, or otherwise inoperable elements. (S)
-*/
-[disabled],
-[aria-disabled] {
-  cursor: default;
-}
-
-/*
-    Address `[hidden]` styling not present in IE 8/9/10. (N)
-*/
-[hidden] {
-  display: none;
-}
-
-/*
-    Specify the style of visually hidden yet accessible elements. (S)
-*/
-[hidden][aria-hidden="false"] {
-  clip: rect(0 0 0 0);
-  position: absolute;
-  display: inline;
-  /*border: 0;
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    width: 1px;*/
-}
-
-a[hidden][aria-hidden="false"]:focus,
-a[hidden][aria-hidden="false"]:active {
-  clip: auto;
-  position: static;
-  /*height: auto;
-        margin: 0;
-        overflow: visible;
-        width: auto;*/
-}
-
-/*! Start-CSS Experimental. See SCSS file for documentation. */
-/*-------------------------------------------------------------------------------------------------|
-
-    EXPERIMENTAL
-    ============================================================================================
-
-|-------------------------------------------------------------------------------------------------*/
-/*
-    These may be experimental, but they actually make Safari usable with a keyboard, so long as
-    you enable an "Accessibility" setting located in the advanced tab of Safari preferences.
-    ("Press TAB to highlight each item on a web page.)
-    That is - the default outline focus style works, but shadows don't unless appearance: none
-    is used.
-    
-    1. Safari 9.1 doesn't recognize 'auto' but I suspect others won't recognize 'initial', so
-       keeping both for now.
-*/
 /* Output class for reference (tmp): */
 /*.ref {
     flbk--base-rem-space-unit: $s__base-rem-space-unit;
@@ -305,7 +230,7 @@ html {
   /* 3 */
   color: #333;
   background-color: #341006;
-  font-size: 62.5%;
+  font-size: 0.625em;
   /* 4 */
   -ms-text-size-adjust: 100%;
   /* 5 */
@@ -320,16 +245,12 @@ html {
 }
 
 /*
-    Fix font size for IE9,10 as it can't calculate % to 1 decimal place! Grrr.
+    Fix font size for IE9-11 as it can't calculate % to 1 decimal place! Grrr.
 */
-@media screen and (min-width: 0\0) and (min-resolution: 0.001dpcm) {
+@media screen and (min-width: 0\0) and (min-resolution: +72dpi) {
   html {
-    font-size: calc(0.625rem + 0.1px);
+    font-size: calc(62.5em / 100);
   }
-}
-
-_:-ms-lang(x), html {
-  font-size: calc(0.625rem + 0.1px) \9;
 }
 
 /*
@@ -2179,6 +2100,81 @@ video {
   text-shadow: none;
 }
 
+/*! Start-CSS Accessibility. See SCSS file for documentation. */
+/*-------------------------------------------------------------------------------------------------|
+
+    ACCESSIBILITY / ARIA
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+[aria-busy="true"] {
+  cursor: progress;
+}
+
+/*
+    Specify the pointer cursor of trigger elements. (S)
+*/
+[aria-controls] {
+  cursor: pointer;
+}
+
+/*
+    Specify the un-styled cursor of disabled, not-editable, or otherwise inoperable elements. (S)
+*/
+[disabled],
+[aria-disabled] {
+  cursor: default;
+}
+
+/*
+    Address `[hidden]` styling not present in IE 8/9/10. (N)
+*/
+[hidden] {
+  display: none;
+}
+
+/*
+    Specify the style of visually hidden yet accessible elements. (S)
+*/
+[hidden][aria-hidden="false"] {
+  clip: rect(0 0 0 0);
+  position: absolute;
+  display: inline;
+  /*border: 0;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    width: 1px;*/
+}
+
+a[hidden][aria-hidden="false"]:focus,
+a[hidden][aria-hidden="false"]:active {
+  clip: auto;
+  position: static;
+  /*height: auto;
+        margin: 0;
+        overflow: visible;
+        width: auto;*/
+}
+
+/*! Start-CSS Experimental. See SCSS file for documentation. */
+/*-------------------------------------------------------------------------------------------------|
+
+    EXPERIMENTAL
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+/*
+    These may be experimental, but they actually make Safari usable with a keyboard, so long as
+    you enable an "Accessibility" setting located in the advanced tab of Safari preferences.
+    ("Press TAB to highlight each item on a web page.)
+    That is - the default outline focus style works, but shadows don't unless appearance: none
+    is used.
+    
+    1. Safari 9.1 doesn't recognize 'auto' but I suspect others won't recognize 'initial', so
+       keeping both for now.
+*/
 /*! End Start-CSS */
 /*-------------------------------------------------------------------------------------------------|
 

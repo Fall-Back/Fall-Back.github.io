@@ -43,10 +43,6 @@ $s__using-Start-CSS: true;
 @import '_02-start-settings.scss';
 @import '_03-start-functions.scss';
 @import '_04-start-mixins.scss';
-@import '_start-accessibility.scss';
-@import '_start-experimental.scss';
-//@import '_start-utilities.scss';
-//@import '_start-icons.scss';
 
 
 //@debug ($s__base-rem-space-unit / 8) - ((($s__input-border-width + 0px) / 1px) * $s__base-rem-1px);
@@ -150,7 +146,8 @@ html {
     color: $s__base-text-color;
     background-color: $s__html-background-color;
 
-    font-size: #{$s__root-font-size-percent * 1%}; /* 4 */
+    //font-size: #{$s__root-font-size-percent * 1%}; /* 4 */
+    font-size: #{$s__root-font-size-em}; /* 4 */
 
 
     -ms-text-size-adjust: 100%; /* 5 */
@@ -168,16 +165,14 @@ html {
 	tab-size: $s__tabsize; /* 6 */
 }
 /*
-    Fix font size for IE9,10 as it can't calculate % to 1 decimal place! Grrr.
+    Fix font size for IE9-11 as it can't calculate % to 1 decimal place! Grrr.
 */
 @if ($s__root-font-size != 16px) {
-    // @media screen and (min-width:0\0) and (min-resolution:.001dpcm) { .selector { property:value; } }
-    // Internet Explorer 9
-    @media screen and (min-width:0\0) and (min-resolution:.001dpcm) { html { font-size: calc(#{($s__root-font-size-percent / 100) * 1rem} + 0.1px); } }
-
-    // _:-ms-lang(x), .selector { property:value\9; }
-    // Internet Explorer 10
-    _:-ms-lang(x), html { font-size: calc(#{($s__root-font-size-percent / 100) * 1rem} + 0.1px)\9; }
+    @media #{$s__ie9-11} {
+        html {
+            font-size: calc(#{($s__root-font-size-em * 100)} / 100);
+        }
+    }
 }
 
 
@@ -457,5 +452,11 @@ body {
 
     text-shadow: $s__selection-text-shadow;
 }
+
+@import '_start-accessibility.scss';
+@import '_start-experimental.scss';
+//@import '_start-utilities.scss';
+//@import '_start-icons.scss';
+
 
 /*! End Start-CSS */

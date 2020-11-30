@@ -26,6 +26,7 @@ $s__namespace: '' !default;
 
 $s__base-em-ratio:          $s__base-line-height / $s__base-font-size; // 1.71428571429
 $s__root-font-size-percent: ($s__root-font-size / 16px) * 100;
+$s__root-font-size-em:      ($s__root-font-size / 16px) * 1em;
 
 
 $s__base-rem-1px:           1px / $s__root-font-size * 1rem;
