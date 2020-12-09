@@ -7,7 +7,7 @@
 (function() {
 
     var nav_bar_js_classname = 'js-nav-bar';
-    var nav_bar_classname    = 'd-nav-bar';
+    var nav_bar_classname    = 'nav-bar';
 
     var check_for_css = function(selector) {
 
@@ -53,9 +53,16 @@
         }
     }
 
-	var navbar = {
+	var $navbar = {
+		
+		set_style: function(element, style) {
+			Object.keys(style).forEach(function(key) {
+				element.style[key] = style[key];
+			});
+		},
 
         init: function() {
+			var self = this;
             /*var nav_bar = document.querySelector('.nav-bar');
 
             // Note that `getComputedStyle` on pseudo elements doesn't work in Opera Mini, but in
@@ -75,136 +82,120 @@
                     nav_bar.className += ' ' + nav_bar_js_classname;
                 }*/
 
-                var navbars = document.querySelectorAll('.' + nav_bar_js_classname + ' .' + nav_bar_classname);
-                console.log(navbars);
-
-                var switcher = function(item, wide_enough) {
-                    //console.log(item);
-                    if (wide_enough) {
+                var $navbars = document.querySelectorAll('.' + nav_bar_js_classname + ' .' + nav_bar_classname);
+                console.log($navbars);
+				
+				var style = {
+					position: 'absolute',
+					border: '0',
+					left: '0',
+					top: '0',
+					
+				};
+				
+				Array.prototype.forEach.call($navbars, function (navbar, i) {
+					var clone = navbar.cloneNode(true);
+					clone.classList.add('js-nav-bar--expanded');
+					$navbar.set_style(clone, style);
+					navbar.parentNode.appendChild(clone);
+					
+					var navbar_main = navbar.querySelector('.nav-bar__main');
+					var clone_navbar_main = clone.querySelector('.nav-bar__main');
+					var navbar_main_breakpoint = clone.offsetWidth;
+					
+					navbar_main.dataset.breakpoint = navbar_main_breakpoint;
+				});
+				
+				
+				
+				return;
+                /*var switcher = function($navbar, expanded) {
+                    //console.log($navbar);
+                    if (expanded) {
+						$navbar.classList.add('js-nav-bar--expanded');
+						$navbar.classList.remove('js-nav-bar--collapsed');
                         console.log('Wrapped');
-                        item.target.style.outline = '3px solid red';
+                        //item.target.style.outline = '3px solid red';
                     } else {
+						$navbar.classList.add('js-nav-bar--collapsed');
+						$navbar.classList.remove('js-nav-bar--expanded');
                         console.log('Not Wrapped');
-                        item.target.style.outline = '3px solid blue';
+                        //item.target.style.outline = '3px solid blue';
                     }
-                }
+                }*/
 
-                if (window.ResizeObserver) {
+				//var check = window.ResizeObserver;
+				//var check = false;
+				
+
+                /*if (check) {
                     var ro = new ResizeObserver(function (entries) {
                         Array.prototype.forEach.call(entries, function (entry, i) {
                             var cr = entry.contentRect;
                             var item_height = entry.target.querySelector('li').offsetHeight;
-                            switcher(entry, cr.height > item_height);
+                            switcher(entry.target, cr.height < item_height);
                         });
                     });
 
-                    Array.prototype.forEach.call(navbars, function (navbar, i) {
-                        ro.observe(navbar);
+                    Array.prototype.forEach.call($navbars, function ($navbar, i) {
+                        ro.observe($navbar);
                     });
                 } else {
                     console.log('No ResizeObserver support.');
-                    
-                    var style = {
-                        pointerEvents: 'none',
-                        position: 'absolute',
-                        left: '0px',
-                        top: '0px',
-                        right: '0px',
-                        bottom: '0px',
-                        overflow: 'scroll',
-                        maxWidth: '100%',
-                        backgroundColor: 'rgba(255,0,0,0.2)',
-                        zIndex: '9999',
-                        visibility: 'visible'
-                    };
-                    
-                    var styleChild = {
-                        height: '200%'
-                        
-                    };
-
-                    var setStyle = function(element, style) {
+					
+					var setStyle = function(element, style) {
                         Object.keys(style).forEach(function(key) {
                             element.style[key] = style[key];
                         });
                     }
 
-                    Array.prototype.forEach.call(navbars, function (navbar, i) {
-                        var detector = document.createElement('div');
+					var style = {
+						position: 'absolute',
+						display: 'block',
+						border: '0',
+						left: '0',
+						top: '0',
+						width: '100%',
+						height: '100%',
+						pointerEvents: 'none',
+						zIndex: '-1'
+                    };
+					
+					// Note visibility: hidden prevents the resize event from occuring in FF.
+					
+					Array.prototype.forEach.call($navbars, function ($navbar, i) {
+						var detector = document.createElement('iframe');
                         setStyle(detector, style);
+						detector.setAttribute('aria-hidden', 'true');
+						
+						var lastWidth = $navbar.offsetWidth;
+						var lastHeight = $navbar.offsetHeight;
+						
+						$navbar.appendChild(detector);
+						
+						detector.contentWindow.addEventListener('resize', function() {
 
-                        var detectorChild = document.createElement('div');
-                        setStyle(detectorChild, styleChild);
-                        detector.appendChild(detectorChild);
-                        
-                        detector.addEventListener('scroll', function() {
-                            console.log('Resized');
+							switcher($navbar, $navbar.offsetHeight < lastHeight);
+							//console.log('iframe resized');
+							/*if ($navbar.offsetHeight < lastHeight) {
+								//doAction('height decreased');
+								switcher($navbar, true);
+							}
+							if ($navbar.offsetHeight > lastHeight) {
+								//doAction('height increased');
+								switcher($navbar, false);
+							}*
+
+							lastWidth = $navbar.offsetWidth;
+							lastHeight = $navbar.offsetHeight;
                         });
-                        
-                        
-                        navbar.appendChild(detector);
-                    });
-
-
-
-
-                }
-
-                /*
-                Array.prototype.forEach.call(navbars, function(navbar, i) {
-                    navbar.style.outline = '1px solid red';
-
-                    navbar.addEventListener("scroll", function(){
-                        navbar.style.outline = '1px solid blue';
-                    });
-                });
-                */
-
-                /*
-
-
-
-                /*Array.prototype.forEach.call(navbars, function(navbar, i) {
-
-                });
-
-                // ... and button actions:*/
-                // CSS all good, add button actions:
-                /*var buttons = document.querySelectorAll('[data-js="nav-bar__button"]');
-                Array.prototype.forEach.call(buttons, function(button, i) {
-                    var button_id = button.getAttribute('id');
-
-                    button.setAttribute('aria-expanded', 'false');
-
-                    // Main button:
-                    button.addEventListener('click', function() {
-                        // Switch the `aria-expanded` attribute:
-                        var expanded = this.getAttribute('aria-expanded') === 'true' || false;
-
-                        // Close any open submenu:
-                        var expanded_buttons = document.querySelectorAll('[data-js="nav-bar__button"][aria-expanded="true"]');
-                        Array.prototype.forEach.call(expanded_buttons, function(expanded_button, i) {
-                            expanded_button.setAttribute('aria-expanded', 'false');
-                        });
-
-                        // Set the attribute:
-                        this.setAttribute('aria-expanded', !expanded);
-
-                        // Set the focus to the first link if submenu newly opened:
-                        if (!expanded) {
-                            var first_link = document.querySelector('#' + button_id + '--target [data-js="nav-bar__focus-start"]');
-                            if (first_link) {
-                                first_link.focus();
-                            }
-                        }
-                    });
-
-                });*/
-            }
+					});
+                }*/
+			}
         }
 	}
 
-    // This is _here_ to mitigate a Flash of Basic Styled Navbar:
+    // This is _here_ to mitigate a Flash of Basic Styled $navbar:
     var css_is_loaded = check_for_css('.' + nav_bar_js_classname);
 
     if (css_is_loaded) {
@@ -218,5 +209,5 @@
         }
     }
 
-	ready(navbar.init);
+	ready($navbar.init);
 })();
