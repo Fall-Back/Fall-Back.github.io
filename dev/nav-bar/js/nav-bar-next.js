@@ -54,7 +54,7 @@
     }
 
 	var $navbar = {
-		
+
 		set_style: function(element, style) {
 			Object.keys(style).forEach(function(key) {
 				element.style[key] = style[key];
@@ -83,31 +83,58 @@
                 }*/
 
                 var $navbars = document.querySelectorAll('.' + nav_bar_js_classname + ' .' + nav_bar_classname);
-                console.log($navbars);
-				
+                //console.log($navbars);
+
 				var style = {
 					position: 'absolute',
 					border: '0',
 					left: '0',
 					top: '0',
-					
+
 				};
-				
+
 				Array.prototype.forEach.call($navbars, function (navbar, i) {
 					var clone = navbar.cloneNode(true);
 					clone.classList.add('js-nav-bar--expanded');
 					$navbar.set_style(clone, style);
 					navbar.parentNode.appendChild(clone);
-					
-					var navbar_main = navbar.querySelector('.nav-bar__main');
+
+                    //console.log(clone);
+
+                    var nav_link = clone.querySelector('.nav-bar__link');
+
+                    console.log(window.getComputedStyle(nav_link).getPropertyValue('font-size'));
+
+                    navbar_start_width = 0;
+                    navbar_main_width = 0;
+                    navbar_end_width = 0;
+
+                    var clone_navbar_start = clone.querySelector('.nav-bar__start');
+                    if (clone_navbar_start) {
+                        var navbar_start_width = Math.ceil(clone_navbar_start.offsetWidth);
+                    }
+
 					var clone_navbar_main = clone.querySelector('.nav-bar__main');
-					var navbar_main_breakpoint = clone.offsetWidth;
-					
-					navbar_main.dataset.breakpoint = navbar_main_breakpoint;
+                    if (clone_navbar_main) {
+                        var navbar_main_width = Math.ceil(clone_navbar_main.offsetWidth);
+                    }
+
+                    // Note this will need special handling as it's designed to be a flexible
+                    // container (e.g. for a search input) so will need to discover min-width.
+                    var clone_navbar_end = clone.querySelector('.nav-bar__end');
+                    if (clone_navbar_end) {
+                        var navbar_end_width = Math.ceil(clone_navbar_end.offsetWidth);
+                    }
+
+					navbar.dataset.breakpoint = navbar_start_width
+                                              + navbar_main_width
+                                              + navbar_end_width;
+
+                    clone.remove();
 				});
-				
-				
-				
+
+
+
 				return;
                 /*var switcher = function($navbar, expanded) {
                     //console.log($navbar);
@@ -126,7 +153,7 @@
 
 				//var check = window.ResizeObserver;
 				//var check = false;
-				
+
 
                 /*if (check) {
                     var ro = new ResizeObserver(function (entries) {
@@ -142,7 +169,7 @@
                     });
                 } else {
                     console.log('No ResizeObserver support.');
-					
+
 					var setStyle = function(element, style) {
                         Object.keys(style).forEach(function(key) {
                             element.style[key] = style[key];
@@ -160,19 +187,19 @@
 						pointerEvents: 'none',
 						zIndex: '-1'
                     };
-					
+
 					// Note visibility: hidden prevents the resize event from occuring in FF.
-					
+
 					Array.prototype.forEach.call($navbars, function ($navbar, i) {
 						var detector = document.createElement('iframe');
                         setStyle(detector, style);
 						detector.setAttribute('aria-hidden', 'true');
-						
+
 						var lastWidth = $navbar.offsetWidth;
 						var lastHeight = $navbar.offsetHeight;
-						
+
 						$navbar.appendChild(detector);
-						
+
 						detector.contentWindow.addEventListener('resize', function() {
 
 							switcher($navbar, $navbar.offsetHeight < lastHeight);
