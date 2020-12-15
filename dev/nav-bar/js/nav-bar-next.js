@@ -141,10 +141,11 @@
 					navbar.dataset.breakpoint = navbar_start_width
                                               + navbar_main_width
                                               + navbar_end_width;
-
                     clone.remove();
 				});
 
+
+				return;
 
 				var check = window.ResizeObserver;
 				var check = false;
