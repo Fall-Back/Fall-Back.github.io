@@ -2206,8 +2206,10 @@ a[hidden][aria-hidden="false"]:active {
   display: flex;
   align-items: flex-start;
   padding: 0.75em;
+  margin: 0;
   background-color: #000;
   color: #fff;
+  border: 0;
   opacity: 1;
   -webkit-transition: opacity 1s ease 0s, z-index 1s ease 1s;
   transition: opacity 1s ease 0s, z-index 1s ease 1s;
