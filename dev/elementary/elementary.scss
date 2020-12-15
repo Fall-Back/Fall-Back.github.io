@@ -1,5 +1,4 @@
 
-
 $s__base-ui-color: #79260D;
 
 $e__listing__item--basis: 25rem;
@@ -56,7 +55,7 @@ $s__cookie-notice__link--color--alt: lighten($s__base-ui-color, 50%);
 // Apply columns to the Listing - Columns page:
 
 @include content-listing--columns((
-        selector: "#page-layout-listing-columns #{$es__page_main__header--listing__list}",
-        basis:    $e__listing__item--basis,
-        gutter:   $e__listing__gutter
-    ))
+    selector: "#page-layout-listing-columns #{$es__page_main__header--listing__list}",
+    basis:    $e__listing__item--basis,
+    gutter:   $e__listing__gutter
+))
