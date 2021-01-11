@@ -4,6 +4,14 @@
     Copyright (c) 2017, Andy Kirk
     Released under the MIT license https://git.io/vwTVl
 */
+
+// Remove polyfill:
+(function() {
+  function remove() { this.parentNode && this.parentNode.removeChild(this); }
+  if (!Element.prototype.remove) Element.prototype.remove = remove;
+  if (Text && !Text.prototype.remove) Text.prototype.remove = remove;
+})();
+
 (function() {
 
     var nav_bar_js_classname = 'js-nav-bar';
@@ -54,6 +62,10 @@
     }
 
 	var $navbar = {
+        
+        navbars: null,
+        
+        root_font_size: window.getComputedStyle(document.documentElement).getPropertyValue('font-size'),
 
 		set_style: function(element, style) {
 			Object.keys(style).forEach(function(key) {
@@ -62,7 +74,14 @@
 		},
 
 		switcher: function(navbar) {
+            //console.log(window.getComputedStyle(document.documentElement).getPropertyValue('font-size'));
 			//console.log(navbar);
+            
+            // Check for browser font chnage and reset breakpoints if it has:
+            if ($navbar.root_font_size != window.getComputedStyle(document.documentElement).getPropertyValue('font-size')) {
+                $navbar.set_breakpoints($navbar.navbars);
+            }
+            
 			var expanded = navbar.offsetWidth > navbar.dataset.breakpoint;
 			
 			if (expanded) {
@@ -75,9 +94,54 @@
 				navbar.style.outline = '3px solid blue';
 			}
 		},
+        
+        set_breakpoints: function(navbars) {
+            Array.prototype.forEach.call(navbars, function (navbar, i) {
+                var clone = navbar.cloneNode(true);
+                clone.classList.add('js-nav-bar--expanded');
+                $navbar.set_style(clone, {
+					position: 'absolute',
+					border: '0',
+					left: '0',
+					top: '0',
+				});
+                navbar.parentNode.appendChild(clone);
+
+                var nav_link = clone.querySelector('.nav-bar__link');
+
+                //console.log(window.getComputedStyle(nav_link).getPropertyValue('font-size'));
+
+                navbar_start_width = 0;
+                navbar_main_width = 0;
+                navbar_end_width = 0;
+
+                var clone_navbar_start = clone.querySelector('.nav-bar__start');
+                if (clone_navbar_start) {
+                    var navbar_start_width = Math.ceil(clone_navbar_start.offsetWidth);
+                }
+
+                var clone_navbar_main = clone.querySelector('.nav-bar__main');
+                if (clone_navbar_main) {
+                    var navbar_main_width = Math.ceil(clone_navbar_main.offsetWidth);
+                }
+
+                // Note this will need special handling as it's designed to be a flexible
+                // container (e.g. for a search input) so will need to discover min-width.
+                var clone_navbar_end = clone.querySelector('.nav-bar__end');
+                if (clone_navbar_end) {
+                    var navbar_end_width = Math.ceil(clone_navbar_end.offsetWidth);
+                }
+
+                navbar.dataset.breakpoint = navbar_start_width
+                                          + navbar_main_width
+                                          + navbar_end_width;
+                clone.remove();
+            });
+        },
 
         init: function() {
 			var self = this;
+            
             /*var nav_bar = document.querySelector('.nav-bar');
 
             // Note that `getComputedStyle` on pseudo elements doesn't work in Opera Mini, but in
@@ -97,69 +161,25 @@
                     nav_bar.className += ' ' + nav_bar_js_classname;
                 }*/
 
-                var navbars = document.querySelectorAll('.' + nav_bar_js_classname + ' .' + nav_bar_classname);
+                $navbar.navbars = document.querySelectorAll('.' + nav_bar_js_classname + ' .' + nav_bar_classname)
 
-				var style = {
-					position: 'absolute',
-					border: '0',
-					left: '0',
-					top: '0',
+				$navbar.set_breakpoints($navbar.navbars);
 
-				};
-
-				Array.prototype.forEach.call(navbars, function (navbar, i) {
-					var clone = navbar.cloneNode(true);
-					clone.classList.add('js-nav-bar--expanded');
-					$navbar.set_style(clone, style);
-					navbar.parentNode.appendChild(clone);
-
-                    var nav_link = clone.querySelector('.nav-bar__link');
-
-                    console.log(window.getComputedStyle(nav_link).getPropertyValue('font-size'));
-
-                    navbar_start_width = 0;
-                    navbar_main_width = 0;
-                    navbar_end_width = 0;
-
-                    var clone_navbar_start = clone.querySelector('.nav-bar__start');
-                    if (clone_navbar_start) {
-                        var navbar_start_width = Math.ceil(clone_navbar_start.offsetWidth);
-                    }
-
-					var clone_navbar_main = clone.querySelector('.nav-bar__main');
-                    if (clone_navbar_main) {
-                        var navbar_main_width = Math.ceil(clone_navbar_main.offsetWidth);
-                    }
-
-                    // Note this will need special handling as it's designed to be a flexible
-                    // container (e.g. for a search input) so will need to discover min-width.
-                    var clone_navbar_end = clone.querySelector('.nav-bar__end');
-                    if (clone_navbar_end) {
-                        var navbar_end_width = Math.ceil(clone_navbar_end.offsetWidth);
-                    }
-
-					navbar.dataset.breakpoint = navbar_start_width
-                                              + navbar_main_width
-                                              + navbar_end_width;
-                    clone.remove();
-				});
-
-
-				return;
+				//return;
 
 				var check = window.ResizeObserver;
-				var check = false;
+				//var check = false;
 
 				if (check) {
                     var ro = new ResizeObserver(function (entries) {
                         Array.prototype.forEach.call(entries, function (entry, i) {
                             var cr = entry.contentRect;
                             var item_height = entry.target.querySelector('li').offsetHeight;
-                            switcher(entry.target, cr.height < item_height);
+                            $navbar.switcher(entry.target, cr.height < item_height);
                         });
                     });
 
-                    Array.prototype.forEach.call(navbars, function (navbar, i) {
+                    Array.prototype.forEach.call($navbar.navbars, function (navbar, i) {
                         ro.observe(navbar);
 						$navbar.switcher(navbar);
                     });
@@ -180,7 +200,7 @@
 
 					// Note visibility: hidden prevents the resize event from occuring in FF.
 
-					Array.prototype.forEach.call(navbars, function (navbar, i) {
+					Array.prototype.forEach.call($navbar.navbars, function (navbar, i) {
 						var detector = document.createElement('iframe');
                         $navbar.set_style(detector, style);
 						detector.setAttribute('aria-hidden', 'true');
