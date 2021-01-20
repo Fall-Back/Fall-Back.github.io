@@ -65,9 +65,11 @@ $s__dropdown-z-index:                         9999 !default;
     }
 
 
-    /* iOS, OSX */
+    /*
+        1. iOS, OSX
+    */
     .dropdown {
-        margin: 0;
+        margin: 0; /* 1 */
     }
 
     /* -------------------------------------------------------------------------------------------*/
@@ -199,10 +201,13 @@ $s__dropdown-z-index:                         9999 !default;
         $td:$s__dropdown--transition-duration;
         $tf:$s__dropdown--transition-timing-function;
 
-        .js-dropdown .dropdown#{$namespace} {
+        .dropdown.dropdown#{$namespace} {
+        
+            display: block;
 
             & .dropdown__area {
                 position: absolute;
+                //top: $s__dropdown__button--height;
             
                 visibility: hidden;
                 opacity: 0;
@@ -247,7 +252,16 @@ $s__dropdown-z-index:                         9999 !default;
     
     @include activate-dropdown("--all-widths");
     
-    @media only screen and (max-width:$s__dropdown--breakpoint--enhanced) {
+    .js-cmr--narrow {
+        @include activate-dropdown("--only-narrow");
+    }
+    
+    .js-cmr--wide {
+        @include activate-dropdown("--only-wide");
+    }
+    
+    
+    /*@media only screen and (max-width:$s__dropdown--breakpoint--enhanced) {
 
        @include activate-dropdown("--only-narrow");
         
@@ -257,7 +271,7 @@ $s__dropdown-z-index:                         9999 !default;
 
        @include activate-dropdown("--only-wide");
         
-    }
+    }*/
 
 
 /* -----------------------------------------------------------------------------------------------*/

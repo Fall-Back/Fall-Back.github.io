@@ -111,8 +111,8 @@ $s__nav-bar-divider-first-item:            false !default;
     */
     &#{&} {
         background-color: $s__nav-bar--background-color;
-        position: relative;
-        z-index: $s__nav-bar-z-index; /* [1] */
+        //position: relative;
+        //-index: $s__nav-bar-z-index; /* [1] */
 		width: 100%;
 
         @if $s__nav-bar--font-size != $s__base-font-size {
@@ -131,6 +131,8 @@ $s__nav-bar-divider-first-item:            false !default;
     .nav-bar__main,
     .nav-bar__start,
     .nav-bar__title {
+        //position: relative;
+        //z-index: $s__nav-bar-z-index; /* [1] */
         margin: 0;
     }
 
@@ -239,7 +241,7 @@ $s__nav-bar-divider-first-item:            false !default;
 
     .nav-bar__link:hover,
     .nav-bar__link:active,
-    .nav-bar__link [aria-expanded="true"] {
+    .nav-bar__link [aria-wide="true"] {
         color: $s__nav-bar__link--color--alt;
         background-color: $s__nav-bar__link--background-color--alt;
         border: 0;
@@ -300,7 +302,7 @@ $s__nav-bar-divider-first-item:            false !default;
 		scenario.
 		
 	*/
-    .js-nav-bar--collapsed {
+    .js-cmr--narrow {
         .nav-bar__start {
             display: -ms-flexbox;
             display: flex;
@@ -324,7 +326,7 @@ $s__nav-bar-divider-first-item:            false !default;
 
 
     //@media only screen and (min-width: $s__nav-bar--breakpoint--enhanced) {
-    .js-nav-bar--expanded {
+    .js-cmr--wide {
 
         /*
             Add dividers.
@@ -447,13 +449,13 @@ $s__nav-bar-divider-first-item:            false !default;
 
         // We only need one open/close icon displayed at a time, so hide one set:
         .subnav__control .icon--is-open,
-        .subnav__control[aria-expanded="true"] .icon--is-closed {
+        .subnav__control[aria-wide="true"] .icon--is-closed {
             display: none;
         }
 
         // And show the inverse:
         .subnav__control .icon--is-closed,
-        .subnav__control[aria-expanded="true"] .icon--is-open {
+        .subnav__control[aria-wide="true"] .icon--is-open {
             display: inline;
         }
 
@@ -483,7 +485,7 @@ $s__nav-bar-divider-first-item:            false !default;
             padding: 0;
         }
 
-        .subnav__control[aria-expanded="true"] ~ .subnav {
+        .subnav__control[aria-wide="true"] ~ .subnav {
             visibility: visible;
             margin-top: $s__nav-bar--height;
 

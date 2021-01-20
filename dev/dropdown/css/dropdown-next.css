@@ -31,9 +31,12 @@
   border: 0;
 }
 
-/* iOS, OSX */
+/*
+        1. iOS, OSX
+    */
 .dropdown {
   margin: 0;
+  /* 1 */
 }
 
 /* -------------------------------------------------------------------------------------------*/
@@ -138,7 +141,11 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__button {
     (CSS only attempts weren't good enough)
     So, scoping these styles to the 'js-dropdown' class.
 */
-.js-dropdown .dropdown--all-widths .dropdown__area {
+.dropdown.dropdown--all-widths {
+  display: block;
+}
+
+.dropdown.dropdown--all-widths .dropdown__area {
   position: absolute;
   visibility: hidden;
   opacity: 0;
@@ -148,21 +155,21 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__button {
   transition: opacity ease 0.8s, visibility 0s 0.8s ease;
 }
 
-.js-dropdown .dropdown--all-widths .dropdown__button {
+.dropdown.dropdown--all-widths .dropdown__button {
   display: block;
 }
 
-.js-dropdown .dropdown--all-widths .dropdown__button .icon--is-open,
-.js-dropdown .dropdown--all-widths .dropdown__button[aria-expanded="true"] .icon--is-closed {
+.dropdown.dropdown--all-widths .dropdown__button .icon--is-open,
+.dropdown.dropdown--all-widths .dropdown__button[aria-expanded="true"] .icon--is-closed {
   display: none;
 }
 
-.js-dropdown .dropdown--all-widths .dropdown__button .icon--is-closed,
-.js-dropdown .dropdown--all-widths .dropdown__button[aria-expanded="true"] .icon--is-open {
+.dropdown.dropdown--all-widths .dropdown__button .icon--is-closed,
+.dropdown.dropdown--all-widths .dropdown__button[aria-expanded="true"] .icon--is-open {
   display: inline;
 }
 
-.js-dropdown .dropdown--all-widths .dropdown__button[aria-expanded="true"] ~ .dropdown__area {
+.dropdown.dropdown--all-widths .dropdown__button[aria-expanded="true"] ~ .dropdown__area {
   visibility: visible;
   opacity: 1;
   -webkit-transition: opacity ease 0.8s;
@@ -171,66 +178,89 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__button {
   transition: opacity ease 0.8s;
 }
 
-@media only screen and (max-width: 50em) {
-  .js-dropdown .dropdown--only-narrow .dropdown__area {
-    position: absolute;
-    visibility: hidden;
-    opacity: 0;
-    -webkit-transition: opacity ease 0.8s, visibility 0s 0.8s ease;
-    -moz-transition: opacity ease 0.8s, visibility 0s 0.8s ease;
-    -o-transition: opacity ease 0.8s, visibility 0s 0.8s ease;
-    transition: opacity ease 0.8s, visibility 0s 0.8s ease;
-  }
-  .js-dropdown .dropdown--only-narrow .dropdown__button {
-    display: block;
-  }
-  .js-dropdown .dropdown--only-narrow .dropdown__button .icon--is-open,
-  .js-dropdown .dropdown--only-narrow .dropdown__button[aria-expanded="true"] .icon--is-closed {
-    display: none;
-  }
-  .js-dropdown .dropdown--only-narrow .dropdown__button .icon--is-closed,
-  .js-dropdown .dropdown--only-narrow .dropdown__button[aria-expanded="true"] .icon--is-open {
-    display: inline;
-  }
-  .js-dropdown .dropdown--only-narrow .dropdown__button[aria-expanded="true"] ~ .dropdown__area {
-    visibility: visible;
-    opacity: 1;
-    -webkit-transition: opacity ease 0.8s;
-    -moz-transition: opacity ease 0.8s;
-    -o-transition: opacity ease 0.8s;
-    transition: opacity ease 0.8s;
-  }
+.js-cmr--narrow .dropdown.dropdown--only-narrow {
+  display: block;
 }
 
-@media only screen and (min-width: 50em) {
-  .js-dropdown .dropdown--only-wide .dropdown__area {
-    position: absolute;
-    visibility: hidden;
-    opacity: 0;
-    -webkit-transition: opacity ease 0.8s, visibility 0s 0.8s ease;
-    -moz-transition: opacity ease 0.8s, visibility 0s 0.8s ease;
-    -o-transition: opacity ease 0.8s, visibility 0s 0.8s ease;
-    transition: opacity ease 0.8s, visibility 0s 0.8s ease;
-  }
-  .js-dropdown .dropdown--only-wide .dropdown__button {
-    display: block;
-  }
-  .js-dropdown .dropdown--only-wide .dropdown__button .icon--is-open,
-  .js-dropdown .dropdown--only-wide .dropdown__button[aria-expanded="true"] .icon--is-closed {
-    display: none;
-  }
-  .js-dropdown .dropdown--only-wide .dropdown__button .icon--is-closed,
-  .js-dropdown .dropdown--only-wide .dropdown__button[aria-expanded="true"] .icon--is-open {
-    display: inline;
-  }
-  .js-dropdown .dropdown--only-wide .dropdown__button[aria-expanded="true"] ~ .dropdown__area {
-    visibility: visible;
-    opacity: 1;
-    -webkit-transition: opacity ease 0.8s;
-    -moz-transition: opacity ease 0.8s;
-    -o-transition: opacity ease 0.8s;
-    transition: opacity ease 0.8s;
-  }
+.js-cmr--narrow .dropdown.dropdown--only-narrow .dropdown__area {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity ease 0.8s, visibility 0s 0.8s ease;
+  -moz-transition: opacity ease 0.8s, visibility 0s 0.8s ease;
+  -o-transition: opacity ease 0.8s, visibility 0s 0.8s ease;
+  transition: opacity ease 0.8s, visibility 0s 0.8s ease;
 }
 
+.js-cmr--narrow .dropdown.dropdown--only-narrow .dropdown__button {
+  display: block;
+}
+
+.js-cmr--narrow .dropdown.dropdown--only-narrow .dropdown__button .icon--is-open,
+.js-cmr--narrow .dropdown.dropdown--only-narrow .dropdown__button[aria-expanded="true"] .icon--is-closed {
+  display: none;
+}
+
+.js-cmr--narrow .dropdown.dropdown--only-narrow .dropdown__button .icon--is-closed,
+.js-cmr--narrow .dropdown.dropdown--only-narrow .dropdown__button[aria-expanded="true"] .icon--is-open {
+  display: inline;
+}
+
+.js-cmr--narrow .dropdown.dropdown--only-narrow .dropdown__button[aria-expanded="true"] ~ .dropdown__area {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: opacity ease 0.8s;
+  -moz-transition: opacity ease 0.8s;
+  -o-transition: opacity ease 0.8s;
+  transition: opacity ease 0.8s;
+}
+
+.js-cmr--wide .dropdown.dropdown--only-wide {
+  display: block;
+}
+
+.js-cmr--wide .dropdown.dropdown--only-wide .dropdown__area {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity ease 0.8s, visibility 0s 0.8s ease;
+  -moz-transition: opacity ease 0.8s, visibility 0s 0.8s ease;
+  -o-transition: opacity ease 0.8s, visibility 0s 0.8s ease;
+  transition: opacity ease 0.8s, visibility 0s 0.8s ease;
+}
+
+.js-cmr--wide .dropdown.dropdown--only-wide .dropdown__button {
+  display: block;
+}
+
+.js-cmr--wide .dropdown.dropdown--only-wide .dropdown__button .icon--is-open,
+.js-cmr--wide .dropdown.dropdown--only-wide .dropdown__button[aria-expanded="true"] .icon--is-closed {
+  display: none;
+}
+
+.js-cmr--wide .dropdown.dropdown--only-wide .dropdown__button .icon--is-closed,
+.js-cmr--wide .dropdown.dropdown--only-wide .dropdown__button[aria-expanded="true"] .icon--is-open {
+  display: inline;
+}
+
+.js-cmr--wide .dropdown.dropdown--only-wide .dropdown__button[aria-expanded="true"] ~ .dropdown__area {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: opacity ease 0.8s;
+  -moz-transition: opacity ease 0.8s;
+  -o-transition: opacity ease 0.8s;
+  transition: opacity ease 0.8s;
+}
+
+/*@media only screen and (max-width:$s__dropdown--breakpoint--enhanced) {
+
+       @include activate-dropdown("--only-narrow");
+        
+    }
+    
+    @media only screen and (min-width:$s__dropdown--breakpoint--enhanced) {
+
+       @include activate-dropdown("--only-wide");
+        
+    }*/
 /* -----------------------------------------------------------------------------------------------*/

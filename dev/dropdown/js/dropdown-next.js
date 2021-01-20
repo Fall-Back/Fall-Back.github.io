@@ -55,7 +55,7 @@
 	var dropdown = {
 
         init: function() {
-            var dropdowns = document.querySelectorAll('.dropdown');
+            var dropdowns = document.querySelectorAll('[data-js="dropdown"]');
             /*var dropdown_js_classname = 'js-dropdown';
             // Note that `getComputedStyle` on pseudo elements doesn't work in Opera Mini, but in
             // this case I'm happy to serve only the un-enhanced version to Opera Mini.

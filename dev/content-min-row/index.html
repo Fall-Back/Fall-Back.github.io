@@ -1,13 +1,13 @@
 ---
 title: Content Min Width
 layout: dev/structure--nav-bar--next
-head_stylesheets: ['/dev/dropdown/css/dropdown.css','/dev/nav-bar/css/nav-bar-next.css','/dev/over-panel/css/over-panel.css','/dev/search-form/css/search-form.css']
-head_scripts: ['/dev/content-min-row/js/content-min-row.js']
+head_stylesheets: ['/dev/dropdown/css/dropdown-next.css','/dev/nav-bar/css/nav-bar-next.css','/dev/over-panel/css/over-panel.css','/dev/search-form/css/search-form.css']
+head_scripts: ['/dev/content-min-row/js/content-min-row.js', '/dev/dropdown/js/dropdown-next.js']
 ---
 
 <h2>Basic</h2>
 
-<div class="nav-bar" data-js="cmr" data-js-component="nav-bar">
+<div class="nav-bar" data-js="cmr">
 
     <nav class="nav-bar__main">
 
@@ -16,9 +16,9 @@ head_scripts: ['/dev/content-min-row/js/content-min-row.js']
             <li class="nav-bar__item">
 
                 <a href="about" class="nav-bar__link">About</a>
-                
-                <div class="dropdown  dropdown--only-wide">
-                    <button id="about-sub-menu-1" class="dropdown__button" data-js="dropdown__button" hidden="" aria-label="About sub-menu" aria-expanded="false"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
+
+                <div class="dropdown  dropdown--only-wide" data-js="dropdown">
+                    <button id="about-sub-menu-1" class="dropdown__button" data-js="dropdown__button" hidden="" aria-label="Sub-menu: About" aria-expanded="false"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
 
                     <div class="dropdown__area" id="about-sub-menu-1--target">
                         <ul class="subnav__items  subnav__items--stacked--only-wide">
@@ -29,7 +29,7 @@ head_scripts: ['/dev/content-min-row/js/content-min-row.js']
                         </ul>
                     </div>
                 </div>
-                
+
                 <!--
                 <button id="about-sub-menu-toggle" class="nav-bar__link  subnav__control  subnav__open" data-js="nav-bar__button" hidden aria-label="About Us sub-menu"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
 
@@ -49,15 +49,17 @@ head_scripts: ['/dev/content-min-row/js/content-min-row.js']
             <li class="nav-bar__item">
 
                 <span class="subnav__heading">Categories:</span>
-                <button id="categories-sub-menu-toggle" class="nav-bar__link  subnav__control  subnav__open" data-js="nav-bar__button" hidden aria-label="Categories sub-menu" data-content="Categories"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
 
-                <div class="subnav" id="categories-sub-menu-toggle--target">
-                    <ul class="subnav__items">
+                <div class="dropdown  dropdown--only-wide" data-js="dropdown">
+                    <button id="categories-sub-menu-1" class="dropdown__button  nav-bar__link  subnav__control  subnav__open" data-js="dropdown__button" hidden="" aria-label="Sub-menu: Categories" aria-expanded="false" data-content="Categories"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
+
+                    <div class="dropdown__area" id="categories-sub-menu-1--target">
+                        <ul class="subnav__items">
                         <li class="subnav__item"><a href="branding" class="subnav__link" data-js="nav-bar__focus-start">Branding</a></li>
                         <li class="subnav__item"><a href="websites" class="subnav__link">Websites</a></li>
                         <li class="subnav__item"><a href="design" class="subnav__link">Design</a></li>
                     </ul>
-                </div>
+                    </div>
 
             </li>
 
@@ -75,7 +77,7 @@ head_scripts: ['/dev/content-min-row/js/content-min-row.js']
 <hr>
 
 
-<div class="nav-bar" data-js="cmr" data-js-component="nav-bar">
+<div class="nav-bar" data-js="cmr">
 
 	<nav class="nav-bar__main">
 
@@ -112,7 +114,7 @@ head_scripts: ['/dev/content-min-row/js/content-min-row.js']
 
 <h2>Stacked Submenu Items</h2>
 
-<div class="nav-bar" data-js="cmr" data-js-component="nav-bar">
+<div class="nav-bar" data-js="cmr">
 
     <nav class="nav-bar__main">
 
@@ -164,7 +166,7 @@ head_scripts: ['/dev/content-min-row/js/content-min-row.js']
 
 <h2>With Title</h2>
 
-<div class="nav-bar" data-js="cmr" data-js-component="nav-bar">
+<div class="nav-bar" data-js="cmr">
 
     <div class="nav-bar__start">
         <div class="nav-bar__title">
@@ -222,7 +224,7 @@ head_scripts: ['/dev/content-min-row/js/content-min-row.js']
 
 <h2>With Title and Search Form</h2>
 
-<div class="nav-bar" data-js="cmr" data-js-component="nav-bar">
+<div class="nav-bar" data-js="cmr">
 
     <div class="nav-bar__start">
         <div class="nav-bar__title">
@@ -296,7 +298,7 @@ head_scripts: ['/dev/content-min-row/js/content-min-row.js']
 
 <h2>With Title and with Menu and Search Form in Over Panel</h2>
 
-<div class="nav-bar" data-js="cmr" data-js-component="nav-bar">
+<div class="nav-bar" data-js="cmr">
 
     <div class="nav-bar__start">
         <div class="nav-bar__title">
@@ -377,7 +379,7 @@ head_scripts: ['/dev/content-min-row/js/content-min-row.js']
 
 <h2>With Title and with Menu and Search Form in seperate Over Panels</h2>
 
-<div class="nav-bar" data-js="cmr" data-js-component="nav-bar">
+<div class="nav-bar" data-js="cmr">
 
     <div class="nav-bar__start">
         <div class="nav-bar__item">
@@ -467,7 +469,7 @@ head_scripts: ['/dev/content-min-row/js/content-min-row.js']
 
 <h2>With Menu and Search Form in seperate Over Panels</h2>
 
-<div class="nav-bar" data-js="cmr" data-js-component="nav-bar">
+<div class="nav-bar" data-js="cmr">
 
     <div class="nav-bar__start">
         <div class="nav-bar__item">
@@ -557,7 +559,7 @@ head_scripts: ['/dev/content-min-row/js/content-min-row.js']
 
 <h2>With Menu and Search Form in seperate Over Panels - using Dropdown for subnavs</h2>
 
-<div class="nav-bar" data-js="cmr" data-js-component="nav-bar">
+<div class="nav-bar" data-js="cmr">
 
     <div class="nav-bar__start">
         <div class="nav-bar__item">
@@ -602,7 +604,7 @@ head_scripts: ['/dev/content-min-row/js/content-min-row.js']
 
                         <span class="subnav__heading">Categories:</span>
                         <div class="dropdown  dropdown--only-wide">
-                            <button id="categories-sub-menu-1" class="dropdown__button  nav-bar__link  subnav__control  subnav__open" data-js="dropdown__button" hidden="" aria-label="Categories sub-menu"" data-content="Categories" aria-expanded="false"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
+                            <button id="categories-sub-menu-1" class="dropdown__button  nav-bar__link  subnav__control  subnav__open" data-js="dropdown__button" hidden="" aria-label="Categories sub-menu" data-content="Categories" aria-expanded="false"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
 
                              <div class="dropdown__area" id="categories-sub-menu-1--target">
                                 <ul class="subnav__items  subnav__items--stacked--only-wide">
