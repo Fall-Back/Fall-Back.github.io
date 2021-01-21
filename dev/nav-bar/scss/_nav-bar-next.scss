@@ -108,6 +108,8 @@ $s__nav-bar-divider-first-item:            false !default;
 
     /*
         1. Helps to position above subsequent elements so subnavs sit on top.
+        There are problems with this, if z-index or position is declared it messes up positioning
+        if subsequent blocks also are nav-bars or similar.
     */
     &#{&} {
         background-color: $s__nav-bar--background-color;

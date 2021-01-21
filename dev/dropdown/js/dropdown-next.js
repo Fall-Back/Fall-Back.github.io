@@ -1,18 +1,26 @@
 /*!
-    Fall-Back Dropdown v1.0.0
+    Fall-Back Dropdown v2.0.0
     https://github.com/Fall-Back/Dropdown
     Copyright (c) 2017, Andy Kirk
     Released under the MIT license https://git.io/vwTVl
 */
 (function() {
 
-    var dropdown_js_classname = 'js-dropdown';
+    var debug                 = true;
+    //var debug                 = false;
+    var ident                 = 'dropdown';
+    var selector              = '[data-js="' + ident + '"]';
+    var dropdown_js_classname = 'js-' + ident;
 
     var check_for_css = function(selector) {
 
+        if (debug) {
+            console.log('Checking for CSS: ' + selector);
+        }
+
         var rules;
         var haveRule = false;
-        if (typeof document.styleSheets != "undefined") {// is this supported
+        if (typeof document.styleSheets != "undefined") { // is this supported
             var cssSheets = document.styleSheets;
 
             // IE doesn't have document.location.origin, so fix that:
@@ -41,6 +49,11 @@
                 }
             }
         }
+
+        if (debug) {
+            console.log(selector + ' ' + (haveRule ? '' : 'not') + ' found');
+        }
+
         return haveRule;
     }
 
@@ -55,18 +68,15 @@
 	var dropdown = {
 
         init: function() {
-            var dropdowns = document.querySelectorAll('[data-js="dropdown"]');
-            /*var dropdown_js_classname = 'js-dropdown';
-            // Note that `getComputedStyle` on pseudo elements doesn't work in Opera Mini, but in
-            // this case I'm happy to serve only the un-enhanced version to Opera Mini.
-            var css_is_loaded = (
-                window.getComputedStyle(dropdown, ':before')
-                .getPropertyValue('content')
-                .replace(/(\"|\')/g, '')
-                == 'CSS Loaded'
-            );*/
+
+            if (debug) {
+                console.log('Initialising ' + ident);
+            }
 
             if (css_is_loaded) {
+
+                var dropdowns = document.querySelectorAll(selector);
+
                 Array.prototype.forEach.call(dropdowns, function(dropdown, i) {
                     // Add the JS class names ...
                     if (dropdown.classList) {
@@ -75,7 +85,7 @@
                         dropdown.className += ' ' + dropdown_js_classname;
                     }
                 });
-                
+
                 // ... and button actions:
                 var buttons = document.querySelectorAll('[data-js="dropdown__button"]');
                 Array.prototype.forEach.call(buttons, function(button, i) {
@@ -93,7 +103,7 @@
                         Array.prototype.forEach.call(expanded_buttons, function(expanded_button, i) {
                             expanded_button.setAttribute('aria-expanded', 'false');
                         });
-                        
+
                         // Set the attribute:
                         this.setAttribute('aria-expanded', !expanded);
 
@@ -106,7 +116,7 @@
                         }
                     });
                 });
-                
+
             }
         }
 	}

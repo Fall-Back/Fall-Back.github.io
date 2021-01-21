@@ -1,7 +1,7 @@
 /*!
     Fall-Back Content Min-row v1.0.0
     https://github.com/Fall-Back/Nav-Bar
-    Copyright (c) 2017, Andy Kirk
+    Copyright (c) 2021, Andy Kirk
     Released under the MIT license https://git.io/vwTVl
 */
 
@@ -14,46 +14,13 @@
 
 (function() {
 
-    var js_classname_prefix = 'js';
-    var container_js_classname_wide_suffix  = 'wide';
+    var debug                                = true;
+    //var debug                                = false;
+    var ident                                = 'cmr';
+    var selector                             = '[data-js="' + ident + '"]';
+    var js_classname_prefix                  = 'js';
+    var container_js_classname_wide_suffix   = 'wide';
     var container_js_classname_narrow_suffix = 'narrow';
-
-    var check_for_css = function(selector) {
-
-        var rules;
-        var haveRule = false;
-        if (typeof document.styleSheets != "undefined") {// is this supported
-            var cssSheets = document.styleSheets;
-
-            // IE doesn't have document.location.origin, so fix that:
-            if (!document.location.origin) {
-                document.location.origin = document.location.protocol + "//" + document.location.hostname + (document.location.port ? ':' + document.location.port: '');
-            }
-            var domain_regex  = RegExp('^' + document.location.origin);
-
-            outerloop:
-            for (var i = 0; i < cssSheets.length; i++) {
-                var sheet = cssSheets[i];
-
-                // Some browsers don't allow checking of rules if not on the same domain (CORS), so
-                // checking for that here:
-                if (sheet.href !== null && domain_regex.exec(sheet.href) === null) {
-                    continue;
-                }
-
-                // Check for IE or standards:
-                rules = (typeof sheet.cssRules != "undefined") ? sheet.cssRules : sheet.rules;
-                for (var j = 0; j < rules.length; j++) {
-                    if (rules[j].selectorText == selector) {
-                        haveRule = true;
-                        break outerloop;
-                    }
-                }
-            }
-        }
-        return haveRule;
-
-    }
 
     var ready = function(fn) {
         if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
@@ -85,14 +52,19 @@
 			var wide = cmr.offsetWidth > cmr.dataset.jsBreakpoint;
 			// Need to make these classnames dynamic
 			if (wide) {
-                cmr.classList.add(js_classname_prefix + '-cmr--' + container_js_classname_wide_suffix);
-                cmr.classList.remove(js_classname_prefix + '-cmr--' + container_js_classname_narrow_suffix);
+                cmr.classList.add(js_classname_prefix + '-' + ident + '--' + container_js_classname_wide_suffix);
+                cmr.classList.remove(js_classname_prefix + '-' + ident + '--' + container_js_classname_narrow_suffix);
 
-				cmr.style.outline = '3px solid red';
+                if (debug) {
+                    cmr.style.outline = '3px solid red';
+                }
 			} else {
-                cmr.classList.add(js_classname_prefix + '-cmr--' + container_js_classname_narrow_suffix);
-                cmr.classList.remove(js_classname_prefix + '-cmr--' + container_js_classname_wide_suffix);
-				cmr.style.outline = '3px solid blue';
+                cmr.classList.add(js_classname_prefix + '-' + ident + '--' + container_js_classname_narrow_suffix);
+                cmr.classList.remove(js_classname_prefix + '-' + ident + '--' + container_js_classname_wide_suffix);
+
+                if (debug) {
+                    cmr.style.outline = '3px solid blue';
+                }
 			}
 		},
 
@@ -100,7 +72,7 @@
 
             Array.prototype.forEach.call(cmrs, function (cmr, i) {
                 var clone = cmr.cloneNode(true);
-                clone.classList.add(js_classname_prefix + '-cmr--' + container_js_classname_wide_suffix);
+                clone.classList.add(js_classname_prefix + '-' + ident + '--' + container_js_classname_wide_suffix);
 
                 $cmr.set_style(clone, {
 					position: 'absolute',
@@ -130,10 +102,14 @@
 
         init: function() {
 
+            if (debug) {
+                console.log('Initialising ' + ident);
+            }
+
 			var self = this;
 
             // Get all the CMR's:
-            $cmr.cmrs = document.querySelectorAll('[data-js="cmr"]');
+            $cmr.cmrs = document.querySelectorAll(selector);
 
             $cmr.set_breakpoints($cmr.cmrs);
 
@@ -151,7 +127,9 @@
                     $cmr.switcher(cmr);
                 });
             } else {
-                console.log('No ResizeObserver support.');
+                if (debug) {
+                    console.log('No ResizeObserver support.');
+                }
 
                 var style = {
                     position: 'absolute',
