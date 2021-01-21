@@ -1,4 +1,4 @@
-// Fall-Back Nav Bar Pattern v2.0.0
+// Fall-Back Nav Bar Pattern v3.0.0
 /*------------------------------------------------------------------------------------------------*\
 
     Designed for use with the EM2 [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
@@ -82,6 +82,7 @@ $s__nav-bar__title--height:                (($s__base-line-height * 1.5) / (($s_
 
 $s__nav-bar-divider-first-item:            false !default;
 
+
 // Tell the JS that the this CSS has loaded:
 
 /*
@@ -125,7 +126,7 @@ $s__nav-bar-divider-first-item:            false !default;
     /* -------------------------------------------------------------------------------------------*/
 
     /* -- Layout ---------------------------------------------------------------------------------*/
-    
+
     /*
         iOS/OSX seem to apply mystery margins.
     */
@@ -273,22 +274,6 @@ $s__nav-bar-divider-first-item:            false !default;
 
     /* -------------------------------------------------------------------------------------------*/
 }
-/* -----------------------------------------------------------------------------------------------*/
-/*
-@media only screen and (max-width: $s__nav-bar--breakpoint--enhanced) {
-    .subnav__items--stacked--only-narrow .subnav__item,
-    .subnav__items--stacked--only-narrow .subnav__link {
-        float: none;
-    }
-}
-
-@media only screen and (min-width: $s__nav-bar--breakpoint--enhanced) {
-    .subnav__items--stacked--only-wide .subnav__item,
-    .subnav__items--stacked--only-wide .subnav__link {
-        float: none;
-    }
-}
-*/
 
 /* ********************************************************************************************** */
 /* -- Enhanced layout --------------------------------------------------------------------------- */
@@ -299,10 +284,10 @@ $s__nav-bar-divider-first-item:            false !default;
 */
 
 	/*
-		Note we do only want these applied when JS is available, because it'll have adde buttons so 
+		Note we do only want these applied when JS is available, because it'll have adde buttons so
 		we need to adjust layout to that. In other words these styles break things in a no-js
 		scenario.
-		
+
 	*/
     .js-cmr--narrow {
         .nav-bar__start {
@@ -391,13 +376,6 @@ $s__nav-bar-divider-first-item:            false !default;
                 flex: 1 0 auto;
         }
 
-
-        // We want to force stacked subnav items back onto a line for Enhanced:
-        .subnav__items--stacked .subnav__item {
-            //float: left;
-        }
-
-
         /*
             1. Prevent content from increasing height of element.
         */
@@ -415,8 +393,13 @@ $s__nav-bar-divider-first-item:            false !default;
             -ms-flex: 1 1 auto;
                 flex: 1 1 auto;
         }
-
-
+        
+        // It's often visually nicer for tne 'end' content to be pushed over to the right if it
+        // doesn't fill the space.
+        // Note I may need to make this a modifier class if it doesn't look right in all situations.
+        .nav-bar__end > * {
+            margin-left: auto !important;
+        }
 
 
         /*

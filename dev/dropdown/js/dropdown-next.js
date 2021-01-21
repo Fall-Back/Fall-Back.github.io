@@ -1,16 +1,18 @@
 /*!
-    Fall-Back Dropdown v2.0.0
+    Fall-Back Dropdown v3.0.0
     https://github.com/Fall-Back/Dropdown
-    Copyright (c) 2017, Andy Kirk
+    Copyright (c) 2021, Andy Kirk
     Released under the MIT license https://git.io/vwTVl
 */
+
 (function() {
 
     var debug                 = true;
     //var debug                 = false;
     var ident                 = 'dropdown';
     var selector              = '[data-js="' + ident + '"]';
-    var dropdown_js_classname = 'js-' + ident;
+    
+    var dropdown_js__has_classname = 'js-has--' + ident;
 
     var check_for_css = function(selector) {
 
@@ -77,15 +79,6 @@
 
                 var dropdowns = document.querySelectorAll(selector);
 
-                Array.prototype.forEach.call(dropdowns, function(dropdown, i) {
-                    // Add the JS class names ...
-                    if (dropdown.classList) {
-                        dropdown.classList.add(dropdown_js_classname);
-                    } else {
-                        dropdown.className += ' ' + dropdown_js_classname;
-                    }
-                });
-
                 // ... and button actions:
                 var buttons = document.querySelectorAll('[data-js="dropdown__button"]');
                 Array.prototype.forEach.call(buttons, function(button, i) {
@@ -122,17 +115,13 @@
 	}
 
     // This is _here_ to mitigate a Flash of Basic Styled Dropdown:
-    var css_is_loaded = check_for_css('.' + dropdown_js_classname);
+    var css_is_loaded = check_for_css('.' + dropdown_js__has_classname);
 
     if (css_is_loaded) {
         // Add the JS class name ...
         var html_el = document.querySelector('html');
-
-        if (html_el.classList) {
-            html_el.classList.add(dropdown_js_classname);
-        } else {
-            html_el.className += ' ' + dropdown_js_classname;
-        }
+        
+        html_el.classList.add(dropdown_js__has_classname);
     }
 
 	ready(dropdown.init);

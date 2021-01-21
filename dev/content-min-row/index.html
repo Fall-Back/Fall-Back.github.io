@@ -1,7 +1,7 @@
 ---
 title: Content Min Width
 layout: dev/structure--nav-bar--next
-head_stylesheets: ['/dev/dropdown/css/dropdown-next.css','/dev/nav-bar/css/nav-bar-next.css','/dev/over-panel/css/over-panel-next.css','/dev/search-form/css/search-form.css']
+head_stylesheets: ['/dev/dropdown/css/dropdown-next.css','/dev/nav-bar/css/nav-bar-next.css','/dev/over-panel/css/over-panel-next.css','/dev/search-form/css/search-form-next.css']
 head_scripts: ['/dev/content-min-row/js/content-min-row.js', '/dev/dropdown/js/dropdown-next.js',  '/dev/over-panel/js/over-panel-next.js']
 head_style: |
     body {
@@ -9,7 +9,7 @@ head_style: |
     }
 ---
 
-<h2>Basic</h2>
+<h2>1. Basic</h2>
 
 <div class="nav-bar" data-js="cmr">
 
@@ -25,27 +25,16 @@ head_style: |
                     <button id="about-sub-menu-1" class="dropdown__button" data-js="dropdown__button" hidden="" aria-label="Sub-menu: About" aria-expanded="false"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
 
                     <div class="dropdown__area" id="about-sub-menu-1--target">
-                        <ul class="subnav__items  subnav__items--stacked--only-wide">
+                        <ul class="subnav__items">
                             <li class="subnav__item"><a href="what-we-do" class="subnav__link" data-js="nav-bar__focus-start">What we do</a></li>
                             <li class="subnav__item"><a href="contact-us" class="subnav__link">Contact us</a></li>
                             <li class="subnav__item"><a href="meet-the-team" class="subnav__link">Meet the team</a></li>
                             <li class="subnav__item"><a href="testimonials" class="subnav__link">Testimonials</a></li>
                         </ul>
                     </div>
+
                 </div>
 
-                <!--
-                <button id="about-sub-menu-toggle" class="nav-bar__link  subnav__control  subnav__open" data-js="nav-bar__button" hidden aria-label="About Us sub-menu"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
-
-                <div class="subnav" id="about-sub-menu-toggle--target">
-                    <ul class="subnav__items">
-                        <li class="subnav__item"><a href="what-we-do" class="subnav__link" data-js="nav-bar__focus-start">What we do</a></li>
-                        <li class="subnav__item"><a href="contact-us" class="subnav__link">Contact us</a></li>
-                        <li class="subnav__item"><a href="meet-the-team" class="subnav__link">Meet the team</a></li>
-                        <li class="subnav__item"><a href="testimonials" class="subnav__link">Testimonials</a></li>
-                    </ul>
-                </div>
-                -->
             </li>
 
             <li class="nav-bar__item"><a href="news" class="nav-bar__link">News</a></li>
@@ -59,11 +48,12 @@ head_style: |
 
                     <div class="dropdown__area" id="categories-sub-menu-1--target">
                         <ul class="subnav__items">
-                        <li class="subnav__item"><a href="branding" class="subnav__link" data-js="nav-bar__focus-start">Branding</a></li>
-                        <li class="subnav__item"><a href="websites" class="subnav__link">Websites</a></li>
-                        <li class="subnav__item"><a href="design" class="subnav__link">Design</a></li>
-                    </ul>
+                            <li class="subnav__item"><a href="branding" class="subnav__link" data-js="nav-bar__focus-start">Branding</a></li>
+                            <li class="subnav__item"><a href="websites" class="subnav__link">Websites</a></li>
+                            <li class="subnav__item"><a href="design" class="subnav__link">Design</a></li>
+                        </ul>
                     </div>
+                </div>
 
             </li>
 
@@ -87,23 +77,27 @@ head_style: |
 
 		<ul class="nav-bar__items">
 
-			<li class="nav-bar__item">
+            <li class="nav-bar__item">
 
-				<a href="about" class="nav-bar__link">About</a>
-				<button id="about-sub-menu-toggle" class="nav-bar__link  subnav__control  subnav__open" data-js="nav-bar__button" hidden aria-label="About Us sub-menu"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
+                <a href="about" class="nav-bar__link">About</a>
 
-				<div class="subnav" id="about-sub-menu-toggle--target">
-					<ul class="subnav__items">
-						<li class="subnav__item"><a href="what-we-do" class="subnav__link" data-js="nav-bar__focus-start">What we do</a></li>
-						<li class="subnav__item"><a href="contact-us" class="subnav__link">Contact us</a></li>
-						<li class="subnav__item"><a href="meet-the-team" class="subnav__link">Meet the team</a></li>
-						<li class="subnav__item"><a href="testimonials" class="subnav__link">Testimonials</a></li>
-					</ul>
-				</div>
+                <div class="dropdown  dropdown--only-wide" data-js="dropdown">
+                    <button id="about-sub-menu-2" class="dropdown__button" data-js="dropdown__button" hidden="" aria-label="Sub-menu: About" aria-expanded="false"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
 
-			</li>
+                    <div class="dropdown__area" id="about-sub-menu-2--target">
+                        <ul class="subnav__items">
+                            <li class="subnav__item"><a href="what-we-do" class="subnav__link" data-js="nav-bar__focus-start">What we do</a></li>
+                            <li class="subnav__item"><a href="contact-us" class="subnav__link">Contact us</a></li>
+                            <li class="subnav__item"><a href="meet-the-team" class="subnav__link">Meet the team</a></li>
+                            <li class="subnav__item"><a href="testimonials" class="subnav__link">Testimonials</a></li>
+                        </ul>
+                    </div>
 
-			<li class="nav-bar__item"><a href="news" class="nav-bar__link">News</a></li
+                </div>
+
+            </li>
+
+			<li class="nav-bar__item"><a href="news" class="nav-bar__link">News</a></li>
 
 		</ul>
 
@@ -116,59 +110,7 @@ head_style: |
 
 <hr>
 
-<h2>Stacked Submenu Items</h2>
-
-<div class="nav-bar" data-js="cmr">
-
-    <nav class="nav-bar__main">
-
-        <ul class="nav-bar__items">
-
-            <li class="nav-bar__item">
-
-                <a href="about" class="nav-bar__link">About</a>
-                <button id="about-sub-menu-toggle-2" class="nav-bar__link  subnav__control  subnav__open" data-js="nav-bar__button" hidden aria-label="About Us sub-menu"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
-
-                <div class="subnav" id="about-sub-menu-toggle-2--target">
-                    <ul class="subnav__items  subnav__items--stacked--only-narrow">
-                        <li class="subnav__item"><a href="what-we-do" class="subnav__link" data-js="nav-bar__focus-start">What we do</a></li>
-                        <li class="subnav__item"><a href="contact-us" class="subnav__link">Contact us</a></li>
-                        <li class="subnav__item"><a href="meet-the-team" class="subnav__link">Meet the team</a></li>
-                        <li class="subnav__item"><a href="testimonials" class="subnav__link">Testimonials</a></li>
-                    </ul>
-                </div>
-
-            </li>
-
-            <li class="nav-bar__item"><a href="news" class="nav-bar__link">News</a></li>
-
-            <li class="nav-bar__item">
-
-                <span class="subnav__heading">Categories:</span>
-                <button id="categories-sub-menu-toggle-2" class="nav-bar__link  subnav__control  subnav__open" data-js="nav-bar__button" hidden aria-label="Categories sub-menu" data-content="Categories"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
-
-                <div class="subnav" id="categories-sub-menu-toggle-2--target">
-                    <ul class="subnav__items  subnav__items--stacked--only-narrow">
-                        <li class="subnav__item"><a href="branding" class="subnav__link" data-js="nav-bar__focus-start">Branding</a></li>
-                        <li class="subnav__item"><a href="websites" class="subnav__link">Websites</a></li>
-                        <li class="subnav__item"><a href="design" class="subnav__link">Design</a></li>
-                    </ul>
-                </div>
-
-            </li>
-
-        </ul>
-
-    </nav>
-
-</div>
-
-
-<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.</p>
-
-<hr>
-
-<h2>With Title</h2>
+<h2>2. With Title</h2>
 
 <div class="nav-bar" data-js="cmr">
 
@@ -185,15 +127,19 @@ head_style: |
             <li class="nav-bar__item">
 
                 <a href="about" class="nav-bar__link">About</a>
-                <button id="about-sub-menu-toggle-3" class="nav-bar__link  subnav__control  subnav__open" data-js="nav-bar__button" hidden aria-label="About Us sub-menu"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
 
-                <div class="subnav" id="about-sub-menu-toggle-3--target">
-                    <ul class="subnav__items">
-                        <li class="subnav__item"><a href="what-we-do" class="subnav__link" data-js="nav-bar__focus-start">What we do</a></li>
-                        <li class="subnav__item"><a href="contact-us" class="subnav__link">Contact us</a></li>
-                        <li class="subnav__item"><a href="meet-the-team" class="subnav__link">Meet the team</a></li>
-                        <li class="subnav__item"><a href="testimonials" class="subnav__link">Testimonials</a></li>
-                    </ul>
+                <div class="dropdown  dropdown--only-wide" data-js="dropdown">
+                    <button id="about-sub-menu-3" class="dropdown__button" data-js="dropdown__button" hidden="" aria-label="Sub-menu: About" aria-expanded="false"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
+
+                    <div class="dropdown__area" id="about-sub-menu-3--target">
+                        <ul class="subnav__items">
+                            <li class="subnav__item"><a href="what-we-do" class="subnav__link" data-js="nav-bar__focus-start">What we do</a></li>
+                            <li class="subnav__item"><a href="contact-us" class="subnav__link">Contact us</a></li>
+                            <li class="subnav__item"><a href="meet-the-team" class="subnav__link">Meet the team</a></li>
+                            <li class="subnav__item"><a href="testimonials" class="subnav__link">Testimonials</a></li>
+                        </ul>
+                    </div>
+
                 </div>
 
             </li>
@@ -203,14 +149,17 @@ head_style: |
             <li class="nav-bar__item">
 
                 <span class="subnav__heading">Categories:</span>
-                <button id="categories-sub-menu-toggle-3" class="nav-bar__link  subnav__control  subnav__open" data-js="nav-bar__button" hidden aria-label="Categories sub-menu" data-content="Categories"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
 
-                <div class="subnav" id="categories-sub-menu-toggle-3--target">
-                    <ul class="subnav__items">
-                        <li class="subnav__item"><a href="branding" class="subnav__link" data-js="nav-bar__focus-start">Branding</a></li>
-                        <li class="subnav__item"><a href="websites" class="subnav__link">Websites</a></li>
-                        <li class="subnav__item"><a href="design" class="subnav__link">Design</a></li>
-                    </ul>
+                <div class="dropdown  dropdown--only-wide" data-js="dropdown">
+                    <button id="categories-sub-menu-3" class="dropdown__button  nav-bar__link  subnav__control  subnav__open" data-js="dropdown__button" hidden="" aria-label="Sub-menu: Categories" aria-expanded="false" data-content="Categories"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
+
+                    <div class="dropdown__area" id="categories-sub-menu-3--target">
+                        <ul class="subnav__items">
+                            <li class="subnav__item"><a href="branding" class="subnav__link" data-js="nav-bar__focus-start">Branding</a></li>
+                            <li class="subnav__item"><a href="websites" class="subnav__link">Websites</a></li>
+                            <li class="subnav__item"><a href="design" class="subnav__link">Design</a></li>
+                        </ul>
+                    </div>
                 </div>
 
             </li>
@@ -226,7 +175,7 @@ head_style: |
 
 <hr>
 
-<h2>With Title and Search Form</h2>
+<h2>3. With Title and Search Form</h2>
 
 <div class="nav-bar" data-js="cmr">
 
@@ -243,15 +192,19 @@ head_style: |
             <li class="nav-bar__item">
 
                 <a href="about" class="nav-bar__link">About</a>
-                <button id="about-sub-menu-toggle-4" class="nav-bar__link  subnav__control  subnav__open" data-js="nav-bar__button" hidden aria-label="About Us sub-menu"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
 
-                <div class="subnav" id="about-sub-menu-toggle-4--target">
-                    <ul class="subnav__items">
-                        <li class="subnav__item"><a href="what-we-do" class="subnav__link" data-js="nav-bar__focus-start">What we do</a></li>
-                        <li class="subnav__item"><a href="contact-us" class="subnav__link">Contact us</a></li>
-                        <li class="subnav__item"><a href="meet-the-team" class="subnav__link">Meet the team</a></li>
-                        <li class="subnav__item"><a href="testimonials" class="subnav__link">Testimonials</a></li>
-                    </ul>
+                <div class="dropdown  dropdown--only-wide" data-js="dropdown">
+                    <button id="about-sub-menu-4" class="dropdown__button" data-js="dropdown__button" hidden="" aria-label="Sub-menu: About" aria-expanded="false"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
+
+                    <div class="dropdown__area" id="about-sub-menu-4--target">
+                        <ul class="subnav__items">
+                            <li class="subnav__item"><a href="what-we-do" class="subnav__link" data-js="nav-bar__focus-start">What we do</a></li>
+                            <li class="subnav__item"><a href="contact-us" class="subnav__link">Contact us</a></li>
+                            <li class="subnav__item"><a href="meet-the-team" class="subnav__link">Meet the team</a></li>
+                            <li class="subnav__item"><a href="testimonials" class="subnav__link">Testimonials</a></li>
+                        </ul>
+                    </div>
+
                 </div>
 
             </li>
@@ -261,14 +214,17 @@ head_style: |
             <li class="nav-bar__item">
 
                 <span class="subnav__heading">Categories:</span>
-                <button id="categories-sub-menu-toggle-4" class="nav-bar__link  subnav__control  subnav__open" data-js="nav-bar__button" hidden aria-label="Categories sub-menu" data-content="Categories"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
 
-                <div class="subnav" id="categories-sub-menu-toggle-4--target">
-                    <ul class="subnav__items">
-                        <li class="subnav__item"><a href="branding" class="subnav__link" data-js="nav-bar__focus-start">Branding</a></li>
-                        <li class="subnav__item"><a href="websites" class="subnav__link">Websites</a></li>
-                        <li class="subnav__item"><a href="design" class="subnav__link">Design</a></li>
-                    </ul>
+                <div class="dropdown  dropdown--only-wide" data-js="dropdown">
+                    <button id="categories-sub-menu-4" class="dropdown__button  nav-bar__link  subnav__control  subnav__open" data-js="dropdown__button" hidden="" aria-label="Sub-menu: Categories" aria-expanded="false" data-content="Categories"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
+
+                    <div class="dropdown__area" id="categories-sub-menu-4--target">
+                        <ul class="subnav__items">
+                            <li class="subnav__item"><a href="branding" class="subnav__link" data-js="nav-bar__focus-start">Branding</a></li>
+                            <li class="subnav__item"><a href="websites" class="subnav__link">Websites</a></li>
+                            <li class="subnav__item"><a href="design" class="subnav__link">Design</a></li>
+                        </ul>
+                    </div>
                 </div>
 
             </li>
@@ -278,8 +234,8 @@ head_style: |
     </nav>
 
     <div class="nav-bar__end" data-min-width="200">
-        <form action="#search" id="searchform" class="search-form  search-form---restrict-width" method="GET">
-            <input type="search" class="search-form__field" id="search" placeholder="Search" name="s" value="" aria-label="Search" />
+        <form action="#search" id="searchform-1" class="search-form  search-form---restrict-width  serach-form--push-right--wide" method="GET">
+            <input type="search" class="search-form__field" id="search-1" placeholder="Search" name="s" value="" aria-label="Search" />
             <button class="search-form__submit" type="submit">
                 <span>
                     <svg width="20" height="20" viewBox="0 0 20 20">
@@ -300,7 +256,7 @@ head_style: |
 <hr>
 <hr>
 
-<h2>With Title and with Menu and Search Form in Over Panel</h2>
+<h2>4. With Title and with Menu and Search Form in Over Panel</h2>
 
 <div class="nav-bar" data-js="cmr">
 
@@ -313,7 +269,7 @@ head_style: |
         </div>
     </div>
 
-    <div class="over-panel  over-panel--fade" id="menu-panel-1" data-js="over-panel">
+    <div class="over-panel  over-panel--fade" id="menu-panel-1" data-js="over-panel" data-min-width="500">
         <button class="over-panel__overlay" hidden aria-hidden="true" tabindex="-1" data-js="over-panel__overlay"></button>
         <div class="over-panel__contents" data-js="over-panel__contents">
             <nav class="nav-bar__main">
@@ -323,15 +279,19 @@ head_style: |
                     <li class="nav-bar__item">
 
                         <a href="about" class="nav-bar__link">About</a>
-                        <button id="about-sub-menu-toggle-5" class="nav-bar__link  subnav__control  subnav__open" data-js="nav-bar__button" hidden aria-label="About Us sub-menu"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
 
-                        <div class="subnav" id="about-sub-menu-toggle-5--target">
-                            <ul class="subnav__items">
-                                <li class="subnav__item"><a href="what-we-do" class="subnav__link" data-js="nav-bar__focus-start">What we do</a></li>
-                                <li class="subnav__item"><a href="contact-us" class="subnav__link">Contact us</a></li>
-                                <li class="subnav__item"><a href="meet-the-team" class="subnav__link">Meet the team</a></li>
-                                <li class="subnav__item"><a href="testimonials" class="subnav__link">Testimonials</a></li>
-                            </ul>
+                        <div class="dropdown  dropdown--only-wide" data-js="dropdown">
+                            <button id="about-sub-menu-5" class="dropdown__button" data-js="dropdown__button" hidden="" aria-label="Sub-menu: About" aria-expanded="false"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
+
+                            <div class="dropdown__area" id="about-sub-menu-5--target">
+                                <ul class="subnav__items">
+                                    <li class="subnav__item"><a href="what-we-do" class="subnav__link" data-js="nav-bar__focus-start">What we do</a></li>
+                                    <li class="subnav__item"><a href="contact-us" class="subnav__link">Contact us</a></li>
+                                    <li class="subnav__item"><a href="meet-the-team" class="subnav__link">Meet the team</a></li>
+                                    <li class="subnav__item"><a href="testimonials" class="subnav__link">Testimonials</a></li>
+                                </ul>
+                            </div>
+
                         </div>
 
                     </li>
@@ -341,14 +301,17 @@ head_style: |
                     <li class="nav-bar__item">
 
                         <span class="subnav__heading">Categories:</span>
-                        <button id="categories-sub-menu-toggle-5" class="nav-bar__link  subnav__control  subnav__open" data-js="nav-bar__button" hidden aria-label="Categories sub-menu" data-content="Categories"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
 
-                        <div class="subnav" id="categories-sub-menu-toggle-5--target">
-                            <ul class="subnav__items">
-                                <li class="subnav__item"><a href="branding" class="subnav__link" data-js="nav-bar__focus-start">Branding</a></li>
-                                <li class="subnav__item"><a href="websites" class="subnav__link">Websites</a></li>
-                                <li class="subnav__item"><a href="design" class="subnav__link">Design</a></li>
-                            </ul>
+                        <div class="dropdown  dropdown--only-wide" data-js="dropdown">
+                            <button id="categories-sub-menu-5" class="dropdown__button  nav-bar__link  subnav__control  subnav__open" data-js="dropdown__button" hidden="" aria-label="Sub-menu: Categories" aria-expanded="false" data-content="Categories"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
+
+                            <div class="dropdown__area" id="categories-sub-menu-5--target">
+                                <ul class="subnav__items">
+                                    <li class="subnav__item"><a href="branding" class="subnav__link" data-js="nav-bar__focus-start">Branding</a></li>
+                                    <li class="subnav__item"><a href="websites" class="subnav__link">Websites</a></li>
+                                    <li class="subnav__item"><a href="design" class="subnav__link">Design</a></li>
+                                </ul>
+                            </div>
                         </div>
 
                     </li>
@@ -357,9 +320,9 @@ head_style: |
 
             </nav>
 
-            <div jsBreakpoint>
-                <form action="#search" id="searchform" class="search-form  search-form---restrict-width" method="GET">
-                    <input type="search" class="search-form__field" id="search" placeholder="Search" name="s" value="" aria-label="Search" />
+            <div class="nav-bar__end">
+                <form action="#search" id="searchform-2" class="search-form  search-form---restrict-width  serach-form--push-right--wide" method="GET">
+                    <input type="search" class="search-form__field" id="search-2" placeholder="Search" name="s" value="" aria-label="Search" />
                     <button class="search-form__submit" type="submit">
                         <span>
                             <svg width="20" height="20" viewBox="0 0 20 20">
@@ -381,7 +344,7 @@ head_style: |
 <hr>
 
 
-<h2>With Title and with Menu and Search Form in seperate Over Panels</h2>
+<h2>5. With Title and with Menu and Search Form in seperate Over Panels</h2>
 
 <div class="nav-bar" data-js="cmr">
 
@@ -409,15 +372,19 @@ head_style: |
                     <li class="nav-bar__item">
 
                         <a href="about" class="nav-bar__link">About</a>
-                        <button id="about-sub-menu-toggle-7" class="nav-bar__link  subnav__control  subnav__open" data-js="nav-bar__button" hidden aria-label="About Us sub-menu"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
 
-                        <div class="subnav" id="about-sub-menu-toggle-7--target">
-                            <ul class="subnav__items">
-                                <li class="subnav__item"><a href="what-we-do" class="subnav__link" data-js="nav-bar__focus-start">What we do</a></li>
-                                <li class="subnav__item"><a href="contact-us" class="subnav__link">Contact us</a></li>
-                                <li class="subnav__item"><a href="meet-the-team" class="subnav__link">Meet the team</a></li>
-                                <li class="subnav__item"><a href="testimonials" class="subnav__link">Testimonials</a></li>
-                            </ul>
+                        <div class="dropdown  dropdown--only-wide" data-js="dropdown">
+                            <button id="about-sub-menu-6" class="dropdown__button" data-js="dropdown__button" hidden="" aria-label="Sub-menu: About" aria-expanded="false"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
+
+                            <div class="dropdown__area" id="about-sub-menu-6--target">
+                                <ul class="subnav__items">
+                                    <li class="subnav__item"><a href="what-we-do" class="subnav__link" data-js="nav-bar__focus-start">What we do</a></li>
+                                    <li class="subnav__item"><a href="contact-us" class="subnav__link">Contact us</a></li>
+                                    <li class="subnav__item"><a href="meet-the-team" class="subnav__link">Meet the team</a></li>
+                                    <li class="subnav__item"><a href="testimonials" class="subnav__link">Testimonials</a></li>
+                                </ul>
+                            </div>
+
                         </div>
 
                     </li>
@@ -427,14 +394,17 @@ head_style: |
                     <li class="nav-bar__item">
 
                         <span class="subnav__heading">Categories:</span>
-                        <button id="categories-sub-menu-toggle-7" class="nav-bar__link  subnav__control  subnav__open" data-js="nav-bar__button" hidden aria-label="Categories sub-menu" data-content="Categories"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
 
-                        <div class="subnav" id="categories-sub-menu-toggle-7--target">
-                            <ul class="subnav__items">
-                                <li class="subnav__item"><a href="branding" class="subnav__link" data-js="nav-bar__focus-start">Branding</a></li>
-                                <li class="subnav__item"><a href="websites" class="subnav__link">Websites</a></li>
-                                <li class="subnav__item"><a href="design" class="subnav__link">Design</a></li>
-                            </ul>
+                        <div class="dropdown  dropdown--only-wide" data-js="dropdown">
+                            <button id="categories-sub-menu-6" class="dropdown__button  nav-bar__link  subnav__control  subnav__open" data-js="dropdown__button" hidden="" aria-label="Sub-menu: Categories" aria-expanded="false" data-content="Categories"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
+
+                            <div class="dropdown__area" id="categories-sub-menu-6--target">
+                                <ul class="subnav__items">
+                                    <li class="subnav__item"><a href="branding" class="subnav__link" data-js="nav-bar__focus-start">Branding</a></li>
+                                    <li class="subnav__item"><a href="websites" class="subnav__link">Websites</a></li>
+                                    <li class="subnav__item"><a href="design" class="subnav__link">Design</a></li>
+                                </ul>
+                            </div>
                         </div>
 
                     </li>
@@ -446,12 +416,12 @@ head_style: |
 
     </nav>
 
-    <div jsBreakpoint>
+    <div class="nav-bar__end" data-min-width="250">
         <div class="over-panel  over-panel--fade" id="search-panel-1" data-js="over-panel">
             <button class="over-panel__overlay" hidden aria-hidden="true" tabindex="-1" data-js="over-panel__overlay"></button>
             <div class="over-panel__contents" data-js="over-panel__contents">
-                <form action="#search" id="searchform" class="search-form  search-form---restrict-width" method="GET">
-                    <input type="search" class="search-form__field" id="search" placeholder="Search" name="s" value="" aria-label="Search" />
+                <form action="#search" id="searchform-3" class="search-form  search-form---restrict-width  serach-form--push-right--wide" method="GET">
+                    <input type="search" class="search-form__field" id="search-3" placeholder="Search" name="s" value="" aria-label="Search" />
                     <button class="search-form__submit" type="submit">
                         <span>
                             <svg width="20" height="20" viewBox="0 0 20 20">
@@ -471,7 +441,7 @@ head_style: |
 
 <hr>
 
-<h2>With Menu and Search Form in seperate Over Panels</h2>
+<h2>6. With Menu and Search Form in seperate Over Panels</h2>
 
 <div class="nav-bar" data-js="cmr">
 
@@ -496,108 +466,19 @@ head_style: |
                     <li class="nav-bar__item">
 
                         <a href="about" class="nav-bar__link">About</a>
-                        <button id="about-sub-menu-toggle-8" class="nav-bar__link  subnav__control  subnav__open" data-js="nav-bar__button" hidden aria-label="About Us sub-menu"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
 
-                        <button id="about-sub-menu-toggle" class="dropdown__button" data-js="dropdown__button" hidden="" aria-label="Dropdown area" aria-expanded="false"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
+                        <div class="dropdown  dropdown--only-wide" data-js="dropdown">
+                            <button id="about-sub-menu-7" class="dropdown__button" data-js="dropdown__button" hidden="" aria-label="Sub-menu: About" aria-expanded="false"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
 
-                        <div class="subnav" id="about-sub-menu-toggle-8--target">
-                            <ul class="subnav__items">
-                                <li class="subnav__item"><a href="what-we-do" class="subnav__link" data-js="nav-bar__focus-start">What we do</a></li>
-                                <li class="subnav__item"><a href="contact-us" class="subnav__link">Contact us</a></li>
-                                <li class="subnav__item"><a href="meet-the-team" class="subnav__link">Meet the team</a></li>
-                                <li class="subnav__item"><a href="testimonials" class="subnav__link">Testimonials</a></li>
-                            </ul>
-                        </div>
-
-                    </li>
-
-                    <li class="nav-bar__item"><a href="news" class="nav-bar__link">News</a></li>
-
-                    <li class="nav-bar__item">
-
-                        <span class="subnav__heading">Categories:</span>
-                        <button id="categories-sub-menu-toggle-8" class="nav-bar__link  subnav__control  subnav__open" data-js="nav-bar__button" hidden aria-label="Categories sub-menu" data-content="Categories"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
-
-                        <div class="subnav" id="categories-sub-menu-toggle-8--target">
-                            <ul class="subnav__items">
-                                <li class="subnav__item"><a href="branding" class="subnav__link" data-js="nav-bar__focus-start">Branding</a></li>
-                                <li class="subnav__item"><a href="websites" class="subnav__link">Websites</a></li>
-                                <li class="subnav__item"><a href="design" class="subnav__link">Design</a></li>
-                            </ul>
-                        </div>
-
-                    </li>
-
-                </ul>
-
-            </div>
-        </div>
-
-    </nav>
-
-    <div jsBreakpoint>
-        <div class="over-panel  over-panel--fade" id="search-panel-2" data-js="over-panel">
-            <button class="over-panel__overlay" hidden aria-hidden="true" tabindex="-1" data-js="over-panel__overlay"></button>
-            <div class="over-panel__contents" data-js="over-panel__contents">
-                <form action="#search" id="searchform" class="search-form  search-form---restrict-width" method="GET">
-                    <input type="search" class="search-form__field" id="search" placeholder="Search" name="s" value="" aria-label="Search" />
-                    <button class="search-form__submit" type="submit">
-                        <span>
-                            <svg width="20" height="20" viewBox="0 0 20 20">
-                                <path fill="#333333" d="M12.917 11.667h-0.662l-0.229-0.229c0.817-0.946 1.308-2.175 1.308-3.521 0-2.992-2.425-5.417-5.417-5.417s-5.417 2.425-5.417 5.417 2.425 5.417 5.417 5.417c1.346 0 2.575-0.492 3.521-1.304l0.229 0.229v0.658l4.167 4.158 1.242-1.242-4.158-4.167zM7.917 11.667c-2.071 0-3.75-1.679-3.75-3.75s1.679-3.75 3.75-3.75 3.75 1.679 3.75 3.75-1.679 3.75-3.75 3.75z"></path>
-                                <text y="-10">Search</text>
-                            </svg>
-                        </span>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.</p>
-
-
-<hr>
-
-<h2>With Menu and Search Form in seperate Over Panels - using Dropdown for subnavs</h2>
-
-<div class="nav-bar" data-js="cmr">
-
-    <div class="nav-bar__start">
-        <div class="nav-bar__item">
-            <button class="over-panel-control" hidden aria-controls="menu-panel-5" aria-label="Main menu" aria-expanded="false" data-js="overpanel__control"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-menu"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-cross"></use></svg></button>
-        </div>
-        <div class="nav-bar__item">
-            <button class="over-panel-control" aria-controls="search-panel-3" aria-label="Search" aria-expanded="false" data-js="overpanel__control"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-search"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-cross"></use></svg></button>
-        </div>
-    </div>
-
-    <nav class="nav-bar__main">
-
-        <div class="over-panel  over-panel--fade" id="menu-panel-5" data-js="over-panel">
-            <button class="over-panel__overlay" hidden aria-hidden="true" tabindex="-1" data-js="over-panel__overlay"></button>
-            <div class="over-panel__contents" data-js="over-panel__contents">
-
-
-                <ul class="nav-bar__items">
-
-                    <li class="nav-bar__item">
-
-                        <a href="about" class="nav-bar__link">About</a>
-
-                        <div class="dropdown  dropdown--only-wide">
-                            <button id="about-sub-menu-1" class="dropdown__button" data-js="dropdown__button" hidden="" aria-label="About sub-menu" aria-expanded="false"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
-
-                            <div class="dropdown__area" id="about-sub-menu-1--target">
-                                <ul class="subnav__items  subnav__items--stacked--only-wide">
+                            <div class="dropdown__area" id="about-sub-menu-7--target">
+                                <ul class="subnav__items">
                                     <li class="subnav__item"><a href="what-we-do" class="subnav__link" data-js="nav-bar__focus-start">What we do</a></li>
                                     <li class="subnav__item"><a href="contact-us" class="subnav__link">Contact us</a></li>
                                     <li class="subnav__item"><a href="meet-the-team" class="subnav__link">Meet the team</a></li>
                                     <li class="subnav__item"><a href="testimonials" class="subnav__link">Testimonials</a></li>
                                 </ul>
                             </div>
+
                         </div>
 
                     </li>
@@ -607,11 +488,12 @@ head_style: |
                     <li class="nav-bar__item">
 
                         <span class="subnav__heading">Categories:</span>
-                        <div class="dropdown  dropdown--only-wide">
-                            <button id="categories-sub-menu-1" class="dropdown__button  nav-bar__link  subnav__control  subnav__open" data-js="dropdown__button" hidden="" aria-label="Categories sub-menu" data-content="Categories" aria-expanded="false"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
 
-                             <div class="dropdown__area" id="categories-sub-menu-1--target">
-                                <ul class="subnav__items  subnav__items--stacked--only-wide">
+                        <div class="dropdown  dropdown--only-wide" data-js="dropdown">
+                            <button id="categories-sub-menu-7" class="dropdown__button  nav-bar__link  subnav__control  subnav__open" data-js="dropdown__button" hidden="" aria-label="Sub-menu: Categories" aria-expanded="false" data-content="Categories"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
+
+                            <div class="dropdown__area" id="categories-sub-menu-7--target">
+                                <ul class="subnav__items">
                                     <li class="subnav__item"><a href="branding" class="subnav__link" data-js="nav-bar__focus-start">Branding</a></li>
                                     <li class="subnav__item"><a href="websites" class="subnav__link">Websites</a></li>
                                     <li class="subnav__item"><a href="design" class="subnav__link">Design</a></li>
@@ -628,12 +510,12 @@ head_style: |
 
     </nav>
 
-    <div jsBreakpoint>
-        <div class="over-panel  over-panel--fade" id="search-panel-3" data-js="over-panel">
+    <div class="nav-bar__end" data-min-width="250">
+        <div class="over-panel  over-panel--fade" id="search-panel-2" data-js="over-panel">
             <button class="over-panel__overlay" hidden aria-hidden="true" tabindex="-1" data-js="over-panel__overlay"></button>
             <div class="over-panel__contents" data-js="over-panel__contents">
-                <form action="#search" id="searchform" class="search-form" method="GET">
-                    <input type="search" class="search-form__field" id="search" placeholder="Search" name="s" value="" aria-label="Search" />
+                <form action="#search" id="searchform-4" class="search-form  search-form---restrict-width  serach-form--push-right--wide" method="GET">
+                    <input type="search" class="search-form__field" id="search-4" placeholder="Search" name="s" value="" aria-label="Search" />
                     <button class="search-form__submit" type="submit">
                         <span>
                             <svg width="20" height="20" viewBox="0 0 20 20">
@@ -650,5 +532,6 @@ head_style: |
 </div>
 
 <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.</p>
+
 
 <hr>

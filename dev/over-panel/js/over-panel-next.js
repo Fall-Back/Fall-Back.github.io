@@ -1,9 +1,10 @@
 /*!
-    Fall-Back Over-Panel v2.0.0
+    Fall-Back Over-Panel v3.0.0
     https://github.com/Fall-Back/Over-Panel
-    Copyright (c) 2017, Andy Kirk
+    Copyright (c) 2021, Andy Kirk
     Released under the MIT license https://git.io/vwTVl
 */
+
 (function() {
 
     var debug             = true;
@@ -14,10 +15,11 @@
     var control_selector  = '[data-js="' + ident + '__control"]';
     var contents_selector = '[data-js="' + ident + '__contents"]';
 
-    var over_panel_js_classname           = 'js-' + ident;
-    var over_panel_control_js_classname   = 'js-' + ident + '-control';
-    var over_panel_is_open_classname      = 'js-' + ident + '_is-open';
-    var over_panel_is_animating_classname = 'js-' + ident + '_is-animating';
+    var over_panel_js_has_classname       = 'js-has--' + ident;
+    //var over_panel_js_classname           = 'js-' + ident;
+    //var over_panel_control_js_classname   = 'js-' + ident + '-control';
+    var over_panel_is_open_classname      = ident + '--is-open';
+    var over_panel_is_animating_classname = ident + '--is-animating';
 
     var check_for_css = function(selector) {
 
@@ -73,24 +75,6 @@
     }
 
 
-    /* From Modernizr */
-    var whichTransitionEvent = function() {
-        var t;
-        var el = document.createElement('fakeelement');
-        var transitions = {
-          'transition':'transitionend',
-          'OTransition':'oTransitionEnd',
-          'MozTransition':'transitionend',
-          'WebkitTransition':'webkitTransitionEnd'
-        }
-
-        for (t in transitions){
-            if (el.style[t] !== undefined) {
-                return transitions[t];
-            }
-        }
-    }
-
 	var over_panel = {
 
         init: function() {
@@ -102,8 +86,6 @@
             if (css_is_loaded) {
 
                 var over_panels = document.querySelectorAll(selector);
-
-                var transitionEvent = whichTransitionEvent();
 
                 Array.prototype.forEach.call(over_panels, function(over_panel, i) {
 
@@ -117,29 +99,10 @@
                         return;
                     }
 
-                    // Add the JS class names ...
-                    // ... to the panel: ...
-                    if (over_panel.classList) {
-                        over_panel.classList.add(over_panel_js_classname);
-                    } else {
-                        over_panel.className += ' ' + over_panel_js_classname;
-                    }
-
-                    // ... and the control:
-                    if (over_panel_control.classList) {
-                        over_panel_control.classList.add(over_panel_control_js_classname);
-                    } else {
-                        over_panel_control.className += ' ' + over_panel_control_js_classname;
-                    }
-
                     // Main toggle button:
                     over_panel_control.addEventListener('click', function() {
 
-                        if (over_panel.classList) {
-                            over_panel.classList.add(over_panel_is_animating_classname);
-                        } else {
-                            over_panel.className += ' ' + over_panel_is_animating_classname;
-                        }
+                        over_panel.classList.add(over_panel_is_animating_classname);
 
                         // Invert the `aria-expanded` attribute:
                         var expanded = this.getAttribute('aria-expanded') === 'true' || false;
@@ -176,13 +139,8 @@
 					});
 
                     // Remove `animating` class at transition end.
-                    transitionEvent && over_panel.addEventListener(transitionEvent, function() {
-                        if (over_panel.classList) {
-                            over_panel.classList.remove(over_panel_is_animating_classname);
-                        } else {
-                            console.log('Animation ended');
-                            over_panel.className = over_panel.className.replace(new RegExp('(^|\\b)' + over_panel_is_animating_classname.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-                        }
+                    over_panel.addEventListener('transitionend', function() {
+                        over_panel.classList.remove(over_panel_is_animating_classname);
                     });
 
                     // Focus trap inspired by:
@@ -216,17 +174,13 @@
 	}
 
     // This is _here_ to mitigate a Flash of Basic Styled OverPanel:
-    var css_is_loaded = check_for_css('.' + over_panel_js_classname);
+    var css_is_loaded = check_for_css('.' + over_panel_js_has_classname);
 
     if (css_is_loaded) {
         // Add the JS class name ...
         var html_el = document.querySelector('html');
 
-        if (html_el.classList) {
-            html_el.classList.add(over_panel_js_classname);
-        } else {
-            html_el.className += ' ' + over_panel_js_classname;
-        }
+        html_el.classList.add(over_panel_js_has_classname);
     }
 
 	ready(over_panel.init);

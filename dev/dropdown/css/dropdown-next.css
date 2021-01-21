@@ -25,12 +25,23 @@
     Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
 
 \*------------------------------------------------------------------------------------------------*/
-/* -- Basic/fallback layout --------------------------------------------------------------------- */
-/* -- .dropdown -------------------------------------------------------------------------------*/
-.js-dropdown {
+/*
+    This is a bit of a hack, but it's a way of letting JS know that this CSS has loaded.
+    It doesn't work for Opera Mini, but I'm happy to provide this browser only with the
+    unenhanced version.
+    UPDATE: Due to problem with FOBP, now checking for existence of class in styesheet earlier
+    on, so this isn't needed:
+*/
+/*.nav-bar::before {
+    content: 'CSS Loaded';
+    display: none;
+}*/
+.js-has--dropdown {
   border: 0;
 }
 
+/* -- Basic/fallback layout --------------------------------------------------------------------- */
+/* -- .dropdown ------------------------------------------------------------------------------*/
 /*
         1. iOS, OSX
     */
@@ -149,9 +160,6 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__button {
   position: absolute;
   visibility: hidden;
   opacity: 0;
-  -webkit-transition: opacity ease 0.8s, visibility 0s 0.8s ease;
-  -moz-transition: opacity ease 0.8s, visibility 0s 0.8s ease;
-  -o-transition: opacity ease 0.8s, visibility 0s 0.8s ease;
   transition: opacity ease 0.8s, visibility 0s 0.8s ease;
 }
 
@@ -172,9 +180,6 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__button {
 .dropdown.dropdown--all-widths .dropdown__button[aria-expanded="true"] ~ .dropdown__area {
   visibility: visible;
   opacity: 1;
-  -webkit-transition: opacity ease 0.8s;
-  -moz-transition: opacity ease 0.8s;
-  -o-transition: opacity ease 0.8s;
   transition: opacity ease 0.8s;
 }
 
@@ -186,9 +191,6 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__button {
   position: absolute;
   visibility: hidden;
   opacity: 0;
-  -webkit-transition: opacity ease 0.8s, visibility 0s 0.8s ease;
-  -moz-transition: opacity ease 0.8s, visibility 0s 0.8s ease;
-  -o-transition: opacity ease 0.8s, visibility 0s 0.8s ease;
   transition: opacity ease 0.8s, visibility 0s 0.8s ease;
 }
 
@@ -209,9 +211,6 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__button {
 .js-cmr--narrow .dropdown.dropdown--only-narrow .dropdown__button[aria-expanded="true"] ~ .dropdown__area {
   visibility: visible;
   opacity: 1;
-  -webkit-transition: opacity ease 0.8s;
-  -moz-transition: opacity ease 0.8s;
-  -o-transition: opacity ease 0.8s;
   transition: opacity ease 0.8s;
 }
 
@@ -223,9 +222,6 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__button {
   position: absolute;
   visibility: hidden;
   opacity: 0;
-  -webkit-transition: opacity ease 0.8s, visibility 0s 0.8s ease;
-  -moz-transition: opacity ease 0.8s, visibility 0s 0.8s ease;
-  -o-transition: opacity ease 0.8s, visibility 0s 0.8s ease;
   transition: opacity ease 0.8s, visibility 0s 0.8s ease;
 }
 
@@ -246,21 +242,18 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__button {
 .js-cmr--wide .dropdown.dropdown--only-wide .dropdown__button[aria-expanded="true"] ~ .dropdown__area {
   visibility: visible;
   opacity: 1;
-  -webkit-transition: opacity ease 0.8s;
-  -moz-transition: opacity ease 0.8s;
-  -o-transition: opacity ease 0.8s;
   transition: opacity ease 0.8s;
 }
 
 /*@media only screen and (max-width:$s__dropdown--breakpoint--enhanced) {
 
        @include activate-dropdown("--only-narrow");
-        
+
     }
-    
+
     @media only screen and (min-width:$s__dropdown--breakpoint--enhanced) {
 
        @include activate-dropdown("--only-wide");
-        
+
     }*/
 /* -----------------------------------------------------------------------------------------------*/
