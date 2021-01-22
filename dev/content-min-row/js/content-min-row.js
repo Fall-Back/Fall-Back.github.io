@@ -49,7 +49,12 @@
                 $cmr.set_breakpoints($cmr.cmrs);
             }
 
-			var wide = cmr.offsetWidth > cmr.dataset.jsBreakpoint;
+            // Note using getAttribute('data-') instead of dataset so it doesn't fail on older
+            // browsers and leave behind the clone.
+            // May rethink this as I don't NEED to support older browsers witht this - I just don't
+            // want it broken. Maybe I should quit out of this if dataset isn't supported, but it's
+            // ok for now.
+			var wide = cmr.offsetWidth > cmr.getAttribute('data-js-breakpoint');
 			// Need to make these classnames dynamic
 			if (wide) {
                 cmr.classList.add(js_classname_prefix + '-' + ident + '--' + container_js_classname_wide_suffix);
@@ -87,14 +92,14 @@
                 Array.prototype.forEach.call(children, function (child, i) {
                     // If this child is intended to be flexible, we need to add it's min-width,
                     // rather than actual width:
-                    if (child.dataset.minWidth) {
-                        breakpoint += Math.ceil(child.dataset.minWidth);
+                    if (child.getAttribute('data-min-width')) {
+                        breakpoint += Math.ceil(child.getAttribute('data-min-width'));
                     } else {
                         breakpoint += Math.ceil(child.offsetWidth);
                     }
                 });
 
-                cmr.dataset.jsBreakpoint = breakpoint;
+                cmr.setAttribute('data-js-breakpoint', breakpoint);
 
                 clone.remove();
             });
