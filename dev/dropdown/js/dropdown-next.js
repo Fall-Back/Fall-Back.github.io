@@ -11,8 +11,11 @@
     //var debug                 = false;
     var ident                 = 'dropdown';
     var selector              = '[data-js="' + ident + '"]';
+
+    var dropdown_js_has_classname = 'js-has--' + ident;
     
-    var dropdown_js__has_classname = 'js-has--' + ident;
+    var dropdown_is_open_classname      = ident + '__area--is-open';
+    var dropdown_is_animating_classname = ident + '__area--is-animating';
 
     var check_for_css = function(selector) {
 
@@ -79,35 +82,55 @@
 
                 var dropdowns = document.querySelectorAll(selector);
 
-                // ... and button actions:
-                var buttons = document.querySelectorAll('[data-js="dropdown__button"]');
-                Array.prototype.forEach.call(buttons, function(button, i) {
-                    var button_id = button.getAttribute('id');
+                // ... and control actions:
+                var controls = document.querySelectorAll('[data-js="dropdown__control"]');
+                Array.prototype.forEach.call(controls, function(control, i) {
+                    var control_id = control.getAttribute('id');
+                    var area       = document.getElementById(control_id + '--target');
 
-                    button.setAttribute('aria-expanded', 'false');
+                    control.setAttribute('aria-expanded', 'false');
 
-                    // Main button:
-                    button.addEventListener('click', function() {
+                    // Main control:
+                    control.addEventListener('click', function() {
+
+                        area.classList.add(dropdown_is_animating_classname);
+
+
                         // Switch the `aria-expanded` attribute:
                         var expanded = this.getAttribute('aria-expanded') === 'true' || false;
 
                         // Close any open dropdown:
-                        var expanded_buttons = document.querySelectorAll('[data-js="dropdown__button"][aria-expanded="true"]');
-                        Array.prototype.forEach.call(expanded_buttons, function(expanded_button, i) {
-                            expanded_button.setAttribute('aria-expanded', 'false');
+                        var expanded_controls = document.querySelectorAll('[data-js="dropdown__control"][aria-expanded="true"]');
+                        Array.prototype.forEach.call(expanded_controls, function(expanded_control, i) {
+                            expanded_control.setAttribute('aria-expanded', 'false');
+                            var expanded_area = document.getElementById(expanded_control.getAttribute('id') + '--target');
+                            expanded_area.classList.remove(dropdown_is_open_classname);
                         });
 
                         // Set the attribute:
                         this.setAttribute('aria-expanded', !expanded);
+                        
+                        // Toggle the `is_open` class:
+                        if (!expanded) {
+                            area.classList.add(dropdown_is_open_classname);
+                        } else {
+                            area.classList.remove(dropdown_is_open_classname);
+                        }
 
                         // Set the focus to the first link if submenu newly opened:
                         if (!expanded) {
-                            var first_link = document.querySelector('#' + button_id + '--target [data-js="dropdown__focus-start"]');
+                            var first_link = document.querySelector('#' + control_id + '--target [data-js="dropdown__focus-start"]');
                             if (first_link) {
                                 first_link.focus();
                             }
                         }
                     });
+
+                    // Remove `animating` class at transition end.
+                    area.addEventListener('transitionend', function() {
+                        area.classList.remove(dropdown_is_animating_classname);
+                    });
+
                 });
 
             }
@@ -115,13 +138,13 @@
 	}
 
     // This is _here_ to mitigate a Flash of Basic Styled Dropdown:
-    var css_is_loaded = check_for_css('.' + dropdown_js__has_classname);
+    var css_is_loaded = check_for_css('.' + dropdown_js_has_classname);
 
     if (css_is_loaded) {
         // Add the JS class name ...
         var html_el = document.querySelector('html');
-        
-        html_el.classList.add(dropdown_js__has_classname);
+
+        html_el.classList.add(dropdown_js_has_classname);
     }
 
 	ready(dropdown.init);

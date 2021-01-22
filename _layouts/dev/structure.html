@@ -10,6 +10,12 @@
     {% endif %}
 
     {% assign cut_file = "cut_" | append: cut | append: ".html" %}
+    
+    {% if layout.ie11 %}
+        {% assign ie11 = layout.ie11 %}
+    {% else %}
+        {% assign ie11 = false %}
+    {% endif %}
 
 
     {% if layout.head_stylesheets.first and page.head_stylesheets.first %}
@@ -95,13 +101,48 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
 
     {% if layout.startcss != false %}
+    
     {% include {{ cut_file }} css="/dev/start-css/css/start.min.css" %}
+    
+    {% if ie11 != false %}
+    <script>
+        if (
+            (!!window.MSInputMethodContext && !!document.documentMode)
+         || (navigator.userAgent.indexOf('UCBrowser') > -1)
+        ) {
+            var link  = document.createElement('link');
+            link.rel  = 'stylesheet';
+            link.href = '/dev/start-css/css/start.min.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }
+    </script>
+    {% endif %}
+    
     {% endif %}
 
     {% if head_stylesheets != false %}
+    
     {% for stylesheet in head_stylesheets %}
+    
     {% include {{ cut_file }} css=stylesheet %}
+    
+    
+    {% if ie11 != false %}
+    <script>
+        if (
+            (!!window.MSInputMethodContext && !!document.documentMode)
+         || (navigator.userAgent.indexOf('UCBrowser') > -1)
+        ) {
+            var link  = document.createElement('link');
+            link.rel  = 'stylesheet';
+            link.href = '{{ stylesheet }}';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }
+    </script>
+    {% endif %}
+    
     {% endfor %}
+    
     {% endif %}
 
     {% if head_style != false %}

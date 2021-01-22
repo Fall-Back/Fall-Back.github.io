@@ -196,14 +196,6 @@ $s__over-panel__overlay-opacity:                 0.6 !default;
             }
 
 
-            /*
-                1. Make the over-panel visible in a way that's transition-able.
-            */
-            .over-panel--is-open .over-panel__contents {
-                visibility: visible; /* [1] */
-            }
-
-
             // Variable aliases for ease of comprehension:
             $td: $s__over-panel--transition-duration;
             $tf: $s__over-panel--transition-timing-function;
@@ -213,6 +205,7 @@ $s__over-panel__overlay-opacity:                 0.6 !default;
             /* Fade effect: */
 
             /*
+                2. Make the over-panel visible in a way that's transition-able.
                 1. This necessary to collapse the element in cases where the page content without
                    the over-panel contents is shorter than the over-panel contents themselves.
                    Take, for example, where short-ish page that's part of a large site, which therefore
@@ -228,7 +221,7 @@ $s__over-panel__overlay-opacity:                 0.6 !default;
             */
             .over-panel__contents {
                 opacity: 0;
-                transform: scale(0);  /* [1] */
+                transform: scale(0);  /* [2] */
             }
 
             .over-panel--is-animating .over-panel__contents {
@@ -238,8 +231,9 @@ $s__over-panel__overlay-opacity:                 0.6 !default;
             }
 
             .over-panel--is-open .over-panel__contents {
+                visibility: visible;  /* [1] */
                 opacity: 1;
-                transform: scale(1);  /* [1] */
+                transform: scale(1);  /* [2] */
 
                 transition: opacity $td  $tf;
             }

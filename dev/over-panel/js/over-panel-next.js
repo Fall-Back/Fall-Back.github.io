@@ -119,17 +119,9 @@
 
                         // Toggle the `is_open` class:
                         if (!expanded) {
-                            if (over_panel.classList) {
-                                over_panel.classList.add(over_panel_is_open_classname);
-                            } else {
-                                over_panel.className += ' ' + over_panel_is_open_classname;
-                            }
+                            over_panel.classList.add(over_panel_is_open_classname);
                         } else {
-                            if (over_panel.classList) {
-                                over_panel.classList.remove(over_panel_is_open_classname);
-                            } else {
-                                over_panel.className = over_panel.className.replace(new RegExp('(^|\\b)' + over_panel_is_open_classname.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-                            }
+                            over_panel.classList.remove(over_panel_is_open_classname);
                         }
                     });
 

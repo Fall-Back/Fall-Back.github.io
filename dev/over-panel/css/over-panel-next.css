@@ -112,11 +112,9 @@
                 1. Make the over-panel invisible in a way that's transition-able but also removes from tab
                    order.
             */
-  /*
-                1. Make the over-panel visible in a way that's transition-able.
-            */
   /* Fade effect: */
   /*
+                2. Make the over-panel visible in a way that's transition-able.
                 1. This necessary to collapse the element in cases where the page content without
                    the over-panel contents is shorter than the over-panel contents themselves.
                    Take, for example, where short-ish page that's part of a large site, which therefore
@@ -171,15 +169,10 @@
   flex-direction: column;
 }
 
-.js-has--over-panel .js-cmr--narrow .over-panel--is-open .over-panel__contents {
-  visibility: visible;
-  /* [1] */
-}
-
 .js-has--over-panel .js-cmr--narrow .over-panel__contents {
   opacity: 0;
   transform: scale(0);
-  /* [1] */
+  /* [2] */
 }
 
 .js-has--over-panel .js-cmr--narrow .over-panel--is-animating .over-panel__contents {
@@ -187,9 +180,11 @@
 }
 
 .js-has--over-panel .js-cmr--narrow .over-panel--is-open .over-panel__contents {
+  visibility: visible;
+  /* [1] */
   opacity: 1;
   transform: scale(1);
-  /* [1] */
+  /* [2] */
   transition: opacity ease 0.8s;
 }
 

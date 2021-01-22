@@ -7,50 +7,50 @@
 
 \*------------------------------------------------------------------------------------------------*/
 
-$s__dropdown--breakpoint--enhanced:          $s__breakpoint--enhanced;
+$s__dropdown--breakpoint--enhanced:            $s__breakpoint--enhanced;
 
 
 // Colours:
 
-$s__dropdown--base-ui-color:                 $s__base-ui-color !default;
-$s__dropdown--base-text-color:               $s__base-text-color !default;
+$s__dropdown--base-ui-color:                   $s__base-ui-color !default;
+$s__dropdown--base-text-color:                 $s__base-text-color !default;
 
 
-$s__dropdown--background-color:              $s__dropdown--base-ui-color !default;
-$s__dropdown--text-color:                    #fff !default;
+$s__dropdown--background-color:                $s__dropdown--base-ui-color !default;
+$s__dropdown--text-color:                      #fff !default;
 
-$s__dropdown__button--color:                  #fff !default;
-$s__dropdown__button--color--alt:             $s__dropdown__button--color !default;
-$s__dropdown__button--background-color:       $s__dropdown--background-color !default;
-$s__dropdown__button--background-color--alt:  darken($s__dropdown--background-color, 14%) !default;
-$s__dropdown__button--background-color--alt2: darken($s__dropdown--background-color, 7%) !default;
+$s__dropdown__control--color:                  #fff !default;
+$s__dropdown__control--color--alt:             $s__dropdown__control--color !default;
+$s__dropdown__control--background-color:       $s__dropdown--background-color !default;
+$s__dropdown__control--background-color--alt:  darken($s__dropdown--background-color, 14%) !default;
+$s__dropdown__control--background-color--alt2: darken($s__dropdown--background-color, 7%) !default;
 
-$s__dropdown__button--border-color:           rgba(255,255,255,0.2) !default;
-$s__dropdown__button--border-style:           solid !default;
-$s__dropdown__button--border-width:           1px !default;
-$s__dropdown__button--border-radius:          0 !default;
+$s__dropdown__control--border-color:           rgba(255,255,255,0.2) !default;
+$s__dropdown__control--border-style:           solid !default;
+$s__dropdown__control--border-width:           1px !default;
+$s__dropdown__control--border-radius:          0 !default;
 
 
 
 
 // Sizes:
-$s__dropdown__button--height:                 ($s__base-em-ratio * 1.5em) !default;
-$s__dropdown--spacing:                        ($s__dropdown__button--height / 8) !default;
+$s__dropdown__control--height:                 ($s__base-em-ratio * 1.5em) !default;
+$s__dropdown--spacing:                         ($s__dropdown__control--height / 8) !default;
 
 
-$s__dropdown--padding:                        0 !default;
+$s__dropdown--padding:                         0 !default;
 //$s__dropdown--padding:                        $s__base-rem-space-unit !default;
 
 // Transitions:
-$s__dropdown--transition-duration:            ease;
-$s__dropdown--transition-timing-function:     0.8s;
+$s__dropdown--transition-duration:             ease;
+$s__dropdown--transition-timing-function:      0.8s;
 
 
 
 // Other:
 
 
-$s__dropdown-z-index:                         9999 !default;
+$s__dropdown-z-index:                          9999 !default;
 
 
 // Tell the JS that the this CSS has loaded:
@@ -109,12 +109,12 @@ $s__dropdown-z-index:                         9999 !default;
 
 
 
-    /* -- .dropdown__button ----------------------------------------------------------------------*/
+    /* -- .dropdown__control ----------------------------------------------------------------------*/
 	/*
-		1. These override button styles defined as part of StartCSS. I may consider making these
+		1. These override control styles defined as part of StartCSS. I may consider making these
 		   customisable via more variables.
 	*/
-    .dropdown .dropdown__button {
+    .dropdown .dropdown__control {
         display: block;
         margin: 0;
         //padding: ($s__dropdown--spacing * 1.333333) ($s__dropdown--spacing * 2);
@@ -124,9 +124,9 @@ $s__dropdown-z-index:                         9999 !default;
 		padding-top: 0; /* 1 */
 
         border: 0;
-        border-radius: $s__dropdown__button--border-radius;
+        border-radius: $s__dropdown__control--border-radius;
 
-        line-height: $s__dropdown__button--height;
+        line-height: $s__dropdown__control--height;
 
         text-decoration: none;
         outline: 0;
@@ -135,13 +135,13 @@ $s__dropdown-z-index:                         9999 !default;
     }
 
     // This is to turn off Start-CSS's hover border:
-    .dropdown .dropdown__button:hover,
-    .dropdown .dropdown__button:active,
-    .dropdown .dropdown__button:focus {
+    .dropdown .dropdown__control:hover,
+    .dropdown .dropdown__control:active,
+    .dropdown .dropdown__control:focus {
         border: 0;
     }
 
-    .dropdown__button--centered {
+    .dropdown__control--centered {
             text-align: center;
     }
 
@@ -150,17 +150,17 @@ $s__dropdown-z-index:                         9999 !default;
         Fix for Opera Mini vertical centering:
         (affects Opera 12.10-16 as well)
     */
-    _:-o-prefocus, body:last-child .dropdown .dropdown__button {
+    _:-o-prefocus, body:last-child .dropdown .dropdown__control {
         //line-height: 1.71428571429 !important;
-        line-height: $s__dropdown__button--height !important;
+        line-height: $s__dropdown__control--height !important;
 
 
     }
 
 
-    .dropdown .dropdown__button {
-        color: $s__dropdown__button--color;
-        background-color: $s__dropdown__button--background-color;
+    .dropdown .dropdown__control {
+        color: $s__dropdown__control--color;
+        background-color: $s__dropdown__control--background-color;
     }
 
     /*
@@ -169,20 +169,20 @@ $s__dropdown-z-index:                         9999 !default;
         submenu heading links)
     */
 
-    .dropdown .dropdown__button:hover,
-    .dropdown .dropdown__button:active,
-    .dropdown .dropdown__button[aria-expanded="true"] {
-        color: $s__dropdown__button--color--alt;
-        background-color: $s__dropdown__button--background-color--alt;
+    .dropdown .dropdown__control:hover,
+    .dropdown .dropdown__control:active,
+    .dropdown .dropdown__control[aria-expanded="true"] {
+        color: $s__dropdown__control--color--alt;
+        background-color: $s__dropdown__control--background-color--alt;
     }
 
-    .dropdown .dropdown__button:focus {
-        color: $s__dropdown__button--color--alt;
-        background-color: $s__dropdown__button--background-color--alt2;
+    .dropdown .dropdown__control:focus {
+        color: $s__dropdown__control--color--alt;
+        background-color: $s__dropdown__control--background-color--alt2;
     }
 
 
-    .dropdown .dropdown__button {
+    .dropdown .dropdown__control {
         display: none;
     }
 
@@ -218,35 +218,48 @@ $s__dropdown-z-index:                         9999 !default;
 
             & .dropdown__area {
                 position: absolute;
-                //top: $s__dropdown__button--height;
 
                 visibility: hidden;
                 opacity: 0;
-
-                transition: opacity    $td  $tf,
-                            visibility 0s   $tf  $td;
+                transform: scale(0);
             }
 
-            & .dropdown__button {
+            & .dropdown__area--is-animating {
+                transition: opacity    $td  $tf,
+                            visibility 0s   $tf  $td,
+                            transform  0s   $tf  $td;
+            }
+
+            & .dropdown__area--is-open {
+                visibility: visible;
+                opacity: 1;
+                transform: scale(1);  /* [1] */
+
+                transition: opacity $td  $tf;
+            }
+
+
+
+            & .dropdown__control {
                 display: block;
             }
 
-            & .dropdown__button .icon--is-open,
-            & .dropdown__button[aria-expanded="true"] .icon--is-closed {
+            & .dropdown__control .icon--is-open,
+            & .dropdown__control[aria-expanded="true"] .icon--is-closed {
                 display: none;
             }
 
-            & .dropdown__button .icon--is-closed,
-            & .dropdown__button[aria-expanded="true"] .icon--is-open {
+            & .dropdown__control .icon--is-closed,
+            & .dropdown__control[aria-expanded="true"] .icon--is-open {
                 display: inline;
             }
 
-            & .dropdown__button[aria-expanded="true"] ~ .dropdown__area {
+            /*& .dropdown__control[aria-expanded="true"] ~ .dropdown__area {
                 visibility: visible;
                 opacity: 1;
 
                 transition: opacity $td  $tf;
-            }
+            }*/
         }
     }
 
