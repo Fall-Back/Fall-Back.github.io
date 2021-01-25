@@ -386,7 +386,7 @@ a[href]:focus {
   box-shadow: 0 0 0 3px rgba(36, 123, 160, 0.5);
 }
 
-a[href][rel="external"]::after {
+a[href][rel~="external"]::after {
   display: inline;
   content: "";
   padding-left: 1.16666666667em;
@@ -397,7 +397,7 @@ a[href][rel="external"]::after {
   vertical-align: super;
 }
 
-a[href][rel="external"]:hover::after {
+a[href][rel~="external"]:hover::after {
   background: linear-gradient(45deg, transparent 50%, currentColor 50%);
 }
 

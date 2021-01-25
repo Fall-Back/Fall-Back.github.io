@@ -46,7 +46,7 @@
 }
 
     @if $s__anchor-add-external-link-indicator == true {
-        #{$s__namespace}a[href][rel="external"]::after {
+        #{$s__namespace}a[href][rel~="external"]::after {
             display: inline;
 
             content: "";
@@ -63,7 +63,7 @@
             vertical-align: super;
         }
         
-        #{$s__namespace}a[href][rel="external"]:hover::after {
+        #{$s__namespace}a[href][rel~="external"]:hover::after {
             background: linear-gradient(45deg, transparent 50%, currentColor 50%);
         }
     }
