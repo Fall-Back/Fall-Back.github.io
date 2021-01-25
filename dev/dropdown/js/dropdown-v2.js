@@ -7,8 +7,8 @@
 
 (function() {
 
-    var debug                 = true;
-    //var debug                 = false;
+    //var debug                 = true;
+    var debug                 = false;
     var ident                 = 'dropdown';
     var selector              = '[data-js="' + ident + '"]';
 

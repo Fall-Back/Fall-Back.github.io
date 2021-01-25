@@ -7,8 +7,8 @@
 
 (function() {
 
-    var debug             = true;
-    //var debug             = false;
+    //var debug             = true;
+    var debug             = false;
     var ident             = 'over-panel';
     var selector          = '[data-js="' + ident + '"]';
     var overlay_selector  = '[data-js="' + ident + '__overlay"]';
