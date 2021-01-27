@@ -100,7 +100,7 @@
     -->
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
 
-    {% if layout.startcss != false %}
+    {% if page.startcss != false and layout.startcss != false %}
     
     {% include {{ cut_file }} css="/dev/start-css/css/start.min.css" %}
     
