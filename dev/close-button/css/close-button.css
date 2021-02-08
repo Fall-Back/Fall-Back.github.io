@@ -126,41 +126,10 @@
 */
 /*-------------------------------------------------------------------------------------------------|
 
-    COOKIE NOTICE
+    CLOSE BUTTON
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
-/*------------------------------------------------------------------------------------------------*\
-    Import Fall-Back vars:
-
-    Slightly hacky way of allowing the main UI colour of this pattern to be:
-     - base-ui colour (if set)
-     - otherwise #999
-     - but can be specifically overridden
-\*------------------------------------------------------------------------------------------------*/
-/*
-$t: #999;
-@if variable-exists(fallback--base-ui-color) {
-    $t: $s__base-ui-color;
-}
-*/
-/*------------------------------------------------------------------------------------------------*/
-/*
-$s__close-button--bg-color:         #000 !default;
-$s__close-button--border:           0 !default;
-
-$s__close-button__text-color:       #fff !default;
-
-
-$s__close-button__link--color:      lighten($s__close-button--ui-color, 40%) !default;
-$s__close-button__link--color--alt: lighten($s__close-button--ui-color, 20%) !default;
-
-
-// Sizes:
-
-$s__close-button--spacing:          ($s__base-em-ratio * 1.5em) / 3 !default;
-
-*/
 /* -- Basic styles ------------------------------------------------------------------------------ */
 .close-button {
   display: inline-block;
