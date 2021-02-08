@@ -1,9 +1,18 @@
-/*!
-    Fall-Back Cookie Notice v1.1.0
-    https://github.com/Fall-Back/Cookie-Notice
-    Copyright (c) 2017, Andy Kirk
+/*! --------------------------------------------------------------------------------------------- *\
+
+    Fall-Back Close Button v1.0.0
+    https://github.com/Fall-Back/Patterns/tree/master/Close%20Button
+    Copyright (c) 2021, Andy Kirk
     Released under the MIT license https://git.io/vwTVl
-*/
+    
+    Designed for use with the EM2 [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
+    Edge, Chrome 39+, Opera 26+, Safari 9+, iOS 9+, Android ~5+, Android UCBrowser ~11.8+
+    FF 47+
+
+    PLUS IE11
+
+\* ---------------------------------------------------------------------------------------------- */
+
 (function() {
 
     var close_button_container_selector = '[data-js="close-button"]';

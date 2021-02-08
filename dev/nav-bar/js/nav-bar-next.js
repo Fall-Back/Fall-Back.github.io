@@ -1,12 +1,20 @@
-/*!
-    Fall-Back Nav-Bar v2.0.0
-    https://github.com/Fall-Back/Nav-Bar
-    Copyright (c) 2017, Andy Kirk
+/*! --------------------------------------------------------------------------------------------- *\
+    
+    Fall-Back Nav Bar v2.0.0
+    https://github.com/Fall-Back/Patterns/tree/master/Nav%20Bar
+    Copyright (c) 2021, Andy Kirk
     Released under the MIT license https://git.io/vwTVl
-*/
+
+    Designed for use with the EM2 [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
+    Edge, Chrome 39+, Opera 26+, Safari 9+, iOS 9+, Android ~5+, Android UCBrowser ~11.8+
+    FF 47+
+
+    PLUS IE11
+
+\* ---------------------------------------------------------------------------------------------- */
 
 // Remove polyfill:
-(function() {
+(function() { 
   function remove() { this.parentNode && this.parentNode.removeChild(this); }
   if (!Element.prototype.remove) Element.prototype.remove = remove;
   if (Text && !Text.prototype.remove) Text.prototype.remove = remove;

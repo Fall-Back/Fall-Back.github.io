@@ -1,9 +1,17 @@
-/*!
-    Fall-Back Over-Panel v3.0.0
-    https://github.com/Fall-Back/Over-Panel
+/*! --------------------------------------------------------------------------------------------- *\
+    
+    Fall-Back Over Panel v2.0.0
+    https://github.com/Fall-Back/Patterns/tree/master/Over%20Panel
     Copyright (c) 2021, Andy Kirk
     Released under the MIT license https://git.io/vwTVl
-*/
+
+    Designed for use with the EM2 [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
+    Edge, Chrome 39+, Opera 26+, Safari 9+, iOS 9+, Android ~5+, Android UCBrowser ~11.8+
+    FF 47+
+
+    PLUS IE11
+
+\* ---------------------------------------------------------------------------------------------- */
 
 (function() {
 

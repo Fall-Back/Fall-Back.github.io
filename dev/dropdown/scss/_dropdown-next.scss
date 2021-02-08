@@ -1,11 +1,17 @@
-// Fall-Back Dropdown Pattern v3.0.0
-/*------------------------------------------------------------------------------------------------*\
+/*! --------------------------------------------------------------------------------------------- *\
+    
+    Fall-Back Dropdown v3.0.0
+    https://github.com/Fall-Back/Patterns/tree/master/Dropdown
+    Copyright (c) 2021, Andy Kirk
+    Released under the MIT license https://git.io/vwTVl
 
-    Designed for use with the basic [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
-    IE 9+, FF 8+, Opera 12, Chrome 29+, Android ~4.4+
-    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
+    Designed for use with the EM2 [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
+    Edge, Chrome 39+, Opera 26+, Safari 9+, iOS 9+, Android ~5+, Android UCBrowser ~11.8+
+    FF 47+
 
-\*------------------------------------------------------------------------------------------------*/
+    PLUS IE11
+
+\* ---------------------------------------------------------------------------------------------- */
 
 $s__dropdown--breakpoint--enhanced:            $s__breakpoint--enhanced;
 

@@ -1,6 +1,6 @@
 /*!
     Fall-Back Content Min-row v1.0.0
-    https://github.com/Fall-Back/Nav-Bar
+    https://github.com/Fall-Back/Patterns/tree/master/Content%20Min%20Row
     Copyright (c) 2021, Andy Kirk
     Released under the MIT license https://git.io/vwTVl
 */

@@ -1,9 +1,16 @@
-/*!
-    Fall-Back Nav-Bar v2.0.0
-    https://github.com/Fall-Back/Nav-Bar
-    Copyright (c) 2017, Andy Kirk
+/*! --------------------------------------------------------------------------------------------- *\
+    
+    Fall-Back Nav Bar v2.0.0
+    https://github.com/Fall-Back/Patterns/tree/master/Nav%20Bar
+    Copyright (c) 2021, Andy Kirk
     Released under the MIT license https://git.io/vwTVl
-*/
+
+    Designed for use with the basic [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
+    IE 9+, FF 8+, Opera 12, Chrome 29+, Android ~4.4+
+    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
+
+\* ---------------------------------------------------------------------------------------------- */
+
 (function() {
     
     var nav_bar_js_classname = 'js-nav-bar'; 
