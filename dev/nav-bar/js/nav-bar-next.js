@@ -60,18 +60,18 @@
             document.addEventListener('DOMContentLoaded', fn);
         }
     }
+    
+    var set_style = function(element, style) {
+        Object.keys(style).forEach(function(key) {
+            element.style[key] = style[key];
+        });
+    }
 
 	var $navbar = {
         
         navbars: null,
         
         root_font_size: window.getComputedStyle(document.documentElement).getPropertyValue('font-size'),
-
-		set_style: function(element, style) {
-			Object.keys(style).forEach(function(key) {
-				element.style[key] = style[key];
-			});
-		},
 
 		switcher: function(navbar) {
             //console.log(window.getComputedStyle(document.documentElement).getPropertyValue('font-size'));
@@ -99,7 +99,7 @@
             Array.prototype.forEach.call(navbars, function (navbar, i) {
                 var clone = navbar.cloneNode(true);
                 clone.classList.add('js-nav-bar--expanded');
-                $navbar.set_style(clone, {
+                set_style(clone, {
 					position: 'absolute',
 					border: '0',
 					left: '0',
@@ -161,7 +161,7 @@
                     nav_bar.className += ' ' + nav_bar_js_classname;
                 }*/
 
-                $navbar.navbars = document.querySelectorAll('.' + nav_bar_js_classname + ' .' + nav_bar_classname)
+                $navbar.navbars = document.querySelectorAll('.' + nav_bar_js_classname + ' .' + nav_bar_classname);
 
 				$navbar.set_breakpoints($navbar.navbars);
 
@@ -202,7 +202,7 @@
 
 					Array.prototype.forEach.call($navbar.navbars, function (navbar, i) {
 						var detector = document.createElement('iframe');
-                        $navbar.set_style(detector, style);
+                        set_style(detector, style);
 						detector.setAttribute('aria-hidden', 'true');
 
 						navbar.appendChild(detector);
