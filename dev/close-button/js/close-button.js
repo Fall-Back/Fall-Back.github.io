@@ -7,20 +7,24 @@
 (function() {
 
     var close_button_container_selector = '[data-js="close-button"]';
-    var close_button_class     = 'close-button';
-    var close_button_id        = '';
-    
+    var close_button_class              = 'close-button';
+    var close_button_id                 = '';
+    var close_button_effect_duration    = 1000;
+
+    var close_button_container_class    = 'js-close-button-container';
+
+    var close_button_class_string = '';
     if (close_button_class) {
-        close_button_class = ' class="' + close_button_class +'"';
+        close_button_class_string = ' class="' + close_button_class +'"';
     }
 
+    var close_button_id_string = '';
     if (close_button_id) {
-        close_button_id = ' class="' + close_button_id +'"';
+        close_button_id_string = ' class="' + close_button_id +'"';
     }
 
-    
     var close_button_html  =
-'<button' + close_button_id + close_button_class + '">' +
+'<button' + close_button_id_string + close_button_class_string + '">' +
 '    <span hidden="" aria-hidden="false">Close</span>' +
 '    <svg focusable="false" class="icon  icon--is-open"><use xlink:href="#icon-cross"></use></svg></button>' +
 '</button>' + "\n";
@@ -32,22 +36,37 @@
             document.addEventListener('DOMContentLoaded', fn);
         }
     }
-    
+
     var $close_button = {
-        
+
         close_buttons: null,
         close_button_containers: null,
 
         init: function() {
 			var self = this;
-            
+
             $close_button.close_button_containers = document.querySelectorAll(close_button_container_selector);
-            
+
             Array.prototype.forEach.call($close_button.close_button_containers, function (close_button_container, i) {
+
+                close_button_container.className += '  ' + close_button_container_class;
+
                 close_button_container.innerHTML += close_button_html;
+
+                var close_button = close_button_container.lastElementChild;
+
+                close_button.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    close_button_container.setAttribute('data-close', true);
+
+                    setTimeout(function(){
+                        close_button_container.parentNode.removeChild(close_button_container);
+                    }, close_button_effect_duration);
+                });
             });
         }
     }
-    
+
     ready($close_button.init);
 })();

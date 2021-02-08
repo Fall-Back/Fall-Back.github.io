@@ -40,19 +40,17 @@ $s__close-button__link--color--alt: lighten($s__close-button--ui-color, 20%) !de
 
 $s__close-button--spacing:          ($s__base-em-ratio * 1.5em) / 3 !default;
 
-
+*/
 // Transitions:
 
 $s__close-button--close-transition: opacity 1s ease 0s, z-index 1s ease 1s !default;
-*/
+
 // Selectors:
 
 $ss__close_button: ".close-button" !default;
-/*
-$ss__close_button--close: "##{close_button}[data-close=\"true\"]" !default;
-$ss__close_button__message: "##{close_button} p" !default;
-$ss__close_button__action: "##{close_button} button" !default;
-*/
+$ss__close_button_container: ".js-close-button-container" !default;
+$ss__close_button_container--close: "[data-close=\"true\"]" !default;
+
 /* -- Basic styles ------------------------------------------------------------------------------ */
 
     #{$ss__close_button} {
@@ -64,6 +62,25 @@ $ss__close_button__action: "##{close_button} button" !default;
             rgba(0,0,0,0)
         );
 
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin: 0;
+        border-radius: 0;
+        
+        opacity: 1;
+    }
+    
+    #{$ss__close_button_container} {
+        position: relative;
+    
+        -webkit-transition: $s__close-button--close-transition;
+                transition: $s__close-button--close-transition;
+    }
+    
+    #{$ss__close_button_container}#{$ss__close_button_container--close} {
+        opacity: 0;
+        z-index: 0;
     }
 
 /* ---------------------------------------------------------------------------------------------- */

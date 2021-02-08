@@ -160,15 +160,6 @@ $s__close-button__link--color--alt: lighten($s__close-button--ui-color, 20%) !de
 
 $s__close-button--spacing:          ($s__base-em-ratio * 1.5em) / 3 !default;
 
-
-// Transitions:
-
-$s__close-button--close-transition: opacity 1s ease 0s, z-index 1s ease 1s !default;
-*/
-/*
-$ss__close_button--close: "#close_button[data-close=\"true\"]" !default;
-$ss__close_button__message: "#close_button p" !default;
-$ss__close_button__action: "#close_button button" !default;
 */
 /* -- Basic styles ------------------------------------------------------------------------------ */
 .close-button {
@@ -216,6 +207,12 @@ $ss__close_button__action: "#close_button button" !default;
             outline-offset: $s__button-focus-outline-offset;
         }
     }*/
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 0;
+  border-radius: 0;
+  opacity: 1;
 }
 
 .close-button:hover, .close-button:active {
@@ -225,6 +222,17 @@ $ss__close_button__action: "#close_button button" !default;
 .close-button:focus {
   outline: 0;
   box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+.js-close-button-container {
+  position: relative;
+  -webkit-transition: opacity 1s ease 0s, z-index 1s ease 1s;
+  transition: opacity 1s ease 0s, z-index 1s ease 1s;
+}
+
+.js-close-button-container[data-close="true"] {
+  opacity: 0;
+  z-index: 0;
 }
 
 /* ---------------------------------------------------------------------------------------------- */
