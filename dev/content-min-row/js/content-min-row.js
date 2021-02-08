@@ -29,20 +29,20 @@
             document.addEventListener('DOMContentLoaded', fn);
         }
     }
+    
+    var set_style = function(element, style) {
+        Object.keys(style).forEach(function(key) {
+            element.style[key] = style[key];
+        });
+    }
 
-	var $cmr = {
+    var $cmr = {
 
         cmrs: null,
 
         root_font_size: window.getComputedStyle(document.documentElement).getPropertyValue('font-size'),
 
-		set_style: function(element, style) {
-			Object.keys(style).forEach(function(key) {
-				element.style[key] = style[key];
-			});
-		},
-
-		switcher: function(cmr) {
+        switcher: function(cmr) {
 
             // Check for browser font chnage and reset breakpoints if it has:
             if ($cmr.root_font_size != window.getComputedStyle(document.documentElement).getPropertyValue('font-size')) {
@@ -54,24 +54,24 @@
             // May rethink this as I don't NEED to support older browsers witht this - I just don't
             // want it broken. Maybe I should quit out of this if dataset isn't supported, but it's
             // ok for now.
-			var wide = cmr.offsetWidth > cmr.getAttribute('data-js-breakpoint');
-			// Need to make these classnames dynamic
-			if (wide) {
+            var wide = cmr.offsetWidth > cmr.getAttribute('data-js-breakpoint');
+            // Need to make these classnames dynamic
+            if (wide) {
                 cmr.classList.add(js_classname_prefix + '-' + ident + '--' + container_js_classname_wide_suffix);
                 cmr.classList.remove(js_classname_prefix + '-' + ident + '--' + container_js_classname_narrow_suffix);
 
                 if (debug) {
                     cmr.style.outline = '3px solid red';
                 }
-			} else {
+            } else {
                 cmr.classList.add(js_classname_prefix + '-' + ident + '--' + container_js_classname_narrow_suffix);
                 cmr.classList.remove(js_classname_prefix + '-' + ident + '--' + container_js_classname_wide_suffix);
 
                 if (debug) {
                     cmr.style.outline = '3px solid blue';
                 }
-			}
-		},
+            }
+        },
 
         set_breakpoints: function(cmrs) {
 
@@ -79,12 +79,12 @@
                 var clone = cmr.cloneNode(true);
                 clone.classList.add(js_classname_prefix + '-' + ident + '--' + container_js_classname_wide_suffix);
 
-                $cmr.set_style(clone, {
-					position: 'absolute',
-					border: '0',
-					left: '0',
-					top: '0',
-				});
+                set_style(clone, {
+                    position: 'absolute',
+                    border: '0',
+                    left: '0',
+                    top: '0',
+                });
                 cmr.parentNode.appendChild(clone);
 
                 var children   = clone.children;
@@ -111,7 +111,7 @@
                 console.log('Initialising ' + ident);
             }
 
-			var self = this;
+            var self = this;
 
             // Get all the CMR's:
             $cmr.cmrs = document.querySelectorAll(selector);
@@ -152,7 +152,7 @@
 
                 Array.prototype.forEach.call($cmr.cmrs, function (cmr, i) {
                     var detector = document.createElement('iframe');
-                    $cmr.set_style(detector, style);
+                    set_style(detector, style);
                     detector.setAttribute('aria-hidden', 'true');
 
                     cmr.appendChild(detector);
@@ -165,7 +165,7 @@
             }
             return;
         }
-	}
+    }
 
-	ready($cmr.init);
+    ready($cmr.init);
 })();
