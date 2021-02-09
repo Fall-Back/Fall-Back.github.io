@@ -2154,6 +2154,26 @@ a[hidden="false"][aria-hidden="false"]:active {
         width: auto;*/
 }
 
+/*
+    Elements with tabindex="-1" are NOT user focussable, but CAN be focussed via JS.
+    In this case elements focussed in such a way should not recieve focus styles to avoid confusion.
+    (https://inclusive-components.design/a-todo-list#focusmanagement)
+*/
+[tabindex="-1"] {
+  outline: none;
+}
+
+/*
+    A blanket attempt to respect prefers-reduced-motion.
+    (https://dev.to/alvaromontoro/consider-reducing-motions-1a13)
+*/
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 /*! Start-CSS Experimental. See SCSS file for documentation. */
 /*-------------------------------------------------------------------------------------------------|
 
