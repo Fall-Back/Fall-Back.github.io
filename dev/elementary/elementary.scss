@@ -2,6 +2,7 @@
 $s__base-ui-color: #79260D;
 
 $e__listing__item--basis: 25rem;
+$e__listing__item--min-width: calc(33.333% - 2.4rem);
 
 $s__html-background-color: darken($s__base-ui-color, 15%);
 $s__main-background-color: lighten($s__base-ui-color, 61%);
@@ -42,6 +43,17 @@ $s__cookie-notice__link--color--alt: lighten($s__base-ui-color, 50%);
 #{$es__page_banner__logo} path {
     stroke: #fff;
 }
+
+
+// Allow for cells to span columns. Experimental. Not sure if it really fits with 'Elementary':
+#{$es__page_main__header--listing__list} > [data-size="medium"] {
+    min-width: calc(66.666% - #{$e__listing__gutter});
+}
+
+#{$es__page_main__header--listing__list} > [data-size="large"] {
+    min-width: calc(100% - #{$e__listing__gutter});
+}
+
 
 
 // Apply grid to the Listing - Grid page:

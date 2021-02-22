@@ -2868,16 +2868,32 @@ body > header > nav > ul a[href]:focus {
 |-------------------------------------------------------------------------------------------------*/
 /*
     Expand main to fill space - part of stick footer.
+    
+    1. There's a wierd sitution on /page-layout-article/ where there's <pre> in a <div>
+       demonstrating the use of the <div> to create a full-width container (one that breaks
+       out of the max-width column). But the <pre> has long content and isn't scrolling,
+       it's pushing everything out to fit the content and I can't figure out a simple 
+       fix (or even understand why it's doing it).
+       But, since we have a known max-width for the body and a known column balance, we can work out
+       what the max-width for the main column should be and use that in an FF-width technique.
+
 */
 body > main {
   flex: 1 0 auto;
-  width: 100%;
-  max-width: none;
+  /* 1 */
+  max-width: 71.42857%;
+  width: calc((1512px - 100%) * 9999);
+  min-width: 100%;
   min-height: 0;
   margin: 0;
   padding: 0;
   color: #333;
   background-color: #fff;
+}
+
+body > main:nth-last-child(3) {
+  grid-column: 1 / -1;
+  max-width: 100%;
 }
 
 /*------------------------------------------------------------------------------------------------*/
@@ -3049,6 +3065,7 @@ body > main > div > header ~ ul > * {
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: 25rem;
+  min-width: calc(33.333% - 2.4rem);
   margin: 1.2rem;
   padding: 0;
   border: 0;
@@ -3175,6 +3192,10 @@ article > span:only-child * {
   word-wrap: break-word;
   -webkit-hyphens: auto;
   hyphens: auto;
+}
+
+article > span:only-child *:only-child {
+  margin-bottom: 0;
 }
 
 article > span:only-child > header > :last-child {
@@ -3419,6 +3440,14 @@ main > div > ul > li > article {
 body > header > a[href] circle,
 body > header > a[href] path {
   stroke: #fff;
+}
+
+body > main > div > header ~ ul > [data-size="medium"] {
+  min-width: calc(66.666% - 2.4rem);
+}
+
+body > main > div > header ~ ul > [data-size="large"] {
+  min-width: calc(100% - 2.4rem);
 }
 
 @supports (display: grid) {

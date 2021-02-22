@@ -31,6 +31,10 @@
             -webkit-hyphens: auto;
             hyphens: auto;
         }
+        
+        & *:only-child {   
+            margin-bottom: 0;
+        }
     }
 
     // Header:

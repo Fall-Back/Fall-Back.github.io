@@ -7,12 +7,23 @@
 
 /*
     Expand main to fill space - part of stick footer.
+    
+    1. There's a wierd sitution on /page-layout-article/ where there's <pre> in a <div>
+       demonstrating the use of the <div> to create a full-width container (one that breaks
+       out of the max-width column). But the <pre> has long content and isn't scrolling,
+       it's pushing everything out to fit the content and I can't figure out a simple 
+       fix (or even understand why it's doing it).
+       But, since we have a known max-width for the body and a known column balance, we can work out
+       what the max-width for the main column should be and use that in an FF-width technique.
+
 */
 #{$es__page_main} {
     flex: 1 0 auto;
 
-    width: 100%;
-    max-width: none;
+    /* 1 */;
+    max-width: $e__main-sidebar-max-width;
+    width: calc((#{$e__main-width-breakpoint} - 100%) * 9999);
+    min-width: 100%;
 
     min-height: 0;
 
@@ -22,6 +33,11 @@
     
     color: $e__main--text-color;
     background-color: $e__main--background-color;
+}
+
+#{$es__page_main}:nth-last-child(#{$e__main-position}) {
+    grid-column: 1 / -1;
+    max-width: 100%;
 }
 
 /*------------------------------------------------------------------------------------------------*/

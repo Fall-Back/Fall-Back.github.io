@@ -53,7 +53,7 @@ body {
     display: flex;
     flex-direction: column;
 
-    max-width: 1080px;
+    max-width: $e__body_max-width;
 
     padding: 0;
 }

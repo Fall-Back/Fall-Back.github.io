@@ -43,6 +43,8 @@
     flex-grow: 1;
     flex-shrink: 0;
     flex-basis: $e__listing__item--basis;
+    
+    min-width: $e__listing__item--min-width;
 
     margin: #{$e__listing__gutter / 2};
     
@@ -52,6 +54,7 @@
 
     background-color: $e__listing__item--backgroud-color;
 }
+
 
 #{$es__page_main__header--listing__list} > * > * {
     display: block;
