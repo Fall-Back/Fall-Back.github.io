@@ -27,6 +27,8 @@ markdown: kramdown
 kramdown:
   auto_ids:       true
 
+# Prevent github pages creating stuff:
+theme: null
 
 exclude: [
     "_archive",
