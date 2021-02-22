@@ -35,6 +35,10 @@
     background-color: $e__main--background-color;
 }
 
+#{$es__page_main_after_banner} {
+    //max-width: none;
+}
+
 #{$es__page_main}:nth-last-child(#{$e__main-position}) {
     grid-column: 1 / -1;
     max-width: 100%;

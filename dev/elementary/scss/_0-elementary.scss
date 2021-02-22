@@ -78,7 +78,8 @@ body > * {
             min-height: 100%;
 
             grid-template-columns: $e__main-sidebar-balance;
-            grid-template-rows: max-content auto max-content;
+            //grid-template-rows: max-content auto max-content;
+            grid-template-rows: auto auto minmax(auto, 1fr) auto;
         }
 
         #{$es__page_banner},
@@ -87,13 +88,50 @@ body > * {
 
             grid-column: 1 / -1;
         }
-
-
+        
+        #{$es__page_banner} {
+            grid-row: 1;
+        }
+        
+        #{$es__page_footer} {
+            grid-row: -1;
+        }
 
         #{$es__page_main} {
             grid-column: 1;
+            
+            grid-row: 2 / -1; // < added
+        }
+        
+        // Added:
+        #{$es__page_main_after_banner}:nth-last-child(#{$e__main-position}) {
+            grid-column: 1 / -1;
+        }
+        
+        
+        #{$es__page_sidebar} {
+            grid-column: 2;
+            grid-row: 2;
         }
 
+        /*
+            If there's no 'bottom' aside, we want the first one span 2 columns. Note this is the
+            only way I can think of doing this, but it's fragile - it will break if elements at this
+            level get added or removed.
+        */
+        #{$es__page_sidebar}:nth-last-child(#{$e__main-position + 1}) {
+            grid-row: 2 / -1;
+        }
+
+        #{$es__page_sidebar_after_main} {
+            grid-column: 2;
+            grid-row: 3;
+        }
+        
+        
+        // ---
+        
+        
         /*
             Note this is the *template* sidebar - content in a sidebar that appears on all pages.
             Not to be confused with the *content* sidebar, which is specific to the current page

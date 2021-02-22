@@ -97,7 +97,9 @@
 
 $es__page_banner:  "body > header" !default;
 $es__page_main:    "body > main" !default;
+$es__page_main_after_banner: "body > header + main" !default;
 $es__page_sidebar: "body > aside" !default;
+$es__page_sidebar_after_main: "body > main + aside" !default;
 $es__page_footer:  "body > footer" !default;
 
 

@@ -2633,15 +2633,41 @@ body > * {
       height: auto;
       min-height: 100%;
       grid-template-columns: 5fr 2fr;
-      grid-template-rows: max-content auto max-content;
+      grid-template-rows: auto auto minmax(auto, 1fr) auto;
     }
     body > header,
     body > footer {
       padding: 1.2rem;
       grid-column: 1 / -1;
     }
+    body > header {
+      grid-row: 1;
+    }
+    body > footer {
+      grid-row: -1;
+    }
     body > main {
       grid-column: 1;
+      grid-row: 2 / -1;
+    }
+    body > header + main:nth-last-child(3) {
+      grid-column: 1 / -1;
+    }
+    body > aside {
+      grid-column: 2;
+      grid-row: 2;
+    }
+    /*
+            If there's no 'bottom' aside, we want the first one span 2 columns. Note this is the
+            only way I can think of doing this, but it's fragile - it will break if elements at this
+            level get added or removed.
+        */
+    body > aside:nth-last-child(4) {
+      grid-row: 2 / -1;
+    }
+    body > main + aside {
+      grid-column: 2;
+      grid-row: 3;
     }
     /*
             Note this is the *template* sidebar - content in a sidebar that appears on all pages.

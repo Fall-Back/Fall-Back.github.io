@@ -47,21 +47,21 @@ body_end_script: |
         }
     }
 
-    var sidebar = document.getElementById("sidebar") ? false : document.getElementById("sidebar");
+    var sidebar_bottom = document.getElementById("sidebar_bottom") ? false : document.getElementById("sidebar_bottom");
 
-    function show_sidebar () {
-        if (!sidebar) {
+    function show_sidebar_bottom () {
+        if (!sidebar_bottom) {
             return;
         }
         var el = document.createElement('aside');
-        el.id = 'sidebar';
-        el.innerHTML = sidebar.innerHTML;
+        el.id = 'sidebar_bottom';
+        el.innerHTML = sidebar_bottom.innerHTML;
         
         document.getElementById("main").insertAdjacentElement('afterend', el);
     }
 
-    function hide_sidebar () {
-        var el = document.getElementById("sidebar");
+    function hide_sidebar_bottom () {
+        var el = document.getElementById("sidebar_bottom");
         
         if (!el) {
             return;
@@ -70,21 +70,21 @@ body_end_script: |
         el.parentNode.removeChild(el);
     }
 
-    var el = document.getElementById("show-sidebar");
+    var el = document.getElementById("show-sidebar_bottom");
     if (el) {
         if (el.addEventListener) {
-            el.addEventListener("click", show_sidebar, false);
+            el.addEventListener("click", show_sidebar_bottom, false);
         } else {
-            el.attachEvent('onclick', show_sidebar);
+            el.attachEvent('onclick', show_sidebar_bottom);
         }
     }
 
-    var el = document.getElementById("hide-sidebar");
+    var el = document.getElementById("hide-sidebar_bottom");
     if (el) {
         if (el.addEventListener) {
-            el.addEventListener("click", hide_sidebar, false);
+            el.addEventListener("click", hide_sidebar_bottom, false);
         } else {
-            el.attachEvent('onclick', hide_sidebar);
+            el.attachEvent('onclick', hide_sidebar_bottom);
         }
     }
 ---
@@ -118,6 +118,12 @@ body_end_script: |
                     </li>
                     <li>
                         {% include nav_item.html
+                            href="/dev/elementary/page-layout-listing-sidebars/"
+                            text="Page Layout - Listing with Sidebars"
+                        %}
+                    </li>
+                    <li>
+                        {% include nav_item.html
                             href="/dev/elementary/page-layout-listing-grid/"
                             text="Page Layout - Listing - Grid"
                         %}
@@ -139,13 +145,29 @@ body_end_script: |
         </nav>
         
     </header>
+    
+        
+    {% if page.sidebar_top %}
+    <aside id="sidebar_top">
+        <p>This sidebar could contain anything, like this Table of Contents:</p>
+        
+        <h2>Contents</h2>
+        <ul>
+            <li><a href="#1">Non-functional ToC example item</a></li>
+            <li><a href="#2">Non-functional ToC example item</a></li>
+            <li><a href="#3">Non-functional ToC example item</a></li>
+            <li><a href="#4">Non-functional ToC example item</a></li>
+        </ul>
+        
+    </aside>
+    {% endif %}
 
     <main id="main">
         {{ content }}
     </main>
     
-    {% if page.sidebar %}
-    <aside id="sidebar">
+    {% if page.sidebar_bottom %}
+    <aside id="sidebar_bottom">
         <p>This sidebar could contain anything, like this card:</p>
         
         {% include card.html
