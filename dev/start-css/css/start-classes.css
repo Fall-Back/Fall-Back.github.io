@@ -454,6 +454,9 @@ article {
 aside {
   display: block;
   margin-bottom: 2.4rem;
+  padding: 2.4rem;
+  background-color: #fff;
+  color: #333;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -851,6 +854,7 @@ figure {
 footer {
   display: block;
   margin-bottom: 2.4rem;
+  padding: 2.4rem;
   background-color: #fff;
   color: #333;
 }
@@ -874,6 +878,9 @@ form {
 header {
   display: block;
   margin-bottom: 2.4rem;
+  padding: 2.4rem;
+  background-color: #fff;
+  color: #333;
 }
 
 /*-------------------------------------------------------------------------------------------------|

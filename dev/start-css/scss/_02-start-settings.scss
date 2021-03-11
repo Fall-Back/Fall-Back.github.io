@@ -144,6 +144,13 @@ $s__anchor-focus-shadow-width: 3px !default;
 
 
 
+$s__aside-padding: $s__base-rem-space-unit !default;
+$s__aside-text-color: $s__base-text-color !default;
+$s__aside-background-color: $s__base-background-color !default;
+
+
+
+
 $s__button-h-padding: $s__base-rem-space-unit / 4 !default;
 
 $s__button-text-color: #fff !default;
@@ -180,7 +187,7 @@ $s__fieldset-border-width: $s__border-width !default;
 $s__fieldset-padding: $s__base-rem-space-unit !default;
 
 
-
+$s__footer-padding: $s__base-rem-space-unit !default;
 $s__footer-text-color: $s__base-text-color !default;
 $s__footer-background-color: $s__base-background-color !default;
 
@@ -204,6 +211,13 @@ $s__h5-height:  $s__base-rem-space-unit !default;
 
 $s__h6-font-size: 16px / $s__base-font-size * 1em !default;
 $s__h6-height:  $s__base-rem-space-unit !default;
+
+
+
+
+$s__header-padding: $s__base-rem-space-unit !default;
+$s__header-text-color: $s__base-text-color !default;
+$s__header-background-color: $s__base-background-color !default;
 
 
 

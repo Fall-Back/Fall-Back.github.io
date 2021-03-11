@@ -9,4 +9,9 @@
     display: block;
 
     margin-bottom: $s__base-rem-space-unit;
+    
+    padding: $s__header-padding;
+
+    background-color: $s__header-background-color;
+    color: $s__header-text-color;
 }
