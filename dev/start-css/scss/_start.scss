@@ -433,6 +433,11 @@ body {
 //wbr {}
 //--xmp {}--
 
+
+/*
+    Utilities and other miscellaneous bits:
+*/
+
 /*
     1. Remove the tapping delay from clickable elements.
 */
@@ -452,6 +457,40 @@ body {
 
     text-shadow: $s__selection-text-shadow;
 }
+
+/*
+    Highlight :target-ed headings
+    Note I can't selected the whole section without it being wrapped in something, and I don't want
+    to mess around with that.
+*/
+main :target {
+       -moz-animation: target-fade 3s 1;
+    -webkit-animation: target-fade 3s 1;
+            animation: target-fade 3s 1;
+}
+
+@-moz-keyframes target-fade {
+    0% { background-color: rgba($s__target-highlight-color,0.4); box-shadow: 0 0 0 1.2rem rgba($s__target-highlight-color,0.4); }
+    100% { background-color: rgba($s__target-highlight-color,0); box-shadow: 0 0 0 1.2rem rgba($s__target-highlight-color,0); }
+}
+
+@-webkit-keyframes target-fade {
+    0% { background-color: rgba($s__target-highlight-color,0.4); box-shadow: 0 0 0 1.2rem rgba($s__target-highlight-color,0.4); }
+    100% { background-color: rgba($s__target-highlight-color,0); box-shadow: 0 0 0 1.2rem rgba($s__target-highlight-color,0); }
+}
+
+@keyframes target-fade {
+    0% { background-color: rgba($s__target-highlight-color,0.4); box-shadow: 0 0 0 1.2rem rgba($s__target-highlight-color,0.4); }
+    100% { background-color: rgba($s__target-highlight-color,0); box-shadow: 0 0 0 1.2rem rgba($s__target-highlight-color,0); }
+}
+
+/*
+    Give some space to elements targeted by fragments:
+*/
+[id] {
+    scroll-margin-top: $s__scroll-margin-top;
+}
+
 
 @import '_start-accessibility.scss';
 @import '_start-experimental.scss';

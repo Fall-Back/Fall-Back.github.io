@@ -1,3 +1,7 @@
+/*
+    IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
+    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
+*/
 /*! Start-CSS. See SCSS file for documentation. */
 /*-------------------------------------------------------------------------------------------------|
 
@@ -851,6 +855,8 @@ figure {
 footer {
   display: block;
   margin-bottom: 2.4rem;
+  background-color: #fff;
+  color: #333;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -2077,6 +2083,9 @@ video {
 }
 
 /*
+    Utilities and other miscellaneous bits:
+*/
+/*
     1. Remove the tapping delay from clickable elements.
 */
 [tabindex] {
@@ -2094,6 +2103,57 @@ video {
   color: #fff;
   background-color: #7cc3e1;
   text-shadow: none;
+}
+
+/*
+    Highlight :target-ed headings
+    Note I can't selected the whole section without it being wrapped in something, and I don't want
+    to mess around with that.
+*/
+main :target {
+  -moz-animation: target-fade 3s 1;
+  -webkit-animation: target-fade 3s 1;
+  animation: target-fade 3s 1;
+}
+
+@-moz-keyframes target-fade {
+  0% {
+    background-color: rgba(124, 195, 225, 0.4);
+    box-shadow: 0 0 0 1.2rem rgba(124, 195, 225, 0.4);
+  }
+  100% {
+    background-color: rgba(124, 195, 225, 0);
+    box-shadow: 0 0 0 1.2rem rgba(124, 195, 225, 0);
+  }
+}
+
+@-webkit-keyframes target-fade {
+  0% {
+    background-color: rgba(124, 195, 225, 0.4);
+    box-shadow: 0 0 0 1.2rem rgba(124, 195, 225, 0.4);
+  }
+  100% {
+    background-color: rgba(124, 195, 225, 0);
+    box-shadow: 0 0 0 1.2rem rgba(124, 195, 225, 0);
+  }
+}
+
+@keyframes target-fade {
+  0% {
+    background-color: rgba(124, 195, 225, 0.4);
+    box-shadow: 0 0 0 1.2rem rgba(124, 195, 225, 0.4);
+  }
+  100% {
+    background-color: rgba(124, 195, 225, 0);
+    box-shadow: 0 0 0 1.2rem rgba(124, 195, 225, 0);
+  }
+}
+
+/*
+    Give some space to elements targeted by fragments:
+*/
+[id] {
+  scroll-margin-top: 4.8rem;
 }
 
 /*! Start-CSS Accessibility. See SCSS file for documentation. */

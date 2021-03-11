@@ -181,6 +181,11 @@ $s__fieldset-padding: $s__base-rem-space-unit !default;
 
 
 
+$s__footer-text-color: $s__base-text-color !default;
+$s__footer-background-color: $s__base-background-color !default;
+
+
+
 
 $s__h1-font-size: 52px / $s__base-font-size * 1em !default;
 $s__h1-height:  $s__base-rem-space-unit * 2.5 !default;
@@ -355,3 +360,10 @@ $s__video-background-color: #333 !default;
 $s__selection-text-color: #fff;
 $s__selection-background-color: lighten($s__base-ui-color, 30%) !default;
 $s__selection-text-shadow: none;
+
+
+// Target highlights:
+$s__target-highlight-color: lighten($s__base-ui-color, 30%) !default;
+
+// Scroll:
+$s__scroll-margin-top: $s__base-rem-space-unit * 2 !default;

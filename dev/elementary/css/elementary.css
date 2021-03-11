@@ -856,6 +856,8 @@ figure {
 footer {
   display: block;
   margin-bottom: 2.4rem;
+  background-color: #fff;
+  color: #333;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -2082,6 +2084,9 @@ video {
 }
 
 /*
+    Utilities and other miscellaneous bits:
+*/
+/*
     1. Remove the tapping delay from clickable elements.
 */
 [tabindex] {
@@ -2099,6 +2104,57 @@ video {
   color: #fff;
   background-color: #e95f36;
   text-shadow: none;
+}
+
+/*
+    Highlight :target-ed headings
+    Note I can't selected the whole section without it being wrapped in something, and I don't want
+    to mess around with that.
+*/
+main :target {
+  -moz-animation: target-fade 3s 1;
+  -webkit-animation: target-fade 3s 1;
+  animation: target-fade 3s 1;
+}
+
+@-moz-keyframes target-fade {
+  0% {
+    background-color: rgba(233, 95, 54, 0.4);
+    box-shadow: 0 0 0 1.2rem rgba(233, 95, 54, 0.4);
+  }
+  100% {
+    background-color: rgba(233, 95, 54, 0);
+    box-shadow: 0 0 0 1.2rem rgba(233, 95, 54, 0);
+  }
+}
+
+@-webkit-keyframes target-fade {
+  0% {
+    background-color: rgba(233, 95, 54, 0.4);
+    box-shadow: 0 0 0 1.2rem rgba(233, 95, 54, 0.4);
+  }
+  100% {
+    background-color: rgba(233, 95, 54, 0);
+    box-shadow: 0 0 0 1.2rem rgba(233, 95, 54, 0);
+  }
+}
+
+@keyframes target-fade {
+  0% {
+    background-color: rgba(233, 95, 54, 0.4);
+    box-shadow: 0 0 0 1.2rem rgba(233, 95, 54, 0.4);
+  }
+  100% {
+    background-color: rgba(233, 95, 54, 0);
+    box-shadow: 0 0 0 1.2rem rgba(233, 95, 54, 0);
+  }
+}
+
+/*
+    Give some space to elements targeted by fragments:
+*/
+[id] {
+  scroll-margin-top: 4.8rem;
 }
 
 /*! Start-CSS Accessibility. See SCSS file for documentation. */
