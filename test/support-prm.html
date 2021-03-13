@@ -1,0 +1,118 @@
+<!doctype html>
+<html class="no-js" lang="en-gb">
+<head>
+    <meta charset="utf-8" />
+    <title>Support Tests - PCS</title>
+
+    <meta name="description" content="CSS-Only Mustard Cut support test page">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--
+        Print (Edge doesn't apply to print otherwise)
+        ...  
+    -->
+    <link rel="stylesheet" href="mq-test.css" media="
+        only print,
+        only all and (prefers-reduced-motion: no-preference),
+        only all and (prefers-reduced-motion: reduce)
+    ">
+
+    <style>
+    	body {
+            padding: 1em;
+        }
+
+        #browser_info {
+            border-spacing: 0;
+            border-collapse: collapse;
+            margin: 0 auto;
+            background: #fff;
+        }
+
+        #browser_info caption {
+            font-weight: bold;
+            margin-bottom: 0;
+            padding: 0.5em;
+            background: #aaa;
+            border: 1px solid #666;
+        }
+
+        #browser_info th,
+        #browser_info td {
+            padding: 1em;
+            border: 1px solid #666;
+        }
+    </style>
+
+</head>
+<body role="document">
+    <h1>Support Tests - PCS</h1>
+
+    <main>
+
+        <p>This page should be green if the CSS has loaded.</p>
+        <p>The CSS has <strong class="not">NOT</strong> loaded.</p>
+
+        <h2>Browser support</h2>
+
+        <ul>
+            <li>...</li>
+        </ul>
+
+        <table id="browser_info">
+            <caption>Browser info</caption>
+            <thead>
+                <tr><th>Name</th><th>Value</th></tr>
+            </thead>
+            <tbody>
+                <tr><td colspan="2">No Javascript - unable to detect anything!</td></tr>
+            </tbody>
+        </table>
+
+        <h2>Stylesheet declarations:</h2>
+        <pre><code>&lt;!--
+    Print (Edge doesn't apply to print otherwise)
+    ...
+--&gt;
+&lt;link rel="stylesheet" href="css/mq-test.css" media="
+    only print,
+    ...
+"&gt;</code></pre>
+
+        <h2>Notes</h2>
+        <p>...</p>
+    </main>
+
+
+    <script>
+    // Attempt at building a browser-info display tool:
+    window.onload = (function(onload) {
+        return function(event) {
+            onload && onload(event);
+
+            var browser_info = {
+                'User agent': navigator.userAgent,
+                'Device pixel ratio': window.devicePixelRatio,
+                'Viewport width': document.documentElement.clientWidth,
+                'Viewport height': document.documentElement.clientHeight,
+                'Device width': window.screen.availWidth,
+                'Device height': window.screen.availHeight
+            };
+
+            var browser_info_table = document.getElementById('browser_info');
+            var browser_info_body  = browser_info_table.tBodies[0];
+            var row, cell1, cell2;
+            browser_info_body.deleteRow(0);
+
+            for (i in browser_info) {
+                row   = browser_info_body.insertRow(-1);
+                cell1 = row.insertCell(-1);
+                cell1.innerHTML = i;
+                cell2 = row.insertCell(-1);
+                cell2.innerHTML = browser_info[i];
+            }
+        }
+    }(window.onload));
+    </script>
+</body>
+</html>
