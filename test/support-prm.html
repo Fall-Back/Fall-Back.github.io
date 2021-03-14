@@ -56,7 +56,14 @@
         <h2>Browser support</h2>
 
         <ul>
-            <li>...</li>
+            <li>Cuts off all IE</li>
+            <li>Edge 79+</li>
+            <li>Chrome 74+</li>
+            <li>FF 63+</li>
+            <li>Opera 64+</li>
+            <li>Safari 10.1+</li>
+            <li>iOS 10.3+</li>
+            <li>Android 81+</li>
         </ul>
         
         <p>
@@ -76,10 +83,12 @@
         <h2>Stylesheet declarations:</h2>
         <pre><code>&lt;!--
     Print (Edge doesn't apply to print otherwise)
-    ...
+    Edge 79+, Chrome 74+, Firefox 63+, Opera 64+, Safari 10.1+, iOS 10.3+, Android 81+
 --&gt;
 &lt;link rel="stylesheet" href="css/mq-test.css" media="
     only print,
+    only all and (prefers-reduced-motion: no-preference),
+    only all and (prefers-reduced-motion: reduce)
     ...
 "&gt;</code></pre>
 
