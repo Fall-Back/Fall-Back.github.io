@@ -6,5 +6,9 @@
 |-------------------------------------------------------------------------------------------------*/
 
 #{$s__namespace}form {
-    margin-bottom: $s__base-rem-space-unit;
+    @if $s__proceedural-margins {
+        margin-bottom: $s__base-rem-space-unit;
+    } @else {
+        margin-bottom: 0;
+    }
 }

@@ -6,7 +6,11 @@
 |-------------------------------------------------------------------------------------------------*/
 
 #{$s__namespace}blockquote {
-    margin-bottom: $s__base-rem-space-unit;
+    @if $s__proceedural-margins {
+        margin-bottom: $s__base-rem-space-unit;
+    } @else {
+        margin-bottom: 0;
+    }
     margin-left: $s__base-rem-space-unit;
 
     font-style: italic;

@@ -15,8 +15,12 @@
 
     border-collapse: collapse;
 
-    margin-bottom: $s__base-rem-space-unit; /* 1 */
-    margin-bottom: calc(#{$s__base-rem-space-unit} - #{$s__table-border-width}); /* 2 */
+    @if $s__proceedural-margins {
+            margin-bottom: $s__base-rem-space-unit; /* 1 */
+            margin-bottom: calc(#{$s__base-rem-space-unit} - #{$s__table-border-width}); /* 2 */
+    } @else {
+        margin-bottom: - #{$s__table-border-width};
+    }
 
     border: $s__table-border;
 

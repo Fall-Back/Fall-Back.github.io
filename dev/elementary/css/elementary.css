@@ -321,7 +321,7 @@ body {
   min-height: 100%;
   max-width: 50em;
   margin: 0 auto;
-  padding: 0 2.4rem;
+  padding: 2.4rem;
   font-family: "Lato", sans-serif;
   font-size: 1.6em;
   line-height: 2.4rem;
@@ -686,13 +686,10 @@ details {
   border-style: solid;
   border-color: #79260D;
   padding-top: 2.4rem;
-  padding-top: -moz-calc(2.4rem - 1px);
   padding-top: calc(2.4rem - 1px);
   padding-left: 2.4rem;
-  padding-left: -moz-calc(2.4rem - 1px);
   padding-left: calc(2.4rem - 1px);
   padding-right: 2.4rem;
-  padding-right: -moz-calc(2.4rem - 1px);
   padding-right: calc(2.4rem - 1px);
 }
 
@@ -702,7 +699,6 @@ details::after {
   height: 1px;
   margin-top: 2.4rem;
   margin-bottom: -1px;
-  margin-bottom: -moz-calc(-1px - 1px);
   margin-bottom: calc(-1px - 1px);
 }
 
@@ -790,13 +786,10 @@ fieldset {
   border-style: solid;
   border-color: #79260D;
   padding-top: 2.4rem;
-  padding-top: -moz-calc(2.4rem - 1px);
   padding-top: calc(2.4rem - 1px);
   padding-left: 2.4rem;
-  padding-left: -moz-calc(2.4rem - 1px);
   padding-left: calc(2.4rem - 1px);
   padding-right: 2.4rem;
-  padding-right: -moz-calc(2.4rem - 1px);
   padding-right: calc(2.4rem - 1px);
 }
 
@@ -806,7 +799,6 @@ fieldset::after {
   height: 1px;
   margin-top: 2.4rem;
   margin-bottom: -1px;
-  margin-bottom: -moz-calc(-1px - 1px);
   margin-bottom: calc(-1px - 1px);
 }
 
@@ -1377,7 +1369,7 @@ li ol {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START-CSS ELEMENT: main`
+    START-CSS ELEMENT: main
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1390,13 +1382,10 @@ main {
   width: 100%;
   min-height: 100%;
   padding: 2.4rem;
+  margin-bottom: 2.4rem;
   background-color: #f9d1c4;
   color: #333;
   position: relative;
-  -webkit-flex: 1 0 auto;
-  -moz-box-flex: 1;
-  -ms-flex: 1 0 auto;
-  flex: 1 0 auto;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -2164,6 +2153,90 @@ main :target {
   scroll-margin-top: 4.8rem;
 }
 
+/* Alt margins */
+/*
+Shelving this for now
+@if $s__proceedural-margins == false {
+    /* this is too generic 
+    * + * {
+        margin-top: $s__base-rem-space-unit;
+    }
+    /
+    
+    /* This is the full list but it's not exactly what we want:
+    * + address,
+    * + article,
+    * + aside,
+    * + blockquote,
+    * + details,
+    * + dialog,
+    * + dd,
+    * + div,
+    * + dl,
+    * + dt,
+    * + fieldset,
+    * + figcaption,
+    * + figure,
+    * + footer,
+    * + form,
+    * + h1,
+    * + h2,
+    * + h3,
+    * + h4,
+    * + h5,
+    * + h6,
+    * + header,
+    * + hgroup,
+    * + hr,
+    * + li,
+    * + main,
+    * + nav,
+    * + ol,
+    * + p,
+    * + pre,
+    * + section,
+    * + table,
+    * + ul
+    /
+    
+    /*
+        Taking out list items, hr and div:
+    /
+    *:not(legend):not(figcaption) + address,
+    *:not(legend):not(figcaption) + article,
+    *:not(legend):not(figcaption) + aside,
+    *:not(legend):not(figcaption) + blockquote,
+    *:not(legend):not(figcaption) + details,
+    *:not(legend):not(figcaption) + dialog,
+    *:not(legend):not(figcaption) + dl,
+    *:not(legend):not(figcaption) + fieldset,
+    *:not(legend):not(figcaption) + figure,
+    *:not(legend):not(figcaption) + footer,
+    *:not(legend):not(figcaption) + form,
+    *:not(legend):not(figcaption) + h1,
+    *:not(legend):not(figcaption) + h2,
+    *:not(legend):not(figcaption) + h3,
+    *:not(legend):not(figcaption) + h4,
+    *:not(legend):not(figcaption) + h5,
+    *:not(legend):not(figcaption) + h6,
+    *:not(legend):not(figcaption) + header,
+    *:not(legend):not(figcaption) + hgroup,
+    *:not(legend):not(figcaption) + main,
+    *:not(legend):not(figcaption) + nav,
+    *:not(legend):not(figcaption) + ol,
+    *:not(legend):not(figcaption) + p,
+    *:not(legend):not(figcaption) + pre,
+    *:not(legend):not(figcaption) + section,
+    *:not(legend):not(figcaption) + table,
+    *:not(legend):not(figcaption) + ul {
+        margin-top: $s__base-rem-space-unit;
+    }
+    
+    hr {
+        margin-top: calc(2.4rem - 1px;
+    }
+} 
+*/
 /*! Start-CSS Accessibility. See SCSS file for documentation. */
 /*-------------------------------------------------------------------------------------------------|
 
@@ -3079,13 +3152,10 @@ body > main > * > header ~ div > figure {
   border-style: solid;
   border-color: #79260D;
   padding-top: 2.4rem;
-  padding-top: -moz-calc(2.4rem - 0);
   padding-top: calc(2.4rem - 0);
   padding-left: 2.4rem;
-  padding-left: -moz-calc(2.4rem - 0);
   padding-left: calc(2.4rem - 0);
   padding-right: 2.4rem;
-  padding-right: -moz-calc(2.4rem - 0);
   padding-right: calc(2.4rem - 0);
 }
 
@@ -3096,7 +3166,6 @@ body > main > * > header ~ div > figure::after {
   height: 1px;
   margin-top: 2.4rem;
   margin-bottom: -1px;
-  margin-bottom: -moz-calc(-1px - 0);
   margin-bottom: calc(-1px - 0);
 }
 

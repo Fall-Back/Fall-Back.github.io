@@ -262,7 +262,19 @@ body {
 
     background-color: $s__body-background-color;
     color: $s__body-text-color;
+    
+    @if $s__use-layout {
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: column;
+           -moz-box-orient: vertical;
+           -moz-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
 
+    }
 }
 
 /* IE9-11 */
@@ -491,11 +503,112 @@ main :target {
     scroll-margin-top: $s__scroll-margin-top;
 }
 
+@if $s__use-last-child-margin-zero {
+    :last-child {
+        margin-bottom: 0;
+    }
+}
+
+@if $s__use-layout {
+    body > * {
+        margin-bottom: 0;
+    }
+}
+
+/* Alt margins */
+/*
+Shelving this for now
+@if $s__proceedural-margins == false {
+    /* this is too generic 
+    * + * {
+        margin-top: $s__base-rem-space-unit;
+    }
+    /
+    
+    /* This is the full list but it's not exactly what we want:
+    * + address,
+    * + article,
+    * + aside,
+    * + blockquote,
+    * + details,
+    * + dialog,
+    * + dd,
+    * + div,
+    * + dl,
+    * + dt,
+    * + fieldset,
+    * + figcaption,
+    * + figure,
+    * + footer,
+    * + form,
+    * + h1,
+    * + h2,
+    * + h3,
+    * + h4,
+    * + h5,
+    * + h6,
+    * + header,
+    * + hgroup,
+    * + hr,
+    * + li,
+    * + main,
+    * + nav,
+    * + ol,
+    * + p,
+    * + pre,
+    * + section,
+    * + table,
+    * + ul
+    /
+    
+    /*
+        Taking out list items, hr and div:
+    /
+    *:not(legend):not(figcaption) + address,
+    *:not(legend):not(figcaption) + article,
+    *:not(legend):not(figcaption) + aside,
+    *:not(legend):not(figcaption) + blockquote,
+    *:not(legend):not(figcaption) + details,
+    *:not(legend):not(figcaption) + dialog,
+    *:not(legend):not(figcaption) + dl,
+    *:not(legend):not(figcaption) + fieldset,
+    *:not(legend):not(figcaption) + figure,
+    *:not(legend):not(figcaption) + footer,
+    *:not(legend):not(figcaption) + form,
+    *:not(legend):not(figcaption) + h1,
+    *:not(legend):not(figcaption) + h2,
+    *:not(legend):not(figcaption) + h3,
+    *:not(legend):not(figcaption) + h4,
+    *:not(legend):not(figcaption) + h5,
+    *:not(legend):not(figcaption) + h6,
+    *:not(legend):not(figcaption) + header,
+    *:not(legend):not(figcaption) + hgroup,
+    *:not(legend):not(figcaption) + main,
+    *:not(legend):not(figcaption) + nav,
+    *:not(legend):not(figcaption) + ol,
+    *:not(legend):not(figcaption) + p,
+    *:not(legend):not(figcaption) + pre,
+    *:not(legend):not(figcaption) + section,
+    *:not(legend):not(figcaption) + table,
+    *:not(legend):not(figcaption) + ul {
+        margin-top: $s__base-rem-space-unit;
+    }
+    
+    hr {
+        margin-top: calc(#{$s__base-rem-space-unit} - #{$s__hr-border-width};
+    }
+} 
+*/
+
+
 
 @import '_start-accessibility.scss';
 @import '_start-experimental.scss';
 //@import '_start-utilities.scss';
 //@import '_start-icons.scss';
+
+
+
 
 
 /*! End Start-CSS */

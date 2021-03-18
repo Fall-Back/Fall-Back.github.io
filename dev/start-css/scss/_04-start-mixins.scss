@@ -32,29 +32,36 @@
     border-color: $border-color;
 
     padding-top:   #{$padding};
-    padding-top:   -moz-calc(#{$padding} - #{$border-width});
+    //padding-top:   -moz-calc(#{$padding} - #{$border-width});
     padding-top:        calc(#{$padding} - #{$border-width});
 
     padding-left:  #{$padding};
-    padding-left:  -moz-calc(#{$padding} - #{$border-width});
+    //padding-left:  -moz-calc(#{$padding} - #{$border-width});
     padding-left:       calc(#{$padding} - #{$border-width});
 
     padding-right: #{$padding};
-    padding-right: -moz-calc(#{$padding} - #{$border-width});
+    //padding-right: -moz-calc(#{$padding} - #{$border-width});
     padding-right:      calc(#{$padding} - #{$border-width});
 
-    &::after {
-        display: block;
 
-        content: "";
+    @if $s__use-last-child-margin-zero {
+        padding-bottom: #{$padding};
+        //padding-bottom: -moz-calc(#{$padding} - #{$border-width});
+        padding-bottom:      calc(#{$padding} - #{$border-width});
+    } @else {
+        &::after {
+            display: block;
 
-        height: 1px;
+            content: "";
 
-        margin-top: $padding;
+            height: 1px;
 
-        margin-bottom: -1px;
-        margin-bottom: -moz-calc(-1px - #{$border-width});
-        margin-bottom:      calc(-1px - #{$border-width});
+            margin-top: $padding;
+
+            margin-bottom: -1px;
+            //margin-bottom: -moz-calc(-1px - #{$border-width});
+            margin-bottom:      calc(-1px - #{$border-width});
+        }
     }
 }
 

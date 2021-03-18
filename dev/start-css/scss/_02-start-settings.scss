@@ -35,6 +35,11 @@ $s__mq-1-em-px:             0.0625em;
 
 
 
+$s__proceedural-margins: true !default;
+$s__use-last-child-margin-zero: false !default;
+$s__use-layout: false !default;
+
+
 $s__tabsize: 4 !default;
 
 $s__experimental: false !default;
@@ -108,7 +113,7 @@ $s__html-background-color: darken($s__base-ui-color, 25%) !default;
 
 // <body>
 $s__body-padding_size: $s__base-rem-space-unit !default;
-$s__body-padding: 0 $s__body-padding_size !default;
+$s__body-padding: $s__body-padding_size !default;
 $s__body-margin: 0 !default;
 $s__body-min-width: 250px !default;
 $s__body-max-width: 50em !default;

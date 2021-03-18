@@ -363,6 +363,10 @@ $fs__include_class_poem:          true !default;
         font-family: cursive;
         background: #fff;
         overflow: auto;
-        margin-bottom: $s__base-rem-space-unit;
+        @if $s__proceedural-margins {
+            margin-bottom: $s__base-rem-space-unit;
+        } @else {
+            margin-bottom: 0;
+        }
     }
 }

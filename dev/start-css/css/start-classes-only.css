@@ -385,13 +385,10 @@ a[href].cta--has-icon .icon {
   border-style: solid;
   border-color: #247BA0;
   padding-top: 24px;
-  padding-top: -moz-calc(24px - 6px);
   padding-top: calc(24px - 6px);
   padding-left: 24px;
-  padding-left: -moz-calc(24px - 6px);
   padding-left: calc(24px - 6px);
   padding-right: 24px;
-  padding-right: -moz-calc(24px - 6px);
   padding-right: calc(24px - 6px);
 }
 
@@ -401,7 +398,6 @@ a[href].cta--has-icon .icon {
   height: 1px;
   margin-top: 24px;
   margin-bottom: -1px;
-  margin-bottom: -moz-calc(-1px - 6px);
   margin-bottom: calc(-1px - 6px);
 }
 
@@ -410,13 +406,10 @@ a[href].cta--has-icon .icon {
   border-style: solid;
   border-color: #247BA0;
   padding-top: 2.4rem;
-  padding-top: -moz-calc(2.4rem - 0px);
   padding-top: calc(2.4rem - 0px);
   padding-left: 2.4rem;
-  padding-left: -moz-calc(2.4rem - 0px);
   padding-left: calc(2.4rem - 0px);
   padding-right: 2.4rem;
-  padding-right: -moz-calc(2.4rem - 0px);
   padding-right: calc(2.4rem - 0px);
 }
 
@@ -426,7 +419,6 @@ a[href].cta--has-icon .icon {
   height: 1px;
   margin-top: 2.4rem;
   margin-bottom: -1px;
-  margin-bottom: -moz-calc(-1px - 0px);
   margin-bottom: calc(-1px - 0px);
 }
 

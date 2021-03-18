@@ -8,7 +8,11 @@
 #{$s__namespace}footer {
     display: block;
 
-    margin-bottom: $s__base-rem-space-unit;
+    @if $s__proceedural-margins {
+        margin-bottom: $s__base-rem-space-unit;
+    } @else {
+        margin-bottom: 0;
+    }
     
     padding: $s__footer-padding;
 
