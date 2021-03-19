@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en-gb" class="" id="tfs-not-allowed>
+    <head>
+    <meta charset="utf-8">
+    <title>Tiny FallBack Styles - Not Allowed</title>
+    <meta name="description" content="Dashboard Styleguide">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* Tiny Fall-Back Styles (https://github.com/Fall-Back/Patterns/edit/master/Page/README.md) */
+        body{font-family:sans-serif;line-height:1.2;padding:1em;margin:0 auto;max-width:50em;}
+        img{max-width:100%;-ms-interpolation-mode:bicubic;}
+        [hidden]{display:none;}
+        main{display:block;}
+        hr{border-top:1px solid;border-bottom:0 none;height:0px;}
+        fieldset{border:1px solid;}
+        pre{overflow-x:scroll;overflow-y:auto;}
+        button,input,select,textarea{vertical-align:middle;}
+        /* For YouTube via http://embedresponsively.com. May or may not be needed. */
+        .embed-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;} .embed-container iframe, .embed-container object, .embed-container embed{position:absolute;top 0;left:0;width:100%;height:100%;}
+    </style>
+    <!--
+        Accessible font loading. FOUT is a lesser evil than FOIT.
+        (https://keithclark.co.uk/articles/loading-css-without-blocking-render/)
+        -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+    </head>
+    <body role="document">
+        <main>
+            <h1>Tiny FallBack Styles (TFS) Test Page</h1>
+            <p><strong>Disclaimer</strong> Many of these patterns use unconventional or deprecated elements and attriutes. I risk being outlawed just by demonstating them!</p>
+            <h2>Example 1 - Borders with a Fieldset</h2>
+            <fieldset role="presentation">
+                <p>This content is 'boxed in'
+                <p>
+            </fieldset>
+            <h2>Example 2 - Side-by-Side with a Table</h2>
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" role="presentation">
+                <tbody>
+                    <tr valign="top">
+                        <td>
+                            Left content
+                        </td>
+                        <td align="right">
+                            Right content
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </body>
+</html>
