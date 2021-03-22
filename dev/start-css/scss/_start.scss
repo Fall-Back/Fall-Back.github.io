@@ -38,11 +38,11 @@
 // Let the other Fall-Back patterns know that start is being used:
 $s__using-Start-CSS: true;
 
+@import '_01-start-functions.scss';
+@import '_02-start-mixins.scss';
+@import '_03-start-tokens.scss';
+@import '_04-start-settings.scss';
 
-@import '_01-start-tokens.scss';
-@import '_02-start-settings.scss';
-@import '_03-start-functions.scss';
-@import '_04-start-mixins.scss';
 
 
 //@debug ($s__base-rem-space-unit / 8) - ((($s__input-border-width + 0px) / 1px) * $s__base-rem-1px);
@@ -287,12 +287,36 @@ body {
 }
 
 /*
+    @DEPRECATED - use the clearer method below:
     CSS only message
 */
 [data-css-only="true"] {
     display: none;
 }
 
+/*
+    New method hide stuff if CSS has loaded:
+*/
+[data-if-css="hide"] {
+    display: none;
+}
+
+/*
+    This method duplicates [hidden="false"][aria-hidden="false"] in accessibilty.scss, but I'm
+    thinking of maybe deprecating that.
+*/
+[data-if-css="visually-hide"] {
+    clip: rect(0 0 0 0);
+    position: absolute;
+
+    display: inline;
+    /*border: 0;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    width: 1px;*/
+}
 
 
 /*------------------------------------------------------------------------------------------------*\
@@ -518,7 +542,7 @@ main :target {
 /* Alt margins */
 /*
 Shelving this for now
-@if $s__proceedural-margins == false {
+@if $s__procedural-margins == false {
     /* this is too generic 
     * + * {
         margin-top: $s__base-rem-space-unit;

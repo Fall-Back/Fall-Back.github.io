@@ -21,7 +21,7 @@
 #{$s__namespace}ul {
     //overflow: hidden; /* 1a */
 
-    @if $s__proceedural-margins {
+    @if $s__procedural-margins {
         margin-bottom: $s__base-rem-space-unit;
     } @else {
         margin-bottom: 0;

@@ -101,46 +101,53 @@ body_end_script: |
         
         <nav aria-labelledby="primary-navigation">
             <b id="primary-navigation" hidden>Primary</b>
-            <!--<details>
-                <summary><svg display="none" focusable="false" aria-hidden="true"><use xlink:href="#icon-menu"></use></svg><svg display="none" focusable="false" aria-hidden="true"><use xlink:href="#icon-cross"></use></svg></summary>-->
-                <ul>
-                    <li>
+            <!--
+            <details>
+                <summary><svg display="none" focusable="false" aria-hidden="true"><use xlink:href="#icon-menu"></use></svg><svg display="none" focusable="false" aria-hidden="true"><use xlink:href="#icon-cross"></use></svg><span data-if-css="visually-hide">Main Menu</span></summary>
+                -->
+                <p role="list">
+                    <span role="listitem">
                         {% include nav_item.html
                             href="/dev/elementary/page-layout-article/"
                             text="Page Layout - Article"
+                            right_separator="&emsp;"
                         %}
-                    </li>
-                    <li>
+                    </span>
+                    <span role="listitem">
                         {% include nav_item.html
                             href="/dev/elementary/page-layout-listing/"
                             text="Page Layout - Listing"
+                            right_separator="&emsp;"
                         %}
-                    </li>
-                    <li>
+                    </span>
+                    <span role="listitem">
                         {% include nav_item.html
                             href="/dev/elementary/page-layout-listing-sidebars/"
                             text="Page Layout - Listing with Sidebars"
+                            right_separator="&emsp;"
                         %}
-                    </li>
-                    <li>
+                    </span>
+                    <span role="listitem">
                         {% include nav_item.html
                             href="/dev/elementary/page-layout-listing-grid/"
                             text="Page Layout - Listing - Grid"
+                            right_separator="&emsp;"
                         %}
-                    </li>
-                    <li>
+                    </span>
+                    <span role="listitem">
                         {% include nav_item.html
                             href="/dev/elementary/page-layout-listing-columns/"
                             text="Page Layout - Listing - Columns"
+                            right_separator="&emsp;"
                         %}
-                    </li>
-                    <li>
+                    </span>
+                    <span role="listitem">
                         {% include nav_item.html
                             href="/dev/elementary/components/"
                             text="Components"
                         %}
-                    </li>
-                </ul>
+                    </span>
+                </p>
             <!--</details>-->
         </nav>
         
@@ -153,10 +160,10 @@ body_end_script: |
         
         <h2>Contents</h2>
         <ul>
-            <li><a href="#1">Non-functional ToC example item</a></li>
-            <li><a href="#2">Non-functional ToC example item</a></li>
-            <li><a href="#3">Non-functional ToC example item</a></li>
-            <li><a href="#4">Non-functional ToC example item</a></li>
+            <span role="listitem"><a href="#1">Non-functional ToC example item</a></li>
+            <span role="listitem"><a href="#2">Non-functional ToC example item</a></li>
+            <span role="listitem"><a href="#3">Non-functional ToC example item</a></li>
+            <span role="listitem"><a href="#4">Non-functional ToC example item</a></li>
         </ul>
         
     </aside>

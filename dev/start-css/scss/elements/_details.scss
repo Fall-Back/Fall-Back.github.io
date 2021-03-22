@@ -7,7 +7,7 @@
 
 #{$s__namespace}details {
     display: block; /* N: IE 10/11 */
-    @if $s__proceedural-margins {
+    @if $s__procedural-margins {
         margin-bottom: $s__base-rem-space-unit;
     } @else {
         margin-bottom: 0;

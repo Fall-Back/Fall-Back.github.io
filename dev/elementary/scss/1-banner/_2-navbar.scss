@@ -11,6 +11,193 @@
     margin: $s__sz-xs 0 0 0;
 }
 
+#{$es__page_banner__navbar} > p[role="list"],
+#{$es__page_banner__navbar} > details > p[role="list"] {
+    display: flex;
+    flex-wrap: wrap;
+
+    margin: 0;
+
+    list-style-type: none;
+}
+
+#{$es__page_banner__navbar} > p[role="list"] span[role="listitem"],
+#{$es__page_banner__navbar} > details > p[role="list"] span[role="listitem"] {
+    flex: 0 0 auto;
+
+    margin: 0 0 $s__sz-xs 0;
+
+    padding: 0;
+}
+
+@if $e__nav-bar__link--spacing != false {
+    #{$es__page_banner__navbar} > p[role="list"],
+    #{$es__page_banner__navbar} > details > p[role="list"] {
+        margin-left: -$e__nav-bar__link--spacing;
+    }
+
+    #{$es__page_banner__navbar} > p[role="list"] span[role="listitem"],
+    #{$es__page_banner__navbar} > details > p[role="list"] span[role="listitem"] {
+        margin-left: $e__nav-bar__link--spacing;
+    }
+}
+
+
+#{$es__page_banner__navbar} > p[role="list"] a[href],
+#{$es__page_banner__navbar} > details > p[role="list"] a[href] {
+    display: block;
+
+    margin: 0;
+
+    padding-top: 0;
+    padding-right: $e__nav-bar--spacing * 2;
+    padding-bottom: 0;
+    padding-left: $e__nav-bar--spacing * 2;
+
+    border: 0;
+    border-radius: $e__nav-bar__link--border-radius;
+
+    box-shadow: none;
+
+    line-height: $e__nav-bar--height;
+
+    text-decoration: none;
+}
+
+
+#{$es__page_banner__navbar} > p[role="list"] a[href],
+#{$es__page_banner__navbar} > details > p[role="list"] a[href] {
+    color: $e__nav-bar__link--color;
+    background-color: $e__nav-bar__link--background-color;
+}
+
+#{$es__page_banner__navbar} > p[role="list"] a[href][aria-current],
+#{$es__page_banner__navbar} > details > p[role="list"] a[href][aria-current],
+#{$es__page_banner__navbar} > details > summary {
+    color: $e__nav-bar__link--color--alt;
+    background-color: $e__nav-bar__link--background-color--alt2;
+}
+
+
+#{$es__page_banner__navbar} > p[role="list"] a[href]:hover,
+#{$es__page_banner__navbar} > p[role="list"] a[href]:active,
+#{$es__page_banner__navbar} > details > p[role="list"] a[href]:hover,
+#{$es__page_banner__navbar} > details > p[role="list"] a[href]:active,
+#{$es__page_banner__navbar} > details > summary:hover,
+#{$es__page_banner__navbar} > details > summary:active {
+    border: 0;
+
+    color: $e__nav-bar__link--color--alt;
+    background-color: $e__nav-bar__link--background-color--alt;
+}
+
+
+#{$es__page_banner__navbar} > p[role="list"] a[href]:focus,
+#{$es__page_banner__navbar} > details > p[role="list"] a[href]:focus,
+#{$es__page_banner__navbar} > details > summary:focus {
+    box-shadow: 0 0 0 $s__sz-xs rgba(0,0,0,.3);
+}
+
+
+
+#{$es__page_banner__navbar} > details {
+
+    margin: 0;
+
+    /*
+        1. `align-items: center;` is the obvious choice for vertical-center aligning the icons, but
+           for some reason iOS doesn't get it right, so I'm using padding instead for now since the
+           icon or container sizes shouldn't change.
+    */
+    & > summary {
+        position: absolute;
+        right: $s__sz-s;
+        top: $s__sz-s;
+        z-index: 1;
+
+        display: flex;
+        justify-content: center;
+        // align-items: center; /* [1] */
+
+        width: $s__sz-l;
+
+        height: $s__sz-l;
+
+        margin: 0;
+
+        //padding: 0; /* [1] */
+        //padding: 0.2rem; /* [1] */
+        padding: $s__sz-s; /* [1] */
+
+
+        & > :first-child {
+            display: inline;
+        }
+
+        & > :last-child {
+            display: none;
+        }
+
+        &::before {
+            display: none;
+        }
+    }
+
+    &[open] {
+        & > summary {
+
+            & > :first-child {
+                display: none;
+            }
+
+            & > :last-child {
+                display: inline;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+/*
+
+#{$es__page_banner__navbar} > ul a[href]:hover,
+#{$es__page_banner__navbar} > ul a[href]:active,
+#{$es__page_banner__navbar} > ul a[href] [aria-expanded="true"] {
+    border: 0;
+
+    color: $e__nav-bar__link--color--alt;
+    background-color: $e__nav-bar__link--background-color--alt;
+}
+
+#{$es__page_banner__navbar} > ul a[href]:focus {
+    border: 0;
+
+    color: $e__nav-bar__link--color--alt;
+    background-color: $e__nav-bar__link--background-color--alt2;
+
+    box-shadow: none;
+}
+*/
+
+
+
+/*
+
+Earlier version using ul list:
+(Note I changed it to use a `p` and `span`s to avoid default browser styling, and used aria roles to
+replace the list semantics.
+
+
+#{$es__page_banner__navbar} {
+    flex: 1 1 auto;
+
+    margin: $s__sz-xs 0 0 0;
+}
+
 #{$es__page_banner__navbar} > ul,
 #{$es__page_banner__navbar} > details > ul {
     display: flex;
@@ -108,7 +295,7 @@
         1. `align-items: center;` is the obvious choice for vertical-center aligning the icons, but
            for some reason iOS doesn't get it right, so I'm using padding instead for now since the
            icon or container sizes shouldn't change.
-    */
+    * /
     & > summary {
         position: absolute;
         right: $s__sz-s;
@@ -117,7 +304,7 @@
 
         display: flex;
         justify-content: center;
-        // align-items: center; /* [1] */
+        // align-items: center; /* [1] * /
 
         width: $s__sz-l;
 
@@ -125,9 +312,9 @@
 
         margin: 0;
 
-        //padding: 0; /* [1] */
-        //padding: 0.2rem; /* [1] */
-        padding: $s__sz-s; /* [1] */
+        //padding: 0; /* [1] * /
+        //padding: 0.2rem; /* [1] * /
+        padding: $s__sz-s; /* [1] * /
 
 
         & > :first-child {
@@ -160,25 +347,4 @@
 
 
 
-
-
-/*
-
-#{$es__page_banner__navbar} > ul a[href]:hover,
-#{$es__page_banner__navbar} > ul a[href]:active,
-#{$es__page_banner__navbar} > ul a[href] [aria-expanded="true"] {
-    border: 0;
-
-    color: $e__nav-bar__link--color--alt;
-    background-color: $e__nav-bar__link--background-color--alt;
-}
-
-#{$es__page_banner__navbar} > ul a[href]:focus {
-    border: 0;
-
-    color: $e__nav-bar__link--color--alt;
-    background-color: $e__nav-bar__link--background-color--alt2;
-
-    box-shadow: none;
-}
 */

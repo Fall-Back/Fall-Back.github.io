@@ -1,0 +1,45 @@
+---
+title: Elementary Styleguide
+layout: dev/structure--elementary-styleguide
+head_style: |
+    body {background: #fff;}
+---
+<h1>{{ page.title }}</h1>
+
+<p>This is a work in progress and I'll probably need to reorganise this over time.</p>
+
+<p>I also need to explain (figure out) how TFS fits in all this too and decide if Elementary should assume the existence of TFS and compliment it (e.g. build on top of the styles introduced there, not duplicate) or whether to keep them completely separate.</p>
+
+<p>I also need to clarify / distinguish Elementary as a set of principles / patterns, and Elementary as a library of stuff, and if they're the same or not.</p>
+
+<hr>
+
+<h2>Page Structure</h2>
+
+<p>The page is broken into sections: BANNER, MAIN, SIDEBAR (optional) and FOOTER. Selectors are scoped to the <code>body</code> to be as explicit as possible.</p>
+<pre><code>&lt;body&gt;
+    ...
+    &lt;header/&gt;
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">main</span>/&gt;</span></span>
+    ?<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">aside</span>/&gt;</span></span>?
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">footer</span>&gt;</span>
+    ...
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></span>
+</code></pre>
+
+<dl>
+    <dt>BANNER (HEADER)</dt>
+    <dd>A fairly typical page banner where you&#39;d expect to find a logo, primary navigation, search, and maybe Calls to Action.</p>
+    
+    <dt>MAIN</dt>
+    <dd>The main content of the page. This may be one of several types (more on that later); those types are patterns in their own right and should be declared with their own unique markup.</dd>
+    
+    <dt>SIDEBAR (ASIDE)</dt>
+    <dd>Optional. It con be omitted on all or only some pages and the layout should retain it&#39;s integrity. This means the DOM is quite fragile and sensitive to change so be careful. More on that later.</dd>
+    
+    <dt>FOOTER</dt>
+    <dd>This is a typical page footer and would contain the usual Copyright notice and key links etc.</dd>
+</dl>
+
+<h3>Banner</h3>
+<pre>$es__page_banner:  "body &gt; header" !default;</pre>

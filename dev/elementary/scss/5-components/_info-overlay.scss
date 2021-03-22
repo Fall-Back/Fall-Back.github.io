@@ -40,11 +40,11 @@
                 #{map-get($options, y-position)}: #{map-get($options, spacing-unit) / 4};
                 #{map-get($options, x-position)}: #{map-get($options, spacing-unit) / 4};
 
-                & > :first-child {
+                & > svg:first-of-type {
                     display: none;
                 }
 
-                & > :last-child {
+                & > svg:last-of-type {
                     display: inline;
                 }
             }

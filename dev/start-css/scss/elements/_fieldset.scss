@@ -11,7 +11,7 @@
     More info here: https://thatemil.com/blog/2015/01/03/reset-your-fieldset/
 */
 #{$s__namespace}fieldset {
-    @if $s__proceedural-margins {
+    @if $s__procedural-margins {
         margin-bottom: $s__base-rem-space-unit;
     } @else {
         margin-bottom: 0;

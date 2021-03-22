@@ -1,3 +1,1 @@
-<a {% if page.url == include.href %}href="#main" aria-current="page"{% else %}href="{{ include.href }}"{% endif %}>
-    <span>{{ include.text }}</span>
-</a>
+{% if include.left_separator %}<span data-if-css="hide">{{ include.left_separator }}</span>{% endif %}<a {% if page.url == include.href %}href="#main" aria-current="page"{% else %}href="{{ include.href }}"{% endif %}><span>{{ include.text | replace: " ", "&nbsp;" }}</span></a>{% if include.right_separator %}<span data-if-css="hide">{{ include.right_separator }}</span>{% endif %}

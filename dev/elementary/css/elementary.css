@@ -42,50 +42,6 @@
 |-------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------|
 
-    START-CSS TOKENS
-    ============================================================================================
-
-    Fall-Back is designed for use with the basic
-    [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
-
-    This determines a browser support base of:
-
-    IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
-    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
-
-
-    Any double-classing (e.g. `.class.class`) is deliberate and intended to increase specifity.
-    This allows any applicable Start-CSS declarations to be overidden.
-    E.g. `.{pattern} .{pattern}__child` would `a[href]`, but just `.{pattern}` wouldn't, so we use
-    `.{pattern}.{pattren}`
-
-    https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    START-CSS SETTINGS
-    ============================================================================================
-
-    Fall-Back is designed for use with the basic
-    [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
-
-    This determines a browser support base of:
-
-    IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
-    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
-
-
-    Any double-classing (e.g. `.class.class`) is deliberate and intended to increase specifity.
-    This allows any applicable Start-CSS declarations to be overidden.
-    E.g. `.{pattern} .{pattern}__child` would `a[href]`, but just `.{pattern}` wouldn't, so we use
-    `.{pattern}.{pattren}`
-
-    https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
     START-CSS FUNCTIONS
     ============================================================================================
 
@@ -166,6 +122,50 @@
     contain parapgraphs can result in double bottom margins, so flipping that around inside those
     containers.
 */
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS TOKENS
+    ============================================================================================
+
+    Fall-Back is designed for use with the basic
+    [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
+
+    This determines a browser support base of:
+
+    IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
+    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
+
+
+    Any double-classing (e.g. `.class.class`) is deliberate and intended to increase specifity.
+    This allows any applicable Start-CSS declarations to be overidden.
+    E.g. `.{pattern} .{pattern}__child` would `a[href]`, but just `.{pattern}` wouldn't, so we use
+    `.{pattern}.{pattren}`
+
+    https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3
+
+|-------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS SETTINGS
+    ============================================================================================
+
+    Fall-Back is designed for use with the basic
+    [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
+
+    This determines a browser support base of:
+
+    IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
+    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
+
+
+    Any double-classing (e.g. `.class.class`) is deliberate and intended to increase specifity.
+    This allows any applicable Start-CSS declarations to be overidden.
+    E.g. `.{pattern} .{pattern}__child` would `a[href]`, but just `.{pattern}` wouldn't, so we use
+    `.{pattern}.{pattren}`
+
+    https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3
+
+|-------------------------------------------------------------------------------------------------*/
 /* Output class for reference (tmp): */
 /*.ref {
     flbk--base-rem-space-unit: $s__base-rem-space-unit;
@@ -341,10 +341,34 @@ body {
 }
 
 /*
+    @DEPRECATED - use the clearer method below:
     CSS only message
 */
 [data-css-only="true"] {
   display: none;
+}
+
+/*
+    New method hide stuff if CSS has loaded:
+*/
+[data-if-css="hide"] {
+  display: none;
+}
+
+/*
+    This method duplicates [hidden="false"][aria-hidden="false"] in accessibilty.scss, but I'm
+    thinking of maybe deprecating that.
+*/
+[data-if-css="visually-hide"] {
+  clip: rect(0 0 0 0);
+  position: absolute;
+  display: inline;
+  /*border: 0;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    width: 1px;*/
 }
 
 /*------------------------------------------------------------------------------------------------*\
@@ -1525,7 +1549,7 @@ pre {
   /* 1 */
   overflow-y: auto;
   /* 1 */
-  margin-bottom: calc-rem-from-px(31px);
+  margin-bottom: 3.1rem;
   /* 1 */
   background-color: #f6bba9;
   /*1 */
@@ -1537,7 +1561,7 @@ pre {
 
 @supports (-ms-ime-align: auto) {
   pre {
-    margin-bottom: calc-rem-from-px(36px);
+    margin-bottom: 3.6rem;
     /* 1 */
   }
 }
@@ -2156,7 +2180,7 @@ main :target {
 /* Alt margins */
 /*
 Shelving this for now
-@if $s__proceedural-margins == false {
+@if $s__procedural-margins == false {
     /* this is too generic 
     * + * {
         margin-top: $s__base-rem-space-unit;
@@ -2297,7 +2321,7 @@ a[hidden="false"][aria-hidden="false"]:active {
 
 /*
     Elements with tabindex="-1" are NOT user focussable, but CAN be focussed via JS.
-    In this case elements focussed in such a way should not recieve focus styles to avoid confusion.
+    In this case elements focussed in such a way should not receive focus styles to avoid confusion.
     (https://inclusive-components.design/a-todo-list#focusmanagement)
 */
 [tabindex="-1"] {
@@ -2889,33 +2913,33 @@ body > header > nav {
   margin: 0.6rem 0 0 0;
 }
 
-body > header > nav > ul,
-body > header > nav > details > ul {
+body > header > nav > p[role="list"],
+body > header > nav > details > p[role="list"] {
   display: flex;
   flex-wrap: wrap;
   margin: 0;
   list-style-type: none;
 }
 
-body > header > nav > ul li,
-body > header > nav > details > ul li {
+body > header > nav > p[role="list"] span[role="listitem"],
+body > header > nav > details > p[role="list"] span[role="listitem"] {
   flex: 0 0 auto;
   margin: 0 0 0.6rem 0;
   padding: 0;
 }
 
-body > header > nav > ul,
-body > header > nav > details > ul {
+body > header > nav > p[role="list"],
+body > header > nav > details > p[role="list"] {
   margin-left: -1.2rem;
 }
 
-body > header > nav > ul li,
-body > header > nav > details > ul li {
+body > header > nav > p[role="list"] span[role="listitem"],
+body > header > nav > details > p[role="list"] span[role="listitem"] {
   margin-left: 1.2rem;
 }
 
-body > header > nav > ul a[href],
-body > header > nav > details > ul a[href] {
+body > header > nav > p[role="list"] a[href],
+body > header > nav > details > p[role="list"] a[href] {
   display: block;
   margin: 0;
   padding-top: 0;
@@ -2929,23 +2953,23 @@ body > header > nav > details > ul a[href] {
   text-decoration: none;
 }
 
-body > header > nav > ul a[href],
-body > header > nav > details > ul a[href] {
+body > header > nav > p[role="list"] a[href],
+body > header > nav > details > p[role="list"] a[href] {
   color: #fff;
   background-color: rgba(0, 0, 0, 0.2);
 }
 
-body > header > nav > ul a[href][aria-current],
-body > header > nav > details > ul a[href][aria-current],
+body > header > nav > p[role="list"] a[href][aria-current],
+body > header > nav > details > p[role="list"] a[href][aria-current],
 body > header > nav > details > summary {
   color: #fff;
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-body > header > nav > ul a[href]:hover,
-body > header > nav > ul a[href]:active,
-body > header > nav > details > ul a[href]:hover,
-body > header > nav > details > ul a[href]:active,
+body > header > nav > p[role="list"] a[href]:hover,
+body > header > nav > p[role="list"] a[href]:active,
+body > header > nav > details > p[role="list"] a[href]:hover,
+body > header > nav > details > p[role="list"] a[href]:active,
 body > header > nav > details > summary:hover,
 body > header > nav > details > summary:active {
   border: 0;
@@ -2953,8 +2977,8 @@ body > header > nav > details > summary:active {
   background-color: rgba(255, 255, 255, 0.08);
 }
 
-body > header > nav > ul a[href]:focus,
-body > header > nav > details > ul a[href]:focus,
+body > header > nav > p[role="list"] a[href]:focus,
+body > header > nav > details > p[role="list"] a[href]:focus,
 body > header > nav > details > summary:focus {
   box-shadow: 0 0 0 0.6rem rgba(0, 0, 0, 0.3);
 }
@@ -3021,6 +3045,169 @@ body > header > nav > ul a[href]:focus {
 
     box-shadow: none;
 }
+*/
+/*
+
+Earlier version using ul list:
+(Note I changed it to use a `p` and `span`s to avoid default browser styling, and used aria roles to
+replace the list semantics.
+
+
+body > header > nav {
+    flex: 1 1 auto;
+
+    margin: $s__sz-xs 0 0 0;
+}
+
+body > header > nav > ul,
+body > header > nav > details > ul {
+    display: flex;
+    flex-wrap: wrap;
+
+    margin: 0;
+
+    list-style-type: none;
+}
+
+body > header > nav > ul li,
+body > header > nav > details > ul li {
+    flex: 0 0 auto;
+
+    margin: 0 0 $s__sz-xs 0;
+
+    padding: 0;
+}
+
+@if $e__nav-bar__link--spacing != false {
+    body > header > nav > ul,
+    body > header > nav > details > ul {
+        margin-left: -$e__nav-bar__link--spacing;
+    }
+
+    body > header > nav > ul li,
+    body > header > nav > details > ul li {
+        margin-left: $e__nav-bar__link--spacing;
+    }
+}
+
+
+body > header > nav > ul a[href],
+body > header > nav > details > ul a[href] {
+    display: block;
+
+    margin: 0;
+
+    padding-top: 0;
+    padding-right: $e__nav-bar--spacing * 2;
+    padding-bottom: 0;
+    padding-left: $e__nav-bar--spacing * 2;
+
+    border: 0;
+    border-radius: $e__nav-bar__link--border-radius;
+
+    box-shadow: none;
+
+    line-height: $e__nav-bar--height;
+
+    text-decoration: none;
+}
+
+
+body > header > nav > ul a[href],
+body > header > nav > details > ul a[href] {
+    color: $e__nav-bar__link--color;
+    background-color: $e__nav-bar__link--background-color;
+}
+
+body > header > nav > ul a[href][aria-current],
+body > header > nav > details > ul a[href][aria-current],
+body > header > nav > details > summary {
+    color: $e__nav-bar__link--color--alt;
+    background-color: $e__nav-bar__link--background-color--alt2;
+}
+
+
+body > header > nav > ul a[href]:hover,
+body > header > nav > ul a[href]:active,
+body > header > nav > details > ul a[href]:hover,
+body > header > nav > details > ul a[href]:active,
+body > header > nav > details > summary:hover,
+body > header > nav > details > summary:active {
+    border: 0;
+
+    color: $e__nav-bar__link--color--alt;
+    background-color: $e__nav-bar__link--background-color--alt;
+}
+
+
+body > header > nav > ul a[href]:focus,
+body > header > nav > details > ul a[href]:focus,
+body > header > nav > details > summary:focus {
+    box-shadow: 0 0 0 $s__sz-xs rgba(0,0,0,.3);
+}
+
+
+
+body > header > nav > details {
+
+    margin: 0;
+
+    /*
+        1. `align-items: center;` is the obvious choice for vertical-center aligning the icons, but
+           for some reason iOS doesn't get it right, so I'm using padding instead for now since the
+           icon or container sizes shouldn't change.
+    * /
+    & > summary {
+        position: absolute;
+        right: $s__sz-s;
+        top: $s__sz-s;
+        z-index: 1;
+
+        display: flex;
+        justify-content: center;
+        // align-items: center; /* [1] * /
+
+        width: $s__sz-l;
+
+        height: $s__sz-l;
+
+        margin: 0;
+
+        //padding: 0; /* [1] * /
+        //padding: 0.2rem; /* [1] * /
+        padding: $s__sz-s; /* [1] * /
+
+
+        & > :first-child {
+            display: inline;
+        }
+
+        & > :last-child {
+            display: none;
+        }
+
+        &::before {
+            display: none;
+        }
+    }
+
+    &[open] {
+        & > summary {
+
+            & > :first-child {
+                display: none;
+            }
+
+            & > :last-child {
+                display: inline;
+            }
+        }
+    }
+}
+
+
+
+
 */
 /*-------------------------------------------------------------------------------------------------|
 
@@ -3519,11 +3706,11 @@ small > details:only-child[open] > summary {
   right: 0.6rem;
 }
 
-small > details:only-child[open] > summary > :first-child {
+small > details:only-child[open] > summary > svg:first-of-type {
   display: none;
 }
 
-small > details:only-child[open] > summary > :last-child {
+small > details:only-child[open] > summary > svg:last-of-type {
   display: inline;
 }
 

@@ -87,11 +87,10 @@
         img{max-width:100%;-ms-interpolation-mode:bicubic;}
         [hidden]{display:none;}
         main{display:block;}
+        hr{border-top:1px solid;border-bottom:0 none;height:0px;}
+        fieldset{border:1px solid;}
         pre{overflow-x:scroll;overflow-y:auto;}
         button,input,select,textarea{vertical-align:middle;}
-
-        /* For YouTube via http://embedresponsively.com. May or may not be needed. */
-        .embed-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;} .embed-container iframe, .embed-container object, .embed-container embed{position:absolute;top 0;left:0;width:100%;height:100%;}
     </style>
 
     <!--
@@ -322,12 +321,13 @@
         </symbol>
     </svg>
 
-    <div data-css-only="true">
-        <hr aria-hidden="true" />
-        <p>
-            <b>Notice:</b> You are viewing an unstyled version of this page. Are you using a very old browser? If so, <a href="http://browsehappy.com/">please consider upgrading</a>.
-        </p>
-        <hr />
+    <div data-if-css="hide">
+        <fieldset role="presentation">
+            <p>
+                <b>Notice:</b> You are viewing an unstyled version of this page. Are you using a very old browser? If so, <a href="https://browsehappy.com/?locale=en">please consider upgrading</a>.
+            </p>
+        </fieldset>
+        <br>
     </div>
 
     {{ content }}

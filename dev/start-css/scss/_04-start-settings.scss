@@ -35,7 +35,7 @@ $s__mq-1-em-px:             0.0625em;
 
 
 
-$s__proceedural-margins: true !default;
+$s__procedural-margins: true !default;
 $s__use-last-child-margin-zero: false !default;
 $s__use-layout: false !default;
 
@@ -296,10 +296,10 @@ $s__option-background-color--state-1: lighten($s__base-ui-color, 40%) !default;
 $s__pre-background-color: lighten($s__base-ui-color, 55%) !default;
 
 // Adjust bottom margin to  take into account scrollbar height of 17px:
-$s__pre-margin-bottom: calc-rem-from-px(($s__base-line-height * 2) - 17px);
+$s__pre-margin-bottom: s__calc-rem-from-px(($s__base-line-height * 2) - 17px);
 
 // Edge has a scrollbar height of 12px:
-$s__pre-margin-bottom--edge: calc-rem-from-px(($s__base-line-height * 2) - 12px);
+$s__pre-margin-bottom--edge: s__calc-rem-from-px(($s__base-line-height * 2) - 12px);
 
 // (margin to account for scrollbar, we can check for touch in most browsers and change this
 // or use custom scrollbars = see `pre` below)
