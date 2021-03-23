@@ -16,7 +16,7 @@ head_style: |
 
 <h2>Page Structure</h2>
 
-<p>The page is broken into sections: BANNER, MAIN, SIDEBAR (optional) and FOOTER. Selectors are scoped to the <code>body</code> to be as explicit as possible.</p>
+<p>The page is split into sections: BANNER, MAIN, SIDEBAR (optional) and FOOTER. Selectors are scoped to the <code>body</code> to be as explicit as possible.</p>
 <pre><code>&lt;body&gt;
     ...
     &lt;header/&gt;
@@ -29,7 +29,7 @@ head_style: |
 
 <dl>
     <dt>BANNER (HEADER)</dt>
-    <dd>A fairly typical page banner where you&#39;d expect to find a logo, primary navigation, search, and maybe Calls to Action.</p>
+    <dd>A fairly typical page banner where you&#39;d expect to find a logo, primary navigation, search, and maybe Calls to Action.</dd>
     
     <dt>MAIN</dt>
     <dd>The main content of the page. This may be one of several types (more on that later); those types are patterns in their own right and should be declared with their own unique markup.</dd>
@@ -43,3 +43,50 @@ head_style: |
 
 <h3>Banner</h3>
 <pre>$es__page_banner:  "body &gt; header" !default;</pre>
+
+<p>You can apply decoration here, maybe <code>position: sticky;</code> if appropriate.</p>
+
+<h4>Logo</h4>
+
+<pre>&lt;header&gt;
+    &lt;a/&gt;
+    ...
+&lt;/header&gt;</pre>
+
+<h4>Navigation</h4>
+
+<pre>$es__page_banner:  "body &gt; header &gt; nav" !default;</pre>
+<pre>$es__page_banner:  "body &gt; header &gt; nav [role="list"] !default;</pre>
+<pre>&lt;header&gt;
+    ...
+    &lt;nav&gt;
+        &lt;p role="list"&gt;
+            &lt;span role="listitem"&gt;
+                &lt;a/&gt;
+            &lt;/span&gt;
+            ...
+        &lt;/p&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;</pre>
+
+
+<pre>$es__page_banner:  "body &gt; header " !default;</pre>
+<pre>$es__page_banner:  "body &gt; header &gt; nav > &gt; details !default;</pre>
+<pre>&lt;header&gt;
+    ...
+    &lt;nav&gt;
+        &lt;details&gt;
+            &lt;summary&gt;Menu&lt;/summary&gt;
+            &lt;div&gt;
+                &lt;p role=&quot;list&quot;&gt;
+                    &lt;span role=&quot;listitem&quot;&gt;
+                        &lt;a/&gt;
+                    &lt;/span&gt;
+                    ...
+                &lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/details&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;</pre>
+
+
