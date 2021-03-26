@@ -81,44 +81,78 @@
     <!-- Built with Jekyll and Fall-Back patterns -->
 
     <!--<base href="http://localhost:4001/">-->
-
-    <!--
-    <style>
-        /* Tiny Fall-Back Styles (https://github.com/Fall-Back/Patterns/edit/master/Page/README.md) */
-        body{font-family:sans-serif;line-height:1.2;padding:1em;margin:0 auto;max-width:50em;}
-        img{max-width:100%;-ms-interpolation-mode:bicubic;}
-        [hidden]{display:none;}
-        main{display:block;}
-        hr{border-top:1px solid;border-bottom:0 none;height:0px;}
-        fieldset{border:1px solid;}
-        pre{overflow-x:scroll;overflow-y:auto;}
-        button,input,select,textarea{vertical-align:middle;}
-    </style>
-    -->
+    
 
     <!-- READABLE -->
     <style>
-        /* Tiny Fall-Back Styles (https://github.com/Fall-Back/Patterns/edit/master/Page/README.md) */
+        /*
+            Tiny Fall-Back Styles (https://github.com/Fall-Back/Patterns/edit/master/Page/README.md)
+
+            The following styles provide a better visual experience in cases where linked
+            stylesheets aren't loaded for any reason. It's recommended that any styles that won't
+            be used by the elements on the page be removed to make this as lean as possible, and
+            the run through a minifier (e.g. https://cssminifier.com) to compress it as much a
+            possible, since this is sent on each request and not cached.
+            Note there's a section that uses attributes to apply styles to specific element. This
+            is so as not to pollute the class space and help authors make distinctions.
+            There's a much long essay on this brewing and I'll add the link when it's done.
+        */
+
+        /* --| Core styles |--------------------------------------------------------------------- */
         body {
             font: 1em/1.2 sans-serif;
             padding: 1em;
             margin: 0 auto;
             max-width: 50em;
         }
-        
-        article, aside, header, section  {
+
+        /* For older browsers:(see https://github.com/aFarkas/html5shiv) */
+        article,
+        aside,
+        dialog,
+        details,
+        figcaption,
+        figure,
+        footer,
+        header,
+        hgroup,
+        main,
+        nav,
+        section,
+        summary {
+            display: block;
             margin-bottom: 1em;
         }
 
-        main {
-            display: block;
+        mark {
+            background: #FF0;
+            color:# 000;
         }
 
+        template,
+        [hidden] {
+            display: none;
+        }
+
+        /* The "older browser" message makes use of a fieldset to add a border no matter what: */
         fieldset {
             border: 1px solid;
             padding: 16px;
             border-color: #777;
         }
+
+        /* More responsive images: */
+        /* Note ancient image tag is actually for the SVG FalBack PNG method */
+        img,
+        image,
+        svg {
+            max-width: 100%;
+            -ms-interpolation-mode: bicubic;
+        }
+
+
+        /* --| Form styles |--------------------------------------------------------------------- */
+        /* If you're using forms, keep this: */
 
         button,
         input,
@@ -132,17 +166,6 @@
             line-height: 0;
         }
 
-        /* Note ancient image tag is actually for the SVG FalBack PNG method */
-        img,
-        image,
-        svg {
-            max-width: 100%;
-            -ms-interpolation-mode: bicubic;
-        }
-
-        h3[role="presentation"] {
-            text-align: center;
-        }
 
         hr {
             border-style: solid;
@@ -156,67 +179,61 @@
             overflow-x: scroll;
             overflow-y: auto;
         }
-        
+
+        /* --| Table styles |-------------------------------------------------------------------- */
+        /* If you're using tables, keep this: */
+
         table {
             width: 100%;
             border: 1px solid #777;
             border-collapse: collapse;
         }
-        
+
         table[role="presentation"] {
             border: 0;
             table-layout: fixed;
         }
-        
+
         table[role="presentation"] td {
             border: 0;
         }
-        
+
         th {
             background: #eee;
         }
-        
+
         caption, td, th {
             padding: 0.5em;
         }
-        
-        table[role="presentation"] td:last-child {
-            text-align: right;
-        }
 
-        [hidden] {
-            display: none;
-        }
 
-        /* For inline-lists */
+        /* --| Other stuff |--------------------------------------------------------------------- */
+        /*
+            What follows is a mix of markup patterns and attributes to to help provide a more
+            reasonable fallback - it's unconventional, so leave it out if you like.
+        */
+
+        /*
+            For inline-lists (used with p[role="list"] and span[role="listitem")] for 'native inline
+            lists.
+        */
         span[role="listitem"] {
             white-space: nowrap;
         }
-        
-        
-        
-        i + * {
-            background: #eee;
-            padding: 1em; 
-        }
-        
-        b + * {
-            border: 1px solid #777;
-            padding: 1em; 
-        }
-        
-        
 
         /* Attributes to replicate deprecated HTML styling: */
-       
+
+        /* Would have been align="right": */
         [data-fs-text~="right"] {
             text-align: right;
         }
 
+        /* Would have been align="center": */
         [data-fs-text~="center"] {
             text-align: center;
         }
 
+        /* Would have been the 'big' element: */
         [data-fs-text~="larger"] {
             font-size: larger;
         }
@@ -238,9 +255,14 @@
             padding: 1em;
         }
 
-
-        /* Better support, more terse, no wrapping */
-
+        /*
+            Layout: table
+            Useful when you have a very small amount of items you want to display side-by-side.
+            Like, maybe 2, on the left and right. It doesn't wrap so the items should be small.
+            There's reasonable support. Better support would be:
+            `<table border="0" cellpadding="0" cellspacing="0" width="100%" role="presentation">`
+            But we're not supposed to use deprecated 'presentational' elements and attributes.
+        */
         [data-fs-block~="table"] {
             display: table;
             width: 100%;
@@ -252,7 +274,10 @@
         }
 
 
-        /* Worse support, more verbose, supports wrapping */
+        /*
+            Layout: flex;
+            More responsive and has wrapping, but less well supported than the table layout.
+        */
 
         [data-fs-block~="flex"] {
             display: -webkit-flex;
@@ -271,7 +296,7 @@
             flex: 1 0 auto;
         }
 
-        /* For YouTube via http://embedresponsively.com. May or may not be needed. */
+        /* Responsive embeds (e.g. YouTube, maps) via http://embedresponsively.com. */
 
         [data-fs-block="video"] {
             position: relative;
@@ -297,13 +322,11 @@
 
     </style>
     <!-- MIN: (https://cssminifier.com/)
-    
+
     <style>
         body{font:1em/1.2 sans-serif;padding:1em;margin:0 auto;max-width:50em}main{display:block}fieldset{border:1px solid;padding:16px;border-color:#777}button,input,select,textarea{vertical-align:middle;min-height:2.2em}button{line-height:0}image,img,svg{max-width:100%;-ms-interpolation-mode:bicubic}hr{border-style:solid;border-width:1px 0 0 0;height:0;color:#777}pre{overflow-x:scroll;overflow-y:auto}[hidden]{display:none}span[role=listitem]{white-space:nowrap}
     </style>
     -->
-    
-    {% include {{ cut_file }} css="/dev/start-css/css/start-alt.min.css" %}
 
     <!--
         Accessible font loading. FOUT is a lesser evil than FOIT.
@@ -384,15 +407,19 @@
     </style>
     {% endif %}
 
+
+
     {% if head_scripts != false %}
+    <!--[if !IE]><!-->
     {% for script in head_scripts %}
     <script src="{{ script }}"></script>
     {% endfor %}
+    <!--<![endif]-->
     {% endif %}
 
     {% if page.load_highlighter or layout.load_highlighter %}
     {% include {{ cut_file }} css="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css" %}
-
+    <!--[if !IE]><!-->
     <style>
         /* Override hljs styles to reset to StartCSS: */
         .hljs {
@@ -404,7 +431,8 @@
     </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
-    {% endif %}
+    <!--<![endif]-->
+    {% endif %}    
 
     <link rel="apple-touch-icon" sizes="180x180" href="/dev/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/dev/favicon-32x32.png">

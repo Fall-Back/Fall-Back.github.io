@@ -3320,14 +3320,14 @@ main > * > h1 {
        so the behaviour is undefined. This is SO unlikely though
 
 |-------------------------------------------------------------------------------------------------*/
-[data-elementary] body > main > div > header ~ ul {
+[data-elementary] body > main > div > header ~ div[role="list"] {
   display: flex;
   flex-wrap: wrap;
   padding: 1.2rem;
   list-style-type: none;
 }
 
-[data-elementary] body > main > div > header ~ ul > * {
+[data-elementary] body > main > div > header ~ div[role="list"] > * {
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: 25rem;
@@ -3338,7 +3338,7 @@ main > * > h1 {
   background-color: transparent;
 }
 
-[data-elementary] body > main > div > header ~ ul > * > * {
+[data-elementary] body > main > div > header ~ div[role="list"] > * > * {
   display: block;
   height: 100%;
   margin: 0;
@@ -3734,28 +3734,28 @@ p[role="list"] span[role="listitem"] > span:last-child {
   display: none;
 }
 
-[data-elementary] body > main > div > header ~ ul > [data-size="medium"] {
+[data-elementary] body > main > div > header ~ div[role="list"] > [data-size="medium"] {
   min-width: calc(66.666% - 2.4rem);
 }
 
-[data-elementary] body > main > div > header ~ ul > [data-size="large"] {
+[data-elementary] body > main > div > header ~ div[role="list"] > [data-size="large"] {
   min-width: calc(100% - 2.4rem);
 }
 
 @supports (display: grid) {
-  #page-layout-listing-grid[data-elementary] body > main > div > header ~ ul {
+  #page-layout-listing-grid[data-elementary] body > main > div > header ~ div[role="list"] {
     display: grid;
     padding: 2.4rem;
     grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
     grid-gap: 2.4rem;
   }
-  #page-layout-listing-grid[data-elementary] body > main > div > header ~ ul > * {
+  #page-layout-listing-grid[data-elementary] body > main > div > header ~ div[role="list"] > * {
     margin: 0;
   }
 }
 
 @supports (columns: 1) {
-  #page-layout-listing-columns[data-elementary] body > main > div > header ~ ul {
+  #page-layout-listing-columns[data-elementary] body > main > div > header ~ div[role="list"] {
     display: block;
     padding: 2.4rem;
     columns: 25rem auto;
@@ -3764,7 +3764,7 @@ p[role="list"] span[role="listitem"] > span:last-child {
   /*
             1. This fixes an issue where box-shadows break across columns.
         */
-  #page-layout-listing-columns[data-elementary] body > main > div > header ~ ul > * {
+  #page-layout-listing-columns[data-elementary] body > main > div > header ~ div[role="list"] > * {
     margin: 0 0 2.4rem 0;
     transform: translateZ(0);
     /* [1] */

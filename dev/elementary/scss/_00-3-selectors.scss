@@ -195,8 +195,7 @@ $es__page_main__header: "#{$es__page_main} > * > header" !default;
 $es__page_main__header--article: "#{$es__page_main} > article > header" !default;
 
 $es__page_main__header--listing: "#{$es__page_main} > div > header" !default;
-$es__page_main__header--listing__list: "#{$es__page_main__header--listing} ~ ul" !default;
-
+$es__page_main__header--listing__list: "#{$es__page_main__header--listing} ~ div[role=\"list\"]" !default;
 
 
 
