@@ -3728,15 +3728,17 @@ p[role="list"] span[role="listitem"] {
   display: inline-block;
 }
 
-p[role="list"] span[role="listitem"] > * {
-  white-space: nowrap;
+/*
+p[role="list"]   span[role="listitem"] > *{
+    white-space: nowrap;
 }
-
+*/
 /* Hide NoCSS separator */
+/*
 p[role="list"] span[role="listitem"] > span:last-child {
-  display: none;
+    display: none;
 }
-
+*/
 [data-elementary] body > main > div > header ~ div[role="list"] > [data-size="medium"] {
   min-width: calc(66.666% - 2.4rem);
 }

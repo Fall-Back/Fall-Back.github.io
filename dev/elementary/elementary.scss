@@ -62,16 +62,17 @@ p[role="list"]   span[role="listitem"] {
 
     display: inline-block;
 }
-
+/*
 p[role="list"]   span[role="listitem"] > *{
     white-space: nowrap;
 }
-
+*/
 /* Hide NoCSS separator */
+/*
 p[role="list"] span[role="listitem"] > span:last-child {
     display: none;
 }
-
+*/
 
 
 
