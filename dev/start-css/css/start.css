@@ -1637,6 +1637,7 @@ section {
 select {
   height: 3rem;
   /* 1 */
+  min-height: auto;
   margin: 0.3rem 0;
   border-width: 1px;
   border-style: solid;

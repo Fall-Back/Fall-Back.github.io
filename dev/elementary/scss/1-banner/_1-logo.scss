@@ -13,6 +13,9 @@
     padding: 0;
 
     border: 0;
+    
+    color: $s__anchor-text-color;
+    background-color: transparent;
 }
 
 #{$es__page_banner__logo}:hover,
@@ -23,4 +26,7 @@
     border: 0;
 
     @include e__ojbect_highlight();
+    
+    color: $s__anchor-text-color;
+    background-color: transparent;
 }

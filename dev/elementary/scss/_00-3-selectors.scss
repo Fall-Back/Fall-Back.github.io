@@ -56,6 +56,7 @@
 //$es__css-only: "body > div:first-of-type" !default;
 //$es__css-only: "[data-css-only=\"true\"]" !default;
 
+$es_scope: "[data-elementary]" !default;
 
 /*-------------------------------------------------------------------------------------------------|
 
@@ -95,12 +96,12 @@
 
 |-------------------------------------------------------------------------------------------------*/
 
-$es__page_banner:  "body > header" !default;
-$es__page_main:    "body > main" !default;
-$es__page_main_after_banner: "body > header + main" !default;
-$es__page_sidebar: "body > aside" !default;
-$es__page_sidebar_after_main: "body > main + aside" !default;
-$es__page_footer:  "body > footer" !default;
+$es__page_banner:             "#{$es_scope} body > header" !default;
+$es__page_main:               "#{$es_scope} body > main" !default;
+$es__page_main_after_banner:  "#{$es_scope} body > header + main" !default;
+$es__page_sidebar:            "#{$es_scope} body > aside" !default;
+$es__page_sidebar_after_main: "#{$es_scope} body > main + aside" !default;
+$es__page_footer:             "#{$es_scope} body > footer" !default;
 
 
 /*-------------------------------------------------------------------------------------------------|
@@ -118,33 +119,34 @@ $es__page_footer:  "body > footer" !default;
     ```
 |-------------------------------------------------------------------------------------------------*/
 
-$es__page_banner__logo: "#{$es__page_banner} > a[href]" !default;
+$es__page_banner__logo: "#{$es__page_banner}   nav   b > a[href]" !default;
 
 
 /*-------------------------------------------------------------------------------------------------|
 
-    BANNER - NAVBAR
+    BANNER - NAVLIST
     --------------------------------------------------------------------------------------------
 
     This is the pattern needed to match primary navigation. The links are expected to be in an
-    unordered list.
+    inline list.
 
     ```
     <header>
         ...
         <nav>
-            <ul>
-                <li>
+            <p role="list">
+                <span role="listitem">
                     <a/>
-                </li>
+                </span>
                 ...
-            </ul>
+            </p>
         </nav>
+        ...
     </header>
     ```
 |-------------------------------------------------------------------------------------------------*/
 
-$es__page_banner__navbar: "#{$es__page_banner} > nav" !default;
+$es__page_banner__navlist: "#{$es__page_banner}   nav" !default;
 
 
 /*------------------------------------------------------------------------------------------------*/
@@ -216,7 +218,8 @@ $es__page_main__header--listing__list: "#{$es__page_main__header--listing} ~ ul"
 
 |-------------------------------------------------------------------------------------------------*/
 
-$es__component__card: "article > span:only-child" !default;
+$es__component__card: "#{$es_scope} article > div:only-child" !default;
+//$es__component__card: "article > div:nth-child(2)" !default;
 
 
 /*-------------------------------------------------------------------------------------------------|
@@ -256,8 +259,8 @@ $es__component__hero: "#{$es__page_main__header} > div:first-child" !default;
 
 |-------------------------------------------------------------------------------------------------*/
 
-$es__component__images--border: "b > img:only-child" !default;
-$es__component__images--inset:  "b > i:only-child > img:only-child" !default;
+$es__component__images--border: "#{$es_scope} b > img:only-child" !default;
+$es__component__images--inset:  "#{$es_scope} b > i:only-child > img:only-child" !default;
 
 
 /*-------------------------------------------------------------------------------------------------|
@@ -267,5 +270,5 @@ $es__component__images--inset:  "b > i:only-child > img:only-child" !default;
 
 |-------------------------------------------------------------------------------------------------*/
 
-$es__component__info-overlay: "small > details:only-child" !default;
+$es__component__info-overlay: "#{$es_scope} small > details:only-child" !default;
 

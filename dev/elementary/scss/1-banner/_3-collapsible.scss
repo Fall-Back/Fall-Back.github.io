@@ -1,0 +1,148 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    COLLAPSIBLE
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+/* Details can appear in different contexts so we can't specify a complete path to them: */
+
+/* This is for the case where the nav is split to 'home' and 'site' and 'site' appears after the search form. */
+
+#{$es__page_banner}   details + nav {
+    flex: 0 0 auto;
+}
+
+#{$es__page_banner}   details[role="search"] form {
+    z-index: 10;
+}
+
+
+
+
+#{$es__page_banner}   details {
+    flex: 0 0 auto;
+    padding: 0;
+    border: 0;
+    margin: 0 0.6rem;
+
+    display: flex;
+    align-items: center;
+}
+
+/* Only for start margin stuff */
+#{$es__page_banner}   details::after {
+    display: none;
+}
+
+
+#{$es__page_banner}   details > summary {
+    display: block;
+    position: relative;
+}
+
+/*
+
+#{$es__page_banner}   details > summary {
+    color: $e__nav-bar__link--color;
+    background-color: transparent;
+}
+
+
+#{$es__page_banner}   details > summary:hover,
+#{$es__page_banner}   details > summary:active {
+    border: 0;
+
+    color: $e__nav-bar__link--color--alt;
+    background-color: $e__nav-bar__link--background-color--alt;
+}
+
+
+
+*/
+
+#{$es__page_banner}   details > summary:hover::before,
+#{$es__page_banner}   details > summary:active::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: 0;
+    left: -3px;
+    right: -3px;
+    top: -3px;
+    bottom: -3px;
+    background: rgba(0,0,0,0.2);
+    margin: 0;
+    transform: none;
+}
+
+#{$es__page_banner}   details > summary:focus {
+    box-shadow: 0 0 0 $s__sz-xs rgba(0,0,0,.3);
+    outline: 0 none;
+}
+
+
+
+#{$es__page_banner}   details[open] > summary {
+    margin: 0;
+}
+
+
+#{$es__page_banner}   details > summary::before {
+    display: none;
+}
+
+#{$es__page_banner}   details > summary::-webkit-details-marker {
+    display: none;
+}
+
+#{$es__page_banner}   details       > summary > svg:first-child,
+#{$es__page_banner}   details[open] > summary > svg:first-child + svg {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+}
+
+#{$es__page_banner}   details[open] > summary > svg:first-child {
+    display: none;
+}
+
+
+
+
+#{$es__page_banner}   details > summary > svg + span {
+    clip: rect(0 0 0 0);
+    position: absolute;
+}
+
+
+#{$es__page_banner}   details[open] > summary::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 1.5rem 1.5rem 1.5rem;
+    border-color: transparent transparent $e__nav-bar__collapsible--background-color transparent;
+    position: absolute;
+    margin-top: 5px;
+    margin-left: -3px;
+}
+
+#{$es__page_banner}   details > summary + * {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 1.2rem;
+    margin-top: 1.2em;
+    background: $e__nav-bar__collapsible--background-color;
+    list-style: none;
+    
+    box-shadow: 0 4px 2px -1px rgba(0,0,0,0.5);
+}
+
+#{$es__page_banner}   details > summary + * li {
+    padding: 0.5em;
+    margin: 0;
+}

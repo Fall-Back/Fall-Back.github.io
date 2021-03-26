@@ -14,6 +14,8 @@ $s__main-background-color: lighten($s__base-ui-color, 61%);
 
 |-------------------------------------------------------------------------------------------------*/
 
+//$s__use-layout: true;
+$s__use-last-child-margin-zero: true;
 @import '../start-css/scss/_start.scss';
 
 
@@ -39,10 +41,35 @@ $s__cookie-notice__link--color--alt: lighten($s__base-ui-color, 50%);
 // Logo colour invert trick:
 // (White logos don't show up if styles don't load, so the trick is to keep them black in the SVG
 // source and then invert them with CSS.)
-#{$es__page_banner__logo} circle,
-#{$es__page_banner__logo} path {
+#{$es__page_banner__logo} svg {
     stroke: #fff;
 }
+
+
+// Generic inline-list - not sure if this could/should be in StartCSS or somewhere better:
+p[role="list"] {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    margin-left: -$s__sz-xs;
+    margin-right: -$s__sz-xs;
+}
+
+p[role="list"]   span[role="listitem"] {
+    margin: $s__sz-xs;
+    flex: 0 0 auto;
+
+    display: inline-block;
+    white-space: nowrap;
+}
+
+/* Hide NoCSS separator */
+p[role="list"] span[role="listitem"] > span:last-child {
+    display: none;
+}
+
+
 
 
 // Allow for cells to span columns. Experimental. Not sure if it really fits with 'Elementary':
@@ -59,7 +86,7 @@ $s__cookie-notice__link--color--alt: lighten($s__base-ui-color, 50%);
 // Apply grid to the Listing - Grid page:
 
 @include content-listing--grid((
-    selector: "#page-layout-listing-grid #{$es__page_main__header--listing__list}",
+    selector: "#page-layout-listing-grid#{$es__page_main__header--listing__list}",
     basis:    $e__listing__item--basis,
     gutter:   $e__listing__gutter
 ))
@@ -67,7 +94,7 @@ $s__cookie-notice__link--color--alt: lighten($s__base-ui-color, 50%);
 // Apply columns to the Listing - Columns page:
 
 @include content-listing--columns((
-    selector: "#page-layout-listing-columns #{$es__page_main__header--listing__list}",
+    selector: "#page-layout-listing-columns#{$es__page_main__header--listing__list}",
     basis:    $e__listing__item--basis,
     gutter:   $e__listing__gutter
 ))

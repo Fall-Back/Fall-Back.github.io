@@ -2,10 +2,9 @@
 
 body > header {
     display: flex;
-    -flex-wrap: wrap;
     align-items: center;
     position: relative;
-    
+
     background: #eee;
 }
 
@@ -19,40 +18,39 @@ body > header > p {
     width: 100%;
 }
 
-body > header p {
+body > header   p {
     margin: 0;
 }
 
 
-body > header > *,
+body > header > div,
 body > header   nav {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    
+
     max-width: 100%;
 }
 
-body > header > * > *,
+body > header > div > *,
 body > header   nav > * {
     flex: 1 1 auto;
 }
 
-body > header   p[role="list"] {
-    flex-grow: 999;
-    
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-}
 
-body > header   p[role="list"] span[role="listitem"] {
-    margin: 0 0 0.6rem 1.2rem;
-    flex: 0 0 auto;
-  
-}
-
+/* COLLAPSIBLE */
 /* Details can appear in different contexts so we can't specify a complete path to them: */
+
+/* This is for the case where the nav is split to 'home' and 'site' and 'site' appears after the search form. */
+body > header   details + nav {
+    flex: 0 0 auto;
+}
+
+body > header   details[role="search"] form {
+    z-index: 10;
+}
+
+
 
 
 body > header   details {
@@ -60,23 +58,41 @@ body > header   details {
     padding: 0;
     border: 0;
     margin: 0 0.6rem;
-    
+
     display: flex;
     align-items: center;
 }
 
+/* Only for start margin stuff */
 body > header   details::after {
-    display: none
+    display: none;
 }
 
 
 body > header   details > summary {
     display: block;
+    position: relative;
 }
+
+body > header   details > summary:hover::before,
+body > header   details > summary:active::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: -2px;
+    right: -2px;
+    top: -2px;
+    bottom: -2px;
+    background: rgba(0,0,0,0.1);
+    margin: 0;
+    transform: none;
+}
+
 
 body > header   details[open] > summary {
     margin: 0;
 }
+
 
 body > header   details > summary::before {
     display: none;
@@ -86,18 +102,40 @@ body > header   details > summary::-webkit-details-marker {
     display: none;
 }
 
-body > header   details > summary > svg {
+body > header   details       > summary > svg:first-child,
+body > header   details[open] > summary > svg:first-child + svg {
     display: inline-block;
 }
+
+body > header   details[open] > summary > svg:first-child {
+    display: none;
+}
+
+
+
 
 body > header   details > summary > svg + span {
     clip: rect(0 0 0 0);
     position: absolute;
 }
 
+
+body > header   details[open] > summary::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 1.5rem 1.5rem 1.5rem;
+    border-color: transparent transparent #ddd transparent;
+    position: absolute;
+    margin-top: 5px;
+    margin-left: -3px;
+}
+
 body > header   details > summary + * {
     position: absolute;
-    z-index: 1;
+    z-index: 2;
     left: 0;
     right: 0;
     width: 100%;
@@ -105,6 +143,8 @@ body > header   details > summary + * {
     margin-top: 1.2em;
     background: #ddd;
     list-style: none;
+    
+    box-shadow: 0 4px 2px -1px rgb(0,0,0,0.5);
 }
 
 body > header   details > summary + * li {
@@ -114,9 +154,8 @@ body > header   details > summary + * li {
 
 
 
-/* CONTENT */
 
-
+/* GENERIC - not banner specific */
 
 
 svg {
@@ -125,7 +164,57 @@ svg {
     margin-top: 0;
 }
 
-/* Logo */
+
+p[role="list"] {
+    flex-grow: 999;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    margin-left: -0.6rem;
+    margin-right: -0.6rem;
+}
+
+p[role="list"] span[role="listitem"] {
+    margin: 0.6rem;
+    flex: 0 0 auto;
+
+    display: inline-block;
+    white-space: nowrap;
+}
+
+p[role="list"]   a[href] {
+    padding: 0 0.6rem;
+    border-radius: 0.6rem;
+    border: 1px solid;
+    position: relative;
+    display: inline-block;
+}
+
+
+
+p[role="list"]   a[href]:hover::before,
+p[role="list"]   a[href]:active::before,
+p[role="list"]   a[href]:focus::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.1);
+    z-index: 0;
+}
+
+
+p[role="list"] span[role="listitem"] > span:last-child {
+    display: none;
+}
+
+/* LOGO */
+
 
 body > header   b > a[href] {
     display: inline-block;
@@ -147,7 +236,7 @@ body > header   b > a[href] svg {
 }
 
 
-/* Form */
+/* FORM */
 
 body > header   form {
     display: flex;
@@ -162,8 +251,12 @@ body > header   form > * {
 body > header   form > input[type="search"] {
     flex: 1 1 auto;
     min-width: 1px;
+    
+    border-radius: 1.5rem 0 0 1.5rem;
+    padding-left: 1.2rem;
 }
 
-body > header > *:first-child > form {
-    margin: 0 0 0.6rem 1.2rem;
+body > header   form > button[type="submit"] {    
+    -border-radius: 0 1.5rem 1.5rem 0;
+    border-radius: 0 0.6rem 0.6rem 0;
 }

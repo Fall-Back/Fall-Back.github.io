@@ -1,27 +1,34 @@
 ---
 title: Elementary Style-guide
 layout: dev/structure--elementary-styleguide
+head_stylesheets: ['/dev/elementary/css/elementary-test.css']
 head_style: |
     body {background: #fff;}
 ---
 
 <p>The following represents the simplest pattern:</p>
 
-<header tfs-text="center">
+<p>Note inline-lists use ":" (colon)  to separate items to for a screen-reader to pause between links as they would do on a block-style list.</p>
 
-    <nav>
+<header fs-text="center" fs-block="background padding">
+
+    <nav aria-label="primary">
         <p role="list">
             <span role="listitem">
-                <a href="#home">Home</a>&nbsp;&nbsp;&nbsp;
+                <a href="#home">Home</a>
+                <span> : </span>
             </span>
             <span role="listitem">
-                <a href="#about">About&nbsp;Us</a>&nbsp;&nbsp;&nbsp;
+                <a href="#about">About Us</a>
+                <span> : </span>
             </span>
             <span role="listitem">
-                <a href="#work">Our&nbsp;Work</a>&nbsp;&nbsp;&nbsp;
+                <a href="#work">Our Work</a>
+                <span> : </span>
             </span>
             <span role="listitem">
-                <a href="#why-us">Why&nbsp;Choose&nbsp;Us</a>&nbsp;&nbsp;&nbsp;
+                <a href="#why-us">Why Choose Us</a>
+                <span> : </span>
             </span>
             <span role="listitem">
                 <a href="#contact">Contact</a>
@@ -35,37 +42,39 @@ head_style: |
 
 <p>With search:</p>
 
-<header tfs-text="center">
+<header fs-text="center" fs-block="background padding">
 
     <div>
-        <nav>
+        <nav aria-label="primary">
             <p role="list">
                 <span role="listitem">
-                    <a href="#home">Home</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#home">Home</a>
+                    <span> : </span>
                 </span>
                 <span role="listitem">
-                    <a href="#about">About&nbsp;Us</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#about">About Us</a>
+                    <span> : </span>
                 </span>
                 <span role="listitem">
-                    <a href="#work">Our&nbsp;Work</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#work">Our Work</a>
+                    <span> : </span>
                 </span>
                 <span role="listitem">
-                    <a href="#why-us">Why&nbsp;Choose&nbsp;Us</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#why-us">Why Choose Us</a>
+                    <span> : </span>
                 </span>
                 <span role="listitem">
                     <a href="#contact">Contact</a>
                 </span>
             </p>
         </nav>
-        <form action="#" method="GET">
+        <form action="#" method="GET" role="search">
             <input type="search" placeholder="Search" name="" value="" aria-label="search text">
             <button type="submit" aria-label="search">
-                <span>
-                    <svg width="20" height="20" viewBox="0 0 20 20" focusable="false" aria-hidden="true">
-                        <path fill="currentColor" d="M12.917 11.667h-0.662l-0.229-0.229c0.817-0.946 1.308-2.175 1.308-3.521 0-2.992-2.425-5.417-5.417-5.417s-5.417 2.425-5.417 5.417 2.425 5.417 5.417 5.417c1.346 0 2.575-0.492 3.521-1.304l0.229 0.229v0.658l4.167 4.158 1.242-1.242-4.158-4.167zM7.917 11.667c-2.071 0-3.75-1.679-3.75-3.75s1.679-3.75 3.75-3.75 3.75 1.679 3.75 3.75-1.679 3.75-3.75 3.75z"></path>
-                        <text y="-10">Search</text>
-                    </svg>
-                </span>
+                <svg width="20" height="20" viewBox="0 0 20 20" focusable="false" aria-hidden="true">
+                    <path fill="currentColor" d="M12.917 11.667h-0.662l-0.229-0.229c0.817-0.946 1.308-2.175 1.308-3.521 0-2.992-2.425-5.417-5.417-5.417s-5.417 2.425-5.417 5.417 2.425 5.417 5.417 5.417c1.346 0 2.575-0.492 3.521-1.304l0.229 0.229v0.658l4.167 4.158 1.242-1.242-4.158-4.167zM7.917 11.667c-2.071 0-3.75-1.679-3.75-3.75s1.679-3.75 3.75-3.75 3.75 1.679 3.75 3.75-1.679 3.75-3.75 3.75z"></path>
+                    <text y="-10">Search</text>
+                </svg>
             </button>
         </form>
     </div>
@@ -78,12 +87,12 @@ head_style: |
 
 <header>
 
-    <nav>
+    <nav aria-label="primary">
         <p>
             <b>
                 <a href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 283.5" aria-labelledby="primary-logo-title" role="img" aria-roledescription="image logo" focussable="false" height="60" width="60" fill="none" stroke="#3C3C3B" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
-                        <title id="primary-logo-title">Elementary</title>
+                        <title id="primary-logo-title">Home</title>
                         <circle cx="141.7" cy="141.7" r="127.6"/>
                         <path d="M113.4,234.3L77.9,128c0,0,3.6,7.1,17.7,7.1c14.2,0,39-16,39-28.3c0-12.4-8.8-17.7-15.9-17.7s-15.9,5.3-16,17.7c0,12.4,24.8,28.3,39,28.3s39-16,39-28.3c0-12.4-8.8-17.7-15.9-17.7c-7.1,0-16,5.3-16,17.7c0,12.4,24.8,28.3,39,28.3s17.7-7.1,17.7-7.1l-35.4,106.3"/>
                     </svg>
@@ -92,13 +101,16 @@ head_style: |
         </p>
         <p role="list">
             <span role="listitem">
-                <a href="#about">About&nbsp;Us</a>&nbsp;&nbsp;&nbsp;
+                <a href="#about">About Us</a>
+                <span> : </span>
             </span>
             <span role="listitem">
-                <a href="#work">Our&nbsp;Work</a>&nbsp;&nbsp;&nbsp;
+                <a href="#work">Our Work</a>
+                <span> : </span>
             </span>
             <span role="listitem">
-                <a href="#why-us">Why&nbsp;Choose&nbsp;Us</a>&nbsp;&nbsp;&nbsp;
+                <a href="#why-us">Why Choose Us</a>
+                <span> : </span>
             </span>
             <span role="listitem">
                 <a href="#contact">Contact</a>
@@ -115,12 +127,12 @@ head_style: |
 <header>
 
     <div>
-        <nav>
+        <nav aria-label="primary">
             <p>
                 <b>
                     <a href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 283.5" aria-labelledby="primary-logo-title" role="img" aria-roledescription="image logo" focussable="false" height="60" width="60" fill="none" stroke="#3C3C3B" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
-                            <title id="primary-logo-title">Elementary</title>
+                            <title id="primary-logo-title">Home</title>
                             <circle cx="141.7" cy="141.7" r="127.6"/>
                             <path d="M113.4,234.3L77.9,128c0,0,3.6,7.1,17.7,7.1c14.2,0,39-16,39-28.3c0-12.4-8.8-17.7-15.9-17.7s-15.9,5.3-16,17.7c0,12.4,24.8,28.3,39,28.3s39-16,39-28.3c0-12.4-8.8-17.7-15.9-17.7c-7.1,0-16,5.3-16,17.7c0,12.4,24.8,28.3,39,28.3s17.7-7.1,17.7-7.1l-35.4,106.3"/>
                         </svg>
@@ -129,28 +141,29 @@ head_style: |
             </p>
             <p role="list">
                 <span role="listitem">
-                    <a href="#about">About&nbsp;Us</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#about">About Us</a>
+                    <span> : </span>
                 </span>
                 <span role="listitem">
-                    <a href="#work">Our&nbsp;Work</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#work">Our Work</a>
+                    <span> : </span>
                 </span>
                 <span role="listitem">
-                    <a href="#why-us">Why&nbsp;Choose&nbsp;Us</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#why-us">Why Choose Us</a>
+                    <span> : </span>
                 </span>
                 <span role="listitem">
                     <a href="#contact">Contact</a>
                 </span>
             </p>
         </nav>
-        <form action="#" method="GET">
+        <form action="#" method="GET" role="search">
             <input type="search" placeholder="Search" name="" value="" aria-label="search text">
             <button type="submit" aria-label="search">
-                <span>
-                    <svg width="20" height="20" viewBox="0 0 20 20" focusable="false" aria-hidden="true">
-                        <path fill="currentColor" d="M12.917 11.667h-0.662l-0.229-0.229c0.817-0.946 1.308-2.175 1.308-3.521 0-2.992-2.425-5.417-5.417-5.417s-5.417 2.425-5.417 5.417 2.425 5.417 5.417 5.417c1.346 0 2.575-0.492 3.521-1.304l0.229 0.229v0.658l4.167 4.158 1.242-1.242-4.158-4.167zM7.917 11.667c-2.071 0-3.75-1.679-3.75-3.75s1.679-3.75 3.75-3.75 3.75 1.679 3.75 3.75-1.679 3.75-3.75 3.75z"></path>
-                        <text y="-10">Search</text>
-                    </svg>
-                </span>
+                <svg width="20" height="20" viewBox="0 0 20 20" focusable="false" aria-hidden="true">
+                    <path fill="currentColor" d="M12.917 11.667h-0.662l-0.229-0.229c0.817-0.946 1.308-2.175 1.308-3.521 0-2.992-2.425-5.417-5.417-5.417s-5.417 2.425-5.417 5.417 2.425 5.417 5.417 5.417c1.346 0 2.575-0.492 3.521-1.304l0.229 0.229v0.658l4.167 4.158 1.242-1.242-4.158-4.167zM7.917 11.667c-2.071 0-3.75-1.679-3.75-3.75s1.679-3.75 3.75-3.75 3.75 1.679 3.75 3.75-1.679 3.75-3.75 3.75z"></path>
+                    <text y="-10">Search</text>
+                </svg>
             </button>
         </form>
     </div>
@@ -168,19 +181,23 @@ head_style: |
 
 <header>
 
-    <nav>
+    <nav aria-label="primary">
         <p role="list">
             <span role="listitem">
-                <a href="#home">Home</a>&nbsp;&nbsp;&nbsp;
+                <a href="#home">Home</a>
+                <span> : </span>
             </span>
             <span role="listitem">
-                <a href="#about">About&nbsp;Us</a>&nbsp;&nbsp;&nbsp;
+                <a href="#about">About Us</a>
+                <span> : </span>
             </span>
             <span role="listitem">
-                <a href="#work">Our&nbsp;Work</a>&nbsp;&nbsp;&nbsp;
+                <a href="#work">Our Work</a>
+                <span> : </span>
             </span>
             <span role="listitem">
-                <a href="#why-us">Why&nbsp;Choose&nbsp;Us</a>&nbsp;&nbsp;&nbsp;
+                <a href="#why-us">Why Choose Us</a>
+                <span> : </span>
             </span>
             <span role="listitem">
                 <a href="#contact">Contact</a>
@@ -191,17 +208,16 @@ head_style: |
     <details role="search">
         <summary>
             <svg display="none" focusable="false" aria-hidden="true" width="24" height="24"><use xlink:href="#icon-search"></use></svg>
+            <svg display="none" focusable="false" aria-hidden="true" width="24" height="24"><use xlink:href="#icon-cross"></use></svg>
             <span>Search</span>
         </summary>
         <form action="#" method="GET">
             <input type="search" placeholder="Search" name="" value="" aria-label="search text">
             <button type="submit" aria-label="search">
-                <span>
-                    <svg width="20" height="20" viewBox="0 0 20 20" focusable="false" aria-hidden="true">
-                        <path fill="currentColor" d="M12.917 11.667h-0.662l-0.229-0.229c0.817-0.946 1.308-2.175 1.308-3.521 0-2.992-2.425-5.417-5.417-5.417s-5.417 2.425-5.417 5.417 2.425 5.417 5.417 5.417c1.346 0 2.575-0.492 3.521-1.304l0.229 0.229v0.658l4.167 4.158 1.242-1.242-4.158-4.167zM7.917 11.667c-2.071 0-3.75-1.679-3.75-3.75s1.679-3.75 3.75-3.75 3.75 1.679 3.75 3.75-1.679 3.75-3.75 3.75z"></path>
-                        <text y="-10">Search</text>
-                    </svg>
-                </span>
+                <svg width="20" height="20" viewBox="0 0 20 20" focusable="false" aria-hidden="true">
+                    <path fill="currentColor" d="M12.917 11.667h-0.662l-0.229-0.229c0.817-0.946 1.308-2.175 1.308-3.521 0-2.992-2.425-5.417-5.417-5.417s-5.417 2.425-5.417 5.417 2.425 5.417 5.417 5.417c1.346 0 2.575-0.492 3.521-1.304l0.229 0.229v0.658l4.167 4.158 1.242-1.242-4.158-4.167zM7.917 11.667c-2.071 0-3.75-1.679-3.75-3.75s1.679-3.75 3.75-3.75 3.75 1.679 3.75 3.75-1.679 3.75-3.75 3.75z"></path>
+                    <text y="-10">Search</text>
+                </svg>
             </button>
         </form>
     </details>
@@ -209,16 +225,16 @@ head_style: |
 
 <hr>
 
-<p>Complex pattern 1:</p>
+<p>With logo and collapsible menu:</p>
 
 <header>
 
-    <nav>
+    <nav aria-label="primary">
         <p>
             <b>
                 <a href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 283.5" aria-labelledby="primary-logo-title" role="img" aria-roledescription="image logo" focussable="false" height="60" width="60" fill="none" stroke="#3C3C3B" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
-                        <title id="primary-logo-title">Elementary</title>
+                        <title id="primary-logo-title">Home</title>
                         <circle cx="141.7" cy="141.7" r="127.6"/>
                         <path d="M113.4,234.3L77.9,128c0,0,3.6,7.1,17.7,7.1c14.2,0,39-16,39-28.3c0-12.4-8.8-17.7-15.9-17.7s-15.9,5.3-16,17.7c0,12.4,24.8,28.3,39,28.3s39-16,39-28.3c0-12.4-8.8-17.7-15.9-17.7c-7.1,0-16,5.3-16,17.7c0,12.4,24.8,28.3,39,28.3s17.7-7.1,17.7-7.1l-35.4,106.3"/>
                     </svg>
@@ -229,6 +245,7 @@ head_style: |
         <details>
             <summary>
                 <svg display="none" focusable="false" aria-hidden="true" width="24" height="24"><use xlink:href="#icon-menu"></use></svg>
+                <svg display="none" focusable="false" aria-hidden="true" width="24" height="24"><use xlink:href="#icon-cross"></use></svg>
                 <span>Menu</span>
             </summary>
             <ul>
@@ -250,16 +267,67 @@ head_style: |
 
 </header>
 
-<p>Complex pattern 2:</p>
+<hr>
+
+<p>With logo and collapsible inline menu:</p>
 
 <header>
 
-    <nav>
+    <nav aria-label="primary">
         <p>
             <b>
                 <a href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 283.5" aria-labelledby="primary-logo-title" role="img" aria-roledescription="image logo" focussable="false" height="60" width="60" fill="none" stroke="#3C3C3B" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
-                        <title id="primary-logo-title">Elementary</title>
+                        <title id="primary-logo-title">Home</title>
+                        <circle cx="141.7" cy="141.7" r="127.6"/>
+                        <path d="M113.4,234.3L77.9,128c0,0,3.6,7.1,17.7,7.1c14.2,0,39-16,39-28.3c0-12.4-8.8-17.7-15.9-17.7s-15.9,5.3-16,17.7c0,12.4,24.8,28.3,39,28.3s39-16,39-28.3c0-12.4-8.8-17.7-15.9-17.7c-7.1,0-16,5.3-16,17.7c0,12.4,24.8,28.3,39,28.3s17.7-7.1,17.7-7.1l-35.4,106.3"/>
+                    </svg>
+                </a>
+            </b>
+        </p>
+
+        <details>
+            <summary>
+                <svg display="none" focusable="false" aria-hidden="true" width="24" height="24"><use xlink:href="#icon-menu"></use></svg>
+                <svg display="none" focusable="false" aria-hidden="true" width="24" height="24"><use xlink:href="#icon-cross"></use></svg>
+                <span>Menu</span>
+            </summary>
+            <div>
+                <p role="list">
+                    <span role="listitem">
+                        <a href="#about">About Us</a>
+                        <span> : </span>
+                    </span>
+                    <span role="listitem">
+                        <a href="#work">Our Work</a>
+                        <span> : </span>
+                    </span>
+                    <span role="listitem">
+                        <a href="#why-us">Why Choose Us</a>
+                        <span> : </span>
+                    </span>
+                    <span role="listitem">
+                        <a href="#contact">Contact</a>
+                    </span>
+                </p>
+            </div>
+        </details>
+    </nav>
+
+</header>
+
+<hr>
+
+<p>With logo and collapsible search:</p>
+
+<header>
+
+    <nav aria-label="primary">
+        <p>
+            <b>
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 283.5" aria-labelledby="primary-logo-title" role="img" aria-roledescription="image logo" focussable="false" height="60" width="60" fill="none" stroke="#3C3C3B" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
+                        <title id="primary-logo-title">Home</title>
                         <circle cx="141.7" cy="141.7" r="127.6"/>
                         <path d="M113.4,234.3L77.9,128c0,0,3.6,7.1,17.7,7.1c14.2,0,39-16,39-28.3c0-12.4-8.8-17.7-15.9-17.7s-15.9,5.3-16,17.7c0,12.4,24.8,28.3,39,28.3s39-16,39-28.3c0-12.4-8.8-17.7-15.9-17.7c-7.1,0-16,5.3-16,17.7c0,12.4,24.8,28.3,39,28.3s17.7-7.1,17.7-7.1l-35.4,106.3"/>
                     </svg>
@@ -269,13 +337,13 @@ head_style: |
 
         <p role="list">
             <span role="listitem">
-                <a href="#about">About&nbsp;Us</a>&nbsp;&nbsp;&nbsp;
+                <a href="#about">About Us</a>
             </span>
             <span role="listitem">
-                <a href="#work">Our&nbsp;Work</a>&nbsp;&nbsp;&nbsp;
+                <a href="#work">Our Work</a>
             </span>
             <span role="listitem">
-                <a href="#why-us">Why&nbsp;Choose&nbsp;Us</a>&nbsp;&nbsp;&nbsp;
+                <a href="#why-us">Why Choose Us</a>
             </span>
             <span role="listitem">
                 <a href="#contact">Contact</a>
@@ -286,32 +354,34 @@ head_style: |
     <details role="search">
         <summary>
             <svg display="none" focusable="false" aria-hidden="true" width="24" height="24"><use xlink:href="#icon-search"></use></svg>
+            <svg display="none" focusable="false" aria-hidden="true" width="24" height="24"><use xlink:href="#icon-cross"></use></svg>
             <span>Search</span>
         </summary>
         <form action="#" method="GET">
             <input type="search" placeholder="Search" name="" value="" aria-label="search text">
             <button type="submit" aria-label="search">
-                <span>
-                    <svg width="20" height="20" viewBox="0 0 20 20" focusable="false" aria-hidden="true">
-                        <path fill="currentColor" d="M12.917 11.667h-0.662l-0.229-0.229c0.817-0.946 1.308-2.175 1.308-3.521 0-2.992-2.425-5.417-5.417-5.417s-5.417 2.425-5.417 5.417 2.425 5.417 5.417 5.417c1.346 0 2.575-0.492 3.521-1.304l0.229 0.229v0.658l4.167 4.158 1.242-1.242-4.158-4.167zM7.917 11.667c-2.071 0-3.75-1.679-3.75-3.75s1.679-3.75 3.75-3.75 3.75 1.679 3.75 3.75-1.679 3.75-3.75 3.75z"></path>
-                        <text y="-10">Search</text>
-                    </svg>
-                </span>
+                <svg width="20" height="20" viewBox="0 0 20 20" focusable="false" aria-hidden="true">
+                    <path fill="currentColor" d="M12.917 11.667h-0.662l-0.229-0.229c0.817-0.946 1.308-2.175 1.308-3.521 0-2.992-2.425-5.417-5.417-5.417s-5.417 2.425-5.417 5.417 2.425 5.417 5.417 5.417c1.346 0 2.575-0.492 3.521-1.304l0.229 0.229v0.658l4.167 4.158 1.242-1.242-4.158-4.167zM7.917 11.667c-2.071 0-3.75-1.679-3.75-3.75s1.679-3.75 3.75-3.75 3.75 1.679 3.75 3.75-1.679 3.75-3.75 3.75z"></path>
+                    <text y="-10">Search</text>
+                </svg>
             </button>
         </form>
     </details>
 </header>
 
-<p>The following represents the most complex pattern:</p>
+<hr>
+
+<p>With logo and collapsible menu and search.</p>
+
 
 <header>
 
-    <nav>
+    <nav aria-label="primary">
         <p>
             <b>
                 <a href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 283.5" aria-labelledby="primary-logo-title" role="img" aria-roledescription="image logo" focussable="false" height="60" width="60" fill="none" stroke="#3C3C3B" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
-                        <title id="primary-logo-title">Elementary</title>
+                        <title id="primary-logo-title">Home</title>
                         <circle cx="141.7" cy="141.7" r="127.6"/>
                         <path d="M113.4,234.3L77.9,128c0,0,3.6,7.1,17.7,7.1c14.2,0,39-16,39-28.3c0-12.4-8.8-17.7-15.9-17.7s-15.9,5.3-16,17.7c0,12.4,24.8,28.3,39,28.3s39-16,39-28.3c0-12.4-8.8-17.7-15.9-17.7c-7.1,0-16,5.3-16,17.7c0,12.4,24.8,28.3,39,28.3s17.7-7.1,17.7-7.1l-35.4,106.3"/>
                     </svg>
@@ -322,6 +392,7 @@ head_style: |
         <details>
             <summary>
                 <svg display="none" focusable="false" aria-hidden="true" width="24" height="24"><use xlink:href="#icon-menu"></use></svg>
+                <svg display="none" focusable="false" aria-hidden="true" width="24" height="24"><use xlink:href="#icon-cross"></use></svg>
                 <span>Menu</span>
             </summary>
             <ul>
@@ -344,20 +415,83 @@ head_style: |
     <details role="search">
         <summary>
             <svg display="none" focusable="false" aria-hidden="true" width="24" height="24"><use xlink:href="#icon-search"></use></svg>
+            <svg display="none" focusable="false" aria-hidden="true" width="24" height="24"><use xlink:href="#icon-cross"></use></svg>
             <span>Search</span>
         </summary>
         <form action="#" method="GET">
             <input type="search" placeholder="Search" name="" value="" aria-label="search text">
             <button type="submit" aria-label="search">
-                <span>
-                    <svg width="20" height="20" viewBox="0 0 20 20" focusable="false" aria-hidden="true">
-                        <path fill="currentColor" d="M12.917 11.667h-0.662l-0.229-0.229c0.817-0.946 1.308-2.175 1.308-3.521 0-2.992-2.425-5.417-5.417-5.417s-5.417 2.425-5.417 5.417 2.425 5.417 5.417 5.417c1.346 0 2.575-0.492 3.521-1.304l0.229 0.229v0.658l4.167 4.158 1.242-1.242-4.158-4.167zM7.917 11.667c-2.071 0-3.75-1.679-3.75-3.75s1.679-3.75 3.75-3.75 3.75 1.679 3.75 3.75-1.679 3.75-3.75 3.75z"></path>
-                        <text y="-10">Search</text>
-                    </svg>
-                </span>
+                <svg width="20" height="20" viewBox="0 0 20 20" focusable="false" aria-hidden="true">
+                    <path fill="currentColor" d="M12.917 11.667h-0.662l-0.229-0.229c0.817-0.946 1.308-2.175 1.308-3.521 0-2.992-2.425-5.417-5.417-5.417s-5.417 2.425-5.417 5.417 2.425 5.417 5.417 5.417c1.346 0 2.575-0.492 3.521-1.304l0.229 0.229v0.658l4.167 4.158 1.242-1.242-4.158-4.167zM7.917 11.667c-2.071 0-3.75-1.679-3.75-3.75s1.679-3.75 3.75-3.75 3.75 1.679 3.75 3.75-1.679 3.75-3.75 3.75z"></path>
+                    <text y="-10">Search</text>
+                </svg>
             </button>
         </form>
     </details>
+</header>
+
+<hr>
+
+<p>The following represents the most complex pattern:</p>
+<p>With logo and collapsible menu and search switched.</p>
+
+
+<header>
+
+    <nav aria-label="home">
+        <p>
+            <b>
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 283.5" aria-labelledby="primary-logo-title" role="img" aria-roledescription="image logo" focussable="false" height="60" width="60" fill="none" stroke="#3C3C3B" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
+                        <title id="primary-logo-title">Home</title>
+                        <circle cx="141.7" cy="141.7" r="127.6"/>
+                        <path d="M113.4,234.3L77.9,128c0,0,3.6,7.1,17.7,7.1c14.2,0,39-16,39-28.3c0-12.4-8.8-17.7-15.9-17.7s-15.9,5.3-16,17.7c0,12.4,24.8,28.3,39,28.3s39-16,39-28.3c0-12.4-8.8-17.7-15.9-17.7c-7.1,0-16,5.3-16,17.7c0,12.4,24.8,28.3,39,28.3s17.7-7.1,17.7-7.1l-35.4,106.3"/>
+                    </svg>
+                </a>
+            </b>
+        </p>
+    </nav>
+
+    <details role="search">
+        <summary>
+            <svg display="none" focusable="false" aria-hidden="true" width="24" height="24"><use xlink:href="#icon-search"></use></svg>
+            <svg display="none" focusable="false" aria-hidden="true" width="24" height="24"><use xlink:href="#icon-cross"></use></svg>
+            <span>Search</span>
+        </summary>
+        <form action="#" method="GET">
+            <input type="search" placeholder="Search" name="" value="" aria-label="search text">
+            <button type="submit" aria-label="search">
+                <svg width="20" height="20" viewBox="0 0 20 20" focusable="false" aria-hidden="true">
+                    <path fill="currentColor" d="M12.917 11.667h-0.662l-0.229-0.229c0.817-0.946 1.308-2.175 1.308-3.521 0-2.992-2.425-5.417-5.417-5.417s-5.417 2.425-5.417 5.417 2.425 5.417 5.417 5.417c1.346 0 2.575-0.492 3.521-1.304l0.229 0.229v0.658l4.167 4.158 1.242-1.242-4.158-4.167zM7.917 11.667c-2.071 0-3.75-1.679-3.75-3.75s1.679-3.75 3.75-3.75 3.75 1.679 3.75 3.75-1.679 3.75-3.75 3.75z"></path>
+                    <text y="-10">Search</text>
+                </svg>
+            </button>
+        </form>
+    </details>
+    
+    <nav aria-label="site">
+        <details>
+            <summary>
+                <svg display="none" focusable="false" aria-hidden="true" width="24" height="24"><use xlink:href="#icon-menu"></use></svg>
+                <svg display="none" focusable="false" aria-hidden="true" width="24" height="24"><use xlink:href="#icon-cross"></use></svg>
+                <span>Menu</span>
+            </summary>
+            <ul>
+                <li>
+                    <a href="#about">About Us</a>
+                </li>
+                <li>
+                    <a href="#work">Our Work</a>
+                </li>
+                <li>
+                    <a href="#why-us">Why Choose Us</a>
+                </li>
+                <li>
+                    <a href="#contact">Contact</a>
+                </li>
+            </ul>
+        </details>
+    </nav>
 </header>
 
 <h1>{{ page.title }}</h1>

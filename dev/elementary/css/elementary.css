@@ -715,15 +715,8 @@ details {
   padding-left: calc(2.4rem - 1px);
   padding-right: 2.4rem;
   padding-right: calc(2.4rem - 1px);
-}
-
-details::after {
-  display: block;
-  content: "";
-  height: 1px;
-  margin-top: 2.4rem;
-  margin-bottom: -1px;
-  margin-bottom: calc(-1px - 1px);
+  padding-bottom: 2.4rem;
+  padding-bottom: calc(2.4rem - 1px);
 }
 
 details > * {
@@ -815,15 +808,8 @@ fieldset {
   padding-left: calc(2.4rem - 1px);
   padding-right: 2.4rem;
   padding-right: calc(2.4rem - 1px);
-}
-
-fieldset::after {
-  display: block;
-  content: "";
-  height: 1px;
-  margin-top: 2.4rem;
-  margin-bottom: -1px;
-  margin-bottom: calc(-1px - 1px);
+  padding-bottom: 2.4rem;
+  padding-bottom: calc(2.4rem - 1px);
 }
 
 fieldset fieldset {
@@ -1638,6 +1624,7 @@ section {
 select {
   height: 3rem;
   /* 1 */
+  min-height: auto;
   margin: 0.3rem 0;
   border-width: 1px;
   border-style: solid;
@@ -2177,6 +2164,14 @@ main :target {
   scroll-margin-top: 4.8rem;
 }
 
+/*
+        Some inline elements have margin deliberately to help with size/position.
+        We don't want to zero-out those.
+    */
+:last-child:not(a):not(button):not(img):not(input):not(select) {
+  margin-bottom: 0;
+}
+
 /* Alt margins */
 /*
 Shelving this for now
@@ -2658,23 +2653,24 @@ a[hidden="false"][aria-hidden="false"]:active {
 |-------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------|
 
-    BANNER - NAVBAR
+    BANNER - NAVLIST
     --------------------------------------------------------------------------------------------
 
     This is the pattern needed to match primary navigation. The links are expected to be in an
-    unordered list.
+    inline list.
 
     ```
     <header>
         ...
         <nav>
-            <ul>
-                <li>
+            <p role="list">
+                <span role="listitem">
                     <a/>
-                </li>
+                </span>
                 ...
-            </ul>
+            </p>
         </nav>
+        ...
     </header>
     ```
 |-------------------------------------------------------------------------------------------------*/
@@ -2795,25 +2791,25 @@ body > * {
       grid-template-columns: 5fr 2fr;
       grid-template-rows: auto auto minmax(auto, 1fr) auto;
     }
-    body > header,
-    body > footer {
+    [data-elementary] body > header,
+    [data-elementary] body > footer {
       padding: 1.2rem;
       grid-column: 1 / -1;
     }
-    body > header {
+    [data-elementary] body > header {
       grid-row: 1;
     }
-    body > footer {
+    [data-elementary] body > footer {
       grid-row: -1;
     }
-    body > main {
+    [data-elementary] body > main {
       grid-column: 1;
       grid-row: 2 / -1;
     }
-    body > header + main:nth-last-child(3) {
+    [data-elementary] body > header + main:nth-last-child(3) {
       grid-column: 1 / -1;
     }
-    body > aside {
+    [data-elementary] body > aside {
       grid-column: 2;
       grid-row: 2;
     }
@@ -2822,10 +2818,10 @@ body > * {
             only way I can think of doing this, but it's fragile - it will break if elements at this
             level get added or removed.
         */
-    body > aside:nth-last-child(4) {
+    [data-elementary] body > aside:nth-last-child(4) {
       grid-row: 2 / -1;
     }
-    body > main + aside {
+    [data-elementary] body > main + aside {
       grid-column: 2;
       grid-row: 3;
     }
@@ -2849,7 +2845,7 @@ body > * {
             removing elements via JS.
 
         */
-    body > main:nth-last-child(3) {
+    [data-elementary] body > main:nth-last-child(3) {
       grid-column: 1 / -1;
     }
   }
@@ -2865,10 +2861,9 @@ body > * {
 /*
     Banner
 */
-body > header {
+[data-elementary] body > header {
   position: relative;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   margin: 0;
   padding: 1.2rem 1.2rem 0.6rem 1.2rem;
@@ -2876,8 +2871,27 @@ body > header {
   background: #79260D;
 }
 
-body > header > * {
-  flex: 0 0 auto;
+[data-elementary] body > header > * {
+  flex: 1 1 auto;
+}
+
+[data-elementary] body > header > p {
+  width: 100%;
+}
+
+[data-elementary] body > header p {
+  margin: 0;
+}
+
+[data-elementary] body > header > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 100%;
+}
+
+[data-elementary] body > header > div > * {
+  flex: 1 1 auto;
 }
 
 /*------------------------------------------------------------------------------------------------*/
@@ -2887,60 +2901,51 @@ body > header > * {
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
-body > header > a[href] {
+[data-elementary] body > header nav b > a[href] {
   display: inline-block;
   margin: 0 2.4rem 0.6rem 0;
   padding: 0;
   border: 0;
+  color: #79260D;
+  background-color: transparent;
 }
 
-body > header > a[href]:hover,
-body > header > a[href]:active,
-body > header > a[href]:focus {
+[data-elementary] body > header nav b > a[href]:hover,
+[data-elementary] body > header nav b > a[href]:active,
+[data-elementary] body > header nav b > a[href]:focus {
   padding: 0;
   border: 0;
   box-shadow: 0 0 0 0.6rem rgba(255, 255, 255, 0.4), 0 0 0 1.2rem rgba(0, 0, 0, 0.2);
+  color: #79260D;
+  background-color: transparent;
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    NAVBAR
+    NAVLIST
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
-body > header > nav {
-  flex: 1 1 auto;
-  margin: 0.6rem 0 0 0;
-}
-
-body > header > nav > p[role="list"],
-body > header > nav > details > p[role="list"] {
+[data-elementary] body > header nav {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  max-width: 100%;
   margin: 0;
-  list-style-type: none;
-}
-
-body > header > nav > p[role="list"] span[role="listitem"],
-body > header > nav > details > p[role="list"] span[role="listitem"] {
-  flex: 0 0 auto;
-  margin: 0 0 0.6rem 0;
   padding: 0;
+  background-color: transparent;
 }
 
-body > header > nav > p[role="list"],
-body > header > nav > details > p[role="list"] {
-  margin-left: -1.2rem;
+[data-elementary] body > header nav > * {
+  flex: 1 1 auto;
 }
 
-body > header > nav > p[role="list"] span[role="listitem"],
-body > header > nav > details > p[role="list"] span[role="listitem"] {
-  margin-left: 1.2rem;
+[data-elementary] body > header nav p[role="list"] {
+  flex-grow: 999;
 }
 
-body > header > nav > p[role="list"] a[href],
-body > header > nav > details > p[role="list"] a[href] {
-  display: block;
+[data-elementary] body > header nav a[href] {
+  display: inline-block;
   margin: 0;
   padding-top: 0;
   padding-right: 0.5625em;
@@ -2953,186 +2958,39 @@ body > header > nav > details > p[role="list"] a[href] {
   text-decoration: none;
 }
 
-body > header > nav > p[role="list"] a[href],
-body > header > nav > details > p[role="list"] a[href] {
+[data-elementary] body > header nav a[href] {
   color: #fff;
   background-color: rgba(0, 0, 0, 0.2);
 }
 
-body > header > nav > p[role="list"] a[href][aria-current],
-body > header > nav > details > p[role="list"] a[href][aria-current],
-body > header > nav > details > summary {
+[data-elementary] body > header nav a[href][aria-current] {
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
-body > header > nav > p[role="list"] a[href]:hover,
-body > header > nav > p[role="list"] a[href]:active,
-body > header > nav > details > p[role="list"] a[href]:hover,
-body > header > nav > details > p[role="list"] a[href]:active,
-body > header > nav > details > summary:hover,
-body > header > nav > details > summary:active {
+[data-elementary] body > header nav a[href]:hover,
+[data-elementary] body > header nav a[href]:active {
   border: 0;
   color: #fff;
   background-color: rgba(255, 255, 255, 0.08);
 }
 
-body > header > nav > p[role="list"] a[href]:focus,
-body > header > nav > details > p[role="list"] a[href]:focus,
-body > header > nav > details > summary:focus {
+[data-elementary] body > header nav p[role="list"] a[href]:focus {
   box-shadow: 0 0 0 0.6rem rgba(0, 0, 0, 0.3);
 }
 
-body > header > nav > details {
-  margin: 0;
-  /*
-        1. `align-items: center;` is the obvious choice for vertical-center aligning the icons, but
-           for some reason iOS doesn't get it right, so I'm using padding instead for now since the
-           icon or container sizes shouldn't change.
-    */
-}
-
-body > header > nav > details > summary {
-  position: absolute;
-  right: 1.2rem;
-  top: 1.2rem;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  width: 4.8rem;
-  height: 4.8rem;
-  margin: 0;
-  padding: 1.2rem;
-  /* [1] */
-}
-
-body > header > nav > details > summary > :first-child {
-  display: inline;
-}
-
-body > header > nav > details > summary > :last-child {
-  display: none;
-}
-
-body > header > nav > details > summary::before {
-  display: none;
-}
-
-body > header > nav > details[open] > summary > :first-child {
-  display: none;
-}
-
-body > header > nav > details[open] > summary > :last-child {
-  display: inline;
-}
-
 /*
-
-body > header > nav > ul a[href]:hover,
-body > header > nav > ul a[href]:active,
-body > header > nav > ul a[href] [aria-expanded="true"] {
-    border: 0;
-
-    color: $e__nav-bar__link--color--alt;
-    background-color: $e__nav-bar__link--background-color--alt;
-}
-
-body > header > nav > ul a[href]:focus {
-    border: 0;
-
-    color: $e__nav-bar__link--color--alt;
-    background-color: $e__nav-bar__link--background-color--alt2;
-
-    box-shadow: none;
-}
-*/
-/*
-
-Earlier version using ul list:
-(Note I changed it to use a `p` and `span`s to avoid default browser styling, and used aria roles to
-replace the list semantics.
-
-
-body > header > nav {
-    flex: 1 1 auto;
-
-    margin: $s__sz-xs 0 0 0;
-}
-
-body > header > nav > ul,
-body > header > nav > details > ul {
-    display: flex;
-    flex-wrap: wrap;
-
-    margin: 0;
-
-    list-style-type: none;
-}
-
-body > header > nav > ul li,
-body > header > nav > details > ul li {
-    flex: 0 0 auto;
-
-    margin: 0 0 $s__sz-xs 0;
-
-    padding: 0;
-}
-
-@if $e__nav-bar__link--spacing != false {
-    body > header > nav > ul,
-    body > header > nav > details > ul {
-        margin-left: -$e__nav-bar__link--spacing;
-    }
-
-    body > header > nav > ul li,
-    body > header > nav > details > ul li {
-        margin-left: $e__nav-bar__link--spacing;
-    }
-}
-
-
-body > header > nav > ul a[href],
-body > header > nav > details > ul a[href] {
-    display: block;
-
-    margin: 0;
-
-    padding-top: 0;
-    padding-right: $e__nav-bar--spacing * 2;
-    padding-bottom: 0;
-    padding-left: $e__nav-bar--spacing * 2;
-
-    border: 0;
-    border-radius: $e__nav-bar__link--border-radius;
-
-    box-shadow: none;
-
-    line-height: $e__nav-bar--height;
-
-    text-decoration: none;
-}
-
-
-body > header > nav > ul a[href],
-body > header > nav > details > ul a[href] {
-    color: $e__nav-bar__link--color;
-    background-color: $e__nav-bar__link--background-color;
-}
-
-body > header > nav > ul a[href][aria-current],
-body > header > nav > details > ul a[href][aria-current],
-body > header > nav > details > summary {
+p[role="list"] a[href][aria-current],
+[data-elementary] body > header   nav > details > summary {
     color: $e__nav-bar__link--color--alt;
     background-color: $e__nav-bar__link--background-color--alt2;
 }
 
 
-body > header > nav > ul a[href]:hover,
-body > header > nav > ul a[href]:active,
-body > header > nav > details > ul a[href]:hover,
-body > header > nav > details > ul a[href]:active,
-body > header > nav > details > summary:hover,
-body > header > nav > details > summary:active {
+p[role="list"] a[href]:hover,
+p[role="list"] a[href]:active,
+[data-elementary] body > header   nav > details > summary:hover,
+[data-elementary] body > header   nav > details > summary:active {
     border: 0;
 
     color: $e__nav-bar__link--color--alt;
@@ -3140,75 +2998,146 @@ body > header > nav > details > summary:active {
 }
 
 
-body > header > nav > ul a[href]:focus,
-body > header > nav > details > ul a[href]:focus,
-body > header > nav > details > summary:focus {
+p[role="list"] a[href]:focus,
+[data-elementary] body > header   nav > details > summary:focus {
     box-shadow: 0 0 0 $s__sz-xs rgba(0,0,0,.3);
 }
 
 
+*/
+/*-------------------------------------------------------------------------------------------------|
 
-body > header > nav > details {
+    COLLAPSIBLE
+    ============================================================================================
 
-    margin: 0;
+|-------------------------------------------------------------------------------------------------*/
+/* Details can appear in different contexts so we can't specify a complete path to them: */
+/* This is for the case where the nav is split to 'home' and 'site' and 'site' appears after the search form. */
+[data-elementary] body > header details + nav {
+  flex: 0 0 auto;
+}
 
-    /*
-        1. `align-items: center;` is the obvious choice for vertical-center aligning the icons, but
-           for some reason iOS doesn't get it right, so I'm using padding instead for now since the
-           icon or container sizes shouldn't change.
-    * /
-    & > summary {
-        position: absolute;
-        right: $s__sz-s;
-        top: $s__sz-s;
-        z-index: 1;
+[data-elementary] body > header details[role="search"] form {
+  z-index: 10;
+}
 
-        display: flex;
-        justify-content: center;
-        // align-items: center; /* [1] * /
+[data-elementary] body > header details {
+  flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  margin: 0 0.6rem;
+  display: flex;
+  align-items: center;
+}
 
-        width: $s__sz-l;
+/* Only for start margin stuff */
+[data-elementary] body > header details::after {
+  display: none;
+}
 
-        height: $s__sz-l;
+[data-elementary] body > header details > summary {
+  display: block;
+  position: relative;
+}
 
-        margin: 0;
+/*
 
-        //padding: 0; /* [1] * /
-        //padding: 0.2rem; /* [1] * /
-        padding: $s__sz-s; /* [1] * /
+[data-elementary] body > header   details > summary {
+    color: $e__nav-bar__link--color;
+    background-color: transparent;
+}
 
 
-        & > :first-child {
-            display: inline;
-        }
+[data-elementary] body > header   details > summary:hover,
+[data-elementary] body > header   details > summary:active {
+    border: 0;
 
-        & > :last-child {
-            display: none;
-        }
-
-        &::before {
-            display: none;
-        }
-    }
-
-    &[open] {
-        & > summary {
-
-            & > :first-child {
-                display: none;
-            }
-
-            & > :last-child {
-                display: inline;
-            }
-        }
-    }
+    color: $e__nav-bar__link--color--alt;
+    background-color: $e__nav-bar__link--background-color--alt;
 }
 
 
 
-
 */
+[data-elementary] body > header details > summary:hover::before,
+[data-elementary] body > header details > summary:active::before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: 0;
+  left: -3px;
+  right: -3px;
+  top: -3px;
+  bottom: -3px;
+  background: rgba(0, 0, 0, 0.2);
+  margin: 0;
+  transform: none;
+}
+
+[data-elementary] body > header details > summary:focus {
+  box-shadow: 0 0 0 0.6rem rgba(0, 0, 0, 0.3);
+  outline: 0 none;
+}
+
+[data-elementary] body > header details[open] > summary {
+  margin: 0;
+}
+
+[data-elementary] body > header details > summary::before {
+  display: none;
+}
+
+[data-elementary] body > header details > summary::-webkit-details-marker {
+  display: none;
+}
+
+[data-elementary] body > header details > summary > svg:first-child,
+[data-elementary] body > header details[open] > summary > svg:first-child + svg {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+}
+
+[data-elementary] body > header details[open] > summary > svg:first-child {
+  display: none;
+}
+
+[data-elementary] body > header details > summary > svg + span {
+  clip: rect(0 0 0 0);
+  position: absolute;
+}
+
+[data-elementary] body > header details[open] > summary::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 1.5rem 1.5rem 1.5rem;
+  border-color: transparent transparent #902d0f transparent;
+  position: absolute;
+  margin-top: 5px;
+  margin-left: -3px;
+}
+
+[data-elementary] body > header details > summary + * {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 1.2rem;
+  margin-top: 1.2em;
+  background: #902d0f;
+  list-style: none;
+  box-shadow: 0 4px 2px -1px rgba(0, 0, 0, 0.5);
+}
+
+[data-elementary] body > header details > summary + * li {
+  padding: 0.5em;
+  margin: 0;
+}
+
 /*-------------------------------------------------------------------------------------------------|
 
     MAIN
@@ -3227,7 +3156,7 @@ body > header > nav > details {
        what the max-width for the main column should be and use that in an FF-width technique.
 
 */
-body > main {
+[data-elementary] body > main {
   flex: 1 0 auto;
   /* 1 */
   max-width: 71.42857%;
@@ -3240,7 +3169,7 @@ body > main {
   background-color: #fff;
 }
 
-body > main:nth-last-child(3) {
+[data-elementary] body > main:nth-last-child(3) {
   grid-column: 1 / -1;
   max-width: 100%;
 }
@@ -3256,7 +3185,7 @@ body > main:nth-last-child(3) {
     Page header
     (note may consider qualifying this with `:first-child` but I don't think it's needed)
 */
-body > main > * > header {
+[data-elementary] body > main > * > header {
   margin: 0;
   padding: 2.4rem;
 }
@@ -3293,11 +3222,11 @@ main > * > h1 {
 
 |-------------------------------------------------------------------------------------------------*/
 /*
-    Content wrapper [A] could be anything (so far `article` or `div`): `body > main > * >.
+    Content wrapper [A] could be anything (so far `article` or `div`): `[data-elementary] body > main > * >.
     Inside the wrapper there should be `header` (see _1-header.scss).
     After the header} we want to give elements some side padding: `~ *`.
 */
-body > main > * > header ~ * {
+[data-elementary] body > main > * > header ~ * {
   padding-left: 2.4rem;
   padding-right: 2.4rem;
 }
@@ -3310,7 +3239,7 @@ body > main > * > header ~ * {
        intrinsically sized so may not appear full width, and therefore look odd, so expand them.
 
 */
-body > main > article > header ~ * {
+[data-elementary] body > main > article > header ~ * {
   width: 100%;
   /* 1 */
   max-width: 70rem;
@@ -3322,7 +3251,7 @@ body > main > article > header ~ * {
     We're using `div` (human semantic "divider") to break out of the `max-width`.
     Use for things like full width images, videos or figures.
 */
-body > main > * > header ~ div {
+[data-elementary] body > main > * > header ~ div {
   max-width: none;
   margin-bottom: 2.4rem;
   padding: 0;
@@ -3332,8 +3261,8 @@ body > main > * > header ~ div {
     Figures should wither be direct children of the content container, or placed within a `div` to
     allow them to be full-width.
 */
-body > main > * > header ~ figure,
-body > main > * > header ~ div > figure {
+[data-elementary] body > main > * > header ~ figure,
+[data-elementary] body > main > * > header ~ div > figure {
   background: #f7c2b2;
   border-width: 0;
   border-style: solid;
@@ -3344,16 +3273,8 @@ body > main > * > header ~ div > figure {
   padding-left: calc(2.4rem - 0);
   padding-right: 2.4rem;
   padding-right: calc(2.4rem - 0);
-}
-
-body > main > * > header ~ figure::after,
-body > main > * > header ~ div > figure::after {
-  display: block;
-  content: "";
-  height: 1px;
-  margin-top: 2.4rem;
-  margin-bottom: -1px;
-  margin-bottom: calc(-1px - 0);
+  padding-bottom: 2.4rem;
+  padding-bottom: calc(2.4rem - 0);
 }
 
 /*
@@ -3364,7 +3285,7 @@ body > main > * > header ~ div > figure::after {
 /*
     Inline elements
 */
-body > main img {
+[data-elementary] body > main img {
   width: 100%;
 }
 
@@ -3399,14 +3320,14 @@ body > main img {
        so the behaviour is undefined. This is SO unlikely though
 
 |-------------------------------------------------------------------------------------------------*/
-body > main > div > header ~ ul {
+[data-elementary] body > main > div > header ~ ul {
   display: flex;
   flex-wrap: wrap;
   padding: 1.2rem;
   list-style-type: none;
 }
 
-body > main > div > header ~ ul > * {
+[data-elementary] body > main > div > header ~ ul > * {
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: 25rem;
@@ -3417,7 +3338,7 @@ body > main > div > header ~ ul > * {
   background-color: transparent;
 }
 
-body > main > div > header ~ ul > * > * {
+[data-elementary] body > main > div > header ~ ul > * > * {
   display: block;
   height: 100%;
   margin: 0;
@@ -3469,7 +3390,7 @@ body > main > div > header ~ ul > * > * {
     * Ads :-(
 
 |-------------------------------------------------------------------------------------------------*/
-body > aside {
+[data-elementary] body > aside {
   margin: 0;
   padding: 2.4rem;
   color: #333;
@@ -3482,7 +3403,7 @@ body > aside {
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
-body > footer {
+[data-elementary] body > footer {
   margin: 0;
   padding: 1.2rem;
   font-size: 0.875em;
@@ -3491,19 +3412,19 @@ body > footer {
   background: #79260D;
 }
 
-body > footer > * {
+[data-elementary] body > footer > * {
   margin-bottom: 0;
 }
 
-body > footer a[href] {
+[data-elementary] body > footer a[href] {
   color: #fff;
 }
 
-body > footer a[href]:hover, body > footer a[href]:active {
+[data-elementary] body > footer a[href]:hover, [data-elementary] body > footer a[href]:active {
   color: white;
 }
 
-body > footer a[href]:focus {
+[data-elementary] body > footer a[href]:focus {
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
 }
 
@@ -3519,7 +3440,7 @@ body > footer a[href]:focus {
     =================
 
 |-------------------------------------------------------------------------------------------------*/
-article > span:only-child {
+[data-elementary] article > div:only-child {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -3532,43 +3453,48 @@ article > span:only-child {
   box-shadow: 0 0 0.6rem 0 rgba(0, 0, 0, 0.2);
 }
 
-article > span:only-child * {
+[data-elementary] article > div:only-child * {
   overflow-wrap: break-word;
   word-wrap: break-word;
   -webkit-hyphens: auto;
   hyphens: auto;
 }
 
-article > span:only-child *:only-child {
+[data-elementary] article > div:only-child *:only-child {
   margin-bottom: 0;
 }
 
-article > span:only-child > header > :last-child {
+[data-elementary] article > div:only-child > header {
+  background-color: transparent;
+  padding: 0;
+}
+
+[data-elementary] article > div:only-child > header > :last-child {
   margin-bottom: 2.4rem;
 }
 
-article > span:only-child > header > :last-child {
+[data-elementary] article > div:only-child > header > :last-child {
   margin-bottom: 0;
 }
 
-article > span:only-child > header > :last-child > :last-child {
+[data-elementary] article > div:only-child > header > :last-child > :last-child {
   margin-bottom: 0;
 }
 
-article > span:only-child > header > div:first-child {
+[data-elementary] article > div:only-child > header > div:first-child {
   position: relative;
   overflow: hidden;
   margin: -2.4rem -2.4rem 2.4rem -2.4rem;
 }
 
-article > span:only-child > header > div:first-child::before {
+[data-elementary] article > div:only-child > header > div:first-child::before {
   display: block;
   content: "";
   width: 100%;
   padding-top: 33%;
 }
 
-article > span:only-child > header > div:first-child > img {
+[data-elementary] article > div:only-child > header > div:first-child > img {
   position: absolute;
   top: 0;
   width: 100%;
@@ -3576,29 +3502,31 @@ article > span:only-child > header > div:first-child > img {
   object-fit: cover;
 }
 
-article > span:only-child > div > :last-child {
+[data-elementary] article > div:only-child > div > :last-child {
   margin-bottom: 0;
 }
 
-article > span:only-child > div > :last-child > :last-child {
+[data-elementary] article > div:only-child > div > :last-child > :last-child {
   margin-bottom: 0;
 }
 
-article > span:only-child > div > p:last-child > b:only-child {
+[data-elementary] article > div:only-child > div > p:last-child > b:only-child {
   display: block;
   text-align: right;
 }
 
-article > span:only-child > footer {
+[data-elementary] article > div:only-child > footer {
   margin-top: auto;
   margin-bottom: 0;
+  padding: 0;
+  background-color: transparent;
 }
 
-article > span:only-child > footer > :last-child {
+[data-elementary] article > div:only-child > footer > :last-child {
   margin-bottom: 0;
 }
 
-article > span:only-child > footer > :last-child > :last-child {
+[data-elementary] article > div:only-child > footer > :last-child > :last-child {
   margin-bottom: 0;
 }
 
@@ -3608,7 +3536,7 @@ article > span:only-child > footer > :last-child > :last-child {
     ===
 
 |-------------------------------------------------------------------------------------------------*/
-article > span:only-child b > a[href]:only-child {
+[data-elementary] article > div:only-child b > a[href]:only-child {
   display: inline-block;
   overflow: hidden;
   margin: 0;
@@ -3622,7 +3550,7 @@ article > span:only-child b > a[href]:only-child {
   vertical-align: middle;
 }
 
-article > span:only-child b > a[href]:only-child:hover, article > span:only-child b > a[href]:only-child:active, article > span:only-child b > a[href]:only-child:focus {
+[data-elementary] article > div:only-child b > a[href]:only-child:hover, [data-elementary] article > div:only-child b > a[href]:only-child:active, [data-elementary] article > div:only-child b > a[href]:only-child:focus {
   background: #f6bba9;
 }
 
@@ -3632,20 +3560,20 @@ article > span:only-child b > a[href]:only-child:hover, article > span:only-chil
     =================
 
 |-------------------------------------------------------------------------------------------------*/
-body > main > * > header > div:first-child {
+[data-elementary] body > main > * > header > div:first-child {
   position: relative;
   overflow: hidden;
   margin: -2.4rem -2.4rem 2.4rem -2.4rem;
 }
 
-body > main > * > header > div:first-child::before {
+[data-elementary] body > main > * > header > div:first-child::before {
   display: block;
   content: "";
   width: 100%;
   padding-top: 33%;
 }
 
-body > main > * > header > div:first-child > img {
+[data-elementary] body > main > * > header > div:first-child > img {
   position: absolute;
   top: 0;
   width: 100%;
@@ -3659,11 +3587,11 @@ body > main > * > header > div:first-child > img {
     ===================
 
 |-------------------------------------------------------------------------------------------------*/
-b > img:only-child {
+[data-elementary] b > img:only-child {
   border: 1px solid #79260D;
 }
 
-b > i:only-child > img:only-child {
+[data-elementary] b > i:only-child > img:only-child {
   padding: 2.4rem;
   border: 1px solid #79260D;
   background: #fff;
@@ -3675,7 +3603,7 @@ b > i:only-child > img:only-child {
     =========================
 
 |-------------------------------------------------------------------------------------------------*/
-small > details:only-child {
+[data-elementary] small > details:only-child {
   position: absolute;
   top: 0.6rem;
   right: 0.6rem;
@@ -3689,11 +3617,11 @@ small > details:only-child {
   background: rgba(0, 0, 0, 0.7);
 }
 
-small > details:only-child a[href] {
+[data-elementary] small > details:only-child a[href] {
   color: #fff;
 }
 
-small > details:only-child[open] {
+[data-elementary] small > details:only-child[open] {
   border-radius: 0;
   top: 0;
   right: 0;
@@ -3701,20 +3629,20 @@ small > details:only-child[open] {
   height: auto;
 }
 
-small > details:only-child[open] > summary {
+[data-elementary] small > details:only-child[open] > summary {
   top: 0.6rem;
   right: 0.6rem;
 }
 
-small > details:only-child[open] > summary > svg:first-of-type {
+[data-elementary] small > details:only-child[open] > summary > svg:first-of-type {
   display: none;
 }
 
-small > details:only-child[open] > summary > svg:last-of-type {
+[data-elementary] small > details:only-child[open] > summary > svg:last-of-type {
   display: inline;
 }
 
-small > details:only-child::after {
+[data-elementary] small > details:only-child::after {
   display: none;
 }
 
@@ -3723,7 +3651,7 @@ small > details:only-child::after {
            for some reason iOS doesn't get it right, so I'm using padding instead for now since the
            icon or container sizes shouldn't change.
     */
-small > details:only-child > summary {
+[data-elementary] small > details:only-child > summary {
   position: absolute;
   z-index: 1;
   display: flex;
@@ -3736,23 +3664,23 @@ small > details:only-child > summary {
   font-size: 1.23076923077em;
 }
 
-small > details:only-child > summary > :first-child {
+[data-elementary] small > details:only-child > summary > :first-child {
   display: inline;
 }
 
-small > details:only-child > summary > :last-child {
+[data-elementary] small > details:only-child > summary > :last-child {
   display: none;
 }
 
-small > details:only-child > summary::before {
+[data-elementary] small > details:only-child > summary::before {
   display: none;
 }
 
-small > details:only-child > summary:hover, small > details:only-child > summary:focus, small > details:only-child > summary:active {
+[data-elementary] small > details:only-child > summary:hover, [data-elementary] small > details:only-child > summary:focus, [data-elementary] small > details:only-child > summary:active {
   background: rgba(255, 255, 255, 0.3);
 }
 
-small > details:only-child > summary + * {
+[data-elementary] small > details:only-child > summary + * {
   position: relative;
   max-width: calc(100% - 2.4rem);
   padding: 2.4rem 2.4rem;
@@ -3763,8 +3691,8 @@ small > details:only-child > summary + * {
     Greybox
 */
 /*
-body > header,
-body > footer {
+[data-elementary] body > header,
+[data-elementary] body > footer {
     background: #ddd;
 }
 
@@ -3782,33 +3710,52 @@ main > div > ul > li > article {
     margin: 0;
 }
 */
-body > header > a[href] circle,
-body > header > a[href] path {
+[data-elementary] body > header nav b > a[href] svg {
   stroke: #fff;
 }
 
-body > main > div > header ~ ul > [data-size="medium"] {
+p[role="list"] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-left: -0.6rem;
+  margin-right: -0.6rem;
+}
+
+p[role="list"] span[role="listitem"] {
+  margin: 0.6rem;
+  flex: 0 0 auto;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Hide NoCSS separator */
+p[role="list"] span[role="listitem"] > span:last-child {
+  display: none;
+}
+
+[data-elementary] body > main > div > header ~ ul > [data-size="medium"] {
   min-width: calc(66.666% - 2.4rem);
 }
 
-body > main > div > header ~ ul > [data-size="large"] {
+[data-elementary] body > main > div > header ~ ul > [data-size="large"] {
   min-width: calc(100% - 2.4rem);
 }
 
 @supports (display: grid) {
-  #page-layout-listing-grid body > main > div > header ~ ul {
+  #page-layout-listing-grid[data-elementary] body > main > div > header ~ ul {
     display: grid;
     padding: 2.4rem;
     grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
     grid-gap: 2.4rem;
   }
-  #page-layout-listing-grid body > main > div > header ~ ul > * {
+  #page-layout-listing-grid[data-elementary] body > main > div > header ~ ul > * {
     margin: 0;
   }
 }
 
 @supports (columns: 1) {
-  #page-layout-listing-columns body > main > div > header ~ ul {
+  #page-layout-listing-columns[data-elementary] body > main > div > header ~ ul {
     display: block;
     padding: 2.4rem;
     columns: 25rem auto;
@@ -3817,7 +3764,7 @@ body > main > div > header ~ ul > [data-size="large"] {
   /*
             1. This fixes an issue where box-shadows break across columns.
         */
-  #page-layout-listing-columns body > main > div > header ~ ul > * {
+  #page-layout-listing-columns[data-elementary] body > main > div > header ~ ul > * {
     margin: 0 0 2.4rem 0;
     transform: translateZ(0);
     /* [1] */

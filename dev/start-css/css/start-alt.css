@@ -330,15 +330,6 @@ body {
   /* 2 */
   background-color: transparent;
   color: #333;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -moz-box-orient: vertical;
-  -moz-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
 }
 
 /* IE9-11 */
@@ -1404,10 +1395,6 @@ main {
   background-color: #fff;
   color: #333;
   position: relative;
-  -webkit-flex: 1 0 auto;
-  -moz-box-flex: 1;
-  -ms-flex: 1 0 auto;
-  flex: 1 0 auto;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -1636,6 +1623,7 @@ section {
 select {
   height: 3rem;
   /* 1 */
+  min-height: auto;
   margin: 0.3rem 0;
   border-width: 1px;
   border-style: solid;
@@ -2175,11 +2163,11 @@ main :target {
   scroll-margin-top: 4.8rem;
 }
 
-:last-child {
-  margin-bottom: 0;
-}
-
-body > * {
+/*
+        Some inline elements have margin deliberately to help with size/position.
+        We don't want to zero-out those.
+    */
+:last-child:not(a):not(button):not(img):not(input):not(select) {
   margin-bottom: 0;
 }
 

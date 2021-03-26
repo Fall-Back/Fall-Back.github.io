@@ -38,6 +38,11 @@
     }
 
     // Header:
+    #{map-get($options, selector)} > header {
+        background-color: transparent;
+        padding: 0;
+    }
+    
     #{map-get($options, selector)} > header > :last-child {
         margin-bottom: #{map-get($options, padding)}
     }
@@ -104,6 +109,9 @@
     #{map-get($options, selector)} > footer {
         margin-top: auto;
         margin-bottom: 0;
+        padding: 0;
+        
+        background-color: transparent;
     }
 
     #{map-get($options, selector)} > footer > :last-child {

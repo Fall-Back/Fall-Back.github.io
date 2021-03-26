@@ -15,6 +15,7 @@
 */
 #{$s__namespace}select {
     height: $s__base-rem-space-unit + ($s__base-rem-space-unit / 4); /* 1 */
+    min-height: auto; 
 
     margin: ($s__base-rem-space-unit / 8) 0;
 

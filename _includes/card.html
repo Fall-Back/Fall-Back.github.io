@@ -1,9 +1,9 @@
 <article>
-    <span>
+    <div data-fs-block="border padding">
         <header>
             {% if include.img_src %}
             <div>
-                <img src="{{ include.img_src }}"{% if include.img_alt %} alt="{{ include.img_alt }}"{% endif %}>
+                <img src="{{ include.img_src }}"{% if include.img_alt %} alt="{{ include.img_alt }}"{% endif %} width="300">
             </div>
             {% endif %}
             <h{{ include.hx | default: 2 }}>{{ include.title }}</h{{ include.hx | default: 2 }}>
@@ -28,5 +28,5 @@
             {{ include.footer }}
         </footer>
         {% endif %}
-    </span>
+    </div>
 </article>

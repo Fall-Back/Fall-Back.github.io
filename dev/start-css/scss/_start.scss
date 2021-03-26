@@ -528,7 +528,11 @@ main :target {
 }
 
 @if $s__use-last-child-margin-zero {
-    :last-child {
+    /*
+        Some inline elements have margin deliberately to help with size/position.
+        We don't want to zero-out those.
+    */
+    :last-child:not(a):not(button):not(img):not(input):not(select) {
         margin-bottom: 0;
     }
 }
