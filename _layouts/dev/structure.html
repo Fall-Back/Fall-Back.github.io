@@ -82,6 +82,15 @@
 
     <!--<base href="http://localhost:4001/">-->
     
+    <!--[if lt IE 9]>
+    <script>
+        var els = 'abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output picture progress section summary template time video'.split(' ');
+        var i = 0, l = els.length;
+        for(;i<l;i++){document.createElement(els[i]);console.log(els[i])}
+    </script>
+    <![endif]-->
+
+
 
     <!-- READABLE -->
     <style>
@@ -217,7 +226,7 @@
             For inline-lists (used with p[role="list"] and span[role="listitem")] for 'native inline
             lists.
         */
-        span[role="listitem"] {
+        span[role="listitem"] > * {
             white-space: nowrap;
         }
 

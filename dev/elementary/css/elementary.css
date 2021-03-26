@@ -3726,6 +3726,9 @@ p[role="list"] span[role="listitem"] {
   margin: 0.6rem;
   flex: 0 0 auto;
   display: inline-block;
+}
+
+p[role="list"] span[role="listitem"] > * {
   white-space: nowrap;
 }
 
