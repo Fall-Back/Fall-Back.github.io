@@ -82,16 +82,6 @@
 
     <!--<base href="http://localhost:4001/">-->
     
-    <!--[if lt IE 9]>
-    <script>
-        var els = 'abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output picture progress section summary template time video'.split(' ');
-        var i = 0, l = els.length;
-        for(;i<l;i++){document.createElement(els[i]);console.log(els[i])}
-    </script>
-    <![endif]-->
-
-
-
     <!-- READABLE -->
     <style>
         /*
@@ -157,8 +147,8 @@
         svg {
             max-width: 100%;
             -ms-interpolation-mode: bicubic;
+            vertical-align: middle;
         }
-
 
         /* --| Form styles |--------------------------------------------------------------------- */
         /* If you're using forms, keep this: */
@@ -185,6 +175,7 @@
         }
 
         pre {
+            width: 100%;
             overflow-x: scroll;
             overflow-y: auto;
         }
@@ -214,7 +205,12 @@
         caption, td, th {
             padding: 0.5em;
         }
-
+        
+        </style>
+    
+        <!--[if !IE]><!-->
+          
+        <style>
 
         /* --| Other stuff |--------------------------------------------------------------------- */
         /*
@@ -419,16 +415,13 @@
 
 
     {% if head_scripts != false %}
-    <!--[if !IE]><!-->
     {% for script in head_scripts %}
     <script src="{{ script }}"></script>
     {% endfor %}
-    <!--<![endif]-->
     {% endif %}
 
     {% if page.load_highlighter or layout.load_highlighter %}
     {% include {{ cut_file }} css="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css" %}
-    <!--[if !IE]><!-->
     <style>
         /* Override hljs styles to reset to StartCSS: */
         .hljs {
@@ -440,8 +433,9 @@
     </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
-    <!--<![endif]-->
     {% endif %}    
+    
+    <!--<![endif]-->
 
     <link rel="apple-touch-icon" sizes="180x180" href="/dev/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/dev/favicon-32x32.png">
