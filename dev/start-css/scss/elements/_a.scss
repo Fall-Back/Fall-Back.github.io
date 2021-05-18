@@ -35,12 +35,18 @@
         @if $s__anchor-text-color--alt != $s__anchor-text-color {
             color: $s__anchor-text-color--alt;
         }
+        
+        // @TODO - maybe support filters here too, e.g. filter: brightness(0.5);
     }
 
     @if $s__anchor-focus-shadow != false {
         &:focus {
             outline: 0;
-            box-shadow: 0 0 0 $s__anchor-focus-shadow-width rgba($s__anchor-text-color, 0.5);
+            @if typeof($s__anchor-focus-shadow) == color {
+                box-shadow: 0 0 0 $s__anchor-focus-shadow-width rgba($s__anchor-text-color, 0.5);
+            } @else {
+                box-shadow: 0 0 0 $s__anchor-focus-shadow-width rgba($s__base-ui-color, 0.5);
+            }
         }
     }
 }
