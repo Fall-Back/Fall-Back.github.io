@@ -209,7 +209,7 @@ _:-ms-input-placeholder, :root #{$s__namespace}[type="file"] {
  */
 #{$s__namespace}[type="search"] {
     -webkit-appearance: textfield; /* 1 */
-    outline-offset: -2px; /* 2 */
+    outline-offset: -$s__focus-outline-offset; /* 2 */
 }
 
 /**

@@ -14,7 +14,11 @@
     5a. IE 10.
 */
 #{$s__namespace}textarea {
-    min-height: $s__base-rem-space-unit * 3.5 - s__calc-rem-from-px($s__textarea-border-width * 2); /* 1 */
+    @if $s__text_zoom_scales_all {
+        min-height: $s__base-rem-space-unit * 3.5 - ($s__textarea-border-width * 2); /* 1 */
+    } @else {
+        min-height: $s__base-rem-space-unit * 3.5 - s__calc-rem-from-px($s__textarea-border-width * 2); /* 1 */
+    }
 
     overflow: auto; /* 2 */
 

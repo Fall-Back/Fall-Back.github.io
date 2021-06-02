@@ -118,7 +118,7 @@
 */
 /*
     Uni-directional margins (bottom) is fine for most cases, but things like figcaptions that may
-    contain parapgraphs can result in double bottom margins, so flipping that around inside those
+    contain paragraphs can result in double bottom margins, so flipping that around inside those
     containers.
 */
 /*-------------------------------------------------------------------------------------------------|
@@ -714,6 +714,7 @@ details {
   padding-left: calc(2.4rem - 1px);
   padding-right: 2.4rem;
   padding-right: calc(2.4rem - 1px);
+  padding-bottom: 0;
 }
 
 details::after {
@@ -814,6 +815,7 @@ fieldset {
   padding-left: calc(2.4rem - 1px);
   padding-right: 2.4rem;
   padding-right: calc(2.4rem - 1px);
+  padding-bottom: 0;
 }
 
 fieldset::after {
@@ -844,6 +846,7 @@ fieldset fieldset::after {
 figcaption {
   display: block;
   font-size: 0.875em;
+  margin-bottom: 0;
 }
 
 figcaption * {
@@ -898,9 +901,27 @@ form {
 header {
   display: block;
   margin-bottom: 2.4rem;
-  padding: 2.4rem;
+  border-width: 0;
+  border-style: solid;
+  border-color: #247BA0;
+  padding-top: 2.4rem;
+  padding-top: calc(2.4rem - 0);
+  padding-left: 2.4rem;
+  padding-left: calc(2.4rem - 0);
+  padding-right: 2.4rem;
+  padding-right: calc(2.4rem - 0);
+  padding-bottom: 0;
   background-color: #fff;
   color: #333;
+}
+
+header::after {
+  display: block;
+  content: "";
+  height: 1px;
+  margin-top: 2.4rem;
+  margin-bottom: -1px;
+  margin-bottom: calc(-1px - 0);
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -1855,6 +1876,7 @@ summary {
   touch-action: manipulation;
   /* 2 */
   cursor: pointer;
+  margin-bottom: 0;
 }
 
 summary:focus {

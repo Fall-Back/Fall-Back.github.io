@@ -14,7 +14,9 @@
         margin-bottom: 0;
     }
     
-    padding: $s__header-padding;
+    //padding: $s__header-padding;
+    
+    @include s__bordered($s__header-padding, 0);
 
     background-color: $s__header-background-color;
     color: $s__header-text-color;

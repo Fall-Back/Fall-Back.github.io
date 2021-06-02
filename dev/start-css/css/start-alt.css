@@ -118,7 +118,7 @@
 */
 /*
     Uni-directional margins (bottom) is fine for most cases, but things like figcaptions that may
-    contain parapgraphs can result in double bottom margins, so flipping that around inside those
+    contain paragraphs can result in double bottom margins, so flipping that around inside those
     containers.
 */
 /*-------------------------------------------------------------------------------------------------|
@@ -389,9 +389,9 @@ body {
     3. Remove the tapping delay from clickable elements .
 */
 a[href] {
-  margin-bottom: -2px;
-  padding-bottom: 2px;
-  border-bottom: 2px solid;
+  margin-bottom: -0.2rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 0.2rem solid;
   color: #247BA0;
   background-color: transparent;
   /* 1 */
@@ -405,13 +405,13 @@ a[href] {
 }
 
 a[href]:hover, a[href]:active {
-  border-bottom: 2px dashed;
+  border-bottom: 0.2rem dashed;
   color: #1b5b76;
 }
 
 a[href]:focus {
   outline: 0;
-  box-shadow: 0 0 0 3px rgba(36, 123, 160, 0.5);
+  box-shadow: 0 0 0 0.3rem rgba(36, 123, 160, 0.5);
 }
 
 a[href][rel~="external"]::after {
@@ -556,16 +556,16 @@ button {
   margin: 0.3rem 0;
   padding-top: 0.3rem;
   padding-top: -moz-calc(0);
-  padding-top: calc(0.3rem - 1px);
+  padding-top: calc(0.3rem - 0.1rem);
   padding-right: 0.6rem;
   padding-bottom: 0.3rem;
   padding-bottom: -moz-calc(0);
-  padding-bottom: calc(0.3rem - 1px);
+  padding-bottom: calc(0.3rem - 0.1rem);
   padding-left: 0.6rem;
   border-color: rgba(0, 0, 0, 0.2);
   border-style: solid;
-  border-width: 1px;
-  border-radius: 3px;
+  border-width: 0.1rem;
+  border-radius: 0.3rem;
   color: #fff;
   background-color: #247BA0;
   font-weight: inherit;
@@ -600,7 +600,7 @@ button:hover, button:active {
 
 button:focus {
   outline: 0;
-  box-shadow: 0 0 0 3px rgba(36, 123, 160, 0.5);
+  box-shadow: 0 0 0 0.3rem rgba(36, 123, 160, 0.5);
 }
 
 button svg {
@@ -705,17 +705,17 @@ details {
   display: block;
   /* N: IE 10/11 */
   margin-bottom: 2.4rem;
-  border-width: 1px;
+  border-width: 0.1rem;
   border-style: solid;
   border-color: #247BA0;
   padding-top: 2.4rem;
-  padding-top: calc(2.4rem - 1px);
+  padding-top: calc(2.4rem - 0.1rem);
   padding-left: 2.4rem;
-  padding-left: calc(2.4rem - 1px);
+  padding-left: calc(2.4rem - 0.1rem);
   padding-right: 2.4rem;
-  padding-right: calc(2.4rem - 1px);
+  padding-right: calc(2.4rem - 0.1rem);
   padding-bottom: 2.4rem;
-  padding-bottom: calc(2.4rem - 1px);
+  padding-bottom: calc(2.4rem - 0.1rem);
 }
 
 details > * {
@@ -804,17 +804,17 @@ em em {
 fieldset {
   margin-bottom: 2.4rem;
   min-width: 0;
-  border-width: 1px;
+  border-width: 0.1rem;
   border-style: solid;
   border-color: #247BA0;
   padding-top: 2.4rem;
-  padding-top: calc(2.4rem - 1px);
+  padding-top: calc(2.4rem - 0.1rem);
   padding-left: 2.4rem;
-  padding-left: calc(2.4rem - 1px);
+  padding-left: calc(2.4rem - 0.1rem);
   padding-right: 2.4rem;
-  padding-right: calc(2.4rem - 1px);
+  padding-right: calc(2.4rem - 0.1rem);
   padding-bottom: 2.4rem;
-  padding-bottom: calc(2.4rem - 1px);
+  padding-bottom: calc(2.4rem - 0.1rem);
 }
 
 fieldset fieldset {
@@ -836,6 +836,7 @@ fieldset fieldset::after {
 figcaption {
   display: block;
   font-size: 0.875em;
+  margin-bottom: 0;
 }
 
 figcaption * {
@@ -890,7 +891,17 @@ form {
 header {
   display: block;
   margin-bottom: 2.4rem;
-  padding: 2.4rem;
+  border-width: 0;
+  border-style: solid;
+  border-color: #247BA0;
+  padding-top: 2.4rem;
+  padding-top: calc(2.4rem - 0);
+  padding-left: 2.4rem;
+  padding-left: calc(2.4rem - 0);
+  padding-right: 2.4rem;
+  padding-right: calc(2.4rem - 0);
+  padding-bottom: 2.4rem;
+  padding-bottom: calc(2.4rem - 0);
   background-color: #fff;
   color: #333;
 }
@@ -964,11 +975,11 @@ hr {
   height: 0;
   overflow: visible;
   /* 1 */
-  margin-top: -1px;
+  margin-top: -0.1rem;
   margin-bottom: 2.4rem;
   border-top: none;
   border-right: none;
-  border-bottom: 1px solid #247BA0;
+  border-bottom: 0.1rem solid #247BA0;
   border-left: none;
 }
 
@@ -1019,7 +1030,7 @@ img {
     Special treatment for images inside links.
 */
 a img {
-  margin-bottom: -2px;
+  margin-bottom: -0.2rem;
   border-width: inherit;
   border-style: inherit;
 }
@@ -1042,16 +1053,16 @@ input {
   /* 1 */
   padding-top: 0.3rem;
   /* 2 */
-  padding-top: calc(0.3rem - 1px);
+  padding-top: calc(0.3rem - 0.1rem);
   padding-right: 0.6rem;
   padding-bottom: 0.3rem;
   /* 2 */
-  padding-bottom: calc(0.3rem - 1px);
+  padding-bottom: calc(0.3rem - 0.1rem);
   padding-left: 0.6rem;
-  border-width: 1px;
+  border-width: 0.1rem;
   border-style: solid;
   border-color: rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
+  border-radius: 0.3rem;
   color: #333;
   background-color: #fff;
   font-size: inherit;
@@ -1086,7 +1097,7 @@ input:not([type]):focus,
 [type="time"]:focus,
 [type="url"]:focus,
 [type="week"]:focus {
-  box-shadow: 0 0 0 3px rgba(36, 123, 160, 0.5);
+  box-shadow: 0 0 0 0.3rem rgba(36, 123, 160, 0.5);
   outline: 0;
 }
 
@@ -1096,7 +1107,7 @@ input:not([type]):focus,
     */
 [type="checkbox"]:focus,
 [type="radio"]:focus {
-  box-shadow: 0 0 0 3px rgba(36, 123, 160, 0.5);
+  box-shadow: 0 0 0 0.3rem rgba(36, 123, 160, 0.5);
   outline: 0;
 }
 
@@ -1129,16 +1140,16 @@ _::-webkit-full-page-media, _:future, :root [type="radio"]:focus {
   margin: 0.3rem 0;
   padding-top: 0.3rem;
   padding-top: -moz-calc(0);
-  padding-top: calc(0.3rem - 1px);
+  padding-top: calc(0.3rem - 0.1rem);
   padding-right: 0.6rem;
   padding-bottom: 0.3rem;
   padding-bottom: -moz-calc(0);
-  padding-bottom: calc(0.3rem - 1px);
+  padding-bottom: calc(0.3rem - 0.1rem);
   padding-left: 0.6rem;
   border-color: rgba(0, 0, 0, 0.2);
   border-style: solid;
-  border-width: 1px;
-  border-radius: 3px;
+  border-width: 0.1rem;
+  border-radius: 0.3rem;
   color: #fff;
   background-color: #247BA0;
   font-weight: inherit;
@@ -1179,7 +1190,7 @@ _::-webkit-full-page-media, _:future, :root [type="radio"]:focus {
 [type="reset"]:focus,
 [type="submit"]:focus {
   outline: 0;
-  box-shadow: 0 0 0 3px rgba(36, 123, 160, 0.5);
+  box-shadow: 0 0 0 0.3rem rgba(36, 123, 160, 0.5);
 }
 
 /*
@@ -1270,7 +1281,7 @@ _:-ms-input-placeholder, :root [type="file"] {
 [type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
-  outline-offset: -2px;
+  outline-offset: -0.2rem;
   /* 2 */
 }
 
@@ -1359,7 +1370,7 @@ legend {
   /* 1 */
   margin-top: 0;
   /* 2 */
-  margin-bottom: 1px;
+  margin-bottom: 0.1rem;
   /* 2 */
   padding: 0 0.6rem;
   border-width: 0;
@@ -1635,10 +1646,10 @@ select {
   /* 1 */
   min-height: auto;
   margin: 0.3rem 0;
-  border-width: 1px;
+  border-width: 0.1rem;
   border-style: solid;
   border-color: rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
+  border-radius: 0.3rem;
   color: #333;
   background-color: #fff;
   font-weight: inherit;
@@ -1724,7 +1735,7 @@ _:-moz-tree-row(hover), select:not([multiple]) {
 }
 
 select:focus {
-  box-shadow: 0 0 0 3px rgba(36, 123, 160, 0.5);
+  box-shadow: 0 0 0 0.3rem rgba(36, 123, 160, 0.5);
   outline: 0;
 }
 
@@ -1736,8 +1747,8 @@ select[multiple] {
   height: auto;
   margin-top: 0.3rem;
   margin-right: 0;
-  margin-bottom: -moz-calc(0.9rem - 2px);
-  margin-bottom: calc(0.9rem - 2px);
+  margin-bottom: -moz-calc(0.9rem - 0.2rem);
+  margin-bottom: calc(0.9rem - 0.2rem);
   margin-left: 0;
 }
 
@@ -1753,7 +1764,7 @@ _::-webkit-full-page-media, _:future, :root select[multiple] {
     ... but reset for Mac Safari .
 */
 _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[multiple] {
-  margin-bottom: calc(0.9rem - 2px);
+  margin-bottom: calc(0.9rem - 0.2rem);
   padding: 0;
 }
 
@@ -1788,15 +1799,15 @@ small {
 }
 
 small a[href] {
-  margin-bottom: -1px;
-  padding-bottom: 1px;
-  border-bottom: 1px solid;
+  margin-bottom: -0.1rem;
+  padding-bottom: 0.1rem;
+  border-bottom: 0.1rem solid;
 }
 
 small a[href]:hover,
 small a[href]:focus,
 small a[href]:active {
-  border-bottom: 1px dashed;
+  border-bottom: 0.1rem dashed;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -1851,11 +1862,12 @@ summary {
   touch-action: manipulation;
   /* 2 */
   cursor: pointer;
+  margin-bottom: 0;
 }
 
 summary:focus {
-  outline: 2px solid rgba(36, 123, 160, 0.6);
-  outline-offset: 2px;
+  outline: 0.2rem solid rgba(36, 123, 160, 0.6);
+  outline-offset: 0.2rem;
 }
 
 /* Hide the details marker as we're supplying our own. */
@@ -1942,9 +1954,9 @@ table {
   border-collapse: collapse;
   margin-bottom: 2.4rem;
   /* 1 */
-  margin-bottom: calc(2.4rem - 1px);
+  margin-bottom: calc(2.4rem - 0.1rem);
   /* 2 */
-  border: 1px solid #247BA0;
+  border: 0.1rem solid #247BA0;
   background-color: #cfe9f4;
   border-spacing: 0;
 }
@@ -1964,10 +1976,10 @@ td {
   padding-right: 1.2rem;
   padding-bottom: 1.2rem;
   /* 1 */
-  padding-bottom: calc(1.2rem - 1px);
+  padding-bottom: calc(1.2rem - 0.1rem);
   /* 2 */
   padding-left: 1.2rem;
-  border: 1px solid #247BA0;
+  border: 0.1rem solid #247BA0;
   background-color: #fff;
 }
 
@@ -2009,8 +2021,8 @@ textarea {
   /* 3 */
   padding-left: 0.6rem;
   padding-right: 0.6rem;
-  border-width: 1px;
-  border-radius: 3px;
+  border-width: 0.1rem;
+  border-radius: 0.3rem;
   border-color: rgba(0, 0, 0, 0.2);
   border-style: solid;
   color: #333;
@@ -2029,7 +2041,7 @@ textarea {
 }
 
 textarea:focus {
-  box-shadow: 0 0 0 3px rgba(36, 123, 160, 0.5);
+  box-shadow: 0 0 0 0.3rem rgba(36, 123, 160, 0.5);
   outline: 0;
 }
 
@@ -2048,10 +2060,10 @@ th {
   padding-right: 1.2rem;
   padding-bottom: 1.2rem;
   /* 1 */
-  padding-bottom: calc(1.2rem - 1px);
+  padding-bottom: calc(1.2rem - 0.1rem);
   /* 2 */
   padding-left: 1.2rem;
-  border: 1px solid #247BA0;
+  border: 0.1rem solid #247BA0;
   background-color: #cfe9f4;
 }
 
@@ -2261,7 +2273,7 @@ Shelving this for now
     }
     
     hr {
-        margin-top: calc(2.4rem - 1px;
+        margin-top: calc(2.4rem - 0.1rem;
     }
 } 
 */
@@ -2371,7 +2383,7 @@ a[hidden="false"][aria-hidden="false"]:active {
     /* 1 */
     min-height: initial;
     /* 1 */
-    border-width: 1px;
+    border-width: 0.1rem;
     border-style: solid;
     border-color: #333;
     background-color: #fff;

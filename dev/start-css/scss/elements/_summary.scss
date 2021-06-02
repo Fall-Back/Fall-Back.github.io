@@ -16,10 +16,12 @@
     touch-action: manipulation; /* 2 */
 
     cursor: pointer;
+    
+    margin-bottom: 0;
 
     &:focus {
-        outline: 2px solid rgba($s__base-ui-color, 0.6);
-        outline-offset: 2px;
+        outline: $s__focus-outline-width solid rgba($s__base-ui-color, 0.6);
+        outline-offset: $s__focus-outline-offset;
     }
 }
 
@@ -47,8 +49,6 @@
     #{$s__namespace}details[open] > summary {
         @if $s__procedural-margins {
             margin-bottom: $s__base-rem-space-unit;
-        } @else {
-            margin-bottom: 0;
         }
     }
     

@@ -85,4 +85,24 @@ $s__use-last-child-margin-zero: true;
 $s__zero-header-hx-margin: true;
 $s__space_dl_groups: true;
 
+$s__text_zoom_scales_all: true;
+
+
+$s__border-width: 0.1rem;
+$s__border-radius: 0.3rem;
+
+$s__focus-outline-width: 0.2rem;
+$s__focus-outline-offset: 0.2rem;
+
+$s__anchor-border-bottom-width: 0.2rem;
+$s__anchor-focus-shadow-width: 0.3rem;
+
+$s__button-focus-shadow-width: 0.3rem;
+
+$s__input-focus-shadow-width: 0.3rem;
+
+$s__select-focus-shadow-width: 0.3rem;
+
+$s__textarea-focus-shadow-width: 0.3rem;
+
 @import 'scss/_start.scss';

@@ -49,6 +49,7 @@
         //padding-bottom: -moz-calc(#{$padding} - #{$border-width});
         padding-bottom:      calc(#{$padding} - #{$border-width});
     } @else {
+        padding-bottom: 0;
         &::after {
             display: block;
 
@@ -203,7 +204,7 @@
 
 /*
     Uni-directional margins (bottom) is fine for most cases, but things like figcaptions that may
-    contain parapgraphs can result in double bottom margins, so flipping that around inside those
+    contain paragraphs can result in double bottom margins, so flipping that around inside those
     containers.
 */
 @mixin s__fix_internal_margins($margin-size) {
