@@ -81,7 +81,7 @@
     <!-- Built with Jekyll and Fall-Back patterns -->
 
     <!--<base href="http://localhost:4001/">-->
-    
+
     <!-- READABLE -->
     <style>
         /*
@@ -98,8 +98,15 @@
         */
 
         /* --| Core styles |--------------------------------------------------------------------- */
+        html {
+            box-sizing: border-box;
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
         body {
-            font: 1em/1.2 sans-serif;
+            font: 1em/1.4 sans-serif;
             padding: 1em;
             margin: 0 auto;
             max-width: 50em;
@@ -110,6 +117,7 @@
         aside,
         dialog,
         details,
+        fieldset,
         figcaption,
         figure,
         footer,
@@ -121,6 +129,16 @@
         summary {
             display: block;
             margin-bottom: 1em;
+            margin-top: 1em;
+        }
+
+        summary {
+            display: list-item;
+        }
+        @media screen and (-ms-high-contrast:active), (-ms-high-contrast:none) {
+            summary {
+                display: block;
+            }
         }
 
         mark {
@@ -135,8 +153,8 @@
 
         /* The "older browser" message makes use of a fieldset to add a border no matter what: */
         fieldset {
-            border: 1px solid;
-            padding: 16px;
+            border: 0.1rem solid;
+            padding: 1em;
             border-color: #777;
         }
 
@@ -155,16 +173,39 @@
 
         button,
         input,
+        option,
         select,
         textarea {
             vertical-align: middle;
             min-height: 2.2em;
         }
-
-        button {
-            line-height: 0;
+        
+        /*
+            These selectors can't be combined or anything because IE treats Webkit selectors as
+            invalid and visa-versa so the whole block is ignored.
+        */
+        input[type="file"]::-webkit-file-upload-button,
+        input[type="file"]::file-selector-button {
+            min-height: inherit;
         }
-
+        
+        input[type="file"]::-ms-value,
+        input[type="file"]::-ms-browse {
+            min-height: inherit;
+        }
+        
+        select {
+            height: 2.2em;
+        }
+        
+        select[multiple] {
+            height: auto;
+        }
+        
+        option {
+            display: flex;
+            align-items: center;
+        }
 
         hr {
             border-style: solid;
@@ -205,127 +246,8 @@
         caption, td, th {
             padding: 0.5em;
         }
-        
+
         </style>
-    
-        <!--[if !IE]><!-->
-          
-        <style>
-
-        /* --| Other stuff |--------------------------------------------------------------------- */
-        /*
-            What follows is a mix of markup patterns and attributes to to help provide a more
-            reasonable fallback - it's unconventional, so leave it out if you like.
-        */
-
-        /*
-            For inline-lists (used with p[role="list"] and span[role="listitem")] for 'native inline
-            lists.
-        */
-        /*span[role="listitem"] > * {
-            white-space: nowrap;
-        }*/
-
-        /* Attributes to replicate deprecated HTML styling: */
-
-        /* Would have been align="right": */
-        [data-fs-text~="right"] {
-            text-align: right;
-        }
-
-        /* Would have been align="center": */
-        [data-fs-text~="center"] {
-            text-align: center;
-        }
-
-        /* Would have been the 'big' element: */
-        [data-fs-text~="larger"] {
-            font-size: larger;
-        }
-
-        [data-fs-text~="nowrap"] {
-            white-space: nowrap;
-        }
-
-        [data-fs-block~="background"] {
-            background: #eee;
-        }
-
-        [data-fs-block~="border"] {
-            border: 1px solid;
-            padding: 1em;
-        }
-
-        [data-fs-block~="padding"] {
-            padding: 1em;
-        }
-
-        /*
-            Layout: table
-            Useful when you have a very small amount of items you want to display side-by-side.
-            Like, maybe 2, on the left and right. It doesn't wrap so the items should be small.
-            There's reasonable support. Better support would be:
-            `<table border="0" cellpadding="0" cellspacing="0" width="100%" role="presentation">`
-            But we're not supposed to use deprecated 'presentational' elements and attributes.
-        */
-        [data-fs-block~="table"] {
-            display: table;
-            width: 100%;
-            table-layout: fixed;
-        }
-
-        [data-fs-block~="table"] > * {
-            display: table-cell;
-        }
-
-
-        /*
-            Layout: flex;
-            More responsive and has wrapping, but less well supported than the table layout.
-        */
-
-        [data-fs-block~="flex"] {
-            display: -webkit-flex;
-            display: -moz-box;
-            display: -ms-flexbox;
-            display: flex;
-            -webkit-flex-wrap: wrap;
-            -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-        }
-
-        [data-fs-block~="flex"] > * {
-            -webkit-flex: 1 0 auto;
-            -moz-box-flex: 1;
-            -ms-flex: 1 0 auto;
-            flex: 1 0 auto;
-        }
-
-        /* Responsive embeds (e.g. YouTube, maps) via http://embedresponsively.com. */
-
-        [data-fs-block="video"] {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            max-width: 100%;
-        }
-
-        [data-fs-block="video"] iframe,
-        [data-fs-block="video"] object,
-        [data-fs-block="video"] embed {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        [data-fs-hr="larger"] {
-            border-top-width: 10px;
-        }
-
-    </style>
     <!-- MIN: (https://cssminifier.com/)
 
     <style>
@@ -433,8 +355,8 @@
     </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
-    {% endif %}    
-    
+    {% endif %}
+
     <!--<![endif]-->
 
     <link rel="apple-touch-icon" sizes="180x180" href="/dev/apple-touch-icon.png">
@@ -592,7 +514,6 @@
                 <strong>Notice:</strong> You are viewing an unstyled version of this page. Are you using a very old browser? If so, <a href="https://browsehappy.com/?locale=en">please consider upgrading</a>
             </p>
         </fieldset>
-        <br>
     </div>
 
     {{ content }}

@@ -1056,6 +1056,13 @@ lines.</textarea>
 
 <p>Random text</p>
 
+
+<h2>Tables and Figures</h2>
+
+<p>
+    Content (especially tables__ that are inside <code>figures</code> are set to be responsive in a very basic way - by scrolling horizontally.
+</p>
+
 <figure>
     <figcaption>HTML</figcaption>
         <pre><code>&lt;!-- Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+, IE10+ (including Edge) --&gt;
@@ -1076,7 +1083,7 @@ media="only all and (min--moz-device-pixel-ratio:0) and (min-resolution: 3e1dpcm
 
 <hr>
 
-<h2>Media</h2>
+<h3>Media</h3>
 
 <!--
 Improve/expand upon the SVG and link to dedicated page that contains more examples and
@@ -1121,6 +1128,7 @@ explanation.
 <p><a href="#"><img src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny"></a></p>
 
 
+
 <figure>
     <!-- first try HTML5 playback: if serving as XML, expand `controls` to `controls="controls"` and autoplay likewise       -->
     <!-- warning: playback does not work on iPad/iPhone if you include the poster attribute! fixed in iOS4                   -->
@@ -1145,62 +1153,64 @@ explanation.
     </figcaption>
 </figure>
 
-<table id="Books" border="1">
-    <caption id="Cap1">Books I May or May Not Have Read</caption>
-    <thead>
-        <tr>
-            <th>Author</th>
-            <th>Title</th>
-            <th>Year</th>
-            <th>ISBN-13</th>
-            <th>ISBN-10</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Miguel De Cervantes</td>
-            <td>The Ingenious Gentleman Don Quixote of La Mancha</td>
-            <td>1605</td>
-            <td>9783125798502</td>
-            <td>3125798507</td>
+<figure>
+    <table id="Books" border="1">
+        <caption id="Cap1">Books I May or May Not Have Read</caption>
+        <thead>
+            <tr>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Year</th>
+                <th>ISBN-13</th>
+                <th>ISBN-10</th>
             </tr>
-        <tr>
-        <td>Mary Shelley</td>
-            <td>Frankenstein; or, The Modern Prometheus</td>
-            <td>1818</td>
-            <td>9781530278442</td>
-            <td>1530278449</td>
-        </tr>
-        <tr>
-            <td>Herman Melville</td>
-            <td>Moby-Dick; or, The Whale</td>
-            <td>1851</td>
-            <td>9781530697908</td>
-            <td>1530697905</td>
-        </tr>
-        <tr>
-            <td>Emma Dorothy Eliza Nevitte Southworth</td>
-            <td>The Hidden Hand</td>
-            <td>1888</td>
-            <td>9780813512969</td>
-            <td>0813512964</td>
-        </tr>
-        <tr>
-            <td>F. Scott Fitzgerald</td>
-            <td>The Great Gatsby</td>
-            <td>1925</td>
-            <td>9780743273565</td>
-            <td>0743273567</td>
-        </tr>
-        <tr>
-            <td>George Orwell</td>
-            <td>Nineteen Eighty-Four</td>
-            <td>1948</td>
-            <td>9780451524935</td>
-            <td>0451524934</td>
-        </tr>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Miguel De Cervantes</td>
+                <td>The Ingenious Gentleman Don Quixote of La Mancha</td>
+                <td>1605</td>
+                <td>9783125798502</td>
+                <td>3125798507</td>
+                </tr>
+            <tr>
+            <td>Mary Shelley</td>
+                <td>Frankenstein; or, The Modern Prometheus</td>
+                <td>1818</td>
+                <td>9781530278442</td>
+                <td>1530278449</td>
+            </tr>
+            <tr>
+                <td>Herman Melville</td>
+                <td>Moby-Dick; or, The Whale</td>
+                <td>1851</td>
+                <td>9781530697908</td>
+                <td>1530697905</td>
+            </tr>
+            <tr>
+                <td>Emma Dorothy Eliza Nevitte Southworth</td>
+                <td>The Hidden Hand</td>
+                <td>1888</td>
+                <td>9780813512969</td>
+                <td>0813512964</td>
+            </tr>
+            <tr>
+                <td>F. Scott Fitzgerald</td>
+                <td>The Great Gatsby</td>
+                <td>1925</td>
+                <td>9780743273565</td>
+                <td>0743273567</td>
+            </tr>
+            <tr>
+                <td>George Orwell</td>
+                <td>Nineteen Eighty-Four</td>
+                <td>1948</td>
+                <td>9780451524935</td>
+                <td>0451524934</td>
+            </tr>
+        </tbody>
+    </table>
+</figure>
 
 <table id="browser_info" border="1">
     <caption>Browser info</caption>
