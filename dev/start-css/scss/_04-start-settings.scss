@@ -41,6 +41,7 @@ $s__use-layout: false !default;
 $s__zero-header-hx-margin: false !default;
 $s__space_dl_groups: false !default;
 $s__text_zoom_scales_all: false !default;
+$s__figure-scroll: false !default;
 
 $s__tabsize: 4 !default;
 
@@ -175,9 +176,13 @@ $s__button-focus-shadow-width: 3px !default;
 $s__button-min-height: ($s__base-rem-space-unit * 1.25);
 
 
+$s__caption-background-color: null !default;
+@if $s__figure-scroll {
+    $s__caption-background-color: rgba($s__base-ui-color, 0.7) !default;
+} @else {
+    $s__caption-background-color: $s__base-ui-color !default;
+}
 
-
-$s__caption-background-color: $s__base-ui-color !default;
 $s__caption-text-color: #fff !default;
 $s__caption-padding: $s__base-rem-space-unit / 2 !default;
 
@@ -197,6 +202,8 @@ $s__fieldset-padding: $s__base-rem-space-unit !default;
 $s__footer-padding: $s__base-rem-space-unit !default;
 $s__footer-text-color: $s__base-text-color !default;
 $s__footer-background-color: $s__base-background-color !default;
+
+
 
 
 
@@ -335,14 +342,25 @@ $s__small-font-size: 81.25% !default;
 
 $s__table-border-width: $s__border-width !default;
 $s__table-border: $s__table-border-width solid $s__base-ui-color !default;
-$s__table-background-color: lighten($s__base-ui-color, 50%) !default;
-
+$s__table-background-color: null !default;
+@if $s__figure-scroll {
+    $s__table-background-color: transparent !default;
+} @else {
+    $s__table-background-color: lighten($s__base-ui-color, 50%) !default;
+}
 
 
 
 $s__td-border-width: $s__border-width !default;
 $s__td-border: $s__td-border-width solid $s__base-ui-color !default;
-$s__td-background-color: #fff !default;
+$s__td-background-color: null !default;
+@if $s__figure-scroll {
+    $s__td-background-color: transparent !default;
+} @else {
+    $s__td-background-color: #fff !default;
+}
+
+
 $s__td-cell-padding: $s__base-rem-space-unit / 2;
 
 
@@ -368,7 +386,12 @@ $s__textarea-resize: vertical !default;
 
 $s__th-border-width: $s__border-width !default;
 $s__th-border: $s__th-border-width solid $s__base-ui-color !default;
-$s__th-background-color: lighten($s__base-ui-color, 50%) !default;
+$s__th-background-color: null !default;
+@if $s__figure-scroll {
+    $s__th-background-color: rgba($s__base-ui-color, 0.3) !default;
+} @else {
+    $s__th-background-color: lighten($s__base-ui-color, 50%) !default;
+}
 $s__th-cell-padding: $s__base-rem-space-unit / 2;
 
 
