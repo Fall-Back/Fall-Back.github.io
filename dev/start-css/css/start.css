@@ -1997,6 +1997,7 @@ table {
   /* 1 */
   margin-bottom: calc(2.4rem - 1px);
   /* 2 */
+  margin-top: 0;
   border: 1px solid #247BA0;
   background-color: #cfe9f4;
   border-spacing: 0;

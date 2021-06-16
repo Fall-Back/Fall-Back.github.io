@@ -18,6 +18,7 @@
     @if $s__procedural-margins {
             margin-bottom: $s__base-rem-space-unit; /* 1 */
             margin-bottom: calc(#{$s__base-rem-space-unit} - #{$s__table-border-width}); /* 2 */
+            margin-top: 0;
     } @else {
         margin-bottom: - #{$s__table-border-width};
     }
