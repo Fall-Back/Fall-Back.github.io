@@ -82,7 +82,7 @@
 
     <!--<base href="http://localhost:4001/">-->
 
-    <!-- READABLE -->
+    <!-- Ultra-light fallback styles for ancient browsers: -->
     <style>
         /*
             Tiny Fall-Back Styles (https://github.com/Fall-Back/Patterns/edit/master/Page/README.md)
@@ -96,166 +96,16 @@
             is so as not to pollute the class space and help authors make distinctions.
             There's a much long essay on this brewing and I'll add the link when it's done.
         */
-
-        /* --| Core styles |--------------------------------------------------------------------- */
-        html {
-            box-sizing: border-box;
-        }
-        *, *:before, *:after {
-            box-sizing: inherit;
-        }
-
-        body {
-            font: 1em/1.4 sans-serif;
-            padding: 1em;
-            margin: 0 auto;
-            max-width: 50em;
-        }
-
-        /* For older browsers:(see https://github.com/aFarkas/html5shiv) */
-        article,
-        aside,
-        dialog,
-        details,
-        fieldset,
-        figcaption,
-        figure,
-        footer,
-        header,
-        hgroup,
-        main,
-        nav,
-        section,
-        summary {
-            display: block;
-            margin-bottom: 1em;
-            margin-top: 1em;
-        }
-
-        summary {
-            display: list-item;
-        }
-        @media screen and (-ms-high-contrast:active), (-ms-high-contrast:none) {
-            summary {
-                display: block;
-            }
-        }
-
-        mark {
-            background: #FF0;
-            color: #000;
-        }
-
-        template,
-        [hidden] {
-            display: none;
-        }
-
-        /* The "older browser" message makes use of a fieldset to add a border no matter what: */
-        fieldset {
-            border: 0.1rem solid;
-            padding: 1em;
-            border-color: #777;
-        }
-
-        /* More responsive images: */
-        /* Note ancient image tag is actually for the SVG FalBack PNG method */
-        img,
-        image,
-        svg {
-            max-width: 100%;
-            -ms-interpolation-mode: bicubic;
-            vertical-align: middle;
-        }
-
-        /* --| Form styles |--------------------------------------------------------------------- */
-        /* If you're using forms, keep this: */
-
-        button,
-        input,
-        option,
-        select,
-        textarea {
-            vertical-align: middle;
-            min-height: 2.2em;
-        }
-        
-        /*
-            These selectors can't be combined or anything because IE treats Webkit selectors as
-            invalid and visa-versa so the whole block is ignored.
-        */
-        input[type="file"]::-webkit-file-upload-button,
-        input[type="file"]::file-selector-button {
-            min-height: inherit;
-        }
-        
-        input[type="file"]::-ms-value,
-        input[type="file"]::-ms-browse {
-            min-height: inherit;
-        }
-        
-        select {
-            height: 2.2em;
-        }
-        
-        select[multiple] {
-            height: auto;
-        }
-        
-        option {
-            display: flex;
-            align-items: center;
-        }
-
-        hr {
-            border-style: solid;
-            border-width: 1px 0 0 0;
-            height: 0;
-            margin: 1em 0;
-            color: #777;
-        }
-
-        pre {
-            width: 100%;
-            overflow-x: scroll;
-            overflow-y: auto;
-        }
-
-        /* --| Table styles |-------------------------------------------------------------------- */
-        /* If you're using tables, keep this: */
-
-        table {
-            width: 100%;
-            border: 1px solid #777;
-            border-collapse: collapse;
-        }
-
-        table[role="presentation"] {
-            border: 0;
-            table-layout: fixed;
-        }
-
-        table[role="presentation"] td {
-            border: 0;
-        }
-
-        th {
-            background: #eee;
-        }
-
-        caption, td, th {
-            padding: 0.5em;
-        }
-
+        body{font:1em/1.2 sans-serif;padding:1em;margin:0 auto;max-width:50em}article,aside,details,dialog,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block;margin-bottom:1em}mark{background:#ff0;color:# 000}[hidden],template{display:none}fieldset{border:1px solid;padding:16px;border-color:#777}image,img,svg{max-width:100%;-ms-interpolation-mode:bicubic;vertical-align:middle}hr{border-style:solid;border-width:1px 0 0 0;height:0;margin:1em 0;color:#777}pre{width:100%;overflow-x:scroll;overflow-y:auto}button,input,label,select,textarea{vertical-align:middle;vertical-align:middle;min-height:2.2em;margin:.2em 0}button,input[type=checkbox],input[type=radio],label,select,textarea{cursor:pointer}button{line-height:0}input,textarea{padding:0 .5em}table{width:100%;border:1px solid #777;border-collapse:collapse}table[role=presentation]{border:0;table-layout:fixed}table[role=presentation] td{border:0}th{background:#eee}caption,td,th{padding:.5em}
     </style>
-    <!-- MIN: (https://cssminifier.com/)
-
-    <style>
-        body{font:1em/1.2 sans-serif;padding:1em;margin:0 auto;max-width:50em}main{display:block}fieldset{border:1px solid;padding:16px;border-color:#777}button,input,select,textarea{vertical-align:middle;min-height:2.2em}button{line-height:0}image,img,svg{max-width:100%;-ms-interpolation-mode:bicubic}hr{border-style:solid;border-width:1px 0 0 0;height:0;color:#777}pre{overflow-x:scroll;overflow-y:auto}[hidden]{display:none}span[role=listitem]{white-space:nowrap}
-    </style>
-    -->
-
+    
+    <!-- From here we're cutting off IE9- to stop all kinds of JS and CSS fails. -->
     <!--[if !IE]><!-->
+    
+    <style>
+        /* Tiny Fall-Back Styles continued ... */
+        [data-fs-text~=right]{text-align:right}[data-fs-text~=center]{text-align:center}[data-fs-text~=larger]{font-size:larger}[data-fs-text~=nowrap]{white-space:nowrap}[data-fs-block~=background]{background:#eee}[data-fs-block~=border]{border:1px solid;padding:1em}[data-fs-block~=padding]{padding:1em}[data-fs-block~=table]{display:table;width:100%;table-layout:fixed}[data-fs-block~=table]>*{display:table-cell}[data-fs-block~=flex]{display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}[data-fs-block~=flex]>*{-webkit-flex:1 0 auto;-moz-box-flex:1;-ms-flex:1 0 auto;flex:1 0 auto}[data-fs-block=video]{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%}[data-fs-block=video] embed,[data-fs-block=video] iframe,[data-fs-block=video] object{position:absolute;top:0;left:0;width:100%;height:100%}[data-fs-hr=larger]{border-top-width:10px}
+    </style>
 
     <!--
         Accessible font loading. FOUT is a lesser evil than FOIT.
@@ -361,14 +211,12 @@
 
     <!--<![endif]-->
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/dev/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/dev/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/dev/favicon-16x16.png">
-    <link rel="manifest" href="/dev/site.webmanifest">
-    <link rel="mask-icon" href="/dev/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="shortcut icon" href="/dev/favicon.ico">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-config" content="/dev/browserconfig.xml">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
 </head>
