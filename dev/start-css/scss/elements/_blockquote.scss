@@ -8,6 +8,7 @@
 #{$s__namespace}blockquote {
     @if $s__procedural-margins {
         margin-bottom: $s__base-rem-space-unit;
+        margin-top: 0;
     } @else {
         margin-bottom: 0;
     }

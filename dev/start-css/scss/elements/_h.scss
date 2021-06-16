@@ -8,6 +8,7 @@
 #{$s__namespace}h1 {
     @if $s__procedural-margins {
         margin-bottom: $s__base-rem-space-unit;
+        margin-top: 0;
     } @else {
         margin-bottom: 0;
     }
@@ -19,6 +20,7 @@
 #{$s__namespace}h2 {
     @if $s__procedural-margins {
         margin-bottom: $s__base-rem-space-unit;
+        margin-top: 0;
     } @else {
         margin-bottom: 0;
     }
@@ -30,6 +32,7 @@
 #{$s__namespace}h3 {
     @if $s__procedural-margins {
         margin-bottom: $s__base-rem-space-unit;
+        margin-top: 0;
     } @else {
         margin-bottom: 0;
     }
@@ -41,6 +44,7 @@
 #{$s__namespace}h4 {
     @if $s__procedural-margins {
         margin-bottom: $s__base-rem-space-unit;
+        margin-top: 0;
     } @else {
         margin-bottom: 0;
     }
@@ -52,6 +56,7 @@
 #{$s__namespace}h5 {
     @if $s__procedural-margins {
         margin-bottom: $s__base-rem-space-unit;
+        margin-top: 0;
     } @else {
         margin-bottom: 0;
     }
@@ -63,6 +68,7 @@
 #{$s__namespace}h6 {
     @if $s__procedural-margins {
         margin-bottom: $s__base-rem-space-unit;
+        margin-top: 0;
     } @else {
         margin-bottom: 0;
     }

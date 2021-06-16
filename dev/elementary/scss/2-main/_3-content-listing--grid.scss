@@ -19,6 +19,10 @@
 
         #{map-get($options, selector)} > * {
             margin: 0;
+            
+            & > * {
+                padding: 0;
+            }
         }
     }
 }

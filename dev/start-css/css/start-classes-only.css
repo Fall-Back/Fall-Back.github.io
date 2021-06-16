@@ -660,5 +660,6 @@ p.subtitle {
   font-family: cursive;
   background: #fff;
   overflow: auto;
+  margin-top: 0;
   margin-bottom: 2.4rem;
 }

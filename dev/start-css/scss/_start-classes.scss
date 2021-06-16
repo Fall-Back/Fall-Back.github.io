@@ -364,6 +364,7 @@ $fs__include_class_poem:          true !default;
         background: #fff;
         overflow: auto;
         @if $s__procedural-margins {
+            margin-top: 0;
             margin-bottom: $s__base-rem-space-unit;
         } @else {
             margin-bottom: 0;

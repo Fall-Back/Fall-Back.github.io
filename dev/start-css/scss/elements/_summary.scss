@@ -18,6 +18,7 @@
     cursor: pointer;
     
     margin-bottom: 0;
+    margin-top: 0;
 
     &:focus {
         outline: $s__focus-outline-width solid rgba($s__base-ui-color, 0.6);
@@ -49,6 +50,7 @@
     #{$s__namespace}details[open] > summary {
         @if $s__procedural-margins {
             margin-bottom: $s__base-rem-space-unit;
+            margin-top: 0;
         }
     }
     

@@ -53,6 +53,10 @@
     border: 0;
 
     background-color: $e__listing__item--backgroud-color;
+    
+    & > * {
+        padding: 0;
+    }
 }
 
 
