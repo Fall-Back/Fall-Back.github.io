@@ -9,7 +9,7 @@
 
     <!--
         Print (Edge doesn't apply to print otherwise)
-        ...  
+        Edge 79+, Chrome 76+, Firefox 67+, Opera 62+, Safari 12.1+, iOS 13+, Android 91+
     -->
     <link rel="stylesheet" href="mq-test.css" media="
         only print,
@@ -83,13 +83,15 @@
 
         <h2>Stylesheet declarations:</h2>
         <pre><code>&lt;!--
-    Print (Edge doesn't apply to print otherwise)
-    ...
+    Print (Edge doesn&apos;t apply to print otherwise)
+    Edge 79+, Chrome 76+, Firefox 67+, Opera 62+, Safari 12.1+, iOS 13+, Android 91+
 --&gt;
-&lt;link rel="stylesheet" href="css/mq-test.css" media="
+&lt;link rel=&quot;stylesheet&quot; href=&quot;mq-test.css&quot; media=&quot;
     only print,
-    ...
-"&gt;</code></pre>
+    only all and (prefers-color-scheme: no-preference),
+    only all and (prefers-color-scheme: light),
+    only all and (prefers-color-scheme: dark)
+&quot;&gt;</code></pre>
 
         <h2>Notes</h2>
         <p>...</p>
