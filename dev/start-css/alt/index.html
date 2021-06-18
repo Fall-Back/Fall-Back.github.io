@@ -970,7 +970,6 @@ lines.</textarea>
     <dd>Daniel Jackson</dd>
 </dl>
 
-
 <h2>Text-level elements</h2>
 <p>
     <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-a-element" rel="external">[a]</a>: <a href="#">With href</a>. <a>Without href</a>. <a href="https://www.w3.org/TR/html5/text-level-semantics.html#text-level-semantics" rel="external">External link</a>.
@@ -978,6 +977,20 @@ lines.</textarea>
 <p>
     On a related note, very long words like "rindfleischetikettierungsüberwachungsaufgabenübertragungsgesetz" (see <a href="https://en.wikipedia.org/wiki/Rinderkennzeichnungs-_und_Rindfleischetikettierungs%C3%BCberwachungsaufgaben%C3%BCbertragungsgesetz" rel="external">rindfleischetikettierungsüberwachungsaufgabenübertragungsgesetz</a>) need to be catered for with regards to word-wrapping.
 </p>
+
+<p>Images that are links need extra styles and testing:<br>
+    <a href="#"><img src="https://lab.gridlight-design.co.uk/fallback/img/fallback-logo.svg" width="250"></a>
+
+</p>
+
+<p>
+    <small>Here's a problem - if the image has a transparent background, the a's bounding box (which is 
+    inline and smaller than the image) is visible.
+    Outlines actually work as expected in this case but I can't use them because of the lack of 
+    rounded corners, hence the a > img selector reapplying the focus shadow.
+    I guess transparent images like this are an edge case, but it's something to keep an eye on.</small>
+</p>
+
 <p>
     <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-em-element" rel="external">[em]</a> and <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-strong-element" rel="external">[strong]</a>: <em>Stress emphasis</em> and <strong>strong importance, seriousness, or urgency</strong>.
 </p>
@@ -1128,7 +1141,6 @@ explanation.
 <p><a href="#"><img src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny"></a></p>
 
 
-
 <figure>
     <!-- first try HTML5 playback: if serving as XML, expand `controls` to `controls="controls"` and autoplay likewise       -->
     <!-- warning: playback does not work on iPad/iPhone if you include the poster attribute! fixed in iOS4                   -->
@@ -1152,6 +1164,7 @@ explanation.
         <strong>Download Video:</strong> Closed Format: <a href="media/big_buck_bunny.mp4">"MP4"</a> Open Format: <a href="media/big_buck_bunny.ogv">"OGG"</a> / <a href="media/big_buck_bunny.webm">"WebM"</a>
     </figcaption>
 </figure>
+
 
 <figure>
     <table id="Books" border="1">

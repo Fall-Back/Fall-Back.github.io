@@ -240,8 +240,10 @@ head_style: |
         /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
 
 
+
         background-image: url('https://lab.gridlight-design.co.uk/fallback-v1/line-grid-12px.gif');
         background-repeat: repeat;
+        
     }
 
     .tb-outlines h1, .tb-outlines h2, .tb-outlines h3, .tb-outlines h4, .tb-outlines h5, .tb-outlines h6,
@@ -973,6 +975,20 @@ lines.</textarea>
 <p>
     On a related note, very long words like "rindfleischetikettierungsüberwachungsaufgabenübertragungsgesetz" (see <a href="https://en.wikipedia.org/wiki/Rinderkennzeichnungs-_und_Rindfleischetikettierungs%C3%BCberwachungsaufgaben%C3%BCbertragungsgesetz" rel="external">rindfleischetikettierungsüberwachungsaufgabenübertragungsgesetz</a>) need to be catered for with regards to word-wrapping.
 </p>
+
+<p>Images that are links need extra styles and testing:<br>
+    <a href="#"><img src="https://lab.gridlight-design.co.uk/fallback/img/fallback-logo.svg" width="250"></a>
+
+</p>
+
+<p>
+    <small>Here's a problem - if the image has a transparent background, the a's bounding box (which is 
+    inline and smaller than the image) is visible.
+    Outlines actually work as expected in this case but I can't use them because of the lack of 
+    rounded corners, hence the a > img selector reapplying the focus shadow.
+    I guess transparent images like this are an edge case, but it's something to keep an eye on.</small>
+</p>
+
 <p>
     <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-em-element" rel="external">[em]</a> and <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-strong-element" rel="external">[strong]</a>: <em>Stress emphasis</em> and <strong>strong importance, seriousness, or urgency</strong>.
 </p>

@@ -24,9 +24,13 @@
 
     vertical-align: $s__media-element-vertical-align; /* 4 */
 
-    .gm-style &, /* 5 */
-    &[width], /* 6 */
-    &[height] {  /* 6 */
+    /*.gm-style &, /* 5 *
+    &[width], /* 6 *
+    &[height] {  /* 6 *
+        max-width: none;
+    }*/
+
+    .gm-style { /* 5 */
         max-width: none;
     }
 }
@@ -37,6 +41,29 @@
 #{$s__namespace}a img {
     margin-bottom: $s__anchor-border-bottom-offset;
 
-    border-width: inherit;
-    border-style: inherit;
+    //border-width: inherit;
+    //border-style: inherit;
+    border-bottom: $s__anchor-border-bottom;
+
+    &:active, &:hover {
+        border-bottom: $s__anchor-border-bottom--alt;
+    }
+}
+
+/*
+    Here's a problem - if the image has a transparent background, the a's bounding box (which is 
+    inline and smaller than the image) is visible.
+    Outlines actually work as expected in this case but I can't use them because of the lack of 
+    rounded corners, hence the a > img selector reapplying the focus shadow.
+    I guess transparent images like this are an edge case, but it's something to keep an eye on.
+*/
+@if $s__anchor-focus-shadow != false {
+    #{$s__namespace}a:focus img {
+        outline: 0;
+        @if typeof($s__anchor-focus-shadow) == color {
+            box-shadow: 0 0 0 $s__anchor-focus-shadow-width rgba($s__anchor-text-color, 0.5);
+        } @else {
+            box-shadow: 0 0 0 $s__anchor-focus-shadow-width rgba($s__base-ui-color, 0.5);
+        }
+    }
 }

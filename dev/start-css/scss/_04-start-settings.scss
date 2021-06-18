@@ -108,13 +108,17 @@ $s__ie10-11: "screen and (-ms-high-contrast:active), (-ms-high-contrast:none)";
 
 // ELEMENTS
 
-// <html>
+/*
+    HTML
+*/
 $s__html-background-color: darken($s__base-ui-color, 25%) !default;
 
 
 
 
-// <body>
+/*
+    BODY
+*/
 $s__body-padding_size: $s__base-rem-space-unit !default;
 $s__body-padding: $s__body-padding_size !default;
 $s__body-margin: 0 !default;
@@ -131,17 +135,24 @@ $s__media-element-vertical-align: middle !default;
 
 
 
+/*
+    ANCHOR
+    
+    1. This size allows 2px on normal fonts, 1px on smaller fonts.
+*/
 
 $s__anchor-text-color: $s__base-ui-color !default;
 $s__anchor-text-color--alt: darken($s__anchor-text-color, 10%) !default;
-$s__anchor-text-decoration: none !default;
 
-$s__anchor-border-bottom-width: 2px !default;
+
+//$s__anchor-border-bottom-width: 2px !default;
+$s__anchor-border-bottom-width:  0.13em !default; /* [1] */
 $s__anchor-border-bottom-style: solid !default;
 $s__anchor-border-bottom-style--alt: dashed !default;
 $s__anchor-border-bottom: $s__anchor-border-bottom-width $s__anchor-border-bottom-style !default;
 $s__anchor-border-bottom--alt: $s__anchor-border-bottom-width $s__anchor-border-bottom-style--alt !default;
-$s__anchor-border-bottom-offset: -$s__anchor-border-bottom-width;
+//$s__anchor-border-bottom-offset: -$s__anchor-border-bottom-width !default;
+$s__anchor-border-bottom-offset: 0.2em !default;
 $s__anchor-padding-bottom: $s__anchor-border-bottom-width;
 
 $s__anchor-add-external-link-indicator: true !default;
@@ -149,9 +160,18 @@ $s__anchor-add-external-link-indicator: true !default;
 $s__anchor-focus-shadow: true !default;
 $s__anchor-focus-shadow-width: 3px !default;
 
+//$s__anchor-text-decoration: none !default;
+$s__anchor-text-decoration: underline !default;
+$s__anchor-text-decoration-style: $s__anchor-border-bottom-style !default;
+$s__anchor-text-decoration-style--alt: $s__anchor-border-bottom-style--alt !default;
+$s__anchor-text-decoration-width: $s__anchor-border-bottom-width !default;
+$s__anchor-text-decoration-offset: $s__anchor-border-bottom-offset !default;
 
 
 
+/*
+    ASIDE
+*/
 $s__aside-padding: $s__base-rem-space-unit !default;
 $s__aside-text-color: $s__base-text-color !default;
 $s__aside-background-color: $s__base-background-color !default;

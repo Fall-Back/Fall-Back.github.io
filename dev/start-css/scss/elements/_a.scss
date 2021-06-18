@@ -13,29 +13,42 @@
     3. Remove the tapping delay from clickable elements .
 */
 #{$s__namespace}a[href] {
-    margin-bottom: $s__anchor-border-bottom-offset;
+    //margin-bottom: $s__anchor-border-bottom-offset;
 
-    padding-bottom: $s__anchor-padding-bottom;
+    //padding-bottom: $s__anchor-padding-bottom;
 
-    border-bottom: $s__anchor-border-bottom;
+    //border-bottom: $s__anchor-border-bottom;
+
 
     color: $s__anchor-text-color;
     background-color: transparent; /* 1 */
 
     text-decoration: $s__anchor-text-decoration;
+
+    text-decoration-style: $s__anchor-text-decoration;
+    text-decoration-thickness: $s__anchor-text-decoration-width;
+    text-underline-offset: $s__anchor-text-decoration-offset;
+
     -webkit-text-decoration-skip: objects; /* 2 */
 
     -ms-touch-action: manipulation; /* 3 (IE10) */
     touch-action: manipulation; /* 3 */
 
+    /*
+        1. For older browsers, the 2nd rule is ignored in those.
+    */
     &:hover,
     &:active {
-        border-bottom: $s__anchor-border-bottom--alt;
+        text-decoration: none; /* [1] */
+        text-decoration: underline $s__anchor-text-decoration-style--alt; /* [1] */
+
+        //border-bottom: $s__anchor-border-bottom--alt;
+        //text-decoration-style: $s__anchor-text-decoration-style--alt;
 
         @if $s__anchor-text-color--alt != $s__anchor-text-color {
             color: $s__anchor-text-color--alt;
         }
-        
+
         // @TODO - maybe support filters here too, e.g. filter: brightness(0.5);
     }
 
@@ -49,6 +62,25 @@
             }
         }
     }
+
+    // FF appears to calculate thickness very differently form Chrome.
+    @supports (-moz-appearance:none) {
+        & {
+            text-decoration-thickness: $s__anchor-text-decoration-offset / 1.3;
+        }
+    }
+
+
+    // Give link icons some space unless they're the only child.
+    & svg:not(:only-child) {
+        margin-left: 0.25em;
+    }
+
+    @media #{$s__ie10-11} {
+        & svg {
+            vertical-align: text-bottom;
+        }
+    }
 }
 
     @if $s__anchor-add-external-link-indicator == true {
@@ -58,7 +90,7 @@
             content: "";
 
             padding-left: 1.16666666667em;
-            
+
             margin: 0 0.5em;
 
             background: linear-gradient(45deg, transparent 50%, currentColor 50%);
@@ -68,7 +100,7 @@
 
             vertical-align: super;
         }
-        
+
         #{$s__namespace}a[href][rel~="external"]:hover::after {
             background: linear-gradient(45deg, transparent 50%, currentColor 50%);
         }

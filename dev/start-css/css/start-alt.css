@@ -165,6 +165,21 @@
     https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3
 
 |-------------------------------------------------------------------------------------------------*/
+/*
+    HTML
+*/
+/*
+    BODY
+*/
+/*
+    ANCHOR
+    
+    1. This size allows 2px on normal fonts, 1px on smaller fonts.
+*/
+/* [1] */
+/*
+    ASIDE
+*/
 /* Output class for reference (tmp): */
 /*.ref {
     flbk--base-rem-space-unit: $s__base-rem-space-unit;
@@ -389,29 +404,51 @@ body {
     3. Remove the tapping delay from clickable elements .
 */
 a[href] {
-  margin-bottom: -0.2rem;
-  padding-bottom: 0.2rem;
-  border-bottom: 0.2rem solid;
   color: #247BA0;
   background-color: transparent;
   /* 1 */
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-style: underline;
+  text-decoration-thickness: 0.2rem;
+  text-underline-offset: 0.2em;
   -webkit-text-decoration-skip: objects;
   /* 2 */
   -ms-touch-action: manipulation;
   /* 3 (IE10) */
   touch-action: manipulation;
   /* 3 */
+  /*
+        1. For older browsers, the 2nd rule is ignored in those.
+    */
 }
 
 a[href]:hover, a[href]:active {
-  border-bottom: 0.2rem dashed;
+  text-decoration: none;
+  /* [1] */
+  text-decoration: underline dashed;
+  /* [1] */
   color: #1b5b76;
 }
 
 a[href]:focus {
   outline: 0;
   box-shadow: 0 0 0 0.3rem rgba(36, 123, 160, 0.5);
+}
+
+@supports (-moz-appearance: none) {
+  a[href] {
+    text-decoration-thickness: 0.15385em;
+  }
+}
+
+a[href] svg:not(:only-child) {
+  margin-left: 0.25em;
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  a[href] svg {
+    vertical-align: text-bottom;
+  }
 }
 
 a[href][rel~="external"]::after {
@@ -1047,10 +1084,15 @@ img {
   /* 3 */
   vertical-align: middle;
   /* 4 */
+  /*.gm-style &, /* 5 *
+    &[width], /* 6 *
+    &[height] {  /* 6 *
+        max-width: none;
+    }*/
 }
 
-.gm-style img, img[width], img[height] {
-  /* 6 */
+img .gm-style {
+  /* 5 */
   max-width: none;
 }
 
@@ -1058,9 +1100,24 @@ img {
     Special treatment for images inside links.
 */
 a img {
-  margin-bottom: -0.2rem;
-  border-width: inherit;
-  border-style: inherit;
+  margin-bottom: 0.2em;
+  border-bottom: 0.2rem solid;
+}
+
+a img:active, a img:hover {
+  border-bottom: 0.2rem dashed;
+}
+
+/*
+    Here's a problem - if the image has a transparent background, the a's bounding box (which is 
+    inline and smaller than the image) is visible.
+    Outlines actually work as expected in this case but I can't use them because of the lack of 
+    rounded corners, hence the a > img selector reapplying the focus shadow.
+    I guess transparent images like this are an edge case, but it's something to keep an eye on.
+*/
+a:focus img {
+  outline: 0;
+  box-shadow: 0 0 0 0.3rem rgba(36, 123, 160, 0.5);
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -1829,18 +1886,21 @@ small {
   /* 1 */
   line-height: normal;
   /* 2 */
-}
+  /*
+    a[href] {
+        margin-bottom: $s__anchor-border-bottom-offset / 2;
 
-small a[href] {
-  margin-bottom: -0.1rem;
-  padding-bottom: 0.1rem;
-  border-bottom: 0.1rem solid;
-}
+        padding-bottom: $s__anchor-padding-bottom / 2;
 
-small a[href]:hover,
-small a[href]:focus,
-small a[href]:active {
-  border-bottom: 0.1rem dashed;
+        border-bottom: 0.1rem $s__anchor-border-bottom-style;
+    }
+    
+    a[href]:hover,
+    a[href]:focus,
+    a[href]:active {
+        border-bottom: 0.1rem $s__anchor-border-bottom-style--alt;
+    }
+    */
 }
 
 /*-------------------------------------------------------------------------------------------------|
