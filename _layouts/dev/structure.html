@@ -96,7 +96,32 @@
             is so as not to pollute the class space and help authors make distinctions.
             There's a much long essay on this brewing and I'll add the link when it's done.
         */
-        body{font:1em/1.2 sans-serif;padding:1em;margin:0 auto;max-width:50em}article,aside,details,dialog,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block;margin-bottom:1em}mark{background:#ff0;color:# 000}[hidden],template{display:none}fieldset{border:1px solid;padding:16px;border-color:#777}image,img,svg{max-width:100%;-ms-interpolation-mode:bicubic;vertical-align:middle}hr{border-style:solid;border-width:1px 0 0 0;height:0;margin:1em 0;color:#777}pre{width:100%;overflow-x:scroll;overflow-y:auto}button,input,label,select,textarea{vertical-align:middle;vertical-align:middle;min-height:2.2em;margin:.2em 0}button,input[type=checkbox],input[type=radio],label,select,textarea{cursor:pointer}button{line-height:0}input,textarea{padding:0 .5em}table{width:100%;border:1px solid #777;border-collapse:collapse}table[role=presentation]{border:0;table-layout:fixed}table[role=presentation] td{border:0}th{background:#eee}caption,td,th{padding:.5em}
+        body{font:1em/1.2 sans-serif;padding:1em;margin:0 auto;max-width:50em}article,aside,details,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block;margin-bottom:1em}summary{display:list-item;margin-bottom:1em}mark{background:#ff0;color:# 000}[hidden],template{display:none}fieldset{border:1px solid;padding:16px;border-color:#777}image,img,svg{max-width:100%;-ms-interpolation-mode:bicubic;vertical-align:middle}hr{border-style:solid;border-width:1px 0 0 0;height:0;margin:1em 0;color:#777}pre{width:100%;overflow-x:scroll;overflow-y:auto}button,input,label,select,textarea{vertical-align:middle;vertical-align:middle;min-height:2.2em;margin:.2em 0}button,input[type=checkbox],input[type=radio],label,select,textarea{cursor:pointer}button{line-height:0}input,textarea{padding:0 .5em}table{width:100%;border:1px solid #777;border-collapse:collapse}table[role=presentation]{border:0;table-layout:fixed}table[role=presentation] td{border:0}th{background:#eee}caption,td,th{padding:.5em}
+    
+    
+        summary {
+            display: block;
+        }
+    
+        @supports (list-style-type: disclosure-closed) {
+            summary {
+                display: list-item;
+            }
+        }
+    
+        /*summary {
+            list-style-type: none;
+        }
+    
+        @supports (list-style-type: disclosure-closed) {
+            summary {
+                list-style-type: disclosure-closed;
+            }
+            
+            details[open] summary {
+                list-style-type: disclosure-open;
+            }
+        }*/
     </style>
     
     <!-- From here we're cutting off IE9- to stop all kinds of JS and CSS fails. -->
