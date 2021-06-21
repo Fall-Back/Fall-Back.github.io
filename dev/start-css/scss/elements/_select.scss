@@ -10,8 +10,7 @@
 //  Correct `select` style inheritance in Firefox.
 /*
     1. Using height because min-height doesn't change the expand button height in FF.
-    2. For FF.
-    3. Remove the tapping delay from clickable elements.
+    2. Remove the tapping delay from clickable elements.
 */
 #{$s__namespace}select {
     height: $s__base-rem-space-unit + ($s__base-rem-space-unit / 4); /* 1 */
@@ -33,14 +32,14 @@
     font-family: inherit;
     line-height: $s__base-rem-space-unit;
 
-    vertical-align: top; /* 2 */
+    vertical-align: middle;
 
     text-transform: none;
 
     cursor: pointer;
 
-    -ms-touch-action: manipulation; /* 3 (IE10) */
-    touch-action: manipulation; /* 3 */
+    -ms-touch-action: manipulation; /* 2 (IE10) */
+    touch-action: manipulation; /* 2 */
 
     &::-ms-expand {
         background-color: transparent;
@@ -126,6 +125,7 @@ _:-moz-tree-row(hover), #{$s__namespace}select:not([multiple]) {
 */
 #{$s__namespace}select[multiple] {
     height: auto;
+    vertical-align: top;
 
     margin-top: ($s__base-rem-space-unit / 8);
     margin-right: 0;

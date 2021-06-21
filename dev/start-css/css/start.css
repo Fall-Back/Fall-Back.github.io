@@ -1426,6 +1426,7 @@ label {
   display: inline-block;
   padding-top: 0.6rem;
   padding-bottom: 0.6rem;
+  margin: 0;
   font-weight: bold;
   vertical-align: middle;
   cursor: pointer;
@@ -1734,8 +1735,7 @@ section {
 |-------------------------------------------------------------------------------------------------*/
 /*
     1. Using height because min-height doesn't change the expand button height in FF.
-    2. For FF.
-    3. Remove the tapping delay from clickable elements.
+    2. Remove the tapping delay from clickable elements.
 */
 select {
   height: 3rem;
@@ -1753,14 +1753,13 @@ select {
   font-size: inherit;
   font-family: inherit;
   line-height: 2.4rem;
-  vertical-align: top;
-  /* 2 */
+  vertical-align: middle;
   text-transform: none;
   cursor: pointer;
   -ms-touch-action: manipulation;
-  /* 3 (IE10) */
+  /* 2 (IE10) */
   touch-action: manipulation;
-  /* 3 */
+  /* 2 */
 }
 
 select::-ms-expand {
@@ -1841,6 +1840,7 @@ select:focus {
 */
 select[multiple] {
   height: auto;
+  vertical-align: top;
   margin-top: 0.3rem;
   margin-right: 0;
   margin-bottom: -moz-calc(0.9rem - 2px);
