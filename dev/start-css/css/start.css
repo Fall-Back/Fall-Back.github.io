@@ -120,6 +120,16 @@
     Uni-directional margins (bottom) is fine for most cases, but things like figcaptions that may
     contain paragraphs can result in double bottom margins, so flipping that around inside those
     containers.
+* /
+@mixin s__fix_internal_margins($margin-size) {
+    & * {
+        margin-bottom: 0;
+    }
+
+    & * + * {
+        margin-top: $margin-size;
+    }
+}
 */
 /*-------------------------------------------------------------------------------------------------|
 
@@ -173,7 +183,7 @@
 */
 /*
     ANCHOR
-    
+
     1. This size allows 2px on normal fonts, 1px on smaller fonts.
 */
 /* [1] */
@@ -409,7 +419,7 @@ a[href] {
   /* 1 */
   text-decoration: underline;
   text-decoration-style: underline;
-  text-decoration-thickness: 0.13em;
+  text-decoration-thickness: 0.2rem;
   text-underline-offset: 0.2em;
   -webkit-text-decoration-skip: objects;
   /* 2 */
@@ -432,7 +442,7 @@ a[href]:hover, a[href]:active {
 
 a[href]:focus {
   outline: 0;
-  box-shadow: 0 0 0 3px rgba(36, 123, 160, 0.5);
+  box-shadow: 0 0 0 0.3rem rgba(36, 123, 160, 0.5);
 }
 
 @supports (-moz-appearance: none) {
@@ -496,8 +506,16 @@ abbr[title] {
 
 |-------------------------------------------------------------------------------------------------*/
 address {
+  margin-top: 2.4rem;
   margin-bottom: 2.4rem;
+}
+
+address:first-child {
   margin-top: 0;
+}
+
+address:last-child {
+  margin-bottom: 0;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -508,9 +526,16 @@ address {
 |-------------------------------------------------------------------------------------------------*/
 article {
   display: block;
+  margin-top: 2.4rem;
   margin-bottom: 2.4rem;
+}
+
+article:first-child {
   margin-top: 0;
-  padding-bottom: 2.4rem;
+}
+
+article:last-child {
+  margin-bottom: 0;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -521,11 +546,16 @@ article {
 |-------------------------------------------------------------------------------------------------*/
 aside {
   display: block;
+  margin-top: 2.4rem;
   margin-bottom: 2.4rem;
+}
+
+aside:first-child {
   margin-top: 0;
-  padding: 2.4rem;
-  background-color: #fff;
-  color: #333;
+}
+
+aside:last-child {
+  margin-bottom: 0;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -573,14 +603,23 @@ b {
 
 |-------------------------------------------------------------------------------------------------*/
 blockquote {
+  margin-top: 2.4rem;
   margin-bottom: 2.4rem;
-  margin-top: 0;
   margin-left: 2.4rem;
+  margin-right: 2.4rem;
   font-style: italic;
   /*
         @TODO - set up vars and styles for the most common quote styles.
         I.e. left-border, and enclosing quotes.
     */
+}
+
+blockquote:first-child {
+  margin-top: 0;
+}
+
+blockquote:last-child {
+  margin-bottom: 0;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -598,16 +637,16 @@ button {
   margin: 0.3rem 0;
   padding-top: 0.3rem;
   padding-top: -moz-calc(0);
-  padding-top: calc(0.3rem - 1px);
+  padding-top: calc(0.3rem - 0.1rem);
   padding-right: 0.6rem;
   padding-bottom: 0.3rem;
   padding-bottom: -moz-calc(0);
-  padding-bottom: calc(0.3rem - 1px);
+  padding-bottom: calc(0.3rem - 0.1rem);
   padding-left: 0.6rem;
   border-color: rgba(0, 0, 0, 0.2);
   border-style: solid;
-  border-width: 1px;
-  border-radius: 3px;
+  border-width: 0.1rem;
+  border-radius: 0.3rem;
   color: #fff;
   background-color: #247BA0;
   font-weight: inherit;
@@ -642,7 +681,7 @@ button:hover, button:active {
 
 button:focus {
   outline: 0;
-  box-shadow: 0 0 0 3px rgba(36, 123, 160, 0.5);
+  box-shadow: 0 0 0 0.3rem rgba(36, 123, 160, 0.5);
 }
 
 button svg {
@@ -703,7 +742,7 @@ caption {
   padding-bottom: 1.2rem;
   padding-left: 1.2rem;
   color: #fff;
-  background-color: #247BA0;
+  background-color: rgba(36, 123, 160, 0.7);
   font-weight: bold;
 }
 
@@ -746,28 +785,42 @@ dd {
 details {
   display: block;
   /* N: IE 10/11 */
+  margin-top: 2.4rem;
   margin-bottom: 2.4rem;
-  margin-top: 0;
-  padding-bottom: 2.4rem;
-  border-width: 1px;
+  border-width: 0.1rem;
   border-style: solid;
   border-color: #247BA0;
-  padding-top: 2.4rem;
-  padding-top: calc(2.4rem - 1px);
-  padding-left: 2.4rem;
-  padding-left: calc(2.4rem - 1px);
-  padding-right: 2.4rem;
-  padding-right: calc(2.4rem - 1px);
-  padding-bottom: 0;
+  padding: calc(2.4rem - 0.1rem);
+  /*
+    @if $s__use-last-child-margin-zero {
+        padding-bottom: 2.4rem;
+        //padding-bottom: -moz-calc(2.4rem - 0.1rem);
+        padding-bottom:      calc(2.4rem - 0.1rem);
+    } @else {
+        padding-bottom: 0;
+        &::after {
+            display: block;
+
+            content: "";
+
+            height: 1px;
+
+            margin-top: $padding;
+
+            margin-bottom: -1px;
+            //margin-bottom: -moz-calc(-1px - 0.1rem);
+            margin-bottom:      calc(-1px - 0.1rem);
+        }
+    }
+    */
 }
 
-details::after {
-  display: block;
-  content: "";
-  height: 1px;
-  margin-top: 2.4rem;
-  margin-bottom: -1px;
-  margin-bottom: calc(-1px - 1px);
+details:first-child {
+  margin-top: 0;
+}
+
+details:last-child {
+  margin-bottom: 0;
 }
 
 details > * {
@@ -807,10 +860,18 @@ dfn {
 
 */
 dl {
+  margin-top: 2.4rem;
   margin-bottom: 2.4rem;
-  margin-top: 0;
   display: table;
   /* 1b */
+}
+
+dl:first-child {
+  margin-top: 0;
+}
+
+dl:last-child {
+  margin-bottom: 0;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -849,28 +910,43 @@ em em {
     More info here: https://thatemil.com/blog/2015/01/03/reset-your-fieldset/
 */
 fieldset {
+  margin-top: 2.4rem;
   margin-bottom: 2.4rem;
-  margin-top: 0;
   min-width: 0;
-  border-width: 1px;
+  border-width: 0.1rem;
   border-style: solid;
   border-color: #247BA0;
-  padding-top: 2.4rem;
-  padding-top: calc(2.4rem - 1px);
-  padding-left: 2.4rem;
-  padding-left: calc(2.4rem - 1px);
-  padding-right: 2.4rem;
-  padding-right: calc(2.4rem - 1px);
-  padding-bottom: 0;
+  padding: calc(2.4rem - 0.1rem);
+  /*
+    @if $s__use-last-child-margin-zero {
+        padding-bottom: 2.4rem;
+        //padding-bottom: -moz-calc(2.4rem - 0.1rem);
+        padding-bottom:      calc(2.4rem - 0.1rem);
+    } @else {
+        padding-bottom: 0;
+        &::after {
+            display: block;
+
+            content: "";
+
+            height: 1px;
+
+            margin-top: $padding;
+
+            margin-bottom: -1px;
+            //margin-bottom: -moz-calc(-1px - 0.1rem);
+            margin-bottom:      calc(-1px - 0.1rem);
+        }
+    }
+    */
 }
 
-fieldset::after {
-  display: block;
-  content: "";
-  height: 1px;
-  margin-top: 2.4rem;
-  margin-bottom: -1px;
-  margin-bottom: calc(-1px - 1px);
+fieldset:first-child {
+  margin-top: 0;
+}
+
+fieldset:last-child {
+  margin-bottom: 0;
 }
 
 fieldset fieldset {
@@ -893,15 +969,6 @@ figcaption {
   display: block;
   font-size: 0.875em;
   margin-bottom: 0;
-  margin-top: 0;
-}
-
-figcaption * {
-  margin-bottom: 0;
-}
-
-figcaption * + * {
-  margin-top: 1.2rem;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -912,8 +979,26 @@ figcaption * + * {
 |-------------------------------------------------------------------------------------------------*/
 figure {
   display: block;
+  margin-top: 2.4rem;
   margin-bottom: 2.4rem;
+  margin-left: 2.4rem;
+  margin-right: 2.4rem;
+  max-width: 100%;
+  overflow: auto;
+  background-image: linear-gradient(-90deg, rgba(255, 255, 255, 0) 0%, white 60%, white 100%), linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, white 60%, white 100%), linear-gradient(to right, rgba(0, 0, 20, 0.5), rgba(255, 255, 255, 0)), linear-gradient(to left, rgba(0, 0, 20, 0.5), rgba(255, 255, 255, 0));
+  background-position: left center, right center, left center, right center;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-size: 2em 100%, 2em 100%, 1em 100%, 1em 100%;
+  background-attachment: local, local, scroll, scroll;
+}
+
+figure:first-child {
   margin-top: 0;
+}
+
+figure:last-child {
+  margin-bottom: 0;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -924,11 +1009,16 @@ figure {
 |-------------------------------------------------------------------------------------------------*/
 footer {
   display: block;
+  margin-top: 2.4rem;
   margin-bottom: 2.4rem;
+}
+
+footer:first-child {
   margin-top: 0;
-  padding: 2.4rem;
-  background-color: #fff;
-  color: #333;
+}
+
+footer:last-child {
+  margin-bottom: 0;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -938,8 +1028,16 @@ footer {
 
 |-------------------------------------------------------------------------------------------------*/
 form {
+  margin-top: 2.4rem;
   margin-bottom: 2.4rem;
+}
+
+form:first-child {
   margin-top: 0;
+}
+
+form:last-child {
+  margin-bottom: 0;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -950,29 +1048,21 @@ form {
 |-------------------------------------------------------------------------------------------------*/
 header {
   display: block;
+  margin-top: 2.4rem;
   margin-bottom: 2.4rem;
-  margin-top: 0;
-  border-width: 0;
-  border-style: solid;
-  border-color: #247BA0;
-  padding-top: 2.4rem;
-  padding-top: calc(2.4rem - 0);
-  padding-left: 2.4rem;
-  padding-left: calc(2.4rem - 0);
-  padding-right: 2.4rem;
-  padding-right: calc(2.4rem - 0);
-  padding-bottom: 0;
-  background-color: #fff;
-  color: #333;
+  /*@if $s__zero-header-hx-margin {
+        h1, h2, h3, h4, h5, h6 {
+            margin-bottom: 0;
+        }
+    }*/
 }
 
-header::after {
-  display: block;
-  content: "";
-  height: 1px;
-  margin-top: 2.4rem;
-  margin-bottom: -1px;
-  margin-bottom: calc(-1px - 0);
+header:first-child {
+  margin-top: 0;
+}
+
+header:last-child {
+  margin-bottom: 0;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -983,6 +1073,16 @@ header::after {
 |-------------------------------------------------------------------------------------------------*/
 hgroup {
   display: block;
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
+}
+
+hgroup:first-child {
+  margin-top: 0;
+}
+
+hgroup:last-child {
+  margin-bottom: 0;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -992,45 +1092,93 @@ hgroup {
 
 |-------------------------------------------------------------------------------------------------*/
 h1 {
+  margin-top: 2.4rem;
   margin-bottom: 2.4rem;
-  margin-top: 0;
   font-size: 3.25em;
   line-height: 6rem;
 }
 
-h2 {
-  margin-bottom: 2.4rem;
+h1:first-child {
   margin-top: 0;
+}
+
+h1:last-child {
+  margin-bottom: 0;
+}
+
+h2 {
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
   font-size: 2.5em;
   line-height: 4.8rem;
 }
 
-h3 {
-  margin-bottom: 2.4rem;
+h2:first-child {
   margin-top: 0;
+}
+
+h2:last-child {
+  margin-bottom: 0;
+}
+
+h3 {
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
   font-size: 1.875em;
   line-height: 3.6rem;
 }
 
-h4 {
-  margin-bottom: 2.4rem;
+h3:first-child {
   margin-top: 0;
+}
+
+h3:last-child {
+  margin-bottom: 0;
+}
+
+h4 {
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
   font-size: 1.375em;
   line-height: 3.6rem;
 }
 
-h5 {
-  margin-bottom: 2.4rem;
+h4:first-child {
   margin-top: 0;
+}
+
+h4:last-child {
+  margin-bottom: 0;
+}
+
+h5 {
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
   font-size: 1.125em;
   line-height: 2.4rem;
 }
 
-h6 {
-  margin-bottom: 2.4rem;
+h5:first-child {
   margin-top: 0;
+}
+
+h5:last-child {
+  margin-bottom: 0;
+}
+
+h6 {
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
   font-size: 1em;
   line-height: 2.4rem;
+}
+
+h6:first-child {
+  margin-top: 0;
+}
+
+h6:last-child {
+  margin-bottom: 0;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -1046,11 +1194,11 @@ hr {
   height: 0;
   overflow: visible;
   /* 1 */
-  margin-top: -1px;
+  margin-top: -0.1rem;
   margin-bottom: 2.4rem;
   border-top: none;
   border-right: none;
-  border-bottom: 1px solid #247BA0;
+  border-bottom: 0.1rem solid #247BA0;
   border-left: none;
 }
 
@@ -1106,12 +1254,11 @@ img .gm-style {
     Special treatment for images inside links.
 */
 a img {
-  margin-bottom: 0.2em;
-  border-bottom: 0.13em solid;
+  border-bottom: 0.2rem solid;
 }
 
 a img:active, a img:hover {
-  border-bottom: 0.13em dashed;
+  border-bottom: 0.2rem dashed;
 }
 
 /*
@@ -1123,7 +1270,7 @@ a img:active, a img:hover {
 */
 a:focus img {
   outline: 0;
-  box-shadow: 0 0 0 3px rgba(36, 123, 160, 0.5);
+  box-shadow: 0 0 0 0.3rem rgba(36, 123, 160, 0.5);
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -1144,16 +1291,16 @@ input {
   /* 1 */
   padding-top: 0.3rem;
   /* 2 */
-  padding-top: calc(0.3rem - 1px);
+  padding-top: calc(0.3rem - 0.1rem);
   padding-right: 0.6rem;
   padding-bottom: 0.3rem;
   /* 2 */
-  padding-bottom: calc(0.3rem - 1px);
+  padding-bottom: calc(0.3rem - 0.1rem);
   padding-left: 0.6rem;
-  border-width: 1px;
+  border-width: 0.1rem;
   border-style: solid;
   border-color: rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
+  border-radius: 0.3rem;
   color: #333;
   background-color: #fff;
   font-size: inherit;
@@ -1188,7 +1335,7 @@ input:not([type]):focus,
 [type="time"]:focus,
 [type="url"]:focus,
 [type="week"]:focus {
-  box-shadow: 0 0 0 3px rgba(36, 123, 160, 0.5);
+  box-shadow: 0 0 0 0.3rem rgba(36, 123, 160, 0.5);
   outline: 0;
 }
 
@@ -1198,7 +1345,7 @@ input:not([type]):focus,
     */
 [type="checkbox"]:focus,
 [type="radio"]:focus {
-  box-shadow: 0 0 0 3px rgba(36, 123, 160, 0.5);
+  box-shadow: 0 0 0 0.3rem rgba(36, 123, 160, 0.5);
   outline: 0;
 }
 
@@ -1231,16 +1378,16 @@ _::-webkit-full-page-media, _:future, :root [type="radio"]:focus {
   margin: 0.3rem 0;
   padding-top: 0.3rem;
   padding-top: -moz-calc(0);
-  padding-top: calc(0.3rem - 1px);
+  padding-top: calc(0.3rem - 0.1rem);
   padding-right: 0.6rem;
   padding-bottom: 0.3rem;
   padding-bottom: -moz-calc(0);
-  padding-bottom: calc(0.3rem - 1px);
+  padding-bottom: calc(0.3rem - 0.1rem);
   padding-left: 0.6rem;
   border-color: rgba(0, 0, 0, 0.2);
   border-style: solid;
-  border-width: 1px;
-  border-radius: 3px;
+  border-width: 0.1rem;
+  border-radius: 0.3rem;
   color: #fff;
   background-color: #247BA0;
   font-weight: inherit;
@@ -1281,7 +1428,7 @@ _::-webkit-full-page-media, _:future, :root [type="radio"]:focus {
 [type="reset"]:focus,
 [type="submit"]:focus {
   outline: 0;
-  box-shadow: 0 0 0 3px rgba(36, 123, 160, 0.5);
+  box-shadow: 0 0 0 0.3rem rgba(36, 123, 160, 0.5);
 }
 
 /*
@@ -1372,7 +1519,7 @@ _:-ms-input-placeholder, :root [type="file"] {
 [type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
-  outline-offset: -2px;
+  outline-offset: -0.2rem;
   /* 2 */
 }
 
@@ -1462,7 +1609,7 @@ legend {
   /* 1 */
   margin-top: 0;
   /* 2 */
-  margin-bottom: 1px;
+  margin-bottom: 0.1rem;
   /* 2 */
   padding: 0 0.6rem;
   border-width: 0;
@@ -1504,11 +1651,19 @@ main {
   width: 100%;
   min-height: 100%;
   padding: 2.4rem;
+  margin-top: 2.4rem;
   margin-bottom: 2.4rem;
-  margin-top: 0;
   background-color: #fff;
   color: #333;
   position: relative;
+}
+
+main:first-child {
+  margin-top: 0;
+}
+
+main:last-child {
+  margin-bottom: 0;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -1533,6 +1688,16 @@ mark {
 |-------------------------------------------------------------------------------------------------*/
 nav {
   display: block;
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
+}
+
+nav:first-child {
+  margin-top: 0;
+}
+
+nav:last-child {
+  margin-bottom: 0;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -1565,10 +1730,18 @@ object {
 
 */
 ol {
+  margin-top: 2.4rem;
   margin-bottom: 2.4rem;
-  margin-top: 0;
   display: table;
   /* 1b */
+}
+
+ol:first-child {
+  margin-top: 0;
+}
+
+ol:last-child {
+  margin-bottom: 0;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -1624,8 +1797,16 @@ option:hover {
 
 |-------------------------------------------------------------------------------------------------*/
 p {
+  margin-top: 2.4rem;
   margin-bottom: 2.4rem;
+}
+
+p:first-child {
   margin-top: 0;
+}
+
+p:last-child {
+  margin-bottom: 0;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -1650,6 +1831,8 @@ pre {
   /* 1 */
   overflow-y: auto;
   /* 1 */
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
   margin-bottom: 3.1rem;
   /* 1 */
   background-color: #e4f3f9;
@@ -1658,6 +1841,14 @@ pre {
   /* 2 */
   font-family: monospace, monospace;
   /* 3 */
+}
+
+pre:first-child {
+  margin-top: 0;
+}
+
+pre:last-child {
+  margin-bottom: 0;
 }
 
 @supports (-ms-ime-align: auto) {
@@ -1722,9 +1913,16 @@ samp {
 |-------------------------------------------------------------------------------------------------*/
 section {
   display: block;
+  margin-top: 2.4rem;
   margin-bottom: 2.4rem;
+}
+
+section:first-child {
   margin-top: 0;
-  padding-bottom: 2.4rem;
+}
+
+section:last-child {
+  margin-bottom: 0;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -1742,10 +1940,10 @@ select {
   /* 1 */
   min-height: auto;
   margin: 0.3rem 0;
-  border-width: 1px;
+  border-width: 0.1rem;
   border-style: solid;
   border-color: rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
+  border-radius: 0.3rem;
   color: #333;
   background-color: #fff;
   font-weight: inherit;
@@ -1830,7 +2028,7 @@ _:-moz-tree-row(hover), select:not([multiple]) {
 }
 
 select:focus {
-  box-shadow: 0 0 0 3px rgba(36, 123, 160, 0.5);
+  box-shadow: 0 0 0 0.3rem rgba(36, 123, 160, 0.5);
   outline: 0;
 }
 
@@ -1843,8 +2041,8 @@ select[multiple] {
   vertical-align: top;
   margin-top: 0.3rem;
   margin-right: 0;
-  margin-bottom: -moz-calc(0.9rem - 2px);
-  margin-bottom: calc(0.9rem - 2px);
+  margin-bottom: -moz-calc(0.9rem - 0.2rem);
+  margin-bottom: calc(0.9rem - 0.2rem);
   margin-left: 0;
 }
 
@@ -1860,7 +2058,7 @@ _::-webkit-full-page-media, _:future, :root select[multiple] {
     ... but reset for Mac Safari .
 */
 _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[multiple] {
-  margin-bottom: calc(0.9rem - 2px);
+  margin-bottom: calc(0.9rem - 0.2rem);
   padding: 0;
 }
 
@@ -1898,13 +2096,13 @@ small {
 
         padding-bottom: $s__anchor-padding-bottom / 2;
 
-        border-bottom: 0.065em $s__anchor-border-bottom-style;
+        border-bottom: 0.1rem $s__anchor-border-bottom-style;
     }
     
     a[href]:hover,
     a[href]:focus,
     a[href]:active {
-        border-bottom: 0.065em $s__anchor-border-bottom-style--alt;
+        border-bottom: 0.1rem $s__anchor-border-bottom-style--alt;
     }
     */
 }
@@ -1951,6 +2149,8 @@ sub {
 |-------------------------------------------------------------------------------------------------*/
 /*
     1. Correct display in unsupported browsers (https://caniuse.com/#feat=details).
+       Update: correct display is now list-item, which adds the marker, but we're adding our own
+       anyway.
     2. Remove the tapping delay from clickable elements.
 */
 summary {
@@ -1961,13 +2161,11 @@ summary {
   touch-action: manipulation;
   /* 2 */
   cursor: pointer;
-  margin-bottom: 0;
-  margin-top: 0;
 }
 
 summary:focus {
-  outline: 2px solid rgba(36, 123, 160, 0.6);
-  outline-offset: 2px;
+  outline: 0.2rem solid rgba(36, 123, 160, 0.6);
+  outline-offset: 0.2rem;
 }
 
 /* Hide the details marker as we're supplying our own. */
@@ -1987,8 +2185,16 @@ details > summary::before {
 }
 
 details[open] > summary {
+  margin-top: 2.4rem;
   margin-bottom: 2.4rem;
+}
+
+details[open] > summary:first-child {
   margin-top: 0;
+}
+
+details[open] > summary:last-child {
+  margin-bottom: 0;
 }
 
 details[open] > summary::before {
@@ -2051,16 +2257,21 @@ svg:not(:root) {
 */
 table {
   width: 100%;
-  /* @TODO - possibly make this configurable to be 'natural' width but centered instead. (http://alistapart.com/article/web-typography-tables) */
-  border-collapse: collapse;
+  /* @TODO - possibly make this configurable to be 'natural' width but cantered instead. (http://alistapart.com/article/web-typography-tables) */
+  margin-top: 2.4rem;
   margin-bottom: 2.4rem;
-  /* 1 */
-  margin-bottom: calc(2.4rem - 1px);
-  /* 2 */
-  margin-top: 0;
-  border: 1px solid #247BA0;
-  background-color: #cfe9f4;
+  background-color: transparent;
+  border: 0.1rem solid #247BA0;
+  border-collapse: collapse;
   border-spacing: 0;
+}
+
+table:first-child {
+  margin-top: 0;
+}
+
+table:last-child {
+  margin-bottom: 0;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -2075,14 +2286,25 @@ table {
 */
 td {
   padding-top: 1.2rem;
+  /* 1 */
+  padding-top: calc(1.2rem - 0.1rem);
+  /* 2 */
   padding-right: 1.2rem;
   padding-bottom: 1.2rem;
-  /* 1 */
-  padding-bottom: calc(1.2rem - 1px);
-  /* 2 */
   padding-left: 1.2rem;
-  border: 1px solid #247BA0;
-  background-color: #fff;
+  border: 0.1rem solid #247BA0;
+  background-color: transparent;
+}
+
+/*
+    Reduce last row table cell padding to counteract the table border to preserve the vertical 
+    rhythm.
+*/
+tbody tr:last-child td {
+  padding-bottom: 1.2rem;
+  /* 1 */
+  padding-bottom: calc(1.2rem - 0.1rem);
+  /* 2 */
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -2123,8 +2345,8 @@ textarea {
   /* 3 */
   padding-left: 0.6rem;
   padding-right: 0.6rem;
-  border-width: 1px;
-  border-radius: 3px;
+  border-width: 0.1rem;
+  border-radius: 0.3rem;
   border-color: rgba(0, 0, 0, 0.2);
   border-style: solid;
   color: #333;
@@ -2143,7 +2365,7 @@ textarea {
 }
 
 textarea:focus {
-  box-shadow: 0 0 0 3px rgba(36, 123, 160, 0.5);
+  box-shadow: 0 0 0 0.3rem rgba(36, 123, 160, 0.5);
   outline: 0;
 }
 
@@ -2159,14 +2381,25 @@ textarea:focus {
 */
 th {
   padding-top: 1.2rem;
+  /* 1 */
+  padding-top: calc(1.2rem - 0.1rem);
+  /* 2 */
   padding-right: 1.2rem;
   padding-bottom: 1.2rem;
-  /* 1 */
-  padding-bottom: calc(1.2rem - 1px);
-  /* 2 */
   padding-left: 1.2rem;
-  border: 1px solid #247BA0;
-  background-color: #cfe9f4;
+  border: 0.1rem solid #247BA0;
+  background-color: rgba(36, 123, 160, 0.3);
+}
+
+/*
+    Reduce last row table cell padding to counteract the table border to preserve the vertical 
+    rhythm.
+*/
+tbody tr:last-child th {
+  padding-bottom: 1.2rem;
+  /* 1 */
+  padding-bottom: calc(1.2rem - 0.1rem);
+  /* 2 */
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -2189,10 +2422,18 @@ th {
 
 */
 ul {
+  margin-top: 2.4rem;
   margin-bottom: 2.4rem;
-  margin-top: 0;
   display: table;
   /* 1b */
+}
+
+ul:first-child {
+  margin-top: 0;
+}
+
+ul:last-child {
+  margin-bottom: 0;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -2292,12 +2533,12 @@ main :target {
 /*
 Shelving this for now
 @if $s__procedural-margins == false {
-    /* this is too generic 
+    /* this is too generic
     * + * {
         margin-top: $s__base-rem-space-unit;
     }
     /
-    
+
     /* This is the full list but it's not exactly what we want:
     * + address,
     * + article,
@@ -2333,7 +2574,7 @@ Shelving this for now
     * + table,
     * + ul
     /
-    
+
     /*
         Taking out list items, hr and div:
     /
@@ -2366,11 +2607,11 @@ Shelving this for now
     *:not(legend):not(figcaption) + ul {
         margin-top: $s__base-rem-space-unit;
     }
-    
+
     hr {
-        margin-top: calc(2.4rem - 1px;
+        margin-top: calc(2.4rem - 0.1rem;
     }
-} 
+}
 */
 /*! Start-CSS Accessibility. See SCSS file for documentation. */
 /*-------------------------------------------------------------------------------------------------|
@@ -2478,7 +2719,7 @@ a[hidden="false"][aria-hidden="false"]:active {
     /* 1 */
     min-height: initial;
     /* 1 */
-    border-width: 1px;
+    border-width: 0.1rem;
     border-style: solid;
     border-color: #333;
     background-color: #fff;

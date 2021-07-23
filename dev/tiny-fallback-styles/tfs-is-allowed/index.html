@@ -1,0 +1,280 @@
+---
+title: TFS Is Allowed Test Page
+layout: dev/tfs-test-page
+---
+<p>This approach (Tiny FallBack Styles with Attributes - TFS+A) covers failed CSS scenarios.</p>
+
+<h2 id="example-1">Example 1 - Border using <code>data-fs-block="border"</code></h2>
+
+<div data-fs-block="border">
+    <p>
+    This content is 'boxed in'
+    </p>
+</div>
+
+<h2 id="example-2">Example 2 - Side-by-Side with <code>table</code></h2>
+
+<div data-fs-block="table">
+    <div>
+        <a href="#">
+            Left content
+        </a>
+    </div>
+    <div data-fs-text="right">
+        <a href="#">
+            Right content
+        </a>
+    </div>
+</div>
+
+<h2 id="example-3">Example 3 - Side-by-Side with a <code>table</code>, <code>border</code> and <code>text:large</code></h2>
+
+<p>Using larger text to create a more prominent link.</p>
+
+<div data-fs-block="table">
+    <div data-fs-block="padding">
+        <div data-fs-block="border">
+            <p data-fs-text="center">
+                <a href="#">
+                    <span data-fs-text="larger">Choose This</span>
+                </a>
+            </p>
+        </div>
+    </div>
+    <div data-fs-text="center" data-fs-block="padding">
+        <div data-fs-block="border">
+            <p data-fs-text="center">
+                <a href="#">
+                    <span data-fs-text="larger">Or Maybe This</span>
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<h2 id="example-3a">Example 3a - Side-by-Side with a <code>flex</code>, <code>border</code> and <code>text:large</code></h2>
+
+<p>Using larger text to create a more prominent link.</p>
+
+<div data-fs-block="flex">
+    <div data-fs-block="padding">
+        <div data-fs-block="border">
+            <p data-fs-text="center">
+                <a href="#">
+                    <b data-fs-text="larger">Choose This</b>
+                </a>
+            </p>
+        </div>
+    </div>
+    <div data-fs-block="padding">
+        <div data-fs-block="border">
+            <p data-fs-text="center">
+                <a href="#">
+                    <b data-fs-text="larger">Or Maybe This</b>
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<h2 id="example-4">Example 4 - Horizontal Rule</h2>
+
+<p>Just here:</p>
+
+<hr>
+
+<h2 id="example-4a">Example 4a - Large Horizontal Rule</h2>
+
+<p>Just here:</p>
+
+<hr data-fs-hr="larger">
+
+<h2 id="example-5">Example 5 - Inline Navigation</h2>
+
+<p role="list">
+<span role="listitem">
+    <a href="#home">Home</a>
+    <span> : </span>
+</span>
+<span role="listitem">
+    <a href="#about">About Us</a>
+    <span> : </span>
+</span>
+<span role="listitem">
+    <a href="#work">Our Work</a>
+    <span> : </span>
+</span>
+<span role="listitem">
+    <a href="#why-us">Why Choose Us</a>
+    <span> : </span>
+</span>
+<span role="listitem">
+    <a href="#contact">Contact</a>
+</span>
+</p>
+
+<h2 id="example-6">Example 6 - Carousel Markup</h2>
+
+<div role="region" aria-label="carousel" data-fs-block="border">
+    <nav aria-label="carousel">
+        <p data-fs-text="center" role="list">
+            <span role="listitem"> <a href="#slide-1-1">Slide 1</a>&emsp;</span>
+            <span role="listitem"> <a href="#slide-1-2">Slide 2</a>&emsp;</span>
+            <span role="listitem"> <a href="#slide-1-3">Slide 3</a>&emsp;</span>
+            <span role="listitem"> <a href="#slide-1-4">Slide 4</a>&emsp;</span>
+        </p>
+    </nav>
+    <div data-fs-text="center" tabindex="0" role="list">
+        <div id="slide-1-1" role="listitem">
+            <div hidden></div>
+            <hr>
+            <figure>
+                <p>Slide 1 of 4</p>
+                <div>
+                    <img src="/img/landscape/01.jpg?s=900" alt="Image should be here." width="300">
+                </div>
+                <figcaption>
+                    <p>Slide description goes here.<br>
+                    It is longer and has some line breaks to test<br>
+                    text wrapping.
+                    </p>
+                </figcaption>
+            </figure>
+        </div>
+        <div id="slide-1-2" role="listitem">
+            <div hidden></div>
+            <hr>
+            <figure>
+                <p>Slide 2 of 4</p>
+                <div>
+                    <img src="/img/portrait/02.jpg?s=900" alt="Image should be here." height="150">
+                </div>
+                <figcaption>
+                    <p>Slide description goes here.</p>
+                </figcaption>
+            </figure>
+        </div>
+        <div id="slide-1-3" role="listitem">
+            <div hidden></div>
+            <hr>
+            <figure>
+                <p>Slide 3 of 4</p>
+                <div>
+                    <img src="/img/landscape/03.jpg?s=900" alt="Image should be here." width="300">
+                </div>
+                <figcaption>
+                    <p>Slide description goes here.</p>
+                </figcaption>
+            </figure>
+        </div>
+        <div id="slide-1-4" role="listitem">
+            <div hidden></div>
+            <hr>
+            <figure>
+                <p>Slide 4 of 4</p>
+                <div>
+                    <img src="/img/landscape/04.jpg?s=900" alt="Image should be here." width="300">
+                </div>
+                <figcaption>
+                    <p>Slide description goes here.</p>
+                </figcaption>
+            </figure>
+        </div>
+    </div>
+</div>
+
+<h2 id="example-7">Example 7 - A Real Table</h2>
+
+<table id="Books" border="1">
+    <caption id="Cap1">Books I May or May Not Have Read</caption>
+    <thead>
+        <tr>
+            <th>Author</th>
+            <th>Title</th>
+            <th>Year</th>
+            <th>ISBN-13</th>
+            <th>ISBN-10</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Miguel De Cervantes</td>
+            <td>The Ingenious Gentleman Don Quixote of La Mancha</td>
+            <td>1605</td>
+            <td>9783125798502</td>
+            <td>3125798507</td>
+            </tr>
+        <tr>
+        <td>Mary Shelley</td>
+            <td>Frankenstein; or, The Modern Prometheus</td>
+            <td>1818</td>
+            <td>9781530278442</td>
+            <td>1530278449</td>
+        </tr>
+        <tr>
+            <td>Herman Melville</td>
+            <td>Moby-Dick; or, The Whale</td>
+            <td>1851</td>
+            <td>9781530697908</td>
+            <td>1530697905</td>
+        </tr>
+        <tr>
+            <td>Emma Dorothy Eliza Nevitte Southworth</td>
+            <td>The Hidden Hand</td>
+            <td>1888</td>
+            <td>9780813512969</td>
+            <td>0813512964</td>
+        </tr>
+        <tr>
+            <td>F. Scott Fitzgerald</td>
+            <td>The Great Gatsby</td>
+            <td>1925</td>
+            <td>9780743273565</td>
+            <td>0743273567</td>
+        </tr>
+        <tr>
+            <td>George Orwell</td>
+            <td>Nineteen Eighty-Four</td>
+            <td>1948</td>
+            <td>9780451524935</td>
+            <td>0451524934</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="example-7">Example 8 - Some cards</h2>
+
+<article>
+    <div data-fs-block="border">
+        <header>
+            
+            <h3>Sample Card</h3>
+            
+        </header>
+    </div>
+</article>
+
+<article>        
+    <div data-fs-block="border">
+        <header>
+            <h3>Another Sample Card - this time with content</h3>
+        </header>
+        <div>
+            <p>This card tells you something about something.</p>
+        </div> 
+    </div>
+</article>
+
+<article>        
+    <div data-fs-block="border">
+        <header>
+            <div><img src="/img/landscape/01.jpg?s=900" alt="Image should be here." width="300"></div>
+            <h3>Another Sample Card - this time with an image</h3>
+        </header>
+        <div>
+            <p>There is a source order problem here. Cards usually have their images above the heading, like it is here, but if the image is not presentational, it won't be accessible as part of the content the sits under the heading.</p>
+            <p>Currently the only way around this would be to include the image somewhere below the heading and use CSS to change the visual order, but in the Failed/No CSS scenario that's not possible.</p>
+        </div>
+    </div>
+</article>

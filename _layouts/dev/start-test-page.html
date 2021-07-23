@@ -1,0 +1,294 @@
+---
+layout: dev/structure--basic
+cut: prm
+head_style: |
+
+
+
+    /*
+        Make the outlines fit to the grid for testing only.
+    */
+    h1,h2,h3,h4,h5,h6 {
+        overflow-y: hidden;
+    }
+
+    /* Handling long words */
+
+    * {
+        /* These are technically the same, but use both */
+        /*overflow-wrap: break-word;*/
+        /*word-wrap: break-word;
+
+        /*-ms-word-break: break-all;
+        /* This is the dangerous one in WebKit, as it breaks things wherever */
+        /*word-break: break-all; this applies on FF and isn't what we want. */
+        /* Instead use this non-standard one: */
+        /*word-break: break-word;*/
+
+
+        word-break: break-word;
+        word-wrap: break-word;
+
+
+        /* Adds a hyphen where the word breaks, if supported (No Blink) */
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+    }
+
+    table * {
+        word-break: normal;
+        word-wrap: normal;
+    }
+
+
+
+
+
+    .tb-baseline main {
+        /*background-color: transparent;
+        background-size: 100% 1.2rem;
+        background-repeat: repeat-y;*/
+
+        /*background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.2) 6%, transparent 6%), to(transparent 100%)); /* Chrome, Safari 4+ */
+        /*background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.2) 6%, transparent 6%, transparent 100%); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+        /*background-image:    -moz-linear-gradient(top, rgba(0, 0, 0, 0.2) 6%, transparent 6%, transparent 100%); /* Firefox 3.6-15 */
+        /*background-image:      -o-linear-gradient(top, rgba(0, 0, 0, 0.2) 6%, transparent 6%, transparent 100%); /* Opera 11.10-12.00 */
+        /*background-image:         linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 6%, transparent 6%, transparent 100%); /* Chrome 26, Firefox 16+, IE 10+, Opera 12.50+ */
+
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.2+0,0.2+6,0+7,0+100 */
+        /*background-image: -moz-linear-gradient(top,  rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.2) 6%, rgba(0,0,0,0) 6%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+        /*background-image: -webkit-linear-gradient(top,  rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.2) 6%,rgba(0,0,0,0) 6%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+        /*background-image: linear-gradient(to bottom,  rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.2) 6%,rgba(0,0,0,0) 6%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+
+
+
+        background-image: url('https://lab.gridlight-design.co.uk/fallback-v1/line-grid-12px.gif');
+        background-repeat: repeat;
+
+    }
+
+    .tb-outlines h1, .tb-outlines h2, .tb-outlines h3, .tb-outlines h4, .tb-outlines h5, .tb-outlines h6,
+    .tb-outlines p, .tb-outlines ul, .tb-outlines ol, .tb-outlines li,
+    .tb-outlines dl, .tb-outlines dt, .tb-outlines dd,
+    .tb-outlines figcaption,
+    .tb-outlines address,
+    .tb-outlines article, .tb-outlines aside, .tb-outlines section, .tb-outlines nav {
+        background: rgba(0,0,0,0.05);
+        outline: 1.5px dashed rgba(0,0,0,0.2);
+    }
+
+    .tb-outlines article, .tb-outlines aside, .tb-outlines section, .tb-outlines nav {
+        outline: 1px dotted #f00;
+    }
+
+
+    .tb-wide-table figure table {
+        min-width: 100rem;
+    }
+
+    .tb-toolbox {
+        padding: 0.5em;
+        background: rgba(255,255,255,0.6);
+        position: fixed;
+        z-index: 999;
+        bottom: 0;
+        left: 0;
+        font-size: 0.8em;
+        line-height: 1.5;
+    }
+
+    .tb-toolbox:hover {
+        background: rgba(255,255,255,0.8);
+    }
+
+    .tb-toolbox input {
+        vertical-align: middle;
+        margin: 0;
+        min-height: none;
+        -webkit-transform: none;
+            -ms-transform: none;
+                transform: none;
+    }
+
+    .tb-toolbox label {
+        font-weight: normal;
+        vertical-align: middle;
+    }
+
+body_class: tb-baseline  tb-outlines
+body_end_script: |
+    // Attempt at building a browser-info display tool:
+    window.onload = (function(onload) {
+        return function(event) {
+            onload && onload(event);
+
+            var browser_info = {
+                'User agent': navigator.userAgent,
+                'Device pixel ratio': window.devicePixelRatio,
+                'Viewport width': document.documentElement.clientWidth,
+                'Viewport height': document.documentElement.clientHeight,
+                'Device width': window.screen.availWidth,
+                'Device height': window.screen.availHeight
+            };
+
+            var browser_info_table = document.getElementById('browser_info');
+            var browser_info_body  = browser_info_table.tBodies[0];
+            var row, cell1, cell2, i;
+            browser_info_body.deleteRow(0);
+
+            for (i in browser_info) {
+                row   = browser_info_body.insertRow(-1);
+                cell1 = row.insertCell(-1);
+                cell1.innerHTML = i;
+                cell2 = row.insertCell(-1);
+                cell2.innerHTML = browser_info[i];
+            }
+        }
+    }(window.onload));
+
+    /*-- Test pages only: --------------------------------------------------------*/
+    /* Functions */
+    function ready(fn) {
+        if (document.readyState != 'loading'){
+            fn();
+        } else {
+            document.addEventListener('DOMContentLoaded', fn);
+        }
+    }
+
+    function hasClass(el, className) {
+        if (el.classList) {
+            var r = el.classList.contains(className);
+        } else {
+            var r = new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
+        }
+        return r;
+    }
+
+    function toggleClass(el, className) {
+        if (el.classList) {
+            el.classList.toggle(className);
+        } else {
+            var classes = el.className.split(' ');
+            var existingIndex = classes.indexOf(className);
+
+            if (existingIndex >= 0) {
+                classes.splice(existingIndex, 1);
+            } else {
+                classes.push(className);
+            }
+            el.className = classes.join(' ');
+        }
+
+    }
+
+    function preprend(parent, el) {
+        parent.insertBefore(el, parent.firstChild);
+    }
+    /**/
+
+    /* Add toolbox: */
+    ready(function(){
+        var $body = document.querySelectorAll('body')[0];
+        var $main = document.querySelectorAll('main')[0];
+        var toolbox = document.createElement('div');
+        toolbox.id = 'toolbox';
+        toolbox.className = 'tb-toolbox';
+        var tools = [
+            '<input type="checkbox" id="toggleBaseline"' + (hasClass($body, 'tb-baseline') ? ' checked' : '') + ' "> ',
+            '<label for="toggleBaseline">Baseline grid</label><br>',
+            '<input type="checkbox" id="toggleOutlines"' + (hasClass($body, 'tb-outlines') ? ' checked' : '') + ' "> ',
+            '<label for="toggleOutlines">Outline elements</label><br>',
+            '<input type="checkbox" id="forceWideTable"' + (hasClass($body, 'tb-wide-table') ? ' checked' : '') + ' "> ',
+            '<label for="forceWideTable">Force wide table</label><br>',
+            '<label for="maxMainWidth">Max main width:</label><br>',
+            '<input type="text" id="maxMainWidth" />',
+        ];
+        //toolbox.innerHtml = tools.join("\n");
+        preprend($body, toolbox);
+        var $toolbox = document.querySelectorAll('#toolbox')[0];
+        $toolbox.innerHTML = tools.join("\n");
+
+        var $toggleBaseline = document.querySelectorAll('#toggleBaseline')[0];
+        var $toggleOutlines = document.querySelectorAll('#toggleOutlines')[0];
+        var $forceWideTable = document.querySelectorAll('#forceWideTable')[0];
+        var $maxMainWidth   = document.querySelectorAll('#maxMainWidth')[0];
+
+        // Set default values:
+        $maxMainWidth.value = getComputedStyle($main)['maxWidth'];
+
+        // Add event handlers:
+        $toggleBaseline.addEventListener('change', function(){
+            toggleClass($body, 'tb-baseline');
+        });
+
+        $toggleOutlines.addEventListener('change', function(){
+            toggleClass($body, 'tb-outlines');
+        });
+        
+        $forceWideTable.addEventListener('change', function(){
+            toggleClass($body, 'tb-wide-table');
+        });
+
+        $maxMainWidth.addEventListener('change', function(){
+            $main.style.maxWidth = $maxMainWidth.value;
+        });
+
+
+
+
+        /*
+        $("#toggleBaseline").change(function(){
+            $("body").toggleClass('baseline-grid');
+        });
+        $("#toggleHeadingBg").change(function(){
+            $("body").toggleClass('heading-background');
+        });
+        $("#toggleSectionBg").change(function(){
+            $("body").toggleClass('section-background');
+        });*/
+    });
+
+    /*
+    Add margins to 'off-grid' elements to maintain vertical rhythm.
+    Note we're assuming the only 'off-grid' elements -- `pre`, `img`, `video` -- will be contained
+    within `figure`s.
+    We also assume (know) that figures have a 1.5rem bottom margin, and we don't use top margins, so we
+    should be safe to _reduce_ the bottom margin by enough to restore grid alignment.
+    *//*
+    window.onload = (function(onload) {
+        return function(event) {
+            onload && onload(event);
+
+            //var $root = document.querySelectorAll(':root')[0];
+            var $body = document.querySelectorAll('body')[0];
+            var $main   = document.querySelectorAll('main')[0];
+            var figures = $main.querySelectorAll('figure');
+
+            var grid_size = getComputedStyle($body)['line-height'];
+            var grid_unit = parseInt(grid_size, 10) / 2;
+
+            console.log(grid_size, grid_unit);
+
+            figures.forEach(function(item, i){
+                //console.log(item, (item.offsetHeight / grid_unit - Math.floor(item.offsetHeight / grid_unit)) );
+                //var val = grid_unit + (grid_size * (item.offsetHeight / grid_unit - Math.floor(item.offsetHeight / grid_unit))) + 'rem';
+                var diff = item.offsetHeight / grid_unit - (Math.floor(item.offsetHeight / grid_unit));
+                console.log(diff);
+                if (diff > 0) {
+                    var diff_px = (grid_unit * 2 - (grid_unit * diff));
+                    console.log(diff_px);
+                    item.style.marginBottom = diff_px + 'px';
+                }
+
+
+                //item.style.marginBottom = grid_unit + (grid_size * (item.offsetHeight / grid_unit - Math.floor(item.offsetHeight / grid_unit))) + 'rem';
+            });
+        }
+    }(window.onload));*/
+---
+
+{{ content }}

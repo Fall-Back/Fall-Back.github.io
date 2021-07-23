@@ -79,6 +79,16 @@
     Uni-directional margins (bottom) is fine for most cases, but things like figcaptions that may
     contain paragraphs can result in double bottom margins, so flipping that around inside those
     containers.
+* /
+@mixin s__fix_internal_margins($margin-size) {
+    & * {
+        margin-bottom: 0;
+    }
+
+    & * + * {
+        margin-top: $margin-size;
+    }
+}
 */
 /*-------------------------------------------------------------------------------------------------|
 
@@ -132,7 +142,7 @@
 */
 /*
     ANCHOR
-    
+
     1. This size allows 2px on normal fonts, 1px on smaller fonts.
 */
 /* [1] */
@@ -258,16 +268,16 @@ a[href].cta {
   margin: 0.3rem 0;
   padding-top: 0.3rem;
   padding-top: -moz-calc(0);
-  padding-top: calc(0.3rem - 1px);
+  padding-top: calc(0.3rem - 0.1rem);
   padding-right: 0.6rem;
   padding-bottom: 0.3rem;
   padding-bottom: -moz-calc(0);
-  padding-bottom: calc(0.3rem - 1px);
+  padding-bottom: calc(0.3rem - 0.1rem);
   padding-left: 0.6rem;
   border-color: #247BA0;
   border-style: solid;
-  border-width: 1px;
-  border-radius: 3px;
+  border-width: 0.1rem;
+  border-radius: 0.3rem;
   color: #247BA0;
   background-color: #fff;
   font-weight: inherit;
@@ -305,7 +315,7 @@ a[href].cta:active {
 a[href].button:focus,
 a[href].cta:focus {
   outline: 0;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 0.3rem rgba(255, 255, 255, 0.5);
 }
 
 a[href].button:hover, a[href].button:active, a[href].button:focus,
@@ -344,16 +354,16 @@ a[href].cta--has-icon .icon {
   margin: 0.3rem 0;
   padding-top: 0.3rem;
   padding-top: -moz-calc(0);
-  padding-top: calc(0.3rem - 1px);
+  padding-top: calc(0.3rem - 0.1rem);
   padding-right: 0.6rem;
   padding-bottom: 0.3rem;
   padding-bottom: -moz-calc(0);
-  padding-bottom: calc(0.3rem - 1px);
+  padding-bottom: calc(0.3rem - 0.1rem);
   padding-left: 0.6rem;
   border-color: rgba(0, 0, 0, 0.2);
   border-style: solid;
-  border-width: 1px;
-  border-radius: 3px;
+  border-width: 0.1rem;
+  border-radius: 0.3rem;
   color: #fff;
   background-color: #247BA0;
   font-weight: inherit;
@@ -388,7 +398,7 @@ a[href].cta--has-icon .icon {
 
 .button[data-text][aria-hidden="true"]:focus {
   outline: 0;
-  box-shadow: 0 0 0 3px rgba(36, 123, 160, 0.5);
+  box-shadow: 0 0 0 0.3rem rgba(36, 123, 160, 0.5);
 }
 
 .button[data-text][aria-hidden="true"]::before {
@@ -399,44 +409,58 @@ a[href].cta--has-icon .icon {
   border-width: 6px;
   border-style: solid;
   border-color: #247BA0;
-  padding-top: 24px;
-  padding-top: calc(24px - 6px);
-  padding-left: 24px;
-  padding-left: calc(24px - 6px);
-  padding-right: 24px;
-  padding-right: calc(24px - 6px);
-  padding-bottom: 0;
-}
+  padding: calc(24px - 6px);
+  /*
+    @if $s__use-last-child-margin-zero {
+        padding-bottom: 24px;
+        //padding-bottom: -moz-calc(24px - 6px);
+        padding-bottom:      calc(24px - 6px);
+    } @else {
+        padding-bottom: 0;
+        &::after {
+            display: block;
 
-.bordered::after {
-  display: block;
-  content: "";
-  height: 1px;
-  margin-top: 24px;
-  margin-bottom: -1px;
-  margin-bottom: calc(-1px - 6px);
+            content: "";
+
+            height: 1px;
+
+            margin-top: $padding;
+
+            margin-bottom: -1px;
+            //margin-bottom: -moz-calc(-1px - 6px);
+            margin-bottom:      calc(-1px - 6px);
+        }
+    }
+    */
 }
 
 .padded {
   border-width: 0px;
   border-style: solid;
   border-color: #247BA0;
-  padding-top: 2.4rem;
-  padding-top: calc(2.4rem - 0px);
-  padding-left: 2.4rem;
-  padding-left: calc(2.4rem - 0px);
-  padding-right: 2.4rem;
-  padding-right: calc(2.4rem - 0px);
-  padding-bottom: 0;
-}
+  padding: calc(2.4rem - 0px);
+  /*
+    @if $s__use-last-child-margin-zero {
+        padding-bottom: 2.4rem;
+        //padding-bottom: -moz-calc(2.4rem - 0px);
+        padding-bottom:      calc(2.4rem - 0px);
+    } @else {
+        padding-bottom: 0;
+        &::after {
+            display: block;
 
-.padded::after {
-  display: block;
-  content: "";
-  height: 1px;
-  margin-top: 2.4rem;
-  margin-bottom: -1px;
-  margin-bottom: calc(-1px - 0px);
+            content: "";
+
+            height: 1px;
+
+            margin-top: $padding;
+
+            margin-bottom: -1px;
+            //margin-bottom: -moz-calc(-1px - 0px);
+            margin-bottom:      calc(-1px - 0px);
+        }
+    }
+    */
 }
 
 /*
@@ -675,6 +699,4 @@ p.subtitle {
   font-family: cursive;
   background: #fff;
   overflow: auto;
-  margin-top: 0;
-  margin-bottom: 2.4rem;
 }

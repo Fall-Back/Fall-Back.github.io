@@ -31,19 +31,9 @@
     }
     border-color: $border-color;
 
-    padding-top:   #{$padding};
-    //padding-top:   -moz-calc(#{$padding} - #{$border-width});
-    padding-top:        calc(#{$padding} - #{$border-width});
+    padding: calc(#{$padding} - #{$border-width});
 
-    padding-left:  #{$padding};
-    //padding-left:  -moz-calc(#{$padding} - #{$border-width});
-    padding-left:       calc(#{$padding} - #{$border-width});
-
-    padding-right: #{$padding};
-    //padding-right: -moz-calc(#{$padding} - #{$border-width});
-    padding-right:      calc(#{$padding} - #{$border-width});
-
-
+    /*
     @if $s__use-last-child-margin-zero {
         padding-bottom: #{$padding};
         //padding-bottom: -moz-calc(#{$padding} - #{$border-width});
@@ -64,6 +54,7 @@
             margin-bottom:      calc(-1px - #{$border-width});
         }
     }
+    */
 }
 
 /*
@@ -202,22 +193,6 @@
 }
 
 
-/*
-    Uni-directional margins (bottom) is fine for most cases, but things like figcaptions that may
-    contain paragraphs can result in double bottom margins, so flipping that around inside those
-    containers.
-*/
-@mixin s__fix_internal_margins($margin-size) {
-    & * {
-        margin-bottom: 0;
-    }
-
-    & * + * {
-        margin-top: $margin-size;
-    }
-}
-
-
 // Fluid Typography
 // https://css-tricks.com/snippets/css/fluid-typography/
 
@@ -239,3 +214,46 @@
         }
     }
 }
+
+
+/*
+    Uni-directional margins (bottom) is fine for most cases, but things like figcaptions that may
+    contain paragraphs can result in double bottom margins, so flipping that around inside those
+    containers.
+* /
+@mixin s__fix_internal_margins($margin-size) {
+    & * {
+        margin-bottom: 0;
+    }
+
+    & * + * {
+        margin-top: $margin-size;
+    }
+}
+*/
+
+@mixin s__margins($margin, $margin-type: default) {
+    @if $margin-type == 'default' {
+        margin-top: $margin;
+        margin-bottom: $margin;
+        
+        &:first-child {
+            margin-top: 0;
+        }
+        
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    
+
+    //@if $margin-type == 'procedural' {
+    //    margin-top: 0;
+    //    margin-bottom: $margin-size;
+    //
+    //    &:last-child {
+    //        margin-bottom: 0;
+    //    }
+    //}
+}
+

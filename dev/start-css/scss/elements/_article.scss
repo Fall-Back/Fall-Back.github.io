@@ -8,11 +8,5 @@
 #{$s__namespace}article {
     display: block;
 
-    @if $s__procedural-margins {
-        margin-bottom: $s__base-rem-space-unit;
-        margin-top: 0;
-        padding-bottom: $s__base-rem-space-unit;
-    } @else {
-        margin-bottom: 0;
-    }
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
 }

@@ -262,7 +262,7 @@ body {
 
     background-color: $s__body-background-color;
     color: $s__body-text-color;
-    
+
     @if $s__use-layout {
         display: -webkit-flex;
         display: -moz-box;
@@ -527,15 +527,15 @@ main :target {
     scroll-margin-top: $s__scroll-margin-top;
 }
 
-@if $s__use-last-child-margin-zero {
-    /*
-        Some inline elements have margin deliberately to help with size/position.
-        We don't want to zero-out those.
-    */
-    :last-child:not(a):not(button):not(img):not(input):not(select) {
-        margin-bottom: 0;
-    }
-}
+//@if $s__use-last-child-margin-zero {
+//    /*
+//        Some inline elements have margin deliberately to help with size/position.
+//        We don't want to zero-out those.
+//    */
+//    :last-child:not(a):not(button):not(img):not(input):not(select) {
+//        margin-bottom: 0;
+//    }
+//}
 
 @if $s__use-layout {
     body > * {
@@ -547,12 +547,12 @@ main :target {
 /*
 Shelving this for now
 @if $s__procedural-margins == false {
-    /* this is too generic 
+    /* this is too generic
     * + * {
         margin-top: $s__base-rem-space-unit;
     }
     /
-    
+
     /* This is the full list but it's not exactly what we want:
     * + address,
     * + article,
@@ -588,7 +588,7 @@ Shelving this for now
     * + table,
     * + ul
     /
-    
+
     /*
         Taking out list items, hr and div:
     /
@@ -621,11 +621,11 @@ Shelving this for now
     *:not(legend):not(figcaption) + ul {
         margin-top: $s__base-rem-space-unit;
     }
-    
+
     hr {
         margin-top: calc(#{$s__base-rem-space-unit} - #{$s__hr-border-width};
     }
-} 
+}
 */
 
 

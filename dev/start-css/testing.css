@@ -1,0 +1,236 @@
+/*
+    This file includes some styles that are needed to test StartCSS, but aren't PART of StartCSS.
+    The assumption is they're the sort of thing that would be included in some project-specific
+    stylesheet, but StartCSS doesn't actually provide, but the rest of it needs to be compatible with.
+    
+    For instance the first thing here is a floating class to test the odd behaviour of lists affected
+    by floated elements. The behaviour needs fixing, but StartCSS has no need to define any float-based
+    styles.
+    It's included in an external stylesheet because that's where these kinds of styles are expected
+    to be, and so they get disabled when using Wed Dev tools 'Disable Linked Stylesheets' (used for
+    testing Tiny FallBack Styles etc. Otherwise we get a false impression of what things would actually
+    look like.
+*/
+
+.float-img-test {
+    float: left;
+    width: 40%;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+}
+
+/*
+img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 0.2rem;
+}
+
+video {
+    width: 100%;
+    height: auto;
+    margin-bottom: 0.2rem;
+
+     /*max-height: 360px;*, /
+}
+*/
+
+/**
+*:focus {
+    outline: 5px solid red !important;
+}
+/**/
+/**
+*:focus {
+    box-shadow: 0 0 2px 0 currentColor !important;
+}
+/**/
+
+
+label {
+    background: rgba(0,0,0,0.1);
+}
+
+
+.test_bg {
+    background: rgba(0,0,255,0.1);
+}
+
+.box {
+    border: 1px solid #333;
+    background: #fed;
+    /*margin-top: -1px;
+    margin-bottom: calc(1.5rem - 1px);*/
+    /*margin-bottom: -moz-calc(2.4rem - 2px);*/
+    /*margin-bottom: calc(2.4rem - 2px);*/
+    margin-bottom: 2.4rem;
+    height: 14.4rem;
+}
+
+
+
+
+
+
+
+
+
+
+/*
+table {
+    max-width: 100%;
+    overflow-x: scroll;
+}
+*/
+
+/* Safari 6.2+ (Not iOS) declared as being for 7.1 but is applied to 6.2 */
+/*_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root .selector { property:value; }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="2"]  { margin-bottom: 0; }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="3"]  { margin-bottom: 0; }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="4"]  { margin-bottom: 0; }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="5"]  { margin-bottom: calc(0.9rem - 2px); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="6"]  { margin-bottom: calc(0.4rem - 2px); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="7"]  { margin-bottom: calc(1.1rem - 2px); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="8"]  { margin-bottom: calc(0.6rem - 2px); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="9"]  { margin-bottom: calc(1.3rem - 2px); }
+_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="10"] { margin-bottom: calc(0.8rem - 2px); }
+
+*/
+
+
+/*
+    Attempt to fix `pre` tag margins due to scrollbar height.
+
+    Part 1.
+    So far, it seems best to assume there are scrollbars (FF and IE desktop) and give a small bottom
+    margin to compensate. That's what's in StartCSS.
+
+    However, browsers without scrollbars (touch) then have the _wrong_ bottom margin.
+
+    So, using -webkit custom scrollbars to set scrollbar height equal to a space-unit.
+    This solves problems on all webkit browsers (even touch browsers that don't normally show
+    scrollbars).
+
+    Problem: setting `pre` bottom margin to a spacing-unit would be best, really, but FF and IE
+    desktop don't have these options.
+    Setting the bottom margin to take into account the scrollbar height fixes those browsers but now
+    breaks the webkit browsers which need a 'normal' margin amount.
+
+    (A) So, targeting all webkit browsers that support custom scrollbars would be the way to solve
+    this. You can't do @supports for pseudo element, (and @supports doesn't have as much support as
+    custom scrollbars anyway) so using a hack that happens to have about the same level of support:
+    http://browserhacks.com/#hack-f4ade0540d8e891e8190065f75acb186
+
+    Part 2.
+    Non-webkit mobile (Window Phone IE, Android Firefox) still has the wrong margin, so need to find
+    hacks for these.
+
+*/
+
+::-webkit-scrollbar {
+    height: 1.2rem;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #ddd;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #aaa;
+    border-radius: 0.6rem;
+}
+
+/* (^A) */
+
+pre:not(*:root) {
+    margin-bottom: 2.4rem; /* $fallback--base-rem-space-unit / 2; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Use hover query to reset margin - not ideal but ot bad! */
+/*@media (hover: hover) {
+    pre {
+        margin-bottom: -0.75rem; /* $fallback--base-rem-space-unit / 2;/
+    }
+}*/
+
+/*@media screen and (min-resolution: 2dppx) {
+    @-moz-document url-prefix() {
+        pre {
+            background: red;
+        }
+    }
+}*/
+/*
+@media not all and ((-moz-os-version:windows-win10) and (-moz-touch-enabled:1)) {
+    pre {
+        background: red;
+        margin-bottom: -0.75rem;
+    }
+
+}
+*/
+/* If it's Firefox and touch is enabled: ... */
+/*@media screen and (-moz-touch-enabled:1) {
+    pre {
+        background: #fee;
+        -margin-bottom: -0.75rem;
+    }
+}*/
+
+/* ... but if it's on Windows 10 (e.g. Surface)  */
+/*
+@media screen and (-moz-os-version:windows-win10) {
+    pre {
+        background: #eef;
+        -margin-bottom: -1.0625rem;
+    }
+}*/
+
+
+
+
+
+
+
+
+
+
+
+/* IE Mobile: */
+/*@media screen and (min-resolution: 1dppx) and (-ms-high-contrast: none), screen and (min-resolution: 1dppx) and (-ms-high-contrast: active),{
+    @-moz-document url-prefix() {
+        pre {
+            background: yellow;
+            margin-bottom: -0.75rem;
+        }
+    }
+}*/
+
+/*
+figure {
+    snap-height: 1.5rem;
+}
+
+figure * {
+    snap-height: 0;
+}
+
+figure img {
+    vertical-align: top;
+}
+
+*/

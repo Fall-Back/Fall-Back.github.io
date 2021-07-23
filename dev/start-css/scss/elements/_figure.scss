@@ -8,13 +8,9 @@
 #{$s__namespace}figure {
     display: block;
 
-    @if $s__procedural-margins {
-        margin-bottom: $s__base-rem-space-unit;
-        margin-top: 0;
-    } @else {
-        margin-bottom: 0;
-    }
-
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
+    margin-left: $s__base-rem-space-unit;
+    margin-right: $s__base-rem-space-unit;
 
     @if $s__figure-scroll {
         max-width: 100%;

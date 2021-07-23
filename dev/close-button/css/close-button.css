@@ -79,6 +79,16 @@
     Uni-directional margins (bottom) is fine for most cases, but things like figcaptions that may
     contain paragraphs can result in double bottom margins, so flipping that around inside those
     containers.
+* /
+@mixin s__fix_internal_margins($margin-size) {
+    & * {
+        margin-bottom: 0;
+    }
+
+    & * + * {
+        margin-top: $margin-size;
+    }
+}
 */
 /*-------------------------------------------------------------------------------------------------|
 
@@ -132,7 +142,7 @@
 */
 /*
     ANCHOR
-    
+
     1. This size allows 2px on normal fonts, 1px on smaller fonts.
 */
 /* [1] */
@@ -155,16 +165,16 @@
   margin: 0.3rem 0;
   padding-top: 0.3rem;
   padding-top: -moz-calc(0);
-  padding-top: calc(0.3rem - 1px);
+  padding-top: calc(0.3rem - 0.1rem);
   padding-right: 0.6rem;
   padding-bottom: 0.3rem;
   padding-bottom: -moz-calc(0);
-  padding-bottom: calc(0.3rem - 1px);
+  padding-bottom: calc(0.3rem - 0.1rem);
   padding-left: 0.6rem;
   border-color: rgba(0, 0, 0, 0);
   border-style: solid;
-  border-width: 1px;
-  border-radius: 3px;
+  border-width: 0.1rem;
+  border-radius: 0.3rem;
   color: #333;
   background-color: rgba(0, 0, 0, 0);
   font-weight: inherit;
@@ -205,7 +215,7 @@
 
 .close-button:focus {
   outline: 0;
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 0.5);
 }
 
 .js-close-button-container {

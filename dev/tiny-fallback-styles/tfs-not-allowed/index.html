@@ -1,0 +1,288 @@
+---
+title: TFS NOT Allowed Test Page
+layout: dev/tfs-test-page
+---
+<p><strong>Disclaimer</strong> - these patterns demonstrate what can be achieved by leveraging browser User Agent styles, but they use deprecate elements and attributes and <strong>should <em>NOT</em> be used</strong> </p>
+<p>Disable ALL styles and this page will still retain it's essential appearance. It feels a shame not to be able to make use of this, but it's assumed that browsers NOT supporting CSS or uses browsing the web with styles deliberately disabled are so rare that it's not worth using deprecated markup for.</p>
+<p>The alternate approach (Tiny FallBack Styles with Attributes - TFS+A) covers failed CSS scenarios, which is touch more likely (I assume).</p>
+
+<h2 id="example-1">Example 1 - Border using <code>fieldset</code></h2>
+
+<fieldset role="presentation">
+    <p>
+    This content is 'boxed in'
+    </p>
+</fieldset>
+
+<h2 id="example-2">Example 2 - Side-by-Side using <code>table</code></h2>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%" role="presentation">
+    <tbody>
+        <tr valign="top">
+            <td>
+                <a href="#">
+                    Left content
+                </a>
+            </td>
+            <td align="right">
+                <a href="#">
+                    Right content
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="example-3">Example 3 - Side-by-Side with a <code>table</code>, <code>fieldets</code> and <code>big</code></h2>
+
+<p>Using <code>&lt;big&gt;</code> element to create a more prominent link.</p>
+
+<table border="0" cellpadding="0" cellspacing="10" width="100%" role="presentation">
+    <tbody>
+        <tr>
+            <td>
+                <fieldset role="presentation">
+                    <p align="center">
+                        <a href="#">
+                            <big>Choose This</big>
+                        </a>
+                    </p>
+                </fieldset>
+            </td>
+            <td>
+                <fieldset role="presentation">
+                    <p align="center">
+                        <a href="#">
+                            <big>Or Maybe This</big>
+                        </a>
+                    </p>
+                </fieldset>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="example-3a">Example 3a - Side-by-Side with a <code>table</code>, <code>fieldets</code> and <code>h3</code></h2>
+
+<p>Using <code>&lt;h3 role="presentation"&gt;</code> element to create a more prominent link.</p>
+
+<table border="0" cellpadding="0" cellspacing="10" width="100%" role="presentation">
+    <tbody>
+        <tr>
+            <td>
+                <fieldset role="presentation">
+                    <h3 align="center" role="presentation">
+                        <a href="#">
+                            Choose This
+                        </a>
+                    </h3>
+                </fieldset>
+            </td>
+            <td>
+                <fieldset role="presentation">
+                    <h3 align="center" role="presentation">
+                        <a href="#">
+                            Or Maybe This
+                        </a>
+                    </h3>
+                </fieldset>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="example-4">Example 4 - Horizontal Rule</h2>
+
+<p>Just here:</p>
+
+<hr noshade border="0">
+
+<h2 id="example-4a">Example 4a - Large Horizontal Rule</h2>
+
+<p>Just here:</p>
+
+<hr noshade size="10"  border="0">
+
+<h2 id="example-5">Example 5 - Inline Navigation</h2>
+
+<p role="list">
+    <span role="listitem">
+        <a href="/dev/elementary/page-layout-article/"><span>Link&nbsp;to&nbsp;Somewhere</span></a><span data-if-css="hide">&emsp;</span>
+    </span>
+    <span role="listitem">
+        <a href="/dev/elementary/page-layout-listing/"><span>Another&nbsp;Link</span></a><span data-if-css="hide">&emsp;</span>
+    </span>
+    <span role="listitem">
+        <a href="/dev/elementary/page-layout-listing-sidebars/"><span>Links&nbsp;won't&nbsp;wrap&nbsp;inside</span></a><span data-if-css="hide">&emsp;</span>
+    </span>
+    <span role="listitem">
+        <a href="/dev/elementary/page-layout-listing-grid/"><span>This&nbsp;is&nbsp;another&nbsp;one</span></a><span data-if-css="hide">&emsp;</span>
+    </span>
+</p>
+
+<h2 id="example-6">Example 6 - Carousel Markup</h2>
+
+<fieldset role="region" aria-label="carousel">
+    <div>
+        <nav aria-label="carousel">
+            <p align="center" role="list">
+                <span role="listitem"> <a href="#slide-1-1">Slide 1</a>&emsp;</span>
+                <span role="listitem"> <a href="#slide-1-2">Slide 2</a>&emsp;</span>
+                <span role="listitem"> <a href="#slide-1-3">Slide 3</a>&emsp;</span>
+                <span role="listitem"> <a href="#slide-1-4">Slide 4</a>&emsp;</span>
+            </p>
+        </nav>
+        <div align="center" tabindex="0" role="list">
+            <div id="slide-1-1" role="listitem">
+                <div hidden></div>
+                <hr noshade="" size="1">
+                <figure>
+                    <p>Slide 1 of 4</p>
+                    <div>
+                        <img src="/img/landscape/01.jpg?s=900" alt="" width="300">
+                    </div>
+                    <figcaption>
+                        <p>Slide description goes here.<br>
+                        It is longer and has some line breaks to test<br>
+                        text wrapping.
+                        </p>
+                    </figcaption>
+                </figure>
+            </div>
+            <div id="slide-1-2" role="listitem">
+                <div hidden></div>
+                <hr noshade="" size="1">
+                <figure>
+                    <p>Slide 2 of 4</p>
+                    <div>
+                        <img src="/img/portrait/02.jpg?s=900" alt="" height="150">
+                    </div>
+                    <figcaption>
+                        <p>Slide description goes here.</p>
+                    </figcaption>
+                </figure>
+            </div>
+            <div id="slide-1-3" role="listitem">
+                <div hidden></div>
+                <hr noshade="" size="1">
+                <figure>
+                    <p>Slide 3 of 4</p>
+                    <div>
+                        <img src="/img/landscape/03.jpg?s=900" alt="" width="300">
+                    </div>
+                    <figcaption>
+                        <p>Slide description goes here.</p>
+                    </figcaption>
+                </figure>
+            </div>
+            <div id="slide-1-4" role="listitem">
+                <div hidden></div>
+                <hr noshade="" size="1">
+                <figure>
+                    <p>Slide 4 of 4</p>
+                    <div>
+                        <img src="/img/landscape/04.jpg?s=900" alt="" width="300">
+                    </div>
+                    <figcaption>
+                        <p>Slide description goes here.</p>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+<h2 id="example-7">Example 7 - A Real Table</h2>
+
+<table border="1" cellpadding="10" cellspacing="0" width="100%">
+    <caption id="Cap1">Books I May or May Not Have Read</caption>
+    <thead>
+        <tr>
+            <th>Author</th>
+            <th>Title</th>
+            <th>Year</th>
+            <th>ISBN-13</th>
+            <th>ISBN-10</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Miguel De Cervantes</td>
+            <td>The Ingenious Gentleman Don Quixote of La Mancha</td>
+            <td>1605</td>
+            <td>9783125798502</td>
+            <td>3125798507</td>
+            </tr>
+        <tr>
+        <td>Mary Shelley</td>
+            <td>Frankenstein; or, The Modern Prometheus</td>
+            <td>1818</td>
+            <td>9781530278442</td>
+            <td>1530278449</td>
+        </tr>
+        <tr>
+            <td>Herman Melville</td>
+            <td>Moby-Dick; or, The Whale</td>
+            <td>1851</td>
+            <td>9781530697908</td>
+            <td>1530697905</td>
+        </tr>
+        <tr>
+            <td>Emma Dorothy Eliza Nevitte Southworth</td>
+            <td>The Hidden Hand</td>
+            <td>1888</td>
+            <td>9780813512969</td>
+            <td>0813512964</td>
+        </tr>
+        <tr>
+            <td>F. Scott Fitzgerald</td>
+            <td>The Great Gatsby</td>
+            <td>1925</td>
+            <td>9780743273565</td>
+            <td>0743273567</td>
+        </tr>
+        <tr>
+            <td>George Orwell</td>
+            <td>Nineteen Eighty-Four</td>
+            <td>1948</td>
+            <td>9780451524935</td>
+            <td>0451524934</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="example-8">Example 8 - Some cards</h2>
+
+<article>
+    <fieldset role="presentation">
+        <header>
+
+            <h3>Sample Card</h3>
+
+        </header>
+    </fieldset>
+</article>
+
+<article>
+    <fieldset role="presentation">
+        <header>
+            <h3>Another Sample Card - this time with content</h3>
+        </header>
+        <div>
+            <p>This card tells you something about something.</p>
+        </div>
+    </fieldset>
+</article>
+
+<article>
+    <fieldset role="presentation">
+        <header>
+            <div><img src="/img/landscape/01.jpg?s=900" alt="" width="300"></div>
+            <h3>Another Sample Card - this time with content</h3>
+        </header>
+        <div>
+            <p>There is a source order problem here. Cards usually have their images above the heading, like it is here, but if the image is not presentational, it won't be accessible as part of the content the sits under the heading.</p>
+            <p>Currently the only way around this would be to include the image somewhere below the heading and use CSS to change the visual order, but in the Failed/No CSS scenario that's not possible.</p>
+        </div>
+    </fieldset>
+</article>

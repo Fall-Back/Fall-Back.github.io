@@ -1,0 +1,22 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: footer
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+#{$s__namespace}footer {
+    display: block;
+
+    @if $s__procedural-margins {
+        margin-bottom: $s__base-rem-space-unit;
+        margin-top: 0;
+    } @else {
+        margin-bottom: 0;
+    }
+    
+    padding: $s__footer-padding;
+
+    background-color: $s__footer-background-color;
+    color: $s__footer-text-color;
+}

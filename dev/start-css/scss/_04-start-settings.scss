@@ -34,14 +34,15 @@ $s__base-em-1px:            1px / $s__root-font-size * 1em;
 $s__mq-1-em-px:             0.0625em;
 
 
-
-$s__procedural-margins: true !default;
-$s__use-last-child-margin-zero: false !default;
+$s__margin-type: default !default;
+//$s__procedural-margins: true !default;
+//$s__use-last-child-margin-zero: false !default;
 $s__use-layout: false !default;
 $s__zero-header-hx-margin: false !default;
 $s__space_dl_groups: false !default;
-$s__text_zoom_scales_all: false !default;
-$s__figure-scroll: false !default;
+//$s__text_zoom_scales_all: false !default;
+
+$s__figure-scroll: true !default;
 
 $s__tabsize: 4 !default;
 
@@ -75,15 +76,15 @@ $s__sizes: (
 $s__border-color: rgba(0,0,0,0.2) !default;
 // IMPORTANT: don't make this LESS than 1px or focus styles will break. If you want the appearance
 // of no border, set the color to transparent.
-$s__border-width: 1px !default;
-$s__border-radius: 3px !default;
+$s__border-width: 0.1rem !default;
+$s__border-radius: 0.3rem !default;
 $s__border-style: solid !default;
 
 
-$s__focus-outline-width: 2px !default;
+$s__focus-outline-width: 0.2rem !default;
 $s__focus-outline-style: solid !default;
 $s__focus-outline-color: rgba($s__base-ui-color, 0.6) !default;
-$s__focus-outline-offset: 2px !default;
+$s__focus-outline-offset: 0.2rem !default;
 // Note that IE and earlier Edge don't support outline-offset, so aesthetically, outline isn't a
 // great choice.
 
@@ -91,7 +92,7 @@ $s__focus-outline-offset: 2px !default;
 
 
 // MQ hacks (https://browserstrangeness.github.io/css_hacks.html)
-// Hacks with '0\0' and '+' need encoding, hence these: 
+// Hacks with '0\0' and '+' need encoding, hence these:
 $s__plus:  "\002b";
 $s__slash: "\005C";
 
@@ -137,7 +138,7 @@ $s__media-element-vertical-align: middle !default;
 
 /*
     ANCHOR
-    
+
     1. This size allows 2px on normal fonts, 1px on smaller fonts.
 */
 
@@ -146,7 +147,7 @@ $s__anchor-text-color--alt: darken($s__anchor-text-color, 10%) !default;
 
 
 //$s__anchor-border-bottom-width: 2px !default;
-$s__anchor-border-bottom-width:  0.13em !default; /* [1] */
+$s__anchor-border-bottom-width:  0.2rem !default; /* [1] */
 $s__anchor-border-bottom-style: solid !default;
 $s__anchor-border-bottom-style--alt: dashed !default;
 $s__anchor-border-bottom: $s__anchor-border-bottom-width $s__anchor-border-bottom-style !default;
@@ -158,7 +159,7 @@ $s__anchor-padding-bottom: $s__anchor-border-bottom-width;
 $s__anchor-add-external-link-indicator: true !default;
 
 $s__anchor-focus-shadow: true !default;
-$s__anchor-focus-shadow-width: 3px !default;
+$s__anchor-focus-shadow-width: 0.3rem !default;
 
 //$s__anchor-text-decoration: none !default;
 $s__anchor-text-decoration: underline !default;
@@ -191,7 +192,7 @@ $s__button-border-style: $s__border-style !default;
 $s__button-border-radius: $s__border-radius !default;
 
 $s__button-focus-shadow: true !default;
-$s__button-focus-shadow-width: 3px !default;
+$s__button-focus-shadow-width: 0.3rem !default;
 
 $s__button-min-height: ($s__base-rem-space-unit * 1.25);
 
@@ -279,7 +280,7 @@ $s__input-min-height: ($s__base-rem-space-unit * 1.25);
 
 
 $s__input-focus-shadow: true !default;
-$s__input-focus-shadow-width: 3px !default;
+$s__input-focus-shadow-width: 0.3rem !default;
 
 // File inputs' natural width varies between browsers and is too wide for smaller screens.
 // The only way to get it to collapse on smaller screens is to specify `width: 100%;` but this
@@ -350,7 +351,7 @@ $s__select-border-style: $s__border-style !default;
 $s__select-border-radius: $s__border-radius !default;
 
 $s__select-focus-shadow: true !default;
-$s__select-focus-shadow-width: 3px !default;
+$s__select-focus-shadow-width: 0.3rem !default;
 
 
 
@@ -397,7 +398,7 @@ $s__textarea-border-style: $s__border-style !default;
 $s__textarea-border-radius: $s__border-radius !default;
 
 $s__textarea-focus-shadow: true !default;
-$s__textarea-focus-shadow-width: 3px !default;
+$s__textarea-focus-shadow-width: 0.3rem !default;
 
 $s__textarea-resize: vertical !default;
 

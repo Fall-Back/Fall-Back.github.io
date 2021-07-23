@@ -1,0 +1,252 @@
+<html lang="en" class=""><head>
+
+  <meta charset="UTF-8">
+  <title>CodePen Demo</title>
+
+
+  <style class="INLINE_PEN_STYLESHEET_ID">
+    html {
+  box-sizing: border-box;
+}
+
+*, ::after, ::before {
+  box-sizing: inherit;
+}
+
+p {
+  max-width: 25em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.l-box {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.l-box {
+  /* Just for testing */
+  box-shadow: 0 0 1em 0 rgba(0,0,0,0.5) inset;
+}
+
+.l-stack {
+  /* nothing needed here */
+}
+
+.l-stack--gutter > .l-box:not(:last-child) {
+  margin-bottom: 2em;
+}
+
+/*
+    1. This is a hack for IE11, otherwise the container goes as wide as the children in a row.
+*/
+.l-distribute {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+  display: flex;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: stretch;
+
+  --s: 0;
+
+  width: 0; /* [1] */
+  min-width: 100%; /* [1] */
+}
+
+.l-distribute  > .l-box {
+  flex: 1 1 auto;
+
+  margin: 0;
+  padding: 0;
+}
+
+/*
+.l-distribute--gutter,
+.l-distribute--gutter > l-box,
+.l-distribute--gutter--m,
+.l-distribute--gutter--m > l-box {
+  padding: 1rem;
+  --s: 2rem;
+}
+*/
+
+.l-distribute--gutter,
+.l-distribute--gutter--m {
+  /*margin: 1rem;*/
+  padding: 0.5rem;
+}
+
+.l-distribute--gutter > .l-box,
+.l-distribute--gutter--m > .l-box {
+  margin: 0.5rem;
+}
+
+/*
+@supports (gap: 1em) {
+  .l-distribute--gutter {
+    gap: 1em;
+  }
+}
+*/
+
+
+
+
+.t1 > .l-box {
+  min-width: 20%;
+  width: calc((40em - 100%) * 10000);
+  max-width: 100%;
+  
+  padding: 1em;
+  
+  border: 2px solid;
+}
+
+  </style>
+
+  
+<script src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeConsoleRunner-d8236034cc3508e70b0763f2575a8bb5850f9aea541206ce56704c013047d712.js"></script>
+<script src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeRefreshCSS-4793b73c6332f7f14a9b6bba5d5e62748e9d1bd0b5c52d7af6376f3d1c625d7e.js"></script>
+<script src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeRuntimeErrors-4f205f2c14e769b448bcf477de2938c681660d5038bc464e3700256713ebe261.js"></script>
+</head>
+
+<body>
+  <div class="l-box">
+  <p>
+    The idea is that since everything lives in a box, we might as well call it box and style it.
+  </p>
+  <p>
+    There's no margin since we use parent container layout classes to describe how the boxes should behave. Content is then free to do what it likes inside these. Padding is optional so that content can fill the entire box. Decoration (borders, backgrounds, shadows) can be applied to the boxes so that the full frame is decorated, or it can be applied to a content wrapper to create a different visial effect.
+  </p>
+</div>
+
+<hr>
+<div class="l-stack  l-stack--gutter">
+  <div class="l-box">
+    <div class="l-distribute  t1">
+      <div class="l-box">
+        <p>
+          AAAA This is some content in the box. This is some content in the box.
+        </p>
+        <p>
+          BBBB This is some content in the box
+        </p>
+      </div>
+      <div class="l-box">
+        <p>
+          CCCC This is some content in the box
+        </p>
+      </div>
+      <div class="l-box">
+        <p>
+          DDDD This is some content in the box. This is some content in the box.
+        </p>
+        <p>
+          EEEE This is some content in the box
+        </p>
+      </div>
+      <div class="l-box">
+        <p>
+          FFFF This is some content in the box
+        </p>
+      </div>
+      <div class="l-box">
+        <p>
+          GGGG This is some content in the box
+        </p>
+        <p>
+          HHHH This is some content in the box. This is some content in the box.
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <div class="l-box">
+    <div class="l-distribute  l-distribute--gutter t1">
+      <div class="l-box">
+        <p>
+          AAAA This is some content in the box. This is some content in the box.
+        </p>
+      </div>
+      <div class="l-box">
+        <p>
+          BBBB This is some content in the box
+        </p>
+        <p>
+          CCCC This is some content in the box
+        </p>
+      </div>
+      <div class="l-box">
+        <p>
+          DDDD This is some content in the box. This is some content in the box. This is some content in the box.
+        </p>
+      </div>
+      <div class="l-box">
+        <p>
+          EEEE This is some content in the box
+        </p>
+        <p>
+          FFFF This is some content in the box. This is some content in the box.
+        </p>
+      </div>
+      <div class="l-box">
+        <p>
+          GGGG This is some content in the box. This is some content in the box.
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <div class="l-box">
+    <div class="l-distribute  l-distribute--gutter">
+      <div class="l-box">
+        <p>
+          AAAA This is some content in the box. This is some content in the box.
+        </p>
+      </div>
+      <div class="l-box">
+        <p>
+          BBBB This is some content in the box
+        </p>
+        <p>
+          CCCC This is some content in the box
+        </p>
+      </div>
+      <div class="l-box">
+        <p>
+          DDDD This is some content in the box. This is some content in the box. This is some content in the box.
+        </p>
+      </div>
+      <div class="l-box">
+        <p>
+          EEEE This is some content in the box
+        </p>
+        <p>
+         FFFF This is some content in the box. This is some content in the box.
+        </p>
+      </div>
+      <div class="l-box">
+        <p>
+          GGGG This is some content in the box. This is some content in the box.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+  
+<script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-8216c69d01441f36c0ea791ae2d4469f0f8ff5326f00ae2d00e4bb7d20e24edb.js"></script>
+  <script src="https://cdpn.io/cp/internal/boomboom/pen.js?key=pen.js-e85fb2d2-d53d-6662-7226-840631b9b44a" crossorigin=""></script>
+
+
+</body></html>

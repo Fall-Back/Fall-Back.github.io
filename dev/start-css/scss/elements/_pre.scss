@@ -20,6 +20,8 @@
     overflow-x: scroll; /* 1 */
     overflow-y: auto; /* 1 */
 
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
+
     margin-bottom: $s__pre-margin-bottom; /* 1 */
 
     background-color: $s__pre-background-color; /*1 */

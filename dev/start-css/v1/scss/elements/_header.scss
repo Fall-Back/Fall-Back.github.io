@@ -1,0 +1,30 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: header
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+#{$s__namespace}header {
+    display: block;
+
+    @if $s__procedural-margins {
+        margin-bottom: $s__base-rem-space-unit;
+        margin-top: 0;
+    } @else {
+        margin-bottom: 0;
+    }
+    
+    //padding: $s__header-padding;
+    
+    @include s__bordered($s__header-padding, 0);
+
+    background-color: $s__header-background-color;
+    color: $s__header-text-color;
+    
+    @if $s__zero-header-hx-margin {
+        h1, h2, h3, h4, h5, h6 {
+            margin-bottom: 0;
+        }
+    }
+}

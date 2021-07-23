@@ -82,6 +82,7 @@
 
     <!--<base href="http://localhost:4001/">-->
 
+
     <!-- Ultra-light fallback styles for ancient browsers: -->
     <style>
         /*
@@ -106,21 +107,11 @@
         }
 
         /* For older browsers:(see https://github.com/aFarkas/html5shiv) */
-        article,
-        aside,
         dialog,
         details,
-        figcaption,
-        figure,
-        footer,
-        header,
-        hgroup,
         main,
-        nav,
-        section,
         summary {
             display: block;
-            margin-bottom: 1em;
         }
 
         @supports (list-style-type: disclosure-closed) {
@@ -143,8 +134,9 @@
         /* The "older browser" message makes use of a fieldset to add a border no matter what: */
         fieldset {
             border: 1px solid;
-            padding: 16px;
             border-color: #777;
+            margin: 1em 0;
+            padding: 1em;
         }
 
         /* More responsive images: */
@@ -155,12 +147,29 @@
             max-width: 100%;
             -ms-interpolation-mode: bicubic;
             vertical-align: middle;
+            height: auto;
+        }
+
+        /*
+            Putting things like tables in figures makes sense an allows them to become scrollable
+            if they're too wide.
+        */
+        figure {
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        /*
+            BUT! Opera Mini doesn't support scrolling areas so hacking out out for that browser:
+        */
+        _:-o-prefocus, :root figure {
+            max-width: initial;
+            overflow-x: visible;
         }
 
         hr {
             border-style: solid;
-            border-width: 1px 0 0 0;
-            height: 0;
+            border-width: 0 0 1px 0;
             margin: 1em 0;
             color: #777;
         }
@@ -169,6 +178,11 @@
             width: 100%;
             overflow-x: scroll;
             overflow-y: auto;
+        }
+
+        video {
+            max-width: 100%;
+            height: auto;
         }
 
         /* --| Form styles |--------------------------------------------------------------------- */
@@ -228,13 +242,130 @@
         }
     </style>
 
-    <!-- From here we're cutting off IE9- to stop all kinds of JS and CSS fails. -->
-    <!--[if !IE]><!-->
+    {% comment %}
+    {% endcomment %}
+
+    {% if head_style != false %}
+    <style>
+    {{ head_style }}
+    </style>
+    {% endif %}
+
 
     <style>
         /* Tiny Fall-Back Styles continued ... */
-        [data-fs-text~=right]{text-align:right}[data-fs-text~=center]{text-align:center}[data-fs-text~=larger]{font-size:larger}[data-fs-text~=nowrap]{white-space:nowrap}[data-fs-block~=background]{background:#eee}[data-fs-block~=border]{border:1px solid;padding:1em}[data-fs-block~=padding]{padding:1em}[data-fs-block~=table]{display:table;width:100%;table-layout:fixed}[data-fs-block~=table]>*{display:table-cell}[data-fs-block~=flex]{display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}[data-fs-block~=flex]>*{-webkit-flex:1 0 auto;-moz-box-flex:1;-ms-flex:1 0 auto;flex:1 0 auto}[data-fs-block=video]{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%}[data-fs-block=video] embed,[data-fs-block=video] iframe,[data-fs-block=video] object{position:absolute;top:0;left:0;width:100%;height:100%}[data-fs-hr=larger]{border-top-width:10px}
+
+        /* --| Other stuff |--------------------------------------------------------------------- */
+        /*
+            What follows is a mix of markup patterns and attributes to help provide a more
+            reasonable fallback - it's unconventional, so leave it out if you like.
+        */
+
+        /* Attributes to replicate deprecated HTML styling: */
+
+        /* Would have been align="right": */
+        [data-fs-text~="right"] {
+            text-align: right;
+        }
+
+        /* Would have been align="center": */
+        [data-fs-text~="center"] {
+            text-align: center;
+        }
+
+        /* Would have been the 'big' element: */
+        [data-fs-text~="larger"] {
+            font-size: larger;
+        }
+
+        [data-fs-text~="nowrap"] {
+            white-space: nowrap;
+        }
+
+        [data-fs-block~="background"] {
+            background: #eee;
+        }
+
+        [data-fs-block~="border"] {
+            border: 1px solid;
+            margin: 1em 0;
+            padding: 1em;
+        }
+
+        [data-fs-block~="padding"] {
+            padding: 1em;
+        }
+
+        /*
+            Layout: table
+            Useful when you have a very small amount of items you want to display side-by-side.
+            Like, maybe 2, on the left and right. It doesn't wrap so the items should be small.
+            There's reasonable support. Better support would be:
+            `<table border="0" cellpadding="0" cellspacing="0" width="100%" role="presentation">`
+            But we're not supposed to use deprecated 'presentational' elements and attributes.
+        */
+        [data-fs-block~="table"] {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        [data-fs-block~="table"] > * {
+            display: table-cell;
+            padding: 0.5em;
+        }
+
+
+        /*
+            Layout: flex;
+            More responsive and has wrapping, but less well supported than the table layout.
+        */
+
+        [data-fs-block~="flex"] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        }
+
+        [data-fs-block~="flex"] > * {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1 0 auto;
+            -moz-box-flex: 1;
+            -ms-flex: 1 0 auto;
+            flex: 1 0 auto;
+        }
+
+        /* Responsive embeds (e.g. YouTube, maps) via http://embedresponsively.com. */
+
+        [data-fs-block="video"] {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+        }
+
+        [data-fs-block="video"] iframe,
+        [data-fs-block="video"] object,
+        [data-fs-block="video"] embed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        [data-fs-hr="larger"] {
+            border-top-width: 10px;
+        }
     </style>
+    <!-- From here we're cutting off IE9- to stop all kinds of JS and CSS fails. -->
+    <!--[if !IE]><!-->
 
     <!--
         Accessible font loading. FOUT is a lesser evil than FOIT.
@@ -245,6 +376,7 @@
     {% if page.startcss != false and layout.startcss != false %}
 
     {% include {{ cut_file }} css="/dev/start-css/css/start.min.css" %}
+    {% include {{ cut_file }} css="/dev/start-css/testing.css" %}
 
     {% if ie11 != false %}
     <script>
@@ -309,11 +441,16 @@
 
     {% endif %}
 
+    {% comment %}
+
     {% if head_style != false %}
     <style>
     {{ head_style }}
     </style>
     {% endif %}
+
+
+    {% endcomment %}
 
 
 

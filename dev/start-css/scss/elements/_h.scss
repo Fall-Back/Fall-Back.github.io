@@ -6,72 +6,42 @@
 |-------------------------------------------------------------------------------------------------*/
 
 #{$s__namespace}h1 {
-    @if $s__procedural-margins {
-        margin-bottom: $s__base-rem-space-unit;
-        margin-top: 0;
-    } @else {
-        margin-bottom: 0;
-    }
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
 
     font-size: $s__h1-font-size;
     line-height: $s__h1-height;
 }
 
 #{$s__namespace}h2 {
-    @if $s__procedural-margins {
-        margin-bottom: $s__base-rem-space-unit;
-        margin-top: 0;
-    } @else {
-        margin-bottom: 0;
-    }
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
 
     font-size: $s__h2-font-size;
     line-height: $s__h2-height;
 }
 
 #{$s__namespace}h3 {
-    @if $s__procedural-margins {
-        margin-bottom: $s__base-rem-space-unit;
-        margin-top: 0;
-    } @else {
-        margin-bottom: 0;
-    }
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
 
     font-size: $s__h3-font-size;
     line-height: $s__h3-height;
 }
 
 #{$s__namespace}h4 {
-    @if $s__procedural-margins {
-        margin-bottom: $s__base-rem-space-unit;
-        margin-top: 0;
-    } @else {
-        margin-bottom: 0;
-    }
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
 
     font-size: $s__h4-font-size;
     line-height: $s__h4-height;
 }
 
 #{$s__namespace}h5 {
-    @if $s__procedural-margins {
-        margin-bottom: $s__base-rem-space-unit;
-        margin-top: 0;
-    } @else {
-        margin-bottom: 0;
-    }
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
 
     font-size: $s__h5-font-size;
     line-height: $s__h5-height;
 }
 
 #{$s__namespace}h6 {
-    @if $s__procedural-margins {
-        margin-bottom: $s__base-rem-space-unit;
-        margin-top: 0;
-    } @else {
-        margin-bottom: 0;
-    }
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
 
     font-size: $s__h6-font-size;
     line-height: $s__h6-height;
