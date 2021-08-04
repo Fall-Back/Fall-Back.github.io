@@ -461,19 +461,35 @@ a[href] svg:not(:only-child) {
   }
 }
 
+/*a[href][rel~="external"] {
+            margin-right: 1em;
+            position: relative;
+
+            &::after {
+                display: inline;
+                content: "\25E5";
+                font-size: 0.7em;
+                line-height: 0;
+
+                margin-left: 0.2em;
+                //position: absolute;
+                //bottom: 1em;
+                //right: -1.1em;
+            }
+        }*/
 a[href][rel~="external"]::after {
   display: inline;
   content: "";
-  padding-left: 1.16666666667em;
-  margin: 0 0.5em;
-  background: linear-gradient(45deg, transparent 50%, currentColor 50%);
-  font-size: 0.375em;
+  padding-left: 1em;
+  margin: 0 0.3em;
+  background: linear-gradient(45deg, transparent 65%, #247BA0 65%);
+  font-size: 0.5em;
   line-height: 0;
   vertical-align: super;
 }
 
 a[href][rel~="external"]:hover::after {
-  background: linear-gradient(45deg, transparent 50%, currentColor 50%);
+  background: linear-gradient(45deg, transparent 65%, #1b5b76 65%);
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -1262,9 +1278,9 @@ a img:active, a img:hover {
 }
 
 /*
-    Here's a problem - if the image has a transparent background, the a's bounding box (which is 
+    Here's a problem - if the image has a transparent background, the a's bounding box (which is
     inline and smaller than the image) is visible.
-    Outlines actually work as expected in this case but I can't use them because of the lack of 
+    Outlines actually work as expected in this case but I can't use them because of the lack of
     rounded corners, hence the a > img selector reapplying the focus shadow.
     I guess transparent images like this are an edge case, but it's something to keep an eye on.
 */
@@ -2453,6 +2469,11 @@ video {
   margin: 0 auto;
   /* 1 */
   background-color: #333;
+}
+
+video:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.3rem rgba(36, 123, 160, 0.5);
 }
 
 /*

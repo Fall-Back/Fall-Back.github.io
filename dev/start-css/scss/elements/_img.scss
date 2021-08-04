@@ -51,9 +51,9 @@
 }
 
 /*
-    Here's a problem - if the image has a transparent background, the a's bounding box (which is 
+    Here's a problem - if the image has a transparent background, the a's bounding box (which is
     inline and smaller than the image) is visible.
-    Outlines actually work as expected in this case but I can't use them because of the lack of 
+    Outlines actually work as expected in this case but I can't use them because of the lack of
     rounded corners, hence the a > img selector reapplying the focus shadow.
     I guess transparent images like this are an edge case, but it's something to keep an eye on.
 */

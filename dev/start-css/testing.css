@@ -160,7 +160,7 @@ pre:not(*:root) {
 
 
 
-/* Use hover query to reset margin - not ideal but ot bad! */
+/* Use hover query to reset margin - not ideal but not bad! */
 /*@media (hover: hover) {
     pre {
         margin-bottom: -0.75rem; /* $fallback--base-rem-space-unit / 2;/

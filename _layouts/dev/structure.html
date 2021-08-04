@@ -390,6 +390,17 @@
             document.getElementsByTagName('head')[0].appendChild(link);
         }
     </script>
+    <script>
+        if (
+            (!!window.MSInputMethodContext && !!document.documentMode)
+         || (navigator.userAgent.indexOf('UCBrowser') > -1)
+        ) {
+            var link  = document.createElement('link');
+            link.rel  = 'stylesheet';
+            link.href = '/dev/start-css/testing.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }
+    </script>
     {% endif %}
 
     {% endif %}
