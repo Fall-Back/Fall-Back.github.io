@@ -17,6 +17,7 @@
 */
 #{$s__namespace}img {
     max-width: 100%; /* 1 */
+    height: auto; /* 1 */
 
     border-style: none; /* 2  */
 
@@ -38,7 +39,7 @@
 /*
     Special treatment for images inside links.
 */
-#{$s__namespace}a img {
+#{$s__namespace}a[href] img {
     //margin-bottom: $s__anchor-border-bottom-offset;
 
     //border-width: inherit;
@@ -57,13 +58,9 @@
     rounded corners, hence the a > img selector reapplying the focus shadow.
     I guess transparent images like this are an edge case, but it's something to keep an eye on.
 */
-@if $s__anchor-focus-shadow != false {
+@if $s__use-focus-shadow {
     #{$s__namespace}a:focus img {
         outline: 0;
-        @if typeof($s__anchor-focus-shadow) == color {
-            box-shadow: 0 0 0 $s__anchor-focus-shadow-width rgba($s__anchor-text-color, 0.5);
-        } @else {
-            box-shadow: 0 0 0 $s__anchor-focus-shadow-width rgba($s__base-ui-color, 0.5);
-        }
+        box-shadow: $s__outline-shadow;
     }
 }

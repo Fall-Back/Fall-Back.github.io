@@ -381,7 +381,7 @@ body {
 }
 
 /*
-    This method duplicates [hidden="false"][aria-hidden="false"] in accessibilty.scss, but I'm
+    This method duplicates [hidden="false"][aria-hidden="false"] in accessibility.scss, but I'm
     thinking of maybe deprecating that.
 */
 [data-if-css="visually-hide"] {
@@ -443,7 +443,7 @@ a[href]:hover, a[href]:active {
 
 a[href]:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.3rem rgba(121, 38, 13, 0.5);
+  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
 }
 
 @supports (-moz-appearance: none) {
@@ -462,35 +462,16 @@ a[href] svg:not(:only-child) {
   }
 }
 
-/*a[href][rel~="external"] {
-            margin-right: 1em;
-            position: relative;
-
-            &::after {
-                display: inline;
-                content: "\25E5";
-                font-size: 0.7em;
-                line-height: 0;
-
-                margin-left: 0.2em;
-                //position: absolute;
-                //bottom: 1em;
-                //right: -1.1em;
-            }
-        }*/
-a[href][rel~="external"]::after {
-  display: inline;
-  content: "";
-  padding-left: 1em;
-  margin: 0 0.3em;
-  background: linear-gradient(45deg, transparent 65%, #79260D 65%);
-  font-size: 0.5em;
-  line-height: 0;
-  vertical-align: super;
+a[href][rel~="external"] {
+  padding-right: 1em;
+  background-image: linear-gradient(45deg, transparent 65%, #79260D 65%);
+  background-repeat: no-repeat;
+  background-position: right 0.4em bottom 0.4em;
+  background-size: 0.6em 0.6em;
 }
 
-a[href][rel~="external"]:hover::after {
-  background: linear-gradient(45deg, transparent 65%, #4b1808 65%);
+a[href][rel~="external"]:hover {
+  background-image: linear-gradient(45deg, transparent 65%, #4b1808 65%);
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -680,16 +661,6 @@ button {
   touch-action: manipulation;
   /* 1 */
   -webkit-appearance: none;
-  /*@if $s__button-focus-outline-width != false {
-        &:hover,
-        &:active,
-        &:focus {
-            outline-width: $s__button-focus-outline-width;
-            outline-style: $s__button-focus-outline-style;
-            outline-color: $s__button-focus-outline-color;
-            outline-offset: $s__button-focus-outline-offset;
-        }
-    }*/
 }
 
 button:hover, button:active {
@@ -698,7 +669,7 @@ button:hover, button:active {
 
 button:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.3rem rgba(121, 38, 13, 0.5);
+  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
 }
 
 button svg {
@@ -1073,11 +1044,6 @@ header {
   display: block;
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
-  /*@if $s__zero-header-hx-margin {
-        h1, h2, h3, h4, h5, h6 {
-            margin-bottom: 0;
-        }
-    }*/
 }
 
 header:first-child {
@@ -1255,6 +1221,8 @@ iframe {
 img {
   max-width: 100%;
   /* 1 */
+  height: auto;
+  /* 1 */
   border-style: none;
   /* 2  */
   font-style: italic;
@@ -1276,11 +1244,11 @@ img .gm-style {
 /*
     Special treatment for images inside links.
 */
-a img {
+a[href] img {
   border-bottom: 0.2rem solid;
 }
 
-a img:active, a img:hover {
+a[href] img:active, a[href] img:hover {
   border-bottom: 0.2rem dashed;
 }
 
@@ -1293,7 +1261,7 @@ a img:active, a img:hover {
 */
 a:focus img {
   outline: 0;
-  box-shadow: 0 0 0 0.3rem rgba(121, 38, 13, 0.5);
+  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -1358,8 +1326,8 @@ input:not([type]):focus,
 [type="time"]:focus,
 [type="url"]:focus,
 [type="week"]:focus {
-  box-shadow: 0 0 0 0.3rem rgba(121, 38, 13, 0.5);
   outline: 0;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
 }
 
 /*
@@ -1368,8 +1336,8 @@ input:not([type]):focus,
     */
 [type="checkbox"]:focus,
 [type="radio"]:focus {
-  box-shadow: 0 0 0 0.3rem rgba(121, 38, 13, 0.5);
   outline: 0;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
 }
 
 /*
@@ -1427,16 +1395,6 @@ _::-webkit-full-page-media, _:future, :root [type="radio"]:focus {
   touch-action: manipulation;
   /* 1 */
   -webkit-appearance: none;
-  /*@if $s__button-focus-outline-width != false {
-        &:hover,
-        &:active,
-        &:focus {
-            outline-width: $s__button-focus-outline-width;
-            outline-style: $s__button-focus-outline-style;
-            outline-color: $s__button-focus-outline-color;
-            outline-offset: $s__button-focus-outline-offset;
-        }
-    }*/
 }
 
 [type="button"]:hover, [type="button"]:active,
@@ -1451,7 +1409,7 @@ _::-webkit-full-page-media, _:future, :root [type="radio"]:focus {
 [type="reset"]:focus,
 [type="submit"]:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.3rem rgba(121, 38, 13, 0.5);
+  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
 }
 
 /*
@@ -1542,8 +1500,6 @@ _:-ms-input-placeholder, :root [type="file"] {
 [type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
-  outline-offset: -0.2rem;
-  /* 2 */
 }
 
 /**
@@ -2051,8 +2007,8 @@ _:-moz-tree-row(hover), select:not([multiple]) {
 }
 
 select:focus {
-  box-shadow: 0 0 0 0.3rem rgba(121, 38, 13, 0.5);
   outline: 0;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
 }
 
 /*
@@ -2187,8 +2143,8 @@ summary {
 }
 
 summary:focus {
-  outline: 0.2rem solid rgba(121, 38, 13, 0.6);
-  outline-offset: 0.2rem;
+  outline: 0;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
 }
 
 /* Hide the details marker as we're supplying our own. */
@@ -2388,8 +2344,8 @@ textarea {
 }
 
 textarea:focus {
-  box-shadow: 0 0 0 0.3rem rgba(121, 38, 13, 0.5);
   outline: 0;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -2480,7 +2436,7 @@ video {
 
 video:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.3rem rgba(121, 38, 13, 0.5);
+  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
 }
 
 /*
@@ -2557,90 +2513,6 @@ main :target {
   scroll-margin-top: 4.8rem;
 }
 
-/* Alt margins */
-/*
-Shelving this for now
-@if $s__procedural-margins == false {
-    /* this is too generic
-    * + * {
-        margin-top: $s__base-rem-space-unit;
-    }
-    /
-
-    /* This is the full list but it's not exactly what we want:
-    * + address,
-    * + article,
-    * + aside,
-    * + blockquote,
-    * + details,
-    * + dialog,
-    * + dd,
-    * + div,
-    * + dl,
-    * + dt,
-    * + fieldset,
-    * + figcaption,
-    * + figure,
-    * + footer,
-    * + form,
-    * + h1,
-    * + h2,
-    * + h3,
-    * + h4,
-    * + h5,
-    * + h6,
-    * + header,
-    * + hgroup,
-    * + hr,
-    * + li,
-    * + main,
-    * + nav,
-    * + ol,
-    * + p,
-    * + pre,
-    * + section,
-    * + table,
-    * + ul
-    /
-
-    /*
-        Taking out list items, hr and div:
-    /
-    *:not(legend):not(figcaption) + address,
-    *:not(legend):not(figcaption) + article,
-    *:not(legend):not(figcaption) + aside,
-    *:not(legend):not(figcaption) + blockquote,
-    *:not(legend):not(figcaption) + details,
-    *:not(legend):not(figcaption) + dialog,
-    *:not(legend):not(figcaption) + dl,
-    *:not(legend):not(figcaption) + fieldset,
-    *:not(legend):not(figcaption) + figure,
-    *:not(legend):not(figcaption) + footer,
-    *:not(legend):not(figcaption) + form,
-    *:not(legend):not(figcaption) + h1,
-    *:not(legend):not(figcaption) + h2,
-    *:not(legend):not(figcaption) + h3,
-    *:not(legend):not(figcaption) + h4,
-    *:not(legend):not(figcaption) + h5,
-    *:not(legend):not(figcaption) + h6,
-    *:not(legend):not(figcaption) + header,
-    *:not(legend):not(figcaption) + hgroup,
-    *:not(legend):not(figcaption) + main,
-    *:not(legend):not(figcaption) + nav,
-    *:not(legend):not(figcaption) + ol,
-    *:not(legend):not(figcaption) + p,
-    *:not(legend):not(figcaption) + pre,
-    *:not(legend):not(figcaption) + section,
-    *:not(legend):not(figcaption) + table,
-    *:not(legend):not(figcaption) + ul {
-        margin-top: $s__base-rem-space-unit;
-    }
-
-    hr {
-        margin-top: calc(2.4rem - 0.1rem;
-    }
-}
-*/
 /*! Start-CSS Accessibility. See SCSS file for documentation. */
 /*-------------------------------------------------------------------------------------------------|
 

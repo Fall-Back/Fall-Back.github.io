@@ -20,13 +20,9 @@
     background-color: $s__video-background-color;
 }
 
-@if $s__anchor-focus-shadow != false {
+@if $s__use-focus-shadow {
     #{$s__namespace}video:focus {
         outline: 0;
-        @if typeof($s__anchor-focus-shadow) == color {
-            box-shadow: 0 0 0 $s__anchor-focus-shadow-width rgba($s__anchor-text-color, 0.5);
-        } @else {
-            box-shadow: 0 0 0 $s__anchor-focus-shadow-width rgba($s__base-ui-color, 0.5);
-        }
+        box-shadow: $s__outline-shadow;
     }
 }

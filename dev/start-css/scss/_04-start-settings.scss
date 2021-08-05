@@ -50,6 +50,8 @@ $s__experimental: false !default;
 $s__experimental_checkradios: false !default;
 
 
+$s__use-focus-shadow: true !default;
+
 // Sizes:
 
 $s__sz-xxs : $s__base-rem-space-unit / 8; // 3px
@@ -81,10 +83,10 @@ $s__border-radius: 0.3rem !default;
 $s__border-style: solid !default;
 
 
-$s__focus-outline-width: 0.2rem !default;
-$s__focus-outline-style: solid !default;
-$s__focus-outline-color: rgba($s__base-ui-color, 0.6) !default;
-$s__focus-outline-offset: 0.2rem !default;
+//$s__focus-outline-width: 0.2rem !default;
+//$s__focus-outline-style: solid !default;
+//$s__focus-outline-color: rgba($s__base-ui-color, 0.6) !default;
+//$s__focus-outline-offset: 0.2rem !default;
 // Note that IE and earlier Edge don't support outline-offset, so aesthetically, outline isn't a
 // great choice.
 
@@ -158,8 +160,8 @@ $s__anchor-padding-bottom: $s__anchor-border-bottom-width;
 
 $s__anchor-add-external-link-indicator: true !default;
 
-$s__anchor-focus-shadow: true !default;
-$s__anchor-focus-shadow-width: 0.3rem !default;
+//$s__anchor-focus-shadow: true !default;
+//$s__anchor-focus-shadow-width: 0.3rem !default;
 
 //$s__anchor-text-decoration: none !default;
 $s__anchor-text-decoration: underline !default;
@@ -191,8 +193,8 @@ $s__button-border-width: $s__border-width !default;
 $s__button-border-style: $s__border-style !default;
 $s__button-border-radius: $s__border-radius !default;
 
-$s__button-focus-shadow: true !default;
-$s__button-focus-shadow-width: 0.3rem !default;
+//$s__button-focus-shadow: true !default;
+//$s__button-focus-shadow-width: 0.3rem !default;
 
 $s__button-min-height: ($s__base-rem-space-unit * 1.25);
 
@@ -279,8 +281,8 @@ $s__input-border-radius: $s__border-radius !default;
 $s__input-min-height: ($s__base-rem-space-unit * 1.25);
 
 
-$s__input-focus-shadow: true !default;
-$s__input-focus-shadow-width: 0.3rem !default;
+//$s__input-focus-shadow: true !default;
+//$s__input-focus-shadow-width: 0.3rem !default;
 
 // File inputs' natural width varies between browsers and is too wide for smaller screens.
 // The only way to get it to collapse on smaller screens is to specify `width: 100%;` but this
@@ -350,8 +352,8 @@ $s__select-border-width: $s__border-width !default;
 $s__select-border-style: $s__border-style !default;
 $s__select-border-radius: $s__border-radius !default;
 
-$s__select-focus-shadow: true !default;
-$s__select-focus-shadow-width: 0.3rem !default;
+//$s__select-focus-shadow: true !default;
+//$s__select-focus-shadow-width: 0.3rem !default;
 
 
 
@@ -397,8 +399,8 @@ $s__textarea-border-width: $s__border-width !default;
 $s__textarea-border-style: $s__border-style !default;
 $s__textarea-border-radius: $s__border-radius !default;
 
-$s__textarea-focus-shadow: true !default;
-$s__textarea-focus-shadow-width: 0.3rem !default;
+//$s__textarea-focus-shadow: true !default;
+//$s__textarea-focus-shadow-width: 0.3rem !default;
 
 $s__textarea-resize: vertical !default;
 

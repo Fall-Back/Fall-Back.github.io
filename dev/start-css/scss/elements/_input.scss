@@ -45,7 +45,7 @@
     margin: ($s__base-rem-space-unit / 8) 0;
 }
 
-@if $s__input-focus-shadow != false {
+@if $s__use-focus-shadow {
     #{$s__namespace}input:not([type]):focus,
     #{$s__namespace}[type="color"]:focus,
     #{$s__namespace}[type="date"]:focus,
@@ -62,9 +62,8 @@
     #{$s__namespace}[type="time"]:focus,
     #{$s__namespace}[type="url"]:focus,
     #{$s__namespace}[type="week"]:focus {
-        box-shadow: 0 0 0 $s__input-focus-shadow-width rgba($s__base-ui-color, 0.5);
-
         outline: 0;
+        box-shadow: $s__outline-shadow;
     }
 
     /*
@@ -73,9 +72,8 @@
     */
     #{$s__namespace}[type="checkbox"]:focus,
     #{$s__namespace}[type="radio"]:focus {
-        box-shadow: 0 0 0 $s__input-focus-shadow-width rgba($s__base-ui-color, 0.5);
-
         outline: 0;
+        box-shadow: $s__outline-shadow;
     }
 
     /*
@@ -209,7 +207,7 @@ _:-ms-input-placeholder, :root #{$s__namespace}[type="file"] {
  */
 #{$s__namespace}[type="search"] {
     -webkit-appearance: textfield; /* 1 */
-    outline-offset: -$s__focus-outline-offset; /* 2 */
+    //outline-offset: -$s__focus-outline-offset; /* 2 */
 }
 
 /**

@@ -45,10 +45,9 @@
     resize: $s__textarea-resize;
 }
 
-@if $s__textarea-focus-shadow != false {
+@if $s__use-focus-shadow {
     #{$s__namespace}textarea:focus {
-        box-shadow: 0 0 0 $s__textarea-focus-shadow-width rgba($s__base-ui-color, 0.5);
-
         outline: 0;
+        box-shadow: $s__outline-shadow;
     }
 }

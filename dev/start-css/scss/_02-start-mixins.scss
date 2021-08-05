@@ -171,25 +171,12 @@
     // make sure everything I DO include is configurable, or turn-off-able.
     // So, IF the user wants to use my inner-line shadow idea, they can, otherwise, they can set the
     // var to `false` and add their own however they like.
-    @if $s__button-focus-shadow != false {
+    @if $s__use-focus-shadow {
         &:focus {
             outline: 0;
-            box-shadow: 0 0 0 $s__button-focus-shadow-width rgba($bg-color, 0.5);
+            box-shadow: $s__outline-shadow;
         }
     }
-
-
-
-    /*@if $s__button-focus-outline-width != false {
-        &:hover,
-        &:active,
-        &:focus {
-            outline-width: $s__button-focus-outline-width;
-            outline-style: $s__button-focus-outline-style;
-            outline-color: $s__button-focus-outline-color;
-            outline-offset: $s__button-focus-outline-offset;
-        }
-    }*/
 }
 
 

@@ -1,3 +1,40 @@
+<h2 id="brief-intro">Brief Intro</h2>
+
+<p>
+StartCSS is designed to be highly configurable, but also work out-of-the-box. The general idea is that you can apply it to a well-formed HTML document and things will generally look pretty decent and be accessible.
+You can also use it as starting point for a more comprehensive framework.
+</p>
+<p>
+Because it's meant to be approach-agnostic, StartCSS doesn't use classes so there are a few edge cases where things doen't work quite as smoothly as I'd like, even in this test document.
+For example the video-inside-figure scenario results in the top-part of the focus-shadow being clipped, and the image-inside-link scenario also has a focus-shadow issue where little extra bits of shadow appear in the left top and bottom corners.
+If using StartCSS as part of framework you can add a class such as <code>has-media</code> to the figure or link respectively and fix these issues easily enough, but until we get the <code>:has</code> parent selector these are currently unfixable in raw StartCSS.
+</p>
+<p>E.g.</p>
+
+<pre><code>CSS:
+a.has-media {
+    box-shadow: none;
+}
+
+figure.has-media {
+    overflow: visible;
+}
+
+---
+
+HTML:
+
+&lt;figure class="has-media"&gt;
+    &lt;video&gt;...&lt;/video&gt;
+&lt;/figure&gt;
+
+...
+
+&lt;a href="" class="has-media"&gt;
+    &lt;img ... &gt;
+&lt;/a&gt;
+</code></pre>
+
 <h2 id="semantic-elements">Semantic Elements</h2>
 
 <p>I'm having a think about these and why I wanted to add margins. Rethinking all margins anyway.</p>
@@ -533,7 +570,7 @@ lines.</textarea>
 </p>
 
 <p>Images that are links need extra styles and testing:<br>
-    <a href="#"><img src="https://lab.gridlight-design.co.uk/fallback/img/fallback-logo.svg" height="144" width="266.226"></a>
+    <a href="#"><img src="https://lab.gridlight-design.co.uk/fallback/img/fallback-logo.svg" height="144" width="266.226" style="width: auto; max-height: 144px;"></a>
 
 </p>
 
@@ -658,33 +695,33 @@ explanation.
 -->
 
 <div class="box">
-    <object type="image/svg+xml" data="https://lab.gridlight-design.co.uk/fallback/img/fallback-logo.svg" height="144" class="svg__image">
+    <object type="image/svg+xml" data="https://lab.gridlight-design.co.uk/fallback/img/fallback-logo.svg" height="144" class="svg__image" style="width: auto; max-height: 144px;">
         <p>Object failed to load.</p>
     </object>
 </div>
 
 <p>
     <a href="#">
-        <img src="https://lab.gridlight-design.co.uk/images/blogish/pexels-photo-172256.jpg" alt="" height="192">
+        <img src="https://lab.gridlight-design.co.uk/images/blogish/pexels-photo-172256.jpg" alt="" height="192" style="width: auto; max-height: 192px;">
     </a>
 </p>
 
 <figure>
-   <img src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny">
+   <img src="/dev/media/poster.jpg" width="640" height="360" style="width: auto; max-height: 360px;" alt="Big Buck Bunny">
    <figcaption>
         Image
     </figcaption>
 </figure>
 
 <figure>
-   <img src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny">
+   <img src="/dev/media/poster.jpg" width="640" height="360" style="width: auto; max-height: 360px;" alt="Big Buck Bunny">
    <figcaption>
         <p>Longer caption here. It's inside a paragraph.</p>
     </figcaption>
 </figure>
 
 <figure>
-   <img src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny">
+   <img src="/dev/media/poster.jpg" width="640" height="360" style="width: auto; max-height: 360px;" alt="Big Buck Bunny">
    <figcaption>
         <p>Even longer caption here.</p>
         <p>There's even a second paragraph.</p>
@@ -692,7 +729,20 @@ explanation.
 </figure>
 
 <p>Linked image:</p>
-<p><a href="#"><img src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny"></a></p>
+<p>The focus shadow doesn't work so well here. start.css uses <code>max-width: 100%;</code> for images and testing.css forces block display and center alignment. When focussed the shadow on the link displays some sort of text or whitespace artefacts.</p>
+<p>Press this <button>button</button> then tab twice to see this effect. <a href="#test-link">normal link for comparison</a>.</p>
+<p>
+    <a href="#">
+        <img src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 360px;">
+    </a>
+</p>
+
+<p>Rounded linked image:</p>
+<p>
+    <a href="#">
+        <img src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 360px; border-radius: 400px;">
+    </a>
+</p>
 
 
 <figure>
