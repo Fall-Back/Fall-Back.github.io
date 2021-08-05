@@ -443,7 +443,7 @@ a[href]:hover, a[href]:active {
 
 a[href]:focus {
   outline: 0;
-  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
+  box-shadow: 0 0 0 0.2rem white, 0 0 0 0.4rem black;
 }
 
 @supports (-moz-appearance: none) {
@@ -669,7 +669,7 @@ button:hover, button:active {
 
 button:focus {
   outline: 0;
-  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
+  box-shadow: 0 0 0 0.2rem white, 0 0 0 0.4rem black;
 }
 
 button svg {
@@ -1261,7 +1261,7 @@ a[href] img:active, a[href] img:hover {
 */
 a:focus img {
   outline: 0;
-  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
+  box-shadow: 0 0 0 0.2rem white, 0 0 0 0.4rem black;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -1327,7 +1327,7 @@ input:not([type]):focus,
 [type="url"]:focus,
 [type="week"]:focus {
   outline: 0;
-  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
+  box-shadow: 0 0 0 0.2rem white, 0 0 0 0.4rem black;
 }
 
 /*
@@ -1337,7 +1337,7 @@ input:not([type]):focus,
 [type="checkbox"]:focus,
 [type="radio"]:focus {
   outline: 0;
-  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
+  box-shadow: 0 0 0 0.2rem white, 0 0 0 0.4rem black;
 }
 
 /*
@@ -1409,7 +1409,7 @@ _::-webkit-full-page-media, _:future, :root [type="radio"]:focus {
 [type="reset"]:focus,
 [type="submit"]:focus {
   outline: 0;
-  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
+  box-shadow: 0 0 0 0.2rem white, 0 0 0 0.4rem black;
 }
 
 /*
@@ -2008,7 +2008,7 @@ _:-moz-tree-row(hover), select:not([multiple]) {
 
 select:focus {
   outline: 0;
-  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
+  box-shadow: 0 0 0 0.2rem white, 0 0 0 0.4rem black;
 }
 
 /*
@@ -2144,7 +2144,7 @@ summary {
 
 summary:focus {
   outline: 0;
-  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
+  box-shadow: 0 0 0 0.2rem white, 0 0 0 0.4rem black;
 }
 
 /* Hide the details marker as we're supplying our own. */
@@ -2345,7 +2345,7 @@ textarea {
 
 textarea:focus {
   outline: 0;
-  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
+  box-shadow: 0 0 0 0.2rem white, 0 0 0 0.4rem black;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -2436,7 +2436,7 @@ video {
 
 video:focus {
   outline: 0;
-  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
+  box-shadow: 0 0 0 0.2rem white, 0 0 0 0.4rem black;
 }
 
 /*

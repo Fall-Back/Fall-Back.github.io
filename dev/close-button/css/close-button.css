@@ -205,7 +205,7 @@
 
 .close-button:focus {
   outline: 0;
-  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
+  box-shadow: 0 0 0 0.2rem white, 0 0 0 0.4rem black;
 }
 
 .js-close-button-container {
