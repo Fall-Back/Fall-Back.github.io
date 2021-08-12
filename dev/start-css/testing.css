@@ -12,6 +12,10 @@
     look like.
 */
 
+body {
+    background: rgba(255,255,255,0.4);
+}
+
 .float-img-test {
     float: left;
     width: 40%;

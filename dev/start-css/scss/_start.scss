@@ -232,10 +232,13 @@ html {
 
 /*
     1. Ensure that absolutely positioned child elements expand to the full height of the body.
-    2. Reset any FOUC font match fallback. @TODO Make these vars.
+    2. Allows for layouts such as sticky footers.
+    3. Reset any FOUC font match fallback. @TODO Make these vars.
 */
 body {
     position: relative; /* 1 */
+
+    display: flex; /* 2 */
 
     width: 100%;
     min-width: $s__body-min-width;
@@ -257,8 +260,8 @@ body {
     font-family: $s__base-font-family;
     font-size: ($s__base-font-size / $s__root-font-size * 1em);
     line-height: $s__base-rem-space-unit;
-    letter-spacing: initial; /* 2 */
-    word-spacing: initial; /* 2 */
+    letter-spacing: initial; /* 3 */
+    word-spacing: initial; /* 3 */
 
     background-color: $s__body-background-color;
     color: $s__body-text-color;
