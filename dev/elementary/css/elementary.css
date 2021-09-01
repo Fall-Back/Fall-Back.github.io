@@ -362,12 +362,13 @@ body {
 }
 
 /* IE9-11 */
-@media screen and (min-width: 0\0) and (min-resolution: +72dpi) {
-  body {
-    height: 100%;
-  }
-}
+/*@media screen and (min-width:0\0) and (min-resolution: +72dpi) {
 
+    body {
+        height: 100%;
+    }
+
+}*/
 /*
     @DEPRECATED - use the clearer method below:
     CSS only message
@@ -1183,15 +1184,31 @@ h6:last-child {
     1. Show the overflow in Edge and IE. (N)
 */
 hr {
-  height: 0;
+  position: relative;
+  height: 2.4rem;
   overflow: visible;
   /* 1 */
-  margin-top: -0.1rem;
+  margin-top: 2.4rem;
   margin-bottom: 2.4rem;
-  border-top: none;
-  border-right: none;
+  border: none;
+}
+
+hr:first-child {
+  margin-top: 0;
+}
+
+hr:last-child {
+  margin-bottom: 0;
+}
+
+hr::before {
+  content: "";
+  position: absolute;
+  top: 1.2rem;
+  display: block;
+  width: 100%;
+  height: 0;
   border-bottom: 0.1rem solid #79260D;
-  border-left: none;
 }
 
 /*-------------------------------------------------------------------------------------------------|
