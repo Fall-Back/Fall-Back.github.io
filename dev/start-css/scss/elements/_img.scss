@@ -44,10 +44,12 @@
 
     //border-width: inherit;
     //border-style: inherit;
-    border-bottom: $s__anchor-border-bottom;
+    //border-bottom: $s__anchor-line;
+    border-bottom: $s__anchor-line-width $s__anchor-line-style $s__anchor-text-color;
 
     &:active, &:hover {
-        border-bottom: $s__anchor-border-bottom--alt;
+        //border-bottom: $s__anchor-line--alt;
+        border-bottom: $s__anchor-line-width $s__anchor-line-style--alt $s__anchor-text-color--alt;
     }
 }
 

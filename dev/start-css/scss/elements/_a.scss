@@ -8,17 +8,11 @@
 /*
     a:link a:visited a:hover a:active a:focus
 
-    1. Remove the gray background on active links in IE 10.
+    1. Remove the grey background on active links in IE 10.
     2. Remove the gaps in underlines in iOS 8+ and Safari 8+.
     3. Remove the tapping delay from clickable elements .
 */
 #{$s__namespace}a[href] {
-    //margin-bottom: $s__anchor-border-bottom-offset;
-
-    //padding-bottom: $s__anchor-padding-bottom;
-
-    //border-bottom: $s__anchor-border-bottom;
-
 
     color: $s__anchor-text-color;
     background-color: transparent; /* 1 */
@@ -27,9 +21,10 @@
     text-decoration: underline;
 
 
-    text-decoration-style: $s__anchor-text-decoration;
-    text-decoration-thickness: $s__anchor-text-decoration-width;
-    text-underline-offset: $s__anchor-text-decoration-offset;
+    text-decoration-line:      underline;
+    text-decoration-style:     $s__anchor-line-style;
+    text-decoration-thickness: $s__anchor-line-width;
+    text-underline-offset:     $s__anchor-line-offset;
 
     -webkit-text-decoration-skip: objects; /* 2 */
 
@@ -41,12 +36,11 @@
     */
     &:hover,
     &:active {
-        text-decoration: none; /* [1] */
-        text-decoration: underline $s__anchor-text-decoration-style--alt; /* [1] */
-
+        text-decoration:       none; /* [1] */
+        text-decoration:       underline $s__anchor-line-style--alt; /* [1] */
+        text-underline-offset: $s__anchor-line-offset--alt;
         //box-shadow: none;
 
-        //border-bottom: $s__anchor-border-bottom--alt;
         //text-decoration-style: $s__anchor-text-decoration-style--alt;
 
         @if $s__anchor-text-color--alt != $s__anchor-text-color {
@@ -62,6 +56,7 @@
            (https://www.sarasoueidan.com/blog/focus-indicators/)
     */
     @if $s__use-focus-shadow {
+            
         &:focus {
             outline: 1px solid transparent; /* [1] */
             box-shadow: $s__outline-shadow;
@@ -70,8 +65,13 @@
 
     // FF appears to calculate thickness very differently form Chrome.
     @supports (-moz-appearance:none) {
-        & {
-            text-decoration-thickness: $s__anchor-text-decoration-offset / 1.3;
+    
+        text-decoration-thickness: $s__anchor-line-width - 0.04em;
+        text-underline-offset:     $s__anchor-line-offset + 0.1em;
+    
+        &:hover,
+        &:active {
+            text-decoration-thickness: 0.1em;
         }
     }
 

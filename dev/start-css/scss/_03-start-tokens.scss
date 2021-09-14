@@ -47,4 +47,5 @@ $s__base-background-color:   #fff !default;
 $s__base-text-color:         #333 !default;
 $s__base-text-color-inverse: #fff !default;
 
+// This is small so it's still visible in layout scenarios where overflow: hidden is used.
 $s__outline-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black !default;

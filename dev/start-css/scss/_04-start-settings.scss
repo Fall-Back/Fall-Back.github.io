@@ -149,14 +149,18 @@ $s__anchor-text-color--alt: darken($s__anchor-text-color, 10%) !default;
 
 
 //$s__anchor-border-bottom-width: 2px !default;
-$s__anchor-border-bottom-width:  0.2rem !default; /* [1] */
-$s__anchor-border-bottom-style: solid !default;
-$s__anchor-border-bottom-style--alt: dashed !default;
-$s__anchor-border-bottom: $s__anchor-border-bottom-width $s__anchor-border-bottom-style !default;
-$s__anchor-border-bottom--alt: $s__anchor-border-bottom-width $s__anchor-border-bottom-style--alt !default;
+//$s__anchor-line-width:      0.2rem !default; /* [1] */
+$s__anchor-line-width:       0.15em !default; /* [1] */
+$s__anchor-line-style:       solid !default;
+$s__anchor-line-style--alt:  dashed !default;
+$s__anchor-line-offset:      0.2em !default;
+$s__anchor-line-offset--alt: 0.3em !default;
+
+//$s__anchor-line: $s__anchor-line-width $s__anchor-line-style !default;
+//$s__anchor-line--alt: $s__anchor-line-width $s__anchor-line-style--alt !default;
 //$s__anchor-border-bottom-offset: -$s__anchor-border-bottom-width !default;
-$s__anchor-border-bottom-offset: 0.2em !default;
-$s__anchor-padding-bottom: $s__anchor-border-bottom-width;
+
+//$s__anchor-padding-bottom: $s__anchor-border-bottom-width;
 
 $s__anchor-add-external-link-indicator: true !default;
 
@@ -164,11 +168,11 @@ $s__anchor-add-external-link-indicator: true !default;
 //$s__anchor-focus-shadow-width: 0.3rem !default;
 
 //$s__anchor-text-decoration: none !default;
-$s__anchor-text-decoration: underline !default;
-$s__anchor-text-decoration-style: $s__anchor-border-bottom-style !default;
-$s__anchor-text-decoration-style--alt: $s__anchor-border-bottom-style--alt !default;
-$s__anchor-text-decoration-width: $s__anchor-border-bottom-width !default;
-$s__anchor-text-decoration-offset: $s__anchor-border-bottom-offset !default;
+//$s__anchor-text-decoration: underline !default;
+//$s__anchor-text-decoration-style: $s__anchor-border-bottom-style !default;
+//$s__anchor-text-decoration-style--alt: $s__anchor-border-bottom-style--alt !default;
+//$s__anchor-text-decoration-width: $s__anchor-border-bottom-width !default;
+//$s__anchor-text-decoration-offset: $s__anchor-border-bottom-offset !default;
 
 
 

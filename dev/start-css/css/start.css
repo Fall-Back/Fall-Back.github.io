@@ -413,7 +413,7 @@ body {
 /*
     a:link a:visited a:hover a:active a:focus
 
-    1. Remove the gray background on active links in IE 10.
+    1. Remove the grey background on active links in IE 10.
     2. Remove the gaps in underlines in iOS 8+ and Safari 8+.
     3. Remove the tapping delay from clickable elements .
 */
@@ -422,8 +422,9 @@ a[href] {
   background-color: transparent;
   /* 1 */
   text-decoration: underline;
-  text-decoration-style: underline;
-  text-decoration-thickness: 0.2rem;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 0.15em;
   text-underline-offset: 0.2em;
   -webkit-text-decoration-skip: objects;
   /* 2 */
@@ -434,6 +435,10 @@ a[href] {
   /*
         1. For older browsers, the 2nd rule is ignored in those.
     */
+  /*
+        1. Make sure focus is still visible in Forced Colour modes.
+           (https://www.sarasoueidan.com/blog/focus-indicators/)
+    */
 }
 
 a[href]:hover, a[href]:active {
@@ -441,17 +446,23 @@ a[href]:hover, a[href]:active {
   /* [1] */
   text-decoration: underline dashed;
   /* [1] */
+  text-underline-offset: 0.3em;
   color: #1b5b76;
 }
 
 a[href]:focus {
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem white, 0 0 0 0.4rem black;
+  outline: 1px solid transparent;
+  /* [1] */
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
 }
 
 @supports (-moz-appearance: none) {
   a[href] {
-    text-decoration-thickness: 0.15385em;
+    text-decoration-thickness: 0.11em;
+    text-underline-offset: 0.3em;
+  }
+  a[href]:hover, a[href]:active {
+    text-decoration-thickness: 0.1em;
   }
 }
 
@@ -672,7 +683,7 @@ button:hover, button:active {
 
 button:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem white, 0 0 0 0.4rem black;
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
 }
 
 button svg {
@@ -1258,11 +1269,11 @@ img .gm-style {
     Special treatment for images inside links.
 */
 a[href] img {
-  border-bottom: 0.2rem solid;
+  border-bottom: 0.15em solid #247BA0;
 }
 
 a[href] img:active, a[href] img:hover {
-  border-bottom: 0.2rem dashed;
+  border-bottom: 0.15em dashed #1b5b76;
 }
 
 /*
@@ -1274,7 +1285,7 @@ a[href] img:active, a[href] img:hover {
 */
 a:focus img {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem white, 0 0 0 0.4rem black;
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -1340,7 +1351,7 @@ input:not([type]):focus,
 [type="url"]:focus,
 [type="week"]:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem white, 0 0 0 0.4rem black;
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
 }
 
 /*
@@ -1350,7 +1361,7 @@ input:not([type]):focus,
 [type="checkbox"]:focus,
 [type="radio"]:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem white, 0 0 0 0.4rem black;
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
 }
 
 /*
@@ -1422,7 +1433,7 @@ _::-webkit-full-page-media, _:future, :root [type="radio"]:focus {
 [type="reset"]:focus,
 [type="submit"]:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem white, 0 0 0 0.4rem black;
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
 }
 
 /*
@@ -2021,7 +2032,7 @@ _:-moz-tree-row(hover), select:not([multiple]) {
 
 select:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem white, 0 0 0 0.4rem black;
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
 }
 
 /*
@@ -2082,21 +2093,6 @@ small {
   /* 1 */
   line-height: normal;
   /* 2 */
-  /*
-    a[href] {
-        margin-bottom: $s__anchor-border-bottom-offset / 2;
-
-        padding-bottom: $s__anchor-padding-bottom / 2;
-
-        border-bottom: 0.1rem $s__anchor-border-bottom-style;
-    }
-    
-    a[href]:hover,
-    a[href]:focus,
-    a[href]:active {
-        border-bottom: 0.1rem $s__anchor-border-bottom-style--alt;
-    }
-    */
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -2157,7 +2153,7 @@ summary {
 
 summary:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem white, 0 0 0 0.4rem black;
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
 }
 
 /* Hide the details marker as we're supplying our own. */
@@ -2358,7 +2354,7 @@ textarea {
 
 textarea:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem white, 0 0 0 0.4rem black;
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -2449,7 +2445,7 @@ video {
 
 video:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem white, 0 0 0 0.4rem black;
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
 }
 
 /*
