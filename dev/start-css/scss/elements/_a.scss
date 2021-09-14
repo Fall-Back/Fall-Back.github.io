@@ -57,9 +57,13 @@
 
     }
 
+    /*
+        1. Make sure focus is still visible in Forced Colour modes.
+           (https://www.sarasoueidan.com/blog/focus-indicators/)
+    */
     @if $s__use-focus-shadow {
         &:focus {
-            outline: 0;
+            outline: 1px solid transparent; /* [1] */
             box-shadow: $s__outline-shadow;
         }
     }
