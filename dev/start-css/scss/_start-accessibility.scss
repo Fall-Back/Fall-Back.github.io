@@ -39,7 +39,7 @@
 /*
     Specify the style of visually hidden yet accessible elements. (S)
 */
-[hidden="false"][aria-hidden="false"] {
+[hidden][aria-hidden="false"] {
     clip: rect(0 0 0 0);
     position: absolute;
 
@@ -52,8 +52,8 @@
     width: 1px;*/
 }
 
-    a[hidden="false"][aria-hidden="false"]:focus,
-    a[hidden="false"][aria-hidden="false"]:active {
+    a[hidden][aria-hidden="false"]:focus,
+    a[hidden][aria-hidden="false"]:active {
         clip: auto;
         position: static;
 
@@ -62,8 +62,8 @@
         overflow: visible;
         width: auto;*/
     }
-    
-    
+
+
 /*
     Elements with tabindex="-1" are NOT user focussable, but CAN be focussed via JS.
     In this case elements focussed in such a way should not receive focus styles to avoid confusion.

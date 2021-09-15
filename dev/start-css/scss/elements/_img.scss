@@ -45,11 +45,13 @@
     //border-width: inherit;
     //border-style: inherit;
     //border-bottom: $s__anchor-line;
-    border-bottom: $s__anchor-line-width $s__anchor-line-style $s__anchor-text-color;
+    border-bottom: $s__anchor-image-line-width  $s__anchor-image-line-style  $s__anchor-text-color;
+    padding-bottom: $s__anchor-image-padding-bottom;
 
     &:active, &:hover {
         //border-bottom: $s__anchor-line--alt;
-        border-bottom: $s__anchor-line-width $s__anchor-line-style--alt $s__anchor-text-color--alt;
+        border-bottom: $s__anchor-image-line-width--alt  $s__anchor-image-line-style--alt  $s__anchor-text-color--alt;
+        padding-bottom: $s__anchor-image-padding-bottom--alt;
     }
 }
 

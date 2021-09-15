@@ -187,6 +187,8 @@
     1. This size allows 2px on normal fonts, 1px on smaller fonts.
 */
 /* [1] */
+/* [1] */
+/* [1] */
 /*
     ASIDE
 */
@@ -424,8 +426,7 @@ a[href] {
   text-decoration: underline;
   text-decoration-line: underline;
   text-decoration-style: solid;
-  text-decoration-thickness: 0.15em;
-  text-underline-offset: 0.2em;
+  text-decoration-thickness: 0.0625em;
   -webkit-text-decoration-skip: objects;
   /* 2 */
   -ms-touch-action: manipulation;
@@ -439,14 +440,23 @@ a[href] {
         1. Make sure focus is still visible in Forced Colour modes.
            (https://www.sarasoueidan.com/blog/focus-indicators/)
     */
+  /*@supports (-moz-appearance:none) {
+    
+        text-decoration-thickness: $s__anchor-line-width - 0.04em;
+        //text-underline-offset:     $s__anchor-line-offset + 0.1em;
+    
+        &:hover,
+        &:active {
+            text-decoration-thickness: 0.1em;
+        }
+    }*/
 }
 
 a[href]:hover, a[href]:active {
   text-decoration: none;
   /* [1] */
-  text-decoration: underline dashed;
+  text-decoration: underline double currentColor 0.0625em;
   /* [1] */
-  text-underline-offset: 0.3em;
   color: #1b5b76;
 }
 
@@ -454,16 +464,6 @@ a[href]:focus {
   outline: 1px solid transparent;
   /* [1] */
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
-}
-
-@supports (-moz-appearance: none) {
-  a[href] {
-    text-decoration-thickness: 0.11em;
-    text-underline-offset: 0.3em;
-  }
-  a[href]:hover, a[href]:active {
-    text-decoration-thickness: 0.1em;
-  }
 }
 
 a[href] svg:not(:only-child) {
@@ -1269,11 +1269,13 @@ img .gm-style {
     Special treatment for images inside links.
 */
 a[href] img {
-  border-bottom: 0.15em solid #247BA0;
+  border-bottom: 0.1875em solid #247BA0;
+  padding-bottom: 0.1875em;
 }
 
 a[href] img:active, a[href] img:hover {
-  border-bottom: 0.15em dashed #1b5b76;
+  border-bottom: 0.375em double #1b5b76;
+  padding-bottom: 0;
 }
 
 /*
@@ -2558,7 +2560,7 @@ main :target {
 /*
     Specify the style of visually hidden yet accessible elements. (S)
 */
-[hidden="false"][aria-hidden="false"] {
+[hidden][aria-hidden="false"] {
   clip: rect(0 0 0 0);
   position: absolute;
   display: inline;
@@ -2570,8 +2572,8 @@ main :target {
     width: 1px;*/
 }
 
-a[hidden="false"][aria-hidden="false"]:focus,
-a[hidden="false"][aria-hidden="false"]:active {
+a[hidden][aria-hidden="false"]:focus,
+a[hidden][aria-hidden="false"]:active {
   clip: auto;
   position: static;
   /*height: auto;
