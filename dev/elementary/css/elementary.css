@@ -371,37 +371,6 @@ body {
     }
 
 }*/
-/*
-    @DEPRECATED - use the clearer method below:
-    CSS only message
-*/
-[data-css-only="true"] {
-  display: none;
-}
-
-/*
-    New method hide stuff if CSS has loaded:
-*/
-[data-if-css="hide"] {
-  display: none;
-}
-
-/*
-    This method duplicates [hidden="false"][aria-hidden="false"] in accessibility.scss, but I'm
-    thinking of maybe deprecating that.
-*/
-[data-if-css="visually-hide"] {
-  clip: rect(0 0 0 0);
-  position: absolute;
-  display: inline;
-  /*border: 0;
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    width: 1px;*/
-}
-
 /*------------------------------------------------------------------------------------------------*\
 
     ALL ELEMENTS
@@ -2538,55 +2507,19 @@ main :target {
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
+/*
+    Change the cursor on busy elements in all browsers. (S)
+*/
 [aria-busy="true"] {
   cursor: progress;
 }
 
 /*
-    Specify the pointer cursor of trigger elements. (S)
-*/
-[aria-controls] {
-  cursor: pointer;
-}
-
-/*
     Specify the un-styled cursor of disabled, not-editable, or otherwise inoperable elements. (S)
 */
-[disabled],
-[aria-disabled] {
+[aria-disabled="true"],
+[disabled] {
   cursor: default;
-}
-
-/*
-    Address `[hidden]` styling not present in IE 8/9/10. (N)
-*/
-[hidden] {
-  display: none;
-}
-
-/*
-    Specify the style of visually hidden yet accessible elements. (S)
-*/
-[hidden][aria-hidden="false"] {
-  clip: rect(0 0 0 0);
-  position: absolute;
-  display: inline;
-  /*border: 0;
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    width: 1px;*/
-}
-
-a[hidden][aria-hidden="false"]:focus,
-a[hidden][aria-hidden="false"]:active {
-  clip: auto;
-  position: static;
-  /*height: auto;
-        margin: 0;
-        overflow: visible;
-        width: auto;*/
 }
 
 /*
@@ -2598,14 +2531,30 @@ a[hidden][aria-hidden="false"]:active {
   outline: none;
 }
 
-/*
-    A blanket attempt to respect prefers-reduced-motion.
-    (https://dev.to/alvaromontoro/consider-reducing-motions-1a13)
+/* Reduced Motion (S)
+    1. Remove animations when motion is reduced (opinionated).
+    2. Remove fixed background attachments when motion is reduced (opinionated).
+    3. Remove timed scrolling behaviors when motion is reduced (opinionated).
+    4. Remove transitions when motion is reduced (opinionated).
 */
 @media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
+  *,
+  ::before,
+  ::after {
+    animation-delay: -1ms !important;
+    /* 1 */
+    animation-duration: 1ms !important;
+    /* 1 */
+    animation-iteration-count: 1 !important;
+    /* 1 */
+    background-attachment: initial !important;
+    /* 2 */
+    scroll-behavior: auto !important;
+    /* 3 */
+    transition-delay: 0s !important;
+    /* 4 */
+    transition-duration: 0s !important;
+    /* 4 */
   }
 }
 
@@ -2626,6 +2575,102 @@ a[hidden][aria-hidden="false"]:active {
     1. Safari 9.1 doesn't recognize 'auto' but I suspect others won't recognize 'initial', so
        keeping both for now.
 */
+/*! Start-CSS Visibility. See SCSS file for documentation. */
+/*-------------------------------------------------------------------------------------------------|
+
+    VISIBILITY
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+/*
+    @DEPRECATED - use the clearer method below:
+    CSS only message
+
+[data-css-only="true"] {
+    display: none;
+}
+
+/*
+    New method hide stuff if CSS has loaded:
+
+[data-if-css="hide"] {
+    display: none;
+}
+
+/*
+    This method duplicates [hidden="false"][aria-hidden="false"] in accessibility.scss, but I'm
+    thinking of maybe deprecating that.
+
+[data-if-css="visually-hide"] {
+    clip: rect(0 0 0 0);
+    position: absolute;
+
+    display: inline;
+    /*border: 0;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    width: 1px;
+}
+
+*/
+/*
+    Method hide stuff if CSS has loaded:
+*/
+[data-hidden="if-css"] {
+  display: none !important;
+}
+
+/*
+    Method hide stuff if printing:
+*/
+@media print {
+  [data-hidden="if-print"] {
+    display: none !important;
+  }
+}
+
+/*
+    Method hide stuff if NOT printing:
+*/
+@media not print {
+  [data-hidden="if-not-print"] {
+    display: none !important;
+  }
+}
+
+/*
+    Address `[hidden]` styling not present in IE 8/9/10. (N)
+*/
+[hidden] {
+  display: none;
+}
+
+/*
+    Visually hidden.
+    https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html
+
+    Note previous Sanitize CSS option using [aria-hidden="false" i][hidden] causes problems on NVDA
+    on Chrome (at least).
+    For example take a pagination link:
+    <a href="#"><span hidden aria-hidden="false>Page </span>1</a>
+    NVDA announces "link page link 1". Annoying. This only happens with continuous reading but it's
+    still a problem.
+*/
+[data-hidden="visually"]:not(:focus):not(:active) {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  white-space: nowrap !important;
+}
+
 /*! End Start-CSS */
 /*-------------------------------------------------------------------------------------------------|
 

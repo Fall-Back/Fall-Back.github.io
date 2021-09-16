@@ -8,61 +8,21 @@
 
 //@if ($suppress_styles != true) {
 
+/*
+    Change the cursor on busy elements in all browsers. (S)
+*/
 [aria-busy="true"] {
     cursor: progress;
 }
 
-/*
-    Specify the pointer cursor of trigger elements. (S)
-*/
-
-[aria-controls] {
-    cursor: pointer;
-}
 
 /*
     Specify the un-styled cursor of disabled, not-editable, or otherwise inoperable elements. (S)
 */
-[disabled],
-[aria-disabled] {
+[aria-disabled="true"],
+[disabled] {
     cursor: default;
 }
-
-
-/*
-    Address `[hidden]` styling not present in IE 8/9/10. (N)
-*/
-[hidden] {
-    display: none;
-}
-
-/*
-    Specify the style of visually hidden yet accessible elements. (S)
-*/
-[hidden][aria-hidden="false"] {
-    clip: rect(0 0 0 0);
-    position: absolute;
-
-    display: inline;
-    /*border: 0;
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    width: 1px;*/
-}
-
-    a[hidden][aria-hidden="false"]:focus,
-    a[hidden][aria-hidden="false"]:active {
-        clip: auto;
-        position: static;
-
-        /*height: auto;
-        margin: 0;
-        overflow: visible;
-        width: auto;*/
-    }
-
 
 /*
     Elements with tabindex="-1" are NOT user focussable, but CAN be focussed via JS.
@@ -73,14 +33,24 @@
     outline: none;
 }
 
-/*
-    A blanket attempt to respect prefers-reduced-motion.
-    (https://dev.to/alvaromontoro/consider-reducing-motions-1a13)
+
+/* Reduced Motion (S)
+    1. Remove animations when motion is reduced (opinionated).
+    2. Remove fixed background attachments when motion is reduced (opinionated).
+    3. Remove timed scrolling behaviors when motion is reduced (opinionated).
+    4. Remove transitions when motion is reduced (opinionated).
 */
 @media (prefers-reduced-motion: reduce) {
-    * {
-        animation: none !important;
-        transition: none !important;
+    *,
+    ::before,
+    ::after {
+        animation-delay: -1ms !important; /* 1 */
+        animation-duration: 1ms !important; /* 1 */
+        animation-iteration-count: 1 !important; /* 1 */
+        background-attachment: initial !important; /* 2 */
+        scroll-behavior: auto !important; /* 3 */
+        transition-delay: 0s !important; /* 4 */
+        transition-duration: 0s !important; /* 4 */
     }
 }
 

@@ -48,12 +48,16 @@ Edge 79+, Chrome 74+, Firefox 63+, Opera 64+, Safari 10.1+, iOS 10.3+, Android 8
 
 <p>What follows is a visually-hidden (or screen-reader only) bit of text:</p>
 <p><button>Focus shortcut</button></p>
-<p>Read more<span hidden aria-hidden="false"> about a thing.</span>
+<p><a href="#">Read more<span data-hidden="visually">&nbsp;about a thing.</span></a></p>
 
-<p>What follows is a skip-link that visually-hidden until focussed:</p>
+<p><a href="#"><span data-hidden="visually">Page&nbsp;</span>1</a></p>
+
+<p>Note that visually hidden elements contain a forced space (<code>&amp;nbsp;</code>) to separate it from the visible words, or NVDA Chome (at least) conflate the words. IN the first example without the space it's read as "Read moreabout at thing."
+
+<p>What follows is a skip-link that is visually-hidden until focussed:</p>
 <p><button>Focus shortcut</button></p>
 
-<p><a href="#bottom" hidden aria-hidden="false">Skip to bottom</a></p>
+<p><a href="#bottom" data-hidden="visually">Skip to bottom</a></p>
 
 <p>More to add ...</p>
 
