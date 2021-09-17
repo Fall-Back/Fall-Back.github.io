@@ -144,3 +144,12 @@
 
     @return $string;
 }
+
+
+@function s__set_color_for_background($test-color, $color-on-dark, $color-on-light) {
+    @if s__color_light_or_dark($test-color) == 'dark' {
+        @return $color-on-dark;
+    } @else {
+        @return $color-on-light;
+    }
+}
