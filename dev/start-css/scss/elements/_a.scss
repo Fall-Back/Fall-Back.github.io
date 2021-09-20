@@ -32,16 +32,12 @@
     touch-action: manipulation; /* 3 */
 
     /*
-        1. For older browsers, the 2nd rule is ignored in those.
+        1. For older browsers.
     */
     &:hover,
     &:active {
-        text-decoration:       none; /* [1] */
-        text-decoration:       underline $s__anchor-line-style--alt currentColor $s__anchor-line-width; /* [1] */
-        //text-underline-offset: $s__anchor-line-offset--alt;
-        //box-shadow: none;
-
-        //text-decoration-style: $s__anchor-text-decoration-style--alt;
+        //box-shadow:      0px 0.5px 0px 0px currentColor; /* [1] */
+        text-decoration: none;
 
         @if $s__anchor-text-color--alt != $s__anchor-text-color {
             color: $s__anchor-text-color--alt;
@@ -51,12 +47,24 @@
 
     }
 
+    @supports(text-decoration-line: underline) {
+        text-decoration: underline $s__anchor-line-style--alt currentColor $s__anchor-line-width; /* [1] */
+        box-shadow: none;
+
+        //text-underline-offset: $s__anchor-line-offset--alt;
+        //text-decoration-style: $s__anchor-text-decoration-style--alt;
+
+        @if $s__anchor-text-color--alt != $s__anchor-text-color {
+            color: $s__anchor-text-color--alt;
+        }
+    }
+
     /*
         1. Make sure focus is still visible in Forced Colour modes.
            (https://www.sarasoueidan.com/blog/focus-indicators/)
     */
     @if $s__use-focus-shadow {
-            
+
         &:focus {
             outline: 1px solid transparent; /* [1] */
             box-shadow: $s__outline-shadow;
@@ -65,10 +73,10 @@
 
     // FF appears to calculate thickness very differently form Chrome.
     /*@supports (-moz-appearance:none) {
-    
+
         text-decoration-thickness: $s__anchor-line-width - 0.04em;
         //text-underline-offset:     $s__anchor-line-offset + 0.1em;
-    
+
         &:hover,
         &:active {
             text-decoration-thickness: 0.1em;

@@ -404,17 +404,17 @@ a[href] {
   touch-action: manipulation;
   /* 3 */
   /*
-        1. For older browsers, the 2nd rule is ignored in those.
+        1. For older browsers.
     */
   /*
         1. Make sure focus is still visible in Forced Colour modes.
            (https://www.sarasoueidan.com/blog/focus-indicators/)
     */
   /*@supports (-moz-appearance:none) {
-    
+
         text-decoration-thickness: $s__anchor-line-width - 0.04em;
         //text-underline-offset:     $s__anchor-line-offset + 0.1em;
-    
+
         &:hover,
         &:active {
             text-decoration-thickness: 0.1em;
@@ -424,10 +424,16 @@ a[href] {
 
 a[href]:hover, a[href]:active {
   text-decoration: none;
-  /* [1] */
-  text-decoration: underline double currentColor 0.0625em;
-  /* [1] */
   color: #4b1808;
+}
+
+@supports (text-decoration-line: underline) {
+  a[href] {
+    text-decoration: underline double currentColor 0.0625em;
+    /* [1] */
+    box-shadow: none;
+    color: #4b1808;
+  }
 }
 
 a[href]:focus {
