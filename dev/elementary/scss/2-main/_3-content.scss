@@ -49,10 +49,12 @@
 */
 #{$es__page_main__header} ~ div {
     max-width: none;
-
-    margin-bottom: $s__sz-m;
-
+    
     padding: 0;
+}
+
+#{$es__page_main__header} ~ div:not(:last-child) {
+    margin-bottom: $s__sz-m;
 }
 
 /*
@@ -63,7 +65,7 @@
 #{$es__page_main__header} ~ div > figure {
     background: $__e__content__figure-background;
     
-    @include s__bordered($s__sz-m, 0);
+    @include s__bordered($s__sz-m);
 }
 
 /*

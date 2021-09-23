@@ -428,7 +428,7 @@ a[href]:hover, a[href]:active {
 }
 
 @supports (text-decoration-line: underline) {
-  a[href] {
+  a[href]:hover, a[href]:active {
     text-decoration: underline double currentColor 0.0625em;
     /* [1] */
     box-shadow: none;
@@ -3579,8 +3579,11 @@ main > * > h1 {
 */
 [data-elementary] body > main > * > header ~ div {
   max-width: none;
-  margin-bottom: 2.4rem;
   padding: 0;
+}
+
+[data-elementary] body > main > * > header ~ div:not(:last-child) {
+  margin-bottom: 2.4rem;
 }
 
 /*
@@ -3590,15 +3593,15 @@ main > * > h1 {
 [data-elementary] body > main > * > header ~ figure,
 [data-elementary] body > main > * > header ~ div > figure {
   background: #f7c2b2;
-  border-width: 0;
+  border-width: 1px;
   border-style: solid;
   border-color: #79260D;
-  padding: calc(2.4rem - 0);
+  padding: calc(2.4rem - 1px);
   /*
     @if $s__use-last-child-margin-zero {
         padding-bottom: 2.4rem;
-        //padding-bottom: -moz-calc(2.4rem - 0);
-        padding-bottom:      calc(2.4rem - 0);
+        //padding-bottom: -moz-calc(2.4rem - 1px);
+        padding-bottom:      calc(2.4rem - 1px);
     } @else {
         padding-bottom: 0;
         &::after {
@@ -3611,8 +3614,8 @@ main > * > h1 {
             margin-top: $padding;
 
             margin-bottom: -1px;
-            //margin-bottom: -moz-calc(-1px - 0);
-            margin-bottom:      calc(-1px - 0);
+            //margin-bottom: -moz-calc(-1px - 1px);
+            margin-bottom:      calc(-1px - 1px);
         }
     }
     */

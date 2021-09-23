@@ -48,14 +48,17 @@
     }
 
     @supports(text-decoration-line: underline) {
-        text-decoration: underline $s__anchor-line-style--alt currentColor $s__anchor-line-width; /* [1] */
-        box-shadow: none;
+        &:hover,
+        &:active {
+            text-decoration: underline $s__anchor-line-style--alt currentColor $s__anchor-line-width; /* [1] */
+            box-shadow: none;
 
-        //text-underline-offset: $s__anchor-line-offset--alt;
-        //text-decoration-style: $s__anchor-text-decoration-style--alt;
+            //text-underline-offset: $s__anchor-line-offset--alt;
+            //text-decoration-style: $s__anchor-text-decoration-style--alt;
 
-        @if $s__anchor-text-color--alt != $s__anchor-text-color {
-            color: $s__anchor-text-color--alt;
+            @if $s__anchor-text-color--alt != $s__anchor-text-color {
+                color: $s__anchor-text-color--alt;
+            }
         }
     }
 

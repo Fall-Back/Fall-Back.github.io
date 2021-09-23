@@ -427,7 +427,7 @@ a[href]:hover, a[href]:active {
 }
 
 @supports (text-decoration-line: underline) {
-  a[href] {
+  a[href]:hover, a[href]:active {
     text-decoration: underline double currentColor 0.0625em;
     /* [1] */
     box-shadow: none;

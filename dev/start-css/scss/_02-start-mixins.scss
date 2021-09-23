@@ -23,15 +23,23 @@
     too small.
     If pseudo-element height is 0, it doesn't work in IE, Chrome, Safari, without inline-block
 */
-@mixin s__bordered($padding: 1em, $border-width: 1px, $border-color: uiColor, $border-style: solid) {
-    border-width: $border-width;
-    border-style: $border-style;
-    @if $border-color == uiColor {
-        $border-color: $s__base-ui-color;
+@mixin s__bordered($padding: 1em, $border-width: 1px, $border-color: uiColor, $border-style: solid) {   
+    @if $border-width != 0 {
+        border-width: $border-width;
+        border-style: $border-style;
+        @if $border-color == uiColor {
+            $border-color: $s__base-ui-color;
+        }
+        border-color: $border-color;
     }
-    border-color: $border-color;
-
-    padding: calc(#{$padding} - #{$border-width});
+    
+    @if $padding != 0 {
+        @if $border-width != 0 {
+            padding: calc(#{$padding} - #{$border-width});
+        } @else {
+            padding: #{$padding};
+        }
+    }
 
     /*
     @if $s__use-last-child-margin-zero {
