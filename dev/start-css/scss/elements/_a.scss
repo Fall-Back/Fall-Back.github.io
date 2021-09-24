@@ -8,14 +8,12 @@
 /*
     a:link a:visited a:hover a:active a:focus
 
-    1. Remove the grey background on active links in IE 10.
-    2. Remove the gaps in underlines in iOS 8+ and Safari 8+.
-    3. Remove the tapping delay from clickable elements .
+    1. Remove the gaps in underlines in iOS 8+ and Safari 8+.
+    2. Remove the tapping delay from clickable elements .
 */
 #{$s__namespace}a[href] {
 
     color: $s__anchor-text-color;
-    background-color: transparent; /* 1 */
 
     //text-decoration: $s__anchor-text-decoration;
     text-decoration: underline;
@@ -26,10 +24,10 @@
     text-decoration-thickness: $s__anchor-line-width;
     //text-underline-offset:     $s__anchor-line-offset;
 
-    -webkit-text-decoration-skip: objects; /* 2 */
+    -webkit-text-decoration-skip: objects; /* 1 */
 
-    -ms-touch-action: manipulation; /* 3 (IE10) */
-    touch-action: manipulation; /* 3 */
+    -ms-touch-action: manipulation; /* 2 (IE10) */
+    touch-action: manipulation; /* 2 */
 
     /*
         1. For older browsers.
@@ -86,12 +84,6 @@
         }
     }*/
 
-
-    // Give link icons some space unless they're the only child.
-    & svg:not(:only-child) {
-        margin-left: 0.25em;
-    }
-
     @media #{$s__ie10-11} {
         & svg {
             vertical-align: text-bottom;
@@ -99,17 +91,28 @@
     }
 }
 
-    @if $s__anchor-add-external-link-indicator == true {
-
-        #{$s__namespace}a[href][rel~="external"] {
-            padding-right: 1em;
-            background-image: linear-gradient(45deg, transparent 65%, $s__anchor-text-color 65%);
-            background-repeat: no-repeat;
-            background-position: right 0.4em bottom 0.4em;
-            background-size: 0.6em 0.6em;
-        }
-
-        #{$s__namespace}a[href][rel~="external"]:hover {
-            background-image: linear-gradient(45deg, transparent 65%, $s__anchor-text-color--alt 65%);
-        }
+/*
+    Sometimes anchors can be used without an href, and may contain icons etc, so make sure styles
+    are applied to ALL anchors where appropriate.
+*/
+#{$s__namespace}a {
+    // Give link icons some space unless they're the only child.
+    & svg:not(:only-child) {
+        margin-left: 0.25em;
     }
+}
+
+@if $s__anchor-add-external-link-indicator == true {
+
+    #{$s__namespace}a[href][rel~="external"] {
+        padding-right: 1em;
+        background-image: linear-gradient(45deg, transparent 65%, $s__anchor-text-color 65%);
+        background-repeat: no-repeat;
+        background-position: right 0.4em bottom 0.4em;
+        background-size: 0.6em 0.6em;
+    }
+
+    #{$s__namespace}a[href][rel~="external"]:hover {
+        background-image: linear-gradient(45deg, transparent 65%, $s__anchor-text-color--alt 65%);
+    }
+}
