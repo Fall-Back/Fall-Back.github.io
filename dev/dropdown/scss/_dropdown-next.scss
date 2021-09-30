@@ -25,7 +25,7 @@ $s__dropdown--base-text-color:                 $s__base-text-color !default;
 $s__dropdown--background-color:                $s__dropdown--base-ui-color !default;
 $s__dropdown--text-color:                      #fff !default;
 
-$s__dropdown__control--color:                  #fff !default;
+$s__dropdown__control--color:                  $s__dropdown--text-color !default;
 $s__dropdown__control--color--alt:             $s__dropdown__control--color !default;
 $s__dropdown__control--background-color:       $s__dropdown--background-color !default;
 $s__dropdown__control--background-color--alt:  darken($s__dropdown--background-color, 14%) !default;

@@ -2140,10 +2140,16 @@ summary::-webkit-details-marker {
 }
 
 details > summary::before {
-  display: inline-block;
-  content: '\25BA';
+  display: block;
+  content: '';
+  width: 0px;
+  height: 0px;
+  border-top: 0.5em solid transparent;
+  border-bottom: 0.5em solid transparent;
+  border-left: 0.9em solid currentColor;
+  position: absolute;
   margin-left: -1.4em;
-  margin-right: 0.4em;
+  margin-top: 0.5em;
   font-size: 0.75em;
   font-family: serif;
   vertical-align: top;

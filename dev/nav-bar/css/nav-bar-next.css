@@ -60,7 +60,7 @@
     ASIDE
 */
 /*! --------------------------------------------------------------------------------------------- *\
-    
+
     Fall-Back Nav Bar v3.0.0
     https://github.com/Fall-Back/Patterns/tree/master/Nav%20Bar
     Copyright (c) 2021, Andy Kirk
@@ -92,7 +92,7 @@
 .nav-bar {
   /* -- Main wrapper ---------------------------------------------------------------------------*/
   /*
-        1. Helps to position above subsequent elements so subnavs sit on top.
+        1. Helps to position above subsequent elements so sub-navs sit on top.
         There are problems with this, if z-index or position is declared it messes up positioning
         if subsequent blocks also are nav-bars or similar.
     */
@@ -119,6 +119,12 @@
         (this excludes submenu heading links - note that submenu links should never also be
         submenu heading links)
     */
+  /*.nav-bar__link:focus {
+        color: $s__nav-bar__link--color--alt;
+        background-color: $s__nav-bar__link--background-color--alt2;
+        border: 0;
+        box-shadow: none;
+    }*/
   /* -------------------------------------------------------------------------------------------*/
 }
 
@@ -134,26 +140,26 @@
   margin: 0;
 }
 
-.nav-bar .subnav {
+.nav-bar .sub-nav {
   padding: 0;
   margin: 0;
 }
 
 .nav-bar .nav-bar__items,
-.nav-bar .subnav__items {
+.nav-bar .sub-nav__items {
   display: block;
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-.nav-bar .subnav__items {
+.nav-bar .sub-nav__items {
   margin-left: 1.125em;
   background-color: #113b4d;
 }
 
 .nav-bar .nav-bar__item,
-.nav-bar .subnav__item {
+.nav-bar .sub-nav__item {
   margin: 0;
 }
 
@@ -168,9 +174,10 @@
 }
 
 .nav-bar .nav-bar__link,
-.nav-bar .subnav__link,
-.nav-bar .subnav__heading {
+.nav-bar .sub-nav__link,
+.nav-bar .sub-nav__heading {
   display: block;
+  position: relative;
   margin: 0;
   padding-left: 0.5625em;
   padding-right: 0.5625em;
@@ -200,11 +207,11 @@
   text-align: center;
 }
 
-.nav-bar .subnav__heading {
+.nav-bar .sub-nav__heading {
   color: #fff;
 }
 
-.nav-bar .subnav__link {
+.nav-bar .sub-nav__link {
   color: #fff;
   background-color: #113b4d;
 }
@@ -215,25 +222,23 @@
   color: #fff;
   background-color: #174e66;
   border: 0;
+  text-decoration: none;
 }
 
-.nav-bar .nav-bar__link:focus {
-  color: #fff;
-  background-color: #1d6583;
-  border: 0;
-  box-shadow: none;
-}
-
-.nav-bar .subnav__link:hover,
-.nav-bar .subnav__link:focus,
-.nav-bar .subnav__link:active {
+.nav-bar .sub-nav__link:hover,
+.nav-bar .sub-nav__link:active {
   color: #fff;
   background-color: #1b5b76;
   border: 0;
-  box-shadow: none;
+  text-decoration: none;
 }
 
-.nav-bar .subnav__control {
+.nav-bar .nav-bar__link:focus,
+.nav-bar .sub-nav__link:focus {
+  z-index: 1;
+}
+
+.nav-bar .sub-nav__control {
   display: none;
 }
 
@@ -282,14 +287,14 @@
             1. Prevent content from increasing height of element.
         */
   /*
-			This pseudo element helps to cover any subnavs to stop them being visible in the main
+			This pseudo element helps to cover any sub-navs to stop them being visible in the main
 			nav-bar.
 		*/
   /* -- Behaviour: -------------------------------------------------------------------------*/
   /*
-            Set-up slide toggling for subnavs:
+            Set-up slide toggling for sub-navs:
 
-			1. This puts the subnav behind the covering pseudo element. See .nav-bar::before, above.
+			1. This puts the sub-nav behind the covering pseudo element. See .nav-bar::before, above.
             2. OSX/iOS needs this:
 		*/
 }
@@ -319,8 +324,8 @@
 .js-cmr--wide .nav-bar__items,
 .js-cmr--wide .nav-bar__item,
 .js-cmr--wide .nav-bar__item > *,
-.js-cmr--wide .subnav__link,
-.js-cmr--wide .subnav__heading {
+.js-cmr--wide .sub-nav__link,
+.js-cmr--wide .sub-nav__heading {
   display: -ms-flexbox;
   display: flex;
   white-space: nowrap;
@@ -336,7 +341,7 @@
   flex: 1 0 auto;
 }
 
-.js-cmr--wide .subnav__control[data-content]::before {
+.js-cmr--wide .sub-nav__control[data-content]::before {
   content: attr(data-content);
   display: inline;
   vertical-align: top;
@@ -366,25 +371,25 @@
   background-color: #247BA0;
 }
 
-.js-cmr--wide .subnav__heading {
+.js-cmr--wide .sub-nav__heading {
   display: none;
 }
 
-.js-cmr--wide .subnav__control {
+.js-cmr--wide .sub-nav__control {
   display: block;
 }
 
-.js-cmr--wide .subnav__control .icon--is-open,
-.js-cmr--wide .subnav__control[aria-wide="true"] .icon--is-closed {
+.js-cmr--wide .sub-nav__control .icon--is-open,
+.js-cmr--wide .sub-nav__control[aria-wide="true"] .icon--is-closed {
   display: none;
 }
 
-.js-cmr--wide .subnav__control .icon--is-closed,
-.js-cmr--wide .subnav__control[aria-wide="true"] .icon--is-open {
+.js-cmr--wide .sub-nav__control .icon--is-closed,
+.js-cmr--wide .sub-nav__control[aria-wide="true"] .icon--is-open {
   display: inline;
 }
 
-.js-cmr--wide .subnav {
+.js-cmr--wide .sub-nav {
   position: absolute;
   visibility: hidden;
   left: 0;
@@ -394,15 +399,15 @@
   /* 1 */
   height: 2.25em;
   /* 2 */
-  transition: margin-top 0.5s ease, visibility 0s   ease 0.5s;
+  transition: margin-top 0.5s ease, visibility 0s   ease 0.5s;
 }
 
-.js-cmr--wide .subnav__items {
+.js-cmr--wide .sub-nav__items {
   margin: 0;
   padding: 0;
 }
 
-.js-cmr--wide .subnav__control[aria-wide="true"] ~ .subnav {
+.js-cmr--wide .sub-nav__control[aria-wide="true"] ~ .sub-nav {
   visibility: visible;
   margin-top: 2.25em;
   transition: margin-top 0.5s ease;
