@@ -1,0 +1,31 @@
+---
+title: TFS on Start Test Page
+layout: dev/structure--basic
+startcss: false
+
+
+---
+<p><a href="#">Test active link</a></p>
+<p><a href="#bottom">Skip to bottom</a></p>
+<p><a href="#tmp-lists">Skip to lists (temp)</a></p>
+<!--
+<h2>Notes</h2>
+<p>
+    <strong>Sizing issues:</strong><br>
+    Borders normally should be the same size regardless of font size.<br>
+    Vertical Rhythm (VR) preserved by using either padding or margin tweaks to offset border- Border Compensation Tweaks (BCT).<br>
+    VR is calculated by REMs so adjustment to <code>html</code> font-size should adjust whole VR.<br>
+    However, doing this DOES NOT adjust the BCT.<br>
+    So, perhaps have to consider changing all BCT values to <code>calc()</code> so that <code>html</code>  font-size adjustments (e.g. in Media Queries) will also adjust BCT.<br>
+    Although, it's possible to make font-size changes on the <code>body</code>  font-size, so this may not be necessary.
+</p>
+
+<p>
+    Double bottom space fix needs thought in how it relates to borders.
+    The border/padding combination works fine, but the bottom margin of the inner elements will be a full spacing-unit, not adjusted for border-width.
+    This means the combined margin is 1 full spacing unit and this negates the BCT.
+    Maybe will have to make BCT margin-based and not padding based after all?
+</p>
+-->
+
+{% include start-test-page.html %}

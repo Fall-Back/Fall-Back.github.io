@@ -1245,6 +1245,9 @@ img .gm-style {
     Special treatment for images inside links.
 */
 a[href] img {
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
   border-bottom: 0.1875em solid #247BA0;
   padding-bottom: 0.1875em;
 }

@@ -1252,6 +1252,9 @@ img .gm-style {
     Special treatment for images inside links.
 */
 a[href] img {
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
   border-bottom: 0.1875em solid #79260D;
   padding-bottom: 0.1875em;
 }
@@ -3277,7 +3280,8 @@ body > * {
   flex-grow: 999;
 }
 
-[data-elementary] body > header nav a[href] {
+[data-elementary] body > header nav a[href],
+[data-elementary] body > header nav summary {
   display: inline-block;
   margin: 0;
   padding-top: 0;
@@ -3369,8 +3373,9 @@ p[role="list"] a[href]:focus,
 }
 
 [data-elementary] body > header details > summary {
-  display: block;
+  display: flex;
   position: relative;
+  height: 2.25em;
 }
 
 /*
@@ -3392,21 +3397,29 @@ p[role="list"] a[href]:focus,
 
 
 */
-[data-elementary] body > header details > summary:hover::before,
-[data-elementary] body > header details > summary:active::before {
-  content: "";
-  display: block;
-  position: absolute;
-  z-index: 0;
-  left: -3px;
-  right: -3px;
-  top: -3px;
-  bottom: -3px;
-  background: rgba(0, 0, 0, 0.2);
-  margin: 0;
-  transform: none;
+[data-elementary] body > header details > summary:hover,
+[data-elementary] body > header details > summary:active,
+[data-elementary] body > header details > summary:focus {
+  box-shadow: 0 0 0 0.6rem rgba(255, 255, 255, 0.4), 0 0 0 1.2rem rgba(0, 0, 0, 0.2);
 }
 
+/*
+This puts a hover arrow on the navicon. I'm not sure why I did this.
+[data-elementary] body > header   details > summary:hover::before,
+[data-elementary] body > header   details > summary:active::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: 0;
+    left: -3px;
+    right: -3px;
+    top: -3px;
+    bottom: -3px;
+    background: rgba(0,0,0,0.2);
+    margin: 0;
+    transform: none;
+}
+*/
 [data-elementary] body > header details > summary:focus {
   box-shadow: 0 0 0 0.6rem rgba(0, 0, 0, 0.3);
   outline: 0 none;
@@ -3449,7 +3462,7 @@ p[role="list"] a[href]:focus,
   border-width: 0 1.5rem 1.5rem 1.5rem;
   border-color: transparent transparent #902d0f transparent;
   position: absolute;
-  margin-top: 5px;
+  margin-top: calc(2.25em + 5px);
   margin-left: -3px;
 }
 

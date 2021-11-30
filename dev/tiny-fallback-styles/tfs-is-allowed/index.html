@@ -77,6 +77,114 @@ layout: dev/tfs-test-page
     </div>
 </div>
 
+<h2 id="example-3b">Example 3b - Side-by-Side with a <code>flex</code>, <code>border</code> and images</h2>
+
+<p>Testing the effects of flex box on images.</p>
+
+<div data-fs-block="flex">
+    <div data-fs-block="padding">
+        <div data-fs-block="border">
+            <p data-fs-text="center">
+                <a href="#">
+                    <img src="/img/landscape/01.jpg?s=900" alt="Image should be here." width="300">
+                </a>
+            </p>
+        </div>
+    </div>
+    <div data-fs-block="padding">
+        <div data-fs-block="border">
+            <p data-fs-text="center">
+                <a href="#">
+                    <img src="/img/landscape/02.jpg?s=900" alt="Image should be here." width="300">
+                </a>
+            </p>
+        </div>
+    </div>
+    <div data-fs-block="padding">
+        <div data-fs-block="border">
+            <p data-fs-text="center">
+                <a href="#">
+                    <img src="/img/landscape/03.jpg?s=900" alt="Image should be here." width="300">
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<h2 id="example-3c">Example 3c - As above but with width and height attributes</h2>
+
+<p>Testing the effects of flex box on images.</p>
+
+<div data-fs-block="flex">
+    <div data-fs-block="padding">
+        <div data-fs-block="border">
+            <p data-fs-text="center">
+                <a href="#">
+                    <img src="/img/landscape/01.jpg?s=900" alt="Image should be here." width="300" height="180">
+                </a>
+            </p>
+        </div>
+    </div>
+    <div data-fs-block="padding">
+        <div data-fs-block="border">
+            <p data-fs-text="center">
+                <a href="#">
+                    <img src="/img/landscape/02.jpg?s=900" alt="Image should be here." width="300" height="180">
+                </a>
+            </p>
+        </div>
+    </div>
+    <div data-fs-block="padding">
+        <div data-fs-block="border">
+            <p data-fs-text="center">
+                <a href="#">
+                    <img src="/img/landscape/03.jpg?s=900" alt="Image should be here." width="300" height="180">
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<h2 id="example-3d">Example 3d - Again, but with SVG images</h2>
+
+<p>Testing the effects of flex box on images.</p>
+
+<div data-fs-block="flex">
+    <div data-fs-block="padding">
+        <div data-fs-block="border">
+            <p data-fs-text="center">
+                <a href="#">
+                    <img src="/img/svg/twitter.svg" alt="Image should be here." width="70" onerror="this.src='/img/svg/twitter.png'; this.onerror=null;">
+                </a>
+            </p>
+        </div>
+    </div>
+    <div data-fs-block="padding">
+        <div data-fs-block="border">
+            <p data-fs-text="center">
+                <a href="#">
+                    <img src="/img/svg/youtube.svg" alt="Image should be here." width="70" onerror="this.src='/img/svg/youtube.png'; this.onerror=null;">
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<h2 id="example-3e">Example 3e - SVG outside flex</h2>
+
+<p data-fs-text="center">
+    <a href="#">
+        <img src="/img/svg/twitter.svg" alt="Image should be here." width="90" height="90" onerror="this.src='/img/svg/twitter.png'; this.onerror=null;">
+    </a>
+</p>
+
+<p data-fs-text="center">
+    <a href="#">
+        <img src="/img/svg/youtube.svg" alt="Image should be here." width="90" height="90" onerror="this.src='/img/svg/youtube.png'; this.onerror=null;">
+    </a>
+</p>
+
 
 <h2 id="example-4">Example 4 - Horizontal Rule</h2>
 
@@ -148,7 +256,7 @@ layout: dev/tfs-test-page
             <figure>
                 <p>Slide 2 of 4</p>
                 <div>
-                    <img src="/img/portrait/02.jpg?s=900" alt="Image should be here." height="150">
+                    <img src="/img/portrait/02.jpg?s=900" alt="Image should be here." width="300">
                 </div>
                 <figcaption>
                     <p>Slide description goes here.</p>
@@ -248,25 +356,25 @@ layout: dev/tfs-test-page
 <article>
     <div data-fs-block="border">
         <header>
-            
+
             <h3>Sample Card</h3>
-            
+
         </header>
     </div>
 </article>
 
-<article>        
+<article>
     <div data-fs-block="border">
         <header>
             <h3>Another Sample Card - this time with content</h3>
         </header>
         <div>
             <p>This card tells you something about something.</p>
-        </div> 
+        </div>
     </div>
 </article>
 
-<article>        
+<article>
     <div data-fs-block="border">
         <header>
             <div><img src="/img/landscape/01.jpg?s=900" alt="Image should be here." width="300"></div>
@@ -276,5 +384,21 @@ layout: dev/tfs-test-page
             <p>There is a source order problem here. Cards usually have their images above the heading, like it is here, but if the image is not presentational, it won't be accessible as part of the content the sits under the heading.</p>
             <p>Currently the only way around this would be to include the image somewhere below the heading and use CSS to change the visual order, but in the Failed/No CSS scenario that's not possible.</p>
         </div>
+    </div>
+</article>
+
+<h2 id="example-7">Example 9 - Branded Areas</h2>
+
+<article>
+    <div data-fs-block="background">
+        <p>Some content here.</p>
+        <p>More content, this time the text contains a <a href="#">link</a> to somewhere.</p>
+    </div>
+</article>
+
+<article>
+    <div data-fs-block="inverted">
+        <p>Some content here.</p>
+        <p>More content, this time the text contains a <a href="#">link</a> to somewhere.</p>
     </div>
 </article>

@@ -35,7 +35,8 @@
 }
 
 
-#{$es__page_banner__navlist}    a[href] {
+#{$es__page_banner__navlist}   a[href],
+#{$es__page_banner__navlist}   summary {
     display: inline-block;
 
     margin: 0;

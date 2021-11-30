@@ -36,8 +36,10 @@
 
 
 #{$es__page_banner}   details > summary {
-    display: block;
+    display: flex;
     position: relative;
+
+    height: $e__nav-bar--height;
 }
 
 /*
@@ -60,6 +62,14 @@
 
 */
 
+#{$es__page_banner}   details > summary:hover,
+#{$es__page_banner}   details > summary:active,
+#{$es__page_banner}   details > summary:focus {
+    @include e__ojbect_highlight();
+}
+
+/*
+This puts a hover arrow on the navicon. I'm not sure why I did this.
 #{$es__page_banner}   details > summary:hover::before,
 #{$es__page_banner}   details > summary:active::before {
     content: "";
@@ -74,7 +84,7 @@
     margin: 0;
     transform: none;
 }
-
+*/
 #{$es__page_banner}   details > summary:focus {
     box-shadow: 0 0 0 $s__sz-xs rgba(0,0,0,.3);
     outline: 0 none;
@@ -124,7 +134,7 @@
     border-width: 0 1.5rem 1.5rem 1.5rem;
     border-color: transparent transparent $e__nav-bar__collapsible--background-color transparent;
     position: absolute;
-    margin-top: 5px;
+    margin-top: calc(#{$e__nav-bar--height} + 5px);
     margin-left: -3px;
 }
 
@@ -138,7 +148,7 @@
     margin-top: 1.2em;
     background: $e__nav-bar__collapsible--background-color;
     list-style: none;
-    
+
     box-shadow: 0 4px 2px -1px rgba(0,0,0,0.5);
 }
 
