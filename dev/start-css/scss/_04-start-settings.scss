@@ -147,7 +147,6 @@ $s__media-element-vertical-align: middle !default;
 $s__anchor-text-color: $s__base-ui-color !default;
 $s__anchor-text-color--alt: darken($s__anchor-text-color, 10%) !default;
 
-
 //$s__anchor-border-bottom-width: 2px !default;
 //$s__anchor-line-width:      0.2rem !default; /* [1] */
 //$s__anchor-line-width:       0.15em !default; /* [1] */
@@ -171,6 +170,8 @@ $s__anchor-image-padding-bottom:      $s__anchor-image-line-width;
 $s__anchor-image-padding-bottom--alt: 0;
 
 $s__anchor-add-external-link-indicator: true !default;
+$s__anchor-external-link-indicator-padding: 1em !default;
+
 
 //$s__anchor-focus-shadow: true !default;
 //$s__anchor-focus-shadow-width: 0.3rem !default;

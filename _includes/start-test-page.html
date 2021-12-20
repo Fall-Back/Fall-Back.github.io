@@ -459,7 +459,7 @@ lines.</textarea>
     <li>Norway</li>
 </ol>
 
-<p id="tmp-lists">Same list with various type attributes (the floated image tests the fix for <a href="https://paulbakaus.com/tutorials/css/block-formatting-contexts-and-lists">list number/bullet position problem</a>).</p>
+<p id="tmp-lists">Same list with various type attributes (the floated image tests the fix for <a href="https://paulbakaus.com/tutorials/css/block-formatting-contexts-and-lists" rel="external">list number/bullet position problem</a>).</p>
 
 <p class="float-img-test">
     <img src="/dev/media/poster.jpg" alt="" width="300">
@@ -596,7 +596,7 @@ lines.</textarea>
 </p>
 
 <p>Images that are links need extra styles and testing:<br>
-    <a href="#"><img src="https://lab.gridlight-design.co.uk/fallback/img/fallback-logo.svg" height="144" width="266.226" style="width: auto; max-height: 144px;"></a>
+    <a href="#"><img src="https://lab.gridlight-design.co.uk/fallback/img/fallback-logo.svg" height="144" width="266.226" style="width: auto; max-height: 144px;" rel="external"></a>
 
 </p>
 
@@ -667,8 +667,8 @@ lines.</textarea>
 
 <h2>Text-level Combinations</h2>
 <p>
-    Sometimes links have other elements nested within them. For example a link to <a href="https://www.w3.org/TR/css-fonts-3/#font-family-prop">the <code>font-family</code> spec</a> containes a nested <code>&lt;code&gt;</code> element.
-    There's also the case where the <code>&lt;code&gt;</code> elements is the <em>only</em> child of a link, like this: <a href="https://www.w3.org/TR/css-fonts-3/#propdef-font-style"><code>font-style</code></a>.
+    Sometimes links have other elements nested within them. For example a link to <a href="https://www.w3.org/TR/css-fonts-3/#font-family-prop" rel="external">the <code>font-family</code> spec</a> containes a nested <code>&lt;code&gt;</code> element.
+    There's also the case where the <code>&lt;code&gt;</code> elements is the <em>only</em> child of a link, like this: <a href="https://www.w3.org/TR/css-fonts-3/#propdef-font-style" rel="external"><code>font-style</code></a>.
     If any element that can be nested within another is too-heavily styled, complicatatons can occur.
 </p>
 <p>
@@ -764,6 +764,14 @@ explanation.
 <p>Press this <button>button</button> then tab twice to see this effect. <a href="#test-link">normal link for comparison</a>.</p>
 <p>
     <a href="#">
+        <img src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 360px;">
+    </a>
+</p>
+<p>
+External linked image:
+</p>
+<p>
+    <a href="https://en.wikipedia.org/wiki/Big_Buck_Bunny" rel="external">
         <img src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 360px;">
     </a>
 </p>
