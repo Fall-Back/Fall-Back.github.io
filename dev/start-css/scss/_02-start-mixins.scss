@@ -129,7 +129,9 @@
     border-radius: $s__button-border-radius;
 
     color: $color;
-    background-color: $bg-color;
+    @if $bg-color != false {
+        background-color: $bg-color;
+    }
 
 
     font-weight: inherit;
