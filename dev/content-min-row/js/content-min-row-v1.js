@@ -44,7 +44,7 @@
 
         switcher: function(cmr) {
 
-            // Check for browser font chnage and reset breakpoints if it has:
+            // Check for browser font change and reset breakpoints if it has:
             if ($cmr.root_font_size != window.getComputedStyle(document.documentElement).getPropertyValue('font-size')) {
                 $cmr.set_breakpoints($cmr.cmrs);
             }
@@ -80,20 +80,35 @@
                 clone.classList.add(js_classname_prefix + '-' + ident + '--' + container_js_classname_wide_suffix);
 
                 set_style(clone, {
-                    position: 'absolute',
                     border: '0',
                     left: '0',
                     top: '0',
+                    width: '1000%',
+                    flexWrap: 'nowrap',
+                    justifyContent: 'flex-start'
                 });
                 cmr.parentNode.appendChild(clone);
-
+                var gap    = parseInt(getComputedStyle(cmr).gap);
+                var pLeft  = parseInt(getComputedStyle(cmr).paddingLeft);
+                var pRight = parseInt(getComputedStyle(cmr).paddingRight);
+                console.log(gap, pLeft, pRight);
                 var children   = clone.children;
+                var n_children = children.length;
                 var breakpoint = 0;
+                if (pLeft) {
+                    breakpoint += pLeft;
+                }
+                if (pRight) {
+                    breakpoint += pRight;
+                }
+                if (gap && n_children > 1) {
+                    breakpoint += (n_children - 1) * gap;
+                }
                 Array.prototype.forEach.call(children, function (child, i) {
                     // If this child is intended to be flexible, we need to add it's min-width,
                     // rather than actual width:
                     if (child.getAttribute('data-min-width')) {
-                        breakpoint += Math.ceil(child.getAttribute('data-min-width'));
+                        breakpoint += Math.round(child.getAttribute('data-min-width'));
                     } else {
                         breakpoint += Math.ceil(child.offsetWidth);
                     }
@@ -148,7 +163,7 @@
                     zIndex: '-1'
                 };
 
-                // Note visibility: hidden prevents the resize event from occuring in FF.
+                // Note visibility: hidden prevents the resize event from occurring in FF.
 
                 Array.prototype.forEach.call($cmr.cmrs, function (cmr, i) {
                     var detector = document.createElement('iframe');
@@ -167,5 +182,5 @@
         }
     }
 
-    ready($cmr.init);
+    window.setTimeout(function(){ready($cmr.init)}, 50);
 })();
