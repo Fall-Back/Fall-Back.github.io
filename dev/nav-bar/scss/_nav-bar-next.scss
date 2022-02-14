@@ -28,16 +28,23 @@ $s__nav-bar--background-color:             $s__nav-bar--base-ui-color !default;
 $s__nav-bar__link--color:                  #fff !default;
 $s__nav-bar__link--color--alt:             $s__nav-bar__link--color !default;
 $s__nav-bar__link--background-color:       $s__nav-bar--background-color !default;
-$s__nav-bar__link--background-color--alt:  darken($s__nav-bar--background-color, 14%) !default;
-//$s__nav-bar__link--background-color--alt2: darken($s__nav-bar--background-color, 7%) !default;
+$s__nav-bar__link--background-color--alt: false !default;
+//$s__nav-bar__link--background-color--alt2: false !default;
+@if $s__nav-bar--background-color != false {
+    $s__nav-bar__link--background-color--alt:  darken($s__nav-bar--background-color, 14%) !default;
+    //$s__nav-bar__link--background-color--alt2: darken($s__nav-bar--background-color, 7%) !default;
+}
+
 
 $s__nav-bar__link--border-color:           rgba(255,255,255,0.2) !default;
 $s__nav-bar__link--border-style:           solid !default;
 $s__nav-bar__link--border-width:           1px !default;
 $s__nav-bar__link--border-radius:          0 !default;
 
-
-$s__sub-nav--background-color:             darken($s__nav-bar--base-ui-color, 20%) !default;
+$s__sub-nav--background-color: false !default;
+@if $s__nav-bar--base-ui-color != false {
+    $s__sub-nav--background-color: darken($s__nav-bar--base-ui-color, 20%) !default;
+}
 
 $s__sub-nav__link--border-color:           rgba(255,255,255,0.3) !default;
 $s__sub-nav__link--border-style:           dashed !default;
@@ -47,8 +54,10 @@ $s__sub-nav__link--border-width:           1px !default;
 $s__sub-nav__link--color:                  $s__nav-bar__link--color !default;
 $s__sub-nav__link--color--alt:             $s__sub-nav__link--color !default;
 $s__sub-nav__link--background-color:       $s__sub-nav--background-color !default;
-$s__sub-nav__link--background-color--alt:  lighten($s__sub-nav__link--background-color, 10%) !default;
-
+$s__sub-nav__link--background-color--alt: false !default;
+@if $s__sub-nav__link--background-color != false {
+    $s__sub-nav__link--background-color--alt: lighten($s__sub-nav__link--background-color, 10%) !default;
+}
 
 // Not sure I need this:
 //$s__nav-bar__title--background-color:      $s__nav-bar--background-color !default;
@@ -117,7 +126,9 @@ $s__nav-bar-divider-first-item:            false !default;
         if subsequent blocks also are nav-bars or similar.
     */
     &#{&} {
-        background-color: $s__nav-bar--background-color;
+        @if $s__nav-bar--background-color != false {
+            background-color: $s__nav-bar--background-color;
+        }
         //position: relative;
         //-index: $s__nav-bar-z-index; /* [1] */
 		width: 100%;
@@ -161,7 +172,9 @@ $s__nav-bar-divider-first-item:            false !default;
 
     .sub-nav__items {
         margin-left: $s__nav-bar--spacing * 4;
-        background-color: $s__sub-nav--background-color;
+        @if $s__sub-nav--background-color != false {
+            background-color: $s__sub-nav--background-color;
+        }
     }
 
 
@@ -224,7 +237,9 @@ $s__nav-bar-divider-first-item:            false !default;
 
     .nav-bar__link  {
         color: $s__nav-bar__link--color;
-        background-color: $s__nav-bar__link--background-color;
+        @if $s__nav-bar__link--background-color != false {
+            background-color: $s__nav-bar__link--background-color;
+        }
     }
 
     .nav-bar__link--centered {
@@ -237,7 +252,9 @@ $s__nav-bar-divider-first-item:            false !default;
 
     .sub-nav__link {
         color: $s__sub-nav__link--color;
-        background-color: $s__sub-nav__link--background-color;
+        @if $s__sub-nav__link--background-color != false {
+            background-color: $s__sub-nav__link--background-color;
+        }
     }
 
 
@@ -248,10 +265,12 @@ $s__nav-bar-divider-first-item:            false !default;
     */
 
     .nav-bar__link:hover,
-    .nav-bar__link:active,
-    .nav-bar__link [aria-wide="true"] {
+    .nav-bar__link:active {
+    // ??? WTF .nav-bar__link [aria-wide="true"] {
         color: $s__nav-bar__link--color--alt;
-        background-color: $s__nav-bar__link--background-color--alt;
+        @if $s__nav-bar__link--background-color--alt != false {
+            background-color: $s__nav-bar__link--background-color--alt;
+        }
         border: 0;
         text-decoration: none;
     }
@@ -267,7 +286,9 @@ $s__nav-bar-divider-first-item:            false !default;
     //.sub-nav__link:focus,
     .sub-nav__link:active {
         color: $s__sub-nav__link--color--alt;
-        background-color: $s__sub-nav__link--background-color--alt;
+        @if $s__sub-nav__link--background-color--alt != false {
+            background-color: $s__sub-nav__link--background-color--alt;
+        }
         border: 0;
         text-decoration: none;
         //box-shadow: none;
@@ -275,7 +296,7 @@ $s__nav-bar-divider-first-item:            false !default;
 
     .nav-bar__link:focus,
     .sub-nav__link:focus {
-        z-index: 1;
+        z-index: 2;
     }
 
 
@@ -428,7 +449,9 @@ $s__nav-bar-divider-first-item:            false !default;
 			top: 0;
 			bottom: 0;
 			z-index: -1;
-			background-color: $s__nav-bar--background-color;
+			@if $s__nav-bar--background-color != false {
+                background-color: $s__nav-bar--background-color;
+            }
 		}
 
 

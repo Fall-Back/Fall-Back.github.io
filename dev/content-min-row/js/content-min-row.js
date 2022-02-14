@@ -17,6 +17,7 @@
     var debug                                = true;
     //var debug                                = false;
     var ident                                = 'cmr';
+    var css_check_selector                   = "#css_has_loaded";
     var selector                             = '[data-js="' + ident + '"]';
     var js_classname_prefix                  = 'js';
     var container_js_classname_wide_suffix   = 'wide';
@@ -30,9 +31,62 @@
         }
     }
     
+    var check_for_css = function(selector) {
+
+        if (debug) {
+            console.log('Checking for CSS: ' + selector);
+        }
+
+        var rules;
+        var haveRule = false;
+        if (typeof document.styleSheets != "undefined") { // is this supported
+            var cssSheets = document.styleSheets;
+            
+
+            // IE doesn't have document.location.origin, so fix that:
+            if (!document.location.origin) {
+                document.location.origin = document.location.protocol + "//" + document.location.hostname + (document.location.port ? ':' + document.location.port: '');
+            }
+            var domain_regex  = RegExp('^' + document.location.origin);
+
+            outerloop:
+            for (var i = 0; i < cssSheets.length; i++) {
+                var sheet = cssSheets[i];
+
+                // Some browsers don't allow checking of rules if not on the same domain (CORS), so
+                // checking for that here:
+                if (sheet.href !== null && domain_regex.exec(sheet.href) === null) {
+                    continue;
+                }
+
+                // Check for IE or standards:
+                rules = (typeof sheet.cssRules != "undefined") ? sheet.cssRules : sheet.rules;
+                
+                for (var j = 0; j < rules.length; j++) {
+                    if (rules[j].selectorText == selector) {
+                        haveRule = true;
+                        break outerloop;
+                    }
+                }
+            }
+        }
+        
+        if (debug) {
+            console.log(selector + ' ' + (haveRule ? '' : 'not') + ' found');
+        }
+
+        return haveRule;
+    }
+
     var set_style = function(element, style) {
         Object.keys(style).forEach(function(key) {
-            element.style[key] = style[key];
+            var val = style[key];
+            if (val.indexOf(' !important' ) !== -1) {
+                val = val.replace(' !important', '');
+                element.style.setProperty(key, val, 'important');
+            } else {
+                element.style.setProperty(key, val);
+            }
         });
     }
 
@@ -76,51 +130,72 @@
         set_breakpoints: function(cmrs) {
 
             Array.prototype.forEach.call(cmrs, function (cmr, i) {
+                //set_style(cmr, {'position': 'relative'});
                 var clone = cmr.cloneNode(true);
                 clone.classList.add(js_classname_prefix + '-' + ident + '--' + container_js_classname_wide_suffix);
 
                 set_style(clone, {
-                    border: '0',
-                    left: '0',
-                    top: '0',
-                    width: '1000%',
-                    flexWrap: 'nowrap',
-                    justifyContent: 'flex-start'
+                    'border': '0',
+                    'left': '0',
+                    'top': '0',
+                    'width': 'max-content',
+                    'flex-wrap': 'nowrap',
+                    'justify-content': 'flex-start',
+                    'max-width': 'none'
                 });
+
                 cmr.parentNode.appendChild(clone);
-                var gap    = parseInt(getComputedStyle(cmr).gap);
-                var pLeft  = parseInt(getComputedStyle(cmr).paddingLeft);
-                var pRight = parseInt(getComputedStyle(cmr).paddingRight);
-                console.log(gap, pLeft, pRight);
+
                 var children   = clone.children;
                 var n_children = children.length;
                 var breakpoint = 0;
-                if (pLeft) {
-                    breakpoint += pLeft;
-                }
-                if (pRight) {
-                    breakpoint += pRight;
-                }
-                if (gap && n_children > 1) {
-                    breakpoint += (n_children - 1) * gap;
-                }
+
+                // Set widths for flexible children:
                 Array.prototype.forEach.call(children, function (child, i) {
-                    // If this child is intended to be flexible, we need to add it's min-width,
-                    // rather than actual width:
+                    //console.log(child);
                     if (child.getAttribute('data-min-width')) {
-                        breakpoint += Math.round(child.getAttribute('data-min-width'));
-                    } else {
-                        breakpoint += Math.ceil(child.offsetWidth);
+                        var w = parseInt(child.getAttribute('data-min-width'));
+                        //console.log('w', w);
+                        //console.log(getComputedStyle(child));
+
+                        var pLeft  = parseInt(getComputedStyle(child).paddingLeft);
+                        var pRight = parseInt(getComputedStyle(child).paddingRight);
+                        //console.log(w, pLeft, pRight);
+                        set_style(child, {
+                            'width': (w + pLeft + pRight) + 'px !important',
+                            'max-width': (w + pLeft + pRight) + 'px !important',
+                            'min-width': (w + pLeft + pRight) + 'px !important'
+                        })
                     }
                 });
 
-                cmr.setAttribute('data-js-breakpoint', breakpoint);
-
+                // Handle IE separately:
+                if (!!window.MSInputMethodContext && !!document.documentMode) {
+                    var pLeft  = parseInt(getComputedStyle(clone).paddingLeft);
+                    var pRight = parseInt(getComputedStyle(clone).paddingRight);
+                    breakpoint += pLeft + pRight;
+                    Array.prototype.forEach.call(children, function (child, i) {
+                        breakpoint += Math.ceil(child.offsetWidth);
+                    });
+                    cmr.setAttribute('data-js-breakpoint', breakpoint);
+                } else {
+                    cmr.setAttribute('data-js-breakpoint', clone.offsetWidth);
+                }
                 clone.remove();
             });
         },
 
         init: function() {
+
+            var css_is_loaded = check_for_css(css_check_selector);
+
+            if (debug) {
+                console.log('css_is_loaded:', css_is_loaded);
+            }
+
+            if (!css_is_loaded) {
+                return false;
+            }
 
             if (debug) {
                 console.log('Initialising ' + ident);
@@ -152,25 +227,44 @@
                 }
 
                 var style = {
-                    position: 'absolute',
-                    display: 'block',
-                    border: '0',
-                    left: '0',
-                    top: '0',
-                    width: '100%',
-                    height: '100%',
-                    pointerEvents: 'none',
-                    zIndex: '-1'
+                    'position': 'absolute',
+                    'display': 'block',
+                    'border': '0',
+                    'left': '0',
+                    'top': '0',
+                    'width': '100%',
+                    'height': '100%',
+                    'pointerEvents': 'none',
+                    'z-index': '-1'
                 };
 
                 // Note visibility: hidden prevents the resize event from occurring in FF.
+                // Also note that putting the detector iframe in a flex container causes problems
+                // for IE11 (it continues to take up space) - so we need to look for a safe non-flex
+                // container for it to use, so specify this in the markup as n parent levels above
+                // the CMR element.
 
                 Array.prototype.forEach.call($cmr.cmrs, function (cmr, i) {
                     var detector = document.createElement('iframe');
                     set_style(detector, style);
                     detector.setAttribute('aria-hidden', 'true');
-
-                    cmr.appendChild(detector);
+                    
+                    var n = cmr.getAttribute('data-ie-safe-parent-level');
+                    var safe_parent = cmr;
+                    if (n) {
+                        while (n-- > 0) {
+                            safe_parent = safe_parent.parentNode;
+                            if (!safe_parent) {
+                                // to avoid a possible "TypeError: Cannot read property 'parentNode' of null" if the requested level is higher than document
+                                break; 
+                            }
+                        }
+                        set_style(safe_parent, {'position': 'relative'});
+                        safe_parent.appendChild(detector);
+                    } else {
+                        set_style(cmr, {'position': 'relative'});
+                        cmr.appendChild(detector);
+                    }
 
                     detector.contentWindow.addEventListener('resize', function() {
                         $cmr.switcher(cmr);
