@@ -105,22 +105,22 @@
            to work, the parent background-color is there to allow things to be NOT BROKEN on
            browsers that don't support HTML semantic elements.
 
-        2. Prevent any overflow and possible contain floats.
+        2. This hides focus shadow so leaving out for now.
+           --Prevent any overflow and possible contain floats.--
     */
 .dropdown .dropdown__area {
   background-color: #247BA0;
   /* 1 */
   color: #fff;
-  overflow: hidden;
-  /* 2 */
   padding: 0;
 }
 
 /* -------------------------------------------------------------------------------------------*/
 /* -- .dropdown__control ----------------------------------------------------------------------*/
 /*
-		1. These override control styles defined as part of StartCSS. I may consider making these
-		   customisable via more variables.
+		1. This removes StartCSS outline focus, so leave it out.
+           --These override control styles defined as part of StartCSS. I may consider making these
+		   customisable via more variables.--
 	*/
 .dropdown .dropdown__control {
   display: block;
@@ -136,14 +136,16 @@
   line-height: 2.25em;
   text-decoration: none;
   outline: 0;
-  box-shadow: none;
-  /* 1 */
 }
 
-.dropdown .dropdown__control:hover,
-.dropdown .dropdown__control:active,
+/*.dropdown .dropdown__control:hover,
+    .dropdown .dropdown__control:active,
+    .dropdown .dropdown__control:focus {
+        border: 0;
+    }*/
 .dropdown .dropdown__control:focus {
-  border: 0;
+  position: relative;
+  z-index: 2;
 }
 
 .dropdown__control--centered {
@@ -172,12 +174,10 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 .dropdown .dropdown__control:active,
 .dropdown .dropdown__control[aria-expanded="true"] {
   color: #fff;
-  background-color: #174e66;
 }
 
 .dropdown .dropdown__control:focus {
   color: #fff;
-  background-color: #1d6583;
 }
 
 .dropdown .dropdown__control {
@@ -189,6 +189,7 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
     */
 .dropdown .dropdown__area {
   margin: 0;
+  z-index: 1;
 }
 
 /* -------------------------------------------------------------------------------------------*/

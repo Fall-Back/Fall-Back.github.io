@@ -103,12 +103,11 @@
   display: none !important;
 }
 
-.over-panel__contents {
-  background-color: #247BA0;
-  color: #fff;
-  padding: 0;
-}
-
+/*.over-panel__contents {
+        background-color: $s__over-panel__contents--background-color;
+        color: $s__over-panel__contents--text-color;
+        padding: $s__over-panel__contents--padding;
+    }*/
 /*
         iOS/OSX seem to apply mystery margins.
     */
@@ -121,16 +120,17 @@
   flex: 0 1 auto;
 }
 
-.over-panel__contents a {
-  color: #dbdbdb;
-}
+/*
+    .over-panel__contents a {
+        color: $s__over-panel__contents--link-color;
+    }
 
-.over-panel__contents a:hover,
-.over-panel__contents a:active,
-.over-panel__contents a:focus {
-  color: #ededed;
-}
-
+    .over-panel__contents a:hover,
+    .over-panel__contents a:active,
+    .over-panel__contents a:focus {
+        color: $s__over-panel__contents--link-color--alt;
+    }
+    */
 /* -----------------------------------------------------------------------------------------------*/
 /* ********************************************************************************************** */
 /* -- Enhanced layout --------------------------------------------------------------------------- */
@@ -181,6 +181,11 @@
                    customisable via more variables.
                 2. Ensure the control is above the overlay.
             */
+  /*.over-panel-control:hover,
+            .over-panel-control:active,
+            .over-panel-control:focus {
+                border: 0;
+            }*/
   /*
                 1. Ensure the control is above the overlay.
             */
@@ -258,12 +263,6 @@
   z-index: 0;
 }
 
-.js-has--over-panel .js-cmr--narrow .over-panel-control:hover,
-.js-has--over-panel .js-cmr--narrow .over-panel-control:active,
-.js-has--over-panel .js-cmr--narrow .over-panel-control:focus {
-  border: 0;
-}
-
 .js-has--over-panel .js-cmr--narrow .over-panel-control[aria-expanded="true"] {
   z-index: 99999;
   /* [1] */
@@ -273,12 +272,10 @@
 .js-has--over-panel .js-cmr--narrow .over-panel-control:active,
 .js-has--over-panel .js-cmr--narrow .over-panel-control[aria-expanded="true"] {
   color: #fff;
-  background-color: #174e66;
 }
 
 .js-has--over-panel .js-cmr--narrow .over-panel-control:focus {
   color: #fff;
-  background-color: #1d6583;
 }
 
 .js-has--over-panel .js-cmr--narrow .over-panel-control .icon--is-open,
@@ -305,7 +302,7 @@
   border: 0;
   text-decoration: none;
   visibility: hidden;
-  background: #000;
+  background-color: #000;
   opacity: 0;
   transition: opacity 0.5s ease;
 }
@@ -326,7 +323,7 @@
 .js-has--over-panel .js-cmr--narrow .over-panel__overlay:focus {
   border: 0;
   text-decoration: none;
-  background: #000;
+  background-color: #000;
 }
 
 /* ---------------------------------------------------------------------------------------------- */

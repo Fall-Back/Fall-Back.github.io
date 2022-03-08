@@ -155,7 +155,6 @@
 
 .nav-bar .sub-nav__items {
   margin-left: 1.125em;
-  background-color: #113b4d;
 }
 
 .nav-bar .nav-bar__item,
@@ -213,14 +212,11 @@
 
 .nav-bar .sub-nav__link {
   color: #fff;
-  background-color: #113b4d;
 }
 
 .nav-bar .nav-bar__link:hover,
-.nav-bar .nav-bar__link:active,
-.nav-bar .nav-bar__link [aria-wide="true"] {
+.nav-bar .nav-bar__link:active {
   color: #fff;
-  background-color: #174e66;
   border: 0;
   text-decoration: none;
 }
@@ -228,14 +224,13 @@
 .nav-bar .sub-nav__link:hover,
 .nav-bar .sub-nav__link:active {
   color: #fff;
-  background-color: #1b5b76;
   border: 0;
   text-decoration: none;
 }
 
 .nav-bar .nav-bar__link:focus,
 .nav-bar .sub-nav__link:focus {
-  z-index: 1;
+  z-index: 2;
 }
 
 .nav-bar .sub-nav__control {
