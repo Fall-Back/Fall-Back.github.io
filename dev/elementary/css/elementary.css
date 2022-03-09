@@ -964,17 +964,6 @@ figure {
   margin-bottom: 2.4rem;
   margin-left: 2.4rem;
   margin-right: 2.4rem;
-}
-
-figure:first-child {
-  margin-top: 0;
-}
-
-figure:last-child {
-  margin-bottom: 0;
-}
-
-figure div {
   max-width: 100%;
   overflow: auto;
   background-image: linear-gradient(-90deg, rgba(255, 255, 255, 0) 0%, white 60%, white 100%), linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, white 60%, white 100%), linear-gradient(to right, rgba(0, 0, 20, 0.5), rgba(255, 255, 255, 0)), linear-gradient(to left, rgba(0, 0, 20, 0.5), rgba(255, 255, 255, 0));
@@ -983,6 +972,14 @@ figure div {
   background-color: white;
   background-size: 2em 100%, 2em 100%, 1em 100%, 1em 100%;
   background-attachment: local, local, scroll, scroll;
+}
+
+figure:first-child {
+  margin-top: 0;
+}
+
+figure:last-child {
+  margin-bottom: 0;
 }
 
 /*-------------------------------------------------------------------------------------------------|
