@@ -31,6 +31,26 @@
         }
     }
     
+    var debounce = function(func, wait, immediate) {
+        var timeout;
+        return function() {
+            var context = this;
+            var args = arguments;
+            var later = function() {
+                timeout = null;
+                if (!immediate) {
+                    func.apply(context, args);
+                }
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) {
+                func.apply(context, args);
+            }
+        };
+    }
+    
     var check_for_css = function(selector) {
 
         if (debug) {
@@ -105,7 +125,7 @@
 
             // Note using getAttribute('data-') instead of dataset so it doesn't fail on older
             // browsers and leave behind the clone.
-            // May rethink this as I don't NEED to support older browsers witht this - I just don't
+            // May rethink this as I don't NEED to support older browsers with this - I just don't
             // want it broken. Maybe I should quit out of this if dataset isn't supported, but it's
             // ok for now.
             var wide = cmr.offsetWidth > cmr.getAttribute('data-js-breakpoint');
@@ -267,7 +287,11 @@
                     }
 
                     detector.contentWindow.addEventListener('resize', function() {
-                        $cmr.switcher(cmr);
+                        if (debug) {
+                            console.log('Reszing');
+                        }
+                        debounce($cmr.switcher(cmr), 250);
+                        //$cmr.switcher(cmr);
                     });
                     $cmr.switcher(cmr);
                 });
