@@ -22,6 +22,7 @@
     var js_classname_prefix                  = 'js';
     var container_js_classname_wide_suffix   = 'wide';
     var container_js_classname_narrow_suffix = 'narrow';
+    var detector_n                           = 0;
 
     var ready = function(fn) {
         if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
@@ -30,7 +31,7 @@
             document.addEventListener('DOMContentLoaded', fn);
         }
     }
-    
+
     var debounce = function(func, wait, immediate) {
         var timeout;
         return function() {
@@ -50,7 +51,7 @@
             }
         };
     }
-    
+
     var check_for_css = function(selector) {
 
         if (debug) {
@@ -61,7 +62,7 @@
         var haveRule = false;
         if (typeof document.styleSheets != "undefined") { // is this supported
             var cssSheets = document.styleSheets;
-            
+
 
             // IE doesn't have document.location.origin, so fix that:
             if (!document.location.origin) {
@@ -81,7 +82,7 @@
 
                 // Check for IE or standards:
                 rules = (typeof sheet.cssRules != "undefined") ? sheet.cssRules : sheet.rules;
-                
+
                 for (var j = 0; j < rules.length; j++) {
                     if (rules[j].selectorText == selector) {
                         haveRule = true;
@@ -90,7 +91,7 @@
                 }
             }
         }
-        
+
         if (debug) {
             console.log(selector + ' ' + (haveRule ? '' : 'not') + ' found');
         }
@@ -119,10 +120,28 @@
         switcher: function(cmr) {
 
             // Check for browser font change and reset breakpoints if it has:
-            if ($cmr.root_font_size != window.getComputedStyle(document.documentElement).getPropertyValue('font-size')) {
-                $cmr.set_breakpoints($cmr.cmrs);
+            // (Note IE11 does some REALLY strange things with the font size - there's a slight
+            // difference in the output depending on whether the page is refreshed or reloaded!
+            var cached_font_size   = Math.ceil(parseFloat($cmr.root_font_size));
+            var document_font_size = Math.ceil(parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue('font-size')));
+
+            if (debug) {
+                console.log($cmr.root_font_size, window.getComputedStyle(document.documentElement).getPropertyValue('font-size'));
+                console.log(cached_font_size, document_font_size);
             }
 
+            if (cached_font_size != document_font_size) {
+                $cmr.root_font_size = document_font_size;
+                $cmr.set_breakpoints($cmr.cmrs);
+                window.setTimeout(function(){
+                    $cmr.do_switch(cmr);
+                }, 250);
+            } else {
+                $cmr.do_switch(cmr);
+            }
+        },
+
+        do_switch: function(cmr) {
             // Note using getAttribute('data-') instead of dataset so it doesn't fail on older
             // browsers and leave behind the clone.
             // May rethink this as I don't NEED to support older browsers with this - I just don't
@@ -175,9 +194,6 @@
                     //console.log(child);
                     if (child.getAttribute('data-min-width')) {
                         var w = parseInt(child.getAttribute('data-min-width'));
-                        //console.log('w', w);
-                        //console.log(getComputedStyle(child));
-
                         var pLeft  = parseInt(getComputedStyle(child).paddingLeft);
                         var pRight = parseInt(getComputedStyle(child).paddingRight);
                         //console.log(w, pLeft, pRight);
@@ -197,11 +213,18 @@
                     Array.prototype.forEach.call(children, function (child, i) {
                         breakpoint += Math.ceil(child.offsetWidth);
                     });
+                    if (debug) {
+                        console.log('breakpoint: ', breakpoint);
+                    }
                     cmr.setAttribute('data-js-breakpoint', breakpoint);
+                    clone.remove();
                 } else {
+                    if (debug) {
+                        console.log('breakpoint: ', clone.offsetWidth);
+                    }
                     cmr.setAttribute('data-js-breakpoint', clone.offsetWidth);
+                    clone.remove();
                 }
-                clone.remove();
             });
         },
 
@@ -250,8 +273,6 @@
                     'position': 'absolute',
                     'display': 'block',
                     'border': '0',
-                    'left': '0',
-                    'top': '0',
                     'width': '100%',
                     'height': '100%',
                     'pointerEvents': 'none',
@@ -265,10 +286,14 @@
                 // the CMR element.
 
                 Array.prototype.forEach.call($cmr.cmrs, function (cmr, i) {
+
                     var detector = document.createElement('iframe');
+                    detector.id = 'detector-' + (++detector_n);
+                    cmr.detector_id = detector.id;
+
                     set_style(detector, style);
                     detector.setAttribute('aria-hidden', 'true');
-                    
+
                     var n = cmr.getAttribute('data-ie-safe-parent-level');
                     var safe_parent = cmr;
                     if (n) {
@@ -276,7 +301,7 @@
                             safe_parent = safe_parent.parentNode;
                             if (!safe_parent) {
                                 // to avoid a possible "TypeError: Cannot read property 'parentNode' of null" if the requested level is higher than document
-                                break; 
+                                break;
                             }
                         }
                         set_style(safe_parent, {'position': 'relative'});
@@ -288,12 +313,12 @@
 
                     detector.contentWindow.addEventListener('resize', function() {
                         if (debug) {
-                            console.log('Reszing');
+                            console.log('Reszing ' + detector.id + ' (1)');
                         }
-                        debounce($cmr.switcher(cmr), 250);
-                        //$cmr.switcher(cmr);
+                        $cmr.switcher(cmr);
                     });
                     $cmr.switcher(cmr);
+
                 });
             }
             return;
