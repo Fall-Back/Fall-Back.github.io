@@ -12,6 +12,10 @@
     look like.
 */
 
+#css_has_loaded {
+    visibility: hidden;
+}
+
 body {
     background: rgba(255,255,255,0.4);
 }

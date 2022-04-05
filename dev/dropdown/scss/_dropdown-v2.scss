@@ -25,11 +25,15 @@ $s__dropdown--base-text-color:                 $s__base-text-color !default;
 $s__dropdown--background-color:                $s__dropdown--base-ui-color !default;
 $s__dropdown--text-color:                      #fff !default;
 
-$s__dropdown__control--color:                  #fff !default;
+$s__dropdown__control--color:                  $s__dropdown--text-color !default;
 $s__dropdown__control--color--alt:             $s__dropdown__control--color !default;
 $s__dropdown__control--background-color:       $s__dropdown--background-color !default;
-$s__dropdown__control--background-color--alt:  darken($s__dropdown--background-color, 14%) !default;
-$s__dropdown__control--background-color--alt2: darken($s__dropdown--background-color, 7%) !default;
+$s__dropdown__control--background-color--alt:  false !default;
+$s__dropdown__control--background-color--alt2: false !default;
+@if $s__dropdown--background-color != false {
+    $s__dropdown__control--background-color--alt:  darken($s__dropdown--background-color, 14%) !default;
+    $s__dropdown__control--background-color--alt2: darken($s__dropdown--background-color, 7%) !default;
+}
 
 $s__dropdown__control--border-color:           rgba(255,255,255,0.2) !default;
 $s__dropdown__control--border-style:           solid !default;
@@ -101,12 +105,15 @@ $s__dropdown-z-index:                          9999 !default;
            to work, the parent background-color is there to allow things to be NOT BROKEN on
            browsers that don't support HTML semantic elements.
 
-        2. Prevent any overflow and possible contain floats.
+        2. This hides focus shadow so leaving out for now.
+           --Prevent any overflow and possible contain floats.--
     */
     .dropdown .dropdown__area {
-        background-color: $s__dropdown--background-color; /* 1 */
+        @if $s__dropdown--background-color != false {
+            background-color: $s__dropdown--background-color;/* 1 */
+        }
         color: $s__dropdown--text-color;
-        overflow: hidden; /* 2 */
+        //overflow: hidden; /* 2 */
         padding: $s__dropdown--padding;
     }
 
@@ -117,8 +124,9 @@ $s__dropdown-z-index:                          9999 !default;
 
     /* -- .dropdown__control ----------------------------------------------------------------------*/
 	/*
-		1. These override control styles defined as part of StartCSS. I may consider making these
-		   customisable via more variables.
+		1. This removes StartCSS outline focus, so leave it out.
+           --These override control styles defined as part of StartCSS. I may consider making these
+		   customisable via more variables.--
 	*/
     .dropdown .dropdown__control {
         display: block;
@@ -137,18 +145,23 @@ $s__dropdown-z-index:                          9999 !default;
         text-decoration: none;
         outline: 0;
 
-		box-shadow: none; /* 1 */
+		//box-shadow: none; /* 1 */
     }
 
-    // This is to turn off Start-CSS's hover border:
-    .dropdown .dropdown__control:hover,
+    // This is to turn off StartCSS's hover border:
+    /*.dropdown .dropdown__control:hover,
     .dropdown .dropdown__control:active,
     .dropdown .dropdown__control:focus {
         border: 0;
+    }*/
+    
+    .dropdown .dropdown__control:focus {
+        position: relative;
+        z-index: 2;
     }
 
     .dropdown__control--centered {
-            text-align: center;
+        text-align: center;
     }
 
 
@@ -166,7 +179,9 @@ $s__dropdown-z-index:                          9999 !default;
 
     .dropdown .dropdown__control {
         color: $s__dropdown__control--color;
-        background-color: $s__dropdown__control--background-color;
+        @if $s__dropdown__control--background-color != false {
+            background-color: $s__dropdown__control--background-color;
+        }
     }
 
     /*
@@ -179,12 +194,16 @@ $s__dropdown-z-index:                          9999 !default;
     .dropdown .dropdown__control:active,
     .dropdown .dropdown__control[aria-expanded="true"] {
         color: $s__dropdown__control--color--alt;
-        background-color: $s__dropdown__control--background-color--alt;
+        @if $s__dropdown__control--background-color--alt != false {
+            background-color: $s__dropdown__control--background-color--alt;
+        }
     }
 
     .dropdown .dropdown__control:focus {
         color: $s__dropdown__control--color--alt;
-        background-color: $s__dropdown__control--background-color--alt2;
+        @if $s__dropdown__control--background-color--alt2 != false {
+            background-color: $s__dropdown__control--background-color--alt2;
+        }
     }
 
 
@@ -197,7 +216,7 @@ $s__dropdown-z-index:                          9999 !default;
     */
     .dropdown .dropdown__area {
         margin: 0;
-        z-index: $s__dropdown-z-index;
+        z-index: 1;
     }
 
     /* -------------------------------------------------------------------------------------------*/

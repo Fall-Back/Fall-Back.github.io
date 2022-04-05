@@ -60,10 +60,10 @@
     ASIDE
 */
 /*! --------------------------------------------------------------------------------------------- *\
-
-    Fall-Back Over Panel vNEXT
+    
+    Fall-Back Over Panel v2.0.0
     https://github.com/Fall-Back/Patterns/tree/master/Over%20Panel
-    Copyright (c) 2022, Andy Kirk
+    Copyright (c) 2021, Andy Kirk
     Released under the MIT license https://git.io/vwTVl
 
     Designed for use with the EM2 [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
@@ -105,24 +105,8 @@
 
 .over-panel__contents {
   background-color: #247BA0;
-}
-
-.over-panel__contents {
   color: #fff;
-}
-
-.over-panel__contents {
   padding: 0;
-}
-
-.over-panel__contents a {
-  color: inherit;
-}
-
-.over-panel__contents a:hover,
-.over-panel__contents a:active,
-.over-panel__contents a:focus {
-  color: inherit;
 }
 
 /*
@@ -135,6 +119,16 @@
 
 .over-panel__contents > * {
   flex: 0 1 auto;
+}
+
+.over-panel__contents a {
+  color: #dbdbdb;
+}
+
+.over-panel__contents a:hover,
+.over-panel__contents a:active,
+.over-panel__contents a:focus {
+  color: #ededed;
 }
 
 /* -----------------------------------------------------------------------------------------------*/
@@ -187,11 +181,6 @@
                    customisable via more variables.
                 2. Ensure the control is above the overlay.
             */
-  /*.over-panel-control:hover,
-            .over-panel-control:active,
-            .over-panel-control:focus {
-                border: 0;
-            }*/
   /*
                 1. Ensure the control is above the overlay.
             */
@@ -269,6 +258,12 @@
   z-index: 0;
 }
 
+.js-has--over-panel .js-cmr--narrow .over-panel-control:hover,
+.js-has--over-panel .js-cmr--narrow .over-panel-control:active,
+.js-has--over-panel .js-cmr--narrow .over-panel-control:focus {
+  border: 0;
+}
+
 .js-has--over-panel .js-cmr--narrow .over-panel-control[aria-expanded="true"] {
   z-index: 99999;
   /* [1] */
@@ -278,10 +273,12 @@
 .js-has--over-panel .js-cmr--narrow .over-panel-control:active,
 .js-has--over-panel .js-cmr--narrow .over-panel-control[aria-expanded="true"] {
   color: #fff;
+  background-color: #174e66;
 }
 
 .js-has--over-panel .js-cmr--narrow .over-panel-control:focus {
   color: #fff;
+  background-color: #1d6583;
 }
 
 .js-has--over-panel .js-cmr--narrow .over-panel-control .icon--is-open,
@@ -308,7 +305,7 @@
   border: 0;
   text-decoration: none;
   visibility: hidden;
-  background-color: #000;
+  background: #000;
   opacity: 0;
   transition: opacity 0.5s ease;
 }
@@ -329,28 +326,7 @@
 .js-has--over-panel .js-cmr--narrow .over-panel__overlay:focus {
   border: 0;
   text-decoration: none;
-  background-color: #000;
-}
-
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-  /*
-            In IE the width of some containers gets pushed to 100% instead of natural width, so the
-            CMR breakpoint is mis-calculated. Since the clones are disposabled, I think it should be
-            OK to force them as inline-flex so the calculations are correct:
-        */
-  .js-has--over-panel .js-cmr--clone,
-  .js-has--over-panel .js-cmr--clone .over-panel,
-  .js-has--over-panel .js-cmr--clone .over-panel__contents {
-    display: inline-block !important;
-  }
-  .js-has--over-panel .js-cmr--clone .over-panel__contents {
-    white-space: nowrap !important;
-  }
-  .js-has--over-panel .js-cmr--narrow .over-panel {
-    width: auto;
-    left: -2.4rem;
-    right: -2.4rem;
-  }
+  background: #000;
 }
 
 /* ---------------------------------------------------------------------------------------------- */

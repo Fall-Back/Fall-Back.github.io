@@ -1,6 +1,6 @@
 /*! --------------------------------------------------------------------------------------------- *\
     
-    Fall-Back Dropdown vNEXT
+    Fall-Back Dropdown v3.0.0
     https://github.com/Fall-Back/Patterns/tree/master/Dropdown
     Copyright (c) 2021, Andy Kirk
     Released under the MIT license https://git.io/vwTVl
@@ -24,7 +24,7 @@
     var dropdown_is_open_classname      = ident + '__area--is-open';
     var dropdown_is_animating_classname = ident + '__area--is-animating';
 
-	var dropdown = {
+	var $dropdown = {
 
         init: function() {
 
@@ -103,5 +103,5 @@
     }
 
 
-    $flbk.u.ready(dropdown.init);
+    $flbk.u.ready($dropdown.init);
 })();

@@ -1,6 +1,6 @@
 /*! --------------------------------------------------------------------------------------------- *\
     
-    Fall-Back Over Panel vNEXT
+    Fall-Back Over Panel v3.0.0
     https://github.com/Fall-Back/Patterns/tree/master/Over%20Panel
     Copyright (c) 2022, Andy Kirk
     Released under the MIT license https://git.io/vwTVl
@@ -30,7 +30,7 @@
     var over_panel_is_open_classname      = ident + '--is-open';
     var over_panel_is_animating_classname = ident + '--is-animating';
 
-	var over_panel = {
+	var $over_panel = {
 
         init: function() {
 
@@ -131,5 +131,5 @@
         html_el.classList.add(over_panel_js_has_classname);
     }
 
-    $flbk.u.ready(over_panel.init);
+    $flbk.u.ready($over_panel.init);
 })();

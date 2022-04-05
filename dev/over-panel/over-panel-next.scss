@@ -1,3 +1,5 @@
 @import '../start-css/scss/_03-start-tokens.scss';
 @import '../start-css/scss/_04-start-settings.scss';
+
+$s__over-panel__ie-side-correct: -$s__sz-m;
 @import 'scss/_over-panel-next.scss';

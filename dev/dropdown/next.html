@@ -1,0 +1,78 @@
+---
+title: Dropdown NEXT Test Page
+layout: dev/structure--basic
+head_stylesheets: ['/dev/dropdown/css/dropdown-next.css']
+head_scripts: ['/dev/base-js/base.js', '/dev/content-min-row/js/content-min-row-next.js', '/dev/dropdown/js/dropdown-next.js']
+head_style: |
+    @media only screen and (min-resolution: 0.1dpcm), only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0) {
+        .text-module {
+            padding: 1em;
+        }
+    }
+---
+
+<h2>Active at all widths</h2>
+
+<div data-js="cmr">
+    <div class="dropdown dropdown--all-widths" data-width="500">
+        <button id="dropdown-toggle-1" class="dropdown__control" data-js="dropdown__control" hidden aria-label="Dropdown area"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open "><use xlink:href="#icon-chevron-up"></use></svg></button>
+
+        <div class="dropdown__area" id="dropdown-toggle-1--target">
+            <div class="text-module">
+                <p>Dropdown area content</p><!-- if links, first should have data-js="dropdown__focus-start" attribute -->
+                <p>Dropdown area content</p>
+                <p>Dropdown area content</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+
+<hr>
+
+
+<h2>Only active at wide</h2>
+
+<div data-js="cmr">
+    <div class="dropdown  dropdown--only-wide" data-width="500">
+        <button id="dropdown-toggle-2" class="dropdown__control" data-js="dropdown__control" hidden aria-label="Dropdown area"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open "><use xlink:href="#icon-chevron-up"></use></svg></button>
+
+        <div class="dropdown__area" id="dropdown-toggle-2--target">
+            <div class="text-module">
+                <p>Dropdown area content</p><!-- if links, first should have data-js="dropdown__focus-start" attribute -->
+                <p>Dropdown area content</p>
+                <p>Dropdown area content</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+
+<hr>
+
+
+<h2>Only active at narrow</h2>
+
+<div data-js="cmr">
+    <div class="dropdown  dropdown--only-narrow" data-width="500">
+        <button id="dropdown-toggle-3" class="dropdown__control" data-js="dropdown__control" hidden aria-label="Dropdown area"><svg display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" class="icon  icon--is-open "><use xlink:href="#icon-chevron-up"></use></svg></button>
+
+        <div class="dropdown__area" id="dropdown-toggle-3--target">
+            <div class="text-module">
+                <p>Dropdown area content</p><!-- if links, first should have data-js="dropdown__focus-start" attribute -->
+                <p>Dropdown area content</p>
+                <p>Dropdown area content</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+
+<hr>
+
