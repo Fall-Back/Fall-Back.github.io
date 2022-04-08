@@ -20,7 +20,7 @@ $ss__close_button_container--close: "[data-close=\"true\"]" !default;
     #{$ss__close_button} {
 
         @include s__button(
-            $s__base-text-color,
+            inherit,
             rgba(0,0,0,0),
             rgba(0,0,0,0.3),
             rgba(0,0,0,0)
