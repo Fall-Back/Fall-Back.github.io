@@ -39,6 +39,8 @@
 
         @if $s__anchor-text-color--alt != $s__anchor-text-color {
             color: $s__anchor-text-color--alt;
+        } @else {
+            color: inherit;
         }
 
         // @TODO - maybe support filters here too, e.g. filter: brightness(0.5);
@@ -95,14 +97,12 @@
     Sometimes anchors can be used without an href, and may contain icons etc, so make sure styles
     are applied to ALL anchors where appropriate.
 */
-// This has caused problems with IE11 badges (NPEU) and I don't have a test case for this, so leave
-// it out for now.
-//#{$s__namespace}a {
-//    // Give link icons some space unless they're the only child.
-//    & svg:not(:only-child) {
-//        margin-left: 0.25em;
-//    }
-//}
+#{$s__namespace}a {
+    // Give link icons some space unless they're the only child.
+    & svg:not(:only-child) {
+        margin-left: 0.25em;
+    }
+}
 
 @if $s__anchor-add-external-link-indicator == true {
 

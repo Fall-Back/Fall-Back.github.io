@@ -441,7 +441,9 @@ $s__selection-text-shadow: none;
 
 
 // Target highlights:
-$s__target-highlight-color: lighten($s__base-ui-color, 30%) !default;
+$s__target-highlight-color:   lighten($s__base-ui-color, 30%) !default;
+$s__target-highlight-color-a: rgba($s__target-highlight-color,0.4) !default;
+$s__target-highlight-color-b: rgba($s__target-highlight-color,0) !default;
 
 // Scroll:
 $s__scroll-margin-top: $s__base-rem-space-unit * 2 !default;
