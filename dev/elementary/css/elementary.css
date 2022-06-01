@@ -2484,34 +2484,28 @@ main :target {
 
 @-moz-keyframes target-fade {
   0% {
-    background-color: rgba(233, 95, 54, 0.4);
-    box-shadow: 0 0 0 1.2rem rgba(233, 95, 54, 0.4);
+    box-shadow: 0 0 0 1.2rem rgba(233, 95, 54, 0.4), 0 0 0 100vmax rgba(233, 95, 54, 0.4) inset;
   }
   100% {
-    background-color: rgba(233, 95, 54, 0);
-    box-shadow: 0 0 0 1.2rem rgba(233, 95, 54, 0);
+    box-shadow: 0 0 0 1.2rem rgba(233, 95, 54, 0), 0 0 0 100vmax rgba(233, 95, 54, 0) inset;
   }
 }
 
 @-webkit-keyframes target-fade {
   0% {
-    background-color: rgba(233, 95, 54, 0.4);
-    box-shadow: 0 0 0 1.2rem rgba(233, 95, 54, 0.4);
+    box-shadow: 0 0 0 1.2rem rgba(233, 95, 54, 0.4), 0 0 0 100vmax rgba(233, 95, 54, 0.4) inset;
   }
   100% {
-    background-color: rgba(233, 95, 54, 0);
-    box-shadow: 0 0 0 1.2rem rgba(233, 95, 54, 0);
+    box-shadow: 0 0 0 1.2rem rgba(233, 95, 54, 0), 0 0 0 100vmax rgba(233, 95, 54, 0) inset;
   }
 }
 
 @keyframes target-fade {
   0% {
-    background-color: rgba(233, 95, 54, 0.4);
-    box-shadow: 0 0 0 1.2rem rgba(233, 95, 54, 0.4);
+    box-shadow: 0 0 0 1.2rem rgba(233, 95, 54, 0.4), 0 0 0 100vmax rgba(233, 95, 54, 0.4) inset;
   }
   100% {
-    background-color: rgba(233, 95, 54, 0);
-    box-shadow: 0 0 0 1.2rem rgba(233, 95, 54, 0);
+    box-shadow: 0 0 0 1.2rem rgba(233, 95, 54, 0), 0 0 0 100vmax rgba(233, 95, 54, 0) inset;
   }
 }
 

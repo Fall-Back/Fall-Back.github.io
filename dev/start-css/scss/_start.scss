@@ -475,18 +475,18 @@ main :target {
 }
 
 @-moz-keyframes target-fade {
-    0% { background-color: $s__target-highlight-color-a; box-shadow: 0 0 0 1.2rem $s__target-highlight-color-a; }
-    100% { background-color: $s__target-highlight-color-b; box-shadow: 0 0 0 1.2rem $s__target-highlight-color-b; }
+    0% { box-shadow: 0 0 0 1.2rem $s__target-highlight-color-a, 0 0 0 100vmax $s__target-highlight-color-a inset; }
+    100% { box-shadow: 0 0 0 1.2rem $s__target-highlight-color-b, 0 0 0 100vmax $s__target-highlight-color-b inset; }
 }
 
 @-webkit-keyframes target-fade {
-    0% { background-color: $s__target-highlight-color-a; box-shadow: 0 0 0 1.2rem $s__target-highlight-color-a; }
-    100% { background-color: $s__target-highlight-color-b; box-shadow: 0 0 0 1.2rem $s__target-highlight-color-b; }
+    0% { box-shadow: 0 0 0 1.2rem $s__target-highlight-color-a, 0 0 0 100vmax $s__target-highlight-color-a inset; }
+    100% { box-shadow: 0 0 0 1.2rem $s__target-highlight-color-b, 0 0 0 100vmax $s__target-highlight-color-b inset; }
 }
 
 @keyframes target-fade {
-    0% { background-color: $s__target-highlight-color-a; box-shadow: 0 0 0 1.2rem $s__target-highlight-color-a; }
-    100% { background-color: $s__target-highlight-color-b; box-shadow: 0 0 0 1.2rem $s__target-highlight-color-b; }
+    0% { box-shadow: 0 0 0 1.2rem $s__target-highlight-color-a, 0 0 0 100vmax $s__target-highlight-color-a inset; }
+    100% { box-shadow: 0 0 0 1.2rem $s__target-highlight-color-b, 0 0 0 100vmax $s__target-highlight-color-b inset; }
 }
 
 /*
