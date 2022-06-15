@@ -161,6 +161,15 @@ $fs__include_class_poem:          true !default;
             -ms-flex: 0 1 auto;
                 flex: 0 1 auto;
     }
+    
+    /*
+        1. Prevent extra height being added.
+    */
+    .#{$s__class-namespace}composite > .#{$s__class-namespace}composite--expand {
+        -webkit-flex: 1 1 auto;
+            -ms-flex: 1 1 auto;
+                flex: 1 1 auto;
+    }
 
     /*
         IE9
