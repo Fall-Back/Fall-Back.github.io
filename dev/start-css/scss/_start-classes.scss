@@ -163,6 +163,14 @@ $fs__include_class_poem:          true !default;
     }
     
     /*
+        Allow inputs to contract, but not so small as to be unusable.
+    */
+    .#{$s__class-namespace}composite > input {
+        width: 1%;
+        min-width: 5em;
+    }
+    
+    /*
         1. Prevent extra height being added.
     */
     .#{$s__class-namespace}composite > .#{$s__class-namespace}composite--expand {
@@ -204,7 +212,6 @@ $fs__include_class_poem:          true !default;
         .#{$s__class-namespace}composite > *:not(:last-child) {
             border-top-right-radius: 0 !important;
             border-bottom-right-radius: 0 !important;
-            border-right: 0 !important;
         }
 }
 
