@@ -196,6 +196,7 @@ $fs__include_class_poem:          true !default;
         .#{$s__class-namespace}composite > *:not(:first-child) {
             border-top-left-radius: 0 !important;
             border-bottom-left-radius: 0 !important;
+            
             // This looks odd in Edge...
             //border-left: 0;
             // ... so try negative margin to tweak:
@@ -205,6 +206,27 @@ $fs__include_class_poem:          true !default;
         .#{$s__class-namespace}composite > *:not(:last-child) {
             border-top-right-radius: 0 !important;
             border-bottom-right-radius: 0 !important;
+            border-right: 0 !important;
+        }
+
+        .#{$s__class-namespace}composite > .#{$s__class-namespace}composite__info {
+            display: inline-block;
+            min-height: 3rem;
+            overflow: visible;
+            margin: .3rem 0;
+            padding-top: calc(.3rem - 1px);
+            padding-bottom: calc(.3rem - 1px);
+            padding-right: .6rem;
+            padding-left: .6rem;
+            border-color: rgba(0,0,0,.2);
+            border-style: solid;
+            border-width: 1px;
+            border-radius: 3px;
+            color: #333;
+            background-color: #f7f6f6;
+            font-size: 0.875em;
+            line-height: 2.4rem;
+            vertical-align: middle;
         }
 }
 
