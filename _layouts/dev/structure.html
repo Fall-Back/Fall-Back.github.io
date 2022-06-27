@@ -300,38 +300,18 @@
     <!--[if !IE]><!-->
 
     <style>
-        /* Tiny Fall-Back Styles continued ... */
-
-        /* --| Other stuff |--------------------------------------------------------------------- */
         /*
+            Tiny Fall-Back Styles continued ...
+
             What follows is a mix of markup patterns and attributes to help provide a more
             reasonable fallback - it's unconventional, so leave it out if you like.
         */
 
-        /* Attributes to replicate deprecated HTML styling: */
-
-        /* Would have been align="right": */
-        [data-fs-text~="right"] {
-            text-align: right;
+        /* --| Block styles |-------------------------------------------------------------------- */
+        [data-fs-block] {
+            display: block;
         }
-
-        /* Would have been align="center": */
-        [data-fs-text~="center"] {
-            text-align: center;
-        }
-
-        /* Would have been the 'big' element: */
-        [data-fs-text~="larger"] {
-            font-size: larger;
-        }
-
-
-        [data-fs-text~="nowrap"] {
-            white-space: nowrap;
-        }
-
-
-        /* Block styles: */
+        
         [data-fs-block~="background"] {
             background: silver;
             padding: 1em;
@@ -357,8 +337,8 @@
             padding: 1em;
         }
 
+        /* --| Table Layout |-------------------------------------------------------------------- */
         /*
-            Layout: table
             Useful when you have a very small amount of items you want to display side-by-side.
             Like, maybe 2, on the left and right. It doesn't wrap so the items should be small.
             There's reasonable support. Better support would be:
@@ -377,8 +357,8 @@
         }
 
 
+        /* --| Flex Layout |--------------------------------------------------------------------- */
         /*
-            Layout: flex;
             More responsive and has wrapping, but less well supported than the table layout.
         */
         [data-fs-block~="flex"] {
@@ -400,7 +380,8 @@
             flex: 1 1 auto
         }
 
-
+        /* --| Other stuff |--------------------------------------------------------------------- */
+        
         /* Responsive embeds (e.g. YouTube, maps) via http://embedresponsively.com. */
         [data-fs-block="video"] {
             position: relative;
