@@ -97,6 +97,10 @@
             Note there's a section that uses attributes to apply styles to specific elements. This
             is so as not to pollute the class space and help authors make distinctions.
             There's a much long essay on this brewing and I'll add the link when it's done.
+            
+            Colour references for ease of search/replace:
+            colour-1: darkslategrey
+            colour-2: silver
         */
 
         /* --| Core styles |--------------------------------------------------------------------- */
@@ -125,7 +129,7 @@
 
         mark {
             background: #FF0;
-            color:# 000;
+            color: #000;
         }
 
         template,
@@ -154,7 +158,7 @@
             border: 0;
         }
 
-        /* Links and imasge links */
+        /* Links and image links */
         a {
             color: darkslategrey;
         }
@@ -254,6 +258,32 @@
 
         caption, td, th {
             padding: 0.5em;
+        }
+        
+        /*
+            What follows is a mix of markup patterns and attributes to help provide a more
+            reasonable fallback - it's unconventional, so leave it out if you like.
+        */
+
+        /* Attributes to replicate deprecated HTML styling: */
+
+        /* Would have been align="right": */
+        [data-fs-text~="right"] {
+            text-align: right;
+        }
+
+        /* Would have been align="center": */
+        [data-fs-text~="center"] {
+            text-align: center;
+        }
+
+        /* Would have been the 'big' element: */
+        [data-fs-text~="larger"] {
+            font-size: larger;
+        }
+
+        [data-fs-text~="nowrap"] {
+            white-space: nowrap;
         }
     </style>
 
