@@ -239,6 +239,7 @@ body {
     position: relative; /* 1 */
 
     display: flex; /* 2 */
+    flex-direction: column;
 
     width: 100%;
     min-width: $s__body-min-width;
@@ -266,7 +267,7 @@ body {
     background-color: $s__body-background-color;
     color: $s__body-text-color;
 
-    @if $s__use-layout {
+    /*@if $s__use-layout {
         display: -webkit-flex;
         display: -moz-box;
         display: -ms-flexbox;
@@ -277,7 +278,7 @@ body {
             -ms-flex-direction: column;
                 flex-direction: column;
 
-    }
+    }*/
 }
 
 /* IE9-11 */

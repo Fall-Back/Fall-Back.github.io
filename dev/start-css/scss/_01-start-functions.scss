@@ -110,7 +110,7 @@
 // https://github.com/pentzzsolt/sass-s__is-int/blob/master/_s__is-int.scss
 @function s__is-int($value) {
     @if type-of($value) != number {
-        @warn '`#{$value}` is not a valid number!';
+        //@warn '`#{$value}` is not a valid number!';
         @return null;
     }
     @else {
