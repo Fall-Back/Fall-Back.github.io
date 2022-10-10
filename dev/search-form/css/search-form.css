@@ -60,7 +60,7 @@
     ASIDE
 */
 /*! --------------------------------------------------------------------------------------------- *\
-    
+
     Fall-Back Search Form v1.0.0
     https://github.com/Fall-Back/Patterns/tree/master/Search%20Form
     Copyright (c) 2021, Andy Kirk
@@ -74,8 +74,8 @@
 /* -- Basic/fallback layout --------------------------------------------------------------------- */
 /* -- .search-form ---------------------------------------------------------------------------*/
 /*
-        1. Prevent extra bottom space when form is inside a container.
-    */
+    1. Prevent extra bottom space when form is inside a container.
+*/
 .search-form.search-form {
   background: #247BA0;
   display: -moz-box;
@@ -95,13 +95,11 @@
     display: block;
   }
 }
-
 @supports (-moz-appearance: none) and (list-style-type: japanese-formal) {
   .search-form.search-form {
     display: flex;
   }
 }
-
 .search-form.search-form::before,
 .search-form.search-form::after {
   content: " ";
@@ -119,9 +117,9 @@
 /* -------------------------------------------------------------------------------------------*/
 /* -- .search-form__field --------------------------------------------------------------------*/
 /*
-        1. Override default size attr value - mainly for Opera mini which wierdley needs both
-           width AND min-width.
-    */
+    1. Override default size attr value - mainly for Opera mini which wierdley needs both
+       width AND min-width.
+*/
 .search-form .search-form__field {
   position: relative;
   z-index: 1;
@@ -138,10 +136,8 @@
   -webkit-flex: 1 1 auto;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
-  width: 1%;
-  /* [1] */
-  min-width: 1%;
-  /* [1] */
+  width: 1%; /* [1] */
+  min-width: 1%; /* [1] */
 }
 
 @media screen and (min--moz-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
@@ -149,19 +145,16 @@
     width: auto;
   }
 }
-
-@media all and (min-width: 0\0) and (min-resolution: 0.001dpcm) {
+@media all and (min-width: 0\0 ) and (min-resolution: .001dpcm) {
   .search-form .search-form__field {
     width: auto;
   }
 }
-
 @supports (-moz-appearance: none) and (list-style-type: japanese-formal) {
   .search-form .search-form__field {
     width: 1%;
   }
 }
-
 .search-form .search-form__field:focus {
   background-color: #ffffdc;
 }
@@ -169,7 +162,7 @@
 /* -------------------------------------------------------------------------------------------*/
 /* -- .search-form__submit -------------------------------------------------------------------*/
 /*
-    */
+*/
 .search-form .search-form__submit {
   position: relative;
   z-index: 1;
@@ -201,17 +194,14 @@
     width: 100%;
   }
 }
-
 @media only screen and (min-width: 50em) {
   /*
-            1. Reinstate all flexbox for enhanced view as no wrapping needs to occure
-            (FF8-27 issue describbed above)
-        */
+      1. Reinstate all flexbox for enhanced view as no wrapping needs to occure
+      (FF8-27 issue describbed above)
+  */
   .search-form.search-form {
-    display: -moz-box;
-    /* [1] */
-    display: flex;
-    /* [1] */
+    display: -moz-box; /* [1] */
+    display: flex; /* [1] */
     -webkit-flex-wrap: nowrap;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
@@ -220,5 +210,4 @@
     width: auto;
   }
 }
-
 /* ---------------------------------------------------------------------------------------------- */

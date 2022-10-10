@@ -92,59 +92,55 @@
 .nav-bar {
   /* -- Main wrapper ---------------------------------------------------------------------------*/
   /*
-        1. Helps to position above subsequent elements so sub-navs sit on top.
-        There are problems with this, if z-index or position is declared it messes up positioning
-        if subsequent blocks also are nav-bars or similar.
-    */
+      1. Helps to position above subsequent elements so sub-navs sit on top.
+      There are problems with this, if z-index or position is declared it messes up positioning
+      if subsequent blocks also are nav-bars or similar.
+  */
   /* -------------------------------------------------------------------------------------------*/
   /* -- Layout ---------------------------------------------------------------------------------*/
   /*
-        iOS/OSX seem to apply mystery margins.
-    */
+      iOS/OSX seem to apply mystery margins.
+  */
   /*
-    */
+  */
   /* -------------------------------------------------------------------------------------------*/
   /* -- Links and headings ---------------------------------------------------------------------*/
   /*
-    */
+  */
   /*
-		1. These override button styles defined as part of StartCSS. I may consider making these
-		   customisable via more variables.
-	*/
+  	1. These override button styles defined as part of StartCSS. I may consider making these
+  	   customisable via more variables.
+  */
   /*
-        FF15- fix button height.
-    */
+      FF15- fix button height.
+  */
   /*
-        Provide interaction effects for nav-bar links that ARE links:
-        (this excludes submenu heading links - note that submenu links should never also be
-        submenu heading links)
-    */
+      Provide interaction effects for nav-bar links that ARE links:
+      (this excludes submenu heading links - note that submenu links should never also be
+      submenu heading links)
+  */
   /*.nav-bar__link:focus {
-        color: $s__nav-bar__link--color--alt;
-        background-color: $s__nav-bar__link--background-color--alt2;
-        border: 0;
-        box-shadow: none;
-    }*/
+      color: $s__nav-bar__link--color--alt;
+      background-color: $s__nav-bar__link--background-color--alt2;
+      border: 0;
+      box-shadow: none;
+  }*/
   /* -------------------------------------------------------------------------------------------*/
 }
-
 .nav-bar.nav-bar {
   background-color: #247BA0;
   width: 100%;
 }
-
 .nav-bar .nav-bar__end,
 .nav-bar .nav-bar__main,
 .nav-bar .nav-bar__start,
 .nav-bar .nav-bar__title {
   margin: 0;
 }
-
 .nav-bar .sub-nav {
   padding: 0;
   margin: 0;
 }
-
 .nav-bar .nav-bar__items,
 .nav-bar .sub-nav__items {
   display: block;
@@ -152,17 +148,14 @@
   padding: 0;
   margin: 0;
 }
-
 .nav-bar .sub-nav__items {
   margin-left: 1.125em;
   background-color: #113b4d;
 }
-
 .nav-bar .nav-bar__item,
 .nav-bar .sub-nav__item {
   margin: 0;
 }
-
 .nav-bar .nav-bar__title .nav-bar__link {
   height: 1.5em;
   line-height: 1.5em;
@@ -172,7 +165,6 @@
   font-size: 1.5em;
   white-space: nowrap;
 }
-
 .nav-bar .nav-bar__link,
 .nav-bar .sub-nav__link,
 .nav-bar .sub-nav__heading {
@@ -181,60 +173,48 @@
   margin: 0;
   padding-left: 0.5625em;
   padding-right: 0.5625em;
-  padding-bottom: 0;
-  /* 1 */
-  padding-top: 0;
-  /* 1 */
+  padding-bottom: 0; /* 1 */
+  padding-top: 0; /* 1 */
   border: 0;
   border-radius: 0;
   line-height: 2.25em;
   text-decoration: none;
   outline: 0;
-  box-shadow: none;
-  /* 1 */
+  box-shadow: none; /* 1 */
 }
-
 .nav-bar .nav-bar button.nav-bar__link {
   min-height: 2.25em;
 }
-
 .nav-bar .nav-bar__link {
   color: #fff;
   background-color: #247BA0;
 }
-
 .nav-bar .nav-bar__link--centered {
   text-align: center;
 }
-
 .nav-bar .sub-nav__heading {
   color: #fff;
 }
-
 .nav-bar .sub-nav__link {
   color: #fff;
   background-color: #113b4d;
 }
-
 .nav-bar .nav-bar__link:hover,
 .nav-bar .nav-bar__link:active {
   color: #fff;
   border: 0;
   text-decoration: none;
 }
-
 .nav-bar .sub-nav__link:hover,
 .nav-bar .sub-nav__link:active {
   color: #fff;
   border: 0;
   text-decoration: none;
 }
-
 .nav-bar .nav-bar__link:focus,
 .nav-bar .sub-nav__link:focus {
   z-index: 2;
 }
-
 .nav-bar .sub-nav__control {
   display: none;
 }
@@ -247,23 +227,21 @@
     So, scoping these styles to the 'js-nav-bar' class.
 */
 /*
-		Note we do only want these applied when JS is available, because it'll have adde buttons so
-		we need to adjust layout to that. In other words these styles break things in a no-js
-		scenario.
+	Note we do only want these applied when JS is available, because it'll have adde buttons so
+	we need to adjust layout to that. In other words these styles break things in a no-js
+	scenario.
 
-	*/
+*/
 .js-cmr--narrow .nav-bar__start {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: justify;
   justify-content: space-between;
 }
-
 .js-cmr--narrow .nav-bar__start > * {
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
 }
-
 .js-cmr--narrow .nav-bar__title {
   -ms-flex: 1 0 auto;
   flex: 1 0 auto;
@@ -272,30 +250,29 @@
 
 .js-cmr--wide {
   /*
-            Add dividers.
-            Dividers created by adding right borders to nav-bar__items.
-        */
+      Add dividers.
+      Dividers created by adding right borders to nav-bar__items.
+  */
   /* -- Layout -----------------------------------------------------------------------------*/
   /*
-            Prevent anything wrapping (fixed height is crucial to making this work),
-            and make things float
-        */
+      Prevent anything wrapping (fixed height is crucial to making this work),
+      and make things float
+  */
   /*
-            1. Prevent content from increasing height of element.
-        */
+      1. Prevent content from increasing height of element.
+  */
   /*
-			This pseudo element helps to cover any sub-navs to stop them being visible in the main
-			nav-bar.
-		*/
+  	This pseudo element helps to cover any sub-navs to stop them being visible in the main
+  	nav-bar.
+  */
   /* -- Behaviour: -------------------------------------------------------------------------*/
   /*
             Set-up slide toggling for sub-navs:
 
-			1. This puts the sub-nav behind the covering pseudo element. See .nav-bar::before, above.
+  	1. This puts the sub-nav behind the covering pseudo element. See .nav-bar::before, above.
             2. OSX/iOS needs this:
-		*/
+  */
 }
-
 .js-cmr--wide .nav-bar__title,
 .js-cmr--wide .nav-bar__item {
   border-style: solid;
@@ -305,7 +282,6 @@
   border-left-width: 0;
   border-right-width: 1px;
 }
-
 .js-cmr--wide .nav-bar__link[href] + * {
   border-style: dashed;
   border-color: rgba(255, 255, 255, 0.3);
@@ -314,7 +290,6 @@
   border-left-width: 1px;
   border-right-width: 0;
 }
-
 .js-cmr--wide.nav-bar,
 .js-cmr--wide .nav-bar__title,
 .js-cmr--wide .nav-bar__main,
@@ -327,35 +302,28 @@
   display: flex;
   white-space: nowrap;
 }
-
 .js-cmr--wide.nav-bar > * {
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
 }
-
 .js-cmr--wide.nav-bar > .nav-bar__fill-at-wide {
   -ms-flex: 1 0 auto;
   flex: 1 0 auto;
 }
-
 .js-cmr--wide .sub-nav__control[data-content]::before {
   content: attr(data-content);
   display: inline;
-  vertical-align: top;
-  /* 1 */
+  vertical-align: top; /* 1 */
 }
-
 .js-cmr--wide .nav-bar__end {
   white-space: nowrap;
   margin-left: auto;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
 }
-
 .js-cmr--wide .nav-bar__end > * {
   margin-left: auto !important;
 }
-
 .js-cmr--wide.nav-bar::before {
   content: "";
   display: block;
@@ -367,60 +335,50 @@
   z-index: -1;
   background-color: #247BA0;
 }
-
 .js-cmr--wide .sub-nav__heading {
   display: none;
 }
-
 .js-cmr--wide .sub-nav__control {
   display: block;
 }
-
 .js-cmr--wide .sub-nav__control .icon--is-open,
-.js-cmr--wide .sub-nav__control[aria-wide="true"] .icon--is-closed {
+.js-cmr--wide .sub-nav__control[aria-wide=true] .icon--is-closed {
   display: none;
 }
-
 .js-cmr--wide .sub-nav__control .icon--is-closed,
-.js-cmr--wide .sub-nav__control[aria-wide="true"] .icon--is-open {
+.js-cmr--wide .sub-nav__control[aria-wide=true] .icon--is-open {
   display: inline;
 }
-
 .js-cmr--wide .sub-nav {
   position: absolute;
   visibility: hidden;
   left: 0;
   right: 0;
   top: 0;
-  z-index: -2;
-  /* 1 */
-  height: 2.25em;
-  /* 2 */
-  transition: margin-top 0.5s ease, visibility 0s   ease 0.5s;
+  z-index: -2; /* 1 */
+  height: 2.25em; /* 2 */
+  transition: margin-top 0.5s ease, visibility 0s ease 0.5s;
 }
-
 .js-cmr--wide .sub-nav__items {
   margin: 0;
   padding: 0;
 }
-
-.js-cmr--wide .sub-nav__control[aria-wide="true"] ~ .sub-nav {
+.js-cmr--wide .sub-nav__control[aria-wide=true] ~ .sub-nav {
   visibility: visible;
   margin-top: 2.25em;
   transition: margin-top 0.5s ease;
 }
 
 /* -------------------------------------------------------------------------------------------*/
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+@media screen and (-ms-high-contrast:active), (-ms-high-contrast:none) {
   /*
-            In IE the width of some containers gets pushed to 100% instead of natural width, so the
-            CMR breakpoint is mis-calculated. Since the clones are disposabled, I think it should be
-            OK to force them as inline-flex so the calculations are correct:
-        */
+      In IE the width of some containers gets pushed to 100% instead of natural width, so the
+      CMR breakpoint is mis-calculated. Since the clones are disposabled, I think it should be
+      OK to force them as inline-flex so the calculations are correct:
+  */
   .nav-bar.js-cmr--clone,
-  .nav-bar.js-cmr--clone > * {
+.nav-bar.js-cmr--clone > * {
     display: inline-block !important;
   }
 }
-
 /* -----------------------------------------------------------------------------------------------*/

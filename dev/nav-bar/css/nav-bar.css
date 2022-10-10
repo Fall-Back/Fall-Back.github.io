@@ -60,7 +60,7 @@
     ASIDE
 */
 /*! --------------------------------------------------------------------------------------------- *\
-    
+
     Fall-Back Nav Bar v1.0.0
     https://github.com/Fall-Back/Patterns/tree/master/Nav%20Bar
     Copyright (c) 2021, Andy Kirk
@@ -89,20 +89,19 @@
 /* -- Basic/fallback layout --------------------------------------------------------------------- */
 /* -- Main wrapper ---------------------------------------------------------------------------*/
 /*
-        1. Helps to position above subsequent elements so subnavs sit on top.
-    */
+    1. Helps to position above subsequent elements so subnavs sit on top.
+*/
 .nav-bar.nav-bar {
   background-color: #247BA0;
   position: relative;
-  z-index: 9999;
-  /* [1] */
+  z-index: 9999; /* [1] */
 }
 
 /* -------------------------------------------------------------------------------------------*/
 /* -- Layout ---------------------------------------------------------------------------------*/
 /*
-        iOS/OSX seem to apply mystery margins.
-    */
+    iOS/OSX seem to apply mystery margins.
+*/
 .nav-bar .nav-bar__end,
 .nav-bar .nav-bar__main,
 .nav-bar .nav-bar__start,
@@ -116,7 +115,7 @@
 }
 
 /*
-    */
+*/
 .nav-bar .nav-bar__items,
 .nav-bar .subnav__items {
   display: block;
@@ -157,7 +156,7 @@
 /* -------------------------------------------------------------------------------------------*/
 /* -- Links and headings ----------------- ---------------------------------------------------*/
 /*
-    */
+*/
 .nav-bar .nav-bar__title .nav-bar__link {
   height: 1.5em;
   line-height: 1.5em;
@@ -169,9 +168,9 @@
 }
 
 /*
-		1. These override button styles defined as part of StartCSS. I may consider making these
-		   customisable via more variables.
-	*/
+	1. These override button styles defined as part of StartCSS. I may consider making these
+	   customisable via more variables.
+*/
 .nav-bar .nav-bar__link,
 .nav-bar .subnav__link,
 .nav-bar .subnav__heading {
@@ -179,22 +178,19 @@
   margin: 0;
   padding-left: 0.5625em;
   padding-right: 0.5625em;
-  padding-bottom: 0;
-  /* 1 */
-  padding-top: 0;
-  /* 1 */
+  padding-bottom: 0; /* 1 */
+  padding-top: 0; /* 1 */
   border: 0;
   border-radius: 0;
   line-height: 2.25em;
   text-decoration: none;
   outline: 0;
-  box-shadow: none;
-  /* 1 */
+  box-shadow: none; /* 1 */
 }
 
 /*
-        FF15- fix button height.
-    */
+    FF15- fix button height.
+*/
 .nav-bar button.nav-bar__link {
   min-height: 2.25em;
 }
@@ -218,13 +214,13 @@
 }
 
 /*
-        Provide interaction effects for nav-bar links that ARE links:
-        (this excludes submenu heading links - note that submenu links should never also be
-        submenu heading links)
-    */
+    Provide interaction effects for nav-bar links that ARE links:
+    (this excludes submenu heading links - note that submenu links should never also be
+    submenu heading links)
+*/
 .nav-bar .nav-bar__link:hover,
 .nav-bar .nav-bar__link:active,
-.nav-bar .nav-bar__link [aria-expanded="true"] {
+.nav-bar .nav-bar__link [aria-expanded=true] {
   color: #fff;
   background-color: #174e66;
   border: 0;
@@ -254,18 +250,16 @@
 /* -----------------------------------------------------------------------------------------------*/
 @media only screen and (max-width: 50em) {
   .nav-bar .subnav__items--stacked--only-narrow .subnav__item,
-  .nav-bar .subnav__items--stacked--only-narrow .subnav__link {
+.nav-bar .subnav__items--stacked--only-narrow .subnav__link {
     float: none;
   }
 }
-
 @media only screen and (min-width: 50em) {
   .nav-bar .subnav__items--stacked--only-wide .subnav__item,
-  .nav-bar .subnav__items--stacked--only-wide .subnav__link {
+.nav-bar .subnav__items--stacked--only-wide .subnav__link {
     float: none;
   }
 }
-
 /* ********************************************************************************************** */
 /* -- Enhanced layout --------------------------------------------------------------------------- */
 /*
@@ -273,10 +267,10 @@
     (CSS only attempts weren't good enough)
     So, scoping these styles to the 'js-nav-bar' class.
 */
-@media only screen and (max-width: 50em) and (min-width: 0\0) and (min-resolution: 0.001dpcm) {
+@media only screen and (max-width: 50em) and (min-width: 0\0 ) and (min-resolution: 0.001dpcm) {
   /* This is all for IE9: */
   .js-nav-bar .nav-bar,
-  .js-nav-bar .nav-bar__start {
+.js-nav-bar .nav-bar__start {
     width: 100%;
   }
   .js-nav-bar .nav-bar__start {
@@ -293,12 +287,11 @@
     vertical-align: top;
   }
 }
-
 @media only screen and (max-width: 50em) {
   /*
-            1. FF8-21 needs this or is increases the height of this box for some reason.
-            2. FF8-21 needs this.
-        */
+      1. FF8-21 needs this or is increases the height of this box for some reason.
+      2. FF8-21 needs this.
+  */
   .js-nav-bar .nav-bar__start {
     display: -webkit-flex;
     display: -moz-box;
@@ -308,10 +301,8 @@
     -moz-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    vertical-align: middle;
-    /* [1] */
-    width: 100%;
-    /* [2] */
+    vertical-align: middle; /* [1] */
+    width: 100%; /* [2] */
   }
   .js-nav-bar .nav-bar__start > * {
     -webkit-flex: 0 0 auto;
@@ -327,35 +318,34 @@
     margin: 0 auto;
   }
   /*
-            FF21- doesn't distribute items even if the -moz properties are set.
-            This hack covers FF3.6+ though thias stylesheet will only be loaded by FF8 or greater
-            depending on the mustart cut.
-        */
+      FF21- doesn't distribute items even if the -moz properties are set.
+      This hack covers FF3.6+ though thias stylesheet will only be loaded by FF8 or greater
+      depending on the mustart cut.
+  */
   _:-moz-locale-dir(ltr), .js-nav-bar .nav-bar__start .nav-bar__item + .nav-bar__item:last-child {
     position: absolute;
     right: 0;
     top: 0;
   }
   /*
-            Reset properties for FF22+
-        */
+      Reset properties for FF22+
+  */
   @supports (display: flex) {
     .js-nav-bar .nav-bar__start .nav-bar__item + .nav-bar__item:last-child {
       position: static;
     }
   }
 }
-
 @media only screen and (min-width: 50em) {
   /*.js-nav-bar .nav-bar {
 
-        }*/
+  }*/
   /*
-            Add dividers.
-            Dividers created by adding right borders to nav-bar__items.
-        */
+      Add dividers.
+      Dividers created by adding right borders to nav-bar__items.
+  */
   .js-nav-bar .nav-bar__title,
-  .js-nav-bar .nav-bar__item {
+.js-nav-bar .nav-bar__item {
     border-style: solid;
     border-color: rgba(255, 255, 255, 0.2);
     border-top-width: 0;
@@ -373,16 +363,13 @@
   }
   /* -- Layout -----------------------------------------------------------------------------*/
   /*
-            1. Flex is only really needed for 'additional' to fill up the space.
-               I don't think this would actually do any harm...
-        */
+      1. Flex is only really needed for 'additional' to fill up the space.
+         I don't think this would actually do any harm...
+  */
   .js-nav-bar .nav-bar {
-    display: -webkit-flex;
-    /* 1 */
-    display: -ms-flexbox;
-    /* 1 */
-    display: flex;
-    /* 1 */
+    display: -webkit-flex; /* 1 */
+    display: -ms-flexbox; /* 1 */
+    display: flex; /* 1 */
   }
   .js-nav-bar .nav-bar > * {
     -webkit-flex: 0 0 auto;
@@ -395,16 +382,15 @@
     flex: 1 0 auto;
   }
   /*
-            1. Prevent content from increasing height of element.
-        */
+      1. Prevent content from increasing height of element.
+  */
   .js-nav-bar .subnav__control[data-content]::before {
     content: attr(data-content);
     display: inline;
-    vertical-align: top;
-    /* 1 */
+    vertical-align: top; /* 1 */
   }
   .js-nav-bar .nav-bar__items::before,
-  .js-nav-bar .nav-bar__items::after {
+.js-nav-bar .nav-bar__items::after {
     content: " ";
     display: table;
   }
@@ -417,15 +403,15 @@
     clear: both;
   }
   /*
-            Prevent anything wrapping (fixed height is crucial to making this work),
-            and make things float
-        */
+      Prevent anything wrapping (fixed height is crucial to making this work),
+      and make things float
+  */
   .js-nav-bar .nav-bar__title,
-  .js-nav-bar .nav-bar__main,
-  .js-nav-bar .nav-bar__item,
-  .js-nav-bar .nav-bar__item > *,
-  .js-nav-bar .subnav__link,
-  .js-nav-bar .subnav__heading {
+.js-nav-bar .nav-bar__main,
+.js-nav-bar .nav-bar__item,
+.js-nav-bar .nav-bar__item > *,
+.js-nav-bar .subnav__link,
+.js-nav-bar .subnav__heading {
     white-space: nowrap;
     float: left;
   }
@@ -437,9 +423,9 @@
     flex: 1 1 auto;
   }
   /*
-			This pseudo element helps to cover any subnavs to stop them being visible in the main
-			nav-bar.
-		*/
+  	This pseudo element helps to cover any subnavs to stop them being visible in the main
+  	nav-bar.
+  */
   .js-nav-bar .nav-bar::before {
     content: "";
     display: block;
@@ -459,39 +445,37 @@
     display: block;
   }
   .js-nav-bar .subnav__control .icon--is-open,
-  .js-nav-bar .subnav__control[aria-expanded="true"] .icon--is-closed {
+.js-nav-bar .subnav__control[aria-expanded=true] .icon--is-closed {
     display: none;
   }
   .js-nav-bar .subnav__control .icon--is-closed,
-  .js-nav-bar .subnav__control[aria-expanded="true"] .icon--is-open {
+.js-nav-bar .subnav__control[aria-expanded=true] .icon--is-open {
     display: inline;
   }
   /*
             Set-up slide toggling for subnavs:
 
-			1. This puts the subnav behind the covering pseudo element. See .nav-bar::before, above.
+  	1. This puts the subnav behind the covering pseudo element. See .nav-bar::before, above.
             2. OSX/iOS needs this:
-		*/
+  */
   .js-nav-bar .subnav {
     position: absolute;
     visibility: hidden;
     left: 0;
     right: 0;
     top: 0;
-    z-index: -2;
-    /* 1 */
-    height: 2.25em;
-    /* 2 */
-    -webkit-transition: margin-top 0.5s ease, visibility 0s   ease 0.5s;
-    -moz-transition: margin-top 0.5s ease, visibility 0s   ease 0.5s;
-    -o-transition: margin-top 0.5s ease, visibility 0s   ease 0.5s;
-    transition: margin-top 0.5s ease, visibility 0s   ease 0.5s;
+    z-index: -2; /* 1 */
+    height: 2.25em; /* 2 */
+    -webkit-transition: margin-top 0.5s ease, visibility 0s ease 0.5s;
+    -moz-transition: margin-top 0.5s ease, visibility 0s ease 0.5s;
+    -o-transition: margin-top 0.5s ease, visibility 0s ease 0.5s;
+    transition: margin-top 0.5s ease, visibility 0s ease 0.5s;
   }
   .js-nav-bar .subnav__items {
     margin: 0;
     padding: 0;
   }
-  .js-nav-bar .subnav__control[aria-expanded="true"] ~ .subnav {
+  .js-nav-bar .subnav__control[aria-expanded=true] ~ .subnav {
     visibility: visible;
     margin-top: 2.25em;
     -webkit-transition: margin-top 0.5s ease;
@@ -501,5 +485,4 @@
   }
   /* -------------------------------------------------------------------------------------------*/
 }
-
 /* -----------------------------------------------------------------------------------------------*/
