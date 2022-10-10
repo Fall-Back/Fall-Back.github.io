@@ -1198,10 +1198,10 @@ a:focus img {
 input {
   max-width: 100%; /* 1 */
   padding-top: 0.3rem; /* 2 */
-  padding-top: calc(math.div($s__base-rem-space-unit, 8) - 0.1rem);
+  padding-top: calc(0.3rem - 0.1rem);
   padding-right: 0.6rem;
   padding-bottom: 0.3rem; /* 2 */
-  padding-bottom: calc(math.div($s__base-rem-space-unit, 8) - 0.1rem);
+  padding-bottom: calc(0.3rem - 0.1rem);
   padding-left: 0.6rem;
   border-width: 0.1rem;
   border-style: solid;

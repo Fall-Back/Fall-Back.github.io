@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS
@@ -223,7 +224,7 @@
     https://timkadlec.com/2013/01/windows-phone-8-and-device-width/
 */
 :root {
-  quotes: '\201c' '\201d' '\2018' '\2019';
+  quotes: "“" "”" "‘" "’";
 }
 
 /*
@@ -247,53 +248,39 @@
     6. Use a more readable tab size (opinionated).
 */
 html {
-  -moz-box-sizing: border-box;
-  /* 1 */
-  box-sizing: border-box;
-  /* 1 */
-  height: 100%;
-  /* 2 */
-  overflow-y: scroll;
-  /* 3 */
+  -moz-box-sizing: border-box; /* 1 */
+  box-sizing: border-box; /* 1 */
+  height: 100%; /* 2 */
+  overflow-y: scroll; /* 3 */
   color: #333;
   background-color: #341006;
-  font-size: 0.625em;
-  /* 4 */
-  -ms-text-size-adjust: 100%;
-  /* 5 */
-  -webkit-text-size-adjust: 100%;
-  /* 5 */
+  font-size: 0.625em; /* 4 */
+  -ms-text-size-adjust: 100%; /* 5 */
+  -webkit-text-size-adjust: 100%; /* 5 */
   padding: 0;
   margin: 0;
-  -moz-tab-size: 4;
-  /* 6 */
-  tab-size: 4;
-  /* 6 */
+  -moz-tab-size: 4; /* 6 */
+  tab-size: 4; /* 6 */
 }
 
 /*
     Fix font size for IE9-11 as it can't calculate % to 1 decimal place! Grrr.
 */
-@media screen and (min-width: 0\0) and (min-resolution: +72dpi) {
+@media screen and (min-width:0\0 ) and (min-resolution: +72dpi) {
   html {
     font-size: calc(62.5em / 100);
   }
 }
-
 /*
     'Global' reset.
 
     1. For Mac Safari 6.1-8.
 */
 * {
-  -webkit-margin-before: 0;
-  /* 1 */
-  -webkit-margin-after: 0;
-  /* 1 */
-  -webkit-margin-start: 0;
-  /* 1 */
-  -webkit-margin-end: 0;
-  /* 1 */
+  -webkit-margin-before: 0; /* 1 */
+  -webkit-margin-after: 0; /* 1 */
+  -webkit-margin-start: 0; /* 1 */
+  -webkit-margin-end: 0; /* 1 */
   margin: 0;
   padding: 0;
 }
@@ -306,12 +293,9 @@ html {
 *,
 ::before,
 ::after {
-  -moz-box-sizing: inherit;
-  /* 1 */
-  box-sizing: inherit;
-  /* 1 */
-  background-repeat: no-repeat;
-  /* 2 */
+  -moz-box-sizing: inherit; /* 1 */
+  box-sizing: inherit; /* 1 */
+  background-repeat: no-repeat; /* 2 */
   -webkit-font-smoothing: inherit;
 }
 
@@ -321,10 +305,8 @@ html {
 */
 ::before,
 ::after {
-  text-decoration: inherit;
-  /* 1 */
-  vertical-align: inherit;
-  /* 2 */
+  text-decoration: inherit; /* 1 */
+  vertical-align: inherit; /* 2 */
 }
 
 /*
@@ -342,10 +324,8 @@ html {
     3. Reset any FOUC font match fallback. @TODO Make these vars.
 */
 body {
-  position: relative;
-  /* 1 */
-  display: flex;
-  /* 2 */
+  position: relative; /* 1 */
+  display: flex; /* 2 */
   flex-direction: column;
   width: 100%;
   min-width: 250px;
@@ -356,24 +336,22 @@ body {
   font-family: "Lato", sans-serif;
   font-size: 1.6em;
   line-height: 2.4rem;
-  letter-spacing: initial;
-  /* 3 */
-  word-spacing: initial;
-  /* 3 */
+  letter-spacing: initial; /* 3 */
+  word-spacing: initial; /* 3 */
   background-color: #fff;
   color: #333;
   /*@if $s__use-layout {
-        display: -webkit-flex;
-        display: -moz-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: column;
-           -moz-box-orient: vertical;
-           -moz-box-direction: normal;
-            -ms-flex-direction: column;
-                flex-direction: column;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-direction: column;
+         -moz-box-orient: vertical;
+         -moz-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
 
-    }*/
+  }*/
 }
 
 /* IE9-11 */
@@ -407,52 +385,43 @@ a[href] {
   text-decoration-line: underline;
   text-decoration-style: solid;
   text-decoration-thickness: 0.0625em;
-  -webkit-text-decoration-skip: objects;
-  /* 1 */
-  -ms-touch-action: manipulation;
-  /* 2 (IE10) */
-  touch-action: manipulation;
-  /* 2 */
+  -webkit-text-decoration-skip: objects; /* 1 */
+  -ms-touch-action: manipulation; /* 2 (IE10) */
+  touch-action: manipulation; /* 2 */
   /*
-        1. For older browsers.
-    */
+      1. For older browsers.
+  */
   /*
-        1. Make sure focus is still visible in Forced Colour modes.
-           (https://www.sarasoueidan.com/blog/focus-indicators/)
-    */
+      1. Make sure focus is still visible in Forced Colour modes.
+         (https://www.sarasoueidan.com/blog/focus-indicators/)
+  */
   /*@supports (-moz-appearance:none) {
 
-        text-decoration-thickness: $s__anchor-line-width - 0.04em;
-        //text-underline-offset:     $s__anchor-line-offset + 0.1em;
+      text-decoration-thickness: $s__anchor-line-width - 0.04em;
+      //text-underline-offset:     $s__anchor-line-offset + 0.1em;
 
-        &:hover,
-        &:active {
-            text-decoration-thickness: 0.1em;
-        }
-    }*/
+      &:hover,
+      &:active {
+          text-decoration-thickness: 0.1em;
+      }
+  }*/
 }
-
 a[href]:hover, a[href]:active {
   text-decoration: none;
   color: #4b1808;
 }
-
 @supports (text-decoration-line: underline) {
   a[href]:hover, a[href]:active {
-    text-decoration: underline double currentColor 0.0625em;
-    /* [1] */
+    text-decoration: underline double currentColor 0.0625em; /* [1] */
     box-shadow: none;
     color: #4b1808;
   }
 }
-
 a[href]:focus {
-  outline: 1px solid transparent;
-  /* [1] */
+  outline: 1px solid transparent; /* [1] */
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
 }
-
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+@media screen and (-ms-high-contrast:active), (-ms-high-contrast:none) {
   a[href] svg {
     vertical-align: text-bottom;
   }
@@ -466,7 +435,7 @@ a svg:not(:only-child) {
   margin-left: 0.25em;
 }
 
-a[href][rel~="external"] {
+a[href][rel~=external] {
   padding-right: 1em;
   background-image: linear-gradient(45deg, transparent 65%, #79260D 65%);
   background-repeat: no-repeat;
@@ -474,7 +443,7 @@ a[href][rel~="external"] {
   background-size: 0.6em 0.6em;
 }
 
-a[href][rel~="external"]:hover {
+a[href][rel~=external]:hover {
   background-image: linear-gradient(45deg, transparent 65%, #4b1808 65%);
 }
 
@@ -491,14 +460,10 @@ a[href][rel~="external"]:hover {
 abbr {
   cursor: help;
 }
-
 abbr[title] {
-  border-bottom: none;
-  /* 1 */
-  text-decoration: underline;
-  /* 2 */
-  text-decoration: underline dotted;
-  /* 2 */
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  text-decoration: underline dotted; /* 2 */
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -511,11 +476,9 @@ address {
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
 }
-
 address:first-child {
   margin-top: 0;
 }
-
 address:last-child {
   margin-bottom: 0;
 }
@@ -531,11 +494,9 @@ article {
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
 }
-
 article:first-child {
   margin-top: 0;
 }
-
 article:last-child {
   margin-bottom: 0;
 }
@@ -551,11 +512,9 @@ aside {
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
 }
-
 aside:first-child {
   margin-top: 0;
 }
-
 aside:last-child {
   margin-bottom: 0;
 }
@@ -571,14 +530,11 @@ aside:last-child {
     2. Chrome 44-, iOS 8+, Safari 9+.
 */
 audio {
-  display: inline-block;
-  /* 1 */
+  display: inline-block; /* 1 */
   vertical-align: middle;
 }
-
 audio:not([controls]) {
-  display: none;
-  /* 2 */
+  display: none; /* 2 */
   height: 0;
 }
 
@@ -593,8 +549,7 @@ audio:not([controls]) {
     2. Prevent increase in line-height in IE.
 */
 b {
-  font-weight: bolder;
-  /* 1 */
+  font-weight: bolder; /* 1 */
   line-height: 1;
 }
 
@@ -611,15 +566,13 @@ blockquote {
   margin-right: 2.4rem;
   font-style: italic;
   /*
-        @TODO - set up vars and styles for the most common quote styles.
-        I.e. left-border, and enclosing quotes.
-    */
+      @TODO - set up vars and styles for the most common quote styles.
+      I.e. left-border, and enclosing quotes.
+  */
 }
-
 blockquote:first-child {
   margin-top: 0;
 }
-
 blockquote:last-child {
   margin-bottom: 0;
 }
@@ -631,11 +584,9 @@ blockquote:last-child {
 
 |-------------------------------------------------------------------------------------------------*/
 button {
-  display: inline-block;
-  /* AK. IE9 needs this. Hmmm, for what exactly?*/
+  display: inline-block; /* AK. IE9 needs this. Hmmm, for what exactly?*/
   min-height: 3rem;
-  overflow: visible;
-  /* S: Internet Explorer 11-, N: Show the overflow in Edge, Firefox, and IE. */
+  overflow: visible; /* S: Internet Explorer 11-, N: Show the overflow in Edge, Firefox, and IE. */
   margin: 0.3rem 0;
   padding-top: 0.3rem;
   padding-top: -moz-calc(0);
@@ -657,20 +608,15 @@ button {
   font-family: inherit;
   line-height: 2.4rem;
   vertical-align: middle;
-  text-transform: none;
-  /* [N0], N: Remove the inheritance of text transform in Edge, Firefox, and IE. */
+  text-transform: none; /* [N0], N: Remove the inheritance of text transform in Edge, Firefox, and IE. */
   cursor: pointer;
-  -ms-touch-action: manipulation;
-  /* 1 (IE10) */
-  touch-action: manipulation;
-  /* 1 */
+  -ms-touch-action: manipulation; /* 1 (IE10) */
+  touch-action: manipulation; /* 1 */
   -webkit-appearance: none;
 }
-
 button:hover, button:active {
   background-color: #4b1808;
 }
-
 button:focus {
   outline: 0;
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
@@ -716,8 +662,7 @@ _:-moz-meter-optimum, :root button::-moz-focus-inner {
     1. Add the correct display in IE 9-.
 */
 canvas {
-  display: inline-block;
-  /* 1 */
+  display: inline-block; /* 1 */
   vertical-align: middle;
 }
 
@@ -750,12 +695,9 @@ caption {
     3. Prevent the element increasing the line-height of the parent.
 */
 code {
-  font-family: monospace, monospace;
-  /* 1 */
-  font-size: 1em;
-  /* 2 */
-  line-height: 0;
-  /* 3 */
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+  line-height: 0; /* 3 */
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -775,8 +717,7 @@ dd {
 
 |-------------------------------------------------------------------------------------------------*/
 details {
-  display: block;
-  /* N: IE 10/11 */
+  display: block; /* N: IE 10/11 */
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
   border-width: 0.1rem;
@@ -784,37 +725,34 @@ details {
   border-color: #79260D;
   padding: calc(2.4rem - 0.1rem);
   /*
-    @if $s__use-last-child-margin-zero {
-        padding-bottom: 2.4rem;
-        //padding-bottom: -moz-calc(2.4rem - 0.1rem);
-        padding-bottom:      calc(2.4rem - 0.1rem);
-    } @else {
-        padding-bottom: 0;
-        &::after {
-            display: block;
+  @if $s__use-last-child-margin-zero {
+      padding-bottom: 2.4rem;
+      //padding-bottom: -moz-calc(2.4rem - 0.1rem);
+      padding-bottom:      calc(2.4rem - 0.1rem);
+  } @else {
+      padding-bottom: 0;
+      &::after {
+          display: block;
 
-            content: "";
+          content: "";
 
-            height: 1px;
+          height: 1px;
 
-            margin-top: $padding;
+          margin-top: $padding;
 
-            margin-bottom: -1px;
-            //margin-bottom: -moz-calc(-1px - 0.1rem);
-            margin-bottom:      calc(-1px - 0.1rem);
-        }
-    }
-    */
+          margin-bottom: -1px;
+          //margin-bottom: -moz-calc(-1px - 0.1rem);
+          margin-bottom:      calc(-1px - 0.1rem);
+      }
+  }
+  */
 }
-
 details:first-child {
   margin-top: 0;
 }
-
 details:last-child {
   margin-bottom: 0;
 }
-
 details > * {
   box-sizing: border-box;
 }
@@ -854,14 +792,11 @@ dfn {
 dl {
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
-  display: table;
-  /* 1b */
+  display: table; /* 1b */
 }
-
 dl:first-child {
   margin-top: 0;
 }
-
 dl:last-child {
   margin-bottom: 0;
 }
@@ -876,9 +811,7 @@ dt {
   font-weight: bold;
   margin-top: 2.4rem;
 }
-
-dt:first-child,
-dt + dt {
+dt:first-child, dt + dt {
   margin-top: 0;
 }
 
@@ -892,8 +825,7 @@ dt + dt {
     1. De-italicize nested ems
 */
 em em {
-  font-style: normal;
-  /* 1 */
+  font-style: normal; /* 1 */
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -916,33 +848,31 @@ fieldset {
   border-color: #79260D;
   padding: calc(2.4rem - 0.1rem);
   /*
-    @if $s__use-last-child-margin-zero {
-        padding-bottom: 2.4rem;
-        //padding-bottom: -moz-calc(2.4rem - 0.1rem);
-        padding-bottom:      calc(2.4rem - 0.1rem);
-    } @else {
-        padding-bottom: 0;
-        &::after {
-            display: block;
+  @if $s__use-last-child-margin-zero {
+      padding-bottom: 2.4rem;
+      //padding-bottom: -moz-calc(2.4rem - 0.1rem);
+      padding-bottom:      calc(2.4rem - 0.1rem);
+  } @else {
+      padding-bottom: 0;
+      &::after {
+          display: block;
 
-            content: "";
+          content: "";
 
-            height: 1px;
+          height: 1px;
 
-            margin-top: $padding;
+          margin-top: $padding;
 
-            margin-bottom: -1px;
-            //margin-bottom: -moz-calc(-1px - 0.1rem);
-            margin-bottom:      calc(-1px - 0.1rem);
-        }
-    }
-    */
+          margin-bottom: -1px;
+          //margin-bottom: -moz-calc(-1px - 0.1rem);
+          margin-bottom:      calc(-1px - 0.1rem);
+      }
+  }
+  */
 }
-
 fieldset:first-child {
   margin-top: 0;
 }
-
 fieldset:last-child {
   margin-bottom: 0;
 }
@@ -983,18 +913,16 @@ figure {
   margin-right: 2.4rem;
   max-width: 100%;
   overflow: auto;
-  background-image: linear-gradient(-90deg, rgba(255, 255, 255, 0) 0%, white 60%, white 100%), linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, white 60%, white 100%), linear-gradient(to right, rgba(0, 0, 20, 0.5), rgba(255, 255, 255, 0)), linear-gradient(to left, rgba(0, 0, 20, 0.5), rgba(255, 255, 255, 0));
+  background-image: linear-gradient(-90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 60%, rgb(255, 255, 255) 100%), linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 60%, rgb(255, 255, 255) 100%), linear-gradient(to right, rgba(0, 0, 20, 0.5), rgba(255, 255, 255, 0)), linear-gradient(to left, rgba(0, 0, 20, 0.5), rgba(255, 255, 255, 0));
   background-position: left center, right center, left center, right center;
   background-repeat: no-repeat;
   background-color: white;
   background-size: 2em 100%, 2em 100%, 1em 100%, 1em 100%;
   background-attachment: local, local, scroll, scroll;
 }
-
 figure:first-child {
   margin-top: 0;
 }
-
 figure:last-child {
   margin-bottom: 0;
 }
@@ -1010,11 +938,9 @@ footer {
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
 }
-
 footer:first-child {
   margin-top: 0;
 }
-
 footer:last-child {
   margin-bottom: 0;
 }
@@ -1029,11 +955,9 @@ form {
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
 }
-
 form:first-child {
   margin-top: 0;
 }
-
 form:last-child {
   margin-bottom: 0;
 }
@@ -1049,11 +973,9 @@ header {
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
 }
-
 header:first-child {
   margin-top: 0;
 }
-
 header:last-child {
   margin-bottom: 0;
 }
@@ -1069,11 +991,9 @@ hgroup {
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
 }
-
 hgroup:first-child {
   margin-top: 0;
 }
-
 hgroup:last-child {
   margin-bottom: 0;
 }
@@ -1090,11 +1010,9 @@ h1 {
   font-size: 3.25em;
   line-height: 6rem;
 }
-
 h1:first-child {
   margin-top: 0;
 }
-
 h1:last-child {
   margin-bottom: 0;
 }
@@ -1105,11 +1023,9 @@ h2 {
   font-size: 2.5em;
   line-height: 4.8rem;
 }
-
 h2:first-child {
   margin-top: 0;
 }
-
 h2:last-child {
   margin-bottom: 0;
 }
@@ -1120,11 +1036,9 @@ h3 {
   font-size: 1.875em;
   line-height: 3.6rem;
 }
-
 h3:first-child {
   margin-top: 0;
 }
-
 h3:last-child {
   margin-bottom: 0;
 }
@@ -1135,11 +1049,9 @@ h4 {
   font-size: 1.375em;
   line-height: 3.6rem;
 }
-
 h4:first-child {
   margin-top: 0;
 }
-
 h4:last-child {
   margin-bottom: 0;
 }
@@ -1150,11 +1062,9 @@ h5 {
   font-size: 1.125em;
   line-height: 2.4rem;
 }
-
 h5:first-child {
   margin-top: 0;
 }
-
 h5:last-child {
   margin-bottom: 0;
 }
@@ -1165,11 +1075,9 @@ h6 {
   font-size: 1em;
   line-height: 2.4rem;
 }
-
 h6:first-child {
   margin-top: 0;
 }
-
 h6:last-child {
   margin-bottom: 0;
 }
@@ -1186,21 +1094,17 @@ h6:last-child {
 hr {
   position: relative;
   height: 2.4rem;
-  overflow: visible;
-  /* 1 */
+  overflow: visible; /* 1 */
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
   border: none;
 }
-
 hr:first-child {
   margin-top: 0;
 }
-
 hr:last-child {
   margin-bottom: 0;
 }
-
 hr::before {
   content: "";
   position: absolute;
@@ -1239,25 +1143,18 @@ iframe {
        image fluid.
 */
 img {
-  max-width: 100%;
-  /* 1 */
-  height: auto;
-  /* 1 */
-  border-style: none;
-  /* 2  */
-  font-style: italic;
-  /* 3 */
-  vertical-align: middle;
-  /* 4 */
+  max-width: 100%; /* 1 */
+  height: auto; /* 1 */
+  border-style: none; /* 2  */
+  font-style: italic; /* 3 */
+  vertical-align: middle; /* 4 */
   /*.gm-style &, /* 5 *
-    &[width], /* 6 *
-    &[height] {  /* 6 *
-        max-width: none;
-    }*/
+  &[width], /* 6 *
+  &[height] {  /* 6 *
+      max-width: none;
+  }*/
 }
-
-img .gm-style {
-  /* 5 */
+img .gm-style { /* 5 */
   max-width: none;
 }
 
@@ -1271,12 +1168,10 @@ a[href] img {
   border-bottom: 0.1875em solid #79260D;
   padding-bottom: 0.1875em;
 }
-
 a[href] img:active, a[href] img:hover {
   border-bottom: 0.375em solid transparent;
   padding-bottom: 0;
 }
-
 @supports (text-decoration-line: underline) {
   a[href] img:active, a[href] img:hover {
     border-bottom: 0.375em double #4b1808;
@@ -1310,14 +1205,11 @@ a:focus img {
     5. This helps prevent default 'normal' from increasing element height in webkit.
 */
 input {
-  max-width: 100%;
-  /* 1 */
-  padding-top: 0.3rem;
-  /* 2 */
+  max-width: 100%; /* 1 */
+  padding-top: 0.3rem; /* 2 */
   padding-top: calc(0.3rem - 0.1rem);
   padding-right: 0.6rem;
-  padding-bottom: 0.3rem;
-  /* 2 */
+  padding-bottom: 0.3rem; /* 2 */
   padding-bottom: calc(0.3rem - 0.1rem);
   padding-left: 0.6rem;
   border-width: 0.1rem;
@@ -1330,74 +1222,68 @@ input {
   font-weight: inherit;
   font-style: inherit;
   font-family: inherit;
-  -ms-touch-action: manipulation;
-  /* 3 (IE10) */
-  touch-action: manipulation;
-  /* 3 */
-  vertical-align: middle;
-  /* 4 */
-  line-height: inherit;
-  /* 5 */
+  -ms-touch-action: manipulation; /* 3 (IE10) */
+  touch-action: manipulation; /* 3 */
+  vertical-align: middle; /* 4 */
+  line-height: inherit; /* 5 */
   min-height: 3rem;
   margin: 0.3rem 0;
 }
 
 input:not([type]):focus,
-[type="color"]:focus,
-[type="date"]:focus,
-[type="datetime"]:focus,
-[type="datetime-local"]:focus,
-[type="file"]:focus,
-[type="month"]:focus,
-[type="number"]:focus,
-[type="password"]:focus,
-[type="search"]:focus,
-[type="range"]:focus,
-[type="tel"]:focus,
-[type="text"]:focus,
-[type="time"]:focus,
-[type="url"]:focus,
-[type="week"]:focus {
+[type=color]:focus,
+[type=date]:focus,
+[type=datetime]:focus,
+[type=datetime-local]:focus,
+[type=file]:focus,
+[type=month]:focus,
+[type=number]:focus,
+[type=password]:focus,
+[type=search]:focus,
+[type=range]:focus,
+[type=tel]:focus,
+[type=text]:focus,
+[type=time]:focus,
+[type=url]:focus,
+[type=week]:focus {
   outline: 0;
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
 }
 
 /*
-        Without custom styling (appearance: none), Safari doesn't apply the shadow, so breaks
-        accessibility ...
-    */
-[type="checkbox"]:focus,
-[type="radio"]:focus {
+    Without custom styling (appearance: none), Safari doesn't apply the shadow, so breaks
+    accessibility ...
+*/
+[type=checkbox]:focus,
+[type=radio]:focus {
   outline: 0;
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
 }
 
 /*
-        ... so reinstating the outline:
-    */
-_::-webkit-full-page-media, _:future, :root [type="checkbox"]:focus,
-_::-webkit-full-page-media, _:future, :root [type="radio"]:focus {
+    ... so reinstating the outline:
+*/
+_::-webkit-full-page-media, _:future, :root [type=checkbox]:focus,
+_::-webkit-full-page-media, _:future, :root [type=radio]:focus {
   outline: auto 5px -webkit-focus-ring-color;
 }
 
 /*
     IE9 adds the border and background:
 */
-[type="checkbox"],
-[type="radio"] {
+[type=checkbox],
+[type=radio] {
   border: 0;
   background: transparent;
   cursor: pointer;
 }
 
-[type="button"],
-[type="reset"],
-[type="submit"] {
-  display: inline-block;
-  /* AK. IE9 needs this. Hmmm, for what exactly?*/
+[type=button],
+[type=reset],
+[type=submit] {
+  display: inline-block; /* AK. IE9 needs this. Hmmm, for what exactly?*/
   min-height: 3rem;
-  overflow: visible;
-  /* S: Internet Explorer 11-, N: Show the overflow in Edge, Firefox, and IE. */
+  overflow: visible; /* S: Internet Explorer 11-, N: Show the overflow in Edge, Firefox, and IE. */
   margin: 0.3rem 0;
   padding-top: 0.3rem;
   padding-top: -moz-calc(0);
@@ -1419,27 +1305,22 @@ _::-webkit-full-page-media, _:future, :root [type="radio"]:focus {
   font-family: inherit;
   line-height: 2.4rem;
   vertical-align: middle;
-  text-transform: none;
-  /* [N0], N: Remove the inheritance of text transform in Edge, Firefox, and IE. */
+  text-transform: none; /* [N0], N: Remove the inheritance of text transform in Edge, Firefox, and IE. */
   cursor: pointer;
-  -ms-touch-action: manipulation;
-  /* 1 (IE10) */
-  touch-action: manipulation;
-  /* 1 */
+  -ms-touch-action: manipulation; /* 1 (IE10) */
+  touch-action: manipulation; /* 1 */
   -webkit-appearance: none;
 }
-
-[type="button"]:hover, [type="button"]:active,
-[type="reset"]:hover,
-[type="reset"]:active,
-[type="submit"]:hover,
-[type="submit"]:active {
+[type=button]:hover, [type=button]:active,
+[type=reset]:hover,
+[type=reset]:active,
+[type=submit]:hover,
+[type=submit]:active {
   background-color: #4b1808;
 }
-
-[type="button"]:focus,
-[type="reset"]:focus,
-[type="submit"]:focus {
+[type=button]:focus,
+[type=reset]:focus,
+[type=submit]:focus {
   outline: 0;
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
 }
@@ -1447,10 +1328,10 @@ _::-webkit-full-page-media, _:future, :root [type="radio"]:focus {
 /*
     IE10 makes the line-height massive with calc, but doesn't appear to need it anyway.
 */
-[type="button"],
-[type="reset"],
-[type="submit"] {
-  line-height: 1\9;
+[type=button],
+[type=reset],
+[type=submit] {
+  line-height: 1\9 ;
 }
 
 /*
@@ -1461,13 +1342,11 @@ _::-webkit-full-page-media, _:future, :root [type="radio"]:focus {
        Max-width doesn't work to solve this, but may be needed to restrict width on larger screens.
     2. Make sure button corners aren't visible.
 */
-[type="file"] {
-  width: 100%;
-  /* 1 */
+[type=file] {
+  width: 100%; /* 1 */
   max-width: 18.5em;
   min-height: 3rem;
-  overflow: hidden;
-  /* 2 */
+  overflow: hidden; /* 2 */
   margin: 0.3rem 0;
   padding: 0;
   cursor: pointer;
@@ -1476,51 +1355,50 @@ _::-webkit-full-page-media, _:future, :root [type="radio"]:focus {
 /*
     Fix button height in Firefox.
 */
-_:-moz-any-link, :root [type="file"] {
+_:-moz-any-link, :root [type=file] {
   height: 3rem;
 }
 
-_:-ms-input-placeholder, :root [type="file"] {
+_:-ms-input-placeholder, :root [type=file] {
   background-color: #79260D;
 }
 
-@media screen and (min-width: 0\0) and (min-resolution: 72dpi) {
-  [type="file"] {
+@media screen and (min-width: 0\0 ) and (min-resolution: 72dpi) {
+  [type=file] {
     padding-left: 0.6rem;
   }
 }
-
 /*
     iOS turns these inputs into selects which are a touch too high.
 */
-[type="date"],
-[type="datetime-local"],
-[type="month"],
-[type="time"],
-[type="week"] {
+[type=date],
+[type=datetime-local],
+[type=month],
+[type=time],
+[type=week] {
   height: 2.8rem;
 }
 
 /*
     Remove extra padding in Chrome
 */
-[type="date"]::-webkit-datetime-edit-fields-wrapper,
-[type="datetime-local"]::-webkit-datetime-edit-fields-wrapper,
-[type="month"]::-webkit-datetime-edit-fields-wrapper,
-[type="time"]::-webkit-datetime-edit-fields-wrapper,
-[type="week"]::-webkit-datetime-edit-fields-wrapper {
+[type=date]::-webkit-datetime-edit-fields-wrapper,
+[type=datetime-local]::-webkit-datetime-edit-fields-wrapper,
+[type=month]::-webkit-datetime-edit-fields-wrapper,
+[type=time]::-webkit-datetime-edit-fields-wrapper,
+[type=week]::-webkit-datetime-edit-fields-wrapper {
   padding: 0;
 }
 
 /*
     Tidy spin buttons and apply cursor:
 */
-[type="date"]::-webkit-inner-spin-button,
-[type="datetime-local"]::-webkit-inner-spin-button,
-[type="month"]::-webkit-inner-spin-button,
-[type="number"]::-webkit-inner-spin-button,
-[type="time"]::-webkit-inner-spin-button,
-[type="week"]::-webkit-inner-spin-button {
+[type=date]::-webkit-inner-spin-button,
+[type=datetime-local]::-webkit-inner-spin-button,
+[type=month]::-webkit-inner-spin-button,
+[type=number]::-webkit-inner-spin-button,
+[type=time]::-webkit-inner-spin-button,
+[type=week]::-webkit-inner-spin-button {
   height: auto;
   cursor: pointer;
 }
@@ -1529,17 +1407,16 @@ _:-ms-input-placeholder, :root [type="file"] {
  * 1. Correct the odd appearance in Chrome and Safari.
  * 2. Correct the outline style in Safari.
  */
-[type="search"] {
-  -webkit-appearance: textfield;
-  /* 1 */
+[type=search] {
+  -webkit-appearance: textfield; /* 1 */
 }
 
 /**
  * N: Remove the inner padding and cancel buttons in Chrome on OS X and
  * Safari on OS X.
  */
-[type="search"]::-webkit-search-cancel-button,
-[type="search"]::-webkit-search-decoration {
+[type=search]::-webkit-search-cancel-button,
+[type=search]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
@@ -1548,7 +1425,7 @@ _:-ms-input-placeholder, :root [type="file"] {
 */
 ::-webkit-input-placeholder {
   color: inherit;
-  opacity: .54;
+  opacity: 0.54;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -1563,12 +1440,9 @@ _:-ms-input-placeholder, :root [type="file"] {
     3. Prevent the element increasing the line-height of the parent.
 */
 kbd {
-  font-family: monospace, monospace;
-  /* 1 */
-  font-size: 1em;
-  /* 2 */
-  line-height: 0;
-  /* 3 */
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+  line-height: 0; /* 3 */
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -1588,10 +1462,8 @@ label {
   font-weight: bold;
   vertical-align: middle;
   cursor: pointer;
-  -ms-touch-action: manipulation;
-  /* 1 (IE10) */
-  touch-action: manipulation;
-  /* 1 */
+  -ms-touch-action: manipulation; /* 1 (IE10) */
+  touch-action: manipulation; /* 1 */
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -1614,21 +1486,15 @@ label {
     the fact that fieldset top border width is ignored if there's a legend so the spacing is wrong.
 */
 legend {
-  display: table;
-  /* 1 */
-  max-width: 100%;
-  /* 1 */
-  margin-top: 0;
-  /* 2 */
-  margin-bottom: 0.1rem;
-  /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  margin-top: 0; /* 2 */
+  margin-bottom: 0.1rem; /* 2 */
   padding: 0 0.6rem;
   border-width: 0;
-  color: inherit;
-  /* 3 */
+  color: inherit; /* 3 */
   font-weight: bold;
-  white-space: normal;
-  /* 1 */
+  white-space: normal; /* 1 */
   /*  */
 }
 
@@ -1657,8 +1523,7 @@ li ol {
     1. Correct `block` display not defined for `main` in IE.
 */
 main {
-  display: block;
-  /* 1 */
+  display: block; /* 1 */
   width: 100%;
   min-height: 100%;
   padding: 2.4rem;
@@ -1669,17 +1534,15 @@ main {
   position: relative;
   flex-grow: 1;
   /*@if $s__use-layout {
-         -webkit-flex: 1 0 auto;
-        -moz-box-flex: 1;
-             -ms-flex: 1 0 auto;
-                 flex: 1 0 auto;
-    }*/
+       -webkit-flex: 1 0 auto;
+      -moz-box-flex: 1;
+           -ms-flex: 1 0 auto;
+               flex: 1 0 auto;
+  }*/
 }
-
 main:first-child {
   margin-top: 0;
 }
-
 main:last-child {
   margin-bottom: 0;
 }
@@ -1709,11 +1572,9 @@ nav {
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
 }
-
 nav:first-child {
   margin-top: 0;
 }
-
 nav:last-child {
   margin-bottom: 0;
 }
@@ -1750,14 +1611,11 @@ object {
 ol {
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
-  display: table;
-  /* 1b */
+  display: table; /* 1b */
 }
-
 ol:first-child {
   margin-top: 0;
 }
-
 ol:last-child {
   margin-bottom: 0;
 }
@@ -1774,8 +1632,7 @@ ol:last-child {
 optgroup {
   color: #333;
   background-color: #fff;
-  font-weight: bold;
-  /* 1 */
+  font-weight: bold; /* 1 */
   font-style: inherit;
   font-size: inherit;
   font-family: inherit;
@@ -1792,17 +1649,14 @@ optgroup {
        Just IE9-11 to sort out?
 */
 option {
-  display: flex;
-  /* 1 */
-  align-items: center;
-  /* 1 */
+  display: flex; /* 1 */
+  align-items: center; /* 1 */
   min-height: 2.4rem;
   padding-right: 0.6rem;
   padding-left: 0.6rem;
   cursor: pointer;
   background-color: #fff;
 }
-
 option:hover {
   background-color: #ee8464;
   color: #333;
@@ -1818,11 +1672,9 @@ p {
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
 }
-
 p:first-child {
   margin-top: 0;
 }
-
 p:last-child {
   margin-bottom: 0;
 }
@@ -1845,45 +1697,34 @@ p:last-child {
     3. Correct the inheritance and scaling of font size in all browsers.
 */
 pre {
-  overflow-x: scroll;
-  /* 1 */
-  overflow-y: auto;
-  /* 1 */
+  overflow-x: scroll; /* 1 */
+  overflow-y: auto; /* 1 */
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
-  margin-bottom: 3.1rem;
-  /* 1 */
-  background-color: #f6bba9;
-  /*1 */
-  font-size: 1em;
-  /* 2 */
-  font-family: monospace, monospace;
-  /* 3 */
+  margin-bottom: 3.1rem; /* 1 */
+  background-color: #f6bba9; /*1 */
+  font-size: 1em; /* 2 */
+  font-family: monospace, monospace; /* 3 */
 }
-
 pre:first-child {
   margin-top: 0;
 }
-
 pre:last-child {
   margin-bottom: 0;
 }
 
 @supports (-ms-ime-align: auto) {
   pre {
-    margin-bottom: 3.6rem;
-    /* 1 */
+    margin-bottom: 3.6rem; /* 1 */
   }
 }
-
 /*
-        1. Revert zeroed line-height (see) `code`.
-    */
+    1. Revert zeroed line-height (see) `code`.
+*/
 pre code {
   display: inline-block;
   padding: 1.2rem;
-  line-height: 2.4rem;
-  /* 1 */
+  line-height: 2.4rem; /* 1 */
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -1897,10 +1738,8 @@ pre code {
     2. Internet Explorer 11-, Windows Phone 8.1+
 */
 progress {
-  display: inline-block;
-  /* 1 */
-  vertical-align: middle;
-  /* 2 */
+  display: inline-block; /* 1 */
+  vertical-align: middle; /* 2 */
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -1915,12 +1754,9 @@ progress {
     3. Prevent the element increasing the line-height of the parent.
 */
 samp {
-  font-size: 1em;
-  /* 1 */
-  font-family: monospace, monospace;
-  /* 2 */
-  line-height: 0;
-  /* 3 */
+  font-size: 1em; /* 1 */
+  font-family: monospace, monospace; /* 2 */
+  line-height: 0; /* 3 */
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -1934,11 +1770,9 @@ section {
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
 }
-
 section:first-child {
   margin-top: 0;
 }
-
 section:last-child {
   margin-bottom: 0;
 }
@@ -1954,8 +1788,7 @@ section:last-child {
     2. Remove the tapping delay from clickable elements.
 */
 select {
-  height: 3rem;
-  /* 1 */
+  height: 3rem; /* 1 */
   min-height: auto;
   margin: 0.3rem 0;
   border-width: 0.1rem;
@@ -1972,12 +1805,9 @@ select {
   vertical-align: middle;
   text-transform: none;
   cursor: pointer;
-  -ms-touch-action: manipulation;
-  /* 2 (IE10) */
-  touch-action: manipulation;
-  /* 2 */
+  -ms-touch-action: manipulation; /* 2 (IE10) */
+  touch-action: manipulation; /* 2 */
 }
-
 select::-ms-expand {
   background-color: transparent;
   color: #000;
@@ -1985,7 +1815,6 @@ select::-ms-expand {
   padding-left: 0.6rem;
   padding-right: 0.6rem;
 }
-
 select::-ms-value {
   color: currentColor;
 }
@@ -2003,16 +1832,12 @@ select::-ms-value {
 */
 select:not([multiple]) {
   padding-left: 0.3rem;
-  -webkit-padding-start: 0.6rem;
-  /* 1 */
+  -webkit-padding-start: 0.6rem; /* 1 */
   padding-right: 2.4rem;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4.95 10" fill="%23444"><polygon points="1.41 4.67 2.48 3.18 3.54 4.67 1.41 4.67"/><polygon points="3.54 5.33 2.48 6.82 1.41 5.33 3.54 5.33"/></svg>');
-  /* 2 */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4.95 10" fill="%23444"><polygon points="1.41 4.67 2.48 3.18 3.54 4.67 1.41 4.67"/><polygon points="3.54 5.33 2.48 6.82 1.41 5.33 3.54 5.33"/></svg>'); /* 2 */
   background-repeat: no-repeat;
-  background-position: right 0.3em bottom 0;
-  /* 3 */
-  -moz-appearance: none;
-  /* 4 */
+  background-position: right 0.3em bottom 0; /* 3 */
+  -moz-appearance: none; /* 4 */
   -webkit-appearance: none;
   appearance: none;
 }
@@ -2033,18 +1858,16 @@ _:-moz-tree-row(hover), select:not([multiple]) {
     padding-right: 2.4rem;
   }
 }
-
 /*
     Undo custom arrow indicator for IE9-11:
 */
 /* IE9-11 */
-@media screen and (min-width: 0\0) and (min-resolution: +72dpi) {
+@media screen and (min-width:0\0 ) and (min-resolution: +72dpi) {
   select:not([multiple]) {
-    background-image: none\0;
-    padding-right: 0\0;
+    background-image: none\0 ;
+    padding-right: 0\0 ;
   }
 }
-
 select:focus {
   outline: 0;
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
@@ -2104,10 +1927,8 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[multip
     2. Prevent the element increasing the line-height of the parent.
 */
 small {
-  font-size: 81.25%;
-  /* 1 */
-  line-height: normal;
-  /* 2 */
+  font-size: 81.25%; /* 1 */
+  line-height: normal; /* 2 */
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -2121,10 +1942,8 @@ small {
     2. Prevent increase in line-height.
 */
 strong {
-  font-weight: bolder;
-  /* 1 */
-  line-height: normal;
-  /* 2 */
+  font-weight: bolder; /* 1 */
+  line-height: normal; /* 2 */
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -2157,15 +1976,11 @@ sub {
     2. Remove the tapping delay from clickable elements.
 */
 summary {
-  display: block;
-  /* 1 */
-  -ms-touch-action: manipulation;
-  /* 2 (IE10) */
-  touch-action: manipulation;
-  /* 2 */
+  display: block; /* 1 */
+  -ms-touch-action: manipulation; /* 2 (IE10) */
+  touch-action: manipulation; /* 2 */
   cursor: pointer;
 }
-
 summary:focus {
   outline: 0;
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
@@ -2178,7 +1993,7 @@ summary::-webkit-details-marker {
 
 details > summary::before {
   display: block;
-  content: '';
+  content: "";
   width: 0px;
   height: 0px;
   border-top: 0.5em solid transparent;
@@ -2197,11 +2012,9 @@ details[open] > summary {
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
 }
-
 details[open] > summary:first-child {
   margin-top: 0;
 }
-
 details[open] > summary:last-child {
   margin-bottom: 0;
 }
@@ -2236,13 +2049,12 @@ sup {
 /*
     1. Change the fill color to match the text color in all browsers.
        (needs more testing)
-       
+
     2. iOS7 (at least) adds a mystery top margin.
 */
 svg {
   vertical-align: middle;
-  fill: currentColor;
-  /* 1 */
+  fill: currentColor; /* 1 */
   margin-top: 0;
 }
 
@@ -2250,8 +2062,7 @@ svg {
     1. Correct overflow not hidden in IE 9-11.
 */
 svg:not(:root) {
-  overflow: hidden;
-  /* 1 */
+  overflow: hidden; /* 1 */
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -2274,11 +2085,9 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
 table:first-child {
   margin-top: 0;
 }
-
 table:last-child {
   margin-bottom: 0;
 }
@@ -2294,10 +2103,8 @@ table:last-child {
     2. Calc to deduct any border-width.
 */
 td {
-  padding-top: 1.2rem;
-  /* 1 */
-  padding-top: calc(1.2rem - 0.1rem);
-  /* 2 */
+  padding-top: 1.2rem; /* 1 */
+  padding-top: calc(1.2rem - 0.1rem); /* 2 */
   padding-right: 1.2rem;
   padding-bottom: 1.2rem;
   padding-left: 1.2rem;
@@ -2310,10 +2117,8 @@ td {
     rhythm.
 */
 tbody tr:last-child td {
-  padding-bottom: 1.2rem;
-  /* 1 */
-  padding-bottom: calc(1.2rem - 0.1rem);
-  /* 2 */
+  padding-bottom: 1.2rem; /* 1 */
+  padding-bottom: calc(1.2rem - 0.1rem); /* 2 */
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -2326,8 +2131,7 @@ tbody tr:last-child td {
     1. Hide `template` in unsupported browsers (https://caniuse.com/#feat=template)
 */
 template {
-  display: none;
-  /* 1 */
+  display: none; /* 1 */
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -2345,13 +2149,10 @@ template {
     5a. IE 10.
 */
 textarea {
-  min-height: 8.2rem;
-  /* 1 */
-  overflow: auto;
-  /* 2 */
+  min-height: 8.2rem; /* 1 */
+  overflow: auto; /* 2 */
   margin-top: 0.2rem;
-  margin-bottom: 0;
-  /* 3 */
+  margin-bottom: 0; /* 3 */
   padding-left: 0.6rem;
   padding-right: 0.6rem;
   border-width: 0.1rem;
@@ -2364,12 +2165,9 @@ textarea {
   font-family: inherit;
   font-style: inherit;
   font-weight: inherit;
-  vertical-align: top;
-  /* 4 */
-  -ms-touch-action: manipulation;
-  /* 5a */
-  touch-action: manipulation;
-  /* 5 */
+  vertical-align: top; /* 4 */
+  -ms-touch-action: manipulation; /* 5a */
+  touch-action: manipulation; /* 5 */
   resize: vertical;
 }
 
@@ -2389,10 +2187,8 @@ textarea:focus {
     2. Calc to deduct any border-width.
 */
 th {
-  padding-top: 1.2rem;
-  /* 1 */
-  padding-top: calc(1.2rem - 0.1rem);
-  /* 2 */
+  padding-top: 1.2rem; /* 1 */
+  padding-top: calc(1.2rem - 0.1rem); /* 2 */
   padding-right: 1.2rem;
   padding-bottom: 1.2rem;
   padding-left: 1.2rem;
@@ -2405,10 +2201,8 @@ th {
     rhythm.
 */
 tbody tr:last-child th {
-  padding-bottom: 1.2rem;
-  /* 1 */
-  padding-bottom: calc(1.2rem - 0.1rem);
-  /* 2 */
+  padding-bottom: 1.2rem; /* 1 */
+  padding-bottom: calc(1.2rem - 0.1rem); /* 2 */
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -2433,14 +2227,11 @@ tbody tr:last-child th {
 ul {
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
-  display: table;
-  /* 1b */
+  display: table; /* 1b */
 }
-
 ul:first-child {
   margin-top: 0;
 }
-
 ul:last-child {
   margin-bottom: 0;
 }
@@ -2455,12 +2246,10 @@ ul:last-child {
     1. Allow video to center if container larger than video.
 */
 video {
-  display: block;
-  /* 1 */
+  display: block; /* 1 */
   max-width: 100%;
   height: auto;
-  margin: 0 auto;
-  /* 1 */
+  margin: 0 auto; /* 1 */
   background-color: #333;
 }
 
@@ -2476,10 +2265,8 @@ video:focus {
     1. Remove the tapping delay from clickable elements.
 */
 [tabindex] {
-  -ms-touch-action: manipulation;
-  /* 1 (IE10) */
-  touch-action: manipulation;
-  /* 1 */
+  -ms-touch-action: manipulation; /* 1 (IE10) */
+  touch-action: manipulation; /* 1 */
 }
 
 /*
@@ -2511,7 +2298,6 @@ main :target {
     box-shadow: 0 0 0 1.2rem rgba(233, 95, 54, 0), 0 0 0 100vmax rgba(233, 95, 54, 0) inset;
   }
 }
-
 @-webkit-keyframes target-fade {
   0% {
     box-shadow: 0 0 0 1.2rem rgba(233, 95, 54, 0.4), 0 0 0 100vmax rgba(233, 95, 54, 0.4) inset;
@@ -2520,7 +2306,6 @@ main :target {
     box-shadow: 0 0 0 1.2rem rgba(233, 95, 54, 0), 0 0 0 100vmax rgba(233, 95, 54, 0) inset;
   }
 }
-
 @keyframes target-fade {
   0% {
     box-shadow: 0 0 0 1.2rem rgba(233, 95, 54, 0.4), 0 0 0 100vmax rgba(233, 95, 54, 0.4) inset;
@@ -2529,7 +2314,6 @@ main :target {
     box-shadow: 0 0 0 1.2rem rgba(233, 95, 54, 0), 0 0 0 100vmax rgba(233, 95, 54, 0) inset;
   }
 }
-
 /*
     Give some space to elements targeted by fragments:
 */
@@ -2547,14 +2331,14 @@ main :target {
 /*
     Change the cursor on busy elements in all browsers. (S)
 */
-[aria-busy="true"] {
+[aria-busy=true] {
   cursor: progress;
 }
 
 /*
     Specify the un-styled cursor of disabled, not-editable, or otherwise inoperable elements. (S)
 */
-[aria-disabled="true"],
+[aria-disabled=true],
 [disabled] {
   cursor: default;
 }
@@ -2576,25 +2360,17 @@ main :target {
 */
 @media (prefers-reduced-motion: reduce) {
   *,
-  ::before,
-  ::after {
-    animation-delay: -1ms !important;
-    /* 1 */
-    animation-duration: 1ms !important;
-    /* 1 */
-    animation-iteration-count: 1 !important;
-    /* 1 */
-    background-attachment: initial !important;
-    /* 2 */
-    scroll-behavior: auto !important;
-    /* 3 */
-    transition-delay: 0s !important;
-    /* 4 */
-    transition-duration: 0s !important;
-    /* 4 */
+::before,
+::after {
+    animation-delay: -1ms !important; /* 1 */
+    animation-duration: 1ms !important; /* 1 */
+    animation-iteration-count: 1 !important; /* 1 */
+    background-attachment: initial !important; /* 2 */
+    scroll-behavior: auto !important; /* 3 */
+    transition-delay: 0s !important; /* 4 */
+    transition-duration: 0s !important; /* 4 */
   }
 }
-
 /*! Start-CSS Experimental. See SCSS file for documentation. */
 /*-------------------------------------------------------------------------------------------------|
 
@@ -2608,7 +2384,7 @@ main :target {
     ("Press TAB to highlight each item on a web page.)
     That is - the default outline focus style works, but shadows don't unless appearance: none
     is used.
-    
+
     1. Safari 9.1 doesn't recognize 'auto' but I suspect others won't recognize 'initial', so
        keeping both for now.
 */
@@ -2655,7 +2431,7 @@ main :target {
 /*
     Method hide stuff if CSS has loaded:
 */
-[data-hidden="if-css"] {
+[data-hidden=if-css] {
   display: none !important;
 }
 
@@ -2663,20 +2439,18 @@ main :target {
     Method hide stuff if printing:
 */
 @media print {
-  [data-hidden="if-print"] {
+  [data-hidden=if-print] {
     display: none !important;
   }
 }
-
 /*
     Method hide stuff if NOT printing:
 */
 @media not print {
-  [data-hidden="if-not-print"] {
+  [data-hidden=if-not-print] {
     display: none !important;
   }
 }
-
 /*
     Address `[hidden]` styling not present in IE 8/9/10. (N)
 */
@@ -2695,7 +2469,7 @@ main :target {
     NVDA announces "link page link 1". Annoying. This only happens with continuous reading but it's
     still a problem.
 */
-[data-hidden="visually"]:not(:focus):not(:active) {
+[data-hidden=visually]:not(:focus):not(:active) {
   border: 0 !important;
   clip: rect(1px, 1px, 1px, 1px) !important;
   -webkit-clip-path: inset(50%) !important;
@@ -2748,7 +2522,7 @@ main :target {
   transition: opacity 1s ease 0s, z-index 1s ease 1s;
 }
 
-#cookie_notice[data-close="true"] {
+#cookie_notice[data-close=true] {
   opacity: 0;
   z-index: 0;
 }
@@ -3149,9 +2923,9 @@ body > * {
       grid-template-rows: auto auto minmax(auto, 1fr) auto;
     }
     [data-elementary] body > header,
-    [data-elementary] body > footer {
+[data-elementary] body > footer {
       padding: 1.2rem;
-      grid-column: 1 / -1;
+      grid-column: 1/-1;
     }
     [data-elementary] body > header {
       grid-row: 1;
@@ -3161,53 +2935,52 @@ body > * {
     }
     [data-elementary] body > main {
       grid-column: 1;
-      grid-row: 2 / -1;
+      grid-row: 2/-1;
     }
     [data-elementary] body > header + main:nth-last-child(3) {
-      grid-column: 1 / -1;
+      grid-column: 1/-1;
     }
     [data-elementary] body > aside {
       grid-column: 2;
       grid-row: 2;
     }
     /*
-            If there's no 'bottom' aside, we want the first one span 2 columns. Note this is the
-            only way I can think of doing this, but it's fragile - it will break if elements at this
-            level get added or removed.
-        */
+        If there's no 'bottom' aside, we want the first one span 2 columns. Note this is the
+        only way I can think of doing this, but it's fragile - it will break if elements at this
+        level get added or removed.
+    */
     [data-elementary] body > aside:nth-last-child(4) {
-      grid-row: 2 / -1;
+      grid-row: 2/-1;
     }
     [data-elementary] body > main + aside {
       grid-column: 2;
       grid-row: 3;
     }
     /*
-            Note this is the *template* sidebar - content in a sidebar that appears on all pages.
-            Not to be confused with the *content* sidebar, which is specific to the current page
-            content.
-        /*
-        body > aside {
-            grid-column: 2;
-        }
+        Note this is the *template* sidebar - content in a sidebar that appears on all pages.
+        Not to be confused with the *content* sidebar, which is specific to the current page
+        content.
+    /*
+    body > aside {
+        grid-column: 2;
+    }
 
-        /*
-            MAIN POSITION SELECTOR
+    /*
+        MAIN POSITION SELECTOR
 
-            If there's no aside (sidebar) then main has to span both columns:
-            Note this is fragile and depends on following the Elementary pattern absolutely.
-            What it says is that if main is the X from last element, it spans all columns.
-            If there are more elements after the `main` element (as in, there's the extra `aside`),
-            then the selector won't match. Change this in local SCSS and be wary of adding or
-            removing elements via JS.
+        If there's no aside (sidebar) then main has to span both columns:
+        Note this is fragile and depends on following the Elementary pattern absolutely.
+        What it says is that if main is the X from last element, it spans all columns.
+        If there are more elements after the `main` element (as in, there's the extra `aside`),
+        then the selector won't match. Change this in local SCSS and be wary of adding or
+        removing elements via JS.
 
-        */
+    */
     [data-elementary] body > main:nth-last-child(3) {
-      grid-column: 1 / -1;
+      grid-column: 1/-1;
     }
   }
 }
-
 /*------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------|
 
@@ -3297,7 +3070,7 @@ body > * {
   flex: 1 1 auto;
 }
 
-[data-elementary] body > header nav p[role="list"] {
+[data-elementary] body > header nav p[role=list] {
   flex-grow: 999;
 }
 
@@ -3333,7 +3106,7 @@ body > * {
   background-color: rgba(255, 255, 255, 0.08);
 }
 
-[data-elementary] body > header nav p[role="list"] a[href]:focus {
+[data-elementary] body > header nav p[role=list] a[href]:focus {
   box-shadow: 0 0 0 0.6rem rgba(0, 0, 0, 0.3);
 }
 
@@ -3375,7 +3148,7 @@ p[role="list"] a[href]:focus,
   flex: 0 0 auto;
 }
 
-[data-elementary] body > header details[role="search"] form {
+[data-elementary] body > header details[role=search] form {
   z-index: 10;
 }
 
@@ -3513,7 +3286,7 @@ This puts a hover arrow on the navicon. I'm not sure why I did this.
 |-------------------------------------------------------------------------------------------------*/
 /*
     Expand main to fill space - part of stick footer.
-    
+
     1. There's a wierd sitution on /page-layout-article/ where there's <pre> in a <div>
        demonstrating the use of the <div> to create a full-width container (one that breaks
        out of the max-width column). But the <pre> has long content and isn't scrolling,
@@ -3526,7 +3299,7 @@ This puts a hover arrow on the navicon. I'm not sure why I did this.
 [data-elementary] body > main {
   flex: 1 0 auto;
   /* 1 */
-  max-width: 71.42857%;
+  max-width: 71.4285714286%;
   width: calc((1512px - 100%) * 9999);
   min-width: 100%;
   min-height: 0;
@@ -3537,7 +3310,7 @@ This puts a hover arrow on the navicon. I'm not sure why I did this.
 }
 
 [data-elementary] body > main:nth-last-child(3) {
-  grid-column: 1 / -1;
+  grid-column: 1/-1;
   max-width: 100%;
 }
 
@@ -3607,8 +3380,7 @@ main > * > h1 {
 
 */
 [data-elementary] body > main > article > header ~ * {
-  width: 100%;
-  /* 1 */
+  width: 100%; /* 1 */
   max-width: 70rem;
   margin-right: auto;
   margin-left: auto;
@@ -3639,27 +3411,27 @@ main > * > h1 {
   border-color: #79260D;
   padding: calc(2.4rem - 1px);
   /*
-    @if $s__use-last-child-margin-zero {
-        padding-bottom: 2.4rem;
-        //padding-bottom: -moz-calc(2.4rem - 1px);
-        padding-bottom:      calc(2.4rem - 1px);
-    } @else {
-        padding-bottom: 0;
-        &::after {
-            display: block;
+  @if $s__use-last-child-margin-zero {
+      padding-bottom: 2.4rem;
+      //padding-bottom: -moz-calc(2.4rem - 1px);
+      padding-bottom:      calc(2.4rem - 1px);
+  } @else {
+      padding-bottom: 0;
+      &::after {
+          display: block;
 
-            content: "";
+          content: "";
 
-            height: 1px;
+          height: 1px;
 
-            margin-top: $padding;
+          margin-top: $padding;
 
-            margin-bottom: -1px;
-            //margin-bottom: -moz-calc(-1px - 1px);
-            margin-bottom:      calc(-1px - 1px);
-        }
-    }
-    */
+          margin-bottom: -1px;
+          //margin-bottom: -moz-calc(-1px - 1px);
+          margin-bottom:      calc(-1px - 1px);
+      }
+  }
+  */
 }
 
 /*
@@ -3705,14 +3477,14 @@ main > * > h1 {
        so the behaviour is undefined. This is SO unlikely though
 
 |-------------------------------------------------------------------------------------------------*/
-[data-elementary] body > main > div > header ~ div[role="list"] {
+[data-elementary] body > main > div > header ~ div[role=list] {
   display: flex;
   flex-wrap: wrap;
   padding: 1.2rem;
   list-style-type: none;
 }
 
-[data-elementary] body > main > div > header ~ div[role="list"] > * {
+[data-elementary] body > main > div > header ~ div[role=list] > * {
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: 25rem;
@@ -3722,12 +3494,11 @@ main > * > h1 {
   border: 0;
   background-color: transparent;
 }
-
-[data-elementary] body > main > div > header ~ div[role="list"] > * > * {
+[data-elementary] body > main > div > header ~ div[role=list] > * > * {
   padding: 0;
 }
 
-[data-elementary] body > main > div > header ~ div[role="list"] > * > * {
+[data-elementary] body > main > div > header ~ div[role=list] > * > * {
   display: block;
   height: 100%;
   margin: 0;
@@ -3749,7 +3520,7 @@ main > * > h1 {
 
     CONTENT SIDEBAR
     ============================================================================================
-    
+
     Use this for page/content specific content - it should be different on each page and relevant
     or related to the current main content.
     For example:
@@ -3808,11 +3579,9 @@ main > * > h1 {
 [data-elementary] body > footer a[href] {
   color: #fff;
 }
-
 [data-elementary] body > footer a[href]:hover, [data-elementary] body > footer a[href]:active {
   color: white;
 }
-
 [data-elementary] body > footer a[href]:focus {
   box-shadow: 0 0 0 0.3rem rgba(255, 255, 255, 0.5);
 }
@@ -3841,14 +3610,12 @@ main > * > h1 {
   background: linear-gradient(to bottom, #ffffff 60%, #fbdfd7 100%);
   box-shadow: 0 0 0.6rem 0 rgba(0, 0, 0, 0.2);
 }
-
 [data-elementary] article > div:only-child * {
   overflow-wrap: break-word;
   word-wrap: break-word;
   -webkit-hyphens: auto;
   hyphens: auto;
 }
-
 [data-elementary] article > div:only-child *:only-child {
   margin-bottom: 0;
 }
@@ -3938,7 +3705,6 @@ main > * > h1 {
   line-height: 2.4rem;
   vertical-align: middle;
 }
-
 [data-elementary] article > div:only-child b > a[href]:only-child:hover, [data-elementary] article > div:only-child b > a[href]:only-child:active, [data-elementary] article > div:only-child b > a[href]:only-child:focus {
   background: #f6bba9;
 }
@@ -3994,8 +3760,8 @@ main > * > h1 {
 |-------------------------------------------------------------------------------------------------*/
 [data-elementary] small > details:only-child {
   position: absolute;
-  top: 0.6rem;
   right: 0.6rem;
+  top: 0.6rem;
   width: 2.4rem;
   height: 2.4rem;
   margin: 0;
@@ -4005,11 +3771,9 @@ main > * > h1 {
   color: #fff;
   background: rgba(0, 0, 0, 0.7);
 }
-
 [data-elementary] small > details:only-child a[href] {
   color: #fff;
 }
-
 [data-elementary] small > details:only-child[open] {
   border-radius: 0;
   top: 0;
@@ -4017,29 +3781,25 @@ main > * > h1 {
   width: auto;
   height: auto;
 }
-
 [data-elementary] small > details:only-child[open] > summary {
   top: 0.6rem;
   right: 0.6rem;
 }
-
 [data-elementary] small > details:only-child[open] > summary > svg:first-of-type {
   display: none;
 }
-
 [data-elementary] small > details:only-child[open] > summary > svg:last-of-type {
   display: inline;
 }
-
 [data-elementary] small > details:only-child::after {
   display: none;
 }
 
 /*
-        1. `align-items: center;` is the obvious choice for vertical-center aligning the icons, but
-           for some reason iOS doesn't get it right, so I'm using padding instead for now since the
-           icon or container sizes shouldn't change.
-    */
+    1. `align-items: center;` is the obvious choice for vertical-center aligning the icons, but
+       for some reason iOS doesn't get it right, so I'm using padding instead for now since the
+       icon or container sizes shouldn't change.
+*/
 [data-elementary] small > details:only-child > summary {
   position: absolute;
   z-index: 1;
@@ -4048,23 +3808,18 @@ main > * > h1 {
   width: 2.4rem;
   height: 2.4rem;
   margin: 0;
-  padding: 0.2rem;
-  /* [1] */
-  font-size: 1.23076923077em;
+  padding: 0.2rem; /* [1] */
+  font-size: 1.2307692308em;
 }
-
 [data-elementary] small > details:only-child > summary > :first-child {
   display: inline;
 }
-
 [data-elementary] small > details:only-child > summary > :last-child {
   display: none;
 }
-
 [data-elementary] small > details:only-child > summary::before {
   display: none;
 }
-
 [data-elementary] small > details:only-child > summary:hover, [data-elementary] small > details:only-child > summary:focus, [data-elementary] small > details:only-child > summary:active {
   background: rgba(255, 255, 255, 0.3);
 }
@@ -4103,7 +3858,7 @@ main > div > ul > li > article {
   stroke: #fff;
 }
 
-p[role="list"] {
+p[role=list] {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -4111,7 +3866,7 @@ p[role="list"] {
   margin-right: -0.6rem;
 }
 
-p[role="list"] span[role="listitem"] {
+p[role=list] span[role=listitem] {
   margin: 0.6rem;
   flex: 0 0 auto;
   display: inline-block;
@@ -4129,51 +3884,49 @@ p[role="list"] span[role="listitem"] > span:last-child {
 }
 */
 /* Visually hidden text fallback labels for svg icons */
-svg[aria-hidden="true"] + span[aria-hidden="false"] {
+svg[aria-hidden=true] + span[aria-hidden=false] {
   clip: rect(0 0 0 0);
   position: absolute;
 }
 
-[data-elementary] body > main > div > header ~ div[role="list"] > [data-size="medium"] {
+[data-elementary] body > main > div > header ~ div[role=list] > [data-size=medium] {
   min-width: calc(66.666% - 2.4rem);
 }
 
-[data-elementary] body > main > div > header ~ div[role="list"] > [data-size="large"] {
+[data-elementary] body > main > div > header ~ div[role=list] > [data-size=large] {
   min-width: calc(100% - 2.4rem);
 }
 
 @supports (display: grid) {
-  #page-layout-listing-grid[data-elementary] body > main > div > header ~ div[role="list"] {
+  #page-layout-listing-grid[data-elementary] body > main > div > header ~ div[role=list] {
     display: grid;
     padding: 2.4rem;
     grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
     grid-gap: 2.4rem;
   }
-  #page-layout-listing-grid[data-elementary] body > main > div > header ~ div[role="list"] > * {
+  #page-layout-listing-grid[data-elementary] body > main > div > header ~ div[role=list] > * {
     margin: 0;
   }
-  #page-layout-listing-grid[data-elementary] body > main > div > header ~ div[role="list"] > * > * {
+  #page-layout-listing-grid[data-elementary] body > main > div > header ~ div[role=list] > * > * {
     padding: 0;
   }
 }
-
 @supports (columns: 1) {
-  #page-layout-listing-columns[data-elementary] body > main > div > header ~ div[role="list"] {
+  #page-layout-listing-columns[data-elementary] body > main > div > header ~ div[role=list] {
     display: block;
     padding: 1.2rem 2.4rem;
     columns: 25rem auto;
     column-gap: 2.4rem;
   }
   /*
-            1. This fixes an issue where box-shadows break across columns.
-        */
-  #page-layout-listing-columns[data-elementary] body > main > div > header ~ div[role="list"] > * {
+      1. This fixes an issue where box-shadows break across columns.
+  */
+  #page-layout-listing-columns[data-elementary] body > main > div > header ~ div[role=list] > * {
     margin: 0;
-    transform: translateZ(0);
-    /* [1] */
+    transform: translateZ(0); /* [1] */
     break-inside: avoid;
   }
-  #page-layout-listing-columns[data-elementary] body > main > div > header ~ div[role="list"] > * > * {
+  #page-layout-listing-columns[data-elementary] body > main > div > header ~ div[role=list] > * > * {
     padding: 1.2rem 0;
   }
 }
