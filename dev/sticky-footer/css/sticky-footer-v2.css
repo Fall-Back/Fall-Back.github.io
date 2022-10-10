@@ -76,8 +76,7 @@ body {
        divergences.
 */
 .sticky-footer-wrap {
-  position: relative;
-  /* [1] */
+  position: relative; /* [1] */
   -webkit-flex: 1 0 auto;
   -moz-box-flex: 1;
   -ms-flex: 1 0 auto;
@@ -101,7 +100,6 @@ body {
   background-color: #fff;
   color: #333;
 }
-
 .sticky-footer-wrap > * {
   -moz-box-flex: 0;
   -webkit-flex: none;
@@ -127,7 +125,7 @@ body {
 }
 
 /* IE9-11 */
-@media screen and (min-width: 0\0) and (min-resolution: +72dpi) {
+@media screen and (min-width:0\0 ) and (min-resolution: +72dpi) {
   .sticky-footer-wrap {
     display: table;
     width: 100%;
@@ -138,7 +136,6 @@ body {
     height: 100%;
   }
 }
-
 /* Firefox 8-21 doesn't center the block if it has a max-width. *
 @if $s__sticky-footer--max-line-length > 0 {
     /* Firefox 8+ *
@@ -148,7 +145,7 @@ body {
             -moz-transform: translateX(-50%);
         }
     }
-    
+
     /* Reset for Firefox 22+ *
     @supports (-moz-appearance:none) and (display:flex) {
         .sticky-footer-wrap {
