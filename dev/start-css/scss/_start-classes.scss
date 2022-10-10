@@ -6,6 +6,7 @@
 
 \*------------------------------------------------------------------------------------------------*/
 
+@use 'sass:math';
 
 //$s__custom-input-focus-shadow: 0 0 0 2px lighten($s__base-ui-color, 20%) !default;
 
@@ -120,7 +121,7 @@ $fs__include_class_poem:          true !default;
     p.#{$s__class-namespace}subtitle {
         font-size: 1.5em;
         font-weight: inherit;
-        margin-top: -#{$s__base-rem-space-unit / 2}; /* 1 */
+        margin-top: -#{math.div($s__base-rem-space-unit, 2)}; /* 1 */
     }
 }
 
@@ -130,7 +131,7 @@ $fs__include_class_poem:          true !default;
     */
     .#{$s__class-namespace}tagline {
         font-size: 1.14285714286em;
-        margin-top: -#{$s__base-rem-space-unit / 2}; /* 1 */
+        margin-top: -#{math.div($s__base-rem-space-unit, 2)}; /* 1 */
     }
 }
 
@@ -196,7 +197,7 @@ $fs__include_class_poem:          true !default;
         .#{$s__class-namespace}composite > *:not(:first-child) {
             border-top-left-radius: 0 !important;
             border-bottom-left-radius: 0 !important;
-            
+
             // This looks odd in Edge...
             //border-left: 0;
             // ... so try negative margin to tweak:

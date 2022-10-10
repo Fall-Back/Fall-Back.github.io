@@ -35,7 +35,7 @@ $s__root-font-size:          10px !default; // 16px
 $s__base-font-size:          16px !default;
 $s__base-line-height:        24px !default; // 1.25
 
-$s__base-rem-space-unit:     calc($s__base-line-height / $s__root-font-size) * 1rem;
+$s__base-rem-space-unit:     math.div($s__base-line-height, $s__root-font-size) * 1rem;
 
 
 

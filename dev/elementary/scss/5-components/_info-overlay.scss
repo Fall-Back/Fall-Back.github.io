@@ -5,12 +5,14 @@
 
 |-------------------------------------------------------------------------------------------------*/
 
+@use 'sass:math';
+
 @mixin component__info-overlay($options: ()) {
 
     #{map-get($options, selector)} {
         position: absolute;
-        #{map-get($options, y-position)}: #{map-get($options, spacing-unit) / 4};
-        #{map-get($options, x-position)}: #{map-get($options, spacing-unit) / 4};
+        #{map-get($options, x-position)}: #{math.div(map-get($options, spacing-unit), 4)};
+        #{map-get($options, y-position)}: #{math.div(map-get($options, spacing-unit), 4)};
 
         width: #{map-get($options, spacing-unit)};
         height: #{map-get($options, spacing-unit)};
@@ -20,12 +22,12 @@
         padding: 0;
 
         border: 0;
-        border-radius: #{map-get($options, spacing-unit) / 2};
+        border-radius: #{math.div(map-get($options, spacing-unit), 2)};
 
         color: #fff;
         background: rgba(0,0,0,0.7);
 
-        a[href] {            
+        a[href] {
             color: #fff;
         }
 
@@ -37,8 +39,8 @@
             height: auto;
 
             & > summary {
-                #{map-get($options, y-position)}: #{map-get($options, spacing-unit) / 4};
-                #{map-get($options, x-position)}: #{map-get($options, spacing-unit) / 4};
+                #{map-get($options, y-position)}: #{math.div(map-get($options, spacing-unit), 4)};
+                #{map-get($options, x-position)}: #{math.div(map-get($options, spacing-unit), 4)};
 
                 & > svg:first-of-type {
                     display: none;

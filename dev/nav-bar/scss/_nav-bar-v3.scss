@@ -91,7 +91,7 @@ $s__nav-bar__title--font-family:           Arial, Helvetica, sans-serif !default
 $s__nav-bar-z-index:                       9999 !default;
 
 // Calculate title heights based on IT'S font size:
-$s__nav-bar__title--height:                math.div(($s__base-line-height * 1.5), (math.div($s__nav-bar__title--font-size, 1em) * $s__base-font-size) * 1em);
+$s__nav-bar__title--height:                (math.div(($s__base-line-height * 1.5), (math.div($s__nav-bar__title--font-size, 1em) * $s__base-font-size)) * 1em);
 
 
 $s__nav-bar-divider-first-item:            false !default;

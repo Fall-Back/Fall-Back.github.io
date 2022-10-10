@@ -13,6 +13,8 @@
 
 \* ---------------------------------------------------------------------------------------------- */
 
+@use 'sass:math';
+
 $s__nav-bar--breakpoint--enhanced:         $s__breakpoint--enhanced;
 
 
@@ -67,7 +69,7 @@ $s__sub-nav__link--background-color--alt: false !default;
 
 $s__nav-bar--font-size:                    $s__base-font-size !default;
 $s__nav-bar--height:                       ($s__base-em-ratio * 1.5em) !default;
-$s__nav-bar--spacing:                      ($s__nav-bar--height / 8) !default;
+$s__nav-bar--spacing:                      math.div($s__nav-bar--height, 8) !default;
 $s__nav-bar--margin-bottom:                0 !default;
 $s__nav-bar__title--padding:               0 !default;
 
@@ -89,7 +91,7 @@ $s__nav-bar__title--font-family:           Arial, Helvetica, sans-serif !default
 $s__nav-bar-z-index:                       9999 !default;
 
 // Calculate title heights based on IT'S font size:
-$s__nav-bar__title--height:                (($s__base-line-height * 1.5) / (($s__nav-bar__title--font-size / 1em) * $s__base-font-size) * 1em);
+$s__nav-bar__title--height:                (math.div(($s__base-line-height * 1.5), (math.div($s__nav-bar__title--font-size, 1em) * $s__base-font-size)) * 1em);
 
 
 $s__nav-bar-divider-first-item:            false !default;
@@ -526,5 +528,5 @@ $s__nav-bar-divider-first-item:            false !default;
             display: inline-block !important;
         }
     }
-    
+
 /* -----------------------------------------------------------------------------------------------*/

@@ -5,12 +5,14 @@
 
 |-------------------------------------------------------------------------------------------------*/
 
+@use 'sass:math';
+
 @mixin content-listing--columns($options: ()) {
     @supports (columns: 1) {
         #{map-get($options, selector)} {
             display: block;
 
-            padding: #{map-get($options, gutter) / 2} #{map-get($options, gutter)};
+            padding: #{math.div(map-get($options, gutter), 2)} #{map-get($options, gutter)};
 
             columns: #{map-get($options, basis)} auto;
             column-gap: #{map-get($options, gutter)};
@@ -27,7 +29,7 @@
             break-inside: avoid;
 
             & > * {
-                padding: #{map-get($options, gutter) / 2} 0;
+                padding: #{math.div(map-get($options, gutter), 2)} 0;
             }
         }
     }

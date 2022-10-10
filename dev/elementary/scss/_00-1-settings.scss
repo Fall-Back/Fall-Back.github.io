@@ -5,6 +5,8 @@
 
 |-------------------------------------------------------------------------------------------------*/
 
+@use 'sass:math';
+
 $e__ojbect_highlight: 0 0 0 $s__sz-xs rgba(255,255,255,.4), 0 0 0 $s__sz-s rgba(0,0,0,.2) !default;
 
 $e__body_max-width: 1080px !default;
@@ -83,7 +85,7 @@ $e__sub-nav__link--background-color--alt:   lighten($e__sub-nav__link--backgroun
 
 $e__nav-bar--font-size:                     $s__base-font-size !default;
 $e__nav-bar--height:                        ($s__base-em-ratio * 1.5em) !default;
-$e__nav-bar--spacing:                       ($e__nav-bar--height / 8) !default;
+$e__nav-bar--spacing:                       math.div($e__nav-bar--height, 8) !default;
 $e__nav-bar--margin-bottom:                 0 !default;
 $e__nav-bar__title--padding:                0 !default;
 
@@ -104,8 +106,8 @@ $e__main-sidebar-right-balance: 2 !default;
 
 $e__main-sidebar-balance: #{$e__main-sidebar-left-balance}fr #{$e__main-sidebar-right-balance}fr !default;
 
-$e__main-sidebar-balance-factor: $e__main-sidebar-left-balance / ($e__main-sidebar-left-balance + $e__main-sidebar-right-balance) !default;
-$e__main-width-breakpoint: $e__body_max-width  / $e__main-sidebar-balance-factor !default;
+$e__main-sidebar-balance-factor: math.div($e__main-sidebar-left-balance, ($e__main-sidebar-left-balance + $e__main-sidebar-right-balance)) !default;
+$e__main-width-breakpoint: math.div($e__body_max-width, $e__main-sidebar-balance-factor) !default;
 $e__main-sidebar-max-width: $e__main-sidebar-balance-factor * 100% !default;
 
 $e__main--text-color: $s__base-text-color !default;

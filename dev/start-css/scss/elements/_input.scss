@@ -17,11 +17,11 @@
 #{$s__namespace}input {
     max-width: 100%; /* 1 */
 
-    padding-top: math.div($s__base-rem-space-unit, 8)}; /* 2 */
-    padding-top: calc(math.div($s__base-rem-space-unit, 8) - #{$s__input-border-width});
+    padding-top: math.div($s__base-rem-space-unit, 8); /* 2 */
+    padding-top: calc(#{math.div($s__base-rem-space-unit, 8)} - #{$s__input-border-width});
     padding-right: $s__input-h-padding;
-    padding-bottom: math.div(calc($s__base-rem-space-unit, 8); /* 2 */
-    padding-bottom: calc(math.div($s__base-rem-space-unit, 8) - #{$s__input-border-width});
+    padding-bottom: math.div($s__base-rem-space-unit, 8); /* 2 */
+    padding-bottom: calc(#{math.div($s__base-rem-space-unit, 8)} - #{$s__input-border-width});
     padding-left: $s__input-h-padding;
 
     border-width: $s__input-border-width;

@@ -1,5 +1,5 @@
 /*! --------------------------------------------------------------------------------------------- *\
-    
+
     Fall-Back Over Panel v1.0.0
     https://github.com/Fall-Back/Patterns/tree/master/Over%20Panel
     Copyright (c) 2021, Andy Kirk
@@ -10,6 +10,8 @@
     Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
 
 \* ---------------------------------------------------------------------------------------------- */
+
+@use 'sass:math';
 
 $s__over-panel--breakpoint--enhanced:            $s__breakpoint--enhanced !default;
 $s__over-panel__contents--z-index:               9999 !default;
@@ -48,7 +50,7 @@ $s__over-panel__overlay--background-color:       #000 !default;
 // Sizes:
 
 $s__over-panel__control--height:                 ($s__base-em-ratio * 1.5em) !default;
-$s__over-panel--spacing:                         ($s__over-panel__control--height / 8) !default;
+$s__over-panel--spacing:                         math.div($s__over-panel__control--height, 8) !default;
 
 
 $s__over-panel__contents--padding:                0 !default; //$s__base-rem-space-unit !default;
@@ -75,7 +77,7 @@ $s__over-panel__overlay-opacity:                 0.6 !default;
         width: 100%; /* [1] */
     }
 
-    
+
     /*
 		This is a bit of a hack, but it's a way of letting JS know that this CSS has loaded.
 		It doesn't work for Opera Mini, but I'm happy to provide this browser only with the
@@ -103,9 +105,9 @@ $s__over-panel__overlay-opacity:                 0.6 !default;
     .over-panel__contents {
         background-color: $s__over-panel__contents--background-color;
         color: $s__over-panel__contents--text-color;
-        padding: $s__over-panel__contents--padding;     
+        padding: $s__over-panel__contents--padding;
     }
-    
+
     /*
         iOS/OSX seem to apply mystery margins.
     */
@@ -113,7 +115,7 @@ $s__over-panel__overlay-opacity:                 0.6 !default;
     .over-panel__contents {
         margin: 0;
     }
-    
+
     .over-panel__contents > * {
             -webkit-flex: 0 1 auto;
                 -ms-flex: 0 1 auto;
@@ -141,14 +143,14 @@ $s__over-panel__overlay-opacity:                 0.6 !default;
             -ms-flex: 1 0 auto;
                 flex: 1 0 auto;
     }
-    
+
     .js-over-panel .over-panel__contents {
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
     }
-    
-    
+
+
     @media only screen and (max-width: ($s__over-panel--breakpoint--enhanced - $s__mq-1-em-px)) {
 		/*
 			1. Make sure the over-panel is on top.
@@ -191,12 +193,12 @@ $s__over-panel__overlay-opacity:                 0.6 !default;
             //overflow: auto; Not sure why I needed this.
 
             visibility: hidden; /* [1] */
-            
+
             -webkit-flex-direction: column;
                 -ms-flex-direction: column;
                     flex-direction: column;
-  
-            
+
+
         }
 
 
@@ -275,11 +277,11 @@ $s__over-panel__overlay-opacity:                 0.6 !default;
         /*
             1. This necessary to collapse the element in cases where the page content without
                the over-panel contents is shorter than the over-panel contents themselves.
-               Take, for example, where short-ish page that's part of a large site, which therefore 
+               Take, for example, where short-ish page that's part of a large site, which therefore
                has a long menu. When the menu is revealed in the over-panel contents, the end result
                is higher than the page contents.
                Without these declarations, the page (with over-panel closed) renders with a
-               scrollbar and what looks like mystery space at the bottom of the page (when in 
+               scrollbar and what looks like mystery space at the bottom of the page (when in
                reality that space is just what's needed to display the over-panel contents).
                This could be confusing for users (it was confusing for me!) and makes the page look
                broken.
@@ -309,7 +311,7 @@ $s__over-panel__overlay-opacity:                 0.6 !default;
         .js-over-panel_is-open.over-panel .over-panel__contents {
             opacity: 1;
             transform: scale(1);  /* [1] */
-            
+
             -webkit-transition: opacity $td  $tf;
             -moz-transition:    opacity $td  $tf;
             -o-transition:      opacity $td  $tf;
@@ -363,7 +365,7 @@ $s__over-panel__overlay-opacity:                 0.6 !default;
         .js-over-panel-control.over-panel-control[aria-expanded="true"] {
             z-index: 1; /* [1] */
         }
-        
+
         .js-over-panel-control.over-panel-control:hover,
         .js-over-panel-control.over-panel-control:active,
         .js-over-panel-control.over-panel-control[aria-expanded="true"] {

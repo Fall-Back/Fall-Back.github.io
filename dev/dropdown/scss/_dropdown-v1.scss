@@ -1,5 +1,5 @@
 /*! --------------------------------------------------------------------------------------------- *\
-    
+
     Fall-Back Dropdown v1.0.0
     https://github.com/Fall-Back/Patterns/tree/master/Dropdown
     Copyright (c) 2021, Andy Kirk
@@ -10,6 +10,8 @@
     Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
 
 \* ---------------------------------------------------------------------------------------------- */
+
+@use 'sass:math';
 
 $s__dropdown--breakpoint--enhanced:          $s__breakpoint--enhanced;
 
@@ -39,7 +41,7 @@ $s__dropdown__button--border-radius:          0 !default;
 
 // Sizes:
 $s__dropdown__button--height:                 ($s__base-em-ratio * 1.5em) !default;
-$s__dropdown--spacing:                        ($s__dropdown__button--height / 8) !default;
+$s__dropdown--spacing:                        math.div($s__dropdown__button--height, 8) !default;
 
 
 $s__dropdown--padding:                        0 !default;
@@ -176,7 +178,7 @@ $s__dropdown-z-index:                         9999 !default;
     .dropdown .dropdown__button {
         display: none;
     }
-    
+
     /*
         iOS, OSX
     */
@@ -198,7 +200,7 @@ $s__dropdown-z-index:                         9999 !default;
 */
 
     @mixin activate-dropdown ($namespace: "") {
-   
+
         // Variable aliases for ease of comprehension:
         $td:$s__dropdown--transition-duration;
         $tf:$s__dropdown--transition-timing-function;
@@ -207,11 +209,11 @@ $s__dropdown-z-index:                         9999 !default;
 
             & .dropdown__area {
                 position: absolute;
-            
+
                 visibility: hidden;
                 opacity: 0;
-            
-            
+
+
                 -webkit-transition: opacity    $td  $tf,
                                     visibility 0s   $tf  $td;
                 -moz-transition:    opacity    $td  $tf,
@@ -225,7 +227,7 @@ $s__dropdown-z-index:                         9999 !default;
             & .dropdown__button {
                 display: block;
             }
-            
+
             & .dropdown__button .icon--is-open,
             & .dropdown__button[aria-expanded="true"] .icon--is-closed {
                 display: none;
@@ -235,12 +237,12 @@ $s__dropdown-z-index:                         9999 !default;
             & .dropdown__button[aria-expanded="true"] .icon--is-open {
                 display: inline;
             }
-            
+
             & .dropdown__button[aria-expanded="true"] ~ .dropdown__area {
                 visibility: visible;
                 opacity: 1;
 
-                
+
                 -webkit-transition: opacity $td  $tf;
                 -moz-transition:    opacity $td  $tf;
                 -o-transition:      opacity $td  $tf;
@@ -248,19 +250,19 @@ $s__dropdown-z-index:                         9999 !default;
             }
         }
     }
-    
+
     @include activate-dropdown("--all-widths");
-    
+
     @media only screen and (max-width:$s__dropdown--breakpoint--enhanced) {
 
        @include activate-dropdown("--only-narrow");
-        
+
     }
-    
+
     @media only screen and (min-width:$s__dropdown--breakpoint--enhanced) {
 
        @include activate-dropdown("--only-wide");
-        
+
     }
 
 

@@ -1,5 +1,5 @@
 /*! --------------------------------------------------------------------------------------------- *\
-    
+
     Fall-Back Over Panel v2.0.0
     https://github.com/Fall-Back/Patterns/tree/master/Over%20Panel
     Copyright (c) 2021, Andy Kirk
@@ -12,6 +12,8 @@
     PLUS IE11
 
 \* ---------------------------------------------------------------------------------------------- */
+
+@use 'sass:math';
 
 $s__over-panel--breakpoint--enhanced:            $s__breakpoint--enhanced !default;
 $s__over-panel__contents--z-index:               9999 !default;
@@ -50,7 +52,7 @@ $s__over-panel__overlay--background-color:       #000 !default;
 // Sizes:
 
 $s__over-panel__control--height:                 ($s__base-em-ratio * 1.5em) !default;
-$s__over-panel--spacing:                         ($s__over-panel__control--height / 8) !default;
+$s__over-panel--spacing:                         math.div($s__over-panel__control--height, 8) !default;
 
 
 $s__over-panel__contents--padding:                0 !default; //$s__base-rem-space-unit !default;
@@ -95,7 +97,7 @@ $s__over-panel__overlay-opacity:                 0.6 !default;
     */
     .over-panel {
         width: 100%; /* [1] */
-        
+
         position: relative;
     }
 
@@ -196,7 +198,7 @@ $s__over-panel__overlay-opacity:                 0.6 !default;
                 //overflow: auto; Not sure why I needed this.
 
                 visibility: hidden; /* [1] */
-                
+
                 flex-direction: column;
             }
 

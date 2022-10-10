@@ -1,5 +1,5 @@
 /*! --------------------------------------------------------------------------------------------- *\
-    
+
     Fall-Back Search Form v1.0.0
     https://github.com/Fall-Back/Patterns/tree/master/Search%20Form
     Copyright (c) 2021, Andy Kirk
@@ -11,6 +11,7 @@
 
 \* ---------------------------------------------------------------------------------------------- */
 
+@use 'sass:math';
 
 $s__search-form--breakpoint--enhanced:         $s__breakpoint--enhanced;
 
@@ -36,11 +37,11 @@ $s__search-form__submit--text-color:            $s__search-form--base-text-color
 
 $s__search-form--font-size:                     $s__base-font-size !default;
 $s__search-form--field-height:                  $s__base-em-ratio * 1em !default;
-$s__search-form--spacing:                       $s__search-form--field-height / 8 !default;
+$s__search-form--spacing:                       math.div($s__search-form--field-height, 8) !default;
 $s__search-form--height:                        $s__search-form--field-height + ($s__search-form--spacing * 2) !default;
 
 $s__search-bar--height:                         $s__search-form--height + ($s__search-form--spacing * 2) !default;
-$s__search-bar-button--spacing:                 $s__search-bar--height / 8 !default;
+$s__search-bar-button--spacing:                 math.div($s__search-bar--height, 8) !default;
 
 
 
@@ -149,7 +150,7 @@ $s__search-form-max-width:                      25em !default;
             width: auto;
         }
     }
-    
+
     // ... but put it back for FF28+:
     @supports (-moz-appearance:none) and (list-style-type:japanese-formal) {
         .search-form .search-form__field {

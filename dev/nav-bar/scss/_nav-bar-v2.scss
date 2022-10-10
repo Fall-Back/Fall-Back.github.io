@@ -1,5 +1,5 @@
 /*! --------------------------------------------------------------------------------------------- *\
-    
+
     Fall-Back Nav Bar v2.0.0
     https://github.com/Fall-Back/Patterns/tree/master/Nav%20Bar
     Copyright (c) 2021, Andy Kirk
@@ -12,6 +12,8 @@
     PLUS IE11
 
 \* ---------------------------------------------------------------------------------------------- */
+
+@use 'sass:math';
 
 $s__nav-bar--breakpoint--enhanced:         $s__breakpoint--enhanced;
 
@@ -58,7 +60,7 @@ $s__sub-nav__link--background-color--alt:  lighten($s__sub-nav__link--background
 
 $s__nav-bar--font-size:                    $s__base-font-size !default;
 $s__nav-bar--height:                       ($s__base-em-ratio * 1.5em) !default;
-$s__nav-bar--spacing:                      ($s__nav-bar--height / 8) !default;
+$s__nav-bar--spacing:                      math.div($s__nav-bar--height, 8) !default;
 $s__nav-bar--margin-bottom:                0 !default;
 $s__nav-bar__title--padding:               0 !default;
 
@@ -80,7 +82,7 @@ $s__nav-bar__title--font-family:           Arial, Helvetica, sans-serif !default
 $s__nav-bar-z-index:                       9999 !default;
 
 // Calculate title heights based on IT'S font size:
-$s__nav-bar__title--height:                (($s__base-line-height * 1.5) / (($s__nav-bar__title--font-size / 1em) * $s__base-font-size) * 1em);
+$s__nav-bar__title--height:                (math.div(($s__base-line-height * 1.5), (math.div($s__nav-bar__title--font-size, 1em) * $s__base-font-size)) * 1em);
 
 
 $s__nav-bar-divider-first-item:            false !default;
@@ -396,7 +398,7 @@ $s__nav-bar-divider-first-item:            false !default;
             -ms-flex: 1 1 auto;
                 flex: 1 1 auto;
         }
-        
+
         // It's often visually nicer for tne 'end' content to be pushed over to the right if it
         // doesn't fill the space.
         // Note I may need to make this a modifier class if it doesn't look right in all situations.
