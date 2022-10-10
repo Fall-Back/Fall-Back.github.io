@@ -114,19 +114,17 @@ svg[aria-hidden="true"] + span[aria-hidden="false"] {
 }
 
 
-
 // Apply grid to the Listing - Grid page:
-
 @include content-listing--grid((
     selector: "#page-layout-listing-grid#{$es__page_main__header--listing__list}",
     basis:    $e__listing__item--basis,
     gutter:   $e__listing__gutter
-))
+));
+
 
 // Apply columns to the Listing - Columns page:
-
 @include content-listing--columns((
     selector: "#page-layout-listing-columns#{$es__page_main__header--listing__list}",
     basis:    $e__listing__item--basis,
     gutter:   $e__listing__gutter
-))
+));
