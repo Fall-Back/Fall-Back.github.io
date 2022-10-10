@@ -4,14 +4,14 @@
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
-
+@use 'sass:math';
 
 @function s__calc-rem-from-px($px, $negative: false) {
     // e.g. $px = 16px (and $s__base-rem-1px = 0.0625rem)
     // 16px + 0px = 16px | 16 + 0px = 16px (add unit if necessary)
     // 16px / 1px = 16 (strip unit)
     // 16px * 0.0625rem = 1rem
-    $value: ((($px + 0px) / 1px) * $s__base-rem-1px);
+    $value: calc((($px + 0px) / 1px) * $s__base-rem-1px);
 
     @if $negative {
         $value: -#{$value};
@@ -83,10 +83,10 @@
 }
 
 @function s__color_light_or_dark($color) {
-    $color-brightness: round((red($color) * 299) + (green($color) * 587) + (blue($color) * 114) / 1000);
-    $light-color: round((red(#ffffff) * 299) + (green(#ffffff) * 587) + (blue(#ffffff) * 114) / 1000);
+    $color-brightness: round(calc((red($color) * 299) + (green($color) * 587) + (blue($color) * 114) / 1000));
+    $light-color: round(calc((red(#ffffff) * 299) + (green(#ffffff) * 587) + (blue(#ffffff) * 114) / 1000));
 
-    @if abs($color-brightness) < ($light-color/2) {
+    @if abs($color-brightness) < calc($light-color / 2) {
         //@debug #{$color} 'is dark';
         @return 'dark';
     }
@@ -125,7 +125,12 @@
 
 
 @function s__strip-unit($value) {
-    @return $value / ($value * 0 + 1);
+    @if type-of($value) == 'number' and not unitless($value) {
+        @return math.div($value, ($value * 0 + 1));
+    }
+
+    @return $value;
+    //@return calc($value / ($value * 0 + 1));
 }
 
 // https://css-tricks.com/snippets/sass/str-replace-function/

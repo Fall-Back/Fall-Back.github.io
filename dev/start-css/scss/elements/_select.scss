@@ -5,6 +5,8 @@
 
 |-------------------------------------------------------------------------------------------------*/
 
+@use 'sass:math';
+
 // N1: Address inconsistent `text-transform` inheritance for `select`.
 // All other form control elements do not inherit `text-transform` values.
 //  Correct `select` style inheritance in Firefox.
@@ -13,10 +15,10 @@
     2. Remove the tapping delay from clickable elements.
 */
 #{$s__namespace}select {
-    height: $s__base-rem-space-unit + ($s__base-rem-space-unit / 4); /* 1 */
+    height: $s__base-rem-space-unit + math.div($s__base-rem-space-unit, 4); /* 1 */
     min-height: auto;
 
-    margin: ($s__base-rem-space-unit / 8) 0;
+    margin: math.div($s__base-rem-space-unit, 8) 0;
 
     border-width: $s__select-border-width;
     border-style: $s__select-border-style;
@@ -66,7 +68,7 @@
        which point both are shown. However, removing the right-padding solves this (see below).
 */
 #{$s__namespace}select:not([multiple]) {
-    padding-left: $s__select-h-padding / 2;
+    padding-left: math.div($s__select-h-padding, 2);
     -webkit-padding-start: $s__select-h-padding; /* 1 */
     padding-right: $s__select-h-padding * 4;
 
@@ -126,10 +128,10 @@ _:-moz-tree-row(hover), #{$s__namespace}select:not([multiple]) {
     height: auto;
     vertical-align: top;
 
-    margin-top: ($s__base-rem-space-unit / 8);
+    margin-top: math.div($s__base-rem-space-unit, 8);
     margin-right: 0;
-    margin-bottom: -moz-calc(#{($s__base-rem-space-unit / 8) * 3} - #{$s__select-border-width * 2});
-    margin-bottom: calc(#{($s__base-rem-space-unit / 8) * 3} - #{$s__select-border-width * 2});
+    margin-bottom: -moz-calc(#{math.div($s__base-rem-space-unit, 8) * 3} - #{$s__select-border-width * 2});
+    margin-bottom: calc(#{math.div($s__base-rem-space-unit, 8) * 3} - #{$s__select-border-width * 2});
     margin-left: 0;
 }
 
@@ -142,7 +144,7 @@ _:-moz-tree-row(hover), #{$s__namespace}select:not([multiple]) {
 _::-webkit-full-page-media, _:future, :root select[multiple] {
     margin-bottom: 0;
 
-    padding: ($s__base-rem-space-unit / 12);
+    padding: math.div($s__base-rem-space-unit, 12);
 }
 
 /*
@@ -151,7 +153,7 @@ _::-webkit-full-page-media, _:future, :root select[multiple] {
 // _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root .selector { property:value; }
 // Safari 6.2,7.1+ (Not iOS)
 _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[multiple] {
-    margin-bottom: calc(#{($s__base-rem-space-unit / 8) * 3} - #{$s__select-border-width * 2});
+    margin-bottom: calc(#{math.div($s__base-rem-space-unit, 8) * 3} - #{$s__select-border-width * 2});
 
     padding: 0;
 }

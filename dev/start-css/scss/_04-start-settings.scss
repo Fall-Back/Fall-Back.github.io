@@ -21,16 +21,18 @@
 
 |-------------------------------------------------------------------------------------------------*/
 
+@use 'sass:math';
+
 // Use $s__namespace to scope all body > *:not(main) styles:
 $s__namespace: '' !default;
 
-$s__base-em-ratio:          $s__base-line-height / $s__base-font-size; // 1.71428571429
-$s__root-font-size-percent: ($s__root-font-size / 16px) * 100;
-$s__root-font-size-em:      ($s__root-font-size / 16px) * 1em;
+$s__base-em-ratio:          calc($s__base-line-height / $s__base-font-size); // 1.71428571429
+$s__root-font-size-percent: calc($s__root-font-size / 16px) * 100;
+$s__root-font-size-em:      calc($s__root-font-size / 16px) * 1em;
 
 
-$s__base-rem-1px:           1px / $s__root-font-size * 1rem;
-$s__base-em-1px:            1px / $s__root-font-size * 1em;
+$s__base-rem-1px:           calc(1px / $s__root-font-size) * 1rem;
+$s__base-em-1px:            calc(1px / $s__root-font-size) * 1em;
 $s__mq-1-em-px:             0.0625em;
 
 
@@ -55,13 +57,13 @@ $s__use-focus-shadow: true !default;
 
 // Sizes:
 
-$s__sz-xxs : $s__base-rem-space-unit / 8; // 3px
-$s__sz-xs  : $s__base-rem-space-unit / 4; // 6px
-$s__sz-s   : $s__base-rem-space-unit / 2; // 12px
+$s__sz-xxs : calc($s__base-rem-space-unit / 8); // 3px
+$s__sz-xs  : calc($s__base-rem-space-unit / 4); // 6px
+$s__sz-s   : calc($s__base-rem-space-unit / 2); // 12px
 $s__sz-m   : $s__base-rem-space-unit;     // 24px
-$s__sz-l   : $s__base-rem-space-unit * 2; // 48px
-$s__sz-xl  : $s__base-rem-space-unit * 4; // 96px
-$s__sz-xxl : $s__base-rem-space-unit * 8; // 192px
+$s__sz-l   : calc($s__base-rem-space-unit * 2); // 48px
+$s__sz-xl  : calc($s__base-rem-space-unit * 4); // 96px
+$s__sz-xxl : calc($s__base-rem-space-unit * 8); // 192px
 
 $s__sizes: (
     sz-xxs : $s__sz-xxs,
@@ -197,7 +199,7 @@ $s__aside-background-color: $s__base-background-color !default;
 
 
 
-$s__button-h-padding: $s__base-rem-space-unit / 4 !default;
+$s__button-h-padding: calc($s__base-rem-space-unit / 4) !default;
 
 $s__button-text-color: #fff !default;
 $s__button-background-color: $s__base-ui-color !default;
@@ -222,7 +224,7 @@ $s__caption-background-color: null !default;
 }
 
 $s__caption-text-color: #fff !default;
-$s__caption-padding: $s__base-rem-space-unit / 2 !default;
+$s__caption-padding: calc($s__base-rem-space-unit / 2) !default;
 
 
 
@@ -246,22 +248,22 @@ $s__footer-background-color: $s__base-background-color !default;
 
 
 
-$s__h1-font-size: 52px / $s__base-font-size * 1em !default;
+$s__h1-font-size: calc(52px / $s__base-font-size * 1em) !default;
 $s__h1-height:  $s__base-rem-space-unit * 2.5 !default;
 
-$s__h2-font-size: 40px / $s__base-font-size * 1em !default;
+$s__h2-font-size: calc(40px / $s__base-font-size * 1em) !default;
 $s__h2-height:  $s__base-rem-space-unit * 2 !default;
 
-$s__h3-font-size: 30px / $s__base-font-size * 1em !default;
+$s__h3-font-size: calc(30px / $s__base-font-size * 1em) !default;
 $s__h3-height:  $s__base-rem-space-unit * 1.5 !default;
 
-$s__h4-font-size: 22px / $s__base-font-size * 1em !default;
+$s__h4-font-size: calc(22px / $s__base-font-size * 1em) !default;
 $s__h4-height:  $s__base-rem-space-unit * 1.5 !default;
 
-$s__h5-font-size: 18px / $s__base-font-size * 1em !default;
+$s__h5-font-size: calc(18px / $s__base-font-size * 1em) !default;
 $s__h5-height:  $s__base-rem-space-unit !default;
 
-$s__h6-font-size: 16px / $s__base-font-size * 1em !default;
+$s__h6-font-size: calc(16px / $s__base-font-size * 1em) !default;
 $s__h6-height:  $s__base-rem-space-unit !default;
 
 
@@ -280,7 +282,7 @@ $s__hr-border: $s__hr-border-width solid $s__base-ui-color !default;
 
 
 
-$s__input-h-padding: $s__base-rem-space-unit / 4 !default;
+$s__input-h-padding: calc($s__base-rem-space-unit / 4) !default;
 
 $s__input-text-color: $s__base-text-color !default;
 $s__input-background-color: #fff !default;
@@ -312,7 +314,7 @@ $s__input-file-max-width: 18.5em !default;
 // top padding. CSS can't (yet) detect if there is a legend inside the fieldset so there needs to
 // be some corrective style on the legend itself. That would be bottom margin.
 $s__legend-border-width: 0 !default;
-$s__legend-h-padding: $s__base-rem-space-unit / 4 !default;
+$s__legend-h-padding: calc($s__base-rem-space-unit / 4) !default;
 
 
 
@@ -330,7 +332,7 @@ $s__optgroup-background-color: #fff !default;
 
 
 
-$s__option-h-padding: $s__base-rem-space-unit / 4 !default;
+$s__option-h-padding: calc($s__base-rem-space-unit / 4) !default;
 $s__option-text-color: $s__base-text-color !default;
 $s__option-background-color: #fff !default;
 $s__option-background-color--state-1: lighten($s__base-ui-color, 40%) !default;
@@ -349,13 +351,13 @@ $s__pre-margin-bottom--edge: s__calc-rem-from-px(($s__base-line-height * 2) - 12
 // (margin to account for scrollbar, we can check for touch in most browsers and change this
 // or use custom scrollbars = see `pre` below)
 
-$s__pre-code-padding: ($s__base-rem-space-unit / 2);
+$s__pre-code-padding: calc($s__base-rem-space-unit / 2);
 
 
 
 
 
-$s__select-h-padding: $s__base-rem-space-unit / 4 !default;
+$s__select-h-padding: calc($s__base-rem-space-unit / 4) !default;
 
 $s__select-text-color: $s__base-text-color !default;
 $s__select-background-color: #fff !default;
@@ -397,12 +399,12 @@ $s__td-background-color: null !default;
 }
 
 
-$s__td-cell-padding: $s__base-rem-space-unit / 2;
+$s__td-cell-padding: calc($s__base-rem-space-unit / 2);
 
 
 
 
-$s__textarea-h-padding: $s__base-rem-space-unit / 4 !default;
+$s__textarea-h-padding: calc($s__base-rem-space-unit / 4) !default;
 
 $s__textarea-text-color: $s__base-text-color !default;
 $s__textarea-background-color: #fff !default;
@@ -428,7 +430,7 @@ $s__th-background-color: null !default;
 } @else {
     $s__th-background-color: lighten($s__base-ui-color, 50%) !default;
 }
-$s__th-cell-padding: $s__base-rem-space-unit / 2;
+$s__th-cell-padding: calc($s__base-rem-space-unit / 2);
 
 
 

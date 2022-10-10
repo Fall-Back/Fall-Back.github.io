@@ -5,6 +5,8 @@
 
 |-------------------------------------------------------------------------------------------------*/
 
+@use 'sass:math';
+
 /*
     1. For IE, mainly.
     2. Edge 12+, Internet Explorer 11-. Without this it acts like overflow: scroll.
@@ -18,7 +20,7 @@
 
     overflow: auto; /* 2 */
 
-    margin-top: $s__base-rem-space-unit / 12;
+    margin-top: math.div($s__base-rem-space-unit, 12);
     margin-bottom: 0; /* 3 */
 
     padding-left: $s__textarea-h-padding;

@@ -1,5 +1,5 @@
 /*! --------------------------------------------------------------------------------------------- *\
-    
+
     Fall-Back Dropdown v3.0.0
     https://github.com/Fall-Back/Patterns/tree/master/Dropdown
     Copyright (c) 2021, Andy Kirk
@@ -12,6 +12,8 @@
     PLUS IE11
 
 \* ---------------------------------------------------------------------------------------------- */
+
+@use 'sass:math';
 
 $s__dropdown--breakpoint--enhanced:            $s__breakpoint--enhanced;
 
@@ -45,7 +47,7 @@ $s__dropdown__control--border-radius:          0 !default;
 
 // Sizes:
 $s__dropdown__control--height:                 ($s__base-em-ratio * 1.5em) !default;
-$s__dropdown--spacing:                         ($s__dropdown__control--height / 8) !default;
+$s__dropdown--spacing:                         math.div($s__dropdown__control--height, 8) !default;
 
 
 $s__dropdown--padding:                         0 !default;
@@ -154,7 +156,7 @@ $s__dropdown-z-index:                          9999 !default;
     .dropdown .dropdown__control:focus {
         border: 0;
     }*/
-    
+
     .dropdown .dropdown__control:focus {
         position: relative;
         z-index: 2;

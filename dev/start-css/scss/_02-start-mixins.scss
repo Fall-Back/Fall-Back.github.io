@@ -5,6 +5,8 @@
 
 |-------------------------------------------------------------------------------------------------*/
 
+@use 'sass:math';
+
 /*
     Apply a border and a padding that offsets the border-width from one spacing unit so as not to
     affect the vertical rhythm.
@@ -110,17 +112,17 @@
 
     overflow: visible; /* S: Internet Explorer 11-, N: Show the overflow in Edge, Firefox, and IE. */
 
-    margin: ($s__base-rem-space-unit / 8) 0;
+    margin: calc($s__base-rem-space-unit / 8) 0;
 
-    padding-top: #{$s__base-rem-space-unit / 8}; // Opera Mini needs this:
+    padding-top: calc($s__base-rem-space-unit / 8); // Opera Mini needs this:
     //padding-top: -moz-calc(#{$s__base-rem-space-unit / 8} - #{$s__button-border-width});
     padding-top: -moz-calc(0);
-    padding-top: calc(#{$s__base-rem-space-unit / 8} - #{$s__button-border-width});
+    padding-top: calc(#{calc($s__base-rem-space-unit / 8)} - #{$s__button-border-width});
     padding-right: $s__button-h-padding;
-    padding-bottom: #{$s__base-rem-space-unit / 8}; // Opera Mini needs this:
+    padding-bottom: calc($s__base-rem-space-unit / 8); // Opera Mini needs this:
     //padding-bottom: -moz-calc(#{$s__base-rem-space-unit / 8} - #{$s__button-border-width});
     padding-bottom: -moz-calc(0);
-    padding-bottom: calc(#{$s__base-rem-space-unit / 8} - #{$s__button-border-width});
+    padding-bottom: calc(#{calc($s__base-rem-space-unit / 8)} - #{$s__button-border-width});
     padding-left: $s__button-h-padding;
 
     border-color: $border-color;

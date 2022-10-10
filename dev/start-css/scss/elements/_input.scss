@@ -5,6 +5,8 @@
 
 |-------------------------------------------------------------------------------------------------*/
 
+@use 'sass:math';
+
 /*
     1. Allow inputs to contract to avoid braking containers:
     2. Opera Mini needs this.
@@ -15,11 +17,11 @@
 #{$s__namespace}input {
     max-width: 100%; /* 1 */
 
-    padding-top: #{$s__base-rem-space-unit / 8}; /* 2 */
-    padding-top: calc(#{$s__base-rem-space-unit / 8} - #{$s__input-border-width});
+    padding-top: math.div($s__base-rem-space-unit, 8)}; /* 2 */
+    padding-top: calc(math.div($s__base-rem-space-unit, 8) - #{$s__input-border-width});
     padding-right: $s__input-h-padding;
-    padding-bottom: #{$s__base-rem-space-unit / 8}; /* 2 */
-    padding-bottom: calc(#{$s__base-rem-space-unit / 8} - #{$s__input-border-width});
+    padding-bottom: math.div(calc($s__base-rem-space-unit, 8); /* 2 */
+    padding-bottom: calc(math.div($s__base-rem-space-unit, 8) - #{$s__input-border-width});
     padding-left: $s__input-h-padding;
 
     border-width: $s__input-border-width;
@@ -42,7 +44,7 @@
     line-height: inherit; /* 5 */
 
     min-height: $s__input-min-height;
-    margin: ($s__base-rem-space-unit / 8) 0;
+    margin: math.div($s__base-rem-space-unit, 8) 0;
 }
 
 @if $s__use-focus-shadow {
@@ -134,7 +136,7 @@
 
     overflow: hidden; /* 2 */
 
-    margin: ($s__base-rem-space-unit / 8) 0;
+    margin: math.div($s__base-rem-space-unit, 8) 0;
 
     padding: 0;
 
@@ -174,7 +176,7 @@ _:-ms-input-placeholder, :root #{$s__namespace}[type="file"] {
 #{$s__namespace}[type="month"],
 #{$s__namespace}[type="time"],
 #{$s__namespace}[type="week"] {
-    height: $s__base-rem-space-unit + ($s__base-rem-space-unit / 6);
+    height: $s__base-rem-space-unit + math.div($s__base-rem-space-unit, 6);
 }
 
 /*

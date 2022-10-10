@@ -159,11 +159,9 @@
 |-------------------------------------------------------------------------------------------------*/
 /* -- Basic styles ------------------------------------------------------------------------------ */
 .close-button {
-  display: inline-block;
-  /* AK. IE9 needs this. Hmmm, for what exactly?*/
+  display: inline-block; /* AK. IE9 needs this. Hmmm, for what exactly?*/
   min-height: 3rem;
-  overflow: visible;
-  /* S: Internet Explorer 11-, N: Show the overflow in Edge, Firefox, and IE. */
+  overflow: visible; /* S: Internet Explorer 11-, N: Show the overflow in Edge, Firefox, and IE. */
   margin: 0.3rem 0;
   padding-top: 0.3rem;
   padding-top: -moz-calc(0);
@@ -185,13 +183,10 @@
   font-family: inherit;
   line-height: 2.4rem;
   vertical-align: middle;
-  text-transform: none;
-  /* [N0], N: Remove the inheritance of text transform in Edge, Firefox, and IE. */
+  text-transform: none; /* [N0], N: Remove the inheritance of text transform in Edge, Firefox, and IE. */
   cursor: pointer;
-  -ms-touch-action: manipulation;
-  /* 1 (IE10) */
-  touch-action: manipulation;
-  /* 1 */
+  -ms-touch-action: manipulation; /* 1 (IE10) */
+  touch-action: manipulation; /* 1 */
   -webkit-appearance: none;
   border: 0;
   padding: 0.6rem;
@@ -204,11 +199,9 @@
   border-radius: 0;
   opacity: 1;
 }
-
 .close-button:hover, .close-button:active {
   background-color: rgba(0, 0, 0, 0.3);
 }
-
 .close-button:focus {
   outline: 0;
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
@@ -220,7 +213,7 @@
   transition: opacity 1s ease 0s, z-index 1s ease 1s;
 }
 
-.js-close-button-container[data-close="true"] {
+.js-close-button-container[data-close=true] {
   opacity: 0;
   z-index: 0;
 }

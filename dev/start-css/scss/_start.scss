@@ -35,6 +35,9 @@
     overflow-y makes element focussable in FireFox.
 
 |-------------------------------------------------------------------------------------------------*/
+
+@use 'sass:math';
+
 // Let the other Fall-Back patterns know that start is being used:
 $s__using-Start-CSS: true;
 
@@ -259,7 +262,7 @@ body {
     padding: $s__body-padding;
 
     font-family: $s__base-font-family;
-    font-size: ($s__base-font-size / $s__root-font-size * 1em);
+    font-size: math.div($s__base-font-size, $s__root-font-size * 1em);
     line-height: $s__base-rem-space-unit;
     letter-spacing: initial; /* 3 */
     word-spacing: initial; /* 3 */

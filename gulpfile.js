@@ -63,7 +63,7 @@ exports.ftp = do_ftp;
 var css_src  =  './';
 var css_dest = './css/';
 
-const sass   = require('gulp-sass');
+const sass   = require('gulp-sass')(require('sass'));
 const cssmin = require('gulp-cssmin');
 const rename = require('gulp-rename');
 

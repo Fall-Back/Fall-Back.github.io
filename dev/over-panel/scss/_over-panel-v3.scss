@@ -13,6 +13,8 @@
 
 \* ---------------------------------------------------------------------------------------------- */
 
+@use 'sass:math';
+
 $s__over-panel--breakpoint--enhanced:            $s__breakpoint--enhanced !default;
 $s__over-panel__contents--z-index:               9999 !default;
 
@@ -56,7 +58,7 @@ $s__over-panel__overlay--background-color:       #000 !default;
 // Sizes:
 
 $s__over-panel__control--height:                 ($s__base-em-ratio * 1.5em) !default;
-$s__over-panel--spacing:                         ($s__over-panel__control--height / 8) !default;
+$s__over-panel--spacing:                         math.div($s__over-panel__control--height, 8) !default;
 $s__over-panel__ie-side-correct:                 0 !default;
 
 $s__over-panel__contents--padding:               0 !default; //$s__base-rem-space-unit !default;
@@ -172,7 +174,7 @@ $s__over-panel__overlay-opacity:                 0.6 !default;
         .over-panel__contents {
             display: flex;
         }
- 
+
 
         //@media only screen and (max-width: ($s__over-panel--breakpoint--enhanced - $s__mq-1-em-px)) {
         .js-cmr--narrow {
@@ -185,8 +187,8 @@ $s__over-panel__overlay-opacity:                 0.6 !default;
                 //top: 0;
                 width: 100%;
                 ////z-index: $s__over-panel--z-index; /* [1] */
-                
-                
+
+
             }
 
 
@@ -398,7 +400,7 @@ $s__over-panel__overlay-opacity:                 0.6 !default;
             }
         }
     }
-    
+
 
     @media #{$s__ie10-11} {
 
@@ -418,7 +420,7 @@ $s__over-panel__overlay-opacity:                 0.6 !default;
                 white-space: nowrap !important;
             }
         }
-        
+
         @if $s__over-panel__ie-side-correct != false {
             .js-has--over-panel .js-cmr--narrow .over-panel {
                 width: auto;

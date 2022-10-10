@@ -5,6 +5,8 @@
 
 |-------------------------------------------------------------------------------------------------*/
 
+@use 'sass:math';
+
 /*
     1. Show the overflow in Edge and IE. (N)
 */
@@ -22,7 +24,7 @@
     &::before {
         content: "";
         position: absolute;
-        top: $s__base-rem-space-unit / 2;
+        top: math.div($s__base-rem-space-unit, 2);
 
         display: block;
         width: 100%;

@@ -60,7 +60,7 @@
     ASIDE
 */
 /*! --------------------------------------------------------------------------------------------- *\
-    
+
     Fall-Back Dropdown v2.0.0
     https://github.com/Fall-Back/Patterns/tree/master/Dropdown
     Copyright (c) 2021, Andy Kirk
@@ -91,26 +91,24 @@
 /* -- Basic/fallback layout --------------------------------------------------------------------- */
 /* -- .dropdown ------------------------------------------------------------------------------*/
 /*
-        1. iOS, OSX
-    */
+    1. iOS, OSX
+*/
 .dropdown {
-  margin: 0;
-  /* 1 */
+  margin: 0; /* 1 */
 }
 
 /* -------------------------------------------------------------------------------------------*/
 /* -- .dropdown__area ------------------------------------------------------------------------*/
 /*
-        1. Duplicating parent background-color here. There HAS to be a color here for the pattern
-           to work, the parent background-color is there to allow things to be NOT BROKEN on
-           browsers that don't support HTML semantic elements.
+    1. Duplicating parent background-color here. There HAS to be a color here for the pattern
+       to work, the parent background-color is there to allow things to be NOT BROKEN on
+       browsers that don't support HTML semantic elements.
 
-        2. This hides focus shadow so leaving out for now.
-           --Prevent any overflow and possible contain floats.--
-    */
+    2. This hides focus shadow so leaving out for now.
+       --Prevent any overflow and possible contain floats.--
+*/
 .dropdown .dropdown__area {
-  background-color: #247BA0;
-  /* 1 */
+  background-color: #247BA0; /* 1 */
   color: #fff;
   padding: 0;
 }
@@ -118,19 +116,17 @@
 /* -------------------------------------------------------------------------------------------*/
 /* -- .dropdown__control ----------------------------------------------------------------------*/
 /*
-		1. This removes StartCSS outline focus, so leave it out.
-           --These override control styles defined as part of StartCSS. I may consider making these
-		   customisable via more variables.--
-	*/
+	1. This removes StartCSS outline focus, so leave it out.
+          --These override control styles defined as part of StartCSS. I may consider making these
+	   customisable via more variables.--
+*/
 .dropdown .dropdown__control {
   display: block;
   margin: 0;
   padding-left: 0.5625em;
   padding-right: 0.5625em;
-  padding-bottom: 0;
-  /* 1 */
-  padding-top: 0;
-  /* 1 */
+  padding-bottom: 0; /* 1 */
+  padding-top: 0; /* 1 */
   border: 0;
   border-radius: 0;
   line-height: 2.25em;
@@ -139,10 +135,10 @@
 }
 
 /*.dropdown .dropdown__control:hover,
-    .dropdown .dropdown__control:active,
-    .dropdown .dropdown__control:focus {
-        border: 0;
-    }*/
+.dropdown .dropdown__control:active,
+.dropdown .dropdown__control:focus {
+    border: 0;
+}*/
 .dropdown .dropdown__control:focus {
   position: relative;
   z-index: 2;
@@ -153,9 +149,9 @@
 }
 
 /*
-        Fix for Opera Mini vertical centering:
-        (affects Opera 12.10-16 as well)
-    */
+    Fix for Opera Mini vertical centering:
+    (affects Opera 12.10-16 as well)
+*/
 _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   line-height: 2.25em !important;
 }
@@ -166,13 +162,13 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 }
 
 /*
-        Provide interaction effects for dropdown links that ARE links:
-        (this excludes submenu heading links - note that submenu links should never also be
-        submenu heading links)
-    */
+    Provide interaction effects for dropdown links that ARE links:
+    (this excludes submenu heading links - note that submenu links should never also be
+    submenu heading links)
+*/
 .dropdown .dropdown__control:hover,
 .dropdown .dropdown__control:active,
-.dropdown .dropdown__control[aria-expanded="true"] {
+.dropdown .dropdown__control[aria-expanded=true] {
   color: #fff;
 }
 
@@ -185,8 +181,8 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 }
 
 /*
-        iOS, OSX
-    */
+    iOS, OSX
+*/
 .dropdown .dropdown__area {
   margin: 0;
   z-index: 1;
@@ -204,141 +200,114 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 .dropdown.dropdown--all-widths {
   display: block;
   /*& .dropdown__control[aria-expanded="true"] ~ .dropdown__area {
-                visibility: visible;
-                opacity: 1;
+      visibility: visible;
+      opacity: 1;
 
-                transition: opacity $td  $tf;
-            }*/
+      transition: opacity $td  $tf;
+  }*/
 }
-
 .dropdown.dropdown--all-widths .dropdown__area {
   position: absolute;
   visibility: hidden;
   opacity: 0;
   transform: scale(0);
 }
-
 .dropdown.dropdown--all-widths .dropdown__area--is-animating {
   transition: opacity ease 0.8s, visibility 0s 0.8s ease, transform 0s 0.8s ease;
 }
-
 .dropdown.dropdown--all-widths .dropdown__area--is-open {
   visibility: visible;
   opacity: 1;
-  transform: scale(1);
-  /* [1] */
+  transform: scale(1); /* [1] */
   transition: opacity ease 0.8s;
 }
-
 .dropdown.dropdown--all-widths .dropdown__control {
   display: block;
 }
-
-.dropdown.dropdown--all-widths .dropdown__control .icon--is-open,
-.dropdown.dropdown--all-widths .dropdown__control[aria-expanded="true"] .icon--is-closed {
+.dropdown.dropdown--all-widths .dropdown__control .icon--is-open, .dropdown.dropdown--all-widths .dropdown__control[aria-expanded=true] .icon--is-closed {
   display: none;
 }
-
-.dropdown.dropdown--all-widths .dropdown__control .icon--is-closed,
-.dropdown.dropdown--all-widths .dropdown__control[aria-expanded="true"] .icon--is-open {
+.dropdown.dropdown--all-widths .dropdown__control .icon--is-closed, .dropdown.dropdown--all-widths .dropdown__control[aria-expanded=true] .icon--is-open {
   display: inline;
 }
 
 .js-cmr--narrow .dropdown.dropdown--only-narrow {
   display: block;
   /*& .dropdown__control[aria-expanded="true"] ~ .dropdown__area {
-                visibility: visible;
-                opacity: 1;
+      visibility: visible;
+      opacity: 1;
 
-                transition: opacity $td  $tf;
-            }*/
+      transition: opacity $td  $tf;
+  }*/
 }
-
 .js-cmr--narrow .dropdown.dropdown--only-narrow .dropdown__area {
   position: absolute;
   visibility: hidden;
   opacity: 0;
   transform: scale(0);
 }
-
 .js-cmr--narrow .dropdown.dropdown--only-narrow .dropdown__area--is-animating {
   transition: opacity ease 0.8s, visibility 0s 0.8s ease, transform 0s 0.8s ease;
 }
-
 .js-cmr--narrow .dropdown.dropdown--only-narrow .dropdown__area--is-open {
   visibility: visible;
   opacity: 1;
-  transform: scale(1);
-  /* [1] */
+  transform: scale(1); /* [1] */
   transition: opacity ease 0.8s;
 }
-
 .js-cmr--narrow .dropdown.dropdown--only-narrow .dropdown__control {
   display: block;
 }
-
-.js-cmr--narrow .dropdown.dropdown--only-narrow .dropdown__control .icon--is-open,
-.js-cmr--narrow .dropdown.dropdown--only-narrow .dropdown__control[aria-expanded="true"] .icon--is-closed {
+.js-cmr--narrow .dropdown.dropdown--only-narrow .dropdown__control .icon--is-open, .js-cmr--narrow .dropdown.dropdown--only-narrow .dropdown__control[aria-expanded=true] .icon--is-closed {
   display: none;
 }
-
-.js-cmr--narrow .dropdown.dropdown--only-narrow .dropdown__control .icon--is-closed,
-.js-cmr--narrow .dropdown.dropdown--only-narrow .dropdown__control[aria-expanded="true"] .icon--is-open {
+.js-cmr--narrow .dropdown.dropdown--only-narrow .dropdown__control .icon--is-closed, .js-cmr--narrow .dropdown.dropdown--only-narrow .dropdown__control[aria-expanded=true] .icon--is-open {
   display: inline;
 }
 
 .js-cmr--wide .dropdown.dropdown--only-wide {
   display: block;
   /*& .dropdown__control[aria-expanded="true"] ~ .dropdown__area {
-                visibility: visible;
-                opacity: 1;
+      visibility: visible;
+      opacity: 1;
 
-                transition: opacity $td  $tf;
-            }*/
+      transition: opacity $td  $tf;
+  }*/
 }
-
 .js-cmr--wide .dropdown.dropdown--only-wide .dropdown__area {
   position: absolute;
   visibility: hidden;
   opacity: 0;
   transform: scale(0);
 }
-
 .js-cmr--wide .dropdown.dropdown--only-wide .dropdown__area--is-animating {
   transition: opacity ease 0.8s, visibility 0s 0.8s ease, transform 0s 0.8s ease;
 }
-
 .js-cmr--wide .dropdown.dropdown--only-wide .dropdown__area--is-open {
   visibility: visible;
   opacity: 1;
-  transform: scale(1);
-  /* [1] */
+  transform: scale(1); /* [1] */
   transition: opacity ease 0.8s;
 }
-
 .js-cmr--wide .dropdown.dropdown--only-wide .dropdown__control {
   display: block;
 }
-
-.js-cmr--wide .dropdown.dropdown--only-wide .dropdown__control .icon--is-open,
-.js-cmr--wide .dropdown.dropdown--only-wide .dropdown__control[aria-expanded="true"] .icon--is-closed {
+.js-cmr--wide .dropdown.dropdown--only-wide .dropdown__control .icon--is-open, .js-cmr--wide .dropdown.dropdown--only-wide .dropdown__control[aria-expanded=true] .icon--is-closed {
   display: none;
 }
-
-.js-cmr--wide .dropdown.dropdown--only-wide .dropdown__control .icon--is-closed,
-.js-cmr--wide .dropdown.dropdown--only-wide .dropdown__control[aria-expanded="true"] .icon--is-open {
+.js-cmr--wide .dropdown.dropdown--only-wide .dropdown__control .icon--is-closed, .js-cmr--wide .dropdown.dropdown--only-wide .dropdown__control[aria-expanded=true] .icon--is-open {
   display: inline;
 }
 
 /*@media only screen and (max-width:$s__dropdown--breakpoint--enhanced) {
 
-       @include activate-dropdown("--only-narrow");
+   @include activate-dropdown("--only-narrow");
 
-    }
+}
 
-    @media only screen and (min-width:$s__dropdown--breakpoint--enhanced) {
+@media only screen and (min-width:$s__dropdown--breakpoint--enhanced) {
 
-       @include activate-dropdown("--only-wide");
+   @include activate-dropdown("--only-wide");
 
-    }*/
+}*/
 /* -----------------------------------------------------------------------------------------------*/
