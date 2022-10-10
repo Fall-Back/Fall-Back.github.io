@@ -123,7 +123,8 @@ function do_devsass(cb) {
 
     pump([
         gulp.src([
-            './dev/**/*.scss'
+            './dev/**/*.scss',
+            '!./dev/start-css/v1/**'
         ], {base: process.cwd()}),
         sass({outputStyle: 'expanded'}),
         rename((path) => {
