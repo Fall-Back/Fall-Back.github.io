@@ -2,7 +2,7 @@
     This file includes some styles that are needed to test StartCSS, but aren't PART of StartCSS.
     The assumption is they're the sort of thing that would be included in some project-specific
     stylesheet, but StartCSS doesn't actually provide, but the rest of it needs to be compatible with.
-    
+
     For instance the first thing here is a floating class to test the odd behaviour of lists affected
     by floated elements. The behaviour needs fixing, but StartCSS has no need to define any float-based
     styles.
@@ -241,4 +241,63 @@ figure img {
     vertical-align: top;
 }
 
+*/
+
+
+
+/*
+.tb-baseline main {
+
+    background-image: url('https://lab.gridlight-design.co.uk/fallback-v1/line-grid-12px.gif');
+    background-repeat: repeat;
+
+}
+
+.tb-outlines h1, .tb-outlines h2, .tb-outlines h3, .tb-outlines h4, .tb-outlines h5, .tb-outlines h6,
+.tb-outlines p, .tb-outlines ul, .tb-outlines ol, .tb-outlines li,
+.tb-outlines dl, .tb-outlines dt, .tb-outlines dd,
+.tb-outlines figcaption,
+.tb-outlines address,
+.tb-outlines article, .tb-outlines aside, .tb-outlines section, .tb-outlines nav {
+    background: rgba(0,0,0,0.05);
+    outline: 1.5px dashed rgba(0,0,0,0.2);
+}
+
+.tb-outlines article, .tb-outlines aside, .tb-outlines section, .tb-outlines nav {
+    outline: 1px dotted #f00;
+}
+
+
+.tb-wide-table figure table {
+    min-width: 100rem;
+}
+
+.tb-toolbox {
+    padding: 0.5em;
+    background: rgba(255,255,255,0.6);
+    position: fixed;
+    z-index: 999;
+    bottom: 0;
+    left: 0;
+    font-size: 0.8em;
+    line-height: 1.5;
+}
+
+.tb-toolbox:hover {
+    background: rgba(255,255,255,0.8);
+}
+
+.tb-toolbox input {
+    vertical-align: middle;
+    margin: 0;
+    min-height: none;
+    -webkit-transform: none;
+        -ms-transform: none;
+            transform: none;
+}
+
+.tb-toolbox label {
+    font-weight: normal;
+    vertical-align: middle;
+}
 */
