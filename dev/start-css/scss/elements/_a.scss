@@ -117,4 +117,27 @@
     #{$s__namespace}a[href][rel~="external"]:hover {
         background-image: linear-gradient(45deg, transparent 65%, $s__anchor-text-color--alt 65%);
     }
+
+    // Fix for linked images:
+    @supports selector(:has(> img)) {
+        #{$s__namespace}a[href][rel~="external"]:has(> img) {
+            display: inline-block;
+            position: relative;
+            background-image: none;
+            padding-right: 0;
+
+            &::after {
+                content: "";
+                display: block;
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: 1.2rem;
+                height: 1.2rem;
+                background-image: linear-gradient(45deg, transparent 50%, #fff 50%, #fff 60%, $s__anchor-text-color 60%);
+                background-repeat: no-repeat;
+                background-position: right top;
+            }
+        }
+    }
 }
