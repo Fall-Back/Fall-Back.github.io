@@ -44,14 +44,19 @@
     border-right: 0;
     border-top: 0;
     border-bottom: $s__anchor-image-line-width  $s__anchor-image-line-style  $s__anchor-text-color;
+    padding-top: 0;
+    padding-right: 0;
     padding-bottom: $s__anchor-image-padding-bottom;
-    
-    
+    padding-left: 0;
+
+    margin: 0;
+
+
     &:active, &:hover {
         border-bottom: $s__anchor-image-line-width--alt  solid  transparent;
         padding-bottom: $s__anchor-image-padding-bottom--alt;
     }
-    
+
     // We want to mimic link styles for consistency, so we need to mimic the support level too:
     @supports(text-decoration-line: underline) {
         &:active, &:hover {
