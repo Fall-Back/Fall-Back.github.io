@@ -446,6 +446,26 @@ a[href][rel~=external]:hover {
   background-image: linear-gradient(45deg, transparent 65%, #1b5b76 65%);
 }
 
+@supports selector(:has(> img)) {
+  a[href][rel~=external]:has(> img) {
+    display: inline-block;
+    position: relative;
+    background-image: none;
+    padding-right: 0;
+  }
+  a[href][rel~=external]:has(> img)::after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1.2rem;
+    height: 1.2rem;
+    background-image: linear-gradient(45deg, transparent 50%, #fff 50%, #fff 60%, #247BA0 60%);
+    background-repeat: no-repeat;
+    background-position: right top;
+  }
+}
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS ELEMENT: abbr
@@ -1161,7 +1181,11 @@ a[href] img {
   border-right: 0;
   border-top: 0;
   border-bottom: 0.1875em solid #247BA0;
+  padding-top: 0;
+  padding-right: 0;
   padding-bottom: 0.1875em;
+  padding-left: 0;
+  margin: 0;
 }
 a[href] img:active, a[href] img:hover {
   border-bottom: 0.375em solid transparent;
