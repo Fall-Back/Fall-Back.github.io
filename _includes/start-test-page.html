@@ -596,12 +596,12 @@ lines.</textarea>
 </p>
 
 <p>Images that are links need extra styles and testing:<br>
-    <a href="#"><img src="https://lab.gridlight-design.co.uk/fallback/img/fallback-logo.svg" height="144" width="266.226" style="width: auto; max-height: 144px;" rel="external"></a>
+    <a href="#"><img src="/dev/media/poster.jpg" height="144" width="266.226" style="width: auto; max-height: 144px;" rel="external"></a>
 
 </p>
 
 <p>
-    <small>Here's a problem - if the image has a transparent background, the a's bounding box (which is
+    <small>Here's a problem - if the image has a transparent background, the <code>a</code>'s bounding box (which is
     inline and smaller than the image) is visible.
     Outlines actually work as expected in this case but I can't use them because of the lack of
     rounded corners, hence the a > img selector reapplying the focus shadow.
@@ -723,7 +723,7 @@ explanation.
     Object loading an SVG:
 </p>
 <div class="box">
-    <object type="image/svg+xml" data="https://lab.gridlight-design.co.uk/fallback/img/fallback-logo.svg" height="144" width="266" class="svg__image" style="width: auto; max-height: 144px;">
+    <object type="image/svg+xml" data="/dev/media/fallback-logo.svg" height="144" width="266" class="svg__image" style="width: auto; max-height: 144px;">
         <p>Object failed to load.</p>
     </object>
 </div>
