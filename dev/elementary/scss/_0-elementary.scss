@@ -88,27 +88,32 @@ body > * {
 
             grid-column: 1 / -1;
         }
-        
+
         #{$es__page_banner} {
             grid-row: 1;
         }
-        
-        #{$es__page_footer} {
-            grid-row: -1;
-        }
+
+
 
         #{$es__page_main} {
             grid-column: 1;
-            
+
             grid-row: 2 / -1; // < added
+
+            max-width: 100%;
         }
-        
-        // Added:
+
+        /*
+            If there's no asides at all, we want the main to span both rows. Note this is the
+            only way I can think of doing this, but it's fragile - it will break if elements at this
+            level get added or removed. (note :has() would be better when supoort is good enough)
+            #{$es__page_main_after_banner}:has(+ :not(aside)) {
+        */
         #{$es__page_main_after_banner}:nth-last-child(#{$e__main-position}) {
             grid-column: 1 / -1;
         }
-        
-        
+
+
         #{$es__page_sidebar} {
             grid-column: 2;
             grid-row: 2;
@@ -127,19 +132,7 @@ body > * {
             grid-column: 2;
             grid-row: 3;
         }
-        
-        
-        // ---
-        
-        
-        /*
-            Note this is the *template* sidebar - content in a sidebar that appears on all pages.
-            Not to be confused with the *content* sidebar, which is specific to the current page
-            content.
-        /*
-        body > aside {
-            grid-column: 2;
-        }
+
 
         /*
             MAIN POSITION SELECTOR
@@ -152,8 +145,12 @@ body > * {
             removing elements via JS.
 
         */
-        #{$es__page_main}:nth-last-child(#{$e__main-position}) {
+        /*#{$es__page_main}:nth-last-child(#{$e__main-position}) {
             grid-column: 1 / -1;
+        }*/
+
+        #{$es__page_footer} {
+            grid-row: -1;
         }
 
     }

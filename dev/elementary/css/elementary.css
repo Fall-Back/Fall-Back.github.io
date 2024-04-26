@@ -2943,13 +2943,17 @@ body > * {
     [data-elementary] body > header {
       grid-row: 1;
     }
-    [data-elementary] body > footer {
-      grid-row: -1;
-    }
     [data-elementary] body > main {
       grid-column: 1;
       grid-row: 2/-1;
+      max-width: 100%;
     }
+    /*
+        If there's no asides at all, we want the main to span both rows. Note this is the
+        only way I can think of doing this, but it's fragile - it will break if elements at this
+        level get added or removed. (note :has() would be better when supoort is good enough)
+        [data-elementary] body > header + main:has(+ :not(aside)) {
+    */
     [data-elementary] body > header + main:nth-last-child(3) {
       grid-column: 1/-1;
     }
@@ -2970,15 +2974,6 @@ body > * {
       grid-row: 3;
     }
     /*
-        Note this is the *template* sidebar - content in a sidebar that appears on all pages.
-        Not to be confused with the *content* sidebar, which is specific to the current page
-        content.
-    /*
-    body > aside {
-        grid-column: 2;
-    }
-
-    /*
         MAIN POSITION SELECTOR
 
         If there's no aside (sidebar) then main has to span both columns:
@@ -2989,8 +2984,11 @@ body > * {
         removing elements via JS.
 
     */
-    [data-elementary] body > main:nth-last-child(3) {
-      grid-column: 1/-1;
+    /*[data-elementary] body > main:nth-last-child(3) {
+        grid-column: 1 / -1;
+    }*/
+    [data-elementary] body > footer {
+      grid-row: -1;
     }
   }
 }
@@ -3005,38 +3003,51 @@ body > * {
     Banner
 */
 [data-elementary] body > header {
-  position: relative;
-  display: flex;
-  align-items: center;
   margin: 0;
-  padding: 1.2rem 1.2rem 0.6rem 1.2rem;
-  color: #fff;
-  background: #79260D;
+  padding: 0;
 }
 
+[data-elementary] body > header > fieldset {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  background: #79260D;
+  border: 0 none;
+}
+
+/*
 [data-elementary] body > header > * {
-  flex: 1 1 auto;
+    //flex: 1 1 auto;
 }
 
 [data-elementary] body > header > p {
-  width: 100%;
+    //width: 100%;
 }
-
+*/
 [data-elementary] body > header p {
   margin: 0;
 }
 
+/*
+    Oh! I don't know what the following is for. I can't see any examples in the dev site that uses
+    this selector.
+    Maybe Search forns - that sort of thing?
+*/
+/*
 [data-elementary] body > header > div {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    max-width: 100%;
 }
+
 
 [data-elementary] body > header > div > * {
-  flex: 1 1 auto;
+    flex: 1 1 auto;
 }
-
+*/
 /*------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------|
 
@@ -3044,18 +3055,21 @@ body > * {
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
-[data-elementary] body > header nav b > a[href] {
+[data-elementary] body > header > fieldset nav b > a[href] {
   display: inline-block;
-  margin: 0 2.4rem 0.6rem 0;
+  /*margin: 0 $s__sz-m $s__sz-xs 0;
+
+  padding: $s__sz-s $s__sz-s $s__sz-xs $s__sz-s;*/
   padding: 0;
+  margin: 1.2rem;
   border: 0;
   color: #79260D;
   background-color: transparent;
 }
 
-[data-elementary] body > header nav b > a[href]:hover,
-[data-elementary] body > header nav b > a[href]:active,
-[data-elementary] body > header nav b > a[href]:focus {
+[data-elementary] body > header > fieldset nav b > a[href]:hover,
+[data-elementary] body > header > fieldset nav b > a[href]:active,
+[data-elementary] body > header > fieldset nav b > a[href]:focus {
   padding: 0;
   border: 0;
   box-shadow: 0 0 0 0.6rem rgba(255, 255, 255, 0.4), 0 0 0 1.2rem rgba(0, 0, 0, 0.2);
@@ -3069,7 +3083,7 @@ body > * {
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
-[data-elementary] body > header nav {
+[data-elementary] body > header > fieldset nav {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -3079,16 +3093,16 @@ body > * {
   background-color: transparent;
 }
 
-[data-elementary] body > header nav > * {
+[data-elementary] body > header > fieldset nav > * {
   flex: 1 1 auto;
 }
 
-[data-elementary] body > header nav p[role=list] {
+[data-elementary] body > header > fieldset nav p[role=list] {
   flex-grow: 999;
 }
 
-[data-elementary] body > header nav a[href],
-[data-elementary] body > header nav summary {
+[data-elementary] body > header > fieldset nav a[href],
+[data-elementary] body > header > fieldset nav summary {
   display: inline-block;
   margin: 0;
   padding-top: 0;
@@ -3102,30 +3116,30 @@ body > * {
   text-decoration: none;
 }
 
-[data-elementary] body > header nav a[href] {
+[data-elementary] body > header > fieldset nav a[href] {
   color: #fff;
   background-color: rgba(0, 0, 0, 0.2);
 }
 
-[data-elementary] body > header nav a[href][aria-current] {
+[data-elementary] body > header > fieldset nav a[href][aria-current] {
   color: #fff;
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-[data-elementary] body > header nav a[href]:hover,
-[data-elementary] body > header nav a[href]:active {
+[data-elementary] body > header > fieldset nav a[href]:hover,
+[data-elementary] body > header > fieldset nav a[href]:active {
   border: 0;
   color: #fff;
   background-color: rgba(255, 255, 255, 0.08);
 }
 
-[data-elementary] body > header nav p[role=list] a[href]:focus {
+[data-elementary] body > header > fieldset nav p[role=list] a[href]:focus {
   box-shadow: 0 0 0 0.6rem rgba(0, 0, 0, 0.3);
 }
 
 /*
 p[role="list"] a[href][aria-current],
-[data-elementary] body > header   nav > details > summary {
+[data-elementary] body > header > fieldset   nav > details > summary {
     color: $e__nav-bar__link--color--alt;
     background-color: $e__nav-bar__link--background-color--alt2;
 }
@@ -3133,8 +3147,8 @@ p[role="list"] a[href][aria-current],
 
 p[role="list"] a[href]:hover,
 p[role="list"] a[href]:active,
-[data-elementary] body > header   nav > details > summary:hover,
-[data-elementary] body > header   nav > details > summary:active {
+[data-elementary] body > header > fieldset   nav > details > summary:hover,
+[data-elementary] body > header > fieldset   nav > details > summary:active {
     border: 0;
 
     color: $e__nav-bar__link--color--alt;
@@ -3143,7 +3157,7 @@ p[role="list"] a[href]:active,
 
 
 p[role="list"] a[href]:focus,
-[data-elementary] body > header   nav > details > summary:focus {
+[data-elementary] body > header > fieldset   nav > details > summary:focus {
     box-shadow: 0 0 0 $s__sz-xs rgba(0,0,0,.3);
 }
 
@@ -3155,17 +3169,17 @@ p[role="list"] a[href]:focus,
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
-/* Details can appear in different contexts so we can't specify a complete path to them: */
+/* > nav details can appear in different contexts so we can't specify a complete path to them: */
 /* This is for the case where the nav is split to 'home' and 'site' and 'site' appears after the search form. */
-[data-elementary] body > header details + nav {
+[data-elementary] body > header > fieldset > nav details + nav {
   flex: 0 0 auto;
 }
 
-[data-elementary] body > header details[role=search] form {
+[data-elementary] body > header > fieldset > nav details[role=search] form {
   z-index: 10;
 }
 
-[data-elementary] body > header details {
+[data-elementary] body > header > fieldset > nav details {
   flex: 0 0 auto;
   padding: 0;
   border: 0;
@@ -3175,11 +3189,11 @@ p[role="list"] a[href]:focus,
 }
 
 /* Only for start margin stuff */
-[data-elementary] body > header details::after {
+[data-elementary] body > header > fieldset > nav details::after {
   display: none;
 }
 
-[data-elementary] body > header details > summary {
+[data-elementary] body > header > fieldset > nav details > summary {
   display: flex;
   position: relative;
   height: 2.25em;
@@ -3187,14 +3201,14 @@ p[role="list"] a[href]:focus,
 
 /*
 
-[data-elementary] body > header   details > summary {
+[data-elementary] body > header > fieldset   > nav details > summary {
     color: $e__nav-bar__link--color;
     background-color: transparent;
 }
 
 
-[data-elementary] body > header   details > summary:hover,
-[data-elementary] body > header   details > summary:active {
+[data-elementary] body > header > fieldset   > nav details > summary:hover,
+[data-elementary] body > header > fieldset   > nav details > summary:active {
     border: 0;
 
     color: $e__nav-bar__link--color--alt;
@@ -3204,16 +3218,16 @@ p[role="list"] a[href]:focus,
 
 
 */
-[data-elementary] body > header details > summary:hover,
-[data-elementary] body > header details > summary:active,
-[data-elementary] body > header details > summary:focus {
+[data-elementary] body > header > fieldset > nav details > summary:hover,
+[data-elementary] body > header > fieldset > nav details > summary:active,
+[data-elementary] body > header > fieldset > nav details > summary:focus {
   box-shadow: 0 0 0 0.6rem rgba(255, 255, 255, 0.4), 0 0 0 1.2rem rgba(0, 0, 0, 0.2);
 }
 
 /*
 This puts a hover arrow on the navicon. I'm not sure why I did this.
-[data-elementary] body > header   details > summary:hover::before,
-[data-elementary] body > header   details > summary:active::before {
+[data-elementary] body > header > fieldset   > nav details > summary:hover::before,
+[data-elementary] body > header > fieldset   > nav details > summary:active::before {
     content: "";
     display: block;
     position: absolute;
@@ -3227,40 +3241,40 @@ This puts a hover arrow on the navicon. I'm not sure why I did this.
     transform: none;
 }
 */
-[data-elementary] body > header details > summary:focus {
+[data-elementary] body > header > fieldset > nav details > summary:focus {
   box-shadow: 0 0 0 0.6rem rgba(0, 0, 0, 0.3);
   outline: 0 none;
 }
 
-[data-elementary] body > header details[open] > summary {
+[data-elementary] body > header > fieldset > nav details[open] > summary {
   margin: 0;
 }
 
-[data-elementary] body > header details > summary::before {
+[data-elementary] body > header > fieldset > nav details > summary::before {
   display: none;
 }
 
-[data-elementary] body > header details > summary::-webkit-details-marker {
+[data-elementary] body > header > fieldset > nav details > summary::-webkit- > nav details-marker {
   display: none;
 }
 
-[data-elementary] body > header details > summary > svg:first-child,
-[data-elementary] body > header details[open] > summary > svg:first-child + svg {
+[data-elementary] body > header > fieldset > nav details > summary > svg:first-child,
+[data-elementary] body > header > fieldset > nav details[open] > summary > svg:first-child + svg {
   display: inline-block;
   position: relative;
   z-index: 1;
 }
 
-[data-elementary] body > header details[open] > summary > svg:first-child {
+[data-elementary] body > header > fieldset > nav details[open] > summary > svg:first-child {
   display: none;
 }
 
-[data-elementary] body > header details > summary > svg + span {
+[data-elementary] body > header > fieldset > nav details > summary > svg + span {
   clip: rect(0 0 0 0);
   position: absolute;
 }
 
-[data-elementary] body > header details[open] > summary::after {
+[data-elementary] body > header > fieldset > nav details[open] > summary::after {
   content: "";
   display: block;
   width: 0;
@@ -3273,7 +3287,7 @@ This puts a hover arrow on the navicon. I'm not sure why I did this.
   margin-left: -3px;
 }
 
-[data-elementary] body > header details > summary + * {
+[data-elementary] body > header > fieldset > nav details > summary + * {
   position: absolute;
   z-index: 2;
   left: 0;
@@ -3286,7 +3300,7 @@ This puts a hover arrow on the navicon. I'm not sure why I did this.
   box-shadow: 0 4px 2px -1px rgba(0, 0, 0, 0.5);
 }
 
-[data-elementary] body > header details > summary + * li {
+[data-elementary] body > header > fieldset > nav details > summary + * li {
   padding: 0.5em;
   margin: 0;
 }
@@ -3298,15 +3312,15 @@ This puts a hover arrow on the navicon. I'm not sure why I did this.
 
 |-------------------------------------------------------------------------------------------------*/
 /*
-    Expand main to fill space - part of stick footer.
+    Expand main to fill space - part of sticky footer.
 
     1. There's a wierd sitution on /page-layout-article/ where there's <pre> in a <div>
        demonstrating the use of the <div> to create a full-width container (one that breaks
        out of the max-width column). But the <pre> has long content and isn't scrolling,
-       it's pushing everything out to fit the content and I can't figure out a simple 
+       it's pushing everything out to fit the content and I can't figure out a simple
        fix (or even understand why it's doing it).
        But, since we have a known max-width for the body and a known column balance, we can work out
-       what the max-width for the main column should be and use that in an FF-width technique.
+       what the max-width for the main column should be and use that in an  technique.
 
 */
 [data-elementary] body > main {
@@ -3320,11 +3334,6 @@ This puts a hover arrow on the navicon. I'm not sure why I did this.
   padding: 0;
   color: #333;
   background-color: #fff;
-}
-
-[data-elementary] body > main:nth-last-child(3) {
-  grid-column: 1/-1;
-  max-width: 100%;
 }
 
 /*------------------------------------------------------------------------------------------------*/
@@ -3375,10 +3384,29 @@ main > * > h1 {
 
 |-------------------------------------------------------------------------------------------------*/
 /*
+    If there's a figure inside the article header it's the Hero, but we need to appear visually
+    BEFORE the heading like a normal Hero.
+*/
+[data-elementary] body > main > * > header {
+  display: flex;
+  flex-direction: column;
+}
+
+[data-elementary] body > main > * > header > figure {
+  order: -1;
+}
+
+[data-elementary] body > main > * > header > h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/*
     Content wrapper [A] could be anything (so far `article` or `div`): `[data-elementary] body > main > * >.
     Inside the wrapper there should be `header` (see _1-header.scss).
     After the header} we want to give elements some side padding: `~ *`.
 */
+[data-elementary] body > main > * > header > h1,
 [data-elementary] body > main > * > header ~ * {
   padding-left: 2.4rem;
   padding-right: 2.4rem;
@@ -3392,11 +3420,26 @@ main > * > h1 {
        intrinsically sized so may not appear full width, and therefore look odd, so expand them.
 
 */
+[data-elementary] body > main > * > header > h1,
 [data-elementary] body > main > article > header ~ * {
   width: 100%; /* 1 */
   max-width: 70rem;
   margin-right: auto;
   margin-left: auto;
+}
+
+/*
+    If the first element after the article header is a nav, it's the ToC.
+*/
+[data-elementary] body > main > article > header + nav {
+  font-size: smaller;
+  margin: 2.4rem;
+  padding: 2.4rem;
+  background-color: #eee; /*@ TODO - needs a variable */
+  float: right;
+  min-width: 30%;
+  width: calc((70rem - 100%) * 9999);
+  max-width: calc(100% - 4.8rem);
 }
 
 /*
@@ -3419,6 +3462,7 @@ main > * > h1 {
 [data-elementary] body > main > * > header ~ figure,
 [data-elementary] body > main > * > header ~ div > figure {
   background: #f7c2b2;
+  clear: both;
   border-width: 1px;
   border-style: solid;
   border-color: #79260D;
@@ -3728,20 +3772,43 @@ main > * > h1 {
     =================
 
 |-------------------------------------------------------------------------------------------------*/
-[data-elementary] body > main > * > header > div:first-child {
+[data-elementary] body > header > fieldset > figure {
   position: relative;
   overflow: hidden;
-  margin: -2.4rem -2.4rem 2.4rem -2.4rem;
+  margin: 0;
+  max-width: none;
 }
 
-[data-elementary] body > main > * > header > div:first-child::before {
+[data-elementary] body > header > fieldset > figure::before {
   display: block;
   content: "";
   width: 100%;
   padding-top: 33%;
 }
 
-[data-elementary] body > main > * > header > div:first-child > img {
+[data-elementary] body > header > fieldset > figure > img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+[data-elementary] body > main > * > header > figure {
+  position: relative;
+  overflow: hidden;
+  margin: -2.4rem -2.4rem 2.4rem -2.4rem;
+  max-width: none;
+}
+
+[data-elementary] body > main > * > header > figure::before {
+  display: block;
+  content: "";
+  width: 100%;
+  padding-top: 33%;
+}
+
+[data-elementary] body > main > * > header > figure > img {
   position: absolute;
   top: 0;
   width: 100%;
@@ -3771,7 +3838,7 @@ main > * > h1 {
     =========================
 
 |-------------------------------------------------------------------------------------------------*/
-[data-elementary] small > details:only-child {
+[data-elementary] header figcaption > details {
   position: absolute;
   right: 0.6rem;
   top: 0.6rem;
@@ -3784,27 +3851,27 @@ main > * > h1 {
   color: #fff;
   background: rgba(0, 0, 0, 0.7);
 }
-[data-elementary] small > details:only-child a[href] {
+[data-elementary] header figcaption > details a[href] {
   color: #fff;
 }
-[data-elementary] small > details:only-child[open] {
+[data-elementary] header figcaption > details[open] {
   border-radius: 0;
   top: 0;
   right: 0;
   width: auto;
   height: auto;
 }
-[data-elementary] small > details:only-child[open] > summary {
+[data-elementary] header figcaption > details[open] > summary {
   top: 0.6rem;
   right: 0.6rem;
 }
-[data-elementary] small > details:only-child[open] > summary > svg:first-of-type {
+[data-elementary] header figcaption > details[open] > summary > svg:first-of-type {
   display: none;
 }
-[data-elementary] small > details:only-child[open] > summary > svg:last-of-type {
+[data-elementary] header figcaption > details[open] > summary > svg:last-of-type {
   display: inline;
 }
-[data-elementary] small > details:only-child::after {
+[data-elementary] header figcaption > details::after {
   display: none;
 }
 
@@ -3813,7 +3880,7 @@ main > * > h1 {
        for some reason iOS doesn't get it right, so I'm using padding instead for now since the
        icon or container sizes shouldn't change.
 */
-[data-elementary] small > details:only-child > summary {
+[data-elementary] header figcaption > details > summary {
   position: absolute;
   z-index: 1;
   display: flex;
@@ -3824,21 +3891,22 @@ main > * > h1 {
   padding: 0.2rem; /* [1] */
   font-size: 1.2307692308em;
 }
-[data-elementary] small > details:only-child > summary > :first-child {
+[data-elementary] header figcaption > details > summary > :first-child {
   display: inline;
 }
-[data-elementary] small > details:only-child > summary > :last-child {
+[data-elementary] header figcaption > details > summary > :last-child {
   display: none;
 }
-[data-elementary] small > details:only-child > summary::before {
+[data-elementary] header figcaption > details > summary::before {
   display: none;
 }
-[data-elementary] small > details:only-child > summary:hover, [data-elementary] small > details:only-child > summary:focus, [data-elementary] small > details:only-child > summary:active {
+[data-elementary] header figcaption > details > summary:hover, [data-elementary] header figcaption > details > summary:focus, [data-elementary] header figcaption > details > summary:active {
   background: rgba(255, 255, 255, 0.3);
 }
 
-[data-elementary] small > details:only-child > summary + * {
+[data-elementary] header figcaption > details > summary + * {
   position: relative;
+  display: block;
   max-width: calc(100% - 2.4rem);
   padding: 2.4rem 2.4rem;
 }
@@ -3867,7 +3935,7 @@ main > div > ul > li > article {
     margin: 0;
 }
 */
-[data-elementary] body > header nav b > a[href] svg {
+[data-elementary] body > header > fieldset nav b > a[href] svg {
   stroke: #fff;
 }
 

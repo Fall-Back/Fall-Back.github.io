@@ -102,6 +102,7 @@
 
     #{map-get($options, selector)} > summary + * {
         position: relative;
+        display: block;
         @if map-get($options, x-position) == left {
             left: #{map-get($options, spacing-unit)};
         }

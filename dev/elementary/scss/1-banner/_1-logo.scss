@@ -8,12 +8,14 @@
 #{$es__page_banner__logo} {
     display: inline-block;
 
-    margin: 0 $s__sz-m $s__sz-xs 0;
+    /*margin: 0 $s__sz-m $s__sz-xs 0;
 
+    padding: $s__sz-s $s__sz-s $s__sz-xs $s__sz-s;*/
     padding: 0;
+    margin: $s__sz-s;
 
     border: 0;
-    
+
     color: $s__anchor-text-color;
     background-color: transparent;
 }
@@ -26,7 +28,7 @@
     border: 0;
 
     @include e__ojbect_highlight();
-    
+
     color: $s__anchor-text-color;
     background-color: transparent;
 }

@@ -9,32 +9,44 @@
     Banner
 */
 #{$es__page_banner} {
+    margin: 0;
+    padding: 0;
+}
+
+#{$es__page_banner__inner} {
     position: relative;
 
-    display: flex;
-    align-items: center;
+    //display: flex;
+    //align-items: center;
 
     margin: 0;
 
-    padding: $s__sz-s $s__sz-s $s__sz-xs $s__sz-s;
+    //padding: $s__sz-s $s__sz-s $s__sz-xs $s__sz-s;
+    padding: 0;
 
     color: $e__banner--base-text-color;
     background: $e__banner--background-color;
+    border: 0 none;
 }
-
+/*
 #{$es__page_banner} > * {
-    flex: 1 1 auto;
+    //flex: 1 1 auto;
 }
 
 #{$es__page_banner} > p {
-    width: 100%;
+    //width: 100%;
 }
-
+*/
 #{$es__page_banner}   p {
     margin: 0;
 }
 
-
+/*
+    Oh! I don't know what the following is for. I can't see any examples in the dev site that uses
+    this selector.
+    Maybe Search forns - that sort of thing?
+*/
+/*
 #{$es__page_banner} > div {
     display: flex;
     flex-wrap: wrap;
@@ -47,7 +59,7 @@
 #{$es__page_banner} > div > * {
     flex: 1 1 auto;
 }
-
+*/
 /*------------------------------------------------------------------------------------------------*/
 
 @import '1-banner/_1-logo.scss';

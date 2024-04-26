@@ -6,15 +6,15 @@
 |-------------------------------------------------------------------------------------------------*/
 
 /*
-    Expand main to fill space - part of stick footer.
-    
+    Expand main to fill space - part of sticky footer.
+
     1. There's a wierd sitution on /page-layout-article/ where there's <pre> in a <div>
        demonstrating the use of the <div> to create a full-width container (one that breaks
        out of the max-width column). But the <pre> has long content and isn't scrolling,
-       it's pushing everything out to fit the content and I can't figure out a simple 
+       it's pushing everything out to fit the content and I can't figure out a simple
        fix (or even understand why it's doing it).
        But, since we have a known max-width for the body and a known column balance, we can work out
-       what the max-width for the main column should be and use that in an FF-width technique.
+       what the max-width for the main column should be and use that in an  technique.
 
 */
 #{$es__page_main} {
@@ -30,18 +30,9 @@
     margin: 0;
 
     padding: 0;
-    
+
     color: $e__main--text-color;
     background-color: $e__main--background-color;
-}
-
-#{$es__page_main_after_banner} {
-    //max-width: none;
-}
-
-#{$es__page_main}:nth-last-child(#{$e__main-position}) {
-    grid-column: 1 / -1;
-    max-width: 100%;
 }
 
 /*------------------------------------------------------------------------------------------------*/

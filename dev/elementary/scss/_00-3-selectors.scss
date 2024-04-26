@@ -97,6 +97,7 @@ $es_scope: "[data-elementary]" !default;
 |-------------------------------------------------------------------------------------------------*/
 
 $es__page_banner:             "#{$es_scope} body > header" !default;
+$es__page_banner__inner:      "#{$es_scope} body > header > fieldset" !default;
 $es__page_main:               "#{$es_scope} body > main" !default;
 $es__page_main_after_banner:  "#{$es_scope} body > header + main" !default;
 $es__page_sidebar:            "#{$es_scope} body > aside" !default;
@@ -119,7 +120,7 @@ $es__page_footer:             "#{$es_scope} body > footer" !default;
     ```
 |-------------------------------------------------------------------------------------------------*/
 
-$es__page_banner__logo: "#{$es__page_banner}   nav   b > a[href]" !default;
+$es__page_banner__logo: "#{$es__page_banner__inner}   nav   b > a[href]" !default;
 
 
 /*-------------------------------------------------------------------------------------------------|
@@ -146,7 +147,7 @@ $es__page_banner__logo: "#{$es__page_banner}   nav   b > a[href]" !default;
     ```
 |-------------------------------------------------------------------------------------------------*/
 
-$es__page_banner__navlist: "#{$es__page_banner}   nav" !default;
+$es__page_banner__navlist: "#{$es__page_banner__inner}   nav" !default;
 
 
 /*------------------------------------------------------------------------------------------------*/
@@ -238,7 +239,8 @@ $es__component__cta: "#{$es__component__card} b > a[href]:only-child" !default;
 
 |-------------------------------------------------------------------------------------------------*/
 
-$es__component__hero: "#{$es__page_main__header} > div:first-child" !default;
+$es__component__hero_1: "#{$es__page_banner__inner} > figure" !default;
+$es__component__hero_2: "#{$es__page_main__header} > figure" !default;
 
 
 /*-------------------------------------------------------------------------------------------------|
@@ -269,5 +271,5 @@ $es__component__images--inset:  "#{$es_scope} b > i:only-child > img:only-child"
 
 |-------------------------------------------------------------------------------------------------*/
 
-$es__component__info-overlay: "#{$es_scope} small > details:only-child" !default;
+$es__component__info-overlay: "#{$es_scope} header figcaption > details" !default;
 

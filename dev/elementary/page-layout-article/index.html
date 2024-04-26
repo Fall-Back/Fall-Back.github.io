@@ -1,14 +1,34 @@
 ---
 title: Page Layout - Article
 layout: dev/structure--elementary
+sidebar_top: true
 sidebar_bottom: true
 ---
 
         <article>
 
             <header>
-                <h1>Page Layout - Article</h1>
+                <h1>{{ page.title }}</h1>
+                <figure data-fs-block>
+                    <img src="/dev/elementary/img/federica-giusti-my6gx6s_Fr8-unsplash.jpg" alt="Edison bulb." width="500">
+                    <figcaption>
+                        <details>
+                            <summary><svg display="none" focusable="false" aria-hidden="true"><use xlink:href="#icon-info"></use></svg><svg display="none" focusable="false" aria-hidden="true"><use xlink:href="#icon-cross"></use></svg><small data-hidden="visually">Credit</small></summary>
+                            <small>Photo by <a href="https://unsplash.com/@federicagiusti?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Federica Giusti</a> on <a href="https://unsplash.com/s/photos/edison-bulb?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></small>
+                        </details>
+                    </figcaption>
+                </figure>
             </header>
+
+            <nav>
+                <h2>Contents</h2>
+                <ul>
+                    <li><a href="#1">Non-functional ToC example item</a></li>
+                    <li><a href="#2">Non-functional ToC example item</a></li>
+                    <li><a href="#3">Non-functional ToC example item</a></li>
+                    <li><a href="#4">Non-functional ToC example item</a></li>
+                </ul>
+            </nav>
 
             <p>There are currently two main page layouts available in Elementary - an 'article' layout where the focus of the page is text content, and a 'listing' layout, the purpose of which is to is to provide a list of articles.</p>
 
@@ -44,4 +64,5 @@ sidebar_bottom: true
 
             <p>This page also demonstrates the optional bottom sidebar.</p>
 
+            <hr data-hidden="if-css">
         </article>

@@ -17,10 +17,33 @@
 |-------------------------------------------------------------------------------------------------*/
 
 /*
+    If there's a figure inside the article header it's the Hero, but we need to appear visually
+    BEFORE the heading like a normal Hero.
+*/
+
+#{$es__page_main__header} {
+    display: flex;
+    flex-direction: column;
+}
+
+
+#{$es__page_main__header} > figure {
+    order: -1;
+}
+
+#{$es__page_main__header} > h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
+
+/*
     Content wrapper [A] could be anything (so far `article` or `div`): `#{$es__page_main} > * >.
     Inside the wrapper there should be `header` (see _1-header.scss).
     After the header} we want to give elements some side padding: `~ *`.
 */
+#{$es__page_main__header} > h1,
 #{$es__page_main__header} ~ * {
     padding-left: $s__sz-m;
     padding-right: $s__sz-m;
@@ -35,12 +58,28 @@
        intrinsically sized so may not appear full width, and therefore look odd, so expand them.
 
 */
+#{$es__page_main__header} > h1,
 #{$es__page_main__header--article} ~ * {
     width: 100%; /* 1 */
-    max-width: 70rem;
+    max-width: $e__content-measure;
 
     margin-right: auto;
     margin-left: auto;
+}
+
+/*
+    If the first element after the article header is a nav, it's the ToC.
+*/
+
+#{$es__page_main__header--article} + nav {
+    font-size: smaller;
+    margin: $s__sz-m;
+    padding: $s__sz-m;
+    background-color: #eee; /*@ TODO - needs a variable */
+    float: right;
+    min-width: $e__content-sidebar-width;
+    width: calc((#{$e__content-measure} - 100%) * 9999);
+    max-width: calc(100% - #{$s__sz-m * 2});
 }
 
 /*
@@ -49,7 +88,7 @@
 */
 #{$es__page_main__header} ~ div {
     max-width: none;
-    
+
     padding: 0;
 }
 
@@ -64,7 +103,8 @@
 #{$es__page_main__header} ~ figure,
 #{$es__page_main__header} ~ div > figure {
     background: $__e__content__figure-background;
-    
+    clear: both;
+
     @include s__bordered($s__sz-m);
 }
 

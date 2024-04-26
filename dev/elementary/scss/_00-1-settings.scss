@@ -11,6 +11,8 @@ $e__ojbect_highlight: 0 0 0 $s__sz-xs rgba(255,255,255,.4), 0 0 0 $s__sz-s rgba(
 
 $e__body_max-width: 1080px !default;
 
+$e__content-measure: 70rem;
+
 /*-------------------------------------------------------------------------------------------------|
 
     BANNER
@@ -122,6 +124,8 @@ $e__main--background-color: #fff !default;
 
 
 $__e__content__figure-background: lighten($s__base-ui-color, 57%) !default;
+
+$e__content-sidebar-width: 30%;
 
 /*-------------------------------------------------------------------------------------------------|
 
