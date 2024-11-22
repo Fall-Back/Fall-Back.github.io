@@ -16,11 +16,11 @@ $s__checkradio-border-style: $s__border-style !default;
 @if $s__experimental == true {
     /*
         From https://github.com/mozdevs/cssremedy/blob/master/remedy.css
-        Immediately jump any animation to the end point if the user has set their device to "prefers 
+        Immediately jump any animation to the end point if the user has set their device to "prefers
         reduced motion".
         This could create bad, unintended consequences. Remove as needed, and write your own appropriate
         code for prefers-reduced-motion.
-        
+
     */
     @media (prefers-reduced-motion: reduce) {
         * {
@@ -37,115 +37,124 @@ $s__checkradio-border-style: $s__border-style !default;
         where background colors can show through unexpectedly, so there are some tweaks to rectify
         this.
     */
-    #{$s__namespace}[type="file"]::-ms-value {
-        margin-right: 0;
-        margin-left: -6px;
-
-        padding-left: 0.5em;
-
-        border: 0;
-        border-radius: $s__input-border-radius;
-
-        background: $s__input-background-color;
-    }
-    // @supports (-ms-ime-align:auto) { .selector { property:value; } }
-    // Microsoft Edge 12+ (all MS Edge)
-    @supports (-ms-ime-align:auto) {
-        #{$s__namespace}[type="file"]::-ms-value {
-            background: transparent;
-        }
-    }
-
-
-    @if $s__input-focus-shadow != false {
-        #{$s__namespace}[type="file"]:focus::-ms-value {
-            box-shadow: $s__input-focus-shadow;
-            outline: 0;
-        }
-    }
+    //#{$s__namespace}[type="file"]::-ms-value {
+    //    margin-right: 0;
+    //    margin-left: -6px;
+    //
+    //    padding-left: 0.5em;
+    //
+    //    border: 0;
+    //    border-radius: $s__input-border-radius;
+    //
+    //    background: $s__input-background-color;
+    //}
+    //
+    //#{$s__namespace}[type="file"]:focus::-ms-value {
+    //    box-shadow: $s__input-focus-shadow;
+    //    outline: 0;
+    //}
 
 
     /*
         1. IE10 doesn't like rem so convert to px.
     */
-    #{$s__namespace}[type="file"]::-ms-browse {
-        min-height:  $s__input-min-height;
+    //#{$s__namespace}[type="file"]::-ms-browse {
+    //    min-height:  $s__input-min-height;
+    //
+    //    padding-right: $s__input-h-padding;
+    //    padding-right: #{s__calc-px-from-rem($s__input-h-padding)}\9; /* 1 */
+    //    padding-left: $s__input-h-padding;
+    //    padding-left: #{s__calc-px-from-rem($s__input-h-padding)}\9; /* 1 */
+    //
+    //    border-width: 0 0 0 $s__input-border-width;
+    //    border-style: $s__input-border-style;
+    //    border-color: $s__input-border-color;
+    //    border-top-right-radius: $s__input-border-radius - $s__input-border-width;
+    //    border-bottom-right-radius: $s__input-border-radius - $s__input-border-width;
+    //
+    //    color: #fff;
+    //    background-color: $s__base-ui-color;
+    //
+    //    font-weight: inherit;
+    //    font-style: inherit;
+    //    font-size: inherit;
+    //    font-family: inherit;
+    //
+    //    text-transform: none;
+    //
+    //    cursor: pointer;
+    //}
 
-        padding-right: $s__input-h-padding;
-        padding-right: #{s__calc-px-from-rem($s__input-h-padding)}\9; /* 1 */
-        padding-left: $s__input-h-padding;
-        padding-left: #{s__calc-px-from-rem($s__input-h-padding)}\9; /* 1 */
-
-        border-width: 0 0 0 $s__input-border-width;
-        border-style: $s__input-border-style;
-        border-color: $s__input-border-color;
-        border-top-right-radius: $s__input-border-radius - $s__input-border-width;
-        border-bottom-right-radius: $s__input-border-radius - $s__input-border-width;
-
-        color: #fff;
-        background-color: $s__base-ui-color;
-
-        font-weight: inherit;
-        font-style: inherit;
-        font-size: inherit;
-        font-family: inherit;
-
-        text-transform: none;
-
-        cursor: pointer;
-    }
-
-        @if $s__button-focus-shadow != false {
-            [type="file"]:hover::-ms-browse,
-            [type="file"]:active::-ms-browse,
-            [type="file"]:focus::-ms-browse {
-                box-shadow: $s__button-focus-shadow;
-                outline: 0;
-            }
-        }
+        //[type="file"]:hover::-ms-browse,
+        //[type="file"]:active::-ms-browse,
+        //[type="file"]:focus::-ms-browse {
+        //    box-shadow: $s__button-focus-shadow;
+        //    outline: 0;
+        //}
 
     /*
         1. Spacing height + 2 sets of input padding, minus border width.
     */
-    #{$s__namespace}[type="file"]::-webkit-file-upload-button {
-        height: calc(#{($s__base-rem-space-unit * 1.25)} - #{$s__input-border-width * 2}); /* 1 */
+    //#{$s__namespace}[type="file"]::-webkit-file-upload-button {
+    //{$s__namespace}[type="file"]::file-selector-button {
+    //   //height: calc(#{($s__base-rem-space-unit * 1.25)} - #{$s__input-border-width * 2}); /* 1 */
+    //   //
+    //   //padding-top: 0;
+    //   //padding-right: $s__input-h-padding;
+    //   //padding-bottom: 0;
+    //   //padding-left: $s__input-h-padding;
+    //   //
+    //   //border-width: 0 $s__input-border-width 0 0;
+    //   //border-style: $s__input-border-style;
+    //   //border-color: $s__input-border-color;
+    //   //border-radius: 0;
+    //   //
+    //   //color: #fff;
+    //   //background-color: $s__base-ui-color;
+    //   //
+    //   //font-weight: inherit;
+    //   //font-style: inherit;
+    //   //font-size: inherit;
+    //   //font-family: inherit;
+    //   //
+    //   //vertical-align: top;
+    //   //
+    //   //text-transform: none;
+    //   //
+    //   //cursor: pointer;
+    //   //
+    //   //-webkit-appearance: none;
+    //   @include s__button;
+    //   margin: 0 $s__sz-xs 0 0;
+    //   border-top-right-radius: 0;
+    //   border-bottom-right-radius: 0;
+    //   @supports (color: oklch(from red l c h)) {
+    //       color: oklch(from var(--background-color) var(--l) 0 h / 0.9);
+    //   }
+    //
 
-        padding-top: 0;
-        padding-right: $s__input-h-padding;
-        padding-bottom: 0;
-        padding-left: $s__input-h-padding;
+    //{$s__namespace}[type="file"]::-webkit-file-upload-button {
+    //   @include s__button;
+    //   margin: 0 $s__sz-xs 0 0;
+    //   border-top-right-radius: 0;
+    //   border-bottom-right-radius: 0;
+    //   @supports (color: oklch(from red l c h)) {
+    //       color: oklch(from var(--background-color) var(--l) 0 h / 0.9);
+    //   }
+    //
 
-        border-width: 0 $s__input-border-width 0 0;
-        border-style: $s__input-border-style;
-        border-color: $s__input-border-color;
-        border-radius: 0;
+    //@if $s__use-focus-shadow {
+    //    #{$s__namespace}[type="file"]:hover::-webkit-file-upload-button,
+    //    #{$s__namespace}[type="file"]:active::-webkit-file-upload-button,
+    //    #{$s__namespace}[type="file"]:focus::-webkit-file-upload-button {
+    //
+    //        &:focus {
+    //            outline: 0;
+    //            box-shadow: $s__outline-shadow;
+    //        }
+    //    }
+    //}
 
-        color: #fff;
-        background-color: $s__base-ui-color;
-
-        font-weight: inherit;
-        font-style: inherit;
-        font-size: inherit;
-        font-family: inherit;
-
-        vertical-align: top;
-
-        text-transform: none;
-
-        cursor: pointer;
-
-        -webkit-appearance: none;
-    }
-
-        @if $s__button-focus-shadow != false {
-            #{$s__namespace}[type="file"]:hover::-webkit-file-upload-button,
-            #{$s__namespace}[type="file"]:active::-webkit-file-upload-button,
-            #{$s__namespace}[type="file"]:focus::-webkit-file-upload-button {
-                box-shadow: $s__button-focus-shadow;
-
-                outline: 0;
-            }
-        }
     /*
         Safari refuses to adjust the height of select[multiple] options.
         The only way I've managed to get it to adhere to the vertical rhythm is by adjust the font-size
@@ -196,30 +205,11 @@ $s__checkradio-border-style: $s__border-style !default;
     // Reset Chrome and Opera:
     // @media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) { .selector { property:value; } }
     // Chrome 29+ (and Opera 16+)
-    /*
-    @media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
-        select[size] { margin-bottom: calc(#{($s__base-rem-space-unit / 8) * 3} - #{$s__input-border-width * 2}); }
-    }
-    */
-
-
-
-    /*
-        Similar problem with IE9-11:
-    */
-
-    /* IE9-11 */
-    @media #{$s__ie9-11} {
-        select[size="2"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 1.1em - #{$s__input-border-width * 2}); }
-        select[size="3"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.75em - #{$s__input-border-width * 2}); }
-        select[size="4"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 1.25em - #{$s__input-border-width * 2}); }
-        select[size="5"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.95em - #{$s__input-border-width * 2}); }
-        select[size="6"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.65em - #{$s__input-border-width * 2}); }
-        select[size="7"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 1.1em - #{$s__input-border-width * 2}); }
-        select[size="8"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.75em - #{$s__input-border-width * 2}); }
-        select[size="9"]  { margin-bottom: calc(#{$s__base-rem-space-unit} - 1.25em - #{$s__input-border-width * 2}); }
-        select[size="10"] { margin-bottom: calc(#{$s__base-rem-space-unit} - 0.95em - #{$s__input-border-width * 2}); }
-    }
+    ///*
+    //@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
+    //    select[size] { margin-bottom: calc(#{($s__base-rem-space-unit / 8) * 3} - #{$s__input-border-width * 2}); }
+    //}
+    //*/
 
 }
 
@@ -229,7 +219,7 @@ $s__checkradio-border-style: $s__border-style !default;
     ("Press TAB to highlight each item on a web page.)
     That is - the default outline focus style works, but shadows don't unless appearance: none
     is used.
-    
+
     1. Safari 9.1 doesn't recognize 'auto' but I suspect others won't recognize 'initial', so
        keeping both for now.
 */
@@ -256,14 +246,12 @@ $s__checkradio-border-style: $s__border-style !default;
             -webkit-appearance: none;
                -moz-appearance: none;
         }
-        
+
         input[type="radio"] {
             border-radius: 50%;
         }
 
         input[type="radio"]:checked {
-            background-image: -moz-radial-gradient(center, ellipse cover, rgba($s__checkradio-text-color,1) 0%, rgba($s__checkradio-text-color,1) 35%, rgba(0,0,0,0) 35%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
-            background-image: -webkit-radial-gradient(center, ellipse cover, rgba($s__checkradio-text-color,1) 0%,rgba($s__checkradio-text-color,1) 35%,rgba(0,0,0,0) 35%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
             background-image: radial-gradient(ellipse at center, rgba($s__checkradio-text-color,1) 0%,rgba($s__checkradio-text-color,1) 35%,rgba(0,0,0,0) 35%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         }
 
@@ -278,12 +266,10 @@ $s__checkradio-border-style: $s__border-style !default;
             position: absolute;
             left: 50%;
             top: 50%;
-            
-            -webkit-transform: translate(-50%, -70%) rotate(-50deg);
-            -ms-transform: translate(-50%, -70%) rotate(-50deg);
+
             transform: translate(-50%, -70%) rotate(-50deg);
         }
-        
+
         /*
             Turn off the outline we reinstated for non-experimental styles in Safari:
         */
@@ -292,28 +278,5 @@ $s__checkradio-border-style: $s__border-style !default;
             outline: 0;
         }
     }
-    
-    /*
-        Turn off checkbox styling for Edge for now.
-    */
-    // @supports (-ms-ime-align:auto) { .selector { property:value; } }
-    // Microsoft Edge 12+ (all MS Edge)
-    @supports (-ms-ime-align:auto) {
-        input[type="checkbox"] {
-            -webkit-appearance: checkbox;
-        }
-    }
-    
-    /*
-        Turn off checkradio styling for UCBrowser for now.
-    */
-    .ucbrowser input[type="checkbox"] {
-        min-height: 0;
-        -webkit-appearance: checkbox;
-    }
-    
-    .ucbrowser input[type="radio"] {
-        min-height: 0;
-        -webkit-appearance: radio;
-    }
+
 }

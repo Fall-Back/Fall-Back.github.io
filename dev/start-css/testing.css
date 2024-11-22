@@ -16,9 +16,9 @@
     visibility: hidden;
 }
 
-body {
+/*body {
     background: rgba(255,255,255,0.4);
-}
+}*/
 
 .float-img-test {
     float: left;
@@ -68,7 +68,7 @@ label {
 }
 
 .box {
-    border: 1px solid #333;
+    border: 0.1rem solid #333;
     background: #fed;
     /*margin-top: -1px;
     margin-bottom: calc(1.5rem - 1px);*/
@@ -137,7 +137,7 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="
     hacks for these.
 
 */
-
+/*
 ::-webkit-scrollbar {
     height: 1.2rem;
 }
@@ -150,14 +150,14 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="
     background: #aaa;
     border-radius: 0.6rem;
 }
-
+*/
 /* (^A) */
-
+/*
 pre:not(*:root) {
-    margin-bottom: 2.4rem; /* $fallback--base-rem-space-unit / 2; */
+    margin-bottom: 2.4rem; /* $fallback--base-rem-space-unit / 2; * /
 }
 
-
+*/
 
 
 

@@ -24,9 +24,13 @@
     //padding: $s__sz-s $s__sz-s $s__sz-xs $s__sz-s;
     padding: 0;
 
-    color: $e__banner--base-text-color;
-    background: $e__banner--background-color;
     border: 0 none;
+
+
+    //color: $e__banner--base-text-color;
+    //background: $e__banner--background-color;
+    --background-color: var(--banner-color, var(--base-ui-color));
+    @include s__theme(var(--banner-color--text, var(--base-ui-color--text)));
 }
 /*
 #{$es__page_banner} > * {
@@ -63,5 +67,5 @@
 /*------------------------------------------------------------------------------------------------*/
 
 @import '1-banner/_1-logo.scss';
-@import '1-banner/_2-navlist.scss';
+@import '1-banner/_2-navbar.scss';
 @import '1-banner/_3-collapsible.scss';

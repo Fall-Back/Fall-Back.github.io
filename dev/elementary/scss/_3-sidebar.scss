@@ -18,7 +18,10 @@
     margin: 0;
 
     padding: $s__sz-m;
-    
-    color: $e__sidebar--text-color;
-    background-color: $e__sidebar--background-color;
+
+    //color: $e__sidebar--text-color;
+    //background-color: $e__sidebar--background-color;
+
+    --background-color: var(--sidebar-color-light, var(--base-ui-color-lighter));
+    @include s__theme(var(--sidebar-color-light--text, var(--base-ui-color-lighter--text)));
 }

@@ -1,17 +1,15 @@
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS ELEMENT: footer
+    v3.0.0
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 
 #{$s__namespace}footer {
-    display: block;
+    & {
+        display: block;
+    }
 
     @include s__margins($s__base-rem-space-unit, $s__margin-type);
-
-    //padding: $s__footer-padding;
-
-    //background-color: $s__footer-background-color;
-    //color: $s__footer-text-color;
 }

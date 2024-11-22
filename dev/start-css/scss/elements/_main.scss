@@ -1,6 +1,7 @@
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS ELEMENT: main
+    v3.0.0
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -9,24 +10,23 @@
     1. Correct `block` display not defined for `main` in IE.
 */
 #{$s__namespace}main {
-    display: block; /* 1 */
+    & {
+        display: block; /* 1 */
 
-    width: 100%;
-    min-height: 100%;
+        width: 100%;
+        min-height: 100%;
 
-    padding: $s__main-padding;
-    @include s__margins($s__base-rem-space-unit, $s__margin-type);
+        padding: $s__main-padding;
 
-    background-color: $s__main-background-color;
-    color: $s__main-text-color;
+        --background-color: var(--main-background-color, #fff);
+        background-color: var( --background-color);
 
+        position: relative;
 
-    position: relative;
-
-    @if $s__use-layout {
-         -webkit-flex: 1 0 auto;
-        -moz-box-flex: 1;
-             -ms-flex: 1 0 auto;
-                 flex: 1 0 auto;
+        @if $s__use-layout {
+            flex: 1 0 auto;
+        }
     }
+
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
 }

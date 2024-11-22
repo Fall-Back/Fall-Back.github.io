@@ -1,6 +1,7 @@
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS ELEMENT: h
+    v3.0.0
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -10,6 +11,8 @@
 
     font-size: $s__h1-font-size;
     line-height: $s__h1-height;
+
+    text-wrap: balance;
 }
 
 #{$s__namespace}h2 {
@@ -17,6 +20,8 @@
 
     font-size: $s__h2-font-size;
     line-height: $s__h2-height;
+
+    text-wrap: balance;
 }
 
 #{$s__namespace}h3 {
@@ -24,6 +29,8 @@
 
     font-size: $s__h3-font-size;
     line-height: $s__h3-height;
+
+    text-wrap: balance;
 }
 
 #{$s__namespace}h4 {
@@ -31,6 +38,8 @@
 
     font-size: $s__h4-font-size;
     line-height: $s__h4-height;
+
+    text-wrap: balance;
 }
 
 #{$s__namespace}h5 {
@@ -38,6 +47,8 @@
 
     font-size: $s__h5-font-size;
     line-height: $s__h5-height;
+
+    text-wrap: balance;
 }
 
 #{$s__namespace}h6 {
@@ -45,4 +56,6 @@
 
     font-size: $s__h6-font-size;
     line-height: $s__h6-height;
+
+    text-wrap: balance;
 }

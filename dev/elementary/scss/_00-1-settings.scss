@@ -7,7 +7,7 @@
 
 @use 'sass:math';
 
-$e__ojbect_highlight: 0 0 0 $s__sz-xs rgba(255,255,255,.4), 0 0 0 $s__sz-s rgba(0,0,0,.2) !default;
+$e__ojbect_highlight: 0 0 0 $s__sz-xxs rgba(255,255,255,.4), 0 0 0 $s__sz-xs rgba(0,0,0,.2) !default;
 
 $e__body_max-width: 1080px !default;
 
@@ -20,9 +20,9 @@ $e__content-measure: 70rem;
 
 |-------------------------------------------------------------------------------------------------*/
 
-$e__banner--base-ui-color: $s__base-ui-color !default;
-$e__banner--base-text-color: #fff !default;
-$e__banner--background-color: $e__banner--base-ui-color !default;
+//$e__banner--base-ui-color: var(--banner-background-color, var(--base-ui-color)) !default;
+//$e__banner--base-text-color: #fff !default;
+//$e__banner--background-color: $e__banner--base-ui-color !default;
 
 
 
@@ -45,45 +45,48 @@ $e__logo--invert: true !default;
 
 // Colours:
 
-$e__nav-bar--base-ui-color:                 $e__banner--base-ui-color !default;
-$e__nav-bar--base-text-color:               #fff !default;
+//$e__nav-bar--base-ui-color:                 $e__banner--base-ui-color !default;
+//$e__nav-bar--base-text-color:               #fff !default;
+//
+//
+////$e__nav-bar--background-color:              $e__nav-bar--base-ui-color !default;
+//$e__nav-bar--background-color:              transparent !default;
+//
+////$e__nav-bar__link--color:                   #fff !default;
+//$e__nav-bar__link--color:                   $e__nav-bar--base-text-color !default;
+//$e__nav-bar__link--color--alt:              $e__nav-bar__link--color !default;
+//$e__nav-bar__link--background-color:        rgba(0,0,0,0.2) !default;
+//$e__nav-bar__link--background-color--alt:   rgba(255,255,255,0.08) !default;
+//$e__nav-bar__link--background-color--alt2:  rgba(0,0,0,0.6) !default;
+//
+//$e__nav-bar__link--border-color:            rgba(255,255,255,0.2) !default;
+//$e__nav-bar__link--border-style:            solid !default;
+//$e__nav-bar__link--border-width:            1px !default;
 
+//
 
-//$e__nav-bar--background-color:              $e__nav-bar--base-ui-color !default;
-$e__nav-bar--background-color:              transparent !default;
-
-//$e__nav-bar__link--color:                   #fff !default;
-$e__nav-bar__link--color:                   $e__nav-bar--base-text-color !default;
-$e__nav-bar__link--color--alt:              $e__nav-bar__link--color !default;
-$e__nav-bar__link--background-color:        rgba(0,0,0,0.2) !default;
-$e__nav-bar__link--background-color--alt:   rgba(255,255,255,0.08) !default;
-$e__nav-bar__link--background-color--alt2:  rgba(0,0,0,0.6) !default;
-
-$e__nav-bar__link--border-color:            rgba(255,255,255,0.2) !default;
-$e__nav-bar__link--border-style:            solid !default;
-$e__nav-bar__link--border-width:            1px !default;
-$e__nav-bar__link--border-radius:           $s__sz-xs !default;
-
-$e__nav-bar__link--spacing:                 $s__sz-s !default;
-
-
-$e__nav-bar__collapsible--background-color: lighten($e__banner--background-color, 5%) !default;
-
-
-$e__sub-nav--background-color:              darken($e__nav-bar--base-ui-color, 20%) !default;
-
-$e__sub-nav__link--border-color:            rgba(255,255,255,0.3) !default;
-$e__sub-nav__link--border-style:            dashed !default;
-$e__sub-nav__link--border-width:            1px !default;
-
-
-$e__sub-nav__link--color:                   $e__nav-bar__link--color !default;
-$e__sub-nav__link--color--alt:              $e__sub-nav__link--color !default;
-$e__sub-nav__link--background-color:        $e__sub-nav--background-color !default;
-$e__sub-nav__link--background-color--alt:   lighten($e__sub-nav__link--background-color, 10%) !default;
+//
+//
+//$e__nav-bar__collapsible--background-color: lighten($e__banner--background-color, 5%) !default;
+//
+//
+//$e__sub-nav--background-color:              darken($e__nav-bar--base-ui-color, 20%) !default;
+//
+//$e__sub-nav__link--border-color:            rgba(255,255,255,0.3) !default;
+//$e__sub-nav__link--border-style:            dashed !default;
+//$e__sub-nav__link--border-width:            1px !default;
+//
+//
+//$e__sub-nav__link--color:                   $e__nav-bar__link--color !default;
+//$e__sub-nav__link--color--alt:              $e__sub-nav__link--color !default;
+//$e__sub-nav__link--background-color:        $e__sub-nav--background-color !default;
+//$e__sub-nav__link--background-color--alt:   lighten($e__sub-nav__link--background-color, 10%) !default;
 
 
 // Sizes:
+$e__nav-bar__link--border-radius:           $s__sz-xs !default;
+
+$e__nav-bar__link--spacing:                 $s__sz-s !default;
 
 $e__nav-bar--font-size:                     $s__base-font-size !default;
 $e__nav-bar--height:                        ($s__base-em-ratio * 1.5em) !default;
@@ -127,6 +130,8 @@ $__e__content__figure-background: lighten($s__base-ui-color, 57%) !default;
 
 $e__content-sidebar-width: 30%;
 
+$e__toc-background-color: #eee;
+
 /*-------------------------------------------------------------------------------------------------|
 
     MAIN - CONTENT - LISTING
@@ -149,8 +154,8 @@ $e__listing__item--backgroud-color: transparent !default;
 
 |-------------------------------------------------------------------------------------------------*/
 
-$e__sidebar--text-color: $s__base-text-color !default;
-$e__sidebar--background-color: lighten($s__base-ui-color, 55%) !default;
+//$e__sidebar--text-color: $s__base-text-color !default;
+//$e__sidebar--background-color: lighten($s__base-ui-color, 55%) !default;
 
 
 /*-------------------------------------------------------------------------------------------------|
@@ -160,8 +165,8 @@ $e__sidebar--background-color: lighten($s__base-ui-color, 55%) !default;
 
 |-------------------------------------------------------------------------------------------------*/
 
-$e__footer--text-color: #fff !default;
-$e__footer--background-color: $s__base-ui-color !default;
+//$e__footer--text-color: #fff !default;
+//$e__footer--background-color: $s__base-ui-color !default;
 
 
 
@@ -184,8 +189,9 @@ $e__footer--background-color: $s__base-ui-color !default;
 
 |-------------------------------------------------------------------------------------------------*/
 
-$e__component__card__background:    linear-gradient(to bottom, #ffffff 60%, lighten($s__base-ui-color, 65%) 100%) !default;
-$e__component__card__border:        $s__border-width $s__border-style $s__base-ui-color !default;
+//$e__component__card__background:    linear-gradient(to bottom, #ffffff 60%, lighten($s__base-ui-color, 65%) 100%) !default;
+//$e__component__card__border:        $s__border-width $s__border-style $s__base-ui-color !default;
+$e__component__card__border:        var(--card-border-width, #{$s__border-width * 4}) var(--card-border-style, #{$s__border-style}) var(--card-border-color, #fff) !default;
 $e__component__card__border-radius: $s__sz-s !default;
 
 $e__component__card__box-shadow:    0 0 $s__sz-xs 0 rgba(0,0,0,0.2) !default;
@@ -200,9 +206,10 @@ $e__component__card__image-ratio:   33% !default;
     --------------------------------------------------------------------------------------------
 
 |-------------------------------------------------------------------------------------------------*/
-$e__component__cta__background:      #fff !default;
-$e__component__cta__background--alt: lighten($s__base-ui-color, 55%) !default;
-$e__component__cta__border:          $s__border-width $s__border-style $s__base-ui-color !default;
+//$e__component__cta__background:      #fff !default;
+//$e__component__cta__background--alt: var(--cta-background-color, var(--base-ui-color-lighter)) !default;
+//$e__component__cta__border:          var(--cta-border-width, #{$s__border-width * 2}) var(--cta-border-style, #{$s__border-style}) var(--cta-background-color, var(--base-ui-color)) !default;
+$e__component__cta__border:          0 none !default;
 $e__component__cta__border-radius:   $s__border-radius !default;
 
 $e__component__cta__box-shadow:      none !default;
@@ -220,7 +227,8 @@ $e__component__cta__padding:         calc(#{$s__sz-xs} - #{$s__border-width}) $s
 
 |-------------------------------------------------------------------------------------------------*/
 
-$e__component__hero__background:    linear-gradient(to bottom, #ffffff 60%, lighten($s__base-ui-color, 60%) 100%) !default;
+//$e__component__hero__background:    linear-gradient(to bottom, #ffffff 60%, lighten($s__base-ui-color, 60%) 100%) !default;
+$e__component__hero__background:    var(--hero-background-color, var(--base-ui-color-lightest)) !default;
 
 //e__component__hero__image-ratio:   50% !default;
 $e__component__hero__image-ratio:   33% !default;
@@ -233,9 +241,9 @@ $e__component__hero__image-ratio:   33% !default;
 
 |-------------------------------------------------------------------------------------------------*/
 
-$e__image-border:     $s__border-width $s__border-style $s__base-ui-color !default;
+$e__image-border:     $s__border-width $s__border-style var(--base-ui-color) !default;
 $e__image-inset:      $s__sz-m !default;
-$e__image-background: #fff !default;
+//$e__image-background: #fff !default;
 
 
 /*-------------------------------------------------------------------------------------------------|

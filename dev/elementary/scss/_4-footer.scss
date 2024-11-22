@@ -14,23 +14,23 @@
 
     text-align: center;
 
-    color: $e__footer--text-color;
-    background: $e__footer--background-color;
+    --background-color: var(--footer-background-color, var(--base-ui-color));
+    @include s__theme(var(--footer-color--text, var(--base-ui-color--text)));
 }
 
 #{$es__page_footer} > * {
     margin-bottom: 0;
 }
 
-#{$es__page_footer} a[href] {
-    color: $e__footer--text-color;
-    
-    &:hover,
-    &:active {
-        color: lighten($e__footer--text-color, 20%);
-    }
-
-    &:focus {
-        box-shadow: 0 0 0 $s__anchor-focus-shadow-width rgba(255,255,255, 0.5);
-    }
-}
+//#{$es__page_footer} a[href] {
+//    color: $e__footer--text-color;
+//
+//    &:hover,
+//    &:active {
+//        color: lighten($e__footer--text-color, 20%);
+//    }
+//
+//    &:focus {
+//        box-shadow: 0 0 0 $s__anchor-focus-shadow-width rgba(255,255,255, 0.5);
+//    }
+//}

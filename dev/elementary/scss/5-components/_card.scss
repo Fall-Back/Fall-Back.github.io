@@ -7,6 +7,8 @@
 
 @mixin component__card($options: ()) {
     #{map-get($options, selector)} {
+        --name: card;
+
         display: flex;
         flex-direction: column;
 
@@ -21,18 +23,19 @@
         border:        #{map-get($options, border)};
         border-radius: #{map-get($options, border-radius)};
 
-        background:    #{map-get($options, background)};
+        --background-color: var(--card-color, var(--base-ui-color-lightest));
+        @include s__theme(var(--card-color--text, var(--base-ui-color-lightest--text)));
 
         box-shadow:    #{map-get($options, box-shadow)};
-        
-        & * {   
+
+        & * {
             overflow-wrap: break-word;
             word-wrap: break-word;
             -webkit-hyphens: auto;
             hyphens: auto;
         }
-        
-        & *:only-child {   
+
+        & *:only-child {
             margin-bottom: 0;
         }
     }
@@ -42,7 +45,7 @@
         background-color: transparent;
         padding: 0;
     }
-    
+
     #{map-get($options, selector)} > header > :last-child {
         margin-bottom: #{map-get($options, padding)}
     }
@@ -95,7 +98,7 @@
     #{map-get($options, selector)} > div > :last-child > :last-child  {
         margin-bottom: 0;
     }
-    
+
     // CTA:
     #{map-get($options, selector)} > div > p:last-child > b:only-child {
         display: block;
@@ -110,7 +113,7 @@
         margin-top: auto;
         margin-bottom: 0;
         padding: 0;
-        
+
         background-color: transparent;
     }
 

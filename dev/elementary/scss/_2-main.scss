@@ -31,8 +31,8 @@
 
     padding: 0;
 
-    color: $e__main--text-color;
-    background-color: $e__main--background-color;
+    --background-color: var(--main-color, #{$s__base-background-color});
+    @include s__theme(var(--main-color--text, #{$s__base-text-color}));
 }
 
 /*------------------------------------------------------------------------------------------------*/

@@ -38,6 +38,8 @@
 
 @use 'sass:math';
 
+
+
 // Let the other Fall-Back patterns know that start is being used:
 $s__using-Start-CSS: true;
 
@@ -45,6 +47,11 @@ $s__using-Start-CSS: true;
 @import '_02-start-mixins.scss';
 @import '_03-start-tokens.scss';
 @import '_04-start-settings.scss';
+
+//@supports (color: color-mix(in lab, white, black 50%)) {
+@supports (font-size: clamp(10px, 1vw, 12px)) {
+
+@import '_05-start-custom-properties.scss';
 
 
 
@@ -119,7 +126,7 @@ $s__using-Start-CSS: true;
 
 
 /*
-    1. Change the default box-sizing (-moz prefix for FF8-28).
+    1. Change the default box-sizing.
 
     2. `min-height` _should_ be what we want here (as declared in inuit css), except that
        `min-height` doesn't works as expected; child elements set to `(min-)height: 100%;` won't
@@ -134,80 +141,74 @@ $s__using-Start-CSS: true;
     4. Convert the value to a percentage so as not to override user font settings.
        This needs to be on the root node.
 
-    5. Prevent font size adjustments after orientation changes in IE and iOS. (N)
+    5. Prevent font size adjustments after orientation changes in iOS.
+       https://kilianvalkhof.com/2022/css-html/your-css-reset-needs-text-size-adjust-probably/
 
     6. Use a more readable tab size (opinionated).
 */
-html {
-    -moz-box-sizing: border-box; /* 1 */
+html[lang] {
     box-sizing: border-box; /* 1 */
 
     height: 100%; /* 2 */
 
     overflow-y: scroll; /* 3 */
 
-    color: $s__base-text-color;
-    background-color: $s__html-background-color;
+    //color: $s__base-text-color;
+    //color: var(--color);
+    /*@supports (color: oklch(from red l c h)) {
+        .d-background--very-light {
+            --color:
+            color-mix(in lab, var(--theme-color), white 50%);
+        }
+    }*/
+    // background-color: $s__html-background-color;
+    --background-color: var(--html-background-color, var(--base-ui-color-darker));
+    background-color: var( --background-color);
+    //color: var(--color);
+
 
     //font-size: #{$s__root-font-size-percent * 1%}; /* 4 */
     font-size: #{$s__root-font-size-em}; /* 4 */
 
-
-    -ms-text-size-adjust: 100%; /* 5 */
+    -moz-text-size-adjust: 100%; /* 5 */
     -webkit-text-size-adjust: 100%; /* 5 */
+    text-size-adjust: 100%; /* 5 */
 
     padding: 0;
     margin: 0;
 
-    // -- -moz-osx-font-smoothing: grayscale; --
-    // -- -webkit-font-smoothing: antialiased; --
-
-    // -- text-rendering: optimizeLegibility; --
-
-    -moz-tab-size: $s__tabsize; /* 6 */
-	tab-size: $s__tabsize; /* 6 */
+    tab-size: $s__tabsize; /* 6 */
 }
-/*
-    Fix font size for IE9-11 as it can't calculate % to 1 decimal place! Grrr.
-*/
-@if ($s__root-font-size != 16px) {
-    @media #{$s__ie9-11} {
-        html {
-            font-size: calc(#{($s__root-font-size-em * 100)} / 100);
-        }
-    }
-}
-
 
 /*
     'Global' reset.
-
-    1. For Mac Safari 6.1-8.
 */
 * {
-    -webkit-margin-before: 0; /* 1 */
-    -webkit-margin-after: 0;  /* 1 */
-    -webkit-margin-start: 0;  /* 1 */
-    -webkit-margin-end: 0;    /* 1 */
+    @supports (color: oklch(from red l c h)) {
+        color: oklch(from var(--background-color) var(--l) 0 h / 0.9);
+    }
     margin:  0;
-
     padding: 0;
 }
 
+/*
+    Button colour is declared in TFS, so need to redclare here as above * too low specificity:
+*/
+button {
+    @supports (color: oklch(from red l c h)) {
+        color: oklch(from var(--background-color) var(--l) 0 h / 0.9);
+    }
+}
 
 /*
     1. Add box sizing inheritance in all browsers.
-       Supporting FF8+ due to Mustard Cut so including for completeness.
     2. Remove repeating backgrounds in all browsers.
 */
 *,
 ::before,
 ::after {
-    -moz-box-sizing: inherit; /* 1 */
-         box-sizing: inherit; /* 1 */
-
+    box-sizing: inherit; /* 1 */
     background-repeat: no-repeat; /* 2 */
-
     -webkit-font-smoothing: inherit;
 }
 
@@ -225,13 +226,13 @@ html {
 /*
     Remove the inner border and padding from form elements in older Firefox.
 */
-#{$s__namespace}::-moz-focus-inner {
-    margin: 0;
-
-    padding: 0;
-
-    border: 0;
-}
+// #{$s__namespace}::-moz-focus-inner {
+//    margin: 0;
+//
+//    padding: 0;
+//
+//    border: 0;
+//}
 
 /*
     1. Ensure that absolutely positioned child elements expand to the full height of the body.
@@ -267,31 +268,13 @@ body {
     letter-spacing: initial; /* 3 */
     word-spacing: initial; /* 3 */
 
-    background-color: $s__body-background-color;
-    color: $s__body-text-color;
+    --background-color: var(--base-ui-color-dark);
+    background-color: var(--background-color);
+    //background-color: $s__body-background-color;
+    //color: $s__body-text-color;
 
-    /*@if $s__use-layout {
-        display: -webkit-flex;
-        display: -moz-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: column;
-           -moz-box-orient: vertical;
-           -moz-box-direction: normal;
-            -ms-flex-direction: column;
-                flex-direction: column;
-
-    }*/
+    accent-color:  var(--base-ui-color);
 }
-
-/* IE9-11 */
-/*@media #{$s__ie9-11} {
-
-    body {
-        height: 100%;
-    }
-
-}*/
 
 
 /*------------------------------------------------------------------------------------------------*\
@@ -300,7 +283,12 @@ body {
 
 \*------------------------------------------------------------------------------------------------*/
 
-
+// ::marker is common to ol and ul list types so declare once her::after
+// FF seems to make the parent li .5px higher that it should be so fixing that with line-height.
+::marker {
+    line-height: 1;
+    display: inline-block;
+}
 
 
 @import 'elements/_a.scss';
@@ -451,7 +439,6 @@ body {
     1. Remove the tapping delay from clickable elements.
 */
 [tabindex] {
-    -ms-touch-action: manipulation; /* 1 (IE10) */
     touch-action: manipulation; /* 1 */
 }
 
@@ -459,7 +446,6 @@ body {
 /*
     Specify the background color, font color, and drop shadow of text selections.
 */
-::-moz-selection,
 ::selection {
     color: $s__selection-text-color;
     background-color: $s__selection-background-color;
@@ -473,19 +459,7 @@ body {
     to mess around with that.
 */
 main :target {
-       -moz-animation: target-fade 3s 1;
-    -webkit-animation: target-fade 3s 1;
-            animation: target-fade 3s 1;
-}
-
-@-moz-keyframes target-fade {
-    0% { box-shadow: 0 0 0 1.2rem $s__target-highlight-color-a, 0 0 0 100vmax $s__target-highlight-color-a inset; }
-    100% { box-shadow: 0 0 0 1.2rem $s__target-highlight-color-b, 0 0 0 100vmax $s__target-highlight-color-b inset; }
-}
-
-@-webkit-keyframes target-fade {
-    0% { box-shadow: 0 0 0 1.2rem $s__target-highlight-color-a, 0 0 0 100vmax $s__target-highlight-color-a inset; }
-    100% { box-shadow: 0 0 0 1.2rem $s__target-highlight-color-b, 0 0 0 100vmax $s__target-highlight-color-b inset; }
+    animation: target-fade 3s 1;
 }
 
 @keyframes target-fade {
@@ -515,3 +489,5 @@ main :target {
 
 
 /*! End Start-CSS */
+
+}

@@ -25,8 +25,10 @@
     border-color: $s__select-border-color;
     border-radius: $s__select-border-radius;
 
-    color: $s__select-text-color;
-    background-color: $s__select-background-color;
+    //color: $s__select-text-color;
+    //background-color: $s__select-background-color;
+    --background-color: var(--select--color, #fff);
+    @include s__theme(var(--select-color--text, var(--color)));
 
     font-weight: inherit;
     font-style: inherit;
@@ -40,10 +42,9 @@
 
     cursor: pointer;
 
-    -ms-touch-action: manipulation; /* 2 (IE10) */
     touch-action: manipulation; /* 2 */
 
-    &::-ms-expand {
+    /*&::-ms-expand {
         background-color: transparent;
         color: #000;
         border: 0;
@@ -53,7 +54,7 @@
 
     &::-ms-value {
         color: currentColor;
-    }
+    }*/
 }
 
 /*
@@ -105,12 +106,12 @@ _:-moz-tree-row(hover), #{$s__namespace}select:not([multiple]) {
 */
 
 /* IE9-11 */
-@media #{$s__ie9-11} {
+/*@media #{$s__ie9-11} {
         #{$s__namespace}select:not([multiple]) {
         background-image: none\0;
         padding-right: 0\0;
     }
-}
+}*/
 
 @if $s__use-focus-shadow {
     #{$s__namespace}select:focus {

@@ -29,7 +29,7 @@
     border-color: $s__input-border-color;
     border-radius: $s__input-border-radius;
 
-    color: $s__input-text-color;
+    //color: $s__input-text-color;
     background-color: $s__input-background-color;
 
     font-size: inherit; // S
@@ -136,7 +136,8 @@
 
     overflow: hidden; /* 2 */
 
-    margin: math.div($s__base-rem-space-unit, 8) 0;
+    //margin: math.div($s__base-rem-space-unit, 8) 0;
+    margin: 0;
 
     padding: 0;
 
@@ -148,25 +149,57 @@
 */
 // _:-moz-any-link, :root .selector { property:value; }
 // Firefox (any)
-_:-moz-any-link, :root #{$s__namespace}[type="file"] {
-    height: $s__input-min-height;
-}
+//_:-moz-any-link, :root #{$s__namespace}[type="file"] {
+//    height: $s__input-min-height;
+//}
 
-// This helps avoid white 'bleed-through' between containing element and the pseudo-elements in
-// _:-ms-input-placeholder, :root .selector { property:value; }
-// Internet Explorer 10-11
-_:-ms-input-placeholder, :root #{$s__namespace}[type="file"] {
-    background-color: $s__base-ui-color;
-}
-
-// @media screen and (min-width:0\0) and (min-resolution:+72dpi) { .selector { property:value; } }
-// Internet Explorer 9-11
-@media screen and (min-width:0\0) and (min-resolution:+72dpi) {
-    #{$s__namespace}[type="file"] {
-        padding-left: $s__input-h-padding;
+/*
+    1. Spacing height + 2 sets of input padding, minus border width.
+*/
+#{$s__namespace}[type="file"]::file-selector-button {
+    @include s__button;
+    margin: 0 $s__sz-xs 0 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    @supports (color: oklch(from red l c h)) {
+        color: oklch(from var(--background-color) var(--l) 0 h / 0.9);
     }
 }
 
+#{$s__namespace}[type="file"]::-webkit-file-upload-button {
+    @include s__button;
+    margin: 0 $s__sz-xs 0 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    @supports (color: oklch(from red l c h)) {
+        color: oklch(from var(--background-color) var(--l) 0 h / 0.9);
+    }
+}
+
+
+
+
+// Unify color input appearance:
+// In FF (noticed in v 129) the coloured box for color inputs is 2px too high.
+#{$s__namespace}[type="color"] {
+    width: $s__sz-m * 2;
+    height: $s__input-min-height;
+}
+
+#{$s__namespace}[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+// Note these folllowing two can't be combined or the webkit selector fails:
+#{$s__namespace}[type="color"]::-moz-color-swatch {
+    border: 0 !important;
+    border-radius: $s__button-border-radius;
+}
+
+#{$s__namespace}[type="color"]::-webkit-color-swatch {
+    border: 0 !important;
+    border-radius: $s__button-border-radius;
+}
 
 /*
     iOS turns these inputs into selects which are a touch too high.

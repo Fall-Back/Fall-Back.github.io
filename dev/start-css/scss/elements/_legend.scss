@@ -1,6 +1,7 @@
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS ELEMENT: legend
+    v3.0.0
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -23,8 +24,9 @@
 
     max-width: 100%; /* 1 */
 
-    margin-top: -$s__legend-border-width; /* 2 */
-    margin-bottom: $s__fieldset-border-width; /* 2 */
+    //margin-top: -$s__legend-border-width; /* 2 */
+    //margin-bottom: $s__fieldset-border-width; /* 2 */
+    margin-bottom: #{$s__base-rem-space-unit * -1.5};
 
     padding: 0 $s__legend-h-padding;
 
@@ -34,7 +36,6 @@
 
     font-weight: bold;
     white-space: normal; /* 1 */
-
 
     /*  */
 }

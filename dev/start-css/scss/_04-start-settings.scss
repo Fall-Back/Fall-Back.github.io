@@ -28,7 +28,8 @@ $s__namespace: '' !default;
 
 $s__base-em-ratio:          calc($s__base-line-height / $s__base-font-size); // 1.71428571429
 $s__root-font-size-percent: calc($s__root-font-size / 16px) * 100;
-$s__root-font-size-em:      calc($s__root-font-size / 16px) * 1em;
+//$s__root-font-size-em:      calc($s__root-font-size / 16px) * 1em;
+$s__root-font-size-em:      clamp(10px, 1vw, 12px);
 
 
 $s__base-rem-1px:           calc(1px / $s__root-font-size) * 1rem;
@@ -117,7 +118,7 @@ $s__ie10-11: "screen and (-ms-high-contrast:active), (-ms-high-contrast:none)";
 /*
     HTML
 */
-$s__html-background-color: darken($s__base-ui-color, 25%) !default;
+//$s__html-background-color: darken($s__base-ui-color, 25%) !default;
 
 
 
@@ -155,8 +156,8 @@ $s__anchor-text-color--alt: darken($s__anchor-text-color, 10%) !default;
 //$s__anchor-line-width:      0.2rem !default; /* [1] */
 //$s__anchor-line-width:       0.15em !default; /* [1] */
 $s__anchor-line-width:       0.0625em !default; /* [1] */
-$s__anchor-line-style:       solid !default;
-$s__anchor-line-style--alt:  double !default;
+$s__anchor-line-style:       dashed !default;
+$s__anchor-line-style--alt:  solid !default;
 //$s__anchor-line-offset:      0.2em !default;
 //$s__anchor-line-offset--alt: 0.3em !default;
 
@@ -167,10 +168,12 @@ $s__anchor-line-style--alt:  double !default;
 //$s__anchor-padding-bottom: $s__anchor-border-bottom-width;
 
 $s__anchor-image-line-width:          0.1875em !default; /* [1] */
-$s__anchor-image-line-width--alt:     $s__anchor-image-line-width * 2 !default; /* [1] */
-$s__anchor-image-line-style:          solid !default;
-$s__anchor-image-line-style--alt:     double !default;
-$s__anchor-image-padding-bottom:      $s__anchor-image-line-width;
+//$s__anchor-image-line-width--alt:     $s__anchor-image-line-width * 2 !default; /* [1] */
+$s__anchor-image-line-width--alt:     $s__anchor-image-line-width !default; /* [1] */
+$s__anchor-image-line-style:          $s__anchor-line-style !default;
+$s__anchor-image-line-style--alt:     $s__anchor-line-style--alt !default;
+//$s__anchor-image-padding-bottom:      $s__anchor-image-line-width;
+$s__anchor-image-padding-bottom:      0;
 $s__anchor-image-padding-bottom--alt: 0;
 
 $s__anchor-add-external-link-indicator: true !default;
@@ -216,15 +219,15 @@ $s__button-border-radius: $s__border-radius !default;
 $s__button-min-height: ($s__base-rem-space-unit * 1.25);
 
 
-$s__caption-background-color: null !default;
-@if $s__figure-scroll {
-    $s__caption-background-color: rgba($s__base-ui-color, 0.7) !default;
-} @else {
-    $s__caption-background-color: $s__base-ui-color !default;
-}
-
-$s__caption-text-color: #fff !default;
-$s__caption-padding: calc($s__base-rem-space-unit / 2) !default;
+// $s__caption-background-color: null !default;
+// @if $s__figure-scroll {
+//     $s__caption-background-color: rgba($s__base-ui-color, 0.7) !default;
+// } @else {
+//     $s__caption-background-color: $s__base-ui-color !default;
+// }
+//
+// $s__caption-text-color: #fff !default;
+// $s__caption-padding: calc($s__base-rem-space-unit / 2) !default;
 
 
 
@@ -287,8 +290,8 @@ $s__header-background-color: $s__base-background-color !default;
 
 
 
-$s__hr-border-width: $s__border-width !default;
-$s__hr-border: $s__hr-border-width solid $s__base-ui-color !default;
+// $s__hr-border-width: $s__border-width !default;
+// $s__hr-border: $s__hr-border-width solid $s__base-ui-color !default;
 
 
 
@@ -355,9 +358,13 @@ $s__pre-background-color: lighten($s__base-ui-color, 55%) !default;
 
 // Adjust bottom margin to  take into account scrollbar height of 17px:
 $s__pre-margin-bottom: s__calc-rem-from-px(($s__base-line-height * 2) - 17px);
+$s__pre-padding-bottom: calc($s__base-rem-space-unit - 17px);
 
 // Edge has a scrollbar height of 12px:
 $s__pre-margin-bottom--edge: s__calc-rem-from-px(($s__base-line-height * 2) - 12px);
+
+// Edge has a scrollbar height of 12px:
+$s__pre-margin-bottom--ff: s__calc-rem-from-px($s__base-line-height + 7px);
 
 // (margin to account for scrollbar, we can check for touch in most browsers and change this
 // or use custom scrollbars = see `pre` below)

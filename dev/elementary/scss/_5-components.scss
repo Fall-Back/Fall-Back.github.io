@@ -10,7 +10,6 @@
     @include component__card((
         selector:      $es__component__card,
         padding:       $s__sz-m,
-        background:    $e__component__card__background,
         border:        $e__component__card__border,
         border-radius: $e__component__card__border-radius,
         box-shadow:    $e__component__card__box-shadow,
@@ -24,8 +23,6 @@
     @include component__cta((
         selector:        $es__component__cta,
         padding:         $e__component__cta__padding,
-        background:      $e__component__cta__background,
-        background--alt: $e__component__cta__background--alt,
         border:          $e__component__cta__border,
         border-radius:   $e__component__cta__border-radius,
         box-shadow:      $e__component__cta__box-shadow
@@ -38,7 +35,6 @@
     @include component__hero((
         selector:      $es__component__hero_1,
         padding:       $s__sz-m,
-        background:    $e__component__hero__background,
         image-ratio:   $e__component__hero__image-ratio,
         wrap-margin:   0
     ));
@@ -48,7 +44,6 @@
     @include component__hero((
         selector:      $es__component__hero_2,
         padding:       $s__sz-m,
-        background:    $e__component__hero__background,
         image-ratio:   $e__component__hero__image-ratio,
         wrap-margin:   -2.4rem -2.4rem 2.4rem -2.4rem
     ));

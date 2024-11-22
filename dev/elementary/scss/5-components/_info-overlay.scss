@@ -10,6 +10,8 @@
 @mixin component__info-overlay($options: ()) {
 
     #{map-get($options, selector)} {
+        --name: image-overlay;
+
         position: absolute;
         #{map-get($options, x-position)}: #{math.div(map-get($options, spacing-unit), 4)};
         #{map-get($options, y-position)}: #{math.div(map-get($options, spacing-unit), 4)};
@@ -24,8 +26,10 @@
         border: 0;
         border-radius: #{math.div(map-get($options, spacing-unit), 2)};
 
-        color: #fff;
-        background: rgba(0,0,0,0.7);
+        //color: #fff;
+        //background: rgba(0,0,0,0.7);
+        --background-color: rgba(0,0,0,0.7);
+        @include s__theme(#fff);
 
         a[href] {
             color: #fff;
@@ -76,16 +80,18 @@
 
         margin: 0;
 
+        border-radius: #{math.div(map-get($options, spacing-unit), 2)};
+
         //padding: 0; /* [1] */
-        padding: 0.2rem; /* [1] */
+        //padding: 0.2rem; /* [1] */
 
-        font-size: 1.23076923077em;
+        //font-size: 1.23076923077em;
 
-        & > :first-child {
+        & > svg:first-of-type {
             display: inline;
         }
 
-        & > :last-child {
+        & > svg:last-of-type {
             display: none;
         }
 
@@ -109,6 +115,6 @@
 
         max-width: calc(100% - #{map-get($options, spacing-unit)});
 
-        padding: #{map-get($options, spacing-unit)} #{map-get($options, spacing-unit)};
+        padding: #{map-get($options, spacing-unit) * 1.5} #{map-get($options, spacing-unit) * 1.5} #{map-get($options, spacing-unit)} #{map-get($options, spacing-unit)};
     }
 }

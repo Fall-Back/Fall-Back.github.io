@@ -10,18 +10,16 @@
 /*
     1. For IE, mainly.
     2. Edge 12+, Internet Explorer 11-. Without this it acts like overflow: scroll.
-    3. Remove the margin in Firefox and Safari.
-    4. Keep labels at the top of the container.
-    5. Remove the tapping delay from clickable elements.
-    5a. IE 10.
+    3. Keep labels at the top of the container.
+    4. Remove the tapping delay from clickable elements.
 */
 #{$s__namespace}textarea {
-    min-height: $s__base-rem-space-unit * 3.5 - ($s__textarea-border-width * 2); /* 1 */
+    //min-height: $s__base-rem-space-unit * 3.5 - ($s__textarea-border-width * 2); /* 1 */
 
     overflow: auto; /* 2 */
 
     margin-top: math.div($s__base-rem-space-unit, 12);
-    margin-bottom: 0; /* 3 */
+    margin-bottom: 0.9rem;
 
     padding-left: $s__textarea-h-padding;
     padding-right: $s__textarea-h-padding;
@@ -31,18 +29,19 @@
     border-color: $s__textarea-border-color;
     border-style: $s__textarea-border-style;
 
-    color: $s__textarea-text-color;
-    background-color: $s__textarea-background-color;
+    //color: $s__textarea-text-color;
+    //background-color: $s__textarea-background-color;
+    --background-color: var(--textarea--color, #fff);
+    @include s__theme(var(--textarea-color--text, var(--color)));
 
     font-size: inherit;
     font-family: inherit;
     font-style: inherit;
     font-weight: inherit;
 
-    vertical-align: top; /* 4 */
+    vertical-align: top; /* 3 */
 
-    -ms-touch-action: manipulation; /* 5a */
-    touch-action: manipulation; /* 5 */
+    touch-action: manipulation; /* 4 */
 
     resize: $s__textarea-resize;
 }

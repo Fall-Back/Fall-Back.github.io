@@ -7,7 +7,15 @@
 
 @mixin component__hero($options: ()) {
 
+    //selector:      $es__component__hero_1,
+    //padding:       $s__sz-m,
+    //background:    $e__component__hero__background,
+    //image-ratio:   $e__component__hero__image-ratio,
+    //wrap-margin:   0
+
     #{map-get($options, selector)} {
+        --name: hero;
+
         position: relative;
 
         overflow: hidden;
@@ -15,6 +23,9 @@
         margin: map-get($options, wrap-margin);
         max-width: none;
         //margin: -2.4rem -2.4rem 2.4rem -2.4rem;
+        //background: map-get($options, background);
+        --background-color: var(--banner-color, var(--base-ui-color));
+        @include s__theme(var(--banner-color--text, var(--base-ui-color--text)));
     }
 
     #{map-get($options, selector)}::before {

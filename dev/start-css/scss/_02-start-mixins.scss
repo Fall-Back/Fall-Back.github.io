@@ -30,7 +30,7 @@
         border-width: $border-width;
         border-style: $border-style;
         @if $border-color == uiColor {
-            $border-color: $s__base-ui-color;
+            $border-color: var(--base-ui-color);
         }
         border-color: $border-color;
     }
@@ -106,34 +106,30 @@
         $bg-color--alt: $s__button-background-color--alt,
         $border-color: $s__button-border-color
     ) {
-    display: inline-block; /* AK. IE9 needs this. Hmmm, for what exactly?*/
 
     min-height: $s__button-min-height;
 
-    overflow: visible; /* S: Internet Explorer 11-, N: Show the overflow in Edge, Firefox, and IE. */
+    //overflow: visible; /* S: Internet Explorer 11-, N: Show the overflow in Edge, Firefox, and IE. */
 
     margin: calc($s__base-rem-space-unit / 8) 0;
 
-    padding-top: calc($s__base-rem-space-unit / 8); // Opera Mini needs this:
-    //padding-top: -moz-calc(#{$s__base-rem-space-unit / 8} - #{$s__button-border-width});
-    padding-top: -moz-calc(0);
-    padding-top: calc(#{calc($s__base-rem-space-unit / 8)} - #{$s__button-border-width});
-    padding-right: $s__button-h-padding;
-    padding-bottom: calc($s__base-rem-space-unit / 8); // Opera Mini needs this:
-    //padding-bottom: -moz-calc(#{$s__base-rem-space-unit / 8} - #{$s__button-border-width});
-    padding-bottom: -moz-calc(0);
-    padding-bottom: calc(#{calc($s__base-rem-space-unit / 8)} - #{$s__button-border-width});
-    padding-left: $s__button-h-padding;
+    border-color: var(--button-border-color, var(--base-ui-color));
+    border-style: var(--button-border-style, var(--base-border-style));
+    --border-width: var(--button-border-width, var(--base-border-width));
+    border-width: var(--border-width);
+    border-radius: var(--button-border-radius, var(--base-border-radius));
 
-    border-color: $border-color;
-    border-style: $s__button-border-style;
-    border-width: $s__button-border-width;
-    border-radius: $s__button-border-radius;
 
-    color: $color;
-    @if $bg-color != false {
-        background-color: $bg-color;
-    }
+    padding-top:    calc(var(--button-inline-padding, var(--sz-xxs)) - var(--border-width));
+    padding-bottom: calc(var(--button-inline-padding, var(--sz-xxs)) - var(--border-width));
+    padding-right: var(--button-inline-padding, var(--sz-xs));
+    padding-left:  var(--button-inline-padding, var(--sz-xs));
+
+
+    //--background-color: var(--button-background-color, var(--base-ui-color));
+    //background-color: var( --background-color);
+    --background-color: var(--button-color, var(--base-ui-color));
+    @include s__theme(var(--button-color--text, var(--base-ui-color--text)));
 
 
     font-weight: inherit;
@@ -142,35 +138,41 @@
     font-family: inherit;
     line-height: $s__base-rem-space-unit;
 
+
     vertical-align: middle; // Keep adjacent elements in the middle:
 
     text-transform: none; /* [N0], N: Remove the inheritance of text transform in Edge, Firefox, and IE. */
 
     cursor: pointer;
 
-    -ms-touch-action: manipulation; /* 1 (IE10) */
     touch-action: manipulation; /* 1 */
 
     -webkit-appearance: none;
 
-    //$s__button-background-color--alt: darken !default; // lighten | darken | <colour> | false;
-    @if $bg-color--alt != false {
-        &:hover,
-        &:active {
-            @if s__is-int($bg-color--alt) {
-                @if $bg-color--alt > 0 {
-                    $bg-color--alt_percent: $bg-color--alt * 1%;
-                    background-color: lighten($bg-color, $bg-color--alt_percent);
-                }
-                @if $bg-color--alt < 0 {
-                    $bg-color--alt_percent: $bg-color--alt * -1%;
-                    background-color: darken($bg-color, $bg-color--alt_percent);
-                }
-            } @else {
-                background-color: $bg-color--alt;
-            }
-        }
+    &:hover,
+    &:active {
+        --background-color: var(--button-background-color-alt, var(--base-ui-color-light));
+        background-color: var( --background-color);
     }
+
+    //$s__button-background-color--alt: darken !default; // lighten | darken | <colour> | false;
+    // @if $bg-color--alt != false {
+    //     &:hover,
+    //     &:active {
+    //         @if s__is-int($bg-color--alt) {
+    //             @if $bg-color--alt > 0 {
+    //                 $bg-color--alt_percent: $bg-color--alt * 1%;
+    //                 background-color: lighten($bg-color, $bg-color--alt_percent);
+    //             }
+    //             @if $bg-color--alt < 0 {
+    //                 $bg-color--alt_percent: $bg-color--alt * -1%;
+    //                 background-color: darken($bg-color, $bg-color--alt_percent);
+    //             }
+    //         } @else {
+    //             background-color: $bg-color--alt;
+    //         }
+    //     }
+    // }
 
 
     // Thinking about changing my mind how I do this. It's getting too complicated. I've thought
@@ -231,10 +233,16 @@
 }
 */
 
+/*
+    Note - most block elements have top/bottom margins. There are different trains of thought about
+    how these should be provided and previous StartCSS versions catered for two of these.
+    Currently there's only one (but controlled by custom properties), however to cater for any
+    future changes / options I'm keeping this as a mixin .
+*/
 @mixin s__margins($margin, $margin-type: default) {
     @if $margin-type == 'default' {
-        margin-top: $margin;
-        margin-bottom: $margin;
+        margin-top: var(--m);
+        margin-bottom: var(--m);
 
         &:first-child {
             margin-top: 0;
@@ -244,30 +252,48 @@
             margin-bottom: 0;
         }
     }
+}
+
+@mixin s__theme($text-color-value) {
+    background-color: var(--background-color);
+
+    @supports not (color: oklch(from red l c h)) {
+        --text-color: #{$text-color-value};
+        color: var(--text-color);
+    }
 
 
-    //@if $margin-type == 'procedural' {
-    //    margin-top: 0;
-    //    margin-bottom: $margin-size;
-    //
-    //    &:last-child {
-    //        margin-bottom: 0;
+    //@if $fallback-intermediate-name {
+    //    --background-color: var(#{$name}, var(#{$fallback-intermediate-name}, var(#{$fallback-name})));
+    //    background-color: var(--background-color);
+//
+    //    @supports not (color: oklch(from red l c h)) {
+    //        color: var(#{$name}--text, var(#{$fallback-intermediate-name}--text, var(#{$fallback-name}--text, var(--color))));
+    //    }
+    //} @else {
+    //    --background-color: var(#{$name}, var(#{$fallback-name}));
+    //    background-color: var(--background-color);
+//
+    //    @supports not (color: oklch(from red l c h)) {
+    //        color: var(#{$name}--text, var(#{$fallback-name}--text, var(--color)));
     //    }
     //}
 }
 
-@mixin s__overflow-scroll() {
-    max-width: 100%;
-    overflow: auto;
 
-    background-image:
-        linear-gradient(-90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 60%, rgba(255,255,255,1) 100%),
-        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 60%, rgba(255,255,255,1) 100%),
-        linear-gradient(to right, rgba(0, 0, 20, 0.5), rgba(255, 255, 255, 0)),
-        linear-gradient(to left, rgba(0, 0, 20, 0.5), rgba(255, 255, 255, 0));
-    background-position: left center, right center, left center, right center;
-    background-repeat: no-repeat;
-    background-color: white;
-    background-size: 2em 100%, 2em 100%, 1em 100%, 1em 100%;
-    background-attachment: local, local, scroll, scroll;
-}
+
+//@mixin s__overflow-scroll() {
+//    max-width: 100%;
+//    overflow: auto;
+//
+//    background-image:
+//        linear-gradient(-90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 60%, rgba(255,255,255,1) 100%),
+//        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 60%, rgba(255,255,255,1) 100%),
+//        linear-gradient(to right, rgba(0, 0, 20, 0.5), rgba(255, 255, 255, 0)),
+//        linear-gradient(to left, rgba(0, 0, 20, 0.5), rgba(255, 255, 255, 0));
+//    background-position: left center, right center, left center, right center;
+//    background-repeat: no-repeat;
+//    background-color: white;
+//    background-size: 2em 100%, 2em 100%, 1em 100%, 1em 100%;
+//    background-attachment: local, local, scroll, scroll;
+//}

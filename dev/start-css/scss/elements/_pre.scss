@@ -1,6 +1,7 @@
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS ELEMENT: pre
+    v3.0.0
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -20,21 +21,24 @@
     overflow-x: scroll; /* 1 */
     overflow-y: auto; /* 1 */
 
-    @include s__margins($s__base-rem-space-unit, $s__margin-type);
+    //margin-bottom: $s__pre-margin-bottom; /* 1 */
+    padding-bottom: $s__pre-padding-bottom; /* 1 */
 
-    margin-bottom: $s__pre-margin-bottom; /* 1 */
+    //--background-color: var(--pre-background-color, var(--base-ui-color-lightest));
+    //background-color: var( --background-color);
+    //background-color: $s__pre-background-color; /*1 */
 
-    background-color: $s__pre-background-color; /*1 */
 
     font-size: 1em; /* 2 */
     font-family: $s__monospace-font-family, monospace; /* 3 */
+    font-family: $s__monospace-font-family, monospace; /* 3 */
+
+    --background-color: var(--pre-color, var(--base-ui-color-lightest));
+    @include s__theme(var(--pre-color--text, var(--base-ui-color-lightest--text)));
+
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
 }
 
-@supports (-ms-ime-align:auto) {
-    #{$s__namespace}pre {
-        margin-bottom: $s__pre-margin-bottom--edge; /* 1 */
-    }
-}
 
     /*
         1. Revert zeroed line-height (see) `code`.

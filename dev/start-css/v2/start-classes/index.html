@@ -1,0 +1,190 @@
+---
+title: StartCSS Classes Test Page
+layout: dev/start-test-page
+head_stylesheets: [/dev/start-css/css/start-classes.min.css]
+---
+<p><a href="#">Test active link</a></p>
+<p><a href="#bottom">Skip to bottom</a></p>
+
+<!--
+<h2>Notes</h2>
+<p>
+    <strong>Sizing issues:</strong><br>
+    Borders normally should be the same size regardless of font size.<br>
+    Vertical Rhythm (VR) preserved by using either padding or margin tweaks to offset border- Border Compensation Tweaks (BCT).<br>
+    VR is calculated by REMs so adjustment to <code>html</code> font-size should adjust whole VR.<br>
+    However, doing this DOES NOT adjust the BCT.<br>
+    So, perhaps have to consider changing all BCT values to <code>calc()</code> so that <code>html</code>  font-size adjustments (e.g. in Media Queries) will also adjust BCT.<br>
+    Although, it's possible to make font-size changes on the <code>body</code>  font-size, so this may not be necessary.
+</p>
+
+<p>
+    Double bottom space fix needs thought in how it relates to borders.
+    The border/padding combination works fine, but the bottom margin of the inner elements will be a full spacing-unit, not adjusted for border-width.
+    This means the combined margin is 1 full spacing unit and this negates the BCT.
+    Maybe will have to make BCT margin-based and not padding based after all?
+</p>
+-->
+
+<p><a href="#bottom">Skip to bottom</a></p>
+
+<h2>Bordered boxes</h2>
+
+<aside class="bordered">
+    <h3>Aside</h3>
+    <p>Some text</p>
+</aside>
+<aside class="bordered">
+    <h3>Aside</h3>
+    <div>Last element without a bottom margin - should still have a gap below due to pseudo element.</div>
+</aside>
+<aside class="padded  test_bg">
+    <h3>Aside</h3>
+    <p>This box should only have padding, no border.</p>
+</aside>
+<aside class="padded  test_bg">
+    <h3>Aside</h3>
+    <div>And again - last element without a bottom margin - should still have a gap below due to pseudo element.</div>
+</aside>
+
+<h2>Subtitles and taglines</h2>
+<p>
+    <a href="http://html5doctor.com/howto-subheadings/">html5 Doctor: How to mark up subheadings, subtitles, alternative titles and taglines</a>
+</p>
+
+<article class="padded">
+    <header>
+        <h2>This is a title: <b class="subtitle">with an inline subtitle</b></h2>  
+    </header>
+    <p>Some body text.</p>
+</article>
+
+<article class="bordered">
+    <header>
+        <h2>This is a title</h2>
+        <p class="subtitle"><b>With a sub title</b></p>
+    </header>
+    <p>The <code>.subtitle</code> class above is applied to the paragraph so we can move it next to the heading with negative a margin.</p>
+</article>
+
+<article class="padded">
+    <header>
+        <h2>This is a title</h2>
+        <p class="tagline">With a tagline</p>
+    </header>
+    <p><b>A lede (lead) paragraph is marked up using <code>&lt;b&gt;</code> tags.</b></p>
+    <p>Note a tagline and strapline are the same thing, and neither <em>really</em> apply here according to the <a href="https://en.wikipedia.org/wiki/Tagline" rel="external">Wikipedia definition</a>, though it's really just splitting hairs. I don't know what <em>else</em> to call it, and it is different from both a subtitle and a lede paragraph.</p>
+</article>
+
+<h2>CTA</h2>
+<p>
+    CTA's should never look like real buttons, but they can be button-like:</a>
+</p>
+<p>
+    <a href="" class="cta">A CTA &hellip;</a>
+</p>
+
+<p>
+    <a href="" class="cta">A Longer CTA title with an icon<svg class="icon" aria-hidden="true"><use xlink:href="#icon-chevron-right"></use></svg></a>
+</p>
+
+<h2>Forms</h2>
+
+<form>
+    <fieldset>
+        <p>Some inputs would be here, like this:</p>
+        <p>Here's a <button>Button</button></p>
+        <p>This uses the <code>.composite</code> class</p>
+        <p>
+            <label for="input1-1">Enter some text:</label> <span class="composite"><input type="text" id="input1-1"> <button>Button</button> <button>Another button</button></span>
+        </p>
+    </fieldset>
+    
+    <fieldset>
+        <legend>Using the <code>.custom-input-file</code> and <code>.composite</code> classes</legend>
+        <p>The 'fake button' is just a 2nd label. It can be placed on the right...</p>
+        <p>
+            <label for="input1-2">Choose a file:</label> <span class="composite">
+                <input type="file" id="input1-2" class="custom-input">
+                <label for="input1-2" class="button" aria-hidden="true" data-text="Browse..."></label>
+            </span>
+        </p>
+
+        <p>... or the left - it's governed the markup. It's 'fake' because we only need it for visual purposes. Without CSS and for SR's it's ignored.</p>
+        <p>(this arrangement doesn't work well in IE so I've just hidden the extra button for now)</p>
+        <p>
+            <label for="input1-2a">Choose another file:</label> <span class="composite">
+                <label for="input1-2a" class="button" aria-hidden="true" data-text="Browse..."></label>
+                <input type="file" id="input1-2a" class="custom-input">
+            </span>
+        </p>
+        <p>
+            See <a href="https://gist.github.com/andykirk/b7c9e26dc83edd61cdfa" rel="external">CSS-only File Input Gist</a>.
+        </p>
+        
+        
+        
+        <p>
+            <input type="checkbox" id="input1-4" class="custom-input"> <label for="input1-4" class="custom-input-label">Checkbox next to Label</label>
+        </p>
+        <p>
+            <label><input type="checkbox" class="custom-input"> <span class="custom-input-label">Checkbox inside to Label</span></label>
+        </p>
+        <p>
+            <input type="checkbox" id="input1-5" class="custom-input  custom-input--align-end"> <label for="input1-5" class="custom-input-label">Checkbox next to Label - right</label>
+        </p>
+        <p>
+            <label><input type="checkbox" class="custom-input  custom-input--align-end"> <span class="custom-input-label">Checkbox inside to Label - right</span></label>
+        </p>
+        <p>
+            <input type="radio" id="input1-6a" name="input1-6" class="custom-input"> <label for="input1-6a" class="custom-input-label">Radio 1 next to Label</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" id="input1-6b" name="input1-6" class="custom-input"> <label for="input1-6b" class="custom-input-label">Radio 2 next to Label</label>
+        </p>
+        <p>
+            <label><input type="radio" name="input1-6-1" class="custom-input"> <span class="custom-input-label">Radio 1 inside to Label</span></label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <label><input type="radio" name="input1-6-1" class="custom-input"> <span class="custom-input-label">Radio 2 inside to Label</span></label>
+        </p>
+        <p>
+            <input type="radio" id="input1-7a" name="input1-7" class="custom-input  custom-input--align-end"> <label for="input1-7a" class="custom-input-label">Radio 1 next to Label - right</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" id="input1-7b" name="input1-7" class="custom-input  custom-input--align-end"> <label for="input1-7b" class="custom-input-label">Radio 2 next to Label - right</label>
+        </p>
+        <p>
+            <label><input type="radio" name="input1-7-1" class="custom-input  custom-input--align-end"> <span class="custom-input-label">Radio 1 inside to Label - right</span></label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <label><input type="radio" name="input1-7-1" class="custom-input  custom-input--align-end"> <span class="custom-input-label">Radio 2 inside to Label - right</span></label>
+        </p>
+    </fieldset>
+</form>
+
+<h2>Experimental</h2>
+<h3>A Poem</h3>
+
+<pre class="poem">                maxling
+
+it is with a          heart
+       heavy
+
+that i admit loss of a feline
+so           loved
+
+a friend lost to the
+unknown
+                        (night)
+
+~cdr 11dec07</pre>
+
+<hr>
+
+
+
+<table id="browser_info">
+    <caption>Browser info</caption>
+    <thead>
+        <tr><th>Name</th><th>Value</th></tr>
+    </thead>
+    <tbody>
+        <tr><td colspan="2">No Javascript - unable to detect anything!</td></tr>
+    </tbody>
+</table>
+
+
+<div id="bottom"></div>

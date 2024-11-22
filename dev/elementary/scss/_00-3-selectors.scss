@@ -120,12 +120,12 @@ $es__page_footer:             "#{$es_scope} body > footer" !default;
     ```
 |-------------------------------------------------------------------------------------------------*/
 
-$es__page_banner__logo: "#{$es__page_banner__inner}   nav   b > a[href]" !default;
+$es__page_banner__logo: "#{$es__page_banner__inner}   nav   b" !default;
 
 
 /*-------------------------------------------------------------------------------------------------|
 
-    BANNER - NAVLIST
+    BANNER - NAVBAR
     --------------------------------------------------------------------------------------------
 
     This is the pattern needed to match primary navigation. The links are expected to be in an
@@ -147,7 +147,7 @@ $es__page_banner__logo: "#{$es__page_banner__inner}   nav   b > a[href]" !defaul
     ```
 |-------------------------------------------------------------------------------------------------*/
 
-$es__page_banner__navlist: "#{$es__page_banner__inner}   nav" !default;
+$es__page_banner__navbar: "#{$es__page_banner__inner}   nav" !default;
 
 
 /*------------------------------------------------------------------------------------------------*/

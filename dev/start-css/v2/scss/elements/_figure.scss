@@ -1,0 +1,19 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: figure
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+
+#{$s__namespace}figure {
+    display: block;
+
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
+    margin-left: $s__base-rem-space-unit;
+    margin-right: $s__base-rem-space-unit;
+
+    @if $s__figure-scroll {
+        @include s__overflow-scroll();
+    }
+}

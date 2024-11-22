@@ -109,7 +109,7 @@
         }
 
         body {
-            font: 1em/1.2 sans-serif;
+            font: 1em/1.4 sans-serif;
             padding: 2em;
             margin: 0 auto;
             max-width: 50em;
@@ -117,10 +117,17 @@
         }
 
         /* For older browsers:(see https://github.com/aFarkas/html5shiv) */
+        article,
+        aside,
         dialog,
-        details,
+        figcaption,
+        figure,
+        footer,
+        header,
+        hgroup,
         main,
-        summary {
+        nav,
+        section {
             display: block;
         }
 
@@ -128,6 +135,10 @@
             summary {
                 display: list-item;
             }
+        }
+
+        summary > * {
+            display: inline;
         }
 
         mark {
@@ -162,18 +173,20 @@
         }
 
         /* Links and image links */
+        @supports not (color: oklch(from red l c h)) {
         a[href] {
             color: inherit;
+        }
         }
 
         a[href]:hover {
             text-decoration: none;
         }
 
-        a[href] img {
+        /*a[href] img {
             padding: 0.3em;
             margin: 0.2em;
-        }
+        }*/
 
         /*
             Putting things like tables in figures makes sense and allows them to become scrollable
@@ -243,6 +256,10 @@
         textarea {
             padding: 0 0.5em;
             line-height: 1.5;
+        }
+
+        textarea {
+            width: 100%;
         }
 
 
@@ -448,7 +465,14 @@
 
     {% if page.startcss != false and layout.startcss != false %}
 
-    {% include {{ cut_file }} css="/dev/start-css/css/start.min.css" %}
+    {% if page.start_version %}
+        {% assign start_version = "/" | append: page.start_version | append: "/" %}
+    {% else %}
+        {% assign start_version = "/" %}
+    {% endif %}
+    {% assign start_path = "/dev/start-css" | append: start_version | append: "css/start.css" %}
+
+    {% include {{ cut_file }} css=start_path %}
     {% include {{ cut_file }} css="/dev/start-css/testing.css" %}
 
     {% if ie11 != false %}
@@ -556,6 +580,21 @@
     {% endif %}
 
     <!--<![endif]-->
+    <!--[if lt IE 9]>
+    <script>
+        document.createElement("article");
+        document.createElement("aside");
+        document.createElement("dialog");
+        document.createElement("figcaption");
+        document.createElement("figure");
+        document.createElement("footer");
+        document.createElement("header");
+        document.createElement("hgroup");
+        document.createElement("main");
+        document.createElement("nav");
+        document.createElement("section");
+    </script>
+    <![endif]-->
 
     <link rel="apple-touch-icon" sizes="180x180" href="/dev/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/dev/favicon-32x32.png">
@@ -571,7 +610,8 @@
     <svg xmlns="http://www.w3.org/2000/svg" display="none">
         <style>
             i > svg:only-child,
-            .icon {
+            .icon,
+            svg[focusable="false"] {
                 fill: none;
                 fill-opacity: 0;
                 stroke: currentColor;

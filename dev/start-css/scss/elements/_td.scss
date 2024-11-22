@@ -1,30 +1,29 @@
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS ELEMENT: td
+    v3.0.0
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 
 /*
-    1. Opera Mini (no calc support).
-    2. Calc to deduct any border-width.
+    1. Calc to deduct any border-width.
 */
 #{$s__namespace}td {
-    padding-top: $s__th-cell-padding; /* 1 */
-    padding-top: calc(#{$s__th-cell-padding} - #{$s__th-border-width}); /* 2 */
+    padding-top: calc(#{$s__th-cell-padding} - #{$s__th-border-width}); /* 1 */
     padding-right: $s__th-cell-padding;
     padding-bottom: $s__th-cell-padding;
     padding-left: $s__th-cell-padding;
 
-    border: $s__td-border;
-    background-color: $s__td-background-color;
+    border-width: var(--table-border-width, var(--base-border-width));
+    border-style: var(--table-border-style, var(--base-border-style));
+    border-color: var(---td-border-color, var(--table-color, var(--base-ui-color)));
 }
 
 /*
-    Reduce last row table cell padding to counteract the table border to preserve the vertical 
+    Reduce last row table cell padding to counteract the table border to preserve the vertical
     rhythm.
 */
 #{$s__namespace}tbody tr:last-child td {
-    padding-bottom: $s__th-cell-padding; /* 1 */
-    padding-bottom: calc(#{$s__th-cell-padding} - #{$s__th-border-width}); /* 2 */
+    padding-bottom: calc(#{$s__th-cell-padding} - #{$s__th-border-width}); /* 1 */
 }

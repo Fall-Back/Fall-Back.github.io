@@ -1,6 +1,7 @@
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS ELEMENT: img
+    v3.0.0
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -43,19 +44,19 @@
     border-left: 0;
     border-right: 0;
     border-top: 0;
-    border-bottom: $s__anchor-image-line-width  $s__anchor-image-line-style  $s__anchor-text-color;
-    padding-bottom: $s__anchor-image-padding-bottom;
-    
-    
+    border-bottom: $s__anchor-image-line-width  $s__anchor-image-line-style  currentColor;
+    //padding-bottom: $s__anchor-image-padding-bottom;
+
+
     &:active, &:hover {
         border-bottom: $s__anchor-image-line-width--alt  solid  transparent;
         padding-bottom: $s__anchor-image-padding-bottom--alt;
     }
-    
+
     // We want to mimic link styles for consistency, so we need to mimic the support level too:
     @supports(text-decoration-line: underline) {
         &:active, &:hover {
-            border-bottom: $s__anchor-image-line-width--alt  $s__anchor-image-line-style--alt  $s__anchor-text-color--alt;
+            border-bottom: $s__anchor-image-line-width--alt  $s__anchor-image-line-style--alt  currentColor;
             padding-bottom: $s__anchor-image-padding-bottom--alt;
         }
     }

@@ -7,6 +7,8 @@
 
 @mixin component__cta($options: ()) {
     #{map-get($options, selector)} {
+        --name: cta;
+
         display: inline-block;
 
         overflow: hidden;
@@ -18,7 +20,8 @@
         border:        #{map-get($options, border)};
         border-radius: #{map-get($options, border-radius)};
 
-        background:    #{map-get($options, background)};
+        --background-color: var(--cta-color, var(--base-ui-color));
+        @include s__theme(var(--cta-color--text, var(--base-ui-color--text)));
 
         box-shadow:    #{map-get($options, box-shadow)};
 
@@ -27,10 +30,13 @@
 
         vertical-align: middle;
 
+        text-decoration: none;
+
         &:hover,
         &:active,
         &:focus {
-            background: #{map-get($options, background--alt)};
+            --background-color: var(--cta-color, var(--base-ui-color-light));
+            @include s__theme(var(--cta-color--text, var(--base-ui-color-light--text)));
         }
     }
 }

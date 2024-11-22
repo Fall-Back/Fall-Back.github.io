@@ -75,7 +75,8 @@
     font-size: smaller;
     margin: $s__sz-m;
     padding: $s__sz-m;
-    background-color: #eee; /*@ TODO - needs a variable */
+    --background-color: var(--main-color, #{$e__toc-background-color});
+    @include s__theme(var(--main-color--text, #{$s__base-text-color}));
     float: right;
     min-width: $e__content-sidebar-width;
     width: calc((#{$e__content-measure} - 100%) * 9999);

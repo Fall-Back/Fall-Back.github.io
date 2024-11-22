@@ -90,6 +90,12 @@
     }
 }
 */
+/*
+    Note - most block elements have top/bottom margins. There are different trains of thought about
+    how these should be provided and previous StartCSS versions catered for two of these.
+    Currently there's only one (but controlled by custom properties), however to cater for any
+    future changes / options I'm keeping this as a mixin .
+*/
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS TOKENS
@@ -159,24 +165,19 @@
 |-------------------------------------------------------------------------------------------------*/
 /* -- Basic styles ------------------------------------------------------------------------------ */
 .close-button {
-  display: inline-block; /* AK. IE9 needs this. Hmmm, for what exactly?*/
   min-height: 3rem;
-  overflow: visible; /* S: Internet Explorer 11-, N: Show the overflow in Edge, Firefox, and IE. */
   margin: 0.3rem 0;
-  padding-top: 0.3rem;
-  padding-top: -moz-calc(0);
-  padding-top: calc(0.3rem - 0.1rem);
-  padding-right: 0.6rem;
-  padding-bottom: 0.3rem;
-  padding-bottom: -moz-calc(0);
-  padding-bottom: calc(0.3rem - 0.1rem);
-  padding-left: 0.6rem;
-  border-color: rgba(0, 0, 0, 0);
-  border-style: solid;
-  border-width: 0.1rem;
-  border-radius: 0.3rem;
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0);
+  border-color: var(--button-border-color, var(--base-ui-color));
+  border-style: var(--button-border-style, var(--base-border-style));
+  --border-width: var(--button-border-width, var(--base-border-width));
+  border-width: var(--border-width);
+  border-radius: var(--button-border-radius, var(--base-border-radius));
+  padding-top: calc(var(--button-inline-padding, var(--sz-xxs)) - var(--border-width));
+  padding-bottom: calc(var(--button-inline-padding, var(--sz-xxs)) - var(--border-width));
+  padding-right: var(--button-inline-padding, var(--sz-xs));
+  padding-left: var(--button-inline-padding, var(--sz-xs));
+  --background-color: var(--button-color, var(--base-ui-color));
+  background-color: var(--background-color);
   font-weight: inherit;
   font-style: inherit;
   font-size: inherit;
@@ -185,7 +186,6 @@
   vertical-align: middle;
   text-transform: none; /* [N0], N: Remove the inheritance of text transform in Edge, Firefox, and IE. */
   cursor: pointer;
-  -ms-touch-action: manipulation; /* 1 (IE10) */
   touch-action: manipulation; /* 1 */
   -webkit-appearance: none;
   border: 0;
@@ -199,8 +199,15 @@
   border-radius: 0;
   opacity: 1;
 }
+@supports not (color: oklch(from red l c h)) {
+  .close-button {
+    --text-color: var(--button-color--text, var(--base-ui-color--text));
+    color: var(--text-color);
+  }
+}
 .close-button:hover, .close-button:active {
-  background-color: rgba(0, 0, 0, 0.3);
+  --background-color: var(--button-background-color-alt, var(--base-ui-color-light));
+  background-color: var(--background-color);
 }
 .close-button:focus {
   outline: 0;

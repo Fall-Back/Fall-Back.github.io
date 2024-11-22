@@ -54,7 +54,8 @@
 
     border: 0;
 
-    background-color: $e__listing__item--backgroud-color;
+    --background-color: var(--listing-item-color, #{$s__base-background-color});
+    @include s__theme(var(--listing-item-color--text, #{$s__base-text-color}));
 
     & > * {
         padding: 0;

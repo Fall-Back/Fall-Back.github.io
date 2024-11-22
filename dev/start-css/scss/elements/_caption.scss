@@ -1,6 +1,7 @@
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS ELEMENT: caption
+    v3.0.0
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -8,13 +9,13 @@
 #{$s__namespace}caption {
     display: table-caption;
 
-    padding-top: $s__caption-padding;
-    padding-right: $s__caption-padding;
-    padding-bottom: $s__caption-padding;
-    padding-left: $s__caption-padding;
+    padding-top: var(--caption-padding, calc(var(--base-rem-space-unit) / 2));
+    padding-right: var(--caption-padding, calc(var(--base-rem-space-unit) / 2));
+    padding-bottom: var(--caption-padding, calc(var(--base-rem-space-unit) / 2));
+    padding-left: var(--caption-padding, calc(var(--base-rem-space-unit) / 2));
 
-    color: $s__caption-text-color;
-    background-color: $s__caption-background-color;
+    --background-color: var(--caption-color, var(--table-color, var(--base-ui-color)));
+    @include s__theme(var(--caption-color--text, var(--table-color--text, var(--base-ui-color--text))));
 
     font-weight: bold;
 }

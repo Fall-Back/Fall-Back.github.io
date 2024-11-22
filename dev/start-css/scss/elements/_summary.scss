@@ -1,26 +1,21 @@
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS ELEMENT: summary
+    v3.0.0
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 
 /*
-    1. Correct display in unsupported browsers (https://caniuse.com/#feat=details).
-       Update: correct display is now list-item, which adds the marker, but we're adding our own
-       anyway.
+    1. Correct display is  list-item, which adds the marker, but we're adding our own marker.
     2. Remove the tapping delay from clickable elements.
 */
 #{$s__namespace}summary {
     display: block; /* 1 */
 
-    -ms-touch-action: manipulation; /* 2 (IE10) */
     touch-action: manipulation; /* 2 */
 
     cursor: pointer;
-
-    //margin-bottom: 0;
-    //margin-top: 0;
 
     @if $s__use-focus-shadow {
         &:focus {
@@ -38,7 +33,7 @@
     #{$s__namespace}details > summary::before {
         display: block;
         content: '';
-        
+
         width: 0px;
         height: 0px;
         border-top: 0.5em solid transparent;
@@ -58,9 +53,13 @@
     }
 
     #{$s__namespace}details[open] > summary {
-        @include s__margins($s__base-rem-space-unit, $s__margin-type);
+        margin-bottom: var(--base-rem-space-unit);
     }
 
     #{$s__namespace}details[open] > summary::before {
         transform: rotate(90deg);
+    }
+
+    #{$s__namespace}details[open] :last-child {
+        margin-bottom: 0;
     }

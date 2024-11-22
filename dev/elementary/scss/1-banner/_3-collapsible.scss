@@ -17,9 +17,9 @@
 }
 
 
-
-
 #{$es__page_banner__inner}   > nav details {
+    --name: collapsible;
+
     flex: 0 0 auto;
     padding: 0;
     border: 0;
@@ -38,6 +38,7 @@
 #{$es__page_banner__inner}   > nav details > summary {
     display: flex;
     position: relative;
+    z-index: 3;
 
     height: $e__nav-bar--height;
 }
@@ -57,9 +58,6 @@
     color: $e__nav-bar__link--color--alt;
     background-color: $e__nav-bar__link--background-color--alt;
 }
-
-
-
 */
 
 #{$es__page_banner__inner}   > nav details > summary:hover,
@@ -85,11 +83,10 @@ This puts a hover arrow on the navicon. I'm not sure why I did this.
     transform: none;
 }
 */
-#{$es__page_banner__inner}   > nav details > summary:focus {
-    box-shadow: 0 0 0 $s__sz-xs rgba(0,0,0,.3);
-    outline: 0 none;
-}
-
+//#{$es__page_banner__inner}   > nav details > summary:focus {
+//    box-shadow: 0 0 0 $s__sz-xs rgba(0,0,0,.3);
+//    outline: 0 none;
+//}
 
 
 #{$es__page_banner__inner}   > nav details[open] > summary {
@@ -112,6 +109,7 @@ This puts a hover arrow on the navicon. I'm not sure why I did this.
     z-index: 1;
 }
 
+#{$es__page_banner__inner}   > nav details > summary > svg:nth-child(2),
 #{$es__page_banner__inner}   > nav details[open] > summary > svg:first-child {
     display: none;
 }
@@ -124,32 +122,34 @@ This puts a hover arrow on the navicon. I'm not sure why I did this.
     position: absolute;
 }
 
-
-#{$es__page_banner__inner}   > nav details[open] > summary::after {
-    content: "";
-    display: block;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 1.5rem 1.5rem 1.5rem;
-    border-color: transparent transparent $e__nav-bar__collapsible--background-color transparent;
-    position: absolute;
-    margin-top: calc(#{$e__nav-bar--height} + 5px);
-    margin-left: -3px;
-}
-
 #{$es__page_banner__inner}   > nav details > summary + * {
     position: absolute;
     z-index: 2;
     left: 0;
     right: 0;
-    width: 100%;
-    padding: 1.2rem;
-    margin-top: 1.2em;
-    background: $e__nav-bar__collapsible--background-color;
+    padding: $s__sz-s;
+    margin-top: 2.2rem;
     list-style: none;
 
     box-shadow: 0 4px 2px -1px rgba(0,0,0,0.5);
+
+    --background-color: var(--navbar-color-light, var(--base-ui-color-dark));
+    @include s__theme(var(--navbar-color-light--text, var(--base-ui-color-dark--text)));
+}
+
+#{$es__page_banner__inner}   > nav details[open] > summary + *::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 1px 2rem 1.5rem 2rem;
+    border-color: transparent transparent var(--navbar-color-light, var(--base-ui-color-dark)) transparent;
+    position: absolute;
+    right: 0.4em;
+    top: -0.9em;
+    //margin-top: 2.1em;
+    //margin-left: -0.5em;
 }
 
 #{$es__page_banner__inner}   > nav details > summary + * li {
