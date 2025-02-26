@@ -91,7 +91,7 @@ $s__focus-outline-offset: 2px !default;
 
 
 // MQ hacks (https://browserstrangeness.github.io/css_hacks.html)
-// Hacks with '0\0' and '+' need encoding, hence these: 
+// Hacks with '0\0' and '+' need encoding, hence these:
 $s__plus:  "\002b";
 $s__slash: "\005C";
 
@@ -137,7 +137,7 @@ $s__media-element-vertical-align: middle !default;
 
 /*
     ANCHOR
-    
+
     1. This size allows 2px on normal fonts, 1px on smaller fonts.
 */
 

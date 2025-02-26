@@ -14,9 +14,9 @@
     } @else {
         margin-bottom: 0;
     }
-    
+
     @include s__bordered($s__details-padding, $s__details-border-width);
-    
+
     // Fix Chrome bug as described on https://caniuse.com/#feat=details:
     > * {
         box-sizing: border-box;

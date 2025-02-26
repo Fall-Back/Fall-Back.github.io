@@ -16,11 +16,11 @@ $s__checkradio-border-style: $s__border-style !default;
 @if $s__experimental == true {
     /*
         From https://github.com/mozdevs/cssremedy/blob/master/remedy.css
-        Immediately jump any animation to the end point if the user has set their device to "prefers 
+        Immediately jump any animation to the end point if the user has set their device to "prefers
         reduced motion".
         This could create bad, unintended consequences. Remove as needed, and write your own appropriate
         code for prefers-reduced-motion.
-        
+
     */
     @media (prefers-reduced-motion: reduce) {
         * {
@@ -229,7 +229,7 @@ $s__checkradio-border-style: $s__border-style !default;
     ("Press TAB to highlight each item on a web page.)
     That is - the default outline focus style works, but shadows don't unless appearance: none
     is used.
-    
+
     1. Safari 9.1 doesn't recognize 'auto' but I suspect others won't recognize 'initial', so
        keeping both for now.
 */
@@ -256,7 +256,7 @@ $s__checkradio-border-style: $s__border-style !default;
             -webkit-appearance: none;
                -moz-appearance: none;
         }
-        
+
         input[type="radio"] {
             border-radius: 50%;
         }
@@ -278,12 +278,12 @@ $s__checkradio-border-style: $s__border-style !default;
             position: absolute;
             left: 50%;
             top: 50%;
-            
+
             -webkit-transform: translate(-50%, -70%) rotate(-50deg);
             -ms-transform: translate(-50%, -70%) rotate(-50deg);
             transform: translate(-50%, -70%) rotate(-50deg);
         }
-        
+
         /*
             Turn off the outline we reinstated for non-experimental styles in Safari:
         */
@@ -292,7 +292,7 @@ $s__checkradio-border-style: $s__border-style !default;
             outline: 0;
         }
     }
-    
+
     /*
         Turn off checkbox styling for Edge for now.
     */
@@ -303,7 +303,7 @@ $s__checkradio-border-style: $s__border-style !default;
             -webkit-appearance: checkbox;
         }
     }
-    
+
     /*
         Turn off checkradio styling for UCBrowser for now.
     */
@@ -311,7 +311,7 @@ $s__checkradio-border-style: $s__border-style !default;
         min-height: 0;
         -webkit-appearance: checkbox;
     }
-    
+
     .ucbrowser input[type="radio"] {
         min-height: 0;
         -webkit-appearance: radio;
