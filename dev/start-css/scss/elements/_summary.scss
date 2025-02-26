@@ -15,6 +15,8 @@
 
     touch-action: manipulation; /* 2 */
 
+    position: relative;
+
     cursor: pointer;
 
     @if $s__use-focus-shadow {
@@ -30,27 +32,61 @@
         display: none;
     }
 
+    /*
+        Add an icon.
+        Note the CSS triangle approached (commented) actually turns into a square in High Contrast
+        Mode so using a SVG data uri instead.
+    */
     #{$s__namespace}details > summary::before {
         display: block;
-        content: '';
-
-        width: 0px;
-        height: 0px;
-        border-top: 0.5em solid transparent;
-        border-bottom: 0.5em solid transparent;
-        border-left: 0.9em solid currentColor;
-
+        content: "";
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 20' xml:space='preserve'%3E%3Cpath d='m0 0 18 10L0 20V0z'/%3E%3C/svg%3E");
         position: absolute;
-        margin-left: -1.4em;
-        margin-top: 0.5em;
-
-        font-size: 0.75em;
-        font-family: serif;
-
-        vertical-align: top;
-
+        width: 0.8em;
+        height: 0.8em;
+        top: 0.3em;
+        top: 0.5ex;
+        margin-left: -1.2em;
         transition: transform 0.2s ease;
+        transform-origin: 40% 50%;
+
+
+        //display: block;
+        //content: '';
+
+        //width: 0px;
+        //height: 0px;
+        //border-top: 0.5em solid transparent;
+        //border-bottom: 0.5em solid transparent;
+        //border-left: 0.9em solid currentColor;
+
+        //position: absolute;
+        //margin-left: -1.4em;
+        //margin-top: 0.5em;
+
+        //font-size: 0.75em;
+        //font-family: serif;
+
+        //vertical-align: top;
+
+        //transition: transform 0.2s ease;
     }
+
+    /*
+        Summary elements allow headings as children but this seems to be
+        a: rare
+        b: unhelpful for accessibility
+        c: changes the font-size and so the icon slips out of position
+
+        So I've taken the decision to override any font-size changes to keep the icon position,
+        since any system using headings inside summmaries would have to add styling to reposition
+        the icon, they might as well add the desired font-size too.
+    */
+    #{$s__namespace}details > summary * {
+        font-size: inherit;
+        line-height: inherit;
+    }
+
 
     #{$s__namespace}details[open] > summary {
         margin-bottom: var(--base-rem-space-unit);

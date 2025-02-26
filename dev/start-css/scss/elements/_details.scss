@@ -7,8 +7,8 @@
 |-------------------------------------------------------------------------------------------------*/
 
 #{$s__namespace}details {
-    @include s__margins($s__base-rem-space-unit, $s__margin-type);
     @include s__bordered($s__details-padding, $s__details-border-width);
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
 
     // Fix Chrome bug as described on https://caniuse.com/#feat=details:
     //> * {

@@ -20,8 +20,8 @@
 
 */
 #{$s__namespace}dl {
-    @include s__margins($s__base-rem-space-unit, $s__margin-type);
-
     //overflow: hidden; /* 1a */
     display: table; /* 1b */
+
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
 }

@@ -12,11 +12,10 @@
     More info here: https://thatemil.com/blog/2015/01/03/reset-your-fieldset/
 */
 #{$s__namespace}fieldset {
-    @include s__margins($s__base-rem-space-unit, $s__margin-type);
-
     min-width: 0;
 
     @include s__bordered($s__fieldset-padding, $s__fieldset-border-width);
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
 }
 
     #{$s__namespace}fieldset fieldset {

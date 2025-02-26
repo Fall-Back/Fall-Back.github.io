@@ -704,8 +704,6 @@
 
   |-------------------------------------------------------------------------------------------------*/
   details {
-    margin-top: var(--m);
-    margin-bottom: var(--m);
     border-width: 0.1rem;
     border-style: solid;
     border-color: var(--base-ui-color);
@@ -732,6 +730,8 @@
         }
     }
     */
+    margin-top: var(--m);
+    margin-bottom: var(--m);
   }
   details:first-child {
     margin-top: 0;
@@ -773,9 +773,9 @@
 
   */
   dl {
+    display: table; /* 1b */
     margin-top: var(--m);
     margin-bottom: var(--m);
-    display: table; /* 1b */
   }
   dl:first-child {
     margin-top: 0;
@@ -823,8 +823,6 @@
       More info here: https://thatemil.com/blog/2015/01/03/reset-your-fieldset/
   */
   fieldset {
-    margin-top: var(--m);
-    margin-bottom: var(--m);
     min-width: 0;
     border-width: 0.1rem;
     border-style: solid;
@@ -852,6 +850,8 @@
         }
     }
     */
+    margin-top: var(--m);
+    margin-bottom: var(--m);
   }
   fieldset:first-child {
     margin-top: 0;
@@ -888,20 +888,10 @@
 
   |-------------------------------------------------------------------------------------------------*/
   figure {
-    margin-top: var(--m);
-    margin-bottom: var(--m);
     margin-left: 2.4rem;
     margin-right: 2.4rem;
     margin-top: var(--m);
     margin-bottom: var(--m);
-    margin-left: 2.4rem;
-    margin-right: 2.4rem;
-  }
-  figure:first-child {
-    margin-top: 0;
-  }
-  figure:last-child {
-    margin-bottom: 0;
   }
   figure:first-child {
     margin-top: 0;
@@ -1042,11 +1032,11 @@
 
   |-------------------------------------------------------------------------------------------------*/
   h1 {
-    margin-top: var(--m);
-    margin-bottom: var(--m);
     font-size: 3.25em;
     line-height: 6rem;
     text-wrap: balance;
+    margin-top: var(--m);
+    margin-bottom: var(--m);
   }
   h1:first-child {
     margin-top: 0;
@@ -1055,11 +1045,11 @@
     margin-bottom: 0;
   }
   h2 {
-    margin-top: var(--m);
-    margin-bottom: var(--m);
     font-size: 2.5em;
     line-height: 4.8rem;
     text-wrap: balance;
+    margin-top: var(--m);
+    margin-bottom: var(--m);
   }
   h2:first-child {
     margin-top: 0;
@@ -1068,11 +1058,11 @@
     margin-bottom: 0;
   }
   h3 {
-    margin-top: var(--m);
-    margin-bottom: var(--m);
     font-size: 1.875em;
     line-height: 3.6rem;
     text-wrap: balance;
+    margin-top: var(--m);
+    margin-bottom: var(--m);
   }
   h3:first-child {
     margin-top: 0;
@@ -1081,11 +1071,11 @@
     margin-bottom: 0;
   }
   h4 {
-    margin-top: var(--m);
-    margin-bottom: var(--m);
     font-size: 1.375em;
     line-height: 3.6rem;
     text-wrap: balance;
+    margin-top: var(--m);
+    margin-bottom: var(--m);
   }
   h4:first-child {
     margin-top: 0;
@@ -1094,11 +1084,11 @@
     margin-bottom: 0;
   }
   h5 {
-    margin-top: var(--m);
-    margin-bottom: var(--m);
     font-size: 1.125em;
     line-height: 2.4rem;
     text-wrap: balance;
+    margin-top: var(--m);
+    margin-bottom: var(--m);
   }
   h5:first-child {
     margin-top: 0;
@@ -1107,11 +1097,11 @@
     margin-bottom: 0;
   }
   h6 {
-    margin-top: var(--m);
-    margin-bottom: var(--m);
     font-size: 1em;
     line-height: 2.4rem;
     text-wrap: balance;
+    margin-top: var(--m);
+    margin-bottom: var(--m);
   }
   h6:first-child {
     margin-top: 0;
@@ -2140,6 +2130,7 @@ li ol {
   summary {
     display: block; /* 1 */
     touch-action: manipulation; /* 2 */
+    position: relative;
     cursor: pointer;
   }
   summary:focus {
@@ -2150,21 +2141,37 @@ li ol {
   summary::-webkit-details-marker {
     display: none;
   }
+  /*
+      Add an icon.
+      Note the CSS triangle approached (commented) actually turns into a square in High Contrast
+      Mode so using a SVG data uri instead.
+  */
   details > summary::before {
     display: block;
     content: "";
-    width: 0px;
-    height: 0px;
-    border-top: 0.5em solid transparent;
-    border-bottom: 0.5em solid transparent;
-    border-left: 0.9em solid currentColor;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 20' xml:space='preserve'%3E%3Cpath d='m0 0 18 10L0 20V0z'/%3E%3C/svg%3E");
     position: absolute;
-    margin-left: -1.4em;
-    margin-top: 0.5em;
-    font-size: 0.75em;
-    font-family: serif;
-    vertical-align: top;
+    width: 0.8em;
+    height: 0.8em;
+    top: 0.3em;
+    top: 0.5ex;
+    margin-left: -1.2em;
     transition: transform 0.2s ease;
+    transform-origin: 40% 50%;
+  }
+  /*
+      Summary elements allow headings as children but this seems to be
+      a: rare
+      b: unhelpful for accessibility
+      c: changes the font-size and so the icon slips out of position
+
+      So I've taken the decision to override any font-size changes to keep the icon position,
+      since any system using headings inside summmaries would have to add styling to reposition
+      the icon, they might as well add the desired font-size too.
+  */
+  details > summary * {
+    font-size: inherit;
+    line-height: inherit;
   }
   details[open] > summary {
     margin-bottom: var(--base-rem-space-unit);
@@ -2372,6 +2379,8 @@ li ol {
   ul {
     margin-top: var(--m);
     margin-bottom: var(--m);
+  }
+  ul {
     display: table; /* 1b */
   }
   ul:first-child {
