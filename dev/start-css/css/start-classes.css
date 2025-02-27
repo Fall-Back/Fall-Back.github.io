@@ -2144,7 +2144,6 @@ li ol {
     position: absolute;
     width: 0.8em;
     height: 0.8em;
-    top: 0.3em;
     top: 0.5ex;
     margin-left: -1.2em;
     transition: transform 0.2s ease;
