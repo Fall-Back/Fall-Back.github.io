@@ -2132,26 +2132,37 @@ li ol {
     outline: 0;
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
   }
-  /* Hide the details marker as we're supplying our own. */
-  summary::-webkit-details-marker {
-    display: none;
-  }
   /*
-      Add an icon.
-      Note the CSS triangle approached (commented) actually turns into a square in High Contrast
-      Mode so using a SVG data uri instead.
+      Note there's a Webkit bug (https://bugs.webkit.org/show_bug.cgi?id=213349) that affects
+      Safari and prevents the marker animation on 17.3-.This is acceptable. However, in 13.1 the
+      marker doesn't rotate at all until the focus moves off the summary, so I'm cutting out
+      support for the custom marker on Safari 13.1-
   */
-  details > summary::before {
-    display: block;
-    content: "";
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 20' xml:space='preserve'%3E%3Cpath d='m0 0 18 10L0 20V0z'/%3E%3C/svg%3E");
-    position: absolute;
-    width: 0.8em;
-    height: 0.8em;
-    top: 0.5ex;
-    margin-left: -1.2em;
-    transition: transform 0.2s ease;
-    transform-origin: 40% 50%;
+  @supports (text-orientation: mixed) {
+    /* Hide the details marker as we're supplying our own. */
+    summary::-webkit-details-marker {
+      display: none;
+    }
+    /*
+        Add an icon.
+        Note the CSS triangle approached (commented) actually turns into a square in High Contrast
+        Mode so using a SVG data uri instead.
+    */
+    details > summary::before {
+      display: block;
+      content: "";
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 20' xml:space='preserve'%3E%3Cpath d='m0 0 18 10L0 20V0z'/%3E%3C/svg%3E");
+      position: absolute;
+      width: 0.8em;
+      height: 0.8em;
+      top: 0.5ex;
+      margin-left: -1.2em;
+      transition: transform 0.2s ease;
+      transform-origin: 40% 50%;
+    }
+    details[open] > summary::before {
+      transform: rotate(90deg);
+    }
   }
   /*
       Summary elements allow headings as children but this seems to be
@@ -2169,9 +2180,6 @@ li ol {
   }
   details[open] > summary {
     margin-bottom: var(--base-rem-space-unit);
-  }
-  details[open] > summary::before {
-    transform: rotate(90deg);
   }
   details[open] :last-child {
     margin-bottom: 0;
