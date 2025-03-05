@@ -6,7 +6,7 @@
 |-------------------------------------------------------------------------------------------------*/
 
 /*
-    For the purposes of Fall-Back these styles are applied as presentation attributes to each 
+    For the purposes of Fall-Back these styles are applied as presentation attributes to each
     `symbol` element in the main page markup.
     The styles here are left in for reference and example only with the exception of
     `display: inline;` which is here to allow icons to remain hidden if the stylesheet doesn't load.

@@ -51,7 +51,7 @@ var cookie_html                   =
             document.addEventListener('DOMContentLoaded', fn);
         }
     }
-    
+
     var createCookie = function(name,value,days) {
         if (days) {
             var date = new Date();
@@ -76,7 +76,7 @@ var cookie_html                   =
     var eraseCookie = function(name) {
         createCookie(name,"",-1);
     }
-    
+
     var cookienotice = {
 
         init: function() {
@@ -84,13 +84,13 @@ var cookie_html                   =
             if (!accepted_cookies) {
                 var body_el = document.getElementsByTagName('body')[0];
                 body_el.insertAdjacentHTML('afterbegin', cookie_html);
-                
+
                 document.getElementById(cookie_button_id).onclick = function(){
                     createCookie(cookie_name, 'true', cookie_expire_days);
                     document.getElementById(cookie_notice_id).setAttribute('data-close', true);
                     //document.getElementById(cookie_notice_id).className += '  ' + cookie_close_class;
                     /*
-                        Without CSS (or transition support - IE9) the notice won't disappear, so wait until fade 
+                        Without CSS (or transition support - IE9) the notice won't disappear, so wait until fade
                         has finished then remove:
                     */
                     setTimeout(function(){
@@ -101,6 +101,6 @@ var cookie_html                   =
             }
         }
     }
-    
+
     ready(cookienotice.init);
 })();

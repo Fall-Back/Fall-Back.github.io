@@ -33,19 +33,19 @@ $distribute-bases: (
     align-items: stretch;
 
     //--s: 0;
-    
+
     width: 0; /* [1] */
     min-width: 100%; /* [1] */
-    
+
     // See below, just picking a default here to begin with:
     //justify-content: flex-start;
     //flex-basis: 15em;
     //max-width: 20em;
-    
+
     padding: $distribute-spacing-unit--s / 2;
     --s: #{$distribute-spacing-unit--s};
 }
-    
+
 #{$es__page_main__header--listing} ~ ul > * {
     flex-shrink: 0;
     flex-grow: 1;
@@ -56,7 +56,7 @@ $distribute-bases: (
     //
     padding: $distribute-spacing-unit--s / 2;
     //--s: #{$distribute-spacing-unit--s};
-    
+
     flex-basis: 30rem;
     --b: 30rem;
 }
@@ -64,7 +64,7 @@ $distribute-bases: (
 
 /* Don't have classes here, so need to pick one.
    Possible have it as a flag and allow selectors to be specified so could build multiple versions
-   of the patter?   
+   of the patter?
     &#{&}--start {
         justify-content: flex-start;
     }
@@ -72,7 +72,7 @@ $distribute-bases: (
     &#{&}--end {
         justify-content: flex-end;
     }
-    
+
     &#{&}--limit-10 > * {
         flex-basis: 7.5em;
          max-width: 10em;
@@ -107,7 +107,7 @@ $distribute-bases: (
         flex-basis: 30em;
          max-width: 40em;
     }
-    
+
     // Add gutters:
 
     &#{&}--gutter--s,
@@ -130,7 +130,7 @@ $distribute-bases: (
         padding: $distribute-spacing-unit--l / 2;
         --s: #{$distribute-spacing-unit--l};
     }
-    
+
 */
 
 
@@ -226,7 +226,7 @@ $distribute-bases: (
 
     */
 
-    
+
     /* 7 or more: (1x7 | 1,2x3 | 1,3x2 | 3,4) */
     #{$es__page_main__header--listing} ~ ul > :nth-last-child(n+7),
     #{$es__page_main__header--listing} ~ ul > :nth-last-child(n+7) ~ * {
@@ -238,12 +238,12 @@ $distribute-bases: (
     #{$es__page_main__header--listing} ~ ul > :nth-last-child(n+7) + * + * {
         flex-basis: unquote("min(max(50%, ((var(--b) * 2) - 100%) * 999), max(33%, ((var(--b) * 3) - 100%) * 999), max(14%, ((var(--b) * 7) - 100%) * 999))");
     }
-    
+
     /* 7 or more, different values for the first one: */
     #{$es__page_main__header--listing} ~ ul > :nth-last-child(n+7) {
         flex-basis: unquote("min(max(33%, ((var(--b) * 4) - 100%) * 999), max(14%, ((var(--b) * 7) - 100%) * 999))");
     }
-    
+
 
 
     /* 8 or more: */
@@ -281,12 +281,12 @@ $distribute-bases: (
         //flex-basis: unquote("min(max(50%, ((var(--b) * 2) - 100%) * 999), max(20%, ((var(--b) * 5) - 100%) * 999), max(9%, ((var(--b) * 11) - 100%) * 999))");
         flex-basis: unquote("min(max(50%, ((var(--b) * 2) - 100%) * 999), max(33%, ((var(--b) * 3) - 100%) * 999), max(9%, ((var(--b) * 11) - 100%) * 999))");
     }
-    
+
     /* 11 or more, different values for the second one: */
     #{$es__page_main__header--listing} ~ ul > :nth-last-child(n+11) + * {
         flex-basis: unquote("min(max(50%, ((var(--b) * 2) - 100%) * 999), max(9%, ((var(--b) * 11) - 100%) * 999))");
     }
-    
+
     /* 11 or more, different values for the first one: */
     #{$es__page_main__header--listing} ~ ul > :nth-last-child(n+11) {
         flex-basis: unquote("min(max(50%, ((var(--b) * 3) - 100%) * 999), max(9%, ((var(--b) * 11) - 100%) * 999))");
