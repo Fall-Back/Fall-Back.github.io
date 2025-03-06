@@ -419,9 +419,13 @@
     outline: 1px solid transparent; /* [1] */
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
   }
+  /*
+      Fix for linked images:
+  */
   @supports selector(:has(> img)) {
     a[href]:has(> img) {
       display: inline-block;
+      vertical-align: middle;
     }
   }
   /*

@@ -43,10 +43,13 @@
 
 }
 
-// Fix for linked images:
+/*
+    Fix for linked images:
+*/
 @supports selector(:has(> img)) {
     #{$s__namespace}a[href]:has(> img) {
         display: inline-block;
+        vertical-align: middle;
     }
 }
 
