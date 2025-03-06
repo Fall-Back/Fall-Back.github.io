@@ -8,6 +8,7 @@
 
 /*
     1. Allow video to center if container larger than video.
+    2. Ensure box edges are visible in High Contrast Mode.
 */
 #{$s__namespace}video {
     display: block; /* 1 */
@@ -19,6 +20,8 @@
     margin: 0 auto; /* 1 */
 
     background-color: $s__video-background-color;
+
+    outline: 1px solid transparent; /* 2 */
 }
 
 @if $s__use-focus-shadow {

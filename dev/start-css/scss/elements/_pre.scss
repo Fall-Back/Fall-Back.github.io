@@ -16,6 +16,7 @@
        appears to have a scrollbar height of 12px, so we override it with a hack.
     2. Correct the odd `em` font sizing in all browsers.
     3. Correct the inheritance and scaling of font size in all browsers.
+    4. Ensure box edges are visible in High Contrast Mode.
 */
 #{$s__namespace}pre {
     overflow-x: scroll; /* 1 */
@@ -37,6 +38,8 @@
     @include s__theme(var(--pre-color--text, var(--base-ui-color-lightest--text)));
 
     @include s__margins($s__base-rem-space-unit, $s__margin-type);
+
+    outline: 1px solid transparent; /* 4 */
 }
 
 

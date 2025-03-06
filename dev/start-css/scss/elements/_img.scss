@@ -75,3 +75,13 @@
         box-shadow: $s__outline-shadow;
     }
 }
+
+/*
+    Broken images could look much better if CSS could detect if they're broken.
+    Sadly this isn't natively possible, but using JS onerror on all images can add an attribute
+    we can use for styling.
+*/
+#{$s__namespace}img[data-broken] {
+    background-color: #ddd;
+    outline: 1px solid transparent;
+}

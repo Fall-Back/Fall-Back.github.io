@@ -1251,6 +1251,15 @@
     outline: 0;
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
   }
+  /*
+      Broken images could look much better if CSS could detect if they're broken.
+      Sadly this isn't natively possible, but using JS onerror on all images can add an attribute
+      we can use for styling.
+  */
+  img[data-broken] {
+    background-color: #ddd;
+    outline: 1px solid transparent;
+  }
   /*-------------------------------------------------------------------------------------------------|
 
       START-CSS ELEMENT: input
@@ -1881,6 +1890,7 @@ li ol {
          appears to have a scrollbar height of 12px, so we override it with a hack.
       2. Correct the odd `em` font sizing in all browsers.
       3. Correct the inheritance and scaling of font size in all browsers.
+      4. Ensure box edges are visible in High Contrast Mode.
   */
   pre {
     overflow-x: scroll; /* 1 */
@@ -1893,6 +1903,7 @@ li ol {
     background-color: var(--background-color);
     margin-top: var(--m);
     margin-bottom: var(--m);
+    outline: 1px solid transparent; /* 4 */
   }
   @supports not (color: oklch(from red l c h)) {
     pre {
@@ -2445,6 +2456,7 @@ li ol {
   |-------------------------------------------------------------------------------------------------*/
   /*
       1. Allow video to center if container larger than video.
+      2. Ensure box edges are visible in High Contrast Mode.
   */
   video {
     display: block; /* 1 */
@@ -2452,6 +2464,7 @@ li ol {
     height: auto;
     margin: 0 auto; /* 1 */
     background-color: #333;
+    outline: 1px solid transparent; /* 2 */
   }
   video:focus {
     outline: 0;
