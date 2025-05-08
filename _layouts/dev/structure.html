@@ -331,6 +331,16 @@
             reasonable fallback - it's unconventional, so leave it out if you like.
         */
 
+        [data-fs-layout~="stack"] > * {
+            margin-top: 0;
+            margin-bottom: 0;
+
+        }
+
+        [data-fs-layout~="stack"] > * + * {
+            margin-top: 1.4rem;
+        }
+
         /* --| Block styles |-------------------------------------------------------------------- */
         [data-fs-block] {
             display: block;
@@ -361,7 +371,6 @@
 
         [data-fs-block~="border"] {
             border: 1px solid darkslategrey;
-            margin: 1em 0;
             padding: 1em;
         }
 
@@ -394,6 +403,10 @@
             display: table;
             width: 100%;
             table-layout: fixed;
+        }
+
+        [data-fs-block~="table--spaced"] {
+            border-spacing: 1em;
         }
 
         [data-fs-block~="table"] > * {

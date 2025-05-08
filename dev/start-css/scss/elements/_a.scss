@@ -29,6 +29,11 @@
         text-decoration: underline $s__anchor-line-style--alt currentColor $s__anchor-line-width;
     }
 
+    & img:hover,
+    & svg:hover {
+        outline-color: transparent;
+    }
+
     /*
         1. Make sure focus is still visible in Forced Colour modes.
            (https://www.sarasoueidan.com/blog/focus-indicators/)
