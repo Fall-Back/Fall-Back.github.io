@@ -6,7 +6,8 @@ You can also use it as starting point for a more comprehensive framework.
 </p>
 <p>
 Because it's meant to be approach-agnostic, StartCSS doesn't use classes so there are a few edge cases where things doen't work quite as smoothly as I'd like, even in this test document.
-For example the video-inside-figure scenario results in the top-part of the focus-shadow being clipped, and the image-inside-link scenario also has a focus-shadow issue where little extra bits of shadow appear in the left top and bottom corners.
+For example the video-inside-figure scenario results in the top-part of the focus-shadow being clipped, and the image-inside-link scenario also has a focus-shadow issue where little extra bits of shadow appear in the left top and bottom corners.<br>
+<strong>UPDATE:</strong> CSS <code>:has</code> is widley supported (hooray). If you're supporting browsers with no <code>:has</code> support then read on: </br>
 If using StartCSS as part of framework you can add a class such as <code>has-media</code> to the figure or link respectively and fix these issues easily enough, but until we get the <code>:has</code> parent selector these are currently unfixable in raw StartCSS.
 </p>
 <p>E.g.</p>
