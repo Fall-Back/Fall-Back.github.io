@@ -1,5 +1,5 @@
 /*! --------------------------------------------------------------------------------------------- *\
-    
+
     Fall-Back Over Panel v2.0.0
     https://github.com/Fall-Back/Patterns/tree/master/Over%20Panel
     Copyright (c) 2021, Andy Kirk
@@ -83,7 +83,7 @@
     }
 
 
-	var over_panel = {
+    var over_panel = {
 
         init: function() {
 
@@ -133,10 +133,10 @@
                         }
                     });
 
-					// Overlay click action:
-					over_panel_overlay.addEventListener('click', function() {
-						over_panel_control.click()
-					});
+                    // Overlay click action:
+                    over_panel_overlay.addEventListener('click', function() {
+                        over_panel_control.click()
+                    });
 
                     // Remove `animating` class at transition end.
                     over_panel.addEventListener('transitionend', function() {
@@ -144,7 +144,7 @@
                     });
 
                     // Focus trap inspired by:
-					// http://heydonworks.com/practical_aria_examples/progressive-hamburger.html
+                    // http://heydonworks.com/practical_aria_examples/progressive-hamburger.html
                     var over_panel_contents = over_panel.querySelector(contents_selector);
                     var focusables          = over_panel_contents.querySelectorAll('a, button, input, select, textarea');
 
@@ -171,7 +171,7 @@
                 });
             }
         }
-	}
+    }
 
     // This is _here_ to mitigate a Flash of Basic Styled OverPanel:
     var css_is_loaded = check_for_css('.' + over_panel_js_has_classname);
@@ -183,5 +183,5 @@
         html_el.classList.add(over_panel_js_has_classname);
     }
 
-	ready(over_panel.init);
+    ready(over_panel.init);
 })();

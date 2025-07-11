@@ -1,5 +1,5 @@
 /*! --------------------------------------------------------------------------------------------- *\
-    
+
     Fall-Back Dropdown v2.0.0
     https://github.com/Fall-Back/Patterns/tree/master/Dropdown
     Copyright (c) 2021, Andy Kirk
@@ -21,7 +21,7 @@
     var selector              = '[data-js="' + ident + '"]';
 
     var dropdown_js_has_classname = 'js-has--' + ident;
-    
+
     var dropdown_is_open_classname      = ident + '__area--is-open';
     var dropdown_is_animating_classname = ident + '__area--is-animating';
 
@@ -78,7 +78,7 @@
         }
     }
 
-	var dropdown = {
+    var dropdown = {
 
         init: function() {
 
@@ -117,7 +117,7 @@
 
                         // Set the attribute:
                         this.setAttribute('aria-expanded', !expanded);
-                        
+
                         // Toggle the `is_open` class:
                         if (!expanded) {
                             area.classList.add(dropdown_is_open_classname);
@@ -143,7 +143,7 @@
 
             }
         }
-	}
+    }
 
     // This is _here_ to mitigate a Flash of Basic Styled Dropdown:
     var css_is_loaded = check_for_css('.' + dropdown_js_has_classname);
@@ -155,5 +155,5 @@
         html_el.classList.add(dropdown_js_has_classname);
     }
 
-	ready(dropdown.init);
+    ready(dropdown.init);
 })();

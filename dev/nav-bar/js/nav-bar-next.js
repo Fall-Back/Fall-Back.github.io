@@ -1,5 +1,5 @@
 /*! --------------------------------------------------------------------------------------------- *\
-    
+
     Fall-Back Nav Bar v2.0.0
     https://github.com/Fall-Back/Patterns/tree/master/Nav%20Bar
     Copyright (c) 2021, Andy Kirk
@@ -14,7 +14,7 @@
 \* ---------------------------------------------------------------------------------------------- */
 
 // Remove polyfill:
-(function() { 
+(function() {
   function remove() { this.parentNode && this.parentNode.removeChild(this); }
   if (!Element.prototype.remove) Element.prototype.remove = remove;
   if (Text && !Text.prototype.remove) Text.prototype.remove = remove;
@@ -68,51 +68,51 @@
             document.addEventListener('DOMContentLoaded', fn);
         }
     }
-    
+
     var set_style = function(element, style) {
         Object.keys(style).forEach(function(key) {
             element.style[key] = style[key];
         });
     }
 
-	var $navbar = {
-        
+    var $navbar = {
+
         navbars: null,
-        
+
         root_font_size: window.getComputedStyle(document.documentElement).getPropertyValue('font-size'),
 
-		switcher: function(navbar) {
+        switcher: function(navbar) {
             //console.log(window.getComputedStyle(document.documentElement).getPropertyValue('font-size'));
-			//console.log(navbar);
-            
+            //console.log(navbar);
+
             // Check for browser font chnage and reset breakpoints if it has:
             if ($navbar.root_font_size != window.getComputedStyle(document.documentElement).getPropertyValue('font-size')) {
                 $navbar.set_breakpoints($navbar.navbars);
             }
-            
-			var expanded = navbar.offsetWidth > navbar.dataset.breakpoint;
-			
-			if (expanded) {
-				navbar.classList.add('js-nav-bar--expanded');
-				navbar.classList.remove('js-nav-bar--collapsed');
-				navbar.style.outline = '3px solid red';
-			} else {
-				navbar.classList.add('js-nav-bar--collapsed');
-				navbar.classList.remove('js-nav-bar--expanded');
-				navbar.style.outline = '3px solid blue';
-			}
-		},
-        
+
+            var expanded = navbar.offsetWidth > navbar.dataset.breakpoint;
+
+            if (expanded) {
+                navbar.classList.add('js-nav-bar--expanded');
+                navbar.classList.remove('js-nav-bar--collapsed');
+                navbar.style.outline = '3px solid red';
+            } else {
+                navbar.classList.add('js-nav-bar--collapsed');
+                navbar.classList.remove('js-nav-bar--expanded');
+                navbar.style.outline = '3px solid blue';
+            }
+        },
+
         set_breakpoints: function(navbars) {
             Array.prototype.forEach.call(navbars, function (navbar, i) {
                 var clone = navbar.cloneNode(true);
                 clone.classList.add('js-nav-bar--expanded');
                 set_style(clone, {
-					position: 'absolute',
-					border: '0',
-					left: '0',
-					top: '0',
-				});
+                    position: 'absolute',
+                    border: '0',
+                    left: '0',
+                    top: '0',
+                });
                 navbar.parentNode.appendChild(clone);
 
                 var nav_link = clone.querySelector('.nav-bar__link');
@@ -148,8 +148,8 @@
         },
 
         init: function() {
-			var self = this;
-            
+            var self = this;
+
             /*var nav_bar = document.querySelector('.nav-bar');
 
             // Note that `getComputedStyle` on pseudo elements doesn't work in Opera Mini, but in
@@ -171,14 +171,14 @@
 
                 $navbar.navbars = document.querySelectorAll('.' + nav_bar_js_classname + ' .' + nav_bar_classname);
 
-				$navbar.set_breakpoints($navbar.navbars);
+                $navbar.set_breakpoints($navbar.navbars);
 
-				//return;
+                //return;
 
-				var check = window.ResizeObserver;
-				//var check = false;
+                var check = window.ResizeObserver;
+                //var check = false;
 
-				if (check) {
+                if (check) {
                     var ro = new ResizeObserver(function (entries) {
                         Array.prototype.forEach.call(entries, function (entry, i) {
                             var cr = entry.contentRect;
@@ -189,43 +189,43 @@
 
                     Array.prototype.forEach.call($navbar.navbars, function (navbar, i) {
                         ro.observe(navbar);
-						$navbar.switcher(navbar);
+                        $navbar.switcher(navbar);
                     });
                 } else {
                     console.log('No ResizeObserver support.');
 
-					var style = {
-						position: 'absolute',
-						display: 'block',
-						border: '0',
-						left: '0',
-						top: '0',
-						width: '100%',
-						height: '100%',
-						pointerEvents: 'none',
-						zIndex: '-1'
+                    var style = {
+                        position: 'absolute',
+                        display: 'block',
+                        border: '0',
+                        left: '0',
+                        top: '0',
+                        width: '100%',
+                        height: '100%',
+                        pointerEvents: 'none',
+                        zIndex: '-1'
                     };
 
-					// Note visibility: hidden prevents the resize event from occuring in FF.
+                    // Note visibility: hidden prevents the resize event from occuring in FF.
 
-					Array.prototype.forEach.call($navbar.navbars, function (navbar, i) {
-						var detector = document.createElement('iframe');
+                    Array.prototype.forEach.call($navbar.navbars, function (navbar, i) {
+                        var detector = document.createElement('iframe');
                         set_style(detector, style);
-						detector.setAttribute('aria-hidden', 'true');
+                        detector.setAttribute('aria-hidden', 'true');
 
-						navbar.appendChild(detector);
+                        navbar.appendChild(detector);
 
-						detector.contentWindow.addEventListener('resize', function() {
-							$navbar.switcher(navbar);
+                        detector.contentWindow.addEventListener('resize', function() {
+                            $navbar.switcher(navbar);
                         });
-						$navbar.switcher(navbar);
-					});
+                        $navbar.switcher(navbar);
+                    });
                 }
 
-				return;
-			}
+                return;
+            }
         }
-	}
+    }
 
     // This is _here_ to mitigate a Flash of Basic Styled $navbar:
     var css_is_loaded = check_for_css('.' + nav_bar_js_classname);
@@ -241,5 +241,5 @@
         }
     }
 
-	ready($navbar.init);
+    ready($navbar.init);
 })();

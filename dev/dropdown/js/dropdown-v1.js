@@ -1,5 +1,5 @@
 /*! --------------------------------------------------------------------------------------------- *\
-    
+
     Fall-Back Dropdown v2.0.0
     https://github.com/Fall-Back/Patterns/tree/master/Dropdown
     Copyright (c) 2021, Andy Kirk
@@ -59,7 +59,7 @@
         }
     }
 
-	var dropdown = {
+    var dropdown = {
 
         init: function() {
             var dropdowns = document.querySelectorAll('.dropdown');
@@ -82,7 +82,7 @@
                         dropdown.className += ' ' + dropdown_js_classname;
                     }
                 });
-                
+
                 // ... and button actions:
                 var buttons = document.querySelectorAll('[data-js="dropdown__button"]');
                 Array.prototype.forEach.call(buttons, function(button, i) {
@@ -100,7 +100,7 @@
                         Array.prototype.forEach.call(expanded_buttons, function(expanded_button, i) {
                             expanded_button.setAttribute('aria-expanded', 'false');
                         });
-                        
+
                         // Set the attribute:
                         this.setAttribute('aria-expanded', !expanded);
 
@@ -113,10 +113,10 @@
                         }
                     });
                 });
-                
+
             }
         }
-	}
+    }
 
     // This is _here_ to mitigate a Flash of Basic Styled Dropdown:
     var css_is_loaded = check_for_css('.' + dropdown_js_classname);
@@ -132,5 +132,5 @@
         }
     }
 
-	ready(dropdown.init);
+    ready(dropdown.init);
 })();

@@ -1,14 +1,14 @@
 /*! --------------------------------------------------------------------------------------------- *\
-    
+
     Fall-Back Over Panel vNEXT
     https://github.com/Fall-Back/Patterns/tree/master/Over%20Panel
     Copyright (c) 2022, Andy Kirk
     Released under the MIT license https://git.io/vwTVl
 
     Designed for use with the [PRM CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut#prm-cut-prefers-reduced-motion)
-    
+
     Print (Edge doesn't apply to print otherwise)
-    Edge 79+, Chrome 74+, Firefox 63+, Opera 64+, Safari 10.1+, iOS 10.3+, Android 81+  
+    Edge 79+, Chrome 74+, Firefox 63+, Opera 64+, Safari 10.1+, iOS 10.3+, Android 81+
 
     PLUS IE11
 
@@ -30,7 +30,7 @@
     var over_panel_is_open_classname      = ident + '--is-open';
     var over_panel_is_animating_classname = ident + '--is-animating';
 
-	var over_panel = {
+    var over_panel = {
 
         init: function() {
 
@@ -80,10 +80,10 @@
                         }
                     });
 
-					// Overlay click action:
-					over_panel_overlay.addEventListener('click', function() {
-						over_panel_control.click()
-					});
+                    // Overlay click action:
+                    over_panel_overlay.addEventListener('click', function() {
+                        over_panel_control.click()
+                    });
 
                     // Remove `animating` class at transition end.
                     over_panel.addEventListener('transitionend', function() {
@@ -91,7 +91,7 @@
                     });
 
                     // Focus trap inspired by:
-					// http://heydonworks.com/practical_aria_examples/progressive-hamburger.html
+                    // http://heydonworks.com/practical_aria_examples/progressive-hamburger.html
                     var over_panel_contents = over_panel.querySelector(contents_selector);
                     var focusables          = over_panel_contents.querySelectorAll('a, button, input, select, textarea');
 
@@ -118,7 +118,7 @@
                 });
             }
         }
-	}
+    }
 
     // This is _here_ to mitigate a Flash of Basic Styled OverPanel:
     //var css_is_loaded = check_for_css('.' + over_panel_js_has_classname);

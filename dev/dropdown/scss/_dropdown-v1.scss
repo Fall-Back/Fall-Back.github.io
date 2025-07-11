@@ -103,18 +103,18 @@ $s__dropdown-z-index:                         9999 !default;
 
 
     /* -- .dropdown__button ----------------------------------------------------------------------*/
-	/*
-		1. These override button styles defined as part of StartCSS. I may consider making these
-		   customisable via more variables.
-	*/
+    /*
+        1. These override button styles defined as part of StartCSS. I may consider making these
+           customisable via more variables.
+    */
     .dropdown .dropdown__button {
         display: block;
         margin: 0;
         //padding: ($s__dropdown--spacing * 1.333333) ($s__dropdown--spacing * 2);
         padding-left: $s__dropdown--spacing * 2;
         padding-right: $s__dropdown--spacing * 2;
-		padding-bottom: 0; /* 1 */
-		padding-top: 0; /* 1 */
+        padding-bottom: 0; /* 1 */
+        padding-top: 0; /* 1 */
 
         border: 0;
         border-radius: $s__dropdown__button--border-radius;
@@ -124,7 +124,7 @@ $s__dropdown-z-index:                         9999 !default;
         text-decoration: none;
         outline: 0;
 
-		box-shadow: none; /* 1 */
+        box-shadow: none; /* 1 */
     }
 
     // This is to turn off Start-CSS's hover border:

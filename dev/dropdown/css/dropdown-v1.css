@@ -101,8 +101,8 @@
 /* -------------------------------------------------------------------------------------------*/
 /* -- .dropdown__button ----------------------------------------------------------------------*/
 /*
-	1. These override button styles defined as part of StartCSS. I may consider making these
-	   customisable via more variables.
+    1. These override button styles defined as part of StartCSS. I may consider making these
+       customisable via more variables.
 */
 .dropdown .dropdown__button {
   display: block;

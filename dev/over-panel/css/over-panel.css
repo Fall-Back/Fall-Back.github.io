@@ -81,15 +81,15 @@
 }
 
 /*
-	This is a bit of a hack, but it's a way of letting JS know that this CSS has loaded.
-	It doesn't work for Opera Mini, but I'm happy to provide this browser only with the
-	unenhanced version.
-       UPDATE: Due to problem with FOBP, now checking for existence of class in styesheet earlier
-       on, so this isn't needed:
+    This is a bit of a hack, but it's a way of letting JS know that this CSS has loaded.
+    It doesn't work for Opera Mini, but I'm happy to provide this browser only with the
+    unenhanced version.
+    UPDATE: Due to problem with FOBP, now checking for existence of class in styesheet earlier
+    on, so this isn't needed:
 */
 /*.over-panel::before {
-	content: 'CSS Loaded';
-       display: none;
+    content: 'CSS Loaded';
+    display: none;
 }*/
 .js-over-panel {
   border: 0;
@@ -147,7 +147,7 @@
 
 @media only screen and (max-width: 49.9375em) {
   /*
-  	1. Make sure the over-panel is on top.
+      1. Make sure the over-panel is on top.
   */
   .js-over-panel .over-panel {
     position: absolute; /* [1] */
@@ -276,10 +276,10 @@
     transition: opacity ease 0.8s;
   }
   /*
-           1. These override button styles defined as part of StartCSS. I may consider making these
-              customisable via more variables.
-  2. Ensure the control is above the overlay.
-       */
+      1. These override button styles defined as part of StartCSS. I may consider making these
+         customisable via more variables.
+      2. Ensure the control is above the overlay.
+  */
   .js-over-panel-control.over-panel-control {
     display: block;
     margin: 0;

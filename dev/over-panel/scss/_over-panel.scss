@@ -79,16 +79,16 @@ $s__over-panel__overlay-opacity:                 0.6 !default;
 
 
     /*
-		This is a bit of a hack, but it's a way of letting JS know that this CSS has loaded.
-		It doesn't work for Opera Mini, but I'm happy to provide this browser only with the
-		unenhanced version.
+        This is a bit of a hack, but it's a way of letting JS know that this CSS has loaded.
+        It doesn't work for Opera Mini, but I'm happy to provide this browser only with the
+        unenhanced version.
         UPDATE: Due to problem with FOBP, now checking for existence of class in styesheet earlier
         on, so this isn't needed:
-	*/
-	/*.over-panel::before {
-		content: 'CSS Loaded';
+    */
+    /*.over-panel::before {
+        content: 'CSS Loaded';
         display: none;
-	}*/
+    }*/
     // Use this instead:
     .js-over-panel {
         // This could be any inconsequential declaration:
@@ -152,16 +152,16 @@ $s__over-panel__overlay-opacity:                 0.6 !default;
 
 
     @media only screen and (max-width: ($s__over-panel--breakpoint--enhanced - $s__mq-1-em-px)) {
-		/*
-			1. Make sure the over-panel is on top.
-		*/
-		.js-over-panel .over-panel {
-			position: absolute; /* [1] */
+        /*
+            1. Make sure the over-panel is on top.
+        */
+        .js-over-panel .over-panel {
+            position: absolute; /* [1] */
             left: 0;
             //top: 0;
             width: 100%;
-			////z-index: $s__over-panel--z-index; /* [1] */
-		}
+            ////z-index: $s__over-panel--z-index; /* [1] */
+        }
 
 
         .js-over-panel-control.over-panel-control {
@@ -322,7 +322,7 @@ $s__over-panel__overlay-opacity:                 0.6 !default;
         /*
             1. These override button styles defined as part of StartCSS. I may consider making these
                customisable via more variables.
-			2. Ensure the control is above the overlay.
+            2. Ensure the control is above the overlay.
         */
         .js-over-panel-control.over-panel-control {
             display: block;
@@ -347,7 +347,7 @@ $s__over-panel__overlay-opacity:                 0.6 !default;
             background-color: $s__over-panel__control--background-color;
 
             position: relative;
-			z-index: 0;
+            z-index: 0;
         }
 
 
@@ -378,7 +378,7 @@ $s__over-panel__overlay-opacity:                 0.6 !default;
             background-color: $s__over-panel__control--background-color--alt2;
         }
 
-		.js-over-panel-control.over-panel-control .icon--is-open,
+        .js-over-panel-control.over-panel-control .icon--is-open,
         .js-over-panel-control.over-panel-control[aria-expanded="true"] .icon--is-closed {
             display: none;
         }
@@ -461,7 +461,7 @@ $s__over-panel__overlay-opacity:                 0.6 !default;
 
         /* Bring the overlay to the front and fade in when there's an over-panel target: */
         .js-over-panel_is-open .over-panel__overlay {
-			position: fixed;
+            position: fixed;
             right: 0;
             bottom: 0;
             width: 100%;

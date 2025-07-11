@@ -80,13 +80,13 @@
 
     blockquote {
         font-style: italic;
-	}
+    }
 
     // no-print helper class:
     .no-print,
     [data="no-print"] {
-		display: none !important;
-	}
+        display: none !important;
+    }
 
     // Don't show links for Headings:
     h1 a[href]:after,
@@ -95,8 +95,8 @@
     h4 a[href]:after,
     h5 a[href]:after,
     h6 a[href]:after {
-		content: "";
-	}
+        content: "";
+    }
 }
 
 // AK: hide print-only elements when media is not print:

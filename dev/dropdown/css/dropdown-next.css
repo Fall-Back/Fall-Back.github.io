@@ -116,9 +116,9 @@
 /* -------------------------------------------------------------------------------------------*/
 /* -- .dropdown__control ----------------------------------------------------------------------*/
 /*
-	1. This removes StartCSS outline focus, so leave it out.
-          --These override control styles defined as part of StartCSS. I may consider making these
-	   customisable via more variables.--
+    1. This removes StartCSS outline focus, so leave it out.
+       --These override control styles defined as part of StartCSS. I may consider making these
+       customisable via more variables.--
 */
 .dropdown .dropdown__control {
   display: block;

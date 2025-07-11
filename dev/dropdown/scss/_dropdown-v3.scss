@@ -125,19 +125,19 @@ $s__dropdown-z-index:                          9999 !default;
 
 
     /* -- .dropdown__control ----------------------------------------------------------------------*/
-	/*
-		1. This removes StartCSS outline focus, so leave it out.
+    /*
+        1. This removes StartCSS outline focus, so leave it out.
            --These override control styles defined as part of StartCSS. I may consider making these
-		   customisable via more variables.--
-	*/
+           customisable via more variables.--
+    */
     .dropdown .dropdown__control {
         display: block;
         margin: 0;
         //padding: ($s__dropdown--spacing * 1.333333) ($s__dropdown--spacing * 2);
         padding-left: $s__dropdown--spacing * 2;
         padding-right: $s__dropdown--spacing * 2;
-		padding-bottom: 0; /* 1 */
-		padding-top: 0; /* 1 */
+        padding-bottom: 0; /* 1 */
+        padding-top: 0; /* 1 */
 
         border: 0;
         border-radius: $s__dropdown__control--border-radius;
@@ -147,7 +147,7 @@ $s__dropdown-z-index:                          9999 !default;
         text-decoration: none;
         outline: 0;
 
-		//box-shadow: none; /* 1 */
+        //box-shadow: none; /* 1 */
     }
 
     // This is to turn off StartCSS's hover border:

@@ -168,8 +168,8 @@
 }
 
 /*
-	1. These override button styles defined as part of StartCSS. I may consider making these
-	   customisable via more variables.
+    1. These override button styles defined as part of StartCSS. I may consider making these
+       customisable via more variables.
 */
 .nav-bar .nav-bar__link,
 .nav-bar .subnav__link,
@@ -423,8 +423,8 @@
     flex: 1 1 auto;
   }
   /*
-  	This pseudo element helps to cover any subnavs to stop them being visible in the main
-  	nav-bar.
+      This pseudo element helps to cover any subnavs to stop them being visible in the main
+      nav-bar.
   */
   .js-nav-bar .nav-bar::before {
     content: "";
@@ -453,10 +453,10 @@
     display: inline;
   }
   /*
-            Set-up slide toggling for subnavs:
+      Set-up slide toggling for subnavs:
 
-  	1. This puts the subnav behind the covering pseudo element. See .nav-bar::before, above.
-            2. OSX/iOS needs this:
+      1. This puts the subnav behind the covering pseudo element. See .nav-bar::before, above.
+      2. OSX/iOS needs this:
   */
   .js-nav-bar .subnav {
     position: absolute;

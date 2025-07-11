@@ -1,12 +1,12 @@
 /*! --------------------------------------------------------------------------------------------- *\
-    
+
     Fall-Back Dropdown v3.0.0
     https://github.com/Fall-Back/Patterns/tree/master/Dropdown
     Copyright (c) 2021, Andy Kirk
     Released under the MIT license https://git.io/vwTVl
 
     Designed for use with the [PRM CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut#prm-cut-prefers-reduced-motion)
-    
+
     Print (Edge doesn't apply to print otherwise)
     Edge 79+, Chrome 74+, Firefox 63+, Opera 64+, Safari 10.1+, iOS 10.3+, Android 81+
 
@@ -24,7 +24,7 @@
     var dropdown_is_open_classname      = ident + '__area--is-open';
     var dropdown_is_animating_classname = ident + '__area--is-animating';
 
-	var $dropdown = {
+    var $dropdown = {
 
         init: function() {
 
@@ -63,7 +63,7 @@
 
                         // Set the attribute:
                         this.setAttribute('aria-expanded', !expanded);
-                        
+
                         // Toggle the `is_open` class:
                         if (!expanded) {
                             area.classList.add(dropdown_is_open_classname);
@@ -89,7 +89,7 @@
 
             }
         }
-	}
+    }
 
     // This is _here_ to mitigate a Flash of Basic Styled Dropdown:
     //var css_is_loaded = check_for_css('.' + dropdown_js_has_classname);

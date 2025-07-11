@@ -415,6 +415,9 @@
   a[href]:hover, a[href]:active {
     text-decoration: underline solid currentColor 0.0625em;
   }
+  a[href] img:hover, a[href] svg:hover {
+    outline-color: transparent;
+  }
   a[href]:focus, a[href]:focus-visible {
     outline: 1px solid transparent; /* [1] */
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;

@@ -202,10 +202,10 @@ $s__nav-bar-divider-first-item:            false !default;
         white-space: nowrap;
     }
 
-	/*
-		1. These override button styles defined as part of StartCSS. I may consider making these
-		   customisable via more variables.
-	*/
+    /*
+        1. These override button styles defined as part of StartCSS. I may consider making these
+           customisable via more variables.
+    */
     .nav-bar .nav-bar__link,
     .nav-bar .subnav__link,
     .nav-bar .subnav__heading {
@@ -213,8 +213,8 @@ $s__nav-bar-divider-first-item:            false !default;
         margin: 0;
         padding-left: $s__nav-bar--spacing * 2;
         padding-right: $s__nav-bar--spacing * 2;
-		padding-bottom: 0; /* 1 */
-		padding-top: 0; /* 1 */
+        padding-bottom: 0; /* 1 */
+        padding-top: 0; /* 1 */
 
         border: 0;
         border-radius: $s__nav-bar__link--border-radius;
@@ -223,7 +223,7 @@ $s__nav-bar-divider-first-item:            false !default;
         text-decoration: none;
         outline: 0;
 
-		box-shadow: none; /* 1 */
+        box-shadow: none; /* 1 */
     }
 
     /*
@@ -497,7 +497,7 @@ $s__nav-bar-divider-first-item:            false !default;
             content: " ";
             display: table;
             clear: both;
-		}
+        }
 
         /*
             Prevent anything wrapping (fixed height is crucial to making this work),
@@ -528,21 +528,21 @@ $s__nav-bar-divider-first-item:            false !default;
 
 
         /*
-			This pseudo element helps to cover any subnavs to stop them being visible in the main
-			nav-bar.
-		*/
+            This pseudo element helps to cover any subnavs to stop them being visible in the main
+            nav-bar.
+        */
         //.js-nav-bar.nav-bar::before {
         .js-nav-bar .nav-bar::before {
-			content: "";
-			display: block;
-			position: absolute;
-			left: 0;
-			right: 0;
-			top: 0;
-			bottom: 0;
-			z-index: -1;
-			background-color: $s__nav-bar--background-color;
-		}
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: -1;
+            background-color: $s__nav-bar--background-color;
+        }
 
 
         /* -- Behaviour: -------------------------------------------------------------------------*/
@@ -573,9 +573,9 @@ $s__nav-bar-divider-first-item:            false !default;
         /*
             Set-up slide toggling for subnavs:
 
-			1. This puts the subnav behind the covering pseudo element. See .nav-bar::before, above.
+            1. This puts the subnav behind the covering pseudo element. See .nav-bar::before, above.
             2. OSX/iOS needs this:
-		*/
+        */
         .js-nav-bar .subnav {
             position: absolute;
             visibility: hidden;

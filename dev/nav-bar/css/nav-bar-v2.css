@@ -108,8 +108,8 @@
   /*
   */
   /*
-  	1. These override button styles defined as part of StartCSS. I may consider making these
-  	   customisable via more variables.
+      1. These override button styles defined as part of StartCSS. I may consider making these
+         customisable via more variables.
   */
   /*
       FF15- fix button height.
@@ -225,9 +225,9 @@
     So, scoping these styles to the 'js-nav-bar' class.
 */
 /*
-	Note we do only want these applied when JS is available, because it'll have adde buttons so
-	we need to adjust layout to that. In other words these styles break things in a no-js
-	scenario.
+    Note we do only want these applied when JS is available, because it'll have adde buttons so
+    we need to adjust layout to that. In other words these styles break things in a no-js
+    scenario.
 
 */
 .js-cmr--narrow .nav-bar__start {
@@ -260,15 +260,15 @@
       1. Prevent content from increasing height of element.
   */
   /*
-  	This pseudo element helps to cover any subnavs to stop them being visible in the main
-  	nav-bar.
+      This pseudo element helps to cover any subnavs to stop them being visible in the main
+      nav-bar.
   */
   /* -- Behaviour: -------------------------------------------------------------------------*/
   /*
-            Set-up slide toggling for subnavs:
+      Set-up slide toggling for subnavs:
 
-  	1. This puts the subnav behind the covering pseudo element. See .nav-bar::before, above.
-            2. OSX/iOS needs this:
+      1. This puts the subnav behind the covering pseudo element. See .nav-bar::before, above.
+      2. OSX/iOS needs this:
   */
 }
 .js-cmr--wide .nav-bar__title,

@@ -1,7 +1,7 @@
 /*------------------------------------------------------------------------------------------------*\
     Fall-Back Cookie Notice Pattern v0.1
     ------------------------------------
-    
+
     To avoid any confusion, it's probably best to copy these settings to another file that you're
     concatenating and then make any changes to the defaults.
 \*------------------------------------------------------------------------------------------------*/
@@ -14,91 +14,170 @@ var cookie_notice_class           = 'cookie_notice';
 var cookie_button_class           = '';
 var cookie_close_class            = 'cookie_notice--close';
 var cookie_notice_effect_duration = 1000;
-var cookie_html                   = 
+var cookie_html                   =
 '<div id="' + cookie_notice_id + '" class="' + cookie_notice_class + '">' + "\n" +
 '<p class="cookie_notice__message">This site uses <a href="http://www.allaboutcookies.org/" rel="external" target="_blank">cookies</a> to improve user experience. By using this site you agree to our use of cookies.</p>' + "\n" +
 '<span class="cookie_notice__action"><button id="' + cookie_button_id + '" class="' + cookie_button_class + '">Dismiss</button></span>' + "\n" +
 '</div>';
 
-/*!
-    Fall-Back Nav-Bar v2.0.0
-    https://github.com/Fall-Back/Nav-Bar
-    Copyright (c) 2017, Andy Kirk
-    Released under the MIT license https://git.io/vwTVl
-*/
-(function() {
-    var ready = function(fn) {
-        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
-            fn();
-        } else {
-            document.addEventListener('DOMContentLoaded', fn);
-        }
-    }
-
-	var navbar = {
-
-        init: function() {
-            var nav_bar = document.querySelector('.nav-bar');
-            var nav_bar_js_classname = 'js-nav-bar';
-            // Note that `getComputedStyle` on psuedo elements doesn't work in Opera Mini, but in
-            // this case I'm happy to serve only the unenhanced version to Opera Mini.
-            var css_is_loaded = (
-                window.getComputedStyle(nav_bar, ':before')
-                .getPropertyValue('content')
-                .replace(/(\"|\')/g, '')
-                == 'CSS Loaded'
-            );
-            //console.log(window.getComputedStyle(nav_bar, ':before').getPropertyValue('content'));
-            //console.log(css_is_loaded);
-            
-            if (css_is_loaded) {
-                // Add the JS class names ...
-                if (nav_bar.classList) {
-                    nav_bar.classList.add(nav_bar_js_classname);
-                } else {
-                    nav_bar.className += ' ' + nav_bar_js_classname;
-                }
-                // ... and button actions:
-                // (note a dilema here, as the toggle button code is designed to be generic, but I
-                // don't want to run it for ALL `.js-toggle-button` by default, because I'm being
-                // more discerning than that. I.e. I NEVER want this running for Opera Mini, and I
-                // ONLY want it running for Nav-Bars if the Nav-Bar CSS has loaded.
-                // Maybe just abstract the toggle code into a standalone file, and make it callable
-                // and act upon a selector that's passed to it).
-                var buttons = document.querySelectorAll('.js-nav-bar .js-toggle-button');
-                Array.prototype.forEach.call(buttons, function(button, i) {
-                    var button_id = button.getAttribute('id');
-                    
-                    button.setAttribute('aria-expanded', 'false');
-                    
-                    // Main toggle button:
-                    button.addEventListener('click', function() {
-                        // Switch the `aria-expanded` attribute:
-                        var expanded = this.getAttribute('aria-expanded') === 'true' || false;
-                        
-                        // Close any open submenu:
-                        var expanded_buttons = document.querySelectorAll('.js-nav-bar .js-toggle-button[aria-expanded="true"]');
-                        Array.prototype.forEach.call(expanded_buttons, function(expanded_button, i) {
-                            expanded_button.setAttribute('aria-expanded', 'false');
-                        });
-                            
-                        // Set the attribute:
-                        this.setAttribute('aria-expanded', !expanded);
-                        
-                        // Set the focus to the first link if submenu newly opened:
-                        if (!expanded) {
-                            var first_link = document.querySelector('#' + button_id + '--target .subnav__link');
-                            first_link.focus();
-                        }
-                    });
-                    
-                });
-            }
-        }
-	}
-
-	ready(navbar.init);
-})();
+/*!
+
+    Fall-Back Nav-Bar v2.0.0
+
+    https://github.com/Fall-Back/Nav-Bar
+
+    Copyright (c) 2017, Andy Kirk
+
+    Released under the MIT license https://git.io/vwTVl
+
+*/
+
+(function() {
+
+    var ready = function(fn) {
+
+        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+
+            fn();
+
+        } else {
+
+            document.addEventListener('DOMContentLoaded', fn);
+
+        }
+
+    }
+
+
+
+	var navbar = {
+
+
+
+        init: function() {
+
+            var nav_bar = document.querySelector('.nav-bar');
+
+            var nav_bar_js_classname = 'js-nav-bar';
+
+            // Note that `getComputedStyle` on psuedo elements doesn't work in Opera Mini, but in
+
+            // this case I'm happy to serve only the unenhanced version to Opera Mini.
+
+            var css_is_loaded = (
+
+                window.getComputedStyle(nav_bar, ':before')
+
+                .getPropertyValue('content')
+
+                .replace(/(\"|\')/g, '')
+
+                == 'CSS Loaded'
+
+            );
+
+            //console.log(window.getComputedStyle(nav_bar, ':before').getPropertyValue('content'));
+
+            //console.log(css_is_loaded);
+
+
+
+            if (css_is_loaded) {
+
+                // Add the JS class names ...
+
+                if (nav_bar.classList) {
+
+                    nav_bar.classList.add(nav_bar_js_classname);
+
+                } else {
+
+                    nav_bar.className += ' ' + nav_bar_js_classname;
+
+                }
+
+                // ... and button actions:
+
+                // (note a dilema here, as the toggle button code is designed to be generic, but I
+
+                // don't want to run it for ALL `.js-toggle-button` by default, because I'm being
+
+                // more discerning than that. I.e. I NEVER want this running for Opera Mini, and I
+
+                // ONLY want it running for Nav-Bars if the Nav-Bar CSS has loaded.
+
+                // Maybe just abstract the toggle code into a standalone file, and make it callable
+
+                // and act upon a selector that's passed to it).
+
+                var buttons = document.querySelectorAll('.js-nav-bar .js-toggle-button');
+
+                Array.prototype.forEach.call(buttons, function(button, i) {
+
+                    var button_id = button.getAttribute('id');
+
+
+
+                    button.setAttribute('aria-expanded', 'false');
+
+
+
+                    // Main toggle button:
+
+                    button.addEventListener('click', function() {
+
+                        // Switch the `aria-expanded` attribute:
+
+                        var expanded = this.getAttribute('aria-expanded') === 'true' || false;
+
+
+
+                        // Close any open submenu:
+
+                           var expanded_buttons = document.querySelectorAll('.js-nav-bar .js-toggle-button[aria-expanded="true"]');
+
+                        Array.prototype.forEach.call(expanded_buttons, function(expanded_button, i) {
+
+                            expanded_button.setAttribute('aria-expanded', 'false');
+
+                        });
+
+
+
+                        // Set the attribute:
+
+                        this.setAttribute('aria-expanded', !expanded);
+
+
+
+                        // Set the focus to the first link if submenu newly opened:
+
+                        if (!expanded) {
+
+                            var first_link = document.querySelector('#' + button_id + '--target .subnav__link');
+
+                            first_link.focus();
+
+                        }
+
+                    });
+
+
+
+                });
+
+            }
+
+        }
+
+	}
+
+
+
+	ready(navbar.init);
+
+})();
+
 
 /*!
     Fall-Back Over-Panel v2.0.0
@@ -134,10 +213,10 @@ var cookie_html                   =
         }
     }
 
-	var over_panel = {
+                    over_panel = {
 
-        init: function() {
-            var over_panels = document.querySelectorAll('.over-panel');
+                          init: function() {
+                           var over_panels = document.querySelectorAll('.over-panel');
             var over_panel_js_classname           = 'js-over-panel';
             var over_panel_control_js_classname   = 'js-over-panel-control';
             var over_panel_is_open_classname      = 'js-over-panel_is-open';
@@ -150,7 +229,7 @@ var cookie_html                   =
             var css_is_loaded = (
                 window.getComputedStyle(over_panels[0], ':before')
                 .getPropertyValue('content')
-                .replace(/(\"|\')/g, '')
+                               .replace(/(\"|\')/g, '')
                 == 'CSS Loaded'
             );
 
@@ -159,8 +238,8 @@ var cookie_html                   =
 
 
                     // Find corresponding controls:
-                    var over_panel_id = over_panel.getAttribute('id');
-                    var over_panel_control = document.querySelector('[aria-controls="' + over_panel_id + '"]');
+                                         var over_panel_id = over_panel.getAttribute('id');
+                                         var over_panel_control = document.querySelector('[aria-controls="' + over_panel_id + '"]');
                     var over_panel_overlay = over_panel.querySelector('.over-panel__overlay');
 
                     // Check we've got a corresponding control. If not we can't proceed so skip:
@@ -174,9 +253,9 @@ var cookie_html                   =
                         over_panel.classList.add(over_panel_js_classname);
                     } else {
                         over_panel.className += ' ' + over_panel_js_classname;
-                    }
+                       }
                     // ... and the control:
-                    if (over_panel_control.classList) {
+                       if (over_panel_control.classList) {
                         over_panel_control.classList.add(over_panel_control_js_classname);
                     } else {
                         over_panel_control.className += ' ' + over_panel_control_js_classname;
@@ -272,7 +351,7 @@ var cookie_html                   =
             document.addEventListener('DOMContentLoaded', fn);
         }
     }
-    
+
     var createCookie = function(name,value,days) {
         if (days) {
             var date = new Date();
@@ -297,7 +376,7 @@ var cookie_html                   =
     var eraseCookie = function(name) {
         createCookie(name,"",-1);
     }
-    
+
     var cookienotice = {
 
         init: function() {
@@ -305,12 +384,12 @@ var cookie_html                   =
             if (!accepted_cookies) {
                 var body_el = document.getElementsByTagName('body')[0];
                 body_el.insertAdjacentHTML('afterbegin', cookie_html);
-                
+
                 document.getElementById(cookie_button_id).onclick = function(){
                     createCookie(cookie_name, 'true', cookie_expire_days);
                     document.getElementById(cookie_notice_id).className += '  ' + cookie_close_class;
                     /*
-                        Without CSS (or transition suport - IE9) the notice won't disappear, so wait until fade 
+                        Without CSS (or transition suport - IE9) the notice won't disappear, so wait until fade
                         has finished then remove:
                     */
                     setTimeout(function(){
@@ -321,7 +400,7 @@ var cookie_html                   =
             }
         }
     }
-    
+
     ready(cookienotice.init);
 })();
 
@@ -339,7 +418,7 @@ var cookie_html                   =
             document.addEventListener('DOMContentLoaded', fn);
         }
     }
-    
+
     var svg = {
 
         init: function() {
@@ -367,9 +446,9 @@ var cookie_html                   =
                     if (obj.parentNode.className.indexOf('svg__link') == -1 || obj.parentNode.parentNode.className.indexOf('svg--fluid') >= 0) {
                         continue;
                     }
-                    
-                    
-                    // If the .svg container has a width of 'auto', things don't work, so we need to 
+
+
+                    // If the .svg container has a width of 'auto', things don't work, so we need to
                     // temporarily set the width to 100% so the children can expand to their natural
                     // width:
                     var svg = obj.parentNode.parentNode;
@@ -377,8 +456,8 @@ var cookie_html                   =
                     if (svg.style.width == '' || svg.style.width == 'auto') {
                         svg.style.width  = '100%';
                     }
-                    
-                    
+
+
                     // Also, if there's an auto width parent to the .svg container (e.g. for styling a
                     // box or whatever) we need to do the same. Apply the .svg-container class to that
                     // element.
@@ -387,26 +466,26 @@ var cookie_html                   =
                     if (container.className.indexOf('svg-container') > 0 && (container.style.width == '' || container.style.width == 'auto')) {
                         container.style.width  = '100%';
                     }
-                    
-                    
+
+
                     obj.style.maxWidth         = 'none';
                     obj.style.minWidth         = '0';
                     obj.parentNode.style.width = '100%';
                     obj.parentNode.style.width = obj.offsetWidth + 'px';
                     obj.style.maxWidth         = '100%';
-                    
+
 
                     // Reset the container width:
                     container.style.width  = '';
-                    
-                    
+
+
                     // Reset the svg width:
                     svg.style.width  = '';
                 }
             }
         }
     }
-    
+
     ready(svg.init);
 })();
 

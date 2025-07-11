@@ -1,20 +1,20 @@
 <!doctype html>
 <html class="no-js" lang="en-gb">
-<head>    
+<head>
     <meta charset="utf-8" />
     <title>Support Tests Extra</title>
-    
+
     <meta name="description" content="CSS-Only Mustard Cut support test page">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="mq-test.css" media="only screen and (min-resolution: 0.1dpcm)">
     <link rel="stylesheet" href="mq-test.css" media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)">
     <link rel="stylesheet" href="mq-test.css" media="only screen and (-webkit-min-device-pixel-ratio:1.1)">
-    
+
     <!--[if IE 8]>
     <link rel="stylesheet" href="mq-test.css">
     <![endif]-->
-    
+
     <script>
         if (navigator.userAgent.indexOf('UCBrowser') > -1) {
           var link  = document.createElement('link');
@@ -25,10 +25,10 @@
     </script>
 
     <style>
-    	  body {
+          body {
             padding: 1em;
         }
-    
+
         #browser_info {
             border-spacing: 0;
             border-collapse: collapse;
@@ -48,18 +48,18 @@
             border: 1px solid #666;
         }
     </style>
-    
+
 </head>
 <body role="document">
     <h1>Support Tests</h1>
-    
+
     <main>
-        
+
         <p>This page should be green if the CSS has loaded.</p>
         <p id="js-msg"></p>
-        
+
         <h2>Browser support</h2>
-        
+
         <ul>
             <li>IE 8+</li>
             <li>FF 8+</li>
@@ -71,7 +71,7 @@
             <li>Android 2.2+ (screens with pixel ratio &gt; 1)</li>
             <li>UC Browser (any)</li>
         </ul>
-        
+
         <table id="browser_info">
             <caption>Browser info</caption>
             <thead>
@@ -81,7 +81,7 @@
                 <tr><td colspan="2">No Javascript - unable to detect anything!</td></tr>
             </tbody>
         </table>
-        
+
         <h2>Relevent code:</h2>
         <pre><code>
             &lt;head&gt;
@@ -89,11 +89,11 @@
                 &lt;link rel="stylesheet" href="mq-test.css" media="only screen and (min-resolution: 0.1dpcm)"&gt;
                 &lt;link rel="stylesheet" href="mq-test.css" media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0)"&gt;
                 &lt;link rel="stylesheet" href="mq-test.css" media="only screen and (-webkit-min-device-pixel-ratio:1.1)"&gt;
-                
+
                 &lt;!--[if IE 8]&gt;
                 &lt;link rel="stylesheet" href="mq-test.css"&gt;
                 &lt;![endif]--&gt;
-                
+
                 &lt;script&gt;
                     if (navigator.userAgent.indexOf('UCBrowser') &gt; -1) {
                       var link  = document.createElement('link');
@@ -114,7 +114,7 @@
                     } else if (document.body.currentStyle) {
                         val = document.body.currentStyle.clear;
                     }
-                    
+
                     if (val == 'both') {
                         is_supported = true;
                     }
@@ -126,10 +126,10 @@
             ...
             &lt;/body&gt;
         </code></pre>
-        
-        
+
+
     </main>
-    
+
     <script>
         var is_supported = false
           , val = '';
@@ -138,7 +138,7 @@
         } else if (document.body.currentStyle) {
             val = document.body.currentStyle.clear;
         }
-        
+
         if (val == 'both') {
             is_supported = true;
         }
@@ -148,13 +148,13 @@
         }
     </script>
 
-    
+
     <script>
     // Attempt at building a browser-info display tool:
     window.onload = (function(onload) {
         return function(event) {
             onload && onload(event);
-            
+
             var browser_info = {
                 'User agent': navigator.userAgent,
                 'Device pixel ratio': window.devicePixelRatio,
@@ -163,7 +163,7 @@
                 'Device width': window.screen.availWidth,
                 'Device height': window.screen.availHeight
             };
-            
+
             var browser_info_table = document.getElementById('browser_info');
             var browser_info_body  = browser_info_table.tBodies[0];
             var row, cell1, cell2;

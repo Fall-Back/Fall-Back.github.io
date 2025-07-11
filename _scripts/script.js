@@ -1,7 +1,7 @@
 /*------------------------------------------------------------------------------------------------*\
     Fall-Back Cookie Notice Pattern v0.1
     ------------------------------------
-    
+
     To avoid any confusion, it's probably best to copy these settings to another file that you're
     concatenating and then make any changes to the defaults.
 \*------------------------------------------------------------------------------------------------*/
@@ -14,7 +14,7 @@ var cookie_notice_class           = 'cookie_notice';
 var cookie_button_class           = '';
 var cookie_close_class            = 'cookie_notice--close';
 var cookie_notice_effect_duration = 1000;
-var cookie_html                   = 
+var cookie_html                   =
 '<div id="' + cookie_notice_id + '" class="' + cookie_notice_class + '">' + "\n" +
 '<p class="cookie_notice__message">This site uses <a href="http://www.allaboutcookies.org/" rel="external" target="_blank">cookies</a> to improve user experience. By using this site you agree to our use of cookies.</p>' + "\n" +
 '<span class="cookie_notice__action"><button id="' + cookie_button_id + '" class="' + cookie_button_class + '">Dismiss</button></span>' + "\n" +
@@ -35,7 +35,7 @@ var cookie_html                   =
         }
     }
 
-	var navbar = {
+    var navbar = {
 
         init: function() {
             var nav_bar = document.querySelector('.nav-bar');
@@ -50,7 +50,7 @@ var cookie_html                   =
             );
             //console.log(window.getComputedStyle(nav_bar, ':before').getPropertyValue('content'));
             //console.log(css_is_loaded);
-            
+
             if (css_is_loaded) {
                 // Add the JS class names ...
                 if (nav_bar.classList) {
@@ -68,36 +68,36 @@ var cookie_html                   =
                 var buttons = document.querySelectorAll('.js-nav-bar .js-toggle-button');
                 Array.prototype.forEach.call(buttons, function(button, i) {
                     var button_id = button.getAttribute('id');
-                    
+
                     button.setAttribute('aria-expanded', 'false');
-                    
+
                     // Main toggle button:
                     button.addEventListener('click', function() {
                         // Switch the `aria-expanded` attribute:
                         var expanded = this.getAttribute('aria-expanded') === 'true' || false;
-                        
+
                         // Close any open submenu:
                         var expanded_buttons = document.querySelectorAll('.js-nav-bar .js-toggle-button[aria-expanded="true"]');
                         Array.prototype.forEach.call(expanded_buttons, function(expanded_button, i) {
                             expanded_button.setAttribute('aria-expanded', 'false');
                         });
-                            
+
                         // Set the attribute:
                         this.setAttribute('aria-expanded', !expanded);
-                        
+
                         // Set the focus to the first link if submenu newly opened:
                         if (!expanded) {
                             var first_link = document.querySelector('#' + button_id + '--target .subnav__link');
                             first_link.focus();
                         }
                     });
-                    
+
                 });
             }
         }
-	}
+    }
 
-	ready(navbar.init);
+    ready(navbar.init);
 })();
 
 /*!
@@ -134,7 +134,7 @@ var cookie_html                   =
         }
     }
 
-	var over_panel = {
+    var over_panel = {
 
         init: function() {
             var over_panels = document.querySelectorAll('.over-panel');
@@ -213,10 +213,10 @@ var cookie_html                   =
                         }
                     });
 
-					// Overlay click action:
-					over_panel_overlay.addEventListener('click', function() {
-						over_panel_control.click()
-					});
+                    // Overlay click action:
+                    over_panel_overlay.addEventListener('click', function() {
+                        over_panel_control.click()
+                    });
 
                     // Remove `animating` class at transition end.
                     transitionEvent && over_panel.addEventListener(transitionEvent, function() {
@@ -229,7 +229,7 @@ var cookie_html                   =
                     });
 
                     // Focus trap inspired by:
-					// http://heydonworks.com/practical_aria_examples/progressive-hamburger.html
+                    // http://heydonworks.com/practical_aria_examples/progressive-hamburger.html
                     var over_panel_contents = over_panel.querySelector('.over-panel__contents');
                     var focusables          = over_panel_contents.querySelectorAll('a, button, input, select, textarea');
                     var first_focusable     = focusables[0];
@@ -238,8 +238,8 @@ var cookie_html                   =
                     // At end of navigation block, return focus to navigation menu button
                     last_focusable.addEventListener('keydown', function(e) {
                         if (over_panel_control.getAttribute('aria-expanded') == 'true' && e.keyCode === 9 && !e.shiftKey) {
-							e.preventDefault();
-							over_panel_control.focus();
+                            e.preventDefault();
+                            over_panel_control.focus();
                         }
                     });
 
@@ -253,9 +253,9 @@ var cookie_html                   =
                 });
             }
         }
-	}
+    }
 
-	ready(over_panel.init);
+    ready(over_panel.init);
 })();
 
 /*!
@@ -272,7 +272,7 @@ var cookie_html                   =
             document.addEventListener('DOMContentLoaded', fn);
         }
     }
-    
+
     var createCookie = function(name,value,days) {
         if (days) {
             var date = new Date();
@@ -297,7 +297,7 @@ var cookie_html                   =
     var eraseCookie = function(name) {
         createCookie(name,"",-1);
     }
-    
+
     var cookienotice = {
 
         init: function() {
@@ -305,12 +305,12 @@ var cookie_html                   =
             if (!accepted_cookies) {
                 var body_el = document.getElementsByTagName('body')[0];
                 body_el.insertAdjacentHTML('afterbegin', cookie_html);
-                
+
                 document.getElementById(cookie_button_id).onclick = function(){
                     createCookie(cookie_name, 'true', cookie_expire_days);
                     document.getElementById(cookie_notice_id).className += '  ' + cookie_close_class;
                     /*
-                        Without CSS (or transition suport - IE9) the notice won't disappear, so wait until fade 
+                        Without CSS (or transition suport - IE9) the notice won't disappear, so wait until fade
                         has finished then remove:
                     */
                     setTimeout(function(){
@@ -321,7 +321,7 @@ var cookie_html                   =
             }
         }
     }
-    
+
     ready(cookienotice.init);
 })();
 
@@ -339,7 +339,7 @@ var cookie_html                   =
             document.addEventListener('DOMContentLoaded', fn);
         }
     }
-    
+
     var svg = {
 
         init: function() {
@@ -367,9 +367,9 @@ var cookie_html                   =
                     if (obj.parentNode.className.indexOf('svg__link') == -1 || obj.parentNode.parentNode.className.indexOf('svg--fluid') >= 0) {
                         continue;
                     }
-                    
-                    
-                    // If the .svg container has a width of 'auto', things don't work, so we need to 
+
+
+                    // If the .svg container has a width of 'auto', things don't work, so we need to
                     // temporarily set the width to 100% so the children can expand to their natural
                     // width:
                     var svg = obj.parentNode.parentNode;
@@ -377,8 +377,8 @@ var cookie_html                   =
                     if (svg.style.width == '' || svg.style.width == 'auto') {
                         svg.style.width  = '100%';
                     }
-                    
-                    
+
+
                     // Also, if there's an auto width parent to the .svg container (e.g. for styling a
                     // box or whatever) we need to do the same. Apply the .svg-container class to that
                     // element.
@@ -387,25 +387,25 @@ var cookie_html                   =
                     if (container.className.indexOf('svg-container') > 0 && (container.style.width == '' || container.style.width == 'auto')) {
                         container.style.width  = '100%';
                     }
-                    
-                    
+
+
                     obj.style.maxWidth         = 'none';
                     obj.style.minWidth         = '0';
                     obj.parentNode.style.width = '100%';
                     obj.parentNode.style.width = obj.offsetWidth + 'px';
                     obj.style.maxWidth         = '100%';
-                    
+
 
                     // Reset the container width:
                     container.style.width  = '';
-                    
-                    
+
+
                     // Reset the svg width:
                     svg.style.width  = '';
                 }
             }
         }
     }
-    
+
     ready(svg.init);
 })();

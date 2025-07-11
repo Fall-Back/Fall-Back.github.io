@@ -32,7 +32,7 @@
     if (close_button_id) {
         close_button_id_string = ' class="' + close_button_id +'"';
     }
-    
+
     // Focus HAS to move somewhere so default to h1. May rethink this...
     if (!close_button_focus_target_selector) {
         close_button_focus_target_selector = 'h1';
@@ -61,7 +61,7 @@
         close_button_containers: null,
 
         init: function() {
-			var self = this;
+            var self = this;
 
             $close_button.close_button_containers = document.querySelectorAll(close_button_container_selector);
 
@@ -81,7 +81,7 @@
                     setTimeout(function(){
                         close_button_container.parentNode.removeChild(close_button_container);
                     }, close_button_effect_duration);
-                    
+
                     document.querySelector(this.getAttribute('data-js-focus-target')).focus();
                 });
             });

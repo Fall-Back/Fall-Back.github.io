@@ -1,5 +1,5 @@
 /*! --------------------------------------------------------------------------------------------- *\
-    
+
     Fall-Back Over Panel v1.0.0
     https://github.com/Fall-Back/Patterns/tree/master/Over%20Panel
     Copyright (c) 2021, Andy Kirk
@@ -19,28 +19,28 @@
     var over_panel_is_animating_classname = 'js-over-panel_is-animating';
 
     var check_for_css = function(selector) {
-        
+
         var rules;
         var haveRule = false;
         if (typeof document.styleSheets != "undefined") {// is this supported
             var cssSheets = document.styleSheets;
-            
+
             // IE doesn't have document.location.origin, so fix that:
             if (!document.location.origin) {
                 document.location.origin = document.location.protocol + "//" + document.location.hostname + (document.location.port ? ':' + document.location.port: '');
             }
             var domain_regex  = RegExp('^' + document.location.origin);
-            
+
             outerloop:
             for (var i = 0; i < cssSheets.length; i++) {
                 var sheet = cssSheets[i];
-                
+
                 // Some browsers don't allow checking of rules if not on the same domain (CORS), so
                 // checking for that here:
                 if (sheet.href !== null && domain_regex.exec(sheet.href) === null) {
                     continue;
                 }
-                
+
                 // Check for IE or standards:
                 rules = (typeof sheet.cssRules != "undefined") ? sheet.cssRules : sheet.rules;
                 for (var j = 0; j < rules.length; j++) {
@@ -81,7 +81,7 @@
         }
     }
 
-	var over_panel = {
+    var over_panel = {
 
         init: function() {
 
@@ -180,10 +180,10 @@
                         }
                     });
 
-					// Overlay click action:
-					over_panel_overlay.addEventListener('click', function() {
-						over_panel_control.click()
-					});
+                    // Overlay click action:
+                    over_panel_overlay.addEventListener('click', function() {
+                        over_panel_control.click()
+                    });
 
                     // Remove `animating` class at transition end.
                     transitionEvent && over_panel.addEventListener(transitionEvent, function() {
@@ -196,10 +196,10 @@
                     });
 
                     // Focus trap inspired by:
-					// http://heydonworks.com/practical_aria_examples/progressive-hamburger.html
+                    // http://heydonworks.com/practical_aria_examples/progressive-hamburger.html
                     var over_panel_contents = over_panel.querySelector('[data-js="over-panel__contents"]');
                     var focusables          = over_panel_contents.querySelectorAll('a, button, input, select, textarea');
-                    
+
                     if (focusables.length > 0) {
                         var first_focusable     = focusables[0];
                         var last_focusable      = focusables[focusables.length - 1];
@@ -223,15 +223,15 @@
                 });
             }
         }
-	}
+    }
 
     // This is _here_ to mitigate a Flash of Basic Styled OverPanel:
     var css_is_loaded = check_for_css('.' + over_panel_js_classname);
-    
+
     if (css_is_loaded) {
         // Add the JS class name ...
         var html_el = document.querySelector('html');
-        
+
         if (html_el.classList) {
             html_el.classList.add(over_panel_js_classname);
         } else {
@@ -239,5 +239,5 @@
         }
     }
 
-	ready(over_panel.init);
+    ready(over_panel.init);
 })();
