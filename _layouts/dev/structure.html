@@ -134,6 +134,10 @@
             display: block;
         }
 
+        summary {
+            cursor: pointer;
+        }
+
         @supports (list-style-type: disclosure-closed) {
             summary {
                 display: list-item;
@@ -177,7 +181,7 @@
 
         /* Links and image links */
         /*@supports not (color: oklch(from red l c h)) {*/
-        a[href] {
+        * {
             color: inherit;
         }
 
@@ -243,7 +247,6 @@
         label,
         select,
         textarea {
-            vertical-align: middle;
             vertical-align: middle;
             min-height: 2.2em;
             margin: 0.2em 0;

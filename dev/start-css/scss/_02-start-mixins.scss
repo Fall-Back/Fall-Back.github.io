@@ -149,6 +149,9 @@
 
     -webkit-appearance: none;
 
+    display: inline-flex;
+    align-items: center;
+
     &:hover,
     &:active {
         --background-color: var(--button-background-color-alt, var(--base-ui-color-light));

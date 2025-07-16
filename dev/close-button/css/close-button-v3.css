@@ -188,6 +188,8 @@
   cursor: pointer;
   touch-action: manipulation; /* 1 */
   -webkit-appearance: none;
+  display: inline-flex;
+  align-items: center;
   /*
       1. Make sure focus is still visible in Forced Colour modes.
          (https://www.sarasoueidan.com/blog/focus-indicators/)

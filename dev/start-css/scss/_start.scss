@@ -195,7 +195,12 @@ html[lang] {
     }
 }
 */
-
+@supports (color: oklch(from red l c h)) {
+    * {
+        --color: oklch(from var(--background-color) var(--l) 0 h / 0.9);
+        color: var(--color);
+    }
+}
 
 /*
     Some colours are declared in TFS, so need to redeclare here as above * too low specificity:
