@@ -3544,6 +3544,7 @@ p[role="list"] a[href]:focus,
   position: relative;
   z-index: 3;
   height: 2.25em;
+  list-style: none;
 }
 [data-elementary] body > header > fieldset > nav details > summary::-webkit-details-marker {
   display: none;
