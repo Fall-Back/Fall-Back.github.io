@@ -42,6 +42,11 @@
     z-index: 3;
 
     height: $e__nav-bar--height;
+
+    list-style: none;
+    &::-webkit-details-marker {
+        display: none;
+    }
 }
 
 /*

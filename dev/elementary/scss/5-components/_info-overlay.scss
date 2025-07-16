@@ -104,6 +104,11 @@
         &:active {
             background: rgba(255,255,255,0.3);
         }
+
+        list-style: none;
+        &::-webkit-details-marker {
+            display: none;
+        }
     }
 
     #{map-get($options, selector)} > summary + * {

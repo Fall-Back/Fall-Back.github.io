@@ -3545,6 +3545,9 @@ p[role="list"] a[href]:focus,
   z-index: 3;
   height: 2.25em;
 }
+[data-elementary] body > header > fieldset > nav details > summary::-webkit-details-marker {
+  display: none;
+}
 
 /*
 
@@ -4316,6 +4319,7 @@ main > * > h1 {
   height: 2.4rem;
   margin: 0;
   border-radius: 1.2rem;
+  list-style: none;
 }
 [data-elementary] header figcaption > details > summary > svg:first-of-type {
   display: inline;
@@ -4328,6 +4332,9 @@ main > * > h1 {
 }
 [data-elementary] header figcaption > details > summary:hover, [data-elementary] header figcaption > details > summary:focus, [data-elementary] header figcaption > details > summary:active {
   background: rgba(255, 255, 255, 0.3);
+}
+[data-elementary] header figcaption > details > summary::-webkit-details-marker {
+  display: none;
 }
 
 [data-elementary] header figcaption > details > summary + * {
