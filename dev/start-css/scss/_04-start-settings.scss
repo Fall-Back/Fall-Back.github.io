@@ -358,7 +358,7 @@ $s__pre-background-color: lighten($s__base-ui-color, 55%) !default;
 
 // Adjust bottom margin to  take into account scrollbar height of 17px:
 $s__pre-margin-bottom: s__calc-rem-from-px(($s__base-line-height * 2) - 17px);
-$s__pre-padding-bottom: calc($s__base-rem-space-unit - 17px);
+$s__pre-padding-bottom: calc($s__base-rem-space-unit - 15px); // Was 17...
 
 // Edge has a scrollbar height of 12px:
 $s__pre-margin-bottom--edge: s__calc-rem-from-px(($s__base-line-height * 2) - 12px);

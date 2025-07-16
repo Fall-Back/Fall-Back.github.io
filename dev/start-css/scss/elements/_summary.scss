@@ -7,79 +7,87 @@
 |-------------------------------------------------------------------------------------------------*/
 
 /*
-    1. Correct display is  list-item, which adds the marker, but we're adding our own marker.
-    2. Remove the tapping delay from clickable elements.
+    1. Remove the tapping delay from clickable elements.
 */
 #{$s__namespace}summary {
-    display: block; /* 1 */
-
-    touch-action: manipulation; /* 2 */
+    touch-action: manipulation; /* 1 */
 
     position: relative;
 
     cursor: pointer;
 
     @if $s__use-focus-shadow {
-        &:focus {
-            outline: 0;
+        &:focus,
+        &:focus-visible {
+            outline: 2px solid transparent;
             box-shadow: $s__outline-shadow;
         }
     }
 }
 
-    /*
-        Note there's a Webkit bug (https://bugs.webkit.org/show_bug.cgi?id=213349) that affects
-        Safari and prevents the marker animation on 17.3-.This is acceptable. However, in 13.1 the
-        marker doesn't rotate at all until the focus moves off the summary, so I'm cutting out
-        support for the custom marker on Safari 13.1-
-    */
-    @supports (text-orientation: mixed) {
-        /* Hide the details marker as we're supplying our own. */
-        #{$s__namespace}summary::-webkit-details-marker {
-            display: none;
+    @media (forced-colors: none) {
+
+        /*
+            1. Correct display is  list-item, which adds the marker, but we're adding our own marker.
+        */
+        #{$s__namespace}summary {
+            display: block; /* 1 */
         }
 
         /*
-            Add an icon.
-            Note the CSS triangle approached (commented) actually turns into a square in High Contrast
-            Mode so using a SVG data uri instead.
+            Note there's a Webkit bug (https://bugs.webkit.org/show_bug.cgi?id=213349) that affects
+            Safari and prevents the marker animation on 17.3-.This is acceptable. However, in 13.1 the
+            marker doesn't rotate at all until the focus moves off the summary, so I'm cutting out
+            support for the custom marker on Safari 13.1-
         */
-        #{$s__namespace}details > summary::before {
-            display: block;
-            content: "";
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 20' xml:space='preserve'%3E%3Cpath d='m0 0 18 10L0 20V0z'/%3E%3C/svg%3E");
-            position: absolute;
-            width: 0.8em;
-            height: 0.8em;
-            top: 0.5ex;
-            margin-left: -1.2em;
-            transition: transform 0.5s ease;
-            transform-origin: 40% 50%;
+        @supports (text-orientation: mixed) {
+            /* Hide the details marker as we're supplying our own. */
+            #{$s__namespace}summary::-webkit-details-marker {
+                display: none;
+            }
+
+            /*
+                Add an icon.
+                Note the CSS triangle approached (commented) actually turns into a square in High Contrast
+                Mode so using a SVG data uri instead.
+            */
+            #{$s__namespace}details > summary::before {
+                display: block;
+                content: "";
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 20' xml:space='preserve'%3E%3Cpath d='m0 0 18 10L0 20V0z'/%3E%3C/svg%3E");
+                position: absolute;
+                width: 0.8em;
+                height: 0.8em;
+                top: 0.5ex;
+                margin-left: -1.2em;
+                transition: transform 0.5s ease;
+                transform-origin: 40% 50%;
 
 
-            //display: block;
-            //content: '';
+                //display: block;
+                //content: '';
 
-            //width: 0px;
-            //height: 0px;
-            //border-top: 0.5em solid transparent;
-            //border-bottom: 0.5em solid transparent;
-            //border-left: 0.9em solid currentColor;
+                //width: 0px;
+                //height: 0px;
+                //border-top: 0.5em solid transparent;
+                //border-bottom: 0.5em solid transparent;
+                //border-left: 0.9em solid currentColor;
 
-            //position: absolute;
-            //margin-left: -1.4em;
-            //margin-top: 0.5em;
+                //position: absolute;
+                //margin-left: -1.4em;
+                //margin-top: 0.5em;
 
-            //font-size: 0.75em;
-            //font-family: serif;
+                //font-size: 0.75em;
+                //font-family: serif;
 
-            //vertical-align: top;
+                //vertical-align: top;
 
-            //transition: transform 0.2s ease;
-        }
+                //transition: transform 0.2s ease;
+            }
 
-        #{$s__namespace}details[open] > summary::before {
-            transform: rotate(90deg);
+            #{$s__namespace}details[open] > summary::before {
+                transform: rotate(90deg);
+            }
         }
     }
 

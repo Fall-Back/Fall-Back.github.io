@@ -79,7 +79,7 @@
     1. Prevent extra bottom space when form is inside a container.
 */
 .search-form.search-form {
-  background: #247BA0;
+  background: #d0ba98;
   display: flex;
   flex-wrap: wrap;
   margin: 0;
@@ -151,7 +151,7 @@
   z-index: 1;
   border-radius: 0;
   border: 0;
-  background: #cfe9f4;
+  background: white;
   color: #333;
   height: 1.875em;
   line-height: 0;
@@ -162,7 +162,7 @@
 
 .search-form .search-form__submit:hover,
 .search-form .search-form__submit:focus {
-  background-color: #7cc3e1;
+  background-color: white;
 }
 
 .js-cmr--wide .serach-form--push-right--wide {

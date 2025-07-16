@@ -40,8 +40,16 @@
     @include s__margins($s__base-rem-space-unit, $s__margin-type);
 
     outline: 1px solid transparent; /* 4 */
-}
 
+
+    @if $s__use-focus-shadow {
+        &:focus,
+        &:focus-visible {
+            outline: 2px solid transparent;
+            box-shadow: $s__outline-shadow;
+        }
+    }
+}
 
     /*
         1. Revert zeroed line-height (see) `code`.

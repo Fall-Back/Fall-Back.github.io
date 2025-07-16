@@ -47,6 +47,10 @@
     margin: math.div($s__base-rem-space-unit, 8) 0;
 }
 
+    /*
+        1. Make sure focus is still visible in Forced Colour modes.
+           (https://www.sarasoueidan.com/blog/focus-indicators/)
+    */
 @if $s__use-focus-shadow {
     #{$s__namespace}input:not([type]):focus,
     #{$s__namespace}[type="color"]:focus,
@@ -63,8 +67,24 @@
     #{$s__namespace}[type="text"]:focus,
     #{$s__namespace}[type="time"]:focus,
     #{$s__namespace}[type="url"]:focus,
-    #{$s__namespace}[type="week"]:focus {
-        outline: 0;
+    #{$s__namespace}[type="week"]:focus,
+    #{$s__namespace}input:not([type]):focus-visible,
+    #{$s__namespace}[type="color"]:focus-visible,
+    #{$s__namespace}[type="date"]:focus-visible,
+    #{$s__namespace}[type="datetime"]:focus-visible,
+    #{$s__namespace}[type="datetime-local"]:focus-visible,
+    #{$s__namespace}[type="file"]:focus-visible,
+    #{$s__namespace}[type="month"]:focus-visible,
+    #{$s__namespace}[type="number"]:focus-visible,
+    #{$s__namespace}[type="password"]:focus-visible,
+    #{$s__namespace}[type="search"]:focus-visible,
+    #{$s__namespace}[type="range"]:focus-visible,
+    #{$s__namespace}[type="tel"]:focus-visible,
+    #{$s__namespace}[type="text"]:focus-visible,
+    #{$s__namespace}[type="time"]:focus-visible,
+    #{$s__namespace}[type="url"]:focus-visible,
+    #{$s__namespace}[type="week"]:focus-visible {
+        outline: 2px solid transparent; /* [1] */
         box-shadow: $s__outline-shadow;
     }
 
@@ -73,8 +93,10 @@
         accessibility ...
     */
     #{$s__namespace}[type="checkbox"]:focus,
-    #{$s__namespace}[type="radio"]:focus {
-        outline: 0;
+    #{$s__namespace}[type="radio"]:focus,
+    #{$s__namespace}[type="checkbox"]:focus-visible,
+    #{$s__namespace}[type="radio"]:focus-visible {
+        outline: 2px solid transparent; /* [1] */
         box-shadow: $s__outline-shadow;
     }
 

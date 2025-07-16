@@ -108,7 +108,7 @@
        --Prevent any overflow and possible contain floats.--
 */
 .dropdown .dropdown__area {
-  background-color: #247BA0; /* 1 */
+  background-color: #d0ba98; /* 1 */
   color: #fff;
   padding: 0;
 }
@@ -158,7 +158,7 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 
 .dropdown .dropdown__control {
   color: #fff;
-  background-color: #247BA0;
+  background-color: #d0ba98;
 }
 
 /*

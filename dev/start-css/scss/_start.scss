@@ -184,21 +184,27 @@ html[lang] {
     'Global' reset.
 */
 * {
-    @supports (color: oklch(from red l c h)) {
-        color: oklch(from var(--background-color) var(--l) 0 h / 0.9);
-    }
     margin:  0;
     padding: 0;
 }
+/*
+@supports (color: oklch(from red l c h)) {
+    :is(.class, *) {
+        --color: oklch(from var(--background-color) var(--l) 0 h / 0.9);
+        color: var(--color);
+    }
+}
+*/
+
 
 /*
-    Button colour is declared in TFS, so need to redclare here as above * too low specificity:
-*/
-button {
+    Some colours are declared in TFS, so need to redeclare here as above * too low specificity:
+*//*
+button, th {
     @supports (color: oklch(from red l c h)) {
         color: oklch(from var(--background-color) var(--l) 0 h / 0.9);
     }
-}
+}*/
 
 /*
     1. Add box sizing inheritance in all browsers.
@@ -479,6 +485,11 @@ main :target {
     body > * {
         margin-bottom: 0;
     }
+}
+
+
+[data-fs-layout~="stack"] > * + * {
+    margin-top: var(--m);
 }
 
 

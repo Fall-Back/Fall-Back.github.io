@@ -99,13 +99,16 @@
             There's a much long essay on this brewing and I'll add the link when it's done.
 
             Colour references for ease of search/replace:
-            colour-1: darkslategrey
-            colour-2: silver
-        */
+            https://www.color-hex.com/color-palette/103353
+            colour-1: #d0ba98   (208,186,152)
+            colour-2: #d8caa9   (216,202,169)
+            colour-3: #8d8079   (141,128,121)
+            colour-4: #b8b6b0   (184,182,176)
+            colour-5: #aeb2a6   (174,178,166)
 
         /* --| Core styles |--------------------------------------------------------------------- */
         html {
-            background: darkslategrey;
+            background: #8d8079;
         }
 
         body {
@@ -173,11 +176,11 @@
         }
 
         /* Links and image links */
-        @supports not (color: oklch(from red l c h)) {
+        /*@supports not (color: oklch(from red l c h)) {*/
         a[href] {
             color: inherit;
         }
-        }
+
 
         a[href]:hover {
             text-decoration: none;
@@ -228,8 +231,11 @@
         /* If you're using forms, keep this: */
 
         button {
-            background-color: lightslategray;
-            color: #fff;
+            background-color: #D0BA98;
+        }
+
+        button:focus {
+            outline: 1px solid currentColor;
         }
 
         button,
@@ -282,11 +288,15 @@
         }
 
         th {
-            background: silver;
+            background-color: #D0BA98;
         }
 
         caption, td, th {
             padding: 0.5em;
+        }
+
+        caption {
+            max-width: 44em;
         }
 
         /*
@@ -315,10 +325,6 @@
             white-space: nowrap;
         }
     </style>
-    <!--
-        The above, minified:
-        fieldset,hr{margin:1em 0}image,img,object,svg,video{max-width:100%;height:auto}pre,table{width:100%}html{background:#2f4f4f}body{font:1em/1.2 sans-serif;padding:2em;margin:0 auto;max-width:50em;background:#fff}details,dialog,main,summary{display:block}@supports (list-style-type:disclosure-closed){summary{display:list-item}}mark{background:#ff0;color:#000}[hidden],template{display:none}fieldset{border:1px solid currentColor;padding:1em}image,img,object,svg{-ms-interpolation-mode:bicubic;vertical-align:middle;border:0}a[href]{color:inherit}a[href]:hover{text-decoration:none}a[href] img{padding:.3em;margin:.2em}figure{max-width:100%;overflow-x:auto}_:-o-prefocus,:root figure{max-width:initial;overflow-x:visible}hr{border-style:solid;border-width:0 0 1px;color:currentColor}pre{overflow-x:scroll;overflow-y:auto}button{background-color:#778899;color:#fff}button,input,label,select,textarea{vertical-align:middle;min-height:2.2em;margin:.2em 0}button,input[type=checkbox],input[type=radio],label,select{cursor:pointer}button,input,textarea{padding:0 .5em;line-height:1.5}table{border:1px solid currentColor;border-collapse:collapse}table[role=presentation]{border:0;table-layout:fixed}table[role=presentation] td{border:0}th{background:silver}caption,td,th{padding:.5em}[data-fs-text~=right]{text-align:right}[data-fs-text~=center]{text-align:center}[data-fs-text~=larger]{font-size:larger}[data-fs-text~=nowrap]{white-space:nowrap}
-    -->
 
     <!-- From here we're cutting off IE9- to stop all kinds of JS and CSS fails. -->
     <!--[if !IE]><!-->
@@ -349,12 +355,12 @@
         }
 
         [data-fs-block~="background"] {
-            background: silver;
+            background: #b8b6b0;
             padding: 1em;
         }
 
         [data-fs-block~="inverted"]  {
-            background-color: darkslategrey;
+            background-color: #8d8079;
             padding: 1em;
         }
 
@@ -370,7 +376,7 @@
         }
 
         [data-fs-block~="border"] {
-            border: 1px solid darkslategrey;
+            border: 1px solid #8d8079;
             padding: 1em;
         }
 
@@ -464,6 +470,21 @@
         [data-fs-hr="larger"] {
             border-top-width: 10px;
         }
+
+        /* Visually hidden / SR only: */
+        [data-hidden="visually"]:not(:focus):not(:active) {
+            border: 0 !important;
+            clip: rect(1px, 1px, 1px, 1px) !important;
+            -webkit-clip-path: inset(50%) !important;
+                    clip-path: inset(50%) !important;
+            height: 1px !important;
+            overflow: hidden !important;
+            padding: 0 !important;
+            position: absolute !important;
+            width: 1px !important;
+            white-space: nowrap !important;
+        }
+
     </style>
     <!--
         The above, minified:

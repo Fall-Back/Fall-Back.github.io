@@ -2,16 +2,17 @@
 layout: dev/structure--basic
 cut: prm
 ie11: false
+startcss: false
 head_style: |
 
     :root {
-        --base-ui-color: #5f4776;
+        /*--base-ui-color: #2F4F4F;*/
         /*--caption-color: darkslateblue;
         --caption-color--text: #fff;*/
     }
 
     /* These could be generated server-side if we wanted to support older browsers: */
-    @supports not (background-color: color-mix(in lab, red, black 50%)) {
+    /*@supports not (background-color: color-mix(in lab, red, black 50%)) {
 
         :root {
             --base-ui-color-lightest: #DDD7E2;
@@ -33,7 +34,7 @@ head_style: |
             --base-ui-color-darker--text:   var(--color--inverse);
             --base-ui-color-darkest--text:  var(--color--inverse);
         }
-    }
+    }*/
 
 
 
@@ -78,74 +79,51 @@ head_style: |
     /* Colors */
     #colours > p {
         padding: var(--base-rem-space-unit);
-    }
-
-    #colours > p:first-child {
-        --background-color: var(--base-ui-color-lightest);
-        background-color: var(--background-color);
-    }
-
-    #colours > p:nth-child(2) {
-        --background-color: var(--base-ui-color-lighter);
-        background-color: var(--background-color);
-    }
-
-    #colours > p:nth-child(3) {
-        --background-color: var(--base-ui-color-light);
-        background-color: var(--background-color);
-    }
-
-    #colours > p:nth-child(4) {
-        --background-color: var(--base-ui-color);
-        background-color: var(--background-color);
-    }
-
-    #colours > p:nth-child(5) {
-        --background-color: var(--base-ui-color-dark);
-        background-color: var(--background-color);
-    }
-
-    #colours > p:nth-child(6) {
-        --background-color: var(--base-ui-color-darker);
-        background-color: var(--background-color);
-    }
-
-    #colours > p:last-child {
-        --background-color: var(--base-ui-color-darkest);
+        background-color: currentColor;
         background-color: var(--background-color);
     }
 
     @supports not (color: oklch(from red l c h)) {
         #colours > p:first-child {
-            color: var(--base-ui-color-lightest--text);
+            --color: var(--base-ui-color-lightest--text);
         }
 
         #colours > p:nth-child(2) {
-            color: var(--base-ui-color-lighter--text);
+            --color: var(--base-ui-color-lighter--text);
         }
 
         #colours > p:nth-child(3) {
-            color: var(--base-ui-color-light--text);
+            --color: var(--base-ui-color-light--text);
         }
 
         #colours > p:nth-child(4) {
-            color: var(--base-ui-color--text);
+            --color: var(--base-ui-color--text);
         }
 
         #colours > p:nth-child(5) {
-            color: var(--base-ui-color-dark--text);
+            --color: var(--base-ui-color-dark--text);
         }
 
         #colours > p:nth-child(6) {
-            color: var(--base-ui-color-darker--text);
+            --color: var(--base-ui-color-darker--text);
         }
 
         #colours > p:last-child {
-            color: var(--base-ui-color-darkest--text);
+            --color: var(--base-ui-color-darkest--text);
         }
     }
 
 
+    /* Sizes */
+
+    #sizes > p > span {
+        display: inline-block;
+        margin-right: 1em;
+        outline: 2px solid transparent;
+        background-color: var(--base-ui-color);
+        height: var(--sz-s);
+        width: var(--width, var(--sz-m));
+    }
 
 
     .tb-baseline main {

@@ -46,9 +46,14 @@
     resize: $s__textarea-resize;
 }
 
+/*
+    1. Make sure focus is still visible in Forced Colour modes.
+        (https://www.sarasoueidan.com/blog/focus-indicators/)
+*/
 @if $s__use-focus-shadow {
-    #{$s__namespace}textarea:focus {
-        outline: 0;
+    #{$s__namespace}textarea:focus,
+    #{$s__namespace}textarea:focus-visible {
+        outline: 2px solid transparent; /* [1] */
         box-shadow: $s__outline-shadow;
     }
 }

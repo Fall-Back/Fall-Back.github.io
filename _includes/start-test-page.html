@@ -57,24 +57,25 @@ Edge 79+, Chrome 74+, Firefox 63+, Opera 64+, Safari 10.1+, iOS 10.3+, Android 8
 
 <h2>Colours</h2>
 <div id="colours">
-    <p>Lightest</p>
-    <p>Lighter</p>
-    <p>Light</p>
-    <p>Base</p>
-    <p>Dark</p>
-    <p>Darker</p>
-    <p>Darkest</p>
+    <p style="--background-color: var(--base-ui-color-lightest);"><input type="color" value="#F6F1E9"> Lightest <span>(#F6F1E9)</span></p>
+    <p style="--background-color: var(--base-ui-color-lighter);"><input type="color" value="#EDE3D5"> Lighter <span>(#EDE3D5)</span></p>
+    <p style="--background-color: var(--base-ui-color-light);"><input type="color" value="#E4D5C0"> Light <span>(#E4D5C0)</span></p>
+    <p style="--background-color: var(--base-ui-color);"><input type="color" value="#D0BA98"> Base <span>(#D0BA98)</span></p>
+    <p style="--background-color: var(--base-ui-color-dark);"><input type="color" value="#A39177"> Dark <span>(#A39177)</span></p>
+    <p style="--background-color: var(--base-ui-color-darker);"><input type="color" value="#776B59"> Darker <span>(#776B59)</span></p>
+    <p style="--background-color: var(--base-ui-color-darkest);"><input type="color" value="#4F473C"> Darkest <span>(#4F473C)</span></p>
 </div>
 
-<h2 id="sizes">Sizes</h2>
-
-<p><span style="display: inline-block; background-color: var(--base-ui-color); height: var(--sz-s); width: var(--sz-xxs);"></span> XXS (/8)</p>
-<p><span style="display: inline-block; background-color: var(--base-ui-color); height: var(--sz-s); width: var(--sz-xs);"></span> XS (/4)</p>
-<p><span style="display: inline-block; background-color: var(--base-ui-color); height: var(--sz-s); width: var(--sz-s);"></span> S (/2)</p>
-<p><span style="display: inline-block; background-color: var(--base-ui-color); height: var(--sz-s); width: var(--sz-m);"></span> M</p>
-<p><span style="display: inline-block; background-color: var(--base-ui-color); height: var(--sz-s); width: var(--sz-l);"></span> L (*2)</p>
-<p><span style="display: inline-block; background-color: var(--base-ui-color); height: var(--sz-s); width: var(--sz-xl);"></span> XL (*4)</p>
-<p><span style="display: inline-block; background-color: var(--base-ui-color); height: var(--sz-s); width: var(--sz-xxl);"></span> XXl (*8)</p>
+<h2>Sizes</h2>
+<div id="sizes">
+    <p><span style="--width: var(--sz-xxs);"></span> XXS (/8)</p>
+    <p><span style="--width: var(--sz-xs);"></span> XS (/4)</p>
+    <p><span style="--width: var(--sz-s);"></span> S (/2)</p>
+    <p><span style="--width: var(--sz-m);"></span> M</p>
+    <p><span style="--width: var(--sz-l);"></span> L (*2)</p>
+    <p><span style="--width: var(--sz-xl);"></span> XL (*4)</p>
+    <p><span style="--width: var(--sz-xxl);"></span> XXl (*8)</p>
+</div>
 
 <h2 id="accessibility">Accessibility</h2>
 
@@ -389,12 +390,23 @@ Edge 79+, Chrome 74+, Firefox 63+, Opera 64+, Safari 10.1+, iOS 10.3+, Android 8
     No href: <a><svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em"><use xlink:href="#icon-edit"></use></svg>Icon then text</a>, closely followed by <a>Text then icon<svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em"><use xlink:href="#icon-edit"></use></svg></a> and some more normal text.<br>
     With href: <a href=""><svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em"><use xlink:href="#icon-edit"></use></svg>Icon then text</a>, closely followed by <a href="">Text then icon<svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em"><use xlink:href="#icon-edit"></use></svg></a> and some more normal text.
 </p>
+
+<p>
+    <button><svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em"><use xlink:href="#icon-search"></use></svg><span> Search</span></button> Testing an icon in a button.
+</p>
+
+
+<p>
+    <button><svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em"><use xlink:href="#icon-search"></use></svg><span data-hidden="visually"> Search</span></button> Testing an icon in a button with SR-only text.
+</p>
+
+
 <p>
     On a related note, very long words like "rindfleischetikettierungsüberwachungsaufgabenübertragungsgesetz" (see <a href="https://en.wikipedia.org/wiki/Rinderkennzeichnungs-_und_Rindfleischetikettierungs%C3%BCberwachungsaufgaben%C3%BCbertragungsgesetz" rel="external">rindfleischetikettierungsüberwachungsaufgabenübertragungsgesetz</a>) need to be catered for with regards to word-wrapping.
 </p>
 
 <p>Images that are links need extra styles and testing:<br>
-    <a href="#"><img onerror="this.dataset.broken='true'" src="/dev/media/poster.jpg" height="144" width="266.226" style="width: auto; max-height: 138px;" rel="external" alt="Big Buck Bunny"></a>
+    <a href="#"><img onerror="this.dataset.broken='true'" src="/dev/media/poster.jpg" height="144" width="266.226" style="width: auto; max-height: 144px;" rel="external" alt="Big Buck Bunny"></a>
 </p>
 
 <p>
@@ -828,10 +840,12 @@ explanation.
     Object loading an SVG:
 </p>
 <div class="box">
-    <object type="image/svg+xml" data="/dev/media/fallback-logo.svg" height="144" width="266" class="svg__image" style="width: auto; max-height: 144px;">
+    <object type="image/svg+xml" data="/dev/media/fallback-logo.svg" height="144" width="266" class="svg__image" style="width: auto; max-height: 144px;" tabindex="-1">
         <p>Object failed to load.</p>
     </object>
 </div>
+
+<p>Note, I'm not sure <code>&lt;object&gt;</code> elements are used much in the web anymore, but it's worth noting here that <code>tabindex="-1"</code> has been applied to the object element above because otherwise it has a keyboard tab stop (at least in Chrome and Firefox) but the browsers don't skip to it and there's no need for it as it's not interractive as it's showing an image.</p>
 
 
 <p>
@@ -884,7 +898,7 @@ explanation.
 <p>Press this <button>button</button> then tab twice to see this effect. <a href="#test-link">normal link for comparison</a>.</p>
 <p>
     <a href="#">
-        <img onerror="this.dataset.broken='true'" src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 354px;">
+        <img onerror="this.dataset.broken='true'" src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 359px;">
     </a>
 </p>
 
@@ -895,7 +909,7 @@ explanation.
 </p>
 <p>
     <a href="#">
-        <img onerror="this.dataset.broken='true'" src="/dev/media/poster.jpg"  alt="Big Buck Bunny" height="200" width="355" style="width: auto; max-height: 199px;">
+        <img onerror="this.dataset.broken='true'" src="/dev/media/poster.jpg"  alt="Big Buck Bunny" height="200" width="355" style="width: auto; max-height: 192px;">
     </a>
 </p>
 
@@ -939,14 +953,14 @@ External linked image:
 </p>
 <p>
     <a href="https://en.wikipedia.org/wiki/Big_Buck_Bunny" rel="external">
-        <img onerror="this.dataset.broken='true'" src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 355px;">
+        <img onerror="this.dataset.broken='true'" src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 347px;">
     </a>
 </p>
 
 <p>Rounded linked image:</p>
 <p>
     <a href="#">
-        <img onerror="this.dataset.broken='true'" src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 355px; border-radius: 400px;">
+        <img onerror="this.dataset.broken='true'" src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 347px; border-radius: 400px;">
     </a>
 </p>
 

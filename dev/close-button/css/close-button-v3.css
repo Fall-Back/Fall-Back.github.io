@@ -188,6 +188,10 @@
   cursor: pointer;
   touch-action: manipulation; /* 1 */
   -webkit-appearance: none;
+  /*
+      1. Make sure focus is still visible in Forced Colour modes.
+         (https://www.sarasoueidan.com/blog/focus-indicators/)
+  */
   border: 0;
   padding: 0.6rem;
   min-height: auto;
@@ -209,8 +213,8 @@
   --background-color: var(--button-background-color-alt, var(--base-ui-color-light));
   background-color: var(--background-color);
 }
-.close-button:focus {
-  outline: 0;
+.close-button:focus, .close-button:focus-visible {
+  outline: 2px solid transparent; /* [1] */
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
 }
 

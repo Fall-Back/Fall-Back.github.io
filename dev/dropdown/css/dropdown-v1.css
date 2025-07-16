@@ -92,7 +92,7 @@
     2. Prevent any overflow and possible contain floats.
 */
 .dropdown .dropdown__area {
-  background-color: #247BA0; /* 1 */
+  background-color: #d0ba98; /* 1 */
   color: #fff;
   overflow: hidden; /* 2 */
   padding: 0;
@@ -139,7 +139,7 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__button {
 
 .dropdown .dropdown__button {
   color: #fff;
-  background-color: #247BA0;
+  background-color: #d0ba98;
 }
 
 /*
@@ -151,12 +151,12 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__button {
 .dropdown .dropdown__button:active,
 .dropdown .dropdown__button[aria-expanded=true] {
   color: #fff;
-  background-color: #174e66;
+  background-color: #ba9967;
 }
 
 .dropdown .dropdown__button:focus {
   color: #fff;
-  background-color: #1d6583;
+  background-color: #c5aa7f;
 }
 
 .dropdown .dropdown__button {

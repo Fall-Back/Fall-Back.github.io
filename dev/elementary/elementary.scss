@@ -99,10 +99,11 @@ p[role="list"] span[role="listitem"] > span:last-child {
 */
 
 /* Visually hidden text fallback labels for svg icons */
-svg[aria-hidden="true"] + span[aria-hidden="false"] {
+/* Not sure why I have this when StartCSS has data-hidden=visually ?? */
+/*svg[aria-hidden="true"] + span[aria-hidden="false"] {
     clip: rect(0 0 0 0);
     position: absolute;
-}
+}*/
 
 // Allow for cells to span columns. Experimental. Not sure if it really fits with 'Elementary':
 #{$es__page_main__header--listing__list} > [data-size="medium"] {
