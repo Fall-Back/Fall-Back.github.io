@@ -2879,7 +2879,8 @@ _::-webkit-full-page-media, _:future, :root [type=radio]:focus {
       NVDA announces "link page link 1". Annoying. This only happens with continuous reading but it's
       still a problem.
   */
-  [data-hidden=visually]:not(:focus):not(:active) {
+  [data-hidden=visually],
+[data-hidden=visually-revealable]:not(:focus):not(:active) {
     border: 0 !important;
     clip: rect(1px, 1px, 1px, 1px) !important;
     -webkit-clip-path: inset(50%) !important;
