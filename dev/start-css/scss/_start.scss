@@ -48,8 +48,8 @@ $s__using-Start-CSS: true;
 @import '_03-start-tokens.scss';
 @import '_04-start-settings.scss';
 
-//@supports (color: color-mix(in lab, white, black 50%)) {
-@supports (font-size: clamp(10px, 1vw, 12px)) {
+@supports (selector(:has(*))) and (color: color-mix(in lab, white, black 50%)) {
+//@supports (font-size: clamp(10px, 1vw, 12px)) {
 
 @import '_05-start-custom-properties.scss';
 

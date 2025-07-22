@@ -195,7 +195,7 @@
 /*
     ASIDE
 */
-@supports (font-size: clamp(10px, 1vw, 12px)) {
+@supports (selector(:has(*))) and (color: color-mix(in lab, white, black 50%)) {
   @property --background-color {
     syntax: "<color>";
     inherits: true;

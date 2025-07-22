@@ -22,6 +22,12 @@
     //color: $e__sidebar--text-color;
     //background-color: $e__sidebar--background-color;
 
-    --background-color: var(--sidebar-color-light, var(--base-ui-color-lighter));
-    @include s__theme(var(--sidebar-color-light--text, var(--base-ui-color-lighter--text)));
+    --background-color: var(--sidebar-color-lighter, var(--base-ui-color-lighter));
+    @include s__theme(var(--sidebar-color-lighter--text, var(--base-ui-color-lighter--text)));
+}
+
+
+#{$es__page_sidebar_after_main} {
+    --background-color: var(--sidebar-color-light, var(--base-ui-color-light));
+    @include s__theme(var(--sidebar-color-light--text, var(--base-ui-color-light--text)));
 }

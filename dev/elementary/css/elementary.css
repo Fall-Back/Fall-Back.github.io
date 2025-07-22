@@ -200,7 +200,7 @@
 /*
     ASIDE
 */
-@supports (font-size: clamp(10px, 1vw, 12px)) {
+@supports (selector(:has(*))) and (color: color-mix(in lab, white, black 50%)) {
   @property --background-color {
     syntax: "<color>";
     inherits: true;
@@ -2787,1661 +2787,1591 @@ textarea:focus-visible {
   }
   /*! End Start-CSS */
 }
-/*-------------------------------------------------------------------------------------------------|
+@supports (selector(:has(*))) and (color: color-mix(in lab, white, black 50%)) {
+  /*-------------------------------------------------------------------------------------------------|
 
-    COOKIE NOTICE
+      COOKIE NOTICE
 
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
 
-    COOKIE NOTICE
-    ============================================================================================
+      COOKIE NOTICE
+      ============================================================================================
 
-|-------------------------------------------------------------------------------------------------*/
-/*------------------------------------------------------------------------------------------------*\
-    Import Fall-Back vars:
+  |-------------------------------------------------------------------------------------------------*/
+  /*------------------------------------------------------------------------------------------------*\
+      Import Fall-Back vars:
 
-    Slightly hacky way of allowing the main UI colour of this pattern to be:
-     - base-ui colour (if set)
-     - otherwise #999
-     - but can be specifically overridden
-\*------------------------------------------------------------------------------------------------*/
-/*------------------------------------------------------------------------------------------------*/
-/* -- Basic styles ------------------------------------------------------------------------------ */
-#cookie_notice {
-  position: fixed;
-  width: 100%;
-  left: 0;
-  bottom: 0;
-  z-index: 2000;
-  display: flex;
-  align-items: flex-start;
-  padding: 0.75em;
-  margin: 0;
-  background-color: #000;
-  color: #fff;
-  border: 0;
-  opacity: 1;
-  -webkit-transition: opacity 1s ease 0s, z-index 1s ease 1s;
-  transition: opacity 1s ease 0s, z-index 1s ease 1s;
-}
-
-#cookie_notice[data-close=true] {
-  opacity: 0;
-  z-index: 0;
-}
-
-#cookie_notice p {
-  padding: 0 0.75em;
-  margin: 0.375em 0;
-}
-
-#cookie_notice p a[href] {
-  color: #f8cdc0;
-}
-
-#cookie_notice p a[href]:hover,
+      Slightly hacky way of allowing the main UI colour of this pattern to be:
+       - base-ui colour (if set)
+       - otherwise #999
+       - but can be specifically overridden
+  \*------------------------------------------------------------------------------------------------*/
+  /*------------------------------------------------------------------------------------------------*/
+  /* -- Basic styles ------------------------------------------------------------------------------ */
+  #cookie_notice {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: flex-start;
+    padding: 0.75em;
+    margin: 0;
+    background-color: #000;
+    color: #fff;
+    border: 0;
+    opacity: 1;
+    -webkit-transition: opacity 1s ease 0s, z-index 1s ease 1s;
+    transition: opacity 1s ease 0s, z-index 1s ease 1s;
+  }
+  #cookie_notice[data-close=true] {
+    opacity: 0;
+    z-index: 0;
+  }
+  #cookie_notice p {
+    padding: 0 0.75em;
+    margin: 0.375em 0;
+  }
+  #cookie_notice p a[href] {
+    color: #f8cdc0;
+  }
+  #cookie_notice p a[href]:hover,
 #cookie_notice p a[href]:active,
 #cookie_notice p a[href]:focus {
-  color: #f3a892;
-}
-
-/* ---------------------------------------------------------------------------------------------- */
-/*-------------------------------------------------------------------------------------------------|
-
-    ELEMENTARY
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    ELEMENTARY
-    ============================================================================================
-
-    Expected structure for core Elementary to work:
-
-    <html>
-    <head>
-        ...
-    </head>
-    <body>
-        <hidden elements like svg and css-only message>
-        <header>
-        <main>
-        ?<aside> [1]
-        <footer>
-        ?<script> [1]
-    </body>
-    </html>
-
-    NOTES
-    -----
-
-    1.  These elements are optional, and there could be more than one <script> element, but the
-        MAIN POSITION SELECTOR (below) needs to be altered via the $main_position_selector variable
-        so that it takes into account the number of elements invoked.
-        Note that the way this works accounts for there *sometimes* being an aside present or not
-        (so if it's not there the selector matches the main element and makes it span both columns).
-
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    ELEMENTARY SETTINGS
-    ============================================================================================
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    BANNER
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    BANNER - LOGO
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    BANNER - NAVBAR
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    MAIN
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    MAIN - CONTENT
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    MAIN - CONTENT - LISTING
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    SIDEBAR
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    FOOTER
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    COMPONENTS
-    --------------------------------------------------------------------------------------------
-
-    Components are meant to be reusable in any context so extra care/steps have been taken with
-    the markup and selectors.
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    COMPONENTS - CARD
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    COMPONENTS - CTA
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    COMPONENTS - HERO
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    COMPONENTS - IMAGES
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    COMPONENTS - INFO OVERLAY
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    ELEMENTARY MIXINS
-    ============================================================================================
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    ELEMENTARY SELECTORS
-    ============================================================================================
-
-    Elementary relies solely on context and relative DOM position. This is why it should only be
-    for 'light' projects, where there isn't much variety and patterns can be closely adhered to.
-
-    With that in mind, if the conventions are learned, there is some flexibility in the system,
-    particularly in regards to the extract DOM elements that are used, so long as any changes to
-    the selectors below are carefully considered so as not to introduce conflicts.
-
-
-    Conventions
-    -----------
-
-    DIV
-        DIV's are semantically meaningless/neutral as far as AT is concerned, but since 'div' is
-        short for DIVIDER it makes logical sense to the HTML author that it is a division of content
-        and thus is appropriate for situations where content may need to be visually separated from
-        it's surroundings.
-
-    Specificity
-    -----------
-
-    Some of the selectors may look overly specific, but it's really important in such a fragile
-    system to be as specific as possible; to really say exactly what we mean.
-    For example, on a Listing page when writing the selector we could could say:
-    "Any `ul` that is a direct child of the inner wrapper should be a Gallery"
-    This would be `div > ul`. However, we use `div > header ~ ul` because what we really mean to say
-    is "Any `ul` AFTER the `header`", because if there was a list BEFORE the `header` for some
-    reason, it will not need to be a Gallery.
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    STYLE NOTICE
-    --------------------------------------------------------------------------------------------
-
-    This container shows a message if CSS is unavailable. It is normally the first element on the
-    page after the SVG Icons.
-
-    ```
-    <body>
-        <svg ... />
-        <div>
-            [CSS message]
-        </div>
-        ...
-    </body>
-    ```
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    PAGE
-    --------------------------------------------------------------------------------------------
-
-    The page is broken into sections: BANNER, MAIN, SIDEBAR (optional) and FOOTER.
-
-    ```
-    <body>
-        ...
-        <header/>
-        <main/>
-        ?<aside/>?
-        <footer>
-        ...
-    </body>
-    ```
-
-    BANNER (HEADER)
-        A fairly typical page banner where you'd expect to find a logo, primary navigation,
-        search, and maybe Calls to Action.
-
-    MAIN
-        The main content of the page. This may be one of several types (more on that later);
-        those types are patterns in their own right and should be declared with their own
-        unique markup.
-
-    SIDEBAR (ASIDE)
-        Optional. It con be omitted on all or only some pages and the layout should
-        retain it's integrity. This means the DOM is quite fragile and sensitive to change so be
-        careful. More on that later.
-
-    FOOTER
-        This is a typical page footer and would contain the usual Copyright notice and key links
-        etc.
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    BANNER - LOGO
-    --------------------------------------------------------------------------------------------
-
-    This is the pattern needed to match the logo <a> in the banner.
-
-    ```
-        <header>
-            <a/>
-            ...
-        </header>
-    ```
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    BANNER - NAVBAR
-    --------------------------------------------------------------------------------------------
-
-    This is the pattern needed to match primary navigation. The links are expected to be in an
-    inline list.
-
-    ```
-    <header>
-        ...
-        <nav>
-            <p role="list">
-                <span role="listitem">
-                    <a/>
-                </span>
-                ...
-            </p>
-        </nav>
-        ...
-    </header>
-    ```
-|-------------------------------------------------------------------------------------------------*/
-/*------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    MAIN
-    --------------------------------------------------------------------------------------------
-
-    The MAIN area is both a semantic landmark and a content wrapper.
-    The MAIN pattern expects there to be *another* wrapper immediately inside it. What this wrapper
-    is determines how the content inside that is handled. In other words the markup chosen for this
-    internal wrapper should be appropriate to the rest of the content.
-    This choice determines the PAGE TYPE.
-
-    ELEMENTARY attempts to provide common PAGE TYPES - PAGE TYPES can display any content, of
-    course, but the layout, focus and functionality of each TYPE is quite different.
-
-    PAGE TYPES
-
-    Article
-        This pattern should use `<article>` as the inner wrapper and should be used for pages where
-        longform text is the primary focus of the page. E.g. a Blog Post or Documentation Page.
-
-    Listing
-        This pattern should use a `<div>` as the inner wrapper (since no other semantic element is
-        more appropriate) and is primarily intended as a Gallery Page. This could be a grid of
-        cards or images, for example. It's possible to use this pattern for arbitrary markup, but
-        all `<ul>`s that are direct children of the inner `<div>` will be displayed as a gallery.
-
-    More?...
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    MAIN - HEADER
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    COMPONENTS
-    --------------------------------------------------------------------------------------------
-
-    Components are meant to be reusable in any context so extra care/steps have been taken with
-    the markup and selectors.
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    COMPONENTS - CARD
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    COMPONENTS - CTA (only allowed in Cards, currently)
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    COMPONENTS - HERO
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    ///COMPONENTS - ICON
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    COMPONENTS - IMAGES
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    COMPONENTS - INFO OVERLAY
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*
-    Sticky Footer needs this
-*/
-html,
-body {
-  height: 100%;
-}
-
-/*
-    Note we still need the flexbox for the sticky footer in the event of no Grid support or narrower
-    viewports where the Grid isn't applied but the content is still small enough to need the sticky
-    footer behavior.
-*/
-body {
-  display: flex;
-  flex-direction: column;
-  max-width: 1080px;
-  padding: 0;
-}
-
-body > * {
-  flex: 0 0 auto;
-}
-
-/* Grid */
-@supports (display: grid) {
-  @media only screen and (min-width: 50em) {
-    body {
-      display: grid;
-      align-items: stretch;
-      width: auto;
-      height: auto;
-      min-height: 100%;
-      grid-template-columns: 5fr 2fr;
-      grid-template-rows: auto auto minmax(auto, 1fr) auto;
-    }
-    [data-elementary] body > header,
-[data-elementary] body > footer {
-      padding: 1.2rem;
-      grid-column: 1/-1;
-    }
-    [data-elementary] body > header {
-      grid-row: 1;
-    }
-    [data-elementary] body > main {
-      grid-column: 1;
-      grid-row: 2/-1;
-      max-width: 100%;
-    }
-    /*
-        If there's no asides at all, we want the main to span both rows. Note this is the
-        only way I can think of doing this, but it's fragile - it will break if elements at this
-        level get added or removed. (note :has() would be better when supoort is good enough)
-        [data-elementary] body > header + main:has(+ :not(aside)) {
-    */
-    [data-elementary] body > header + main:nth-last-child(3) {
-      grid-column: 1/-1;
-    }
-    [data-elementary] body > aside {
-      grid-column: 2;
-      grid-row: 2;
-    }
-    /*
-        If there's no 'bottom' aside, we want the first one span 2 columns. Note this is the
-        only way I can think of doing this, but it's fragile - it will break if elements at this
-        level get added or removed.
-    */
-    [data-elementary] body > aside:nth-last-child(4) {
-      grid-row: 2/-1;
-    }
-    [data-elementary] body > main + aside {
-      grid-column: 2;
-      grid-row: 3;
-    }
-    /*
-        MAIN POSITION SELECTOR
-
-        If there's no aside (sidebar) then main has to span both columns:
-        Note this is fragile and depends on following the Elementary pattern absolutely.
-        What it says is that if main is the X from last element, it spans all columns.
-        If there are more elements after the `main` element (as in, there's the extra `aside`),
-        then the selector won't match. Change this in local SCSS and be wary of adding or
-        removing elements via JS.
-
-    */
-    /*[data-elementary] body > main:nth-last-child(3) {
-        grid-column: 1 / -1;
-    }*/
-    [data-elementary] body > footer {
-      grid-row: -1;
-    }
+    color: #f3a892;
   }
-}
-/*------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
+  /* ---------------------------------------------------------------------------------------------- */
+  /*-------------------------------------------------------------------------------------------------|
 
-    BANNER
-    ============================================================================================
+      ELEMENTARY
 
-|-------------------------------------------------------------------------------------------------*/
-/*
-    Banner
-*/
-[data-elementary] body > header {
-  margin: 0;
-  padding: 0;
-}
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
 
-[data-elementary] body > header > fieldset {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  border: 0 none;
-  --background-color: var(--banner-color, var(--base-ui-color));
-  background-color: var(--background-color);
-}
-@supports not (color: oklch(from red l c h)) {
-  [data-elementary] body > header > fieldset {
-    --text-color: var(--banner-color--text, var(--base-ui-color--text));
-    color: var(--text-color);
+      ELEMENTARY
+      ============================================================================================
+
+      Expected structure for core Elementary to work:
+
+      <html>
+      <head>
+          ...
+      </head>
+      <body>
+          <hidden elements like svg and css-only message>
+          <header>
+          <main>
+          ?<aside> [1]
+          <footer>
+          ?<script> [1]
+      </body>
+      </html>
+
+      NOTES
+      -----
+
+      1.  These elements are optional, and there could be more than one <script> element, but the
+          MAIN POSITION SELECTOR (below) needs to be altered via the $main_position_selector variable
+          so that it takes into account the number of elements invoked.
+          Note that the way this works accounts for there *sometimes* being an aside present or not
+          (so if it's not there the selector matches the main element and makes it span both columns).
+
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      ELEMENTARY SETTINGS
+      ============================================================================================
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      BANNER
+      --------------------------------------------------------------------------------------------
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      BANNER - LOGO
+      --------------------------------------------------------------------------------------------
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      BANNER - NAVBAR
+      --------------------------------------------------------------------------------------------
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      MAIN
+      --------------------------------------------------------------------------------------------
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      MAIN - CONTENT
+      --------------------------------------------------------------------------------------------
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      MAIN - CONTENT - LISTING
+      --------------------------------------------------------------------------------------------
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      SIDEBAR
+      --------------------------------------------------------------------------------------------
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      FOOTER
+      --------------------------------------------------------------------------------------------
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      COMPONENTS
+      --------------------------------------------------------------------------------------------
+
+      Components are meant to be reusable in any context so extra care/steps have been taken with
+      the markup and selectors.
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      COMPONENTS - CARD
+      --------------------------------------------------------------------------------------------
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      COMPONENTS - CTA
+      --------------------------------------------------------------------------------------------
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      COMPONENTS - HERO
+      --------------------------------------------------------------------------------------------
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      COMPONENTS - IMAGES
+      --------------------------------------------------------------------------------------------
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      COMPONENTS - INFO OVERLAY
+      --------------------------------------------------------------------------------------------
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      ELEMENTARY MIXINS
+      ============================================================================================
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      ELEMENTARY SELECTORS
+      ============================================================================================
+
+      Elementary relies solely on context and relative DOM position. This is why it should only be
+      for 'light' projects, where there isn't much variety and patterns can be closely adhered to.
+
+      With that in mind, if the conventions are learned, there is some flexibility in the system,
+      particularly in regards to the extract DOM elements that are used, so long as any changes to
+      the selectors below are carefully considered so as not to introduce conflicts.
+
+
+      Conventions
+      -----------
+
+      DIV
+          DIV's are semantically meaningless/neutral as far as AT is concerned, but since 'div' is
+          short for DIVIDER it makes logical sense to the HTML author that it is a division of content
+          and thus is appropriate for situations where content may need to be visually separated from
+          it's surroundings.
+
+      Specificity
+      -----------
+
+      Some of the selectors may look overly specific, but it's really important in such a fragile
+      system to be as specific as possible; to really say exactly what we mean.
+      For example, on a Listing page when writing the selector we could could say:
+      "Any `ul` that is a direct child of the inner wrapper should be a Gallery"
+      This would be `div > ul`. However, we use `div > header ~ ul` because what we really mean to say
+      is "Any `ul` AFTER the `header`", because if there was a list BEFORE the `header` for some
+      reason, it will not need to be a Gallery.
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      STYLE NOTICE
+      --------------------------------------------------------------------------------------------
+
+      This container shows a message if CSS is unavailable. It is normally the first element on the
+      page after the SVG Icons.
+
+      ```
+      <body>
+          <svg ... />
+          <div>
+              [CSS message]
+          </div>
+          ...
+      </body>
+      ```
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      PAGE
+      --------------------------------------------------------------------------------------------
+
+      The page is broken into sections: BANNER, MAIN, SIDEBAR (optional) and FOOTER.
+
+      ```
+      <body>
+          ...
+          <header/>
+          <main/>
+          ?<aside/>?
+          <footer>
+          ...
+      </body>
+      ```
+
+      BANNER (HEADER)
+          A fairly typical page banner where you'd expect to find a logo, primary navigation,
+          search, and maybe Calls to Action.
+
+      MAIN
+          The main content of the page. This may be one of several types (more on that later);
+          those types are patterns in their own right and should be declared with their own
+          unique markup.
+
+      SIDEBAR (ASIDE)
+          Optional. It con be omitted on all or only some pages and the layout should
+          retain it's integrity. This means the DOM is quite fragile and sensitive to change so be
+          careful. More on that later.
+
+      FOOTER
+          This is a typical page footer and would contain the usual Copyright notice and key links
+          etc.
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      BANNER - LOGO
+      --------------------------------------------------------------------------------------------
+
+      This is the pattern needed to match the logo <a> in the banner.
+
+      ```
+          <header>
+              <a/>
+              ...
+          </header>
+      ```
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      BANNER - NAVBAR
+      --------------------------------------------------------------------------------------------
+
+      This is the pattern needed to match primary navigation. The links are expected to be in an
+      inline list.
+
+      ```
+      <header>
+          ...
+          <nav>
+              <p role="list">
+                  <span role="listitem">
+                      <a/>
+                  </span>
+                  ...
+              </p>
+          </nav>
+          ...
+      </header>
+      ```
+  |-------------------------------------------------------------------------------------------------*/
+  /*------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      MAIN
+      --------------------------------------------------------------------------------------------
+
+      The MAIN area is both a semantic landmark and a content wrapper.
+      The MAIN pattern expects there to be *another* wrapper immediately inside it. What this wrapper
+      is determines how the content inside that is handled. In other words the markup chosen for this
+      internal wrapper should be appropriate to the rest of the content.
+      This choice determines the PAGE TYPE.
+
+      ELEMENTARY attempts to provide common PAGE TYPES - PAGE TYPES can display any content, of
+      course, but the layout, focus and functionality of each TYPE is quite different.
+
+      PAGE TYPES
+
+      Article
+          This pattern should use `<article>` as the inner wrapper and should be used for pages where
+          longform text is the primary focus of the page. E.g. a Blog Post or Documentation Page.
+
+      Listing
+          This pattern should use a `<div>` as the inner wrapper (since no other semantic element is
+          more appropriate) and is primarily intended as a Gallery Page. This could be a grid of
+          cards or images, for example. It's possible to use this pattern for arbitrary markup, but
+          all `<ul>`s that are direct children of the inner `<div>` will be displayed as a gallery.
+
+      More?...
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      MAIN - HEADER
+      --------------------------------------------------------------------------------------------
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      COMPONENTS
+      --------------------------------------------------------------------------------------------
+
+      Components are meant to be reusable in any context so extra care/steps have been taken with
+      the markup and selectors.
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      COMPONENTS - CARD
+      --------------------------------------------------------------------------------------------
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      COMPONENTS - CTA (only allowed in Cards, currently)
+      --------------------------------------------------------------------------------------------
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      COMPONENTS - HERO
+      --------------------------------------------------------------------------------------------
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      ///COMPONENTS - ICON
+      --------------------------------------------------------------------------------------------
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      COMPONENTS - IMAGES
+      --------------------------------------------------------------------------------------------
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      COMPONENTS - INFO OVERLAY
+      --------------------------------------------------------------------------------------------
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*
+      Sticky Footer needs this
+  */
+  html,
+body {
+    height: 100%;
   }
-}
-
-/*
-[data-elementary] body > header > * {
-    //flex: 1 1 auto;
-}
-
-[data-elementary] body > header > p {
-    //width: 100%;
-}
-*/
-[data-elementary] body > header p {
-  margin: 0;
-}
-
-/*
-    Oh! I don't know what the following is for. I can't see any examples in the dev site that uses
-    this selector.
-    Maybe Search forns - that sort of thing?
-*/
-/*
-[data-elementary] body > header > div {
+  /*
+      Note we still need the flexbox for the sticky footer in the event of no Grid support or narrower
+      viewports where the Grid isn't applied but the content is still small enough to need the sticky
+      footer behavior.
+  */
+  body {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-
-    max-width: 100%;
-}
-
-
-[data-elementary] body > header > div > * {
-    flex: 1 1 auto;
-}
-*/
-/*------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    LOGO
-    ============================================================================================
-
-|-------------------------------------------------------------------------------------------------*/
-[data-elementary] body > header > fieldset nav b {
-  --name: logo;
-  display: inline-block;
-}
-[data-elementary] body > header > fieldset nav b > a[href] {
-  display: inline-block;
-  font-size: 2.5em;
-  line-height: 1;
-  /*margin: 0 $s__sz-m $s__sz-xs 0;
-
-  padding: $s__sz-s $s__sz-s $s__sz-xs $s__sz-s;*/
-  padding: 0.3rem;
-  margin: 1.2rem;
-  border: 0;
-  --background-color: var(--logo-color, var(--base-ui-color));
-  background-color: var(--background-color);
-}
-@supports not (color: oklch(from red l c h)) {
-  [data-elementary] body > header > fieldset nav b > a[href] {
-    --text-color: var(--logo-color--text, var(--base-ui-color--text));
-    color: var(--text-color);
+    flex-direction: column;
+    max-width: 1080px;
+    padding: 0;
   }
-}
-[data-elementary] body > header > fieldset nav b > a[href] > * {
-  margin: 0;
-  padding: 0;
-}
-[data-elementary] body > header > fieldset nav b > a[href] > svg {
-  fill: none;
-  stroke: oklch(from var(--background-color) var(--l) 0 h/0.9);
-}
+  body > * {
+    flex: 0 0 auto;
+  }
+  /* Grid */
+  @supports (display: grid) {
+    @media only screen and (min-width: 50em) {
+      body {
+        display: grid;
+        align-items: stretch;
+        width: auto;
+        height: auto;
+        min-height: 100%;
+        grid-template-columns: 5fr 2fr;
+        grid-template-rows: auto auto minmax(auto, 1fr) auto;
+      }
+      [data-elementary] body > header,
+[data-elementary] body > footer {
+        padding: 1.2rem;
+        grid-column: 1/-1;
+      }
+      [data-elementary] body > header {
+        grid-row: 1;
+      }
+      [data-elementary] body > main {
+        grid-column: 1;
+        grid-row: 2/-1;
+        max-width: 100%;
+      }
+      /*
+          If there's no asides at all, we want the main to span both rows. Note this is the
+          only way I can think of doing this, but it's fragile - it will break if elements at this
+          level get added or removed. (note :has() would be better when supoort is good enough)
+          [data-elementary] body > header + main:has(+ :not(aside)) {
+      */
+      [data-elementary] body > header + main:nth-last-child(3) {
+        grid-column: 1/-1;
+      }
+      [data-elementary] body > aside {
+        grid-column: 2;
+        grid-row: 2;
+      }
+      /*
+          If there's no 'bottom' aside, we want the first one span 2 columns. Note this is the
+          only way I can think of doing this, but it's fragile - it will break if elements at this
+          level get added or removed.
+      */
+      [data-elementary] body > aside:nth-last-child(4) {
+        grid-row: 2/-1;
+      }
+      [data-elementary] body > main + aside {
+        grid-column: 2;
+        grid-row: 3;
+      }
+      /*
+          MAIN POSITION SELECTOR
 
-[data-elementary] body > header > fieldset nav b > a[href]:hover,
-[data-elementary] body > header > fieldset nav b > a[href]:active,
-[data-elementary] body > header > fieldset nav b > a[href]:focus {
-  border: 0;
-  box-shadow: 0 0 0 0.3rem rgba(255, 255, 255, 0.4), 0 0 0 0.6rem rgba(0, 0, 0, 0.2);
-  --background-color: var(--logo-color, var(--base-ui-color));
-  background-color: var(--background-color);
-}
-@supports not (color: oklch(from red l c h)) {
+          If there's no aside (sidebar) then main has to span both columns:
+          Note this is fragile and depends on following the Elementary pattern absolutely.
+          What it says is that if main is the X from last element, it spans all columns.
+          If there are more elements after the `main` element (as in, there's the extra `aside`),
+          then the selector won't match. Change this in local SCSS and be wary of adding or
+          removing elements via JS.
+
+      */
+      /*[data-elementary] body > main:nth-last-child(3) {
+          grid-column: 1 / -1;
+      }*/
+      [data-elementary] body > footer {
+        grid-row: -1;
+      }
+    }
+  }
+  /*------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      BANNER
+      ============================================================================================
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*
+      Banner
+  */
+  [data-elementary] body > header {
+    margin: 0;
+    padding: 0;
+  }
+  [data-elementary] body > header > fieldset {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    border: 0 none;
+    --background-color: var(--banner-color, var(--base-ui-color));
+    background-color: var(--background-color);
+  }
+  @supports not (color: oklch(from red l c h)) {
+    [data-elementary] body > header > fieldset {
+      --text-color: var(--banner-color--text, var(--base-ui-color--text));
+      color: var(--text-color);
+    }
+  }
+  /*
+  [data-elementary] body > header > * {
+      //flex: 1 1 auto;
+  }
+
+  [data-elementary] body > header > p {
+      //width: 100%;
+  }
+  */
+  [data-elementary] body > header p {
+    margin: 0;
+  }
+  /*
+      Oh! I don't know what the following is for. I can't see any examples in the dev site that uses
+      this selector.
+      Maybe Search forns - that sort of thing?
+  */
+  /*
+  [data-elementary] body > header > div {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+
+      max-width: 100%;
+  }
+
+
+  [data-elementary] body > header > div > * {
+      flex: 1 1 auto;
+  }
+  */
+  /*------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      LOGO
+      ============================================================================================
+
+  |-------------------------------------------------------------------------------------------------*/
+  [data-elementary] body > header > fieldset nav b {
+    --name: logo;
+    display: inline-block;
+  }
+  [data-elementary] body > header > fieldset nav b > a[href] {
+    display: inline-block;
+    font-size: 2.5em;
+    line-height: 1;
+    /*margin: 0 $s__sz-m $s__sz-xs 0;
+
+    padding: $s__sz-s $s__sz-s $s__sz-xs $s__sz-s;*/
+    padding: 0.3rem;
+    margin: 1.2rem;
+    border: 0;
+    --background-color: var(--logo-color, var(--base-ui-color));
+    background-color: var(--background-color);
+  }
+  @supports not (color: oklch(from red l c h)) {
+    [data-elementary] body > header > fieldset nav b > a[href] {
+      --text-color: var(--logo-color--text, var(--base-ui-color--text));
+      color: var(--text-color);
+    }
+  }
+  [data-elementary] body > header > fieldset nav b > a[href] > * {
+    margin: 0;
+    padding: 0;
+  }
+  [data-elementary] body > header > fieldset nav b > a[href] > svg {
+    fill: none;
+    stroke: oklch(from var(--background-color) var(--l) 0 h/0.9);
+  }
   [data-elementary] body > header > fieldset nav b > a[href]:hover,
 [data-elementary] body > header > fieldset nav b > a[href]:active,
 [data-elementary] body > header > fieldset nav b > a[href]:focus {
-    --text-color: var(--logo-color--text, var(--base-ui-color--text));
-    color: var(--text-color);
+    border: 0;
+    box-shadow: 0 0 0 0.3rem rgba(255, 255, 255, 0.4), 0 0 0 0.6rem rgba(0, 0, 0, 0.2);
+    --background-color: var(--logo-color, var(--base-ui-color));
+    background-color: var(--background-color);
   }
-}
+  @supports not (color: oklch(from red l c h)) {
+    [data-elementary] body > header > fieldset nav b > a[href]:hover,
+[data-elementary] body > header > fieldset nav b > a[href]:active,
+[data-elementary] body > header > fieldset nav b > a[href]:focus {
+      --text-color: var(--logo-color--text, var(--base-ui-color--text));
+      color: var(--text-color);
+    }
+  }
+  /*-------------------------------------------------------------------------------------------------|
 
-/*-------------------------------------------------------------------------------------------------|
+      NAVBAR
+      ============================================================================================
 
-    NAVBAR
-    ============================================================================================
-
-|-------------------------------------------------------------------------------------------------*/
-[data-elementary] body > header > fieldset nav {
-  --name: navbar;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: transparent;
-}
-
-[data-elementary] body > header > fieldset nav > * {
-  flex: 1 1 auto;
-}
-
-[data-elementary] body > header > fieldset nav p[role=list] {
-  flex-grow: 999;
-}
-
-[data-elementary] body > header > fieldset nav a[href],
+  |-------------------------------------------------------------------------------------------------*/
+  [data-elementary] body > header > fieldset nav {
+    --name: navbar;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: end;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+  }
+  [data-elementary] body > header > fieldset nav > * {
+    flex: 999 1 auto;
+  }
+  [data-elementary] body > header > fieldset nav p[role=list] {
+    flex-grow: 999;
+  }
+  [data-elementary] body > header > fieldset nav a[href],
 [data-elementary] body > header > fieldset nav summary {
-  display: inline-block;
-  margin: 0;
-  padding-top: 0;
-  padding-right: 0.5625em;
-  padding-bottom: 0;
-  padding-left: 0.5625em;
-  border: 0;
-  border-radius: 0.6rem;
-  box-shadow: none;
-  line-height: 2.25em;
-  text-decoration: none;
-}
-
-[data-elementary] body > header > fieldset nav a[href] {
-  --background-color: var(--navbar-color, var(--base-ui-color));
-  background-color: var(--background-color);
-}
-@supports not (color: oklch(from red l c h)) {
+    display: inline-block;
+    margin: 0;
+    padding-top: 0;
+    padding-right: 0.5625em;
+    padding-bottom: 0;
+    padding-left: 0.5625em;
+    border: 0;
+    border-radius: 0.6rem;
+    box-shadow: none;
+    line-height: 2.25em;
+    text-decoration: none;
+  }
   [data-elementary] body > header > fieldset nav a[href] {
-    --text-color: var(--navbar-color--text, var(--base-ui-color--text));
-    color: var(--text-color);
+    --background-color: var(--navbar-color, var(--base-ui-color));
+    background-color: var(--background-color);
   }
-}
-
-[data-elementary] body > header > fieldset nav a[href][aria-current] {
-  --background-color: var(--navbar-color-darker, var(--base-ui-color-darker));
-  background-color: var(--background-color);
-}
-@supports not (color: oklch(from red l c h)) {
+  @supports not (color: oklch(from red l c h)) {
+    [data-elementary] body > header > fieldset nav a[href] {
+      --text-color: var(--navbar-color--text, var(--base-ui-color--text));
+      color: var(--text-color);
+    }
+  }
   [data-elementary] body > header > fieldset nav a[href][aria-current] {
-    --text-color: var(--navbar-color-darker--text, var(--base-ui-color-darker--text));
-    color: var(--text-color);
+    --background-color: var(--navbar-color-darker, var(--base-ui-color-darker));
+    background-color: var(--background-color);
   }
-}
-
-[data-elementary] body > header > fieldset nav a[href]:hover,
-[data-elementary] body > header > fieldset nav a[href]:active {
-  border: 0;
-  --background-color: var(--navbar-color-lighter, var(--base-ui-color-lighter));
-  background-color: var(--background-color);
-}
-@supports not (color: oklch(from red l c h)) {
+  @supports not (color: oklch(from red l c h)) {
+    [data-elementary] body > header > fieldset nav a[href][aria-current] {
+      --text-color: var(--navbar-color-darker--text, var(--base-ui-color-darker--text));
+      color: var(--text-color);
+    }
+  }
   [data-elementary] body > header > fieldset nav a[href]:hover,
 [data-elementary] body > header > fieldset nav a[href]:active {
-    --text-color: var(--navbar-color-lighter--text, var(--base-ui-color-lighter--text));
-    color: var(--text-color);
+    border: 0;
+    --background-color: var(--navbar-color-lighter, var(--base-ui-color-lighter));
+    background-color: var(--background-color);
   }
-}
+  @supports not (color: oklch(from red l c h)) {
+    [data-elementary] body > header > fieldset nav a[href]:hover,
+[data-elementary] body > header > fieldset nav a[href]:active {
+      --text-color: var(--navbar-color-lighter--text, var(--base-ui-color-lighter--text));
+      color: var(--text-color);
+    }
+  }
+  [data-elementary] body > header > fieldset nav p[role=list] a[href]:focus {
+    box-shadow: 0 0 0 0.6rem rgba(0, 0, 0, 0.3);
+  }
+  /*
+  p[role="list"] a[href][aria-current],
+  [data-elementary] body > header > fieldset   nav > details > summary {
+      color: $e__nav-bar__link--color--alt;
+      background-color: $e__nav-bar__link--background-color--alt2;
+  }
 
-[data-elementary] body > header > fieldset nav p[role=list] a[href]:focus {
-  box-shadow: 0 0 0 0.6rem rgba(0, 0, 0, 0.3);
-}
 
-/*
-p[role="list"] a[href][aria-current],
-[data-elementary] body > header > fieldset   nav > details > summary {
-    color: $e__nav-bar__link--color--alt;
-    background-color: $e__nav-bar__link--background-color--alt2;
-}
+  p[role="list"] a[href]:hover,
+  p[role="list"] a[href]:active,
+  [data-elementary] body > header > fieldset   nav > details > summary:hover,
+  [data-elementary] body > header > fieldset   nav > details > summary:active {
+      border: 0;
+
+      color: $e__nav-bar__link--color--alt;
+      background-color: $e__nav-bar__link--background-color--alt;
+  }
 
 
-p[role="list"] a[href]:hover,
-p[role="list"] a[href]:active,
-[data-elementary] body > header > fieldset   nav > details > summary:hover,
-[data-elementary] body > header > fieldset   nav > details > summary:active {
+  p[role="list"] a[href]:focus,
+  [data-elementary] body > header > fieldset   nav > details > summary:focus {
+      box-shadow: 0 0 0 $s__sz-xs rgba(0,0,0,.3);
+  }
+
+
+  */
+  /*-------------------------------------------------------------------------------------------------|
+
+      COLLAPSIBLE
+      ============================================================================================
+
+  |-------------------------------------------------------------------------------------------------*/
+  /* > nav details can appear in different contexts so we can't specify a complete path to them: */
+  /* This is for the case where the nav is split to 'home' and 'site' and 'site' appears after the search form. */
+  [data-elementary] body > header > fieldset > nav details + nav {
+    flex: 0 0 auto;
+  }
+  [data-elementary] body > header > fieldset > nav details[role=search] form {
+    z-index: 10;
+  }
+  [data-elementary] body > header > fieldset > nav details {
+    --name: collapsible;
+    flex: 0 0 auto;
+    padding: 0;
     border: 0;
+    margin: 1.2rem;
+    display: flex;
+    align-items: end;
+  }
+  /* Only for start margin stuff */
+  [data-elementary] body > header > fieldset > nav details::after {
+    display: none;
+  }
+  [data-elementary] body > header > fieldset > nav details > summary {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+    align-self: center;
+    height: 2.25em;
+    list-style: none;
+  }
+  [data-elementary] body > header > fieldset > nav details > summary::-webkit-details-marker {
+    display: none;
+  }
+  /*
 
-    color: $e__nav-bar__link--color--alt;
-    background-color: $e__nav-bar__link--background-color--alt;
-}
-
-
-p[role="list"] a[href]:focus,
-[data-elementary] body > header > fieldset   nav > details > summary:focus {
-    box-shadow: 0 0 0 $s__sz-xs rgba(0,0,0,.3);
-}
-
-
-*/
-/*-------------------------------------------------------------------------------------------------|
-
-    COLLAPSIBLE
-    ============================================================================================
-
-|-------------------------------------------------------------------------------------------------*/
-/* > nav details can appear in different contexts so we can't specify a complete path to them: */
-/* This is for the case where the nav is split to 'home' and 'site' and 'site' appears after the search form. */
-[data-elementary] body > header > fieldset > nav details + nav {
-  flex: 0 0 auto;
-}
-
-[data-elementary] body > header > fieldset > nav details[role=search] form {
-  z-index: 10;
-}
-
-[data-elementary] body > header > fieldset > nav details {
-  --name: collapsible;
-  flex: 0 0 auto;
-  padding: 0;
-  border: 0;
-  margin: 0 0.6rem;
-  display: flex;
-  align-items: center;
-}
-
-/* Only for start margin stuff */
-[data-elementary] body > header > fieldset > nav details::after {
-  display: none;
-}
-
-[data-elementary] body > header > fieldset > nav details > summary {
-  display: flex;
-  align-items: center;
-  position: relative;
-  z-index: 3;
-  height: 2.25em;
-  list-style: none;
-}
-[data-elementary] body > header > fieldset > nav details > summary::-webkit-details-marker {
-  display: none;
-}
-
-/*
-
-[data-elementary] body > header > fieldset   > nav details > summary {
-    color: $e__nav-bar__link--color;
-    background-color: transparent;
-}
+  [data-elementary] body > header > fieldset   > nav details > summary {
+      color: $e__nav-bar__link--color;
+      background-color: transparent;
+  }
 
 
-[data-elementary] body > header > fieldset   > nav details > summary:hover,
-[data-elementary] body > header > fieldset   > nav details > summary:active {
-    border: 0;
+  [data-elementary] body > header > fieldset   > nav details > summary:hover,
+  [data-elementary] body > header > fieldset   > nav details > summary:active {
+      border: 0;
 
-    color: $e__nav-bar__link--color--alt;
-    background-color: $e__nav-bar__link--background-color--alt;
-}
-*/
-[data-elementary] body > header > fieldset > nav details > summary:hover,
+      color: $e__nav-bar__link--color--alt;
+      background-color: $e__nav-bar__link--background-color--alt;
+  }
+  */
+  [data-elementary] body > header > fieldset > nav details > summary:hover,
 [data-elementary] body > header > fieldset > nav details > summary:active,
 [data-elementary] body > header > fieldset > nav details > summary:focus {
-  box-shadow: 0 0 0 0.3rem rgba(255, 255, 255, 0.4), 0 0 0 0.6rem rgba(0, 0, 0, 0.2);
-}
-
-/*
-This puts a hover arrow on the navicon. I'm not sure why I did this.
-[data-elementary] body > header > fieldset   > nav details > summary:hover::before,
-[data-elementary] body > header > fieldset   > nav details > summary:active::before {
-    content: "";
-    display: block;
-    position: absolute;
-    z-index: 0;
-    left: -3px;
-    right: -3px;
-    top: -3px;
-    bottom: -3px;
-    background: rgba(0,0,0,0.2);
-    margin: 0;
-    transform: none;
-}
-*/
-[data-elementary] body > header > fieldset > nav details[open] > summary {
-  margin: 0;
-}
-
-[data-elementary] body > header > fieldset > nav details > summary::before {
-  display: none;
-}
-
-[data-elementary] body > header > fieldset > nav details > summary::-webkit- > nav details-marker {
-  display: none;
-}
-
-[data-elementary] body > header > fieldset > nav details > summary > svg:first-child,
-[data-elementary] body > header > fieldset > nav details[open] > summary > svg:first-child + svg {
-  display: inline-block;
-  position: relative;
-  z-index: 1;
-}
-
-[data-elementary] body > header > fieldset > nav details > summary > svg:nth-child(2),
-[data-elementary] body > header > fieldset > nav details[open] > summary > svg:first-child {
-  display: none;
-}
-
-[data-elementary] body > header > fieldset > nav details > summary > svg + span {
-  clip: rect(0 0 0 0);
-  position: absolute;
-}
-
-[data-elementary] body > header > fieldset > nav details > summary + * {
-  position: absolute;
-  z-index: 2;
-  left: 0;
-  right: 0;
-  padding: 1.2rem;
-  margin-top: 2.2rem;
-  list-style: none;
-  box-shadow: 0 4px 2px -1px rgba(0, 0, 0, 0.5);
-  --background-color: var(--navbar-color-light, var(--base-ui-color-dark));
-  background-color: var(--background-color);
-}
-@supports not (color: oklch(from red l c h)) {
-  [data-elementary] body > header > fieldset > nav details > summary + * {
-    --text-color: var(--navbar-color-light--text, var(--base-ui-color-dark--text));
-    color: var(--text-color);
+    box-shadow: 0 0 0 0.3rem rgba(255, 255, 255, 0.4), 0 0 0 0.6rem rgba(0, 0, 0, 0.2);
   }
-}
-
-[data-elementary] body > header > fieldset > nav details[open] > summary + *::after {
-  content: "";
-  display: block;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 1px 2rem 1.5rem 2rem;
-  border-color: transparent transparent var(--navbar-color-light, var(--base-ui-color-dark)) transparent;
-  position: absolute;
-  right: 0.4em;
-  top: -0.9em;
-}
-
-[data-elementary] body > header > fieldset > nav details > summary + * li {
-  padding: 0.5em;
-  margin: 0;
-}
-
-/*-------------------------------------------------------------------------------------------------|
-
-    MAIN
-    ============================================================================================
-
-|-------------------------------------------------------------------------------------------------*/
-/*
-    Expand main to fill space - part of sticky footer.
-
-    1. There's a wierd sitution on /page-layout-article/ where there's <pre> in a <div>
-       demonstrating the use of the <div> to create a full-width container (one that breaks
-       out of the max-width column). But the <pre> has long content and isn't scrolling,
-       it's pushing everything out to fit the content and I can't figure out a simple
-       fix (or even understand why it's doing it).
-       But, since we have a known max-width for the body and a known column balance, we can work out
-       what the max-width for the main column should be and use that in an  technique.
-
-*/
-[data-elementary] body > main {
-  flex: 1 0 auto;
-  /* 1 */
-  max-width: 71.4285714286%;
-  width: calc((1512px - 100%) * 9999);
-  min-width: 100%;
-  min-height: 0;
-  margin: 0;
-  padding: 0;
-  --background-color: var(--main-color, #fff);
-  background-color: var(--background-color);
-}
-@supports not (color: oklch(from red l c h)) {
-  [data-elementary] body > main {
-    --text-color: var(--main-color--text, #333);
-    color: var(--text-color);
-  }
-}
-
-/*------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    MAIN HEADER
-    ============================================================================================
-
-|-------------------------------------------------------------------------------------------------*/
-/*
-    Page header
-    (note may consider qualifying this with `:first-child` but I don't think it's needed)
-*/
-[data-elementary] body > main > * > header {
-  margin: 0;
-  padding: 2.4rem;
-}
-
-/*
-    If there's no main header - give the h1 some room:
-    ??Not sure - currently require header?
-*
-main > * > h1 {
-    margin-top: 2.4rem;
-}
-*/
-/*-------------------------------------------------------------------------------------------------|
-
-    BREADCRUMBS
-    ============================================================================================
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    CONTENT
-    ============================================================================================
-
-    ```
-    <main> <!-- OUTER WRAPPER -->
-        <?> <!-- INNER WRAPPER [A] e.g. article or div -->
-            <header>
-                <h1>...</h1>
-                ?...?
-            </header>
-        </?>
-    </main>
-    ```
-
-|-------------------------------------------------------------------------------------------------*/
-/*
-    If there's a figure inside the article header it's the Hero, but we need to appear visually
-    BEFORE the heading like a normal Hero.
-*/
-[data-elementary] body > main > * > header {
-  display: flex;
-  flex-direction: column;
-}
-
-[data-elementary] body > main > * > header > figure {
-  order: -1;
-}
-
-[data-elementary] body > main > * > header > h1 {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-/*
-    Content wrapper [A] could be anything (so far `article` or `div`): `[data-elementary] body > main > * >.
-    Inside the wrapper there should be `header` (see _1-header.scss).
-    After the header} we want to give elements some side padding: `~ *`.
-*/
-[data-elementary] body > main > * > header > h1,
-[data-elementary] body > main > * > header ~ * {
-  padding-left: 2.4rem;
-  padding-right: 2.4rem;
-}
-
-/*
-    If the wrapper [A] is an article, the purpose is longform text [PAGE TYPE Article], so we want
-    that to be easier to read, so add `max-width` and center it.
-
-    1. Some items from StartCSS are `display: table` for other fixes. Because of that they're
-       intrinsically sized so may not appear full width, and therefore look odd, so expand them.
-
-*/
-[data-elementary] body > main > * > header > h1,
-[data-elementary] body > main > article > header ~ * {
-  width: 100%; /* 1 */
-  max-width: 70rem;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-/*
-    If the first element after the article header is a nav, it's the ToC.
-*/
-[data-elementary] body > main > article > header + nav {
-  font-size: smaller;
-  margin: 2.4rem;
-  padding: 2.4rem;
-  --background-color: var(--main-color, #eee);
-  background-color: var(--background-color);
-  float: right;
-  min-width: 30%;
-  width: calc((70rem - 100%) * 9999);
-  max-width: calc(100% - 4.8rem);
-}
-@supports not (color: oklch(from red l c h)) {
-  [data-elementary] body > main > article > header + nav {
-    --text-color: var(--main-color--text, #333);
-    color: var(--text-color);
-  }
-}
-
-/*
-    We're using `div` (human semantic "divider") to break out of the `max-width`.
-    Use for things like full width images, videos or figures.
-*/
-[data-elementary] body > main > * > header ~ div {
-  max-width: none;
-  padding: 0;
-}
-
-[data-elementary] body > main > * > header ~ div:not(:last-child) {
-  margin-bottom: 2.4rem;
-}
-
-/*
-    Figures should wither be direct children of the content container, or placed within a `div` to
-    allow them to be full-width.
-*/
-[data-elementary] body > main > * > header ~ figure,
-[data-elementary] body > main > * > header ~ div > figure {
-  background: #f7c2b2;
-  clear: both;
-  border-width: 1px;
-  border-style: solid;
-  border-color: var(--base-ui-color);
-  padding: calc(2.4rem - 1px);
   /*
-  @if $s__use-last-child-margin-zero {
-      padding-bottom: 2.4rem;
-      //padding-bottom: -moz-calc(2.4rem - 1px);
-      padding-bottom:      calc(2.4rem - 1px);
-  } @else {
-      padding-bottom: 0;
-      &::after {
-          display: block;
-
-          content: "";
-
-          height: 1px;
-
-          margin-top: $padding;
-
-          margin-bottom: -1px;
-          //margin-bottom: -moz-calc(-1px - 1px);
-          margin-bottom:      calc(-1px - 1px);
-      }
+  This puts a hover arrow on the navicon. I'm not sure why I did this.
+  [data-elementary] body > header > fieldset   > nav details > summary:hover::before,
+  [data-elementary] body > header > fieldset   > nav details > summary:active::before {
+      content: "";
+      display: block;
+      position: absolute;
+      z-index: 0;
+      left: -3px;
+      right: -3px;
+      top: -3px;
+      bottom: -3px;
+      background: rgba(0,0,0,0.2);
+      margin: 0;
+      transform: none;
   }
   */
-}
-
-/*
-    If the wrapper [A] is a `div` [PAGE TYPE Listing] we're saying we want `ul`s to be a
-    gallery-style grid list of card-like object.
-    Use for things like portfolio images or article cards.
-*/
-/*
-    Inline elements
-*/
-[data-elementary] body > main img {
-  width: 100%;
-}
-
-/*-------------------------------------------------------------------------------------------------|
-
-    CONTENT LISTING
-    ============================================================================================
-
-
-    What should be the default behaviour for this?
-
-    I mean, you'll want to choose the behaviour based on use case and number of items.
-
-    I've covered this before, and there are different 'classes' of behaviour to consider:
-
-    1. **Gallery Grid**. KNOW/UNKNOWN QUANTITY (doesn't matter) Use CSS Grid for this.
-       USES: (Where the are more than X items ?), the items need to be given equal weighting, they
-       should appear as a list (so uneven trailing items are left-aligned and do not expand to the
-       fill the bottom row). VARIABLE/UNDETERMINED quantity. E.g People/PRU People, SHEER badge
-       list.
-
-    2. **Selected Balanced Display**. KNOWN QUANTITY. Items should be considered a 'Display' and
-       should be balanced properly. The correct display pattern class should be applied depending on
-       the quantity and behaviour required. E.g footer logo lists (if number changes, change the
-       class - the number isn't ever unknown). KNOWN card lists, e.g. PRU (7, weighted bottom) /
-       Contact Cards (6, 1x6, 2x3, 3x2)
-
-    3. **Auto Balanced Display**. UNKNOWN QUANTITY. This is the trickiest, and will ALWAYS have the
-       potential to be broken. E.g. News cards - we KNOW it's 6 or less so we can account for that
-       using QQ's etc, but there's nothing to stop an unknowing admin changing this to something
-       like 20. If the max assumed quantity for the pattern is, say 16, then 20 is outside,
-       so the behaviour is undefined. This is SO unlikely though
-
-|-------------------------------------------------------------------------------------------------*/
-[data-elementary] body > main > div > header ~ div[role=list] {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 1.2rem;
-  list-style-type: none;
-}
-
-[data-elementary] body > main > div > header ~ div[role=list] > * {
-  flex-grow: 1;
-  flex-shrink: 0;
-  flex-basis: 25rem;
-  min-width: calc(33.333% - 2.4rem);
-  margin: 1.2rem;
-  padding: 0;
-  border: 0;
-  --background-color: var(--listing-item-color, #fff);
-  background-color: var(--background-color);
-}
-@supports not (color: oklch(from red l c h)) {
-  [data-elementary] body > main > div > header ~ div[role=list] > * {
-    --text-color: var(--listing-item-color--text, #333);
-    color: var(--text-color);
-  }
-}
-[data-elementary] body > main > div > header ~ div[role=list] > * > * {
-  padding: 0;
-}
-
-[data-elementary] body > main > div > header ~ div[role=list] > * > * {
-  display: block;
-  height: 100%;
-  margin: 0;
-}
-
-/*-------------------------------------------------------------------------------------------------|
-
-    CONTENT LISTING - COLUMNS
-    ============================================================================================
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    CONTENT LISTING - GRID
-    ============================================================================================
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    CONTENT SIDEBAR
-    ============================================================================================
-
-    Use this for page/content specific content - it should be different on each page and relevant
-    or related to the current main content.
-    For example:
-    * Section menu
-    * Related Articles
-    * Table of Contents (? may separate this)
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    CONTENT FOOTER
-    ============================================================================================
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    LAYOUT SIDEBAR
-    ============================================================================================
-
-    This should be used for site-wide content. I.e. content that doesn't change from page-to-page.
-    Examples include:
-    * Site-wide navigation if not putting in Banner.#
-    * Search
-    * Sign-up
-    * Donate
-    * Featured / Promoted content
-    * Ads :-(
-
-|-------------------------------------------------------------------------------------------------*/
-[data-elementary] body > aside {
-  margin: 0;
-  padding: 2.4rem;
-  --background-color: var(--sidebar-color-light, var(--base-ui-color-lighter));
-  background-color: var(--background-color);
-}
-@supports not (color: oklch(from red l c h)) {
-  [data-elementary] body > aside {
-    --text-color: var(--sidebar-color-light--text, var(--base-ui-color-lighter--text));
-    color: var(--text-color);
-  }
-}
-
-/*-------------------------------------------------------------------------------------------------|
-
-    FOOTER
-    ============================================================================================
-
-|-------------------------------------------------------------------------------------------------*/
-[data-elementary] body > footer {
-  margin: 0;
-  padding: 1.2rem;
-  font-size: 0.875em;
-  text-align: center;
-  --background-color: var(--footer-background-color, var(--base-ui-color));
-  background-color: var(--background-color);
-}
-@supports not (color: oklch(from red l c h)) {
-  [data-elementary] body > footer {
-    --text-color: var(--footer-color--text, var(--base-ui-color--text));
-    color: var(--text-color);
-  }
-}
-
-[data-elementary] body > footer > * {
-  margin-bottom: 0;
-}
-
-/*-------------------------------------------------------------------------------------------------|
-
-    COMPONENTS
-    ============================================================================================
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    COMPONENTS - CARD
-    =================
-
-|-------------------------------------------------------------------------------------------------*/
-[data-elementary] article > div:only-child {
-  --name: card;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow: hidden;
-  margin: 0;
-  padding: 2.4rem;
-  border: var(--card-border-width, 0.4rem) var(--card-border-style, solid) var(--card-border-color, #fff);
-  border-radius: 1.2rem;
-  --background-color: var(--card-color, var(--base-ui-color-lightest));
-  background-color: var(--background-color);
-  box-shadow: 0 0 0.6rem 0 rgba(0, 0, 0, 0.2);
-}
-@supports not (color: oklch(from red l c h)) {
-  [data-elementary] article > div:only-child {
-    --text-color: var(--card-color--text, var(--base-ui-color-lightest--text));
-    color: var(--text-color);
-  }
-}
-[data-elementary] article > div:only-child * {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  -webkit-hyphens: auto;
-  hyphens: auto;
-}
-[data-elementary] article > div:only-child *:only-child {
-  margin-bottom: 0;
-}
-
-[data-elementary] article > div:only-child > header {
-  background-color: transparent;
-  padding: 0;
-}
-
-[data-elementary] article > div:only-child > header > :last-child {
-  margin-bottom: 2.4rem;
-}
-
-[data-elementary] article > div:only-child > header > :last-child {
-  margin-bottom: 0;
-}
-
-[data-elementary] article > div:only-child > header > :last-child > :last-child {
-  margin-bottom: 0;
-}
-
-[data-elementary] article > div:only-child > header > div:first-child {
-  position: relative;
-  overflow: hidden;
-  margin: -2.4rem -2.4rem 2.4rem -2.4rem;
-}
-
-[data-elementary] article > div:only-child > header > div:first-child::before {
-  display: block;
-  content: "";
-  width: 100%;
-  padding-top: 33%;
-}
-
-[data-elementary] article > div:only-child > header > div:first-child > img {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-[data-elementary] article > div:only-child > div > :last-child {
-  margin-bottom: 0;
-}
-
-[data-elementary] article > div:only-child > div > :last-child > :last-child {
-  margin-bottom: 0;
-}
-
-[data-elementary] article > div:only-child > div > p:last-child > b:only-child {
-  display: block;
-  text-align: right;
-}
-
-[data-elementary] article > div:only-child > footer {
-  margin-top: auto;
-  margin-bottom: 0;
-  padding: 0;
-  background-color: transparent;
-}
-
-[data-elementary] article > div:only-child > footer > :last-child {
-  margin-bottom: 0;
-}
-
-[data-elementary] article > div:only-child > footer > :last-child > :last-child {
-  margin-bottom: 0;
-}
-
-/*-------------------------------------------------------------------------------------------------|
-
-    CTA
-    ===
-
-|-------------------------------------------------------------------------------------------------*/
-[data-elementary] article > div:only-child b > a[href]:only-child {
-  --name: cta;
-  display: inline-block;
-  overflow: hidden;
-  margin: 0;
-  padding: calc(0.6rem - 0.1rem) 1.2rem;
-  border: 0 none;
-  border-radius: 0.3rem;
-  --background-color: var(--cta-color, var(--base-ui-color));
-  background-color: var(--background-color);
-  box-shadow: none;
-  font-weight: normal;
-  line-height: 2.4rem;
-  vertical-align: middle;
-  text-decoration: none;
-}
-@supports not (color: oklch(from red l c h)) {
-  [data-elementary] article > div:only-child b > a[href]:only-child {
-    --text-color: var(--cta-color--text, var(--base-ui-color--text));
-    color: var(--text-color);
-  }
-}
-[data-elementary] article > div:only-child b > a[href]:only-child:hover, [data-elementary] article > div:only-child b > a[href]:only-child:active, [data-elementary] article > div:only-child b > a[href]:only-child:focus {
-  --background-color: var(--cta-color, var(--base-ui-color-light));
-  background-color: var(--background-color);
-}
-@supports not (color: oklch(from red l c h)) {
-  [data-elementary] article > div:only-child b > a[href]:only-child:hover, [data-elementary] article > div:only-child b > a[href]:only-child:active, [data-elementary] article > div:only-child b > a[href]:only-child:focus {
-    --text-color: var(--cta-color--text, var(--base-ui-color-light--text));
-    color: var(--text-color);
-  }
-}
-
-/*-------------------------------------------------------------------------------------------------|
-
-    COMPONENTS - HERO
-    =================
-
-|-------------------------------------------------------------------------------------------------*/
-[data-elementary] body > header > fieldset > figure {
-  --name: hero;
-  position: relative;
-  overflow: hidden;
-  margin: 0;
-  max-width: none;
-  --background-color: var(--banner-color, var(--base-ui-color));
-  background-color: var(--background-color);
-}
-@supports not (color: oklch(from red l c h)) {
-  [data-elementary] body > header > fieldset > figure {
-    --text-color: var(--banner-color--text, var(--base-ui-color--text));
-    color: var(--text-color);
-  }
-}
-
-[data-elementary] body > header > fieldset > figure::before {
-  display: block;
-  content: "";
-  width: 100%;
-  padding-top: 33%;
-}
-
-[data-elementary] body > header > fieldset > figure > img {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-[data-elementary] body > main > * > header > figure {
-  --name: hero;
-  position: relative;
-  overflow: hidden;
-  margin: -2.4rem -2.4rem 2.4rem -2.4rem;
-  max-width: none;
-  --background-color: var(--banner-color, var(--base-ui-color));
-  background-color: var(--background-color);
-}
-@supports not (color: oklch(from red l c h)) {
-  [data-elementary] body > main > * > header > figure {
-    --text-color: var(--banner-color--text, var(--base-ui-color--text));
-    color: var(--text-color);
-  }
-}
-
-[data-elementary] body > main > * > header > figure::before {
-  display: block;
-  content: "";
-  width: 100%;
-  padding-top: 33%;
-}
-
-[data-elementary] body > main > * > header > figure > img {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/*-------------------------------------------------------------------------------------------------|
-
-    COMPONENTS - IMAGES
-    ===================
-
-|-------------------------------------------------------------------------------------------------*/
-[data-elementary] b > img:only-child {
-  --name: border-image;
-  border: 0.1rem solid var(--base-ui-color);
-}
-
-[data-elementary] b > i:only-child > img:only-child {
-  --name: inset-image;
-  padding: 2.4rem;
-  border: 0.1rem solid var(--base-ui-color);
-  --background-color: var(--image-color, var(--base-ui-color));
-  background-color: var(--background-color);
-}
-@supports not (color: oklch(from red l c h)) {
-  [data-elementary] b > i:only-child > img:only-child {
-    --text-color: var(--image-color--text, var(--base-ui-color--text));
-    color: var(--text-color);
-  }
-}
-
-/*-------------------------------------------------------------------------------------------------|
-
-    COMPONENTS - INFO OVERLAY
-    =========================
-
-|-------------------------------------------------------------------------------------------------*/
-[data-elementary] header figcaption > details {
-  --name: image-overlay;
-  position: absolute;
-  right: 0.6rem;
-  top: 0.6rem;
-  width: 2.4rem;
-  height: 2.4rem;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 1.2rem;
-  --background-color: rgba(0,0,0,0.7);
-  background-color: var(--background-color);
-}
-@supports not (color: oklch(from red l c h)) {
-  [data-elementary] header figcaption > details {
-    --text-color: #fff;
-    color: var(--text-color);
-  }
-}
-[data-elementary] header figcaption > details a[href] {
-  color: #fff;
-}
-[data-elementary] header figcaption > details[open] {
-  border-radius: 0;
-  top: 0;
-  right: 0;
-  width: auto;
-  height: auto;
-}
-[data-elementary] header figcaption > details[open] > summary {
-  top: 0.6rem;
-  right: 0.6rem;
-}
-[data-elementary] header figcaption > details[open] > summary > svg:first-of-type {
-  display: none;
-}
-[data-elementary] header figcaption > details[open] > summary > svg:last-of-type {
-  display: inline;
-}
-[data-elementary] header figcaption > details::after {
-  display: none;
-}
-
-/*
-    1. `align-items: center;` is the obvious choice for vertical-center aligning the icons, but
-       for some reason iOS doesn't get it right, so I'm using padding instead for now since the
-       icon or container sizes shouldn't change.
-*/
-[data-elementary] header figcaption > details > summary {
-  position: absolute;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center; /* [1] */
-  width: 2.4rem;
-  height: 2.4rem;
-  margin: 0;
-  border-radius: 1.2rem;
-  list-style: none;
-}
-[data-elementary] header figcaption > details > summary > svg:first-of-type {
-  display: inline;
-}
-[data-elementary] header figcaption > details > summary > svg:last-of-type {
-  display: none;
-}
-[data-elementary] header figcaption > details > summary::before {
-  display: none;
-}
-[data-elementary] header figcaption > details > summary:hover, [data-elementary] header figcaption > details > summary:focus, [data-elementary] header figcaption > details > summary:active {
-  background: rgba(255, 255, 255, 0.3);
-}
-[data-elementary] header figcaption > details > summary::-webkit-details-marker {
-  display: none;
-}
-
-[data-elementary] header figcaption > details > summary + * {
-  position: relative;
-  display: block;
-  max-width: calc(100% - 2.4rem);
-  padding: 3.6rem 3.6rem 2.4rem 2.4rem;
-}
-
-/*---*/
-/*
-    Greybox
-*/
-/*
-[data-elementary] body > header,
-[data-elementary] body > footer {
-    background: #ddd;
-}
-
-body > aside {
-    background: #ccc;
-}
-
-/*
-main > div > ul > li > a[href],
-main > div > ul > li > article {
-
-    padding: $s__sz-m;
-    background: #ddd;
-    display: block;
+  [data-elementary] body > header > fieldset > nav details[open] > summary {
     margin: 0;
-}
-*/
-[data-elementary] body > header > fieldset nav b svg {
-  stroke: #fff;
-}
-
-p[role=list] {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-left: -0.6rem;
-  margin-right: -0.6rem;
-}
-
-p[role=list] span[role=listitem] {
-  margin: 0.6rem;
-  flex: 0 0 auto;
-  display: inline-block;
-}
-
-/*
-p[role="list"]   span[role="listitem"] > *{
-    white-space: nowrap;
-}
-*/
-/* Hide NoCSS separator */
-/*
-p[role="list"] span[role="listitem"] > span:last-child {
+  }
+  [data-elementary] body > header > fieldset > nav details > summary::before {
     display: none;
-}
-*/
-/* Visually hidden text fallback labels for svg icons */
-/* Not sure why I have this when StartCSS has data-hidden=visually ?? */
-/*svg[aria-hidden="true"] + span[aria-hidden="false"] {
+  }
+  [data-elementary] body > header > fieldset > nav details > summary::-webkit- > nav details-marker {
+    display: none;
+  }
+  [data-elementary] body > header > fieldset > nav details > summary > svg:first-child,
+[data-elementary] body > header > fieldset > nav details[open] > summary > svg:first-child + svg {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+  }
+  [data-elementary] body > header > fieldset > nav details > summary > svg:nth-child(2),
+[data-elementary] body > header > fieldset > nav details[open] > summary > svg:first-child {
+    display: none;
+  }
+  [data-elementary] body > header > fieldset > nav details > summary > svg + span {
     clip: rect(0 0 0 0);
     position: absolute;
-}*/
-[data-elementary] body > main > div > header ~ div[role=list] > [data-size=medium] {
-  min-width: calc(66.666% - 2.4rem);
-}
-
-[data-elementary] body > main > div > header ~ div[role=list] > [data-size=large] {
-  min-width: calc(100% - 2.4rem);
-}
-
-@supports (display: grid) {
-  #page-layout-listing-grid[data-elementary] body > main > div > header ~ div[role=list] {
-    display: grid;
-    padding: 2.4rem;
-    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-    grid-gap: 2.4rem;
   }
-  #page-layout-listing-grid[data-elementary] body > main > div > header ~ div[role=list] > * {
+  [data-elementary] body > header > fieldset > nav details > summary + * {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    padding: 1.2rem;
+    margin-top: 2.2rem;
+    box-shadow: 0 4px 2px -1px rgba(0, 0, 0, 0.5);
+    --background-color: var(--navbar-color-light, var(--base-ui-color-dark));
+    background-color: var(--background-color);
+  }
+  @supports not (color: oklch(from red l c h)) {
+    [data-elementary] body > header > fieldset > nav details > summary + * {
+      --text-color: var(--navbar-color-light--text, var(--base-ui-color-dark--text));
+      color: var(--text-color);
+    }
+  }
+  [data-elementary] body > header > fieldset > nav details[open] > summary + *::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 1px 2rem 1.5rem 2rem;
+    border-color: transparent transparent var(--navbar-color-light, var(--base-ui-color-dark)) transparent;
+    position: absolute;
+    right: 0.6em;
+    top: -0.9em;
+  }
+  [data-elementary] body > header > fieldset > nav details > summary + * li {
+    padding: 0.5em;
     margin: 0;
   }
-  #page-layout-listing-grid[data-elementary] body > main > div > header ~ div[role=list] > * > * {
+  /*-------------------------------------------------------------------------------------------------|
+
+      MAIN
+      ============================================================================================
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*
+      Expand main to fill space - part of sticky footer.
+
+      1. There's a wierd sitution on /page-layout-article/ where there's <pre> in a <div>
+         demonstrating the use of the <div> to create a full-width container (one that breaks
+         out of the max-width column). But the <pre> has long content and isn't scrolling,
+         it's pushing everything out to fit the content and I can't figure out a simple
+         fix (or even understand why it's doing it).
+         But, since we have a known max-width for the body and a known column balance, we can work out
+         what the max-width for the main column should be and use that in an  technique.
+
+  */
+  [data-elementary] body > main {
+    flex: 1 0 auto;
+    /* 1 */
+    max-width: 71.4285714286%;
+    width: calc((1512px - 100%) * 9999);
+    min-width: 100%;
+    min-height: 0;
+    margin: 0;
     padding: 0;
+    --background-color: var(--main-color, #fff);
+    background-color: var(--background-color);
   }
-}
-@supports (columns: 1) {
-  #page-layout-listing-columns[data-elementary] body > main > div > header ~ div[role=list] {
-    display: block;
-    padding: 1.2rem 2.4rem;
-    columns: 25rem auto;
-    column-gap: 2.4rem;
+  @supports not (color: oklch(from red l c h)) {
+    [data-elementary] body > main {
+      --text-color: var(--main-color--text, #333);
+      color: var(--text-color);
+    }
+  }
+  /*------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      MAIN HEADER
+      ============================================================================================
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*
+      Page header
+      (note may consider qualifying this with `:first-child` but I don't think it's needed)
+  */
+  [data-elementary] body > main > * > header {
+    margin: 0;
+    padding: 2.4rem;
   }
   /*
-      1. This fixes an issue where box-shadows break across columns.
-  */
-  #page-layout-listing-columns[data-elementary] body > main > div > header ~ div[role=list] > * {
-    margin: 0;
-    transform: translateZ(0); /* [1] */
-    break-inside: avoid;
+      If there's no main header - give the h1 some room:
+      ??Not sure - currently require header?
+  *
+  main > * > h1 {
+      margin-top: 2.4rem;
   }
-  #page-layout-listing-columns[data-elementary] body > main > div > header ~ div[role=list] > * > * {
-    padding: 1.2rem 0;
+  */
+  /*-------------------------------------------------------------------------------------------------|
+
+      BREADCRUMBS
+      ============================================================================================
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      CONTENT
+      ============================================================================================
+
+      ```
+      <main> <!-- OUTER WRAPPER -->
+          <?> <!-- INNER WRAPPER [A] e.g. article or div -->
+              <header>
+                  <h1>...</h1>
+                  ?...?
+              </header>
+          </?>
+      </main>
+      ```
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*
+      If there's a figure inside the article header it's the Hero, but we need to appear visually
+      BEFORE the heading like a normal Hero.
+  */
+  [data-elementary] body > main > * > header {
+    display: flex;
+    flex-direction: column;
+  }
+  [data-elementary] body > main > * > header > figure {
+    order: -1;
+  }
+  [data-elementary] body > main > * > header > h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  /*
+      Content wrapper [A] could be anything (so far `article` or `div`): `[data-elementary] body > main > * >.
+      Inside the wrapper there should be `header` (see _1-header.scss).
+      After the header} we want to give elements some side padding: `~ *`.
+  */
+  [data-elementary] body > main > * > header > h1,
+[data-elementary] body > main > * > header ~ * {
+    padding-left: 2.4rem;
+    padding-right: 2.4rem;
+  }
+  /*
+      If the wrapper [A] is an article, the purpose is longform text [PAGE TYPE Article], so we want
+      that to be easier to read, so add `max-width` and center it.
+
+      1. Some items from StartCSS are `display: table` for other fixes. Because of that they're
+         intrinsically sized so may not appear full width, and therefore look odd, so expand them.
+
+  */
+  [data-elementary] body > main > * > header > h1,
+[data-elementary] body > main > article > header ~ * {
+    width: 100%; /* 1 */
+    max-width: 70rem;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  /*
+      If the first element after the article header is a nav, it's the ToC.
+  */
+  [data-elementary] body > main > article > header + nav {
+    font-size: smaller;
+    margin: 2.4rem;
+    padding: 2.4rem;
+    --background-color: var(--main-color, #eee);
+    background-color: var(--background-color);
+    float: right;
+    min-width: 30%;
+    width: calc((70rem - 100%) * 9999);
+    max-width: calc(100% - 4.8rem);
+  }
+  @supports not (color: oklch(from red l c h)) {
+    [data-elementary] body > main > article > header + nav {
+      --text-color: var(--main-color--text, #333);
+      color: var(--text-color);
+    }
+  }
+  /*
+      We're using `div` (human semantic "divider") to break out of the `max-width`.
+      Use for things like full width images, videos or figures.
+  */
+  [data-elementary] body > main > * > header ~ div {
+    max-width: none;
+    padding: 0;
+  }
+  [data-elementary] body > main > * > header ~ div:not(:last-child) {
+    margin-bottom: 2.4rem;
+  }
+  /*
+      Figures should wither be direct children of the content container, or placed within a `div` to
+      allow them to be full-width.
+  */
+  [data-elementary] body > main > * > header ~ figure,
+[data-elementary] body > main > * > header ~ div > figure {
+    background: #f7c2b2;
+    clear: both;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--base-ui-color);
+    padding: calc(2.4rem - 1px);
+    /*
+    @if $s__use-last-child-margin-zero {
+        padding-bottom: 2.4rem;
+        //padding-bottom: -moz-calc(2.4rem - 1px);
+        padding-bottom:      calc(2.4rem - 1px);
+    } @else {
+        padding-bottom: 0;
+        &::after {
+            display: block;
+
+            content: "";
+
+            height: 1px;
+
+            margin-top: $padding;
+
+            margin-bottom: -1px;
+            //margin-bottom: -moz-calc(-1px - 1px);
+            margin-bottom:      calc(-1px - 1px);
+        }
+    }
+    */
+  }
+  /*
+      If the wrapper [A] is a `div` [PAGE TYPE Listing] we're saying we want `ul`s to be a
+      gallery-style grid list of card-like object.
+      Use for things like portfolio images or article cards.
+  */
+  /*
+      Inline elements
+  */
+  [data-elementary] body > main img {
+    width: 100%;
+  }
+  /*-------------------------------------------------------------------------------------------------|
+
+      CONTENT LISTING
+      ============================================================================================
+
+
+      What should be the default behaviour for this?
+
+      I mean, you'll want to choose the behaviour based on use case and number of items.
+
+      I've covered this before, and there are different 'classes' of behaviour to consider:
+
+      1. **Gallery Grid**. KNOW/UNKNOWN QUANTITY (doesn't matter) Use CSS Grid for this.
+         USES: (Where the are more than X items ?), the items need to be given equal weighting, they
+         should appear as a list (so uneven trailing items are left-aligned and do not expand to the
+         fill the bottom row). VARIABLE/UNDETERMINED quantity. E.g People/PRU People, SHEER badge
+         list.
+
+      2. **Selected Balanced Display**. KNOWN QUANTITY. Items should be considered a 'Display' and
+         should be balanced properly. The correct display pattern class should be applied depending on
+         the quantity and behaviour required. E.g footer logo lists (if number changes, change the
+         class - the number isn't ever unknown). KNOWN card lists, e.g. PRU (7, weighted bottom) /
+         Contact Cards (6, 1x6, 2x3, 3x2)
+
+      3. **Auto Balanced Display**. UNKNOWN QUANTITY. This is the trickiest, and will ALWAYS have the
+         potential to be broken. E.g. News cards - we KNOW it's 6 or less so we can account for that
+         using QQ's etc, but there's nothing to stop an unknowing admin changing this to something
+         like 20. If the max assumed quantity for the pattern is, say 16, then 20 is outside,
+         so the behaviour is undefined. This is SO unlikely though
+
+  |-------------------------------------------------------------------------------------------------*/
+  [data-elementary] body > main > div > header ~ div[role=list] {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1.2rem;
+    list-style-type: none;
+  }
+  [data-elementary] body > main > div > header ~ div[role=list] > * {
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 25rem;
+    min-width: calc(33.333% - 2.4rem);
+    margin: 1.2rem;
+    padding: 0;
+    border: 0;
+    --background-color: var(--listing-item-color, #fff);
+    background-color: var(--background-color);
+  }
+  @supports not (color: oklch(from red l c h)) {
+    [data-elementary] body > main > div > header ~ div[role=list] > * {
+      --text-color: var(--listing-item-color--text, #333);
+      color: var(--text-color);
+    }
+  }
+  [data-elementary] body > main > div > header ~ div[role=list] > * > * {
+    padding: 0;
+  }
+  [data-elementary] body > main > div > header ~ div[role=list] > * > * {
+    display: block;
+    height: 100%;
+    margin: 0;
+  }
+  /*-------------------------------------------------------------------------------------------------|
+
+      CONTENT LISTING - COLUMNS
+      ============================================================================================
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      CONTENT LISTING - GRID
+      ============================================================================================
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      CONTENT SIDEBAR
+      ============================================================================================
+
+      Use this for page/content specific content - it should be different on each page and relevant
+      or related to the current main content.
+      For example:
+      * Section menu
+      * Related Articles
+      * Table of Contents (? may separate this)
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      CONTENT FOOTER
+      ============================================================================================
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      LAYOUT SIDEBAR
+      ============================================================================================
+
+      This should be used for site-wide content. I.e. content that doesn't change from page-to-page.
+      Examples include:
+      * Site-wide navigation if not putting in Banner.#
+      * Search
+      * Sign-up
+      * Donate
+      * Featured / Promoted content
+      * Ads :-(
+
+  |-------------------------------------------------------------------------------------------------*/
+  [data-elementary] body > aside {
+    margin: 0;
+    padding: 2.4rem;
+    --background-color: var(--sidebar-color-lighter, var(--base-ui-color-lighter));
+    background-color: var(--background-color);
+  }
+  @supports not (color: oklch(from red l c h)) {
+    [data-elementary] body > aside {
+      --text-color: var(--sidebar-color-lighter--text, var(--base-ui-color-lighter--text));
+      color: var(--text-color);
+    }
+  }
+  [data-elementary] body > main + aside {
+    --background-color: var(--sidebar-color-light, var(--base-ui-color-light));
+    background-color: var(--background-color);
+  }
+  @supports not (color: oklch(from red l c h)) {
+    [data-elementary] body > main + aside {
+      --text-color: var(--sidebar-color-light--text, var(--base-ui-color-light--text));
+      color: var(--text-color);
+    }
+  }
+  /*-------------------------------------------------------------------------------------------------|
+
+      FOOTER
+      ============================================================================================
+
+  |-------------------------------------------------------------------------------------------------*/
+  [data-elementary] body > footer {
+    margin: 0;
+    padding: 1.2rem;
+    font-size: 0.875em;
+    text-align: center;
+    --background-color: var(--footer-background-color, var(--base-ui-color));
+    background-color: var(--background-color);
+  }
+  @supports not (color: oklch(from red l c h)) {
+    [data-elementary] body > footer {
+      --text-color: var(--footer-color--text, var(--base-ui-color--text));
+      color: var(--text-color);
+    }
+  }
+  [data-elementary] body > footer > * {
+    margin-bottom: 0;
+  }
+  /*-------------------------------------------------------------------------------------------------|
+
+      COMPONENTS
+      ============================================================================================
+
+  |-------------------------------------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------------------------------------|
+
+      COMPONENTS - CARD
+      =================
+
+  |-------------------------------------------------------------------------------------------------*/
+  [data-elementary] article > div:only-child {
+    --name: card;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 2.4rem;
+    border: var(--card-border-width, 0.4rem) var(--card-border-style, solid) var(--card-border-color, #fff);
+    border-radius: 1.2rem;
+    --background-color: var(--card-color, var(--base-ui-color-lightest));
+    background-color: var(--background-color);
+    box-shadow: 0 0 0.6rem 0 rgba(0, 0, 0, 0.2);
+  }
+  @supports not (color: oklch(from red l c h)) {
+    [data-elementary] article > div:only-child {
+      --text-color: var(--card-color--text, var(--base-ui-color-lightest--text));
+      color: var(--text-color);
+    }
+  }
+  [data-elementary] article > div:only-child * {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+  [data-elementary] article > div:only-child *:only-child {
+    margin-bottom: 0;
+  }
+  [data-elementary] article > div:only-child > header {
+    background-color: transparent;
+    padding: 0;
+  }
+  [data-elementary] article > div:only-child > header > :last-child {
+    margin-bottom: 2.4rem;
+  }
+  [data-elementary] article > div:only-child > header > :last-child {
+    margin-bottom: 0;
+  }
+  [data-elementary] article > div:only-child > header > :last-child > :last-child {
+    margin-bottom: 0;
+  }
+  [data-elementary] article > div:only-child > header > div:first-child {
+    position: relative;
+    overflow: hidden;
+    margin: -2.4rem -2.4rem 2.4rem -2.4rem;
+  }
+  [data-elementary] article > div:only-child > header > div:first-child::before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: 33%;
+  }
+  [data-elementary] article > div:only-child > header > div:first-child > img {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  [data-elementary] article > div:only-child > div > :last-child {
+    margin-bottom: 0;
+  }
+  [data-elementary] article > div:only-child > div > :last-child > :last-child {
+    margin-bottom: 0;
+  }
+  [data-elementary] article > div:only-child > div > p:last-child > b:only-child {
+    display: block;
+    text-align: right;
+  }
+  [data-elementary] article > div:only-child > footer {
+    margin-top: auto;
+    margin-bottom: 0;
+    padding: 0;
+    background-color: transparent;
+  }
+  [data-elementary] article > div:only-child > footer > :last-child {
+    margin-bottom: 0;
+  }
+  [data-elementary] article > div:only-child > footer > :last-child > :last-child {
+    margin-bottom: 0;
+  }
+  /*-------------------------------------------------------------------------------------------------|
+
+      CTA
+      ===
+
+  |-------------------------------------------------------------------------------------------------*/
+  [data-elementary] article > div:only-child b > a[href]:only-child {
+    --name: cta;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0;
+    padding: calc(0.6rem - 0.1rem) 1.2rem;
+    border: 0 none;
+    border-radius: 0.3rem;
+    --background-color: var(--cta-color, var(--base-ui-color));
+    background-color: var(--background-color);
+    box-shadow: none;
+    font-weight: normal;
+    line-height: 2.4rem;
+    vertical-align: middle;
+    text-decoration: none;
+  }
+  @supports not (color: oklch(from red l c h)) {
+    [data-elementary] article > div:only-child b > a[href]:only-child {
+      --text-color: var(--cta-color--text, var(--base-ui-color--text));
+      color: var(--text-color);
+    }
+  }
+  [data-elementary] article > div:only-child b > a[href]:only-child:hover, [data-elementary] article > div:only-child b > a[href]:only-child:active, [data-elementary] article > div:only-child b > a[href]:only-child:focus {
+    --background-color: var(--cta-color, var(--base-ui-color-light));
+    background-color: var(--background-color);
+  }
+  @supports not (color: oklch(from red l c h)) {
+    [data-elementary] article > div:only-child b > a[href]:only-child:hover, [data-elementary] article > div:only-child b > a[href]:only-child:active, [data-elementary] article > div:only-child b > a[href]:only-child:focus {
+      --text-color: var(--cta-color--text, var(--base-ui-color-light--text));
+      color: var(--text-color);
+    }
+  }
+  /*-------------------------------------------------------------------------------------------------|
+
+      COMPONENTS - HERO
+      =================
+
+  |-------------------------------------------------------------------------------------------------*/
+  [data-elementary] body > header > fieldset > figure {
+    --name: hero;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    max-width: none;
+    --background-color: var(--banner-color, var(--base-ui-color));
+    background-color: var(--background-color);
+  }
+  @supports not (color: oklch(from red l c h)) {
+    [data-elementary] body > header > fieldset > figure {
+      --text-color: var(--banner-color--text, var(--base-ui-color--text));
+      color: var(--text-color);
+    }
+  }
+  [data-elementary] body > header > fieldset > figure::before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: 33%;
+  }
+  [data-elementary] body > header > fieldset > figure > img {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  [data-elementary] body > main > * > header > figure {
+    --name: hero;
+    position: relative;
+    overflow: hidden;
+    margin: -2.4rem -2.4rem 2.4rem -2.4rem;
+    max-width: none;
+    --background-color: var(--banner-color, var(--base-ui-color));
+    background-color: var(--background-color);
+  }
+  @supports not (color: oklch(from red l c h)) {
+    [data-elementary] body > main > * > header > figure {
+      --text-color: var(--banner-color--text, var(--base-ui-color--text));
+      color: var(--text-color);
+    }
+  }
+  [data-elementary] body > main > * > header > figure::before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: 33%;
+  }
+  [data-elementary] body > main > * > header > figure > img {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /*-------------------------------------------------------------------------------------------------|
+
+      COMPONENTS - IMAGES
+      ===================
+
+  |-------------------------------------------------------------------------------------------------*/
+  [data-elementary] b > img:only-child {
+    --name: border-image;
+    border: 0.1rem solid var(--base-ui-color);
+  }
+  [data-elementary] b > i:only-child > img:only-child {
+    --name: inset-image;
+    padding: 2.4rem;
+    border: 0.1rem solid var(--base-ui-color);
+    --background-color: var(--image-color, var(--base-ui-color));
+    background-color: var(--background-color);
+  }
+  @supports not (color: oklch(from red l c h)) {
+    [data-elementary] b > i:only-child > img:only-child {
+      --text-color: var(--image-color--text, var(--base-ui-color--text));
+      color: var(--text-color);
+    }
+  }
+  /*-------------------------------------------------------------------------------------------------|
+
+      COMPONENTS - INFO OVERLAY
+      =========================
+
+  |-------------------------------------------------------------------------------------------------*/
+  [data-elementary] header figcaption > details {
+    --name: image-overlay;
+    position: absolute;
+    right: 0.6rem;
+    top: 0.6rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 1.2rem;
+    --background-color: rgba(0,0,0,0.7);
+    background-color: var(--background-color);
+  }
+  @supports not (color: oklch(from red l c h)) {
+    [data-elementary] header figcaption > details {
+      --text-color: #fff;
+      color: var(--text-color);
+    }
+  }
+  [data-elementary] header figcaption > details a[href] {
+    color: #fff;
+  }
+  [data-elementary] header figcaption > details[open] {
+    border-radius: 0;
+    top: 0;
+    right: 0;
+    width: auto;
+    height: auto;
+  }
+  [data-elementary] header figcaption > details[open] > summary {
+    top: 0.6rem;
+    right: 0.6rem;
+  }
+  [data-elementary] header figcaption > details[open] > summary > svg:first-of-type {
+    display: none;
+  }
+  [data-elementary] header figcaption > details[open] > summary > svg:last-of-type {
+    display: inline;
+  }
+  [data-elementary] header figcaption > details::after {
+    display: none;
+  }
+  /*
+      1. `align-items: center;` is the obvious choice for vertical-center aligning the icons, but
+         for some reason iOS doesn't get it right, so I'm using padding instead for now since the
+         icon or container sizes shouldn't change.
+  */
+  [data-elementary] header figcaption > details > summary {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* [1] */
+    width: 2.4rem;
+    height: 2.4rem;
+    margin: 0;
+    border-radius: 1.2rem;
+    list-style: none;
+  }
+  [data-elementary] header figcaption > details > summary > svg:first-of-type {
+    display: inline;
+  }
+  [data-elementary] header figcaption > details > summary > svg:last-of-type {
+    display: none;
+  }
+  [data-elementary] header figcaption > details > summary::before {
+    display: none;
+  }
+  [data-elementary] header figcaption > details > summary:hover, [data-elementary] header figcaption > details > summary:focus, [data-elementary] header figcaption > details > summary:active {
+    background: rgba(255, 255, 255, 0.3);
+  }
+  [data-elementary] header figcaption > details > summary::-webkit-details-marker {
+    display: none;
+  }
+  [data-elementary] header figcaption > details > summary + * {
+    position: relative;
+    display: block;
+    max-width: calc(100% - 2.4rem);
+    padding: 3.6rem 3.6rem 2.4rem 2.4rem;
+  }
+  /*---*/
+  /*
+      Greybox
+  */
+  /*
+  [data-elementary] body > header,
+  [data-elementary] body > footer {
+      background: #ddd;
+  }
+
+  body > aside {
+      background: #ccc;
+  }
+
+  /*
+  main > div > ul > li > a[href],
+  main > div > ul > li > article {
+
+      padding: $s__sz-m;
+      background: #ddd;
+      display: block;
+      margin: 0;
+  }
+  */
+  [data-elementary] body > header > fieldset nav b svg {
+    stroke: #fff;
+  }
+  p[role=list] {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-left: -0.6rem;
+    margin-right: -0.6rem;
+  }
+  p[role=list] span[role=listitem] {
+    margin: 0.6rem;
+    flex: 0 0 auto;
+    display: inline-block;
+  }
+  /*
+  p[role="list"]   span[role="listitem"] > *{
+      white-space: nowrap;
+  }
+  */
+  /* Hide NoCSS separator */
+  /*
+  p[role="list"] span[role="listitem"] > span:last-child {
+      display: none;
+  }
+  */
+  /* Visually hidden text fallback labels for svg icons */
+  /* Not sure why I have this when StartCSS has data-hidden=visually ?? */
+  /*svg[aria-hidden="true"] + span[aria-hidden="false"] {
+      clip: rect(0 0 0 0);
+      position: absolute;
+  }*/
+  [data-elementary] body > main > div > header ~ div[role=list] > [data-size=medium] {
+    min-width: calc(66.666% - 2.4rem);
+  }
+  [data-elementary] body > main > div > header ~ div[role=list] > [data-size=large] {
+    min-width: calc(100% - 2.4rem);
+  }
+  @supports (display: grid) {
+    #page-layout-listing-grid[data-elementary] body > main > div > header ~ div[role=list] {
+      display: grid;
+      padding: 2.4rem;
+      grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+      grid-gap: 2.4rem;
+    }
+    #page-layout-listing-grid[data-elementary] body > main > div > header ~ div[role=list] > * {
+      margin: 0;
+    }
+    #page-layout-listing-grid[data-elementary] body > main > div > header ~ div[role=list] > * > * {
+      padding: 0;
+    }
+  }
+  @supports (columns: 1) {
+    #page-layout-listing-columns[data-elementary] body > main > div > header ~ div[role=list] {
+      display: block;
+      padding: 1.2rem 2.4rem;
+      columns: 25rem auto;
+      column-gap: 2.4rem;
+    }
+    /*
+        1. This fixes an issue where box-shadows break across columns.
+    */
+    #page-layout-listing-columns[data-elementary] body > main > div > header ~ div[role=list] > * {
+      margin: 0;
+      transform: translateZ(0); /* [1] */
+      break-inside: avoid;
+    }
+    #page-layout-listing-columns[data-elementary] body > main > div > header ~ div[role=list] > * > * {
+      padding: 1.2rem 0;
+    }
   }
 }

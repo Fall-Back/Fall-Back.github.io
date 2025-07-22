@@ -23,10 +23,10 @@
     flex: 0 0 auto;
     padding: 0;
     border: 0;
-    margin: 0 0.6rem;
+    margin: 1.2rem;
 
     display: flex;
-    align-items: center;
+    align-items: end;
 }
 
 /* Only for start margin stuff */
@@ -40,6 +40,8 @@
     align-items: center;
     position: relative;
     z-index: 3;
+
+    align-self: center;
 
     height: $e__nav-bar--height;
 
@@ -122,7 +124,6 @@ This puts a hover arrow on the navicon. I'm not sure why I did this.
 
 
 
-
 #{$es__page_banner__inner}   > nav details > summary > svg + span {
     clip: rect(0 0 0 0);
     position: absolute;
@@ -135,7 +136,7 @@ This puts a hover arrow on the navicon. I'm not sure why I did this.
     right: 0;
     padding: $s__sz-s;
     margin-top: 2.2rem;
-    list-style: none;
+
 
     box-shadow: 0 4px 2px -1px rgba(0,0,0,0.5);
 
@@ -152,7 +153,7 @@ This puts a hover arrow on the navicon. I'm not sure why I did this.
     border-width: 1px 2rem 1.5rem 2rem;
     border-color: transparent transparent var(--navbar-color-light, var(--base-ui-color-dark)) transparent;
     position: absolute;
-    right: 0.4em;
+    right: 0.6em;
     top: -0.9em;
     //margin-top: 2.1em;
     //margin-left: -0.5em;

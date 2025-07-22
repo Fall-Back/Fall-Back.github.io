@@ -8,9 +8,13 @@
 #{$es__page_banner__navbar} {
     --name: navbar;
 
+    position: relative;
+    z-index: 10;
+
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: end;
 
     max-width: 100%;
 
@@ -22,7 +26,7 @@
 
 
 #{$es__page_banner__navbar} > * {
-    flex: 1 1 auto;
+    flex: 999 1 auto;
 }
 
 #{$es__page_banner__navbar}   p[role="list"] {

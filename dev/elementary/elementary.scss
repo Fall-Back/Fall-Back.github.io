@@ -41,7 +41,8 @@ $s__textarea-focus-shadow-width: 0.3rem;
 
 $s__figure-scroll: true;
 @import '../start-css/scss/_start.scss';
-
+//@supports (font-size: clamp(10px, 1vw, 12px)) {
+@supports (selector(:has(*))) and (color: color-mix(in lab, white, black 50%)) {
 
 /*-------------------------------------------------------------------------------------------------|
 
@@ -129,3 +130,5 @@ p[role="list"] span[role="listitem"] > span:last-child {
     basis:    $e__listing__item--basis,
     gutter:   $e__listing__gutter
 ));
+
+}
