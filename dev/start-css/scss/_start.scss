@@ -461,6 +461,10 @@ body {
     color: $s__selection-text-color;
     background-color: $s__selection-background-color;
 
+    //color: $s__selection-text-color;
+    //--background-color: #{$s__selection-background-color};
+    //background-color: var(--background-color);
+
     text-shadow: $s__selection-text-shadow;
 }
 
