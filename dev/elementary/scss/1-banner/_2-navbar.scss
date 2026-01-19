@@ -26,13 +26,13 @@
 
 
 #{$es__page_banner__navbar} > * {
-    flex: 999 1 auto;
+    flex: 1 1 auto;
 }
-
+/*
 #{$es__page_banner__navbar}   p[role="list"] {
-    flex-grow: 999;
+    flex: 1 1 auto;
 }
-
+*/
 @if $e__nav-bar__link--spacing == false {
     #{$es__page_banner__navbar}   p[role="list"],
     #{$es__page_banner__navbar}   p[role="list"]   span[role="listitem"] {

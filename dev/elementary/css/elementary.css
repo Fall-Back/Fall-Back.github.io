@@ -3409,11 +3409,13 @@ body {
     background-color: transparent;
   }
   [data-elementary] body > header > fieldset nav > * {
-    flex: 999 1 auto;
+    flex: 1 1 auto;
   }
-  [data-elementary] body > header > fieldset nav p[role=list] {
-    flex-grow: 999;
+  /*
+  [data-elementary] body > header > fieldset   nav   p[role="list"] {
+      flex: 1 1 auto;
   }
+  */
   [data-elementary] body > header > fieldset nav a[href],
 [data-elementary] body > header > fieldset nav summary {
     display: inline-block;
