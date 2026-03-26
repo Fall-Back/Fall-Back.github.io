@@ -1322,7 +1322,7 @@ See SCSS file for documentation. */
   html[lang] hr::before {
     content: "";
     position: absolute;
-    inset-block-start: calc(var(--sz-s) / 2);
+    inset-block-start: var(--sz-s);
     display: block;
     inline-size: 100%;
     block-size: 0;
@@ -1593,7 +1593,8 @@ html[lang] [type=submit]:focus-visible {
         1. Make sure focus is still visible in Forced Colour modes.
             (https://www.sarasoueidan.com/blog/focus-indicators/)
     */
-    margin-inline-end: var(--sz-xs, );
+    margin-block: 0;
+    margin-inline: var(--sz-xs);
     border-start-end-radius: 0;
     border-end-end-radius: 0;
   }
@@ -1641,7 +1642,8 @@ html[lang] [type=submit]:focus-visible {
         1. Make sure focus is still visible in Forced Colour modes.
             (https://www.sarasoueidan.com/blog/focus-indicators/)
     */
-    margin-inline-end: var(--sz-xs, );
+    margin-block: 0;
+    margin-inline: var(--sz-xs);
     border-start-end-radius: 0;
     border-end-end-radius: 0;
   }
@@ -1982,7 +1984,7 @@ html[lang] li ol {
   html[lang] select {
     height: calc(var(--sz-m) + var(--sz-xs)); /* [1] */
     min-height: auto;
-    margin-block: var(--sz-xs);
+    margin-block: var(--sz-xxs);
     border-width: var(--select-border-width, var(--base-border-width));
     border-style: var(--select-border-style, var(--base-border-style));
     border-color: var(--select-border-color, var(--base-border-color));
@@ -1998,12 +2000,14 @@ html[lang] li ol {
     touch-action: manipulation; /* [2] */
   }
   /*
-      Make the arrow indicator the same across browsers.
+      1. Make the arrow indicator the same across browsers.
   */
   html[lang] select:not([multiple]) {
-    padding-inline: var(--select-inline-padding, var(--sz-xs));
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4.95 10" fill="%23444"><polygon points="1.41 4.67 2.48 3.18 3.54 4.67 1.41 4.67"/><polygon points="3.54 5.33 2.48 6.82 1.41 5.33 3.54 5.33"/></svg>'); /* [2] */
+    padding-inline-start: var(--select-inline-start-padding, var(--sz-xs));
+    padding-inline-end: var(--select-inline-end-padding, var(--sz-m));
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4.95 10" fill="%23444"><polygon points="1.41 4.67 2.48 3.18 3.54 4.67 1.41 4.67"/><polygon points="3.54 5.33 2.48 6.82 1.41 5.33 3.54 5.33"/></svg>'); /* [1] */
     background-repeat: no-repeat;
+    background-position: calc(100% - var(--sz-xxs)) 0;
     appearance: none;
   }
   /*
@@ -2018,13 +2022,14 @@ html[lang] select:focus-visible {
   /*
       Note that Opera 25- and Safari(all - 11 latest at time of writing) treat select [size]s of
       less than 4 as 4.
+      1. Multi-selects take the height of their options so need to use negative margin to offset
+         border-width.
   */
   html[lang] select[multiple] {
     height: auto;
     vertical-align: top;
-    margin-block-start: var(--sz-xsx);
     margin-inline: 0;
-    margin-block-end: calc(var(--sz--xxs) * 3 - var(--select-border-width, var(--base-border-width)) * 2);
+    margin-block: calc(var(--select-border-width, var(--base-border-width)) * -1);
   }
   /*
       Apply padding to fudge height in Safari (we need to apply to iOS)...

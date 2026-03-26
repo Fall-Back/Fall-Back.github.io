@@ -26,7 +26,7 @@
         &::before {
             content: "";
             position: absolute;
-            inset-block-start: calc(var(--sz-s) / 2);
+            inset-block-start: var(--sz-s);
 
             display: block;
             inline-size: 100%;

@@ -161,7 +161,10 @@
     */
     #{cfg.base("namespace")}[type="file"]::file-selector-button {
         @include mixins.s__button;
-        margin-inline-end: var(--sz-xs, #{cfg.tokens("sz-xs")});
+        //margin-inline-end: var(--sz-xs, #{cfg.tokens("sz-xs")});
+        margin-block: 0;
+        margin-inline: var(--sz-xs);
+
         border-start-end-radius: 0;
         border-end-end-radius: 0;
 
@@ -172,7 +175,10 @@
 
     #{cfg.base("namespace")}[type="file"]::-webkit-file-upload-button {
         @include mixins.s__button;
-        margin-inline-end: var(--sz-xs, #{cfg.tokens("sz-xs")});
+        //margin-inline-end: var(--sz-xs, #{cfg.tokens("sz-xs")});
+        margin-block: 0;
+        margin-inline: var(--sz-xs);
+
         border-start-end-radius: 0;
         border-end-end-radius: 0;
 
