@@ -1876,27 +1876,41 @@ html[lang] li ol {
       these could be adjusted with a class. Could maybe make this default configurable but leave as it
       is for now as it's likely that a poem would need a complete re-style (e.g. fonts etc.).
 
-      1. Keep scrollbar visible to maintain vertical rhythm.
-         Most browsers have a scrollbar height of 17px (calculated in settings section), however Edge
-         appears to have a scrollbar height of 12px, so we override it with a hack.
-      2. Correct the odd `em` font sizing in all browsers.
-      3. Correct the inheritance and scaling of font size in all browsers.
-      4. Ensure box edges are visible in High Contrast Mode.
+      1 Correct the odd `em` font sizing in all browsers.
+      2. Correct the inheritance and scaling of font size in all browsers.
+      3. Ensure box edges are visible in High Contrast Mode.
 
+      Scrolling. Browsers handle scrollbars differently. To preserve vertical rhythm (VR), some
+      browser-specific tweaks are needed.
+      (Note on Mac Safari scrollbar visibility is a user setting but that doesn't affect the VR)
 
-      On Mac Safari 16 (tested in 16.5, 17.3, 18.4 no scrollbar appears at all until you select l drag
-      or use arrow keys
-      which is strange.
+      s1. Set some baseline variables.
+      s2. Colour scrollbars for modern browsers.
+      s3. Chrome (last tested in 146) still gives space for the scrollbar and doesn't overlay them
+          like FF does so we need to change the pasding to reserve the VR.
+          This targets Chrome 111+.
+          overflow-scroll forces the scrollbar because we can't detect if it is present or not.
+      s4. Chronme 133- used 17px for the scrollbar. There's no CSS features I can use to target
+          that split, but `overflow-inline: auto` was introduced in Chrome 135 so that will do.
+          It means 134 doesn't keep the VR but no-one would notice.
   */
   html[lang] pre {
     overflow: auto;
-    font-size: 1em; /* [2] */
-    font-family: var(--monospace-font-family, monospace); /* [3] */
+    font-size: 1em; /* [1] */
+    font-family: var(--monospace-font-family, monospace); /* [2] */
     --background-color: var(--pre-background-color, var(--base-ui-color-lightest));
     background-color: var(--background-color);
     margin-block-start: var(--m);
     margin-block-end: var(--m);
-    outline: 2px solid transparent; /* [4] */
+    outline: 2px solid transparent; /* [3] */
+    /* [s1] */
+    --pre-scrollbar-color-thumb: var(--scrollbar-color-thumb, var(--base-ui-color-dark));
+    --pre-scrollbar-color-track: var(--scrollbar-color-track, var(--base-ui-color-lighter));
+    --pre-scrollbar-size-legacy: var(--scrollbar-size-legacy, var(--sz-s));
+    --pre-padding-block-end-legacy: calc(var(--sz-m) - 15px);
+    /* [s2] */
+    /* [s3] */
+    /* [s4] */
   }
   html[lang] pre:first-child {
     margin-block-start: 0;
@@ -1910,7 +1924,28 @@ html[lang] li ol {
   }
   @supports (scrollbar-width: auto) {
     html[lang] pre {
-      scrollbar-color: var(--scrollbar-color-thumb, var(--base-ui-color-dark)) var(--scrollbar-color-track, var(--base-ui-color-lighter));
+      scrollbar-color: var(--pre-scrollbar-color-thumb) var(--pre-scrollbar-color-track);
+    }
+  }
+  @supports selector(::-webkit-scrollbar) {
+    html[lang] pre {
+      padding-block-end: var(--pre-padding-block-end-legacy);
+      overflow-x: scroll;
+    }
+    html[lang] pre::-webkit-scrollbar-thumb {
+      background: var(--pre-scrollbar-color-thumb);
+    }
+    html[lang] pre::-webkit-scrollbar-track {
+      background: var(--pre-scrollbar-color-track);
+    }
+    html[lang] pre::-webkit-scrollbar {
+      width: var(--pre-scrollbar-size-legacy);
+      height: var(--pre-scrollbar-size-legacy);
+    }
+  }
+  @supports selector(::-webkit-scrollbar) and (not (overflow-inline: auto)) {
+    html[lang] pre {
+      --pre-padding-block-end-legacy: calc(var(--sz-m) - 17px);
     }
   }
   /*
