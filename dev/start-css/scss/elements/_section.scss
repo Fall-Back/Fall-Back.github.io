@@ -1,13 +1,16 @@
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS ELEMENT: section
-    v3.0.0
+    v4.0.0
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 
-#{$s__namespace}section {
-    display: block;
+@use "../start-config" as cfg;
+@use "../start-mixins" as mixins;
 
-    @include s__margins($s__base-rem-space-unit, $s__margin-type);
+@mixin emit() {
+    #{cfg.base("namespace")}section {
+        @include mixins.s__block_margins();
+    }
 }

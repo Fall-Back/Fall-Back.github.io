@@ -127,11 +127,19 @@ head_style: |
 
 
     .tb-baseline main {
+        --line-color: rgba(0, 0, 0, 0.2);
 
         background-color: #fff;
-        background-size: 1px 1.2rem;
+
         background-repeat: repeat;
-        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 6%, transparent 6%, transparent 100%); /* Chrome 26, Firefox 16+, IE 10+, Opera 12.50+ */
+        background-image: linear-gradient(var(--line-color) .1rem, transparent .1rem);
+        background-size: 100% 1.2rem;
+
+        /*
+        background-size: 1px 1.2rem;
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 6%, transparent 6%, transparent 100%);
+        */
+        /* Chrome 26, Firefox 16+, IE 10+, Opera 12.50+ */
 
 
     }
@@ -269,9 +277,9 @@ body_end_script: |
         toolbox.id = 'toolbox';
         toolbox.className = 'tb-toolbox';
         var tools = [
-            '<input type="checkbox" id="toggleBaseline"' + (hasClass($body, 'tb-baseline') ? ' checked' : '') + ' "> ',
+            '<input type="checkbox" checked id="toggleBaseline"' + (hasClass($body, 'tb-baseline') ? ' checked' : '') + ' "> ',
             '<label for="toggleBaseline">Baseline grid</label><br>',
-            '<input type="checkbox" id="toggleOutlines"' + (hasClass($body, 'tb-outlines') ? ' checked' : '') + ' "> ',
+            '<input type="checkbox" checked id="toggleOutlines"' + (hasClass($body, 'tb-outlines') ? ' checked' : '') + ' "> ',
             '<label for="toggleOutlines">Outline elements</label><br>',
             '<input type="checkbox" id="forceWideTable"' + (hasClass($body, 'tb-wide-table') ? ' checked' : '') + ' "> ',
             '<label for="forceWideTable">Force wide table</label><br>',
@@ -308,7 +316,8 @@ body_end_script: |
             $main.style.maxWidth = $maxMainWidth.value;
         });
 
-
+        toggleClass($body, 'tb-baseline');
+        toggleClass($body, 'tb-outlines');
 
 
         /*

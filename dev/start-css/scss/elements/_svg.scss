@@ -1,21 +1,25 @@
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS ELEMENT: svg
-    v3.0.0
+    v4.0.0
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 
-/*
-    1. Change the fill color to match the text color in all browsers.
-       (needs more testing)
+@use "../start-config" as cfg;
 
-    2. iOS7 (at least) adds a mystery top margin.
-*/
-#{$s__namespace}svg {
-    vertical-align: $s__media-element-vertical-align;
+@mixin emit() {
+    /*
+        1. Change the fill color to match the text color in all browsers.
+           (needs more testing)
 
-    fill: currentColor; /* 1 */
+        2. iOS7 (at least) adds a mystery top margin.
+    */
+    #{cfg.base("namespace")}svg {
+        vertical-align: cfg.elements("media-element-vertical-align");
 
-    margin-top: 0 /* 2 */
+        fill: currentColor; /* [1] */
+
+        margin-block-start: 0; /* [2] */
+    }
 }

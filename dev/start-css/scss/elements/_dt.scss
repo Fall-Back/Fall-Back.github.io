@@ -1,20 +1,24 @@
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS ELEMENT: dt
-    v3.0.0
+    v4.0.0
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 
-#{$s__namespace}dt {
-    font-weight: bold;
+@use "../start-config" as cfg;
 
-    @if $s__space_dl_groups {
-        margin-top:  $s__base-rem-space-unit;
+@mixin emit() {
+    #{cfg.base("namespace")}dt {
+        font-weight: bold;
 
-        &:first-child,
-        & + & {
-            margin-top: 0;
+        @if cfg.flags("space-dl-groups") {
+            margin-block-start: var(--dl-group-space, var(--sz-m));
+
+            &:first-child,
+            & + & {
+                margin-block-start: 0;
+            }
         }
     }
 }

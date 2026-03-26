@@ -1,180 +1,119 @@
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS ELEMENT: select
+    v4.0.0
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 
-@use 'sass:math';
+@use "../start-config" as cfg;
+@use "../start-mixins" as mixins;
 
 // N1: Address inconsistent `text-transform` inheritance for `select`.
 // All other form control elements do not inherit `text-transform` values.
-//  Correct `select` style inheritance in Firefox.
+// Correct `select` style inheritance in Firefox.
 /*
     1. Using height because min-height doesn't change the expand button height in FF.
     2. Remove the tapping delay from clickable elements.
 */
-#{$s__namespace}select {
-    height: $s__base-rem-space-unit + math.div($s__base-rem-space-unit, 4); /* 1 */
-    min-height: auto;
+@mixin emit() {
+    #{cfg.base("namespace")}select {
+        height: calc(var(--sz-m) + var(--sz-xs)); /* [1] */
+        min-height: auto;
 
-    margin: math.div($s__base-rem-space-unit, 8) 0;
+        margin-block: var(--sz-xs);
 
-    border-width: $s__select-border-width;
-    border-style: $s__select-border-style;
-    border-color: $s__select-border-color;
-    border-radius: $s__select-border-radius;
+        border-width: var(--select-border-width, var(--base-border-width));
+        border-style: var(--select-border-style, var(--base-border-style));
+        border-color: var(--select-border-color, var(--base-border-color));
+        border-radius: var(--select-border-radius, var(--base-border-radius));
 
-    //color: $s__select-text-color;
-    //background-color: $s__select-background-color;
-    --background-color: var(--select--color, #fff);
-    @include s__theme(var(--select-color--text, var(--color)));
 
-    font-weight: inherit;
-    font-style: inherit;
-    font-size: inherit;
-    font-family: inherit;
-    line-height: $s__base-rem-space-unit;
+        font-weight: inherit;
+        font-style: inherit;
+        font-size: inherit;
+        font-family: inherit;
+        line-height: var(--base-line-height);
 
-    vertical-align: middle;
+        vertical-align: middle;
 
-    text-transform: none;
+        text-transform: none;
 
-    cursor: pointer;
+        cursor: pointer;
 
-    touch-action: manipulation; /* 2 */
-
-    /*&::-ms-expand {
-        background-color: transparent;
-        color: #000;
-        border: 0;
-        padding-left: $s__select-h-padding;
-        padding-right: $s__select-h-padding;
+        touch-action: manipulation; /* [2] */
     }
 
-    &::-ms-value {
-        color: currentColor;
-    }*/
-}
+    /*
+        Make the arrow indicator the same across browsers.
+    */
+    #{cfg.base("namespace")}select:not([multiple]) {
+        padding-inline: var(--select-inline-padding, var(--sz-xs));
 
-/*
-    Make the arrow indicator the same across browsers.
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4.95 10" fill="%23444"><polygon points="1.41 4.67 2.48 3.18 3.54 4.67 1.41 4.67"/><polygon points="3.54 5.33 2.48 6.82 1.41 5.33 3.54 5.33"/></svg>'); /* [2] */
+        background-repeat: no-repeat;
 
-    1. Give webkit extra padding.
-       (not sure this is the best way but it seems FF and IE add the option padding, but webkit
-       doesn't so this basically works)
-    2. Note - FF needs any # (e.g. fill colors) to be %23 encoded.
-    3. FF48- does not support background-position-x/y.
-    4. FF34- does not remove the arrow but also does not show the background image until FF29-, at
-       which point both are shown. However, removing the right-padding solves this (see below).
-*/
-#{$s__namespace}select:not([multiple]) {
-    padding-left: math.div($s__select-h-padding, 2);
-    -webkit-padding-start: $s__select-h-padding; /* 1 */
-    padding-right: $s__select-h-padding * 4;
-
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4.95 10" fill="%23444"><polygon points="1.41 4.67 2.48 3.18 3.54 4.67 1.41 4.67"/><polygon points="3.54 5.33 2.48 6.82 1.41 5.33 3.54 5.33"/></svg>'); /* 2 */
-    //background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNC45NSAxMCI+PHBvbHlnb24gZmlsbD0iIzQ0NCIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz48cG9seWdvbiBmaWxsPSIjNDQ0IiBwb2ludHM9IjMuNTQgNS4zMyAyLjQ4IDYuODIgMS40MSA1LjMzIDMuNTQgNS4zMyIvPjwvc3ZnPg==);
-    background-repeat: no-repeat;
-    background-position: right 0.3em bottom 0; /* 3 */
-
-    -moz-appearance: none; /* 4 */
-    -webkit-appearance: none;
-    appearance: none;
-}
-
-/*
-    We need to remove right padding before FF34, but there isn't a hack for that.
-    So instead, remove for all FireFox ...
-*/
-_:-moz-tree-row(hover), #{$s__namespace}select:not([multiple]) {
-    padding-right: 0;
-}
-/*
-    ... and reinstate for FF35+
-*/
-// @supports (-moz-appearance:none) and (mask-type:alpha) { .selector { property:value; } }
-// Firefox 35+
-@supports (-moz-appearance:none) and (mask-type:alpha) {
-    #{$s__namespace}select:not([multiple]) {
-        padding-right: $s__select-h-padding * 4;
+        appearance: none;
     }
-}
 
-/*
-    Undo custom arrow indicator for IE9-11:
-*/
-
-/* IE9-11 */
-/*@media #{$s__ie9-11} {
-        #{$s__namespace}select:not([multiple]) {
-        background-image: none\0;
-        padding-right: 0\0;
+    /*
+        1. Make sure focus is still visible in Forced Colour modes.
+            (https://www.sarasoueidan.com/blog/focus-indicators/)
+    */
+    @if cfg.flags("use-focus-shadow") {
+        #{cfg.base("namespace")}select:focus,
+        #{cfg.base("namespace")}select:focus-visible {
+            outline: 2px solid transparent; /* [1] */
+            box-shadow: cfg.tokens("outline-shadow");
+        }
     }
-}*/
 
-/*
-    1. Make sure focus is still visible in Forced Colour modes.
-        (https://www.sarasoueidan.com/blog/focus-indicators/)
-*/
-@if $s__use-focus-shadow {
-    #{$s__namespace}select:focus,
-    #{$s__namespace}select:focus-visible {
-        outline: 2px solid transparent; /* [1] */
-        box-shadow: $s__outline-shadow;
+    /*
+        Note that Opera 25- and Safari(all - 11 latest at time of writing) treat select [size]s of
+        less than 4 as 4.
+    */
+    #{cfg.base("namespace")}select[multiple] {
+        height: auto;
+        vertical-align: top;
+
+        margin-block-start: var(--sz-xsx);
+        margin-inline: 0;
+        margin-block-end: calc((var(--sz--xxs) * 3) - (var(--select-border-width, var(--base-border-width)) * 2));
     }
+
+    /*
+        Apply padding to fudge height in Safari (we need to apply to iOS)...
+    */
+    // _::-webkit-full-page-media, _:future, :root .selector { property:value; }
+    // Safari 6.2,7.1+
+    _::-webkit-full-page-media, _:future, :root select[multiple] {
+        margin-block-end: 0;
+
+        padding: calc(var(--base-rem-space-unit) / 12);
+    }
+
+    /*
+        ... but reset for Mac Safari .
+    */
+    // _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root .selector { property:value; }
+    // Safari 6.2,7.1+ (Not iOS)
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[multiple] {
+        margin-block-end: calc((var(--base-rem-space-unit) / 8) * 3 - (var(--select-border-width, #{cfg.elements("select-border-width")}) * 2));
+
+        padding: 0;
+    }
+
+    /*
+        Various browsers do not allow <option>s height to be specified.
+        The ones I've found are:
+
+        * IE11-
+        * Chrome 38-
+        * Opera 24-
+
+        MAYBE NOT FOR PRODUCTION?
+        The following techniques are messy and break if the font-family or font size changes.
+        Maybe move them to the test CSS only so I can see if OTHER elements are falling off the grid.
+    */
+    /* Individual height fixes moved to '_start-experimental.scss' */
 }
-
-
-/*
-    Note that Opera 25- and Safari(all - 11 latest at time of writing) treat select [size]s of
-    less than 4 as 4.
-*/
-#{$s__namespace}select[multiple] {
-    height: auto;
-    vertical-align: top;
-
-    margin-top: math.div($s__base-rem-space-unit, 8);
-    margin-right: 0;
-    margin-bottom: -moz-calc(#{math.div($s__base-rem-space-unit, 8) * 3} - #{$s__select-border-width * 2});
-    margin-bottom: calc(#{math.div($s__base-rem-space-unit, 8) * 3} - #{$s__select-border-width * 2});
-    margin-left: 0;
-}
-
-
-/*
-    Apply padding to fudge height in Safari (we need to apply to iOS)...
-*/
-// _::-webkit-full-page-media, _:future, :root .selector { property:value; }
-// Safari 6.2,7.1+
-_::-webkit-full-page-media, _:future, :root select[multiple] {
-    margin-bottom: 0;
-
-    padding: math.div($s__base-rem-space-unit, 12);
-}
-
-/*
-    ... but reset for Mac Safari .
-*/
-// _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root .selector { property:value; }
-// Safari 6.2,7.1+ (Not iOS)
-_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[multiple] {
-    margin-bottom: calc(#{math.div($s__base-rem-space-unit, 8) * 3} - #{$s__select-border-width * 2});
-
-    padding: 0;
-}
-
-
-/*
-    Various browsers do not allow <option>s height to be specified.
-    The ones I've found are:
-
-    * IE11-
-    * Chrome 38-
-    * Opera 24-
-
-    MAYBE NOT FOR PRODUCTION?
-    The following techniques are messy and break if the font-family or font size changes.
-    Maybe move them to the test CSS only so I can see if OTHER elements are falling off the grid.
-*/
-/* Individual height fixes moved to '_start-experimental.scss' */

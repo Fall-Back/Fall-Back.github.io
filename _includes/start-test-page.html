@@ -34,21 +34,22 @@ HTML:
 &lt;a href="" class="has-media"&gt;
     &lt;img ... &gt;
 &lt;/a&gt;
+
+Note: this pre element appears high up as content, but because we're trying for a consistent vertical rhythm, and pre elements behave differently across browsers, it's one of the first things I need to test, so this long line of text is here to force a scrollbar in desktop browsers.
+</code></pre>
+
+<pre><code>A short pre element for testing.
 </code></pre>
 
 <h3>Browser support</h3>
 
-<p>StartCSS wraps everything in the feature query: @supports (font-size: clamp(10px, 1vw, 12px)) to 'cut' older browsers that might break visual presentation. Support for this feature is as follows:</p>
-
-
-<p>
-Edge 79+, Chrome 79+, Firefox 75+, Opera 66+, Safari 13.1+, iOS 13.4+, Android ~117+ (unable to test earlier than 117)<br>
-<a href="https://caniuse.com/css-math-functions">Can I Use Clamp</a>
-</p>
-
-<p>It's recommended to also load StartCSS using the <a href="https://github.com/Fall-Back/CSS-Mustard-Cut#prm-cut-prefers-reduced-motion" rel="external">PRM Mustard Cut</a> which supports the following browsers according to <a hreef="https://caniuse.com/prefers-reduced-motion">CanIUse</a>:</p>
-
-
+{% if page.start_version %}
+{% assign start_version = "-" | append: page.start_version %}
+{% else %}
+{% assign start_version = "" %}
+{% endif %}
+{% assign browser_support = "browser-support" | append: start_version | append: ".html" %}
+{% include {{browser_support}} %}
 
 <p>
 Print (Edge doesn't apply to print otherwise)<br>
@@ -505,7 +506,7 @@ Edge 79+, Chrome 74+, Firefox 63+, Opera 64+, Safari 10.1+, iOS 10.3+, Android 8
         <p><input type="submit" value="input type[submit]"></p>
     </fieldset>
     <fieldset>
-        <legend>A legend</legend>
+        <legend>A legend much longer legend to to test text wrapping issues that may occur</legend>
         <p>
             <label for="input1-1">Enter some text:</label> <input type="text" id="input1-1"> <button>Button</button>
         </p>
@@ -809,7 +810,7 @@ lines.</textarea>
 <hr>
 
 
-<h2>Tables and Figures</h2>
+<h2>Media, Tables and Figures</h2>
 
 <p>
     Content (especially tables__ that are inside <code>figures</code> are set to be responsive in a very basic way - by scrolling horizontally.
@@ -964,6 +965,7 @@ External linked image:
     </a>
 </p>
 
+<h3>Video</h3>
 
 <figure>
     <!-- first try HTML5 playback: if serving as XML, expand `controls` to `controls="controls"` and autoplay likewise       -->
@@ -984,11 +986,139 @@ External linked image:
         </object>
     </video>
     <!-- you *must* offer a download link as they may be able to play the file locally. customise this bit all you want -->
-    <figcaption">
+    <figcaption>
         <strong>Download Video:</strong> Closed Format: <a href="media/big_buck_bunny.mp4">"MP4"</a> Open Format: <a href="media/big_buck_bunny.ogv">"OGG"</a> / <a href="media/big_buck_bunny.webm">"WebM"</a>
     </figcaption>
 </figure>
 
+<h3>Audio</h3>
+
+<p>
+    <audio controls>
+        <source src="/dev/media/voice-sample.mp3" type="audio/mpeg">
+        <source src="/dev/media/voice-sample.wav" type="audio/wav">
+        Your browser does not support the audio element.
+    </audio>
+</p>
+
+<h4>Audio as inline-element</h4>
+
+<p>
+    Text before
+
+    <audio controls style="vertical-align: middle;">
+        <source src="/dev/media/voice-sample.wav" type="audio/wav">
+    </audio>
+
+    text after
+</p>
+
+<h4>Audio states</h4>
+<p>
+    <audio controls loop muted>
+        <source src="/dev/media/voice-sample.wav" type="audio/wav">
+    </audio>
+</p>
+
+<h3>Canvas</h3>
+<p>
+    <canvas id="test-canvas" width="300" height="150"></canvas>
+</p>
+
+<script>
+    (function () {
+        const canvas = document.getElementById('test-canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Background
+        ctx.fillStyle = '#f5f5f5';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Border
+        ctx.strokeStyle = '#333';
+        ctx.strokeRect(0, 0, canvas.width, canvas.height);
+
+        // Circle
+        ctx.beginPath();
+        ctx.arc(150, 75, 40, 0, Math.PI * 2);
+        ctx.fillStyle = '#5d4777';
+        ctx.fill();
+
+        // Text
+        ctx.fillStyle = '#000';
+        ctx.font = '14px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('Canvas test', 150, 140);
+    })();
+</script>
+
+
+<h4>Canvas as inline-element</h4>
+<p>
+    Text before
+    <canvas id="inline-canvas" width="100" height="40"></canvas>
+    text after
+</p>
+<script>
+    (function () {
+        const canvas = document.getElementById('inline-canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Background
+        ctx.fillStyle = '#eaeaea';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Border
+        ctx.strokeStyle = '#999';
+        ctx.strokeRect(0, 0, canvas.width, canvas.height);
+
+        // Center line (helps visualise vertical alignment)
+        ctx.strokeStyle = '#ff0000';
+        ctx.beginPath();
+        ctx.moveTo(0, canvas.height / 2);
+        ctx.lineTo(canvas.width, canvas.height / 2);
+        ctx.stroke();
+
+        // Text
+        ctx.fillStyle = '#000';
+        ctx.font = '12px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('inline', canvas.width / 2, canvas.height / 2);
+    })();
+</script>
+
+<h3>Iframes</h3>
+<p>
+    <iframe
+        width="300"
+        height="150"
+        style="border: 1px solid #ccc;"
+        srcdoc="
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    body {
+                        margin: 0;
+                        font-family: sans-serif;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100vh;
+                        background: #f5f5f5;
+                    }
+                </style>
+            </head>
+            <body>
+                <div>Iframe content</div>
+            </body>
+            </html>
+        ">
+    </iframe>
+</p>
+
+<h3>Tables</h3>
 
 <figure>
     <table id="Books" border="1">

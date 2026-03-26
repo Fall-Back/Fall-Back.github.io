@@ -1,0 +1,248 @@
+    <style>
+        /*
+            Tiny Fall-Back Styles (https://github.com/Fall-Back/Patterns/edit/master/Page/README.md)
+
+            The following styles provide a better visual experience in cases where linked
+            stylesheets aren't loaded for any reason. It's recommended that any styles that won't
+            be used by the elements on the page be removed to make this as lean as possible, and
+            the run through a minifier (e.g. https://cssminifier.com) to compress it as much a
+            possible, since this is sent on each request and not cached.
+            Note there's a section that uses attributes to apply styles to specific elements. This
+            is so as not to pollute the class space and help authors make distinctions.
+            There's a much long essay on this brewing and I'll add the link when it's done.
+
+            Colour references for ease of search/replace:
+            https://www.color-hex.com/color-palette/103353
+            colour-1: #d0ba98   (208,186,152)
+            colour-2: #d8caa9   (216,202,169)
+            colour-3: #5d4777   (141,128,121)
+            colour-4: #b8b6b0   (184,182,176)
+            colour-5: #aeb2a6   (174,178,166)
+
+        /* --| Core styles |--------------------------------------------------------------------- */
+        html {
+            background: #5d4777;
+        }
+
+        body {
+            font: 1em/1.4 sans-serif;
+            padding: 2em;
+            margin: 0 auto;
+            max-width: 50em;
+            background: #fff;
+        }
+
+        /* For older browsers:(see https://github.com/aFarkas/html5shiv) */
+        article,
+        aside,
+        dialog,
+        figcaption,
+        figure,
+        footer,
+        header,
+        hgroup,
+        main,
+        nav,
+        section {
+            display: block;
+        }
+
+        summary {
+            cursor: pointer;
+        }
+
+        @supports (list-style-type: disclosure-closed) {
+            summary {
+                display: list-item;
+            }
+        }
+
+        summary > * {
+            display: inline;
+        }
+
+        mark {
+            background: #FF0;
+            color: #000;
+        }
+
+        template,
+        [hidden] {
+            display: none;
+        }
+
+        /* The "older browser" message makes use of a fieldset to add a border no matter what: */
+        fieldset {
+            border: 1px solid;
+            border-color: currentColor;
+            margin: 1em 0;
+            padding: 1em;
+        }
+
+        /* More responsive images: */
+        /* Note ancient image tag is actually for the SVG FalBack PNG method */
+        img,
+        image,
+        object,
+        svg {
+            max-width: 100%;
+            -ms-interpolation-mode: bicubic;
+            vertical-align: middle;
+            height: auto;
+            border: 0;
+        }
+
+        img[height="80"] {
+            height: 80px;
+            width: auto;
+        }
+
+        /* Links and image links */
+        /*@supports not (color: oklch(from red l c h)) {*/
+        * {
+            color: inherit;
+        }
+
+
+        a[href]:hover {
+            text-decoration: none;
+        }
+
+        /*a[href] img {
+            padding: 0.3em;
+            margin: 0.2em;
+        }*/
+
+        /*
+            Putting things like tables in figures makes sense and allows them to become scrollable
+            if they're too wide.
+        */
+        figure {
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        /*
+            BUT! Opera Mini doesn't support scrolling areas so hacking it out for that browser:
+        */
+        _:-o-prefocus, :root figure {
+            max-width: initial;
+            overflow-x: visible;
+        }
+
+        hr {
+            border-style: solid;
+            border-width: 0 0 1px 0;
+            margin: 1em 0;
+            color: currentColor;
+        }
+
+        pre {
+            width: 100%;
+            overflow-x: scroll;
+            overflow-y: auto;
+        }
+
+        video {
+            max-width: 100%;
+            height: auto;
+        }
+
+
+        /* --| Form styles |--------------------------------------------------------------------- */
+        /* If you're using forms, keep this: */
+
+        button {
+            background-color: #D0BA98;
+        }
+
+        button:focus {
+            outline: 1px solid currentColor;
+        }
+
+        button,
+        input,
+        label,
+        select,
+        textarea {
+            vertical-align: middle;
+            min-height: 2.2em;
+            margin: 0.2em 0;
+        }
+
+        button,
+        input[type="checkbox"],
+        input[type="radio"],
+        label,
+        select {
+            cursor: pointer;
+        }
+
+        button,
+        input,
+        textarea {
+            padding: 0 0.5em;
+            line-height: 1.5;
+        }
+
+        textarea {
+            width: 100%;
+        }
+
+
+        /* --| Table styles |-------------------------------------------------------------------- */
+        /* If you're using tables, keep this: */
+
+        table {
+            width: 100%;
+            border: 1px solid currentColor;
+            border-collapse: collapse;
+        }
+
+        table[role="presentation"] {
+            border: 0;
+            table-layout: fixed;
+        }
+
+        table[role="presentation"] td {
+            border: 0;
+        }
+
+        th {
+            background-color: #D0BA98;
+        }
+
+        caption, td, th {
+            padding: 0.5em;
+        }
+
+        caption {
+            max-width: 44em;
+        }
+
+        /*
+            What follows is a mix of markup patterns and attributes to help provide a more
+            reasonable fallback - it's unconventional, so leave it out if you like.
+        */
+
+        /* Attributes to replicate deprecated HTML styling: */
+
+        /* Would have been align="right": */
+        [data-fs-text~="right"] {
+            text-align: right;
+        }
+
+        /* Would have been align="center": */
+        [data-fs-text~="center"] {
+            text-align: center;
+        }
+
+        /* Would have been the 'big' element: */
+        [data-fs-text~="larger"] {
+            font-size: larger;
+        }
+
+        [data-fs-text~="nowrap"] {
+            white-space: nowrap;
+        }
+    </style>

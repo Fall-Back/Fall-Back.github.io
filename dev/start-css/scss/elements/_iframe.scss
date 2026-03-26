@@ -1,11 +1,15 @@
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS ELEMENT: iframe
-    v3.0.0
+    v4.0.0
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 
-#{$s__namespace}iframe {
-    vertical-align: $s__media-element-vertical-align;
+@use "../start-config" as cfg;
+
+@mixin emit() {
+    #{cfg.base("namespace")}iframe {
+        vertical-align: cfg.elements("media-element-vertical-align");
+    }
 }

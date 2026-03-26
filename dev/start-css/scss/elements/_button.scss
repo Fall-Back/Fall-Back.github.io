@@ -1,15 +1,20 @@
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS ELEMENT: button
-    v3.0.0
+    v4.0.0
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 
-#{$s__namespace}button {
-    @include s__button;
-}
+@use "../start-config" as cfg;
+@use "../start-mixins" as mixins;
 
-#{$s__namespace}button svg {
-    vertical-align: text-bottom;
+@mixin emit() {
+    #{cfg.base("namespace")}button {
+        @include mixins.s__button;
+    }
+
+    #{cfg.base("namespace")}button svg {
+        vertical-align: text-bottom;
+    }
 }

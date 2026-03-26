@@ -1,29 +1,34 @@
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS ELEMENT: td
-    v3.0.0
+    v4.0.0
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 
-/*
-    1. Calc to deduct any border-width.
-*/
-#{$s__namespace}td {
-    padding-top: calc(#{$s__th-cell-padding} - #{$s__th-border-width}); /* 1 */
-    padding-right: $s__th-cell-padding;
-    padding-bottom: $s__th-cell-padding;
-    padding-left: $s__th-cell-padding;
+@use "../start-config" as cfg;
+@use "../start-mixins" as mixins;
 
-    border-width: var(--table-border-width, var(--base-border-width));
-    border-style: var(--table-border-style, var(--base-border-style));
-    border-color: var(---td-border-color, var(--table-color, var(--base-ui-color)));
-}
+@mixin emit() {
+    /*
+        1. Calc to deduct any border-width.
+    */
+    #{cfg.base("namespace")}td {
+        padding-block-start: calc(var(--td-cell-padding, var(--th-cell-padding)) - var(--td-border-width, var(--th-border-width)));  /* [1] */
+        padding-block-end: var(--td-cell-padding, var(--th-cell-padding));
+        padding-inline-start: var(--td-cell-padding, var(--th-cell-padding));
+        padding-inline-end: var(--td-cell-padding, var(--th-cell-padding));
 
-/*
-    Reduce last row table cell padding to counteract the table border to preserve the vertical
-    rhythm.
-*/
-#{$s__namespace}tbody tr:last-child td {
-    padding-bottom: calc(#{$s__th-cell-padding} - #{$s__th-border-width}); /* 1 */
+        border-width: var(--table-border-width, var(--base-border-width));
+        border-style: var(--table-border-style, var(--base-border-style));
+        border-color: var(--td-border-color, var(--table-color, var(--base-ui-color)));
+    }
+
+    /*
+        Reduce last row table cell padding to counteract the table border to preserve the vertical
+        rhythm.
+    */
+    #{cfg.base("namespace")}tbody tr:last-child td {
+        padding-block-end: calc(var(--td-cell-padding, var(--th-cell-padding)) - var(--td-border-width, var(--th-border-width)));  /* [1] */
+    }
 }

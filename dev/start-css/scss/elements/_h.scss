@@ -1,61 +1,66 @@
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS ELEMENT: h
-    v3.0.0
+    v4.0.0
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 
-#{$s__namespace}h1 {
-    font-size: $s__h1-font-size;
-    line-height: $s__h1-height;
+@use "../start-config" as cfg;
+@use "../start-mixins" as mixins;
 
-    text-wrap: balance;
+@mixin emit() {
+   #{cfg.base("namespace")}h1 {
+        font-size: var(--h1-font-size);
+        line-height: var(--h1-height);
 
-    @include s__margins($s__base-rem-space-unit, $s__margin-type);
-}
+        text-wrap: balance;
 
-#{$s__namespace}h2 {
-    font-size: $s__h2-font-size;
-    line-height: $s__h2-height;
+        @include mixins.s__block_margins();
+    }
 
-    text-wrap: balance;
+   #{cfg.base("namespace")}h2 {
+        font-size: var(--h2-font-size);
+        line-height: var(--h2-height);
 
-    @include s__margins($s__base-rem-space-unit, $s__margin-type);
-}
+        text-wrap: balance;
 
-#{$s__namespace}h3 {
-    font-size: $s__h3-font-size;
-    line-height: $s__h3-height;
+        @include mixins.s__block_margins();
+    }
 
-    text-wrap: balance;
+   #{cfg.base("namespace")}h3 {
+        font-size: var(--h3-font-size);
+        line-height: var(--h3-height);
 
-    @include s__margins($s__base-rem-space-unit, $s__margin-type);
-}
+        text-wrap: balance;
 
-#{$s__namespace}h4 {
-    font-size: $s__h4-font-size;
-    line-height: $s__h4-height;
+        @include mixins.s__block_margins();
+    }
 
-    text-wrap: balance;
+   #{cfg.base("namespace")}h4 {
+        font-size: var(--h4-font-size);
+        line-height: var(--h4-height);
 
-    @include s__margins($s__base-rem-space-unit, $s__margin-type);
-}
+        text-wrap: balance;
 
-#{$s__namespace}h5 {
-    font-size: $s__h5-font-size;
-    line-height: $s__h5-height;
+        @include mixins.s__block_margins();
+    }
 
-    text-wrap: balance;
+   #{cfg.base("namespace")}h5 {
+        font-size: var(--h5-font-size);
+        line-height: var(--h5-height);
 
-    @include s__margins($s__base-rem-space-unit, $s__margin-type);
-}
+        text-wrap: balance;
 
-#{$s__namespace}h6 {
-    font-size: $s__h6-font-size;
-    line-height: $s__h6-height;
+        @include mixins.s__block_margins();
+    }
 
-    text-wrap: balance;
+   #{cfg.base("namespace")}h6 {
+        font-size: var(--h6-font-size);
+        line-height: var(--h6-height);
 
-    @include s__margins($s__base-rem-space-unit, $s__margin-type);
+        text-wrap: balance;
+
+        @include mixins.s__block_margins();
+    }
 }

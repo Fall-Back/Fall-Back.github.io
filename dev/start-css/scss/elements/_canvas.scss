@@ -1,11 +1,15 @@
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS ELEMENT: canvas
-    v3.0.0
+    v4.0.0
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 
-#{$s__namespace}canvas {
-    vertical-align: $s__media-element-vertical-align;
+@use "../start-config" as cfg;
+
+@mixin emit() {
+    #{cfg.base("namespace")}canvas {
+        vertical-align: cfg.elements("media-element-vertical-align");
+    }
 }

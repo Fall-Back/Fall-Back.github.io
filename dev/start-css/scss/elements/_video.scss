@@ -1,32 +1,37 @@
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS ELEMENT: video
-    v3.0.0
+    v4.0.0
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 
-/*
-    1. Allow video to center if container larger than video.
-    2. Ensure box edges are visible in High Contrast Mode.
-*/
-#{$s__namespace}video {
-    display: block; /* 1 */
+@use "../start-config" as cfg;
 
-    max-width: 100%;
+@mixin emit() {
+    /*
+        1. Allow video to center if container larger than video.
+        2. Ensure box edges are visible in High Contrast Mode.
+    */
+    #{cfg.base("namespace")}video {
+        display: block; /* [1] */
 
-    height: auto;
+        max-width: 100%;
 
-    margin: 0 auto; /* 1 */
+        height: auto;
 
-    background-color: $s__video-background-color;
+        margin: 0 auto; /* [1] */
 
-    outline: 1px solid transparent; /* 2 */
-}
+        --background-color: var(--video-background-color);
+        background-color: var(--background-color);
 
-@if $s__use-focus-shadow {
-    #{$s__namespace}video:focus {
-        outline: 0;
-        box-shadow: $s__outline-shadow;
+        outline: 2px solid transparent; /* [2] */
+    }
+
+    @if cfg.flags("use-focus-shadow") {
+        #{cfg.base("namespace")}video:focus {
+            outline: 0;
+            box-shadow: cfg.tokens("outline-shadow");
+        }
     }
 }

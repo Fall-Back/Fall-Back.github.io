@@ -1,14 +1,18 @@
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS ELEMENT: dfn
-    v3.0.0
+    v4.0.0
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 
-/*
-    Address styling not present in Safari and Chrome. (N)
-*/
-#{$s__namespace}dfn {
-    font-style: italic;
+@use "../start-config" as cfg;
+
+@mixin emit() {
+    /*
+        Address styling not present in Safari and Chrome. (N)
+    */
+    #{cfg.base("namespace")}dfn {
+        font-style: italic;
+    }
 }

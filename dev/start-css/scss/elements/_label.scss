@@ -1,29 +1,31 @@
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS ELEMENT: label
-    v3.0.0
+    v4.0.0
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 
-@use 'sass:math';
+@use "../start-config" as cfg;
 
-/*
-    1. Remove the tapping delay from clickable elements.
-*/
-#{$s__namespace}label {
-    display: inline-block;
+@mixin emit() {
+    /*
+        1. Remove the tapping delay from clickable elements.
+    */
+    #{cfg.base("namespace")}label {
+        display: inline-block;
 
-    padding-top: math.div($s__base-rem-space-unit, 4);
-    padding-bottom: math.div($s__base-rem-space-unit, 4);
+        padding-block-start: var(--label-block-padding, var(--sz-xs));
+        padding-block-end: var(--label-block-padding, var(--sz-xs));
 
-    margin: 0;
+        margin: 0;
 
-    font-weight: bold;
+        font-weight: bold;
 
-    vertical-align: middle;
+        vertical-align: middle;
 
-    cursor: pointer;
+        cursor: pointer;
 
-    touch-action: manipulation; /* 1 */
+        touch-action: manipulation; /* [1] */
+    }
 }

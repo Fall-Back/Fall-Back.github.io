@@ -1,23 +1,26 @@
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS ELEMENT: abbr
-    v3.0.0
+    v4.0.0
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
+
+@use "../start-config" as cfg;
 
 /*
     1. Remove the bottom border in Firefox 39-.
     2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
 */
-#{$s__namespace}abbr {
-    cursor: help;
 
-    &[title] {
-        border-bottom: none; /* 1 */
+@mixin emit() {
+    #{cfg.base("namespace")}abbr {
+        cursor: help;
 
-        text-decoration: underline; /* 2 */
+        &[title] {
+            border-bottom: none; /* [1 ]*/
 
-        text-decoration: underline dotted; /* 2 */
+            text-decoration: underline dotted; /* [2] */
+        }
     }
 }

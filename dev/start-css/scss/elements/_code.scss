@@ -1,10 +1,12 @@
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS ELEMENT: code
-    v3.0.0
+    v4.0.0
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
+@use "../start-config" as cfg;
+@use "../start-mixins" as mixins;
 
 /*
     1. Correct the inheritance and scaling of font size in all browsers. (N)
@@ -13,9 +15,11 @@
     4. Make this more obvious when inside an an element that may have bold applied
        (e.g. link or label)
 */
-#{$s__namespace}code {
-    font-family: $s__monospace-font-family, monospace; /* 1 */
-    font-size: 1em; /* 2 */
-    line-height: 0; /* 3 */
-    font-weight: normal; /* 4 */
+@mixin emit() {
+    #{cfg.base("namespace")}code {
+        font-family: cfg.tokens("monospace-font-family"), monospace; /* [1] */
+        font-size: 1em; /* [2] */
+        line-height: 0; /* [3] */
+        font-weight: normal; /* [4] */
+    }
 }
