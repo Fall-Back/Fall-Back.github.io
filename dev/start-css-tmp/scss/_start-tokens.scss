@@ -1,0 +1,105 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS TOKENS
+    ============================================================================================
+
+    Assign custom properties to :root.
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "start-config" as cfg;
+
+@property --background-color {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: transparent;
+}
+
+@mixin emit() {
+    :root {
+        --base-font-family: #{cfg.tokens("base-font-family")};
+        --monospace-font-family: #{cfg.tokens("monospace-font-family")};
+
+        //--base-font-unit: #{cfg.tokens("base-font-unit")};
+        //--base-font-size: #{cfg.tokens("base-font-size")};
+        //--base-space-unit: #{cfg.tokens("base-space-unit")};
+
+        --base-rem-space-unit: #{cfg.tokens("base-rem-space-unit")};
+
+
+        --root-font-size: #{cfg.elements("root-font-size")};
+        --root-line-height: #{cfg.elements("root-line-height")};
+
+
+        --body-min-width: #{cfg.elements("body-min-width")};
+        --body-max-width: #{cfg.elements("body-max-width")};
+        --body-margin: #{cfg.elements("body-margin")};
+        --body-font-size: #{cfg.elements("body-font-size")};
+
+        --small-font-size: #{cfg.elements("small-font-size")};
+
+        --base-ui-color: #{cfg.tokens("base-ui-color")};
+        --base-ui-color-lightest: color-mix(in lab, var(--base-ui-color), white 80%);
+        --base-ui-color-lighter: color-mix(in lab, var(--base-ui-color), white 60%);
+        --base-ui-color-light: color-mix(in lab, var(--base-ui-color), white 40%);
+        --base-ui-color-dark: color-mix(in lab, var(--base-ui-color), black 20%);
+        --base-ui-color-darker: color-mix(in lab, var(--base-ui-color), black 40%);
+        --base-ui-color-darkest: color-mix(in lab, var(--base-ui-color), black 60%);
+
+        --base-background-color: #{cfg.tokens("base-background-color")};
+        --base-text-color: #{cfg.tokens("base-text-color")};
+        --base-text-color-inverse: #{cfg.tokens("base-text-color-inverse")};
+
+        --background-color: var(--base-background-color);
+        --color: var(--base-text-color);
+        --color--inverse: var(--base-text-color-inverse);
+        --base-ui-color--text: var(--color--inverse);
+
+        --base-border-width: 0.1rem;
+        --base-border-style: solid;
+        --base-border-color: var(--base-ui-color);
+        --base-border-radius: 0.3rem;
+
+        // Values for auto text contrast:
+        --l-threshold: 0.7;
+        --l: clamp(0,(var(--l-threshold) - l) * infinity, 1);
+        //--color: oklch(from var(--background-color) var(--l) 0 h / 0.9);
+
+
+        --sz-xxs: calc(var(--base-rem-space-unit) / 8);
+        --sz-xs: calc(var(--base-rem-space-unit) / 4);
+        --sz-s: calc(var(--base-rem-space-unit) / 2);
+        --sz-m: var(--base-rem-space-unit);
+        --sz-l: calc(var(--base-rem-space-unit) * 2);
+        --sz-xl: calc(var(--base-rem-space-unit) * 4);
+        --sz-xxl: calc(var(--base-rem-space-unit) * 8);
+
+        --m: var(--base-rem-space-unit);
+
+        --h1-font-size: #{cfg.elements("h1-font-size")};
+        --h1-height: #{cfg.elements("h1-height")};
+        --h2-font-size: #{cfg.elements("h2-font-size")};
+        --h2-height: #{cfg.elements("h2-height")};
+        --h3-font-size:#{cfg.elements("h3-font-size")};
+        --h3-height: #{cfg.elements("h3-height")};
+        --h4-font-size: #{cfg.elements("h4-font-size")};
+        --h4-height: #{cfg.elements("h4-height")};
+        --h5-font-size: #{cfg.elements("h5-font-size")};
+        --h5-height: #{cfg.elements("h5-height")};
+        --h6-font-size: #{cfg.elements("h6-font-size")};
+        --h6-height: #{cfg.elements("h6-height")};
+
+        --table-border-width: var(--base-border-width);
+        --table-border-style: var(--base-border-style);
+        --table-color: var(--base-ui-color);
+        --th-cell-padding: var(--base-rem-space-unit);
+        --th-border-width: var(--base-border-width);
+        --th-border-color: var(--base-ui-color);
+        --th-color: var(--base-ui-color-lighter);
+        --th-color--text: var(--base-ui-color--text);
+
+        --list-indent: #{cfg.elements("list-indent")};
+
+        --video-background-color:  #{cfg.elements("video-background-color")};
+    }
+}

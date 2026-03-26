@@ -1,0 +1,22 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: ul
+    v4.0.0
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "../start-config" as cfg;
+@use "../start-mixins" as mixins;
+
+@mixin emit() {
+    /*
+        1. Make lists behave properly next to floated items.
+           (https://paulbakaus.com/tutorials/css/block-formatting-contexts-and-lists)
+    */
+    #{cfg.base("namespace")}ul {
+        display: flow-root; /* [1] */
+
+        @include mixins.s__block_margins();
+    }
+}

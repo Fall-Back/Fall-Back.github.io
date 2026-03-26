@@ -1,0 +1,77 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: pre
+    v4.0.0
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "../start-config" as cfg;
+@use "../start-mixins" as mixins;
+
+@mixin emit() {
+    /*
+        Note: code is the most probable use for a `<pre>` tag. Other uses may occur (e.g. poem) but
+        these could be adjusted with a class. Could maybe make this default configurable but leave as it
+        is for now as it's likely that a poem would need a complete re-style (e.g. fonts etc.).
+
+        1. Keep scrollbar visible to maintain vertical rhythm.
+           Most browsers have a scrollbar height of 17px (calculated in settings section), however Edge
+           appears to have a scrollbar height of 12px, so we override it with a hack.
+        2. Correct the odd `em` font sizing in all browsers.
+        3. Correct the inheritance and scaling of font size in all browsers.
+        4. Ensure box edges are visible in High Contrast Mode.
+
+
+        On Mac Safari 16 (tested in 16.5, 17.3, 18.4 no scrollbar appears at all until you select l drag
+        or use arrow keys
+        which is strange.
+    */
+    #{cfg.base("namespace")}pre {
+        //overflow-x: scroll; /* [1] */
+        ///overflow-y: auto; /* [1] */
+
+    overflow: auto;
+        //padding-bottom: var(--pre-padding-bottom, #{cfg.elements("pre-padding-bottom")}); /* [1] */
+
+        font-size: 1em; /* [2] */
+        font-family: var(--monospace-font-family, monospace); /* [3] */
+
+        //--background-color: var(--pre-background-color, #{cfg.elements("pre-background-color")});
+        --background-color: var(--pre-background-color, var(--base-ui-color-lightest));
+        background-color: var(--background-color);
+
+        //margin-block-start: var(--pre-margin-top, var(--sz-m));
+        //margin-block-end: var(--pre-margin-bottom, #{cfg.elements("pre-margin-bottom")});
+        @include mixins.s__block_margins();
+
+        outline: 2px solid transparent; /* [4] */
+
+        @if cfg.flags("use-focus-shadow") {
+            &:focus,
+            &:focus-visible {
+                outline: 2px solid transparent;
+                box-shadow: cfg.tokens("outline-shadow");
+            }
+        }
+
+
+        @supports (scrollbar-width: auto) {
+            & {
+                scrollbar-color: var(--scrollbar-color-thumb, var(--base-ui-color-dark)) var(--scrollbar-color-track, var(--base-ui-color-lighter));
+                //scrollbar-width: var(--scrollbar-width, thin);
+            }
+        }
+    }
+
+    /*
+        1. Revert zeroed line-height (see) `code`.
+    */
+    #{cfg.base("namespace")}pre code {
+        display: inline-block;
+
+        padding: var(--pre-code-padding, #{cfg.elements("pre-code-padding")});
+
+        line-height: var(---pre-code-line-height, var(--base-line-height)); /* [1] */
+    }
+}

@@ -1,0 +1,21 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: audio
+    v4.0.0
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "../start-config" as cfg;
+
+@mixin emit() {
+    #{cfg.base("namespace")}audio {
+        vertical-align: cfg.elements("media-element-vertical-align");
+
+        // Legacy: likely safe to remove (test in BrowserStack)
+        &:not([controls]) {
+            display: none; /* [1] */
+            height: 0;
+        }
+    }
+}

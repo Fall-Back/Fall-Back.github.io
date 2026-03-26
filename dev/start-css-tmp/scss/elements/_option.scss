@@ -1,0 +1,37 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: option
+    v4.0.0
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "../start-config" as cfg;
+@use "../start-mixins" as mixins;
+
+/*
+    1. This v-centers the text in FF and Chrome. Edge doesn't apply this but looks ok regardless.
+*/
+@mixin emit() {
+    #{cfg.base("namespace")}option {
+        display: flex; /* [1] */
+        align-items: center; /* [1] */
+
+        min-block-size: var(--sz-m);
+
+        padding-inline: var(--option-inline-padding, var(--sz-xs));
+
+        cursor: pointer;
+
+        --background-color: var(--option-color, var(--base-background-color));
+        background-color: var(--background-color);
+
+        &:hover {
+            --background-color: var(--option-color-state-1, var(--base-ui-color-lighter));
+        }
+
+        &:checked {
+            --background-color: var(--option-color-state-2, var(--base-ui-color-darker));
+        }
+    }
+}

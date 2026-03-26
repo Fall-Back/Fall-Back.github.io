@@ -1,0 +1,59 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: textarea
+    v4.0.0
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "../start-config" as cfg;
+@use "../start-mixins" as mixins;
+
+/*
+    1. For IE, mainly.
+    2. Edge 12+, Internet Explorer 11-. Without this it acts like overflow: scroll.
+    3. Keep labels at the top of the container.
+    4. Remove the tapping delay from clickable elements.
+*/
+@mixin emit() {
+    #{cfg.base("namespace")}textarea {
+        //min-height: $s__base-rem-space-unit * 3.5 - ($s__textarea-border-width * 2); /* [1] */
+
+        overflow: auto; /* [2] */
+
+        margin-block-start: calc(var(--base-rem-space-unit) / 12);
+        margin-block-end: 0.9rem;
+
+        padding-inline: var(--textarea-h-padding, #{cfg.elements("textarea-h-padding")});
+
+        border-width: var(--textarea-border-width, #{cfg.elements("textarea-border-width")});
+        border-radius: var(--textarea-border-radius, #{cfg.elements("textarea-border-radius")});
+        border-color: var(--textarea-border-color, #{cfg.elements("textarea-border-color")});
+        border-style: var(--textarea-border-style, #{cfg.elements("textarea-border-style")});
+
+
+        font-size: inherit;
+        font-family: inherit;
+        font-style: inherit;
+        font-weight: inherit;
+
+        vertical-align: top; /* [3] */
+
+        touch-action: manipulation; /* [4] */
+
+        resize: var(--textarea-resize, #{cfg.elements("textarea-resize")});
+    }
+
+    /*
+        1. Make sure focus is still visible in Forced Colour modes.
+            (https://www.sarasoueidan.com/blog/focus-indicators/)
+    */
+    @if cfg.flags("use-focus-shadow") {
+        #{cfg.base("namespace")}textarea:focus,
+        #{cfg.base("namespace")}textarea:focus-visible {
+            outline: 2px solid transparent; /* [1] */
+            box-shadow: cfg.tokens("outline-shadow");
+        }
+    }
+
+}

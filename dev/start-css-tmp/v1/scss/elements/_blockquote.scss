@@ -1,0 +1,22 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: blockquote
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+#{$s__namespace}blockquote {
+    @if $s__procedural-margins {
+        margin-bottom: $s__base-rem-space-unit;
+        margin-top: 0;
+    } @else {
+        margin-bottom: 0;
+    }
+    margin-left: $s__base-rem-space-unit;
+
+    font-style: italic;
+    /*
+        @TODO - set up vars and styles for the most common quote styles.
+        I.e. left-border, and enclosing quotes.
+    */
+}

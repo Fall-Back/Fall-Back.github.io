@@ -1,0 +1,139 @@
+
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: base styles
+    v4.0.0
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "start-config" as cfg;
+
+
+
+@mixin emit() {
+
+
+    /*
+        1. Use a more readable tab size (opinionated).
+    */
+    :root {
+        quotes: cfg.ui("quotes");
+        tab-size: cfg.ui("tabsize") /* 1 */
+    }
+
+    /*
+        'Global' reset.
+    */
+    * {
+        margin:  0;
+        padding: 0;
+
+        // Calculate auto-contrast text color:
+        --color: oklch(from var(--background-color, var(--base-background-color)) var(--l) 0 h / 0.9);
+        color: var(--color);
+    }
+
+    /*
+        1. Add box sizing inheritance in all browsers.
+        2. Remove repeating backgrounds in all browsers.
+    */
+    *,
+    ::before,
+    ::after {
+        box-sizing: inherit; /* 1 */
+        background-repeat: no-repeat; /* 2 */
+        -webkit-font-smoothing: inherit;
+    }
+
+    /*
+        1. Change the default box-sizing.
+
+        2. `min-height` _should_ be what we want here (as declared in inuit css), except that
+        `min-height` doesn't works as expected; child elements set to `(min-)height: 100%;` won't
+        increase their height - they'll only do that if the parent has `height: 100%;`.
+        This can lead to situations where sometimes elements (and thus their visible decoration) do
+        not stretch to be tall enough for their content (because they're limited to 100% height).
+
+        3. Force scrollbars to always be visible to prevent awkward 'jumps' when
+        navigating between pages that do/do not have enough content to produce
+        scrollbars naturally. (I)
+
+        4. Convert the value to a percentage so as not to override user font settings.
+        This needs to be on the root node.
+
+        5. Prevent font size adjustments after orientation changes in iOS.
+        https://kilianvalkhof.com/2022/css-html/your-css-reset-needs-text-size-adjust-probably/
+
+
+    */
+    html[lang] {
+        box-sizing: border-box; /* 1 */
+
+        height: 100%; /* 2 */
+
+        overflow-y: scroll; /* 3 */
+
+        --background-color: var(--html-background-color, var(--base-ui-color-darker));
+        background-color: var(--background-color);
+
+        font-size:  var(--root-font-size); /* 4 */
+
+        -moz-text-size-adjust: 100%; /* 5 */
+        -webkit-text-size-adjust: 100%; /* 5 */
+        text-size-adjust: 100%; /* 5 */
+
+        padding: 0;
+        margin: 0;
+    }
+
+
+
+    /*
+        1. Add text decoration inheritance in all browsers (opinionated). (s)
+        2. Add vertical alignment inheritance in all browsers (s).
+    */
+    ::before,
+    ::after {
+        text-decoration: inherit; /* 1 */
+
+        vertical-align: inherit; /* 2 */
+    }
+
+    ::marker {
+        line-height: 1;
+        display: inline-block;
+    }
+
+    /*
+        1. Ensure that absolutely positioned child elements expand to the full height of the body.
+        2. Allows for layouts such as sticky footers.
+        3. Reset any FOUC font match fallback. @TODO Make these vars.
+    */
+    #{cfg.base("namespace")}body {
+        position: relative; /* 1 */
+
+        display: flex; /* 2 */
+        flex-direction: column;
+
+        width: 100%;
+
+        min-width: var(--body-min-width);
+        max-width :var(--body-max-width);
+        min-height: 100%;
+        margin:var(--body-margin);
+        padding: var(--body-padding, var(--sz-m));
+
+        font-family: var(--base-font-family);
+        font-size: var(--body-font-size);
+        line-height: var(--root-line-height);
+        letter-spacing: initial; /* 3 */
+        word-spacing: initial; /* 3 */
+
+        --background-color: var(--body-background-color, var(--base-ui-color-dark));
+        background-color: var(--background-color);
+
+        accent-color:  var(--base-ui-color);
+    }
+
+}

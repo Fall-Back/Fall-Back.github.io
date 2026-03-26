@@ -1,0 +1,21 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: blockquote
+    v4.0.0
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "../start-config" as cfg;
+@use "../start-mixins" as mixins;
+
+@mixin emit() {
+    #{cfg.base("namespace")}blockquote {
+        @include mixins.s__block_margins();
+
+        margin-inline-start:var(--blockquote-inline-padding, var(--sz-s));
+        margin-inline-end: var(--blockquote-inline-padding, var(--sz-s));
+
+        font-style: italic;
+    }
+}

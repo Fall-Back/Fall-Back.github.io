@@ -1,0 +1,31 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: label
+    v4.0.0
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "../start-config" as cfg;
+
+@mixin emit() {
+    /*
+        1. Remove the tapping delay from clickable elements.
+    */
+    #{cfg.base("namespace")}label {
+        display: inline-block;
+
+        padding-block-start: var(--label-block-padding, var(--sz-xs));
+        padding-block-end: var(--label-block-padding, var(--sz-xs));
+
+        margin: 0;
+
+        font-weight: bold;
+
+        vertical-align: middle;
+
+        cursor: pointer;
+
+        touch-action: manipulation; /* [1] */
+    }
+}

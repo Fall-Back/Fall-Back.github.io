@@ -1,0 +1,31 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: object
+    v4.0.0
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "../start-config" as cfg;
+
+@mixin emit() {
+    #{cfg.base("namespace")}object {
+        vertical-align: cfg.elements("media-element-vertical-align");
+
+        /*
+            1. Make sure focus is still visible in Forced Colour modes.
+               (https://www.sarasoueidan.com/blog/focus-indicators/)
+        */
+        &:focus,
+        &:focus-visible {
+            outline: 2px solid transparent; /* [1] */
+        }
+
+        @if cfg.flags("use-focus-shadow") {
+            &:focus,
+            &:focus-visible {
+                box-shadow: cfg.tokens("outline-shadow");
+            }
+        }
+    }
+}
