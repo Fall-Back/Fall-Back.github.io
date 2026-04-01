@@ -52,9 +52,7 @@
         outline: 2px solid transparent; /* [3] */
 
         @if cfg.flags("use-focus-shadow") {
-            &:focus,
-            &:focus-visible {
-                outline: 2px solid transparent;
+            &:focus-within {
                 box-shadow: cfg.tokens("outline-shadow");
             }
         }

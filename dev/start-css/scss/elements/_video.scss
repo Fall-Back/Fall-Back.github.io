@@ -15,23 +15,24 @@
     */
     #{cfg.base("namespace")}video {
         display: block; /* [1] */
+        margin: 0 auto; /* [1] */
 
         max-width: 100%;
 
         height: auto;
 
-        margin: 0 auto; /* [1] */
+
 
         --background-color: var(--video-background-color);
         background-color: var(--background-color);
 
         outline: 2px solid transparent; /* [2] */
-    }
 
-    @if cfg.flags("use-focus-shadow") {
-        #{cfg.base("namespace")}video:focus {
-            outline: 0;
-            box-shadow: cfg.tokens("outline-shadow");
+        @if cfg.flags("use-focus-shadow") {
+            &:focus-within {
+                box-shadow: cfg.tokens("outline-shadow");
+            }
         }
     }
+
 }

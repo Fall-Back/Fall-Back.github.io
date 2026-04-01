@@ -113,7 +113,8 @@
 @use "extras/start-visibility" as visibility;
 
 @mixin emit() {
-    @supports (selector(:has(*))) and (color: color-mix(in lab, white, black 50%)) {
+    //@supports (color: oklch(from white l c h / 1)) {
+    @supports ((color: oklch(from white l c h / 1)) and (font-size-adjust: from-font)) {
         @include tokens.emit();
         @include base.emit();
 

@@ -51,21 +51,97 @@ Note: this pre element appears high up as content, but because we're trying for 
 {% assign browser_support = "browser-support" | append: start_version | append: ".html" %}
 {% include {{browser_support}} %}
 
-<p>
-Print (Edge doesn't apply to print otherwise)<br>
-Edge 79+, Chrome 74+, Firefox 63+, Opera 64+, Safari 10.1+, iOS 10.3+, Android 81+
-</p>
-
 <h2>Colours</h2>
 <div id="colours">
-    <p style="--background-color: var(--base-ui-color-lightest);"><input type="color" value="#F6F1E9"> Lightest <span>(#F6F1E9)</span></p>
-    <p style="--background-color: var(--base-ui-color-lighter);"><input type="color" value="#EDE3D5"> Lighter <span>(#EDE3D5)</span></p>
-    <p style="--background-color: var(--base-ui-color-light);"><input type="color" value="#E4D5C0"> Light <span>(#E4D5C0)</span></p>
+    <p style="--background-color: var(--base-ui-color-lightest);"><input type="color" value="#FFFDF3"> Lightest <span>(#FFFDF3)</span></p>
+    <p style="--background-color: var(--base-ui-color-lighter);"><input type="color" value="#EEE3D2"> Lighter <span>(#EEE3D2)</span></p>
+    <p style="--background-color: var(--base-ui-color-light);"><input type="color" value="#D7C8B1"> Light <span>(#D7C8B1)</span></p>
     <p style="--background-color: var(--base-ui-color);"><input type="color" value="#D0BA98"> Base <span>(#D0BA98)</span></p>
-    <p style="--background-color: var(--base-ui-color-dark);"><input type="color" value="#A39177"> Dark <span>(#A39177)</span></p>
-    <p style="--background-color: var(--base-ui-color-darker);"><input type="color" value="#776B59"> Darker <span>(#776B59)</span></p>
-    <p style="--background-color: var(--base-ui-color-darkest);"><input type="color" value="#4F473C"> Darkest <span>(#4F473C)</span></p>
+    <p style="--background-color: var(--base-ui-color-dark);"><input type="color" value="#A89578"> Dark <span>(#A89578)</span></p>
+    <p style="--background-color: var(--base-ui-color-darker);"><input type="color" value="#7C6C53"> Darker <span>(#7C6C53)</span></p>
+    <p style="--background-color: var(--base-ui-color-darkest);"><input type="color" value="#4D402C"> Darkest <span>(#4D402C)</span></p>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const clamp01 = (n) => Math.min(1, Math.max(0, n));
+
+      const toHex = (n) => Math.round(n).toString(16).padStart(2, '0').toUpperCase();
+
+      const rgbToHex = (r, g, b) => `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+
+      const srgbEncode = (x) => {
+        x = clamp01(x);
+        return x <= 0.0031308
+          ? 12.92 * x
+          : 1.055 * Math.pow(x, 1 / 2.4) - 0.055;
+      };
+
+      const oklchToHex = (l, c, h) => {
+        const hr = (h * Math.PI) / 180;
+        const a = c * Math.cos(hr);
+        const b = c * Math.sin(hr);
+
+        // OKLab -> LMS
+        const l_ = l + 0.3963377774 * a + 0.2158037573 * b;
+        const m_ = l - 0.1055613458 * a - 0.0638541728 * b;
+        const s_ = l - 0.0894841775 * a - 1.2914855480 * b;
+
+        const l3 = l_ * l_ * l_;
+        const m3 = m_ * m_ * m_;
+        const s3 = s_ * s_ * s_;
+
+        // linear sRGB
+        let r =  4.0767416621 * l3 - 3.3077115913 * m3 + 0.2309699292 * s3;
+        let g = -1.2684380046 * l3 + 2.6097574011 * m3 - 0.3413193965 * s3;
+        let b2 = -0.0041960863 * l3 - 0.7034186147 * m3 + 1.7076147010 * s3;
+
+        r = srgbEncode(r) * 255;
+        g = srgbEncode(g) * 255;
+        b2 = srgbEncode(b2) * 255;
+
+        return rgbToHex(r, g, b2);
+      };
+
+      const parseRgb = (str) => {
+        const m = str.match(
+          /^rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)(?:\s*,\s*([\d.]+))?\s*\)$/i
+        );
+        if (!m) return null;
+        return rgbToHex(Number(m[1]), Number(m[2]), Number(m[3]));
+      };
+
+      const parseOklch = (str) => {
+        const m = str.match(
+          /^oklch\(\s*([-\d.]+%?)\s+([-\d.]+)\s+([-\d.]+)(?:deg)?(?:\s*\/\s*([-\d.]+%?))?\s*\)$/i
+        );
+        if (!m) return null;
+
+        const lRaw = m[1];
+        const l = lRaw.endsWith('%') ? Number(lRaw) / 100 : Number(lRaw);
+        const c = Number(m[2]);
+        const h = Number(m[3]);
+
+        return oklchToHex(l, c, h);
+      };
+
+      const colorToHex = (str) => {
+        return parseRgb(str) || parseOklch(str);
+      };
+
+      document.querySelectorAll('#colours p').forEach((p) => {
+        const bg = getComputedStyle(p).backgroundColor;
+        const hex = colorToHex(bg);
+
+        if (!hex) return;
+
+        const input = p.querySelector('input[type="color"]');
+        const span = p.querySelector('span');
+
+        if (input) input.value = hex;
+        if (span) span.textContent = `(${hex})`;
+      });
+    });
+</script>
 
 <h2>Sizes</h2>
 <div id="sizes">
@@ -251,7 +327,7 @@ Edge 79+, Chrome 74+, Firefox 63+, Opera 64+, Safari 10.1+, iOS 10.3+, Android 8
 <p id="tmp-lists">Same list with various type attributes (the floated image tests the fix for <a href="https://paulbakaus.com/tutorials/css/block-formatting-contexts-and-lists" rel="external">list number/bullet position problem</a>).</p>
 
 <p class="float-img-test">
-    <img onerror="this.dataset.broken='true'" src="/dev/media/poster.jpg" alt="" width="300">
+    <img onerror="this.dataset.broken='true'" src="media/poster.jpg" alt="" width="300">
 </p>
 
 <ol type="1">
@@ -407,7 +483,7 @@ Edge 79+, Chrome 74+, Firefox 63+, Opera 64+, Safari 10.1+, iOS 10.3+, Android 8
 </p>
 
 <p>Images that are links need extra styles and testing:<br>
-    <a href="#"><img onerror="this.dataset.broken='true'" src="/dev/media/poster.jpg" height="144" width="266.226" style="width: auto; max-height: 144px;" rel="external" alt="Big Buck Bunny"></a>
+    <a href="#"><img onerror="this.dataset.broken='true'" src="media/poster.jpg" height="144" width="266.226" style="width: auto; max-height: 144px;" rel="external" alt="Big Buck Bunny"></a>
 </p>
 
 <p>
@@ -841,7 +917,7 @@ explanation.
     Object loading an SVG:
 </p>
 <div class="box">
-    <object type="image/svg+xml" data="/dev/media/fallback-logo.svg" height="144" width="266" class="svg__image" style="width: auto; max-height: 144px;" tabindex="-1">
+    <object type="image/svg+xml" data="media/fallback-logo.svg" height="144" width="266" class="svg__image" style="width: auto; max-height: 144px;" tabindex="-1">
         <p>Object failed to load.</p>
     </object>
 </div>
@@ -853,14 +929,14 @@ explanation.
     Image:
 </p>
 <p>
-    <img onerror="this.dataset.broken='true'" src="/dev/media/poster.jpg"  alt="Big Buck Bunny" height="200" width="355" style="width: auto; max-height: 204px;">
+    <img onerror="this.dataset.broken='true'" src="media/poster.jpg"  alt="Big Buck Bunny" height="200" width="355" style="width: auto; max-height: 204px;">
 </p>
 
 <p>
     Broken image:
 </p>
 <p>
-    <img onerror="this.dataset.broken='true';console.log('Ignore 404 warning - broken image is deliberate')" src="/dev/media/poster.jpgX"  alt="Big Buck Bunny - testing alt-text" height="200" width="355" style="width: auto; max-height: 204px;">
+    <img onerror="this.dataset.broken='true';console.log('Ignore 404 warning - broken image is deliberate')" src="media/poster.jpgX"  alt="Big Buck Bunny - testing alt-text" height="200" width="355" style="width: auto; max-height: 204px;">
 </p>
 
 
@@ -870,21 +946,21 @@ explanation.
 <p>Images inside <code>figure</code> elements:</p>
 
 <figure>
-   <img onerror="this.dataset.broken='true'" src="/dev/media/poster.jpg" width="640" height="360" style="width: auto; max-height: 360px;" alt="Big Buck Bunny">
+   <img onerror="this.dataset.broken='true'" src="media/poster.jpg" width="640" height="360" style="width: auto; max-height: 360px;" alt="Big Buck Bunny">
    <figcaption>
         Image
     </figcaption>
 </figure>
 
 <figure>
-   <img onerror="this.dataset.broken='true'" src="/dev/media/poster.jpg" width="640" height="360" style="width: auto; max-height: 360px;" alt="Big Buck Bunny">
+   <img onerror="this.dataset.broken='true'" src="media/poster.jpg" width="640" height="360" style="width: auto; max-height: 360px;" alt="Big Buck Bunny">
    <figcaption>
         <p>Longer caption here. It's inside a paragraph.</p>
     </figcaption>
 </figure>
 
 <figure>
-   <img onerror="this.dataset.broken='true'" src="/dev/media/poster.jpg" width="640" height="360" style="width: auto; max-height: 360px;" alt="Big Buck Bunny">
+   <img onerror="this.dataset.broken='true'" src="media/poster.jpg" width="640" height="360" style="width: auto; max-height: 360px;" alt="Big Buck Bunny">
    <figcaption>
         <p>Even longer caption here.</p>
         <p>There's even a second paragraph.</p>
@@ -899,7 +975,7 @@ explanation.
 <p>Press this <button>button</button> then tab twice to see this effect. <a href="#test-link">normal link for comparison</a>.</p>
 <p>
     <a href="#">
-        <img onerror="this.dataset.broken='true'" src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 359px;">
+        <img onerror="this.dataset.broken='true'" src="media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 359px;">
     </a>
 </p>
 
@@ -910,7 +986,7 @@ explanation.
 </p>
 <p>
     <a href="#">
-        <img onerror="this.dataset.broken='true'" src="/dev/media/poster.jpg"  alt="Big Buck Bunny" height="200" width="355" style="width: auto; max-height: 192px;">
+        <img onerror="this.dataset.broken='true'" src="media/poster.jpg"  alt="Big Buck Bunny" height="200" width="355" style="width: auto; max-height: 192px;">
     </a>
 </p>
 
@@ -919,7 +995,7 @@ explanation.
 </p>
 <p>
     <a href="#">
-        <img onerror="this.dataset.broken='true';console.log('Ignore 404 warning - broken image is deliberate')" src="/dev/media/poster.jpgX"  alt="Big Buck Bunny - testing alt-text" height="200" width="355" style="width: auto; max-height: 120px;">
+        <img onerror="this.dataset.broken='true';console.log('Ignore 404 warning - broken image is deliberate')" src="media/poster.jpgX"  alt="Big Buck Bunny - testing alt-text" height="200" width="355" style="width: auto; max-height: 120px;">
     </a>
 </p>
 
@@ -930,7 +1006,7 @@ explanation.
 </p>
 <p style="background-color: red;">
     <a href="#">
-        <img onerror="this.dataset.broken='true'" src="/dev/media/poster.png"  alt="Big Buck Bunny - testing alt-text" height="200" width="355" style="width: auto; max-height: 198px;">
+        <img onerror="this.dataset.broken='true'" src="media/poster.png"  alt="Big Buck Bunny - testing alt-text" height="200" width="355" style="width: auto; max-height: 198px;">
     </a>
 </p>
 
@@ -939,7 +1015,7 @@ explanation.
 </p>
 <p>
     <a href="#">
-        <img onerror="this.dataset.broken='true'" src="/dev/media/poster.png"  alt="Big Buck Bunny - testing alt-text" height="200" width="355" style="width: auto; max-height: 199px;">
+        <img onerror="this.dataset.broken='true'" src="media/poster.png"  alt="Big Buck Bunny - testing alt-text" height="200" width="355" style="width: auto; max-height: 199px;">
     </a>
 </p>
 
@@ -954,14 +1030,14 @@ External linked image:
 </p>
 <p>
     <a href="https://en.wikipedia.org/wiki/Big_Buck_Bunny" rel="external">
-        <img onerror="this.dataset.broken='true'" src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 347px;">
+        <img onerror="this.dataset.broken='true'" src="media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 347px;">
     </a>
 </p>
 
 <p>Rounded linked image:</p>
 <p>
     <a href="#">
-        <img onerror="this.dataset.broken='true'" src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 347px; border-radius: 400px;">
+        <img onerror="this.dataset.broken='true'" src="media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 347px; border-radius: 400px;">
     </a>
 </p>
 
@@ -972,16 +1048,16 @@ External linked image:
     <!-- warning: playback does not work on iPad/iPhone if you include the poster attribute! fixed in iOS4                   -->
     <video width="640" height="360" controls>
         <!-- MP4 must be first for iPad! -->
-        <source src="/dev/media/big_buck_bunny.mp4" type="video/mp4"><!-- Safari / iOS, IE9 -->
-        <source src="/dev/media/big_buck_bunny.webm" type="video/webm"><!-- Chrome10+, Ffx4+, Opera10.6+ -->
-        <source src="/dev/media/big_buck_bunny.ogv" type="video/ogg"><!-- Firefox3.6+ / Opera 10.5+ -->
+        <source src="media/big_buck_bunny.mp4" type="video/mp4"><!-- Safari / iOS, IE9 -->
+        <source src="media/big_buck_bunny.webm" type="video/webm"><!-- Chrome10+, Ffx4+, Opera10.6+ -->
+        <source src="media/big_buck_bunny.ogv" type="video/ogg"><!-- Firefox3.6+ / Opera 10.5+ -->
         <!-- fallback to Flash: -->
         <object width="640" height="360" type="application/x-shockwave-flash" data="media/player.swf">
             <!-- Firefox uses the `data` attribute above, IE/Safari uses the param below -->
             <param name="movie" value="player.swf">
             <param name="flashvars" value="autostart=true&amp;controlbar=over&amp;image=poster.jpg&amp;file=media/big_buck_bunny.mp4">
             <!-- fallback image -->
-            <img onerror="this.dataset.broken='true'" src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny"
+            <img onerror="this.dataset.broken='true'" src="media/poster.jpg" width="640" height="360" alt="Big Buck Bunny"
                  title="No video playback capabilities, please download the video below">
         </object>
     </video>
@@ -995,8 +1071,8 @@ External linked image:
 
 <p>
     <audio controls>
-        <source src="/dev/media/voice-sample.mp3" type="audio/mpeg">
-        <source src="/dev/media/voice-sample.wav" type="audio/wav">
+        <source src="media/voice-sample.mp3" type="audio/mpeg">
+        <source src="media/voice-sample.wav" type="audio/wav">
         Your browser does not support the audio element.
     </audio>
 </p>
@@ -1006,8 +1082,8 @@ External linked image:
 <p>
     Text before
 
-    <audio controls style="vertical-align: middle;">
-        <source src="/dev/media/voice-sample.wav" type="audio/wav">
+    <audio controls>
+        <source src="media/voice-sample.wav" type="audio/wav">
     </audio>
 
     text after
@@ -1016,13 +1092,23 @@ External linked image:
 <h4>Audio states</h4>
 <p>
     <audio controls loop muted>
-        <source src="/dev/media/voice-sample.wav" type="audio/wav">
+        <source src="media/voice-sample.wav" type="audio/wav">
     </audio>
+</p>
+
+<p>
+    The following audio element does not have a <code>controls</code> attribute:
+
+    <audio>
+        <source src="media/voice-sample.wav" type="audio/wav">
+    </audio>
+
+    It was before here.
 </p>
 
 <h3>Canvas</h3>
 <p>
-    <canvas id="test-canvas" width="300" height="150"></canvas>
+    <canvas id="test-canvas" width="300" height="156"></canvas>
 </p>
 
 <script>
@@ -1056,7 +1142,7 @@ External linked image:
 <h4>Canvas as inline-element</h4>
 <p>
     Text before
-    <canvas id="inline-canvas" width="100" height="40"></canvas>
+    <canvas id="inline-canvas" width="100" height="48"></canvas>
     text after
 </p>
 <script>
@@ -1092,7 +1178,7 @@ External linked image:
 <p>
     <iframe
         width="300"
-        height="150"
+        height="156"
         style="border: 1px solid #ccc;"
         srcdoc="
             <!DOCTYPE html>

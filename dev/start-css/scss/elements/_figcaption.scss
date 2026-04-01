@@ -10,7 +10,7 @@
 
 @mixin emit() {
     #{cfg.base("namespace")}figcaption {
-        --m: calc(var(--base-rem-space-unit) / 2);
+        --m: var(--sz-sm);
 
         font-size: 0.875em;
 

@@ -42,17 +42,19 @@
         touch-action: manipulation; /* [4] */
 
         resize: var(--textarea-resize, #{cfg.elements("textarea-resize")});
-    }
 
-    /*
-        1. Make sure focus is still visible in Forced Colour modes.
-            (https://www.sarasoueidan.com/blog/focus-indicators/)
-    */
-    @if cfg.flags("use-focus-shadow") {
-        #{cfg.base("namespace")}textarea:focus,
-        #{cfg.base("namespace")}textarea:focus-visible {
+        /*
+            1. Make sure focus is still visible in Forced Colour modes.
+                (https://www.sarasoueidan.com/blog/focus-indicators/)
+        */
+        &:focus-within {
             outline: 2px solid transparent; /* [1] */
-            box-shadow: cfg.tokens("outline-shadow");
+        }
+
+        @if cfg.flags("use-focus-shadow") {
+            &:focus-within {
+                box-shadow: cfg.tokens("outline-shadow");
+            }
         }
     }
 

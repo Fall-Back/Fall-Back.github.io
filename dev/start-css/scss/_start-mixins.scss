@@ -193,6 +193,9 @@
     how these should be provided and previous StartCSS versions catered for two of these.
     Currently there's only one (but controlled by custom properties), however to cater for any
     future changes / options I'm keeping this as a mixin .
+
+    Also not --m is used so that places where a container needs to changes it's chold block margins
+    this is easily achievable.
 */
 @mixin s__block_margins($margin: --m) {
 

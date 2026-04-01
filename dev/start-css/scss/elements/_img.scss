@@ -54,7 +54,7 @@
             #{cfg.elements("anchor-image-line-style")}
         ) currentColor;
 
-
+        /*
         &:active,
         &:hover {
             border-block-end: var(
@@ -66,22 +66,35 @@
                 #{cfg.elements("anchor-image-padding-bottom--alt")}
             );
         }
+        */
+        // We want to mimic link styles for consistency:
+        &:active,
+        &:hover {
+            border-block-end: var(
+                --anchor-image-line-width--alt,
+                #{cfg.elements("anchor-image-line-width--alt")}
+            ) var(
+                --anchor-image-line-style--alt,
+                #{cfg.elements("anchor-image-line-style--alt")}
+            ) currentColor;
+            padding-block-end: var(
+                --anchor-image-padding-bottom--alt,
+                #{cfg.elements("anchor-image-padding-bottom--alt")}
+            );
+        }
 
-        // We want to mimic link styles for consistency, so we need to mimic the support level too:
-        @supports (text-decoration-line: underline) {
-            &:active,
-            &:hover {
-                border-block-end: var(
-                    --anchor-image-line-width--alt,
-                    #{cfg.elements("anchor-image-line-width--alt")}
-                ) var(
-                    --anchor-image-line-style--alt,
-                    #{cfg.elements("anchor-image-line-style--alt")}
-                ) currentColor;
-                padding-block-end: var(
-                    --anchor-image-padding-bottom--alt,
-                    #{cfg.elements("anchor-image-padding-bottom--alt")}
-                );
+
+        /*
+            1. Make sure focus is still visible in Forced Colour modes.
+                (https://www.sarasoueidan.com/blog/focus-indicators/)
+        */
+        &:focus-within {
+            outline: 2px solid transparent; /* [1] */
+        }
+
+        @if cfg.flags("use-focus-shadow") {
+            &:focus-within {
+                box-shadow: cfg.tokens("outline-shadow");
             }
         }
     }
@@ -94,17 +107,6 @@
         I guess transparent images like this are an edge case, but it's something to keep an eye on.
     */
 
-    /*
-        1. Make sure focus is still visible in Forced Colour modes.
-            (https://www.sarasoueidan.com/blog/focus-indicators/)
-    */
-    @if cfg.flags("use-focus-shadow") {
-        #{cfg.base("namespace")}a:focus img,
-        #{cfg.base("namespace")}a:focus-visible img {
-            outline: 2px solid transparent; /* [1] */
-            box-shadow: cfg.tokens("outline-shadow");
-        }
-    }
 
     /*
         Broken images could look much better if CSS could detect if they're broken.
@@ -115,4 +117,5 @@
         background-color: #ddd;
         outline: 2px solid transparent;
     }
+
 }

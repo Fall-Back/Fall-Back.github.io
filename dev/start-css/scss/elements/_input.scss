@@ -20,31 +20,31 @@
     #{cfg.base("namespace")}input {
         max-inline-size: 100%; /* [1] */
 
-        padding-block-start: calc(var(--base-rem-space-unit) / 8 - var(--input-border-width, #{cfg.elements("input-border-width")})); /* [2] */
-        padding-inline: var(--input-h-padding, #{cfg.elements("input-h-padding")});
-        padding-block-end: calc(var(--base-rem-space-unit) / 8 - var(--input-border-width, #{cfg.elements("input-border-width")})); /* [2] */
+        padding-block-start: calc(var(--sz-xxs) - var(--input-border-width, var(--base-border-width))); /* [2] */
+        padding-inline: var(--input-h-padding, var(--sz-xs));
+        padding-block-end: calc(var(--sz-xxs) - var(--input-border-width, var(--base-border-width))); /* [2] */
 
-        border-width: var(--input-border-width, #{cfg.elements("input-border-width")});
-        border-style: var(--input-border-style, #{cfg.elements("input-border-style")});
-        border-color: var(--input-border-color, #{cfg.elements("input-border-color")});
-        border-radius: var(--input-border-radius, #{cfg.elements("input-border-radius")});
+        border-width: var(--input-border-width, var(--base-border-width));
+        border-style: var(--input-border-style, var(--base-border-style));
+        border-color: var(--input-border-color, var(--base-border-color));
+        border-radius: var(--input-border-radius, var(--base-border-radius));
 
         //color: $s__input-text-color;
-        background-color: var(--input-background-color, #{cfg.elements("input-background-color")});
+        background-color: var(--input-background-color, #fff);
 
         font-size: inherit; // S
         font-weight: inherit;
         font-style: inherit;
         font-family: inherit;
 
-        -ms-touch-action: manipulation; /* 3 (IE10) */
+        //-ms-touch-action: manipulation; /* 3 (IE10) */
         touch-action: manipulation; /* [3] */
 
         vertical-align: middle; /* [4] */
         line-height: inherit; /* [5] */
 
         min-block-size: var(--input-min-height, #{cfg.elements("input-min-height")});
-        margin-block: calc(var(--base-rem-space-unit) / 8);
+        margin-block: var(--sz-xxs);
         margin-inline: 0;
     }
 
@@ -52,6 +52,46 @@
         1. Make sure focus is still visible in Forced Colour modes.
            (https://www.sarasoueidan.com/blog/focus-indicators/)
     */
+    #{cfg.base("namespace")}input:not([type]):focus,
+    #{cfg.base("namespace")}[type="color"]:focus,
+    #{cfg.base("namespace")}[type="date"]:focus,
+    #{cfg.base("namespace")}[type="datetime"]:focus,
+    #{cfg.base("namespace")}[type="datetime-local"]:focus,
+    #{cfg.base("namespace")}[type="file"]:focus,
+    #{cfg.base("namespace")}[type="month"]:focus,
+    #{cfg.base("namespace")}[type="number"]:focus,
+    #{cfg.base("namespace")}[type="password"]:focus,
+    #{cfg.base("namespace")}[type="search"]:focus,
+    #{cfg.base("namespace")}[type="range"]:focus,
+    #{cfg.base("namespace")}[type="tel"]:focus,
+    #{cfg.base("namespace")}[type="text"]:focus,
+    #{cfg.base("namespace")}[type="time"]:focus,
+    #{cfg.base("namespace")}[type="url"]:focus,
+    #{cfg.base("namespace")}[type="week"]:focus,
+    #{cfg.base("namespace")}input:not([type]):focus-visible,
+    #{cfg.base("namespace")}[type="color"]:focus-visible,
+    #{cfg.base("namespace")}[type="date"]:focus-visible,
+    #{cfg.base("namespace")}[type="datetime"]:focus-visible,
+    #{cfg.base("namespace")}[type="datetime-local"]:focus-visible,
+    #{cfg.base("namespace")}[type="file"]:focus-visible,
+    #{cfg.base("namespace")}[type="month"]:focus-visible,
+    #{cfg.base("namespace")}[type="number"]:focus-visible,
+    #{cfg.base("namespace")}[type="password"]:focus-visible,
+    #{cfg.base("namespace")}[type="search"]:focus-visible,
+    #{cfg.base("namespace")}[type="range"]:focus-visible,
+    #{cfg.base("namespace")}[type="tel"]:focus-visible,
+    #{cfg.base("namespace")}[type="text"]:focus-visible,
+    #{cfg.base("namespace")}[type="time"]:focus-visible,
+    #{cfg.base("namespace")}[type="url"]:focus-visible,
+    #{cfg.base("namespace")}[type="week"]:focus-visible,
+    #{cfg.base("namespace")}[type="checkbox"]:focus,
+    #{cfg.base("namespace")}[type="radio"]:focus,
+    #{cfg.base("namespace")}[type="checkbox"]:focus-visible,
+    #{cfg.base("namespace")}[type="radio"]:focus-visible {
+        outline: 2px solid transparent; /* [1] */
+    }
+
+
     @if cfg.flags("use-focus-shadow") {
         #{cfg.base("namespace")}input:not([type]):focus,
         #{cfg.base("namespace")}[type="color"]:focus,
@@ -85,7 +125,6 @@
         #{cfg.base("namespace")}[type="time"]:focus-visible,
         #{cfg.base("namespace")}[type="url"]:focus-visible,
         #{cfg.base("namespace")}[type="week"]:focus-visible {
-            outline: 2px solid transparent; /* [1] */
             box-shadow: cfg.tokens("outline-shadow");
         }
 
@@ -97,7 +136,6 @@
         #{cfg.base("namespace")}[type="radio"]:focus,
         #{cfg.base("namespace")}[type="checkbox"]:focus-visible,
         #{cfg.base("namespace")}[type="radio"]:focus-visible {
-            outline: 2px solid transparent; /* [1] */
             box-shadow: cfg.tokens("outline-shadow");
         }
 
@@ -143,7 +181,7 @@
         inline-size: 100%; /* [1] */
 
         @if cfg.elements("input-file-max-width") != false {
-            max-inline-size: var(--input-file-max-width, #{cfg.elements("input-file-max-width")});
+            max-inline-size: var(--input-file-max-width, 18.5em);
         }
 
         min-block-size: var(--input-min-height, #{cfg.elements("input-min-height")});
@@ -163,7 +201,8 @@
         @include mixins.s__button;
         //margin-inline-end: var(--sz-xs, #{cfg.tokens("sz-xs")});
         margin-block: 0;
-        margin-inline: var(--sz-xs);
+        margin-inline-start: 0;
+        margin-inline-end: var(--sz-xs);
 
         border-start-end-radius: 0;
         border-end-end-radius: 0;
@@ -177,7 +216,8 @@
         @include mixins.s__button;
         //margin-inline-end: var(--sz-xs, #{cfg.tokens("sz-xs")});
         margin-block: 0;
-        margin-inline: var(--sz-xs);
+        margin-inline-start: 0;
+        margin-inline-end: var(--sz-xs);
 
         border-start-end-radius: 0;
         border-end-end-radius: 0;

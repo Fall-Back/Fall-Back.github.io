@@ -44,6 +44,11 @@ $startcss-defaults: (
 
     /* UI */
     "ui": (
+        "ui-tone-light": 0.3,
+        "ui-tone-dark": 0.18,
+        "ui-chroma-scale-light": 0.23,
+        "ui-chroma-scale-dark": 0.80,
+
         "border-color": rgba(0, 0, 0, 0.2),
         "border-width": 0.1rem,
         "border-radius": 0.3rem,
@@ -144,16 +149,16 @@ $startcss-defaults: (
         "header-background-color": null,
 
         /* INPUT */
-        "input-h-padding": null,
-        "input-text-color": null,
-        "input-background-color": #fff,
-        "input-background-color--state-1": null,
-        "input-border-color": null,
-        "input-border-width": null,
-        "input-border-style": null,
-        "input-border-radius": null,
+        //"input-h-padding": null,
+        //"input-text-color": null,
+        //"input-background-color": #fff,
+        //"input-background-color--state-1": null,
+        //"input-border-color": null,
+        //"input-border-width": null,
+        //"input-border-style": null,
+        //"input-border-radius": null,
         "input-min-height": null,
-        "input-file-max-width": 18.5em,
+        //"input-file-max-width": 18.5em,
 
         /* LEGEND */
         "legend-border-width": 0,
@@ -364,14 +369,14 @@ $startcss-overrides: () !default;
         "header-background-color": $base-background-color,
 
         /* INPUT */
-        "input-h-padding": math.div($base-rem-space-unit, 4),
-        "input-text-color": $base-text-color,
-        "input-background-color": #fff,
-        "input-background-color--state-1": color.adjust($base-ui-color, $lightness: 40%),
-        "input-border-color": $border-color,
-        "input-border-width": $border-width,
-        "input-border-style": $border-style,
-        "input-border-radius": $border-radius,
+        //"input-h-padding": math.div($base-rem-space-unit, 4),
+        //"input-text-color": $base-text-color,
+        //"input-background-color": #fff,
+        //"input-background-color--state-1": color.adjust($base-ui-color, $lightness: 40%),
+        //"input-border-color": $border-color,
+        //"input-border-width": $border-width,
+        //"input-border-style": $border-style,
+        //"input-border-radius": $border-radius,
         "input-min-height": $base-rem-space-unit * 1.25,
 
         /* LEGEND */

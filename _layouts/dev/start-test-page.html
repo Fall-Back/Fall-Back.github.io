@@ -3,6 +3,7 @@ layout: dev/structure--basic
 cut: prm
 ie11: false
 startcss: true
+base_href: http://localhost:4001/dev/
 head_style: |
 
     :root {
@@ -158,6 +159,16 @@ head_style: |
         outline: 1px dotted #f00;
     }*/
 
+    .tb-media-height img,
+    .tb-media-height video {
+        height: 12rem !important;
+        max-height: none !important;
+        width: auto !important;
+    }
+    .tb-media-height audio {
+        height: 6rem !important;
+    }
+
 
     .tb-wide-table figure table {
         min-width: 100rem;
@@ -281,6 +292,8 @@ body_end_script: |
             '<label for="toggleBaseline">Baseline grid</label><br>',
             '<input type="checkbox" checked id="toggleOutlines"' + (hasClass($body, 'tb-outlines') ? ' checked' : '') + ' "> ',
             '<label for="toggleOutlines">Outline elements</label><br>',
+            '<input type="checkbox" id="toggleMediaHeight"' + (hasClass($body, 'tb-img-height') ? ' checked' : '') + ' "> ',
+            '<label for="toggleMediaHeight">Force media height</label><br>',
             '<input type="checkbox" id="forceWideTable"' + (hasClass($body, 'tb-wide-table') ? ' checked' : '') + ' "> ',
             '<label for="forceWideTable">Force wide table</label><br>',
             '<label for="maxMainWidth">Max main width:</label><br>',
@@ -291,10 +304,11 @@ body_end_script: |
         var $toolbox = document.querySelectorAll('#toolbox')[0];
         $toolbox.innerHTML = tools.join("\n");
 
-        var $toggleBaseline = document.querySelectorAll('#toggleBaseline')[0];
-        var $toggleOutlines = document.querySelectorAll('#toggleOutlines')[0];
-        var $forceWideTable = document.querySelectorAll('#forceWideTable')[0];
-        var $maxMainWidth   = document.querySelectorAll('#maxMainWidth')[0];
+        var $toggleBaseline  = document.querySelectorAll('#toggleBaseline')[0];
+        var $toggleOutlines  = document.querySelectorAll('#toggleOutlines')[0];
+        var $toggleMediaHeight = document.querySelectorAll('#toggleMediaHeight')[0];
+        var $forceWideTable  = document.querySelectorAll('#forceWideTable')[0];
+        var $maxMainWidth    = document.querySelectorAll('#maxMainWidth')[0];
 
         // Set default values:
         $maxMainWidth.value = getComputedStyle($main)['maxWidth'];
@@ -306,6 +320,10 @@ body_end_script: |
 
         $toggleOutlines.addEventListener('change', function(){
             toggleClass($body, 'tb-outlines');
+        });
+
+        $toggleMediaHeight.addEventListener('change', function(){
+            toggleClass($body, 'tb-media-height');
         });
 
         $forceWideTable.addEventListener('change', function(){

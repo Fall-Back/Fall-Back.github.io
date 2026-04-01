@@ -39,12 +39,72 @@
         --small-font-size: #{cfg.elements("small-font-size")};
 
         --base-ui-color: #{cfg.tokens("base-ui-color")};
-        --base-ui-color-lightest: color-mix(in lab, var(--base-ui-color), white 80%);
-        --base-ui-color-lighter: color-mix(in lab, var(--base-ui-color), white 60%);
-        --base-ui-color-light: color-mix(in lab, var(--base-ui-color), white 40%);
-        --base-ui-color-dark: color-mix(in lab, var(--base-ui-color), black 20%);
-        --base-ui-color-darker: color-mix(in lab, var(--base-ui-color), black 40%);
-        --base-ui-color-darkest: color-mix(in lab, var(--base-ui-color), black 60%);
+
+        --ui-tone-light: #{cfg.ui("ui-tone-light")};
+        --ui-tone-dark:  #{cfg.ui("ui-tone-dark")};
+        --ui-chroma-scale-light: #{cfg.ui("ui-chroma-scale-light")};
+        --ui-chroma-scale-dark:  #{cfg.ui("ui-chroma-scale-dark")};
+
+        /* Light side */
+        --base-ui-color-lightest: oklch(
+            from var(--base-ui-color)
+            calc(min(1, l + (1 - l) * (var(--ui-tone-light) * 3)))
+            calc(c * (var(--ui-chroma-scale-light) * 0.8))
+            h
+        );
+
+        --base-ui-color-lighter: oklch(
+            from var(--base-ui-color)
+            calc(min(1, l + (1 - l) * (var(--ui-tone-light) * 2)))
+            calc(c * (var(--ui-chroma-scale-light) * 1.0))
+            h
+        );
+
+        --base-ui-color-light: oklch(
+            from var(--base-ui-color)
+            calc(min(1, l + (1 - l) * (var(--ui-tone-light) * 1)))
+            calc(c * (var(--ui-chroma-scale-light) * 1.2))
+            h
+        );
+
+        /* Dark side */
+        --base-ui-color-dark: oklch(
+            from var(--base-ui-color)
+            calc(max(0, l - l * (var(--ui-tone-dark) * 1)))
+            calc(c * (var(--ui-chroma-scale-dark) * 1.0))
+            h
+        );
+
+        --base-ui-color-darker: oklch(
+            from var(--base-ui-color)
+            calc(max(0, l - l * (var(--ui-tone-dark) * 2)))
+            calc(c * (var(--ui-chroma-scale-dark) * 0.9))
+            h
+        );
+
+        --base-ui-color-darkest: oklch(
+            from var(--base-ui-color)
+            calc(max(0, l - l * (var(--ui-tone-dark) * 3)))
+            calc(c * (var(--ui-chroma-scale-dark) * 0.8))
+            h
+        );
+
+        /*--base-ui-color-lightest: oklch(from var(--base-ui-color) 0.995 calc(c * 0.28) h);
+        --base-ui-color-lighter:  oklch(from var(--base-ui-color) 0.92  calc(c * 0.48) h);
+        --base-ui-color-light:    oklch(from var(--base-ui-color) 0.84  calc(c * 0.68) h);
+
+        --base-ui-color-dark:     oklch(from var(--base-ui-color) 0.68  calc(c * 0.90) h);
+        --base-ui-color-darker:   oklch(from var(--base-ui-color) 0.54  calc(c * 0.82) h);
+        --base-ui-color-darkest:  oklch(from var(--base-ui-color) 0.38  calc(c * 0.70) h);*/
+
+        /*--base-ui-color-lightest: hsl(from var(--base-ui-color)  h s calc(l - 90));
+        --base-ui-color-lighter:  hsl(from var(--base-ui-color)  h s calc(l - 60));
+        --base-ui-color-light:    hsl(from var(--base-ui-color)  h s calc(l - 30));
+
+        --base-ui-color-dark:     hsl(from var(--base-ui-color)  h s calc(l - 30));
+        --base-ui-color-darker:   hsl(from var(--base-ui-color)  h s calc(l - 60));
+        --base-ui-color-darkest:  hsl(from var(--base-ui-color)  h s calc(l - 90));*/
+
 
         --base-background-color: #{cfg.tokens("base-background-color")};
         --base-text-color: #{cfg.tokens("base-text-color")};
@@ -62,7 +122,7 @@
 
         // Values for auto text contrast:
         --l-threshold: 0.7;
-        --l: clamp(0,(var(--l-threshold) - l) * infinity, 1);
+        --l: clamp(0, (var(--l-threshold) - l) * infinity, 1);
         //--color: oklch(from var(--background-color) var(--l) 0 h / 0.9);
 
 

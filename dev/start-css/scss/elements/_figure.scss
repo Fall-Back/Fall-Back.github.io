@@ -26,6 +26,7 @@
         @if cfg.flags("use-focus-shadow") {
             &:focus-within {
                 box-shadow: cfg.tokens("outline-shadow");
+                outline: 2px solid black;
             }
         }
     }

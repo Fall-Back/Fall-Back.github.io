@@ -31,8 +31,4 @@
         padding: 0;
         border-width: 0;
     }
-
-    #{cfg.base("namespace")}fieldset fieldset::after {
-        display: none;
-    }
 }

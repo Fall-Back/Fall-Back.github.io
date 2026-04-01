@@ -42,6 +42,20 @@
         cursor: pointer;
 
         touch-action: manipulation; /* [2] */
+
+        /*
+            1. Make sure focus is still visible in Forced Colour modes.
+                (https://www.sarasoueidan.com/blog/focus-indicators/)
+        */
+        &:focus-within {
+            outline: 2px solid transparent; /* [1] */
+        }
+
+        @if cfg.flags("use-focus-shadow") {
+            &:focus-within {
+                box-shadow: cfg.tokens("outline-shadow");
+            }
+        }
     }
 
     /*
@@ -51,23 +65,11 @@
         padding-inline-start: var(--select-inline-start-padding, var(--sz-xs));
         padding-inline-end: var(--select-inline-end-padding, var(--sz-m));
 
-        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4.95 10" fill="%23444"><polygon points="1.41 4.67 2.48 3.18 3.54 4.67 1.41 4.67"/><polygon points="3.54 5.33 2.48 6.82 1.41 5.33 3.54 5.33"/></svg>'); /* [1] */
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 10" fill="%23444"><polygon points="1.41 4.67 2.48 3.18 3.54 4.67 1.41 4.67"/><polygon points="3.54 5.33 2.48 6.82 1.41 5.33 3.54 5.33"/></svg>'); /* [1] */
         background-repeat: no-repeat;
         background-position:  calc(100% - var(--sz-xxs)) 0;
 
         appearance: none;
-    }
-
-    /*
-        1. Make sure focus is still visible in Forced Colour modes.
-            (https://www.sarasoueidan.com/blog/focus-indicators/)
-    */
-    @if cfg.flags("use-focus-shadow") {
-        #{cfg.base("namespace")}select:focus,
-        #{cfg.base("namespace")}select:focus-visible {
-            outline: 2px solid transparent; /* [1] */
-            box-shadow: cfg.tokens("outline-shadow");
-        }
     }
 
     /*
@@ -91,22 +93,22 @@
     */
     // _::-webkit-full-page-media, _:future, :root .selector { property:value; }
     // Safari 6.2,7.1+
-    _::-webkit-full-page-media, _:future, :root select[multiple] {
+    /*_::-webkit-full-page-media, _:future, :root select[multiple] {
         margin-block-end: 0;
 
         padding: calc(var(--base-rem-space-unit) / 12);
-    }
+    }*/
 
     /*
         ... but reset for Mac Safari .
     */
     // _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root .selector { property:value; }
     // Safari 6.2,7.1+ (Not iOS)
-    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[multiple] {
+    /*_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[multiple] {
         margin-block-end: calc((var(--base-rem-space-unit) / 8) * 3 - (var(--select-border-width, #{cfg.elements("select-border-width")}) * 2));
 
         padding: 0;
-    }
+    }*/
 
     /*
         Various browsers do not allow <option>s height to be specified.

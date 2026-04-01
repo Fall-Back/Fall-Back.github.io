@@ -11,11 +11,5 @@
 @mixin emit() {
     #{cfg.base("namespace")}audio {
         vertical-align: cfg.elements("media-element-vertical-align");
-
-        // Legacy: likely safe to remove (test in BrowserStack)
-        &:not([controls]) {
-            display: none; /* [1] */
-            height: 0;
-        }
     }
 }

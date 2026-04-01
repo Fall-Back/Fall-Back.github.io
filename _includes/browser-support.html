@@ -1,4 +1,4 @@
-<p>StartCSS wraps everything in the feature query: <code>@supports (selector(:has(*))) and (color: color-mix(in lab, white, black 50%)) {}</code> to 'cut' older browsers that might break visual presentation. Support for this feature is as follows:</p>
+<p>StartCSS wraps everything in the feature query: <code>@supports ((color: oklch(from white l c h / 1)) and (font-size-adjust: from-font)) {}</code> to 'cut' older browsers that might break visual presentation. Support for this feature is as follows:</p>
 
 
 <p>
@@ -7,3 +7,8 @@
 </p>
 
 <p>It's recommended to also load StartCSS using the <a href="https://github.com/Fall-Back/CSS-Mustard-Cut#prm-cut-prefers-reduced-motion" rel="external">PRM Mustard Cut</a> which supports the following browsers according to <a hreef="https://caniuse.com/prefers-reduced-motion">CanIUse</a>:</p>
+
+<p>
+    Print (Edge doesn't apply to print otherwise)<br>
+    Edge 79+, Chrome 74+, Firefox 63+, Opera 64+, Safari 10.1+, iOS 10.3+, Android 81+
+</p>
