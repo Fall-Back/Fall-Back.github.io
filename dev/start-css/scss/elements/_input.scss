@@ -57,6 +57,7 @@
     #{cfg.base("namespace")}[type="date"]:focus,
     #{cfg.base("namespace")}[type="datetime"]:focus,
     #{cfg.base("namespace")}[type="datetime-local"]:focus,
+    #{cfg.base("namespace")}[type="email"]:focus,
     #{cfg.base("namespace")}[type="file"]:focus,
     #{cfg.base("namespace")}[type="month"]:focus,
     #{cfg.base("namespace")}[type="number"]:focus,
@@ -73,6 +74,7 @@
     #{cfg.base("namespace")}[type="date"]:focus-visible,
     #{cfg.base("namespace")}[type="datetime"]:focus-visible,
     #{cfg.base("namespace")}[type="datetime-local"]:focus-visible,
+    #{cfg.base("namespace")}[type="email"]:focus-visible,
     #{cfg.base("namespace")}[type="file"]:focus-visible,
     #{cfg.base("namespace")}[type="month"]:focus-visible,
     #{cfg.base("namespace")}[type="number"]:focus-visible,
@@ -98,6 +100,7 @@
         #{cfg.base("namespace")}[type="date"]:focus,
         #{cfg.base("namespace")}[type="datetime"]:focus,
         #{cfg.base("namespace")}[type="datetime-local"]:focus,
+        #{cfg.base("namespace")}[type="email"]:focus,
         #{cfg.base("namespace")}[type="file"]:focus,
         #{cfg.base("namespace")}[type="month"]:focus,
         #{cfg.base("namespace")}[type="number"]:focus,
@@ -114,6 +117,7 @@
         #{cfg.base("namespace")}[type="date"]:focus-visible,
         #{cfg.base("namespace")}[type="datetime"]:focus-visible,
         #{cfg.base("namespace")}[type="datetime-local"]:focus-visible,
+        #{cfg.base("namespace")}[type="email"]:focus-visible,
         #{cfg.base("namespace")}[type="file"]:focus-visible,
         #{cfg.base("namespace")}[type="month"]:focus-visible,
         #{cfg.base("namespace")}[type="number"]:focus-visible,
@@ -156,9 +160,9 @@
     */
     #{cfg.base("namespace")}[type="checkbox"],
     #{cfg.base("namespace")}[type="radio"] {
-        border: 0;
+        //border: 0;
 
-        background: transparent;
+        //background: transparent;
 
         cursor: pointer;
     }

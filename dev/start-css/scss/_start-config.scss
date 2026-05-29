@@ -76,6 +76,7 @@ $startcss-defaults: (
         "root-line-height": null,
 
         /* BODY */
+        "body-padding": 2em,
         "body-margin": 0 auto,
         "body-min-width": 250px,
         "body-max-width": 60em,
@@ -131,17 +132,29 @@ $startcss-defaults: (
 
         /* HEADINGS */
         "h1-font-size": null,
+        "h1-font-size-px": 52px,
         "h1-height": null,
+        "h1-height-factor": 2.5,
         "h2-font-size": null,
+        "h2-font-size-px": 40px,
         "h2-height": null,
+        "h2-height-factor": 2,
         "h3-font-size": null,
+        "h3-font-size-px": 30px,
         "h3-height": null,
+        "h3-height-factor": 1.5,
         "h4-font-size": null,
+        "h4-font-size-px": 22px,
         "h4-height": null,
+        "h4-height-factor": 1.5,
         "h5-font-size": null,
+        "h5-font-size-px": 18px,
         "h5-height": null,
+        "h5-height-factor": 1,
         "h6-font-size": null,
+        "h6-font-size-px": 16px,
         "h6-height": null,
+        "h6-height-factor": 1,
 
         /* HEADER */
         "header-padding": null,
@@ -350,18 +363,18 @@ $startcss-overrides: () !default;
         "footer-background-color": $base-background-color,
 
         /* HEADINGS */
-        "h1-font-size": math.div(52px, $base-font-size) * 1em,
-        "h1-height": $base-rem-space-unit * 2.5,
-        "h2-font-size": math.div(40px, $base-font-size) * 1em,
-        "h2-height": $base-rem-space-unit * 2,
-        "h3-font-size": math.div(30px, $base-font-size) * 1em,
-        "h3-height": $base-rem-space-unit * 1.5,
-        "h4-font-size": math.div(22px, $base-font-size) * 1em,
-        "h4-height": $base-rem-space-unit * 1.5,
-        "h5-font-size": math.div(18px, $base-font-size) * 1em,
-        "h5-height": $base-rem-space-unit,
-        "h6-font-size": math.div(16px, $base-font-size) * 1em,
-        "h6-height": $base-rem-space-unit,
+        "h1-font-size": math.div(map.get($elements, "h1-font-size-px"), $base-font-size) * 1em,
+        "h1-height": $base-rem-space-unit * map.get($elements, "h1-height-factor"),
+        "h2-font-size": math.div(map.get($elements, "h2-font-size-px"), $base-font-size) * 1em,
+        "h2-height": $base-rem-space-unit * map.get($elements, "h2-height-factor"),
+        "h3-font-size": math.div(map.get($elements, "h3-font-size-px"), $base-font-size) * 1em,
+        "h3-height": $base-rem-space-unit * map.get($elements, "h3-height-factor"),
+        "h4-font-size": math.div(map.get($elements, "h4-font-size-px"), $base-font-size) * 1em,
+        "h4-height": $base-rem-space-unit * map.get($elements, "h4-height-factor"),
+        "h5-font-size": math.div(map.get($elements, "h5-font-size-px"), $base-font-size) * 1em,
+        "h5-height": $base-rem-space-unit * map.get($elements, "h5-height-factor"),
+        "h6-font-size": math.div(map.get($elements, "h6-font-size-px"), $base-font-size) * 1em,
+        "h6-height": $base-rem-space-unit * map.get($elements, "h6-height-factor"),
 
         /* HEADER */
         "header-padding": $base-rem-space-unit,

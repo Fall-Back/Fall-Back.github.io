@@ -648,6 +648,7 @@ See SCSS file for documentation. */
     --root-line-height: 2.4rem;
     --body-min-width: 250px;
     --body-max-width: 60em;
+    --body-padding: 2em;
     --body-margin: 0 auto;
     --body-font-size: 1.6em;
     --small-font-size: 81.25%;
@@ -840,7 +841,7 @@ See SCSS file for documentation. */
     max-width: var(--body-max-width);
     min-height: 100%;
     margin: var(--body-margin);
-    padding: var(--body-padding, var(--sz-m));
+    padding: var(--body-padding);
     font-family: var(--base-font-family);
     font-size: var(--body-font-size);
     line-height: var(--root-line-height);
@@ -952,6 +953,7 @@ See SCSS file for documentation. */
   }
   html[lang] audio {
     vertical-align: middle;
+    height: calc(var(--sz-m) * 1.5);
   }
   html[lang] b {
     font-weight: bolder; /* [1] */
@@ -1857,6 +1859,9 @@ html[lang] [type=search]::-webkit-search-decoration {
     max-inline-size: 100%;
     border-width: var(--legend-border-width, var(--base-border-width));
     font-weight: bold;
+  }
+  html[lang] legend + * {
+    margin-block-start: var(--base-rem-space-unit);
   }
   html[lang] li {
     margin-inline-start: var(--list-indent);

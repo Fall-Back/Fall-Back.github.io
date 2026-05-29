@@ -24,5 +24,14 @@
         border-width: var(--legend-border-width, var(--base-border-width));
 
         font-weight: bold;
+
+
+
+        // Force the next sibling to have a margin in can one isn't set (e.g. if it's a div) to
+        // compensate for the legend's negative margin.
+
+        & + * {
+            margin-block-start: var(--base-rem-space-unit);
+        }
     }
 }

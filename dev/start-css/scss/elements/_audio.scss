@@ -11,5 +11,6 @@
 @mixin emit() {
     #{cfg.base("namespace")}audio {
         vertical-align: cfg.elements("media-element-vertical-align");
+        height: calc(var(--sz-m) * 1.5);
     }
 }

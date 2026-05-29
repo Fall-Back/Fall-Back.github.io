@@ -1,0 +1,1 @@
+npx sass --watch start.scss:css/start.css

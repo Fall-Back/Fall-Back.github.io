@@ -819,6 +819,26 @@ Note: this pre element appears high up as content, but because we're trying for 
 spanning multiple
 lines.</textarea>
         </p>
+        <p>
+            Nested fieldset with legend:
+        </p>
+        <fieldset>
+            <legend>Terms &amp; Conditions</legend>
+            <p>
+                <input type="radio" id="input1-6a" name="input1-6"> <label for="input1-6a">I Agree</label><br>
+                <input type="radio" id="input1-6b" name="input1-6"> <label for="input1-6b">I do not agree</label>
+            </p>
+        </fieldset>
+        <p>
+            Another ested fieldset with legend, but using a div after the legend:
+        </p>
+        <fieldset>
+            <legend>Terms &amp; Conditions</legend>
+            <div>
+                <input type="radio" id="input1-6a" name="input1-6"> <label for="input1-6a">I Agree</label><br>
+                <input type="radio" id="input1-6b" name="input1-6"> <label for="input1-6b">I do not agree</label>
+            </div>
+        </fieldset>
     </fieldset>
     <fieldset>
         <legend>A legend</legend>
@@ -833,7 +853,11 @@ lines.</textarea>
         </p>
         <p>
             <label for="input1-9"><code>&lt;datetime-local&gt;</code> input:</label> <input type="datetime-local" id="input1-9"> <button type="button">Button</button>
-        </p><p>
+        </p>
+        <p>
+            <label for="input1-12"><code>&lt;email&gt;</code> input:</label> <input type="email" id="input1-12"> <button type="button">Button</button>
+        </p>
+        <p>
             <label for="input1-10"><code>&lt;month&gt;</code> input:</label> <input type="month" id="input1-10"> <button type="button">Button</button>
         </p>
         <p>

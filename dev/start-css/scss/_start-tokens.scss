@@ -33,6 +33,7 @@
 
         --body-min-width: #{cfg.elements("body-min-width")};
         --body-max-width: #{cfg.elements("body-max-width")};
+        --body-padding: #{cfg.elements("body-padding")};
         --body-margin: #{cfg.elements("body-margin")};
         --body-font-size: #{cfg.elements("body-font-size")};
 
