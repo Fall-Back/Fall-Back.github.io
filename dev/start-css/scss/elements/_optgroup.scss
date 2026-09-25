@@ -14,7 +14,7 @@
 */
 @mixin emit() {
     #{cfg.base("namespace")}optgroup {
-        --background-color: var(--optgroup-color, var(--base-background-color));
+        --background-color: var(--optgroup-background-color);
         background-color: var(--background-color);
 
         font-weight: bold; /* [1] */
@@ -22,18 +22,19 @@
         font-size: inherit;
         font-family: inherit;
 
+        /* This works in Firefox but not in Chrome. I need to do more work to research this. */
         &::before {
-            padding-inline: var(--option-h-padding, #{cfg.elements("option-h-padding")});
+            padding-inline: var(--option-padding-inline);
 
             min-block-size: var(--base-rem-space-unit);
             line-height: var(--base-rem-space-unit);
 
-            --background-color: var(--optgroup-label-color, var(--base-ui-color-lightest));
+            --background-color: var(--optgroup-label-background-color);
             background-color: var(--background-color);
         }
 
         & > option {
-            margin-inline-start: calc(var(--option-h-padding, #{cfg.elements("option-h-padding")}) * 2);
+            margin-inline-start: calc(var(--option-padding-inline) * 2);
         }
     }
 }

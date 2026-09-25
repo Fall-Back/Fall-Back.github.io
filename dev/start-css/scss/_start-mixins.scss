@@ -90,7 +90,7 @@
 */
 @mixin s__button() {
 
-    min-height: cfg.elements("button-min-height"),;
+    min-height: var(--button-min-height);
 
     //overflow: visible; /* S: Internet Explorer 11-, N: Show the overflow in Edge, Firefox, and IE. */
 
@@ -107,10 +107,10 @@
     border-radius: var(--button-border-radius, var(--base-border-radius));
 
 
-    padding-block-start:    calc(var(--button-inline-padding, var(--sz-xxs)) - var(--border-width));
-    padding-block-end: calc(var(--button-inline-padding, var(--sz-xxs)) - var(--border-width));
-    padding-inline-end: calc(var(--button-inline-padding, var(--sz-xs)) - var(--border-width));
-    padding-inline-start:  calc(var(--button-inline-padding, var(--sz-xs)) - var(--border-width));
+    padding-block-start:  calc(var(--button-padding-block)  - var(--border-width));
+    padding-block-end:    calc(var(--button-padding-block)  - var(--border-width));
+    padding-inline-end:   calc(var(--button-padding-inline) - var(--border-width));
+    padding-inline-start: calc(var(--button-padding-inline) - var(--border-width));
 
     --background-color: var(--button-color, var(--base-ui-color));
     background-color: var(--background-color);
@@ -161,7 +161,7 @@
         &:focus,
         &:focus-visible {
             outline: 2px solid transparent; /* [1] */
-            box-shadow: cfg.tokens("outline-shadow");
+            box-shadow: var(--outline-shadow);
         }
     }
 

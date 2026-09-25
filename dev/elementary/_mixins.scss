@@ -1,0 +1,118 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    Elementary base-project (Styleguide)
+
+
+    Custom CSS for Elementary base-project.
+    This file should be used as the starting point for an Elementary-based project. It should not be
+    added to the Elementary library as a SASS file for inclusion as part of that library - though it
+    can appear as an EXAMPLE file as part of the docs.
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use 'sass:math';
+@use "sass:map";
+
+
+// Fluid Typography
+// https://css-tricks.com/snippets/css/fluid-typography/
+
+//@mixin sloped-background($color) {
+//    background: -moz-linear-gradient(45deg, darken($color, 7%) 0%, darken($color, 5%) 50%, darken($color, 3%) 50%,darken($color, 5%) 100%) !important;
+//    background: -webkit-linear-gradient(45deg, darken($color, 7%) 0%,darken($color, 5%) 50%,darken($color, 3%) 50%,darken($color, 5%) 100%) !important;
+//    background: linear-gradient(45deg, darken($color, 7%) 0%,darken($color, 5%) 50%,darken($color, 3%) 50%,darken($color, 5%) 100%) !important;
+//
+//}
+//
+//
+//@mixin word-wrap() {
+//    //https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/
+//
+//    /* These are technically the same, but use both */
+//    overflow-wrap: break-word;
+//    word-wrap: break-word;
+//
+//    //-ms-word-break: break-all;
+//    /* This is the dangerous one in WebKit, as it breaks things wherever */
+//    //word-break: break-all;
+//    /* Instead use this non-standard one: */
+//    word-break: break-word;
+//
+//    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+//    //-ms-hyphens: auto;
+//    -moz-hyphens: auto;
+//    -webkit-hyphens: auto;
+//    hyphens: auto;
+//}
+
+
+
+
+@mixin colour-output($name, $settings) {
+    --color-#{$name}: #{map.get($settings, hex)};
+
+    --color-#{$name}-tone-light: var(--ui-tone-light);
+    --color-#{$name}-chroma-scale-light: var(--ui-chroma-scale-light);
+    --color-#{$name}-tone-dark: var(--ui-tone-dark);
+    --color-#{$name}-chroma-scale-dark: var(--ui-chroma-scale-dark);
+
+    @if map.has-key($settings, light, tone) {
+        --color-#{$name}-tone-light: #{map.get($settings, light, tone)};
+    }
+
+    @if map.has-key($settings, light, chroma-scale) {
+        --color-#{$name}-chroma-scale-light: #{map.get($settings, light, chroma-scale)};
+    }
+
+    @if map.has-key($settings, dark, tone) {
+        --color-#{$name}-tone-dark: #{map.get($settings, dark, tone)};
+    }
+
+    @if map.has-key($settings, dark, chroma-scale) {
+        --color-#{$name}-chroma-scale-dark: #{map.get($settings, dark, chroma-scale)};
+    }
+
+    /* Light side */
+    --color-#{$name}-lightest: oklch(
+        from var(--color-#{$name})
+        calc(min(1, l + (1 - l) * (var(--color-#{$name}-tone-light) * 3)))
+        calc(c * (var(--color-#{$name}-chroma-scale-light) * 0.8))
+        h
+    );
+
+    --color-#{$name}-lighter: oklch(
+        from var(--color-#{$name})
+        calc(min(1, l + (1 - l) * (var(--color-#{$name}-tone-light) * 2)))
+        calc(c * (var(--color-#{$name}-chroma-scale-light) * 1))
+        h
+    );
+
+    --color-#{$name}-light: oklch(
+        from var(--color-#{$name})
+        calc(min(1, l + (1 - l) * (var(--color-#{$name}-tone-light) * 1)))
+        calc(c * (var(--color-#{$name}-chroma-scale-light) * 1.2))
+        h
+    );
+
+    /* Dark side */
+    --color-#{$name}-dark: oklch(
+        from var(--color-#{$name})
+        calc(max(0, l - l * (var(--color-#{$name}-tone-dark) * 1)))
+        calc(c * (var(--color-#{$name}-chroma-scale-dark) * 1))
+        h
+    );
+
+    --color-#{$name}-darker: oklch(
+        from var(--color-#{$name})
+        calc(max(0, l - l * (var(--color-#{$name}-tone-dark) * 2)))
+        calc(c * (var(--color-#{$name}-chroma-scale-dark) * 0.9))
+        h
+    );
+
+    --color-#{$name}-darkest: oklch(
+        from var(--color-#{$name})
+        calc(max(0, l - l * (var(--color-#{$name}-tone-dark) * 3)))
+        calc(c * (var(--color-#{$name}-chroma-scale-dark) * 0.8))
+        h
+    );
+}

@@ -3,7 +3,7 @@ layout: dev/structure--basic
 cut: prm
 ie11: false
 startcss: true
-base_href: http://localhost:4001/dev/
+base_href: http://localhost:4001/dev/start-css/
 head_style: |
 
     :root {
@@ -42,9 +42,9 @@ head_style: |
     /*
         Make the outlines fit to the grid for testing only.
     */
-    h1,h2,h3,h4,h5,h6 {
+    /*1,h2,h3,h4,h5,h6 {
         overflow-y: hidden;
-    }
+    }*/
 
     /* Handling long words */
 
@@ -134,7 +134,8 @@ head_style: |
 
         background-repeat: repeat;
         background-image: linear-gradient(var(--line-color) .1rem, transparent .1rem);
-        background-size: 100% 1.2rem;
+        /*background-size: 100% 1.2rem;*/
+        background-size: 100% calc(var(--root-line-height) / 2);
 
         /*
         background-size: 1px 1.2rem;
@@ -296,8 +297,12 @@ body_end_script: |
             '<label for="toggleMediaHeight">Force media height</label><br>',
             '<input type="checkbox" id="forceWideTable"' + (hasClass($body, 'tb-wide-table') ? ' checked' : '') + ' "> ',
             '<label for="forceWideTable">Force wide table</label><br>',
+            '<label for="rootFontSize">Root font size:</label><br>',
+            '<input type="text" id="rootFontSize" readonly><br>',
+            '<label for="bodyFontSize">Body font size:</label><br>',
+            '<input type="text" id="bodyFontSize" readonly><br>',
             '<label for="maxMainWidth">Max main width:</label><br>',
-            '<input type="text" id="maxMainWidth" />',
+            '<input type="text" id="maxMainWidth">',
         ];
         //toolbox.innerHtml = tools.join("\n");
         preprend($body, toolbox);
@@ -348,6 +353,40 @@ body_end_script: |
         $("#toggleSectionBg").change(function(){
             $("body").toggleClass('section-background');
         });*/
+
+
+        // Root Font Size:
+        const input1 = document.getElementById('rootFontSize');
+        const input2 = document.getElementById('bodyFontSize');
+
+        function updateSizes() {
+            updateRootFontSize();
+            updateBodyFontSize();
+        }
+
+        function updateRootFontSize() {
+          const rootFontSize = getComputedStyle(document.documentElement).fontSize;
+          input1.value = rootFontSize;
+        }
+
+        function updateBodyFontSize() {
+            const bodyFontSize = getComputedStyle(document.body).fontSize;
+            input2.value = bodyFontSize;
+          }
+
+        // Initial values
+        updateSizes();
+
+        // Viewport changes
+        window.addEventListener('resize', updateSizes);
+
+        // Detect changes to the root element's styles/classes
+        const observer = new MutationObserver(updateSizes);
+
+        observer.observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ['class', 'style']
+        });
     });
 
     /*

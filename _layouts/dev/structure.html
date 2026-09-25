@@ -93,12 +93,12 @@
 
     <!-- Ultra-light fallback styles for ancient browsers: -->
     <meta id="css_has_loaded">
-    {% include tfs-1.html %}
+    {% include tfs-1.html base_color="#79260D" %}
 
     <!-- From here we're cutting off IE9- to stop all kinds of JS and CSS fails. -->
     <!--[if !IE]><!-->
 
-    {% include tfs-2.html %}
+    {% include tfs-2.html base_color="#79260D" %}
 
     <!--
         Accessible font loading. FOUT is a lesser evil than FOIT.
@@ -109,17 +109,21 @@
     {% if page.startcss != false and layout.startcss != false %}
 
     {% if page.start_version %}
-        {% assign start_version = "/" | append: page.start_version | append: "/" %}
+        {% assign start_version = "" | append: page.start_version | append: "/" %}
     {% else %}
-        {% assign start_version = "/" %}
+        {% assign start_version = "" %}
     {% endif %}
+    {% if layout.base_href %}
+    {% assign start_path = "" | append: start_version | append: "css/start.css" %}
+    {% else %}
     {% assign start_path = "start-css" | append: start_version | append: "css/start.css" %}
+    {% endif %}
 
     {% include {{ cut_file }} css=start_path %}
     {% include {{ cut_file }} css="start-css/testing.css" %}
 
     {% if ie11 != false %}
-    <script>
+    <!--<script>
         if (
             (!!window.MSInputMethodContext && !!document.documentMode)
          || (navigator.userAgent.indexOf('UCBrowser') > -1)
@@ -140,7 +144,7 @@
             link.href = 'start-css/testing.css';
             document.getElementsByTagName('head')[0].appendChild(link);
         }
-    </script>
+    </script>-->
     {% endif %}
 
     {% endif %}

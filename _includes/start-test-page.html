@@ -61,6 +61,13 @@ Note: this pre element appears high up as content, but because we're trying for 
     <p style="--background-color: var(--base-ui-color-darker);"><input type="color" value="#7C6C53"> Darker <span>(#7C6C53)</span></p>
     <p style="--background-color: var(--base-ui-color-darkest);"><input type="color" value="#4D402C"> Darkest <span>(#4D402C)</span></p>
 </div>
+<h3>Nested auto-contrast</h3>
+<div id="nested-auto-contrast" style="--background-color: var(--base-ui-color-darkest); background-color: var(--background-color); padding:var(--sz-m)">
+    <p>Here is some text</p>
+    <div id="nested-auto-contrast" style="--background-color: var(--base-ui-color-lightest); background-color: var(--background-color); padding:var(--sz-m)">
+        <p>Here is some nested text</p>
+    </div>
+</div>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
       const clamp01 = (n) => Math.min(1, Math.max(0, n));
@@ -327,7 +334,7 @@ Note: this pre element appears high up as content, but because we're trying for 
 <p id="tmp-lists">Same list with various type attributes (the floated image tests the fix for <a href="https://paulbakaus.com/tutorials/css/block-formatting-contexts-and-lists" rel="external">list number/bullet position problem</a>).</p>
 
 <p class="float-img-test">
-    <img onerror="this.dataset.broken='true'" src="media/poster.jpg" alt="" width="300">
+    <img onerror="this.dataset.broken='true'" src="../media/poster.jpg" alt="" width="300">
 </p>
 
 <ol type="1">
@@ -483,7 +490,7 @@ Note: this pre element appears high up as content, but because we're trying for 
 </p>
 
 <p>Images that are links need extra styles and testing:<br>
-    <a href="#"><img onerror="this.dataset.broken='true'" src="media/poster.jpg" height="144" width="266.226" style="width: auto; max-height: 144px;" rel="external" alt="Big Buck Bunny"></a>
+    <a href="#"><img onerror="this.dataset.broken='true'" src="../media/poster.jpg" height="144" width="266.226" style="width: auto; max-height: 144px;" rel="external" alt="Big Buck Bunny"></a>
 </p>
 
 <p>
@@ -953,14 +960,14 @@ explanation.
     Image:
 </p>
 <p>
-    <img onerror="this.dataset.broken='true'" src="media/poster.jpg"  alt="Big Buck Bunny" height="200" width="355" style="width: auto; max-height: 204px;">
+    <img onerror="this.dataset.broken='true'" src="../media/poster.jpg"  alt="Big Buck Bunny" height="200" width="355" style="width: auto; max-height: 204px;">
 </p>
 
 <p>
     Broken image:
 </p>
 <p>
-    <img onerror="this.dataset.broken='true';console.log('Ignore 404 warning - broken image is deliberate')" src="media/poster.jpgX"  alt="Big Buck Bunny - testing alt-text" height="200" width="355" style="width: auto; max-height: 204px;">
+    <img onerror="this.dataset.broken='true';console.log('Ignore 404 warning - broken image is deliberate')" src="../media/poster.jpgX"  alt="Big Buck Bunny - testing alt-text" height="200" width="355" style="width: auto; max-height: 204px;">
 </p>
 
 
@@ -970,21 +977,21 @@ explanation.
 <p>Images inside <code>figure</code> elements:</p>
 
 <figure>
-   <img onerror="this.dataset.broken='true'" src="media/poster.jpg" width="640" height="360" style="width: auto; max-height: 360px;" alt="Big Buck Bunny">
+   <img onerror="this.dataset.broken='true'" src="../media/poster.jpg" width="640" height="360" style="width: auto; max-height: 360px;" alt="Big Buck Bunny">
    <figcaption>
         Image
     </figcaption>
 </figure>
 
 <figure>
-   <img onerror="this.dataset.broken='true'" src="media/poster.jpg" width="640" height="360" style="width: auto; max-height: 360px;" alt="Big Buck Bunny">
+   <img onerror="this.dataset.broken='true'" src="../media/poster.jpg" width="640" height="360" style="width: auto; max-height: 360px;" alt="Big Buck Bunny">
    <figcaption>
         <p>Longer caption here. It's inside a paragraph.</p>
     </figcaption>
 </figure>
 
 <figure>
-   <img onerror="this.dataset.broken='true'" src="media/poster.jpg" width="640" height="360" style="width: auto; max-height: 360px;" alt="Big Buck Bunny">
+   <img onerror="this.dataset.broken='true'" src="../media/poster.jpg" width="640" height="360" style="width: auto; max-height: 360px;" alt="Big Buck Bunny">
    <figcaption>
         <p>Even longer caption here.</p>
         <p>There's even a second paragraph.</p>
@@ -999,7 +1006,7 @@ explanation.
 <p>Press this <button>button</button> then tab twice to see this effect. <a href="#test-link">normal link for comparison</a>.</p>
 <p>
     <a href="#">
-        <img onerror="this.dataset.broken='true'" src="media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 359px;">
+        <img onerror="this.dataset.broken='true'" src="../media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 359px;">
     </a>
 </p>
 
@@ -1010,7 +1017,7 @@ explanation.
 </p>
 <p>
     <a href="#">
-        <img onerror="this.dataset.broken='true'" src="media/poster.jpg"  alt="Big Buck Bunny" height="200" width="355" style="width: auto; max-height: 192px;">
+        <img onerror="this.dataset.broken='true'" src="../media/poster.jpg"  alt="Big Buck Bunny" height="200" width="355" style="width: auto; max-height: 192px;">
     </a>
 </p>
 
@@ -1019,7 +1026,7 @@ explanation.
 </p>
 <p>
     <a href="#">
-        <img onerror="this.dataset.broken='true';console.log('Ignore 404 warning - broken image is deliberate')" src="media/poster.jpgX"  alt="Big Buck Bunny - testing alt-text" height="200" width="355" style="width: auto; max-height: 120px;">
+        <img onerror="this.dataset.broken='true';console.log('Ignore 404 warning - broken image is deliberate')" src="../media/poster.jpgX"  alt="Big Buck Bunny - testing alt-text" height="200" width="355" style="width: auto; max-height: 120px;">
     </a>
 </p>
 
@@ -1030,7 +1037,7 @@ explanation.
 </p>
 <p style="background-color: red;">
     <a href="#">
-        <img onerror="this.dataset.broken='true'" src="media/poster.png"  alt="Big Buck Bunny - testing alt-text" height="200" width="355" style="width: auto; max-height: 198px;">
+        <img onerror="this.dataset.broken='true'" src="../media/poster.png"  alt="Big Buck Bunny - testing alt-text" height="200" width="355" style="width: auto; max-height: 198px;">
     </a>
 </p>
 
@@ -1039,7 +1046,7 @@ explanation.
 </p>
 <p>
     <a href="#">
-        <img onerror="this.dataset.broken='true'" src="media/poster.png"  alt="Big Buck Bunny - testing alt-text" height="200" width="355" style="width: auto; max-height: 199px;">
+        <img onerror="this.dataset.broken='true'" src="../media/poster.png"  alt="Big Buck Bunny - testing alt-text" height="200" width="355" style="width: auto; max-height: 199px;">
     </a>
 </p>
 
@@ -1054,14 +1061,14 @@ External linked image:
 </p>
 <p>
     <a href="https://en.wikipedia.org/wiki/Big_Buck_Bunny" rel="external">
-        <img onerror="this.dataset.broken='true'" src="media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 347px;">
+        <img onerror="this.dataset.broken='true'" src="../media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 347px;">
     </a>
 </p>
 
 <p>Rounded linked image:</p>
 <p>
     <a href="#">
-        <img onerror="this.dataset.broken='true'" src="media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 347px; border-radius: 400px;">
+        <img onerror="this.dataset.broken='true'" src="../media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 347px; border-radius: 400px;">
     </a>
 </p>
 
@@ -1072,16 +1079,16 @@ External linked image:
     <!-- warning: playback does not work on iPad/iPhone if you include the poster attribute! fixed in iOS4                   -->
     <video width="640" height="360" controls>
         <!-- MP4 must be first for iPad! -->
-        <source src="media/big_buck_bunny.mp4" type="video/mp4"><!-- Safari / iOS, IE9 -->
-        <source src="media/big_buck_bunny.webm" type="video/webm"><!-- Chrome10+, Ffx4+, Opera10.6+ -->
-        <source src="media/big_buck_bunny.ogv" type="video/ogg"><!-- Firefox3.6+ / Opera 10.5+ -->
+        <source src="../media/big_buck_bunny.mp4" type="video/mp4"><!-- Safari / iOS, IE9 -->
+        <source src="../media/big_buck_bunny.webm" type="video/webm"><!-- Chrome10+, Ffx4+, Opera10.6+ -->
+        <source src="../media/big_buck_bunny.ogv" type="video/ogg"><!-- Firefox3.6+ / Opera 10.5+ -->
         <!-- fallback to Flash: -->
         <object width="640" height="360" type="application/x-shockwave-flash" data="media/player.swf">
             <!-- Firefox uses the `data` attribute above, IE/Safari uses the param below -->
             <param name="movie" value="player.swf">
             <param name="flashvars" value="autostart=true&amp;controlbar=over&amp;image=poster.jpg&amp;file=media/big_buck_bunny.mp4">
             <!-- fallback image -->
-            <img onerror="this.dataset.broken='true'" src="media/poster.jpg" width="640" height="360" alt="Big Buck Bunny"
+            <img onerror="this.dataset.broken='true'" src="../media/poster.jpg" width="640" height="360" alt="Big Buck Bunny"
                  title="No video playback capabilities, please download the video below">
         </object>
     </video>
@@ -1095,8 +1102,8 @@ External linked image:
 
 <p>
     <audio controls>
-        <source src="media/voice-sample.mp3" type="audio/mpeg">
-        <source src="media/voice-sample.wav" type="audio/wav">
+        <source src="../media/voice-sample.mp3" type="audio/mpeg">
+        <source src="../media/voice-sample.wav" type="audio/wav">
         Your browser does not support the audio element.
     </audio>
 </p>
@@ -1107,7 +1114,7 @@ External linked image:
     Text before
 
     <audio controls>
-        <source src="media/voice-sample.wav" type="audio/wav">
+        <source src="../media/voice-sample.wav" type="audio/wav">
     </audio>
 
     text after
@@ -1116,7 +1123,7 @@ External linked image:
 <h4>Audio states</h4>
 <p>
     <audio controls loop muted>
-        <source src="media/voice-sample.wav" type="audio/wav">
+        <source src="../media/voice-sample.wav" type="audio/wav">
     </audio>
 </p>
 
@@ -1124,7 +1131,7 @@ External linked image:
     The following audio element does not have a <code>controls</code> attribute:
 
     <audio>
-        <source src="media/voice-sample.wav" type="audio/wav">
+        <source src="../media/voice-sample.wav" type="audio/wav">
     </audio>
 
     It was before here.

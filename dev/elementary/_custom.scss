@@ -1,0 +1,21 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    Elementary base-project (Styleguide)
+
+
+    Custom CSS for Elementary base-project.
+    This file should be used as the starting point for an Elementary-based project. It should not be
+    added to the Elementary library as a SASS file for inclusion as part of that library - though it
+    can appear as an EXAMPLE file as part of the docs.
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "../start-css/scss/start-config" as cfg;
+@use "settings" as project;
+@use "sass:map";
+
+
+@mixin emit() {
+
+    // Add custom CSS here.
+}

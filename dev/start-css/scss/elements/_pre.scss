@@ -39,29 +39,29 @@
         overflow: auto;
 
         font-size: 1em; /* [1] */
-        font-family: var(--monospace-font-family, monospace); /* [2] */
+        font-family: var(--monospace-font-family); /* [2] */
 
-        //--background-color: var(--pre-background-color, #{cfg.elements("pre-background-color")});
-        --background-color: var(--pre-background-color, var(--base-ui-color-lightest));
+        //--background-color: var(--pre-background-color);
+        --background-color: var(--pre-background-color);
         background-color: var(--background-color);
 
-        //margin-block-start: var(--pre-margin-top, var(--sz-m));
-        //margin-block-end: var(--pre-margin-bottom, #{cfg.elements("pre-margin-bottom")});
+        //margin-block-start: var(--pre-margin-top);
+        //margin-block-end: var(--pre-margin-bottom);
         @include mixins.s__block_margins();
 
         outline: 2px solid transparent; /* [3] */
 
         @if cfg.flags("use-focus-shadow") {
             &:focus-within {
-                box-shadow: cfg.tokens("outline-shadow");
+                box-shadow: var(--outline-shadow);
             }
         }
 
 
         /* [s1] */
-        --pre-scrollbar-color-thumb: var(--scrollbar-color-thumb, var(--base-ui-color-dark));
-        --pre-scrollbar-color-track: var(--scrollbar-color-track, var(--base-ui-color-lighter));
-        --pre-scrollbar-size-legacy: var(--scrollbar-size-legacy, var(--sz-s));
+        --pre-scrollbar-color-thumb: var(--scrollbar-color-thumb);
+        --pre-scrollbar-color-track: var(--scrollbar-color-track);
+        --pre-scrollbar-size-legacy: var(--scrollbar-size-legacy);
         --pre-padding-block-end-legacy: calc(var(--sz-m) - 15px);
 
         /* [s2] */
@@ -102,8 +102,8 @@
     #{cfg.base("namespace")}pre code {
         display: inline-block;
 
-        padding: var(--pre-code-padding, #{cfg.elements("pre-code-padding")});
+        padding: var(--pre-code-padding);
 
-        line-height: var(---pre-code-line-height, var(--base-line-height)); /* [1] */
+        line-height: var(--pre-code-line-height); /* [1] */
     }
 }

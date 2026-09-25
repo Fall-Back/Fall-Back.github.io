@@ -1,0 +1,109 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: pre
+    v4.0.0
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "../start-config" as cfg;
+@use "../start-mixins" as mixins;
+
+@mixin emit() {
+
+
+    /*
+        Note: code is the most probable use for a `<pre>` tag. Other uses may occur (e.g. poem) but
+        these could be adjusted with a class. Could maybe make this default configurable but leave as it
+        is for now as it's likely that a poem would need a complete re-style (e.g. fonts etc.).
+
+        1 Correct the odd `em` font sizing in all browsers.
+        2. Correct the inheritance and scaling of font size in all browsers.
+        3. Ensure box edges are visible in High Contrast Mode.
+
+        Scrolling. Browsers handle scrollbars differently. To preserve vertical rhythm (VR), some
+        browser-specific tweaks are needed.
+        (Note on Mac Safari scrollbar visibility is a user setting but that doesn't affect the VR)
+
+        s1. Set some baseline variables.
+        s2. Colour scrollbars for modern browsers.
+        s3. Chrome (last tested in 146) still gives space for the scrollbar and doesn't overlay them
+            like FF does so we need to change the pasding to reserve the VR.
+            This targets Chrome 111+.
+            overflow-scroll forces the scrollbar because we can't detect if it is present or not.
+        s4. Chronme 133- used 17px for the scrollbar. There's no CSS features I can use to target
+            that split, but `overflow-inline: auto` was introduced in Chrome 135 so that will do.
+            It means 134 doesn't keep the VR but no-one would notice.
+    */
+    #{cfg.base("namespace")}pre {
+        overflow: auto;
+
+        font-size: 1em; /* [1] */
+        font-family: var(--monospace-font-family); /* [2] */
+
+        //--background-color: var(--pre-background-color);
+        --background-color: var(--pre-background-color);
+        background-color: var(--background-color);
+
+        //margin-block-start: var(--pre-margin-top);
+        //margin-block-end: var(--pre-margin-bottom);
+        @include mixins.s__block_margins();
+
+        outline: 2px solid transparent; /* [3] */
+
+        @if cfg.flags("use-focus-shadow") {
+            &:focus-within {
+                box-shadow: cfg.tokens("outline-shadow");
+            }
+        }
+
+
+        /* [s1] */
+        --pre-scrollbar-color-thumb: var(--scrollbar-color-thumb);
+        --pre-scrollbar-color-track: var(--scrollbar-color-track);
+        --pre-scrollbar-size-legacy: var(--scrollbar-size-legacy);
+        --pre-padding-block-end-legacy: calc(var(--sz-m) - 15px);
+
+        /* [s2] */
+        @supports (scrollbar-width: auto) {
+            & {
+                scrollbar-color: var(--pre-scrollbar-color-thumb) var(--pre-scrollbar-color-track);
+                //scrollbar-width: var(--scrollbar-width, thin);
+            }
+        }
+
+
+        /* [s3] */
+        @supports selector(::-webkit-scrollbar) {
+
+            padding-block-end: var(--pre-padding-block-end-legacy);
+            overflow-x: scroll;
+            &::-webkit-scrollbar-thumb {
+                background: var(--pre-scrollbar-color-thumb);
+            }
+            &::-webkit-scrollbar-track {
+                background: var(--pre-scrollbar-color-track);
+            }
+            &::-webkit-scrollbar {
+                width: var(--pre-scrollbar-size-legacy);
+                height: var(--pre-scrollbar-size-legacy);
+            }
+        }
+
+        /* [s4] */
+        @supports selector(::-webkit-scrollbar) and (not (overflow-inline: auto)) {
+            --pre-padding-block-end-legacy: calc(var(--sz-m) - 17px);
+        }
+    }
+
+    /*
+        1. Revert zeroed line-height (see) `code`.
+    */
+    #{cfg.base("namespace")}pre code {
+        display: inline-block;
+
+        padding: var(--pre-code-padding);
+
+        line-height: var(--pre-code-line-height); /* [1] */
+    }
+}

@@ -10,7 +10,7 @@
 
 @mixin emit() {
     #{cfg.base("namespace")}object {
-        vertical-align: cfg.elements("media-element-vertical-align");
+        vertical-align: var(--media-element-vertical-align);
 
         /*
             1. Make sure focus is still visible in Forced Colour modes.
@@ -22,7 +22,7 @@
 
         @if cfg.flags("use-focus-shadow") {
             &:focus-within {
-                box-shadow: cfg.tokens("outline-shadow");
+                box-shadow: var(--outline-shadow);
             }
         }
     }

@@ -15,13 +15,13 @@
         More info here: https://thatemil.com/blog/2015/01/03/reset-your-fieldset/
     */
     #{cfg.base("namespace")}legend {
-        margin-block-end: calc(var(--base-rem-space-unit) * -1.5);
+        margin-block-end: calc(var(--m) * -1.5);
 
-        padding-inline: var(--legend-inline-padding, var(--sz-xs));
+        padding-inline: var(--legend-padding-inline);
 
         max-inline-size: 100%;
 
-        border-width: var(--legend-border-width, var(--base-border-width));
+        border-width: var(--legend-border-width);
 
         font-weight: bold;
 
@@ -31,7 +31,7 @@
         // compensate for the legend's negative margin.
 
         & + * {
-            margin-block-start: var(--base-rem-space-unit);
+            margin-block-start: var(--m);
         }
     }
 }

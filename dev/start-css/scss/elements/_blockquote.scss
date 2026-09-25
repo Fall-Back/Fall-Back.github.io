@@ -13,8 +13,8 @@
     #{cfg.base("namespace")}blockquote {
         @include mixins.s__block_margins();
 
-        margin-inline-start:var(--blockquote-inline-padding, var(--sz-s));
-        margin-inline-end: var(--blockquote-inline-padding, var(--sz-s));
+        margin-inline-start :var(--blockquote-padding-inline);
+        margin-inline-end: var(--blockquote-padding-inline);
 
         font-style: italic;
     }

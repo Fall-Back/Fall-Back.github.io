@@ -1,0 +1,719 @@
+/* StartCSS/scss/_start-config.scss */
+
+@use "sass:color";
+@use "sass:map";
+@use "sass:math";
+
+$startcss-defaults: (
+    /* BASE */
+    "base": (
+        "namespace": "html[lang] "
+    ),
+
+    /* TOKENS */
+    "tokens": (
+        "base-font-family": ("Lato", sans-serif),
+        "monospace-font-family": monospace,
+
+        "base-font-unit": 10px,
+        "base-space-unit": 24px,
+        "base-font-size": 16px,
+
+        "breakpoint--enhanced": 50em,
+
+        "base-ui-color": #d0ba98,
+        "base-background-color": #fff,
+        "base-text-color": #333,
+        "base-text-color-inverse": #fff,
+
+        "outline-shadow": (0 0 0 0.1rem white, 0 0 0 0.2rem black),
+        "outline-shadow-inset": (0 0 0 0.1rem white inset, 0 0 0 0.2rem black inset),
+    ),
+
+    /* FLAGS */
+    "flags": (
+        "margin-type": default,
+        "use-layout": false,
+        "zero-header-hx-margin": false,
+        "anchor-add-external-link-indicator": true,
+        "space-dl-groups": false,
+        "figure-scroll": true,
+        "use-focus-shadow": true,
+        "experimental": false,
+        "experimental_checkradios": false,
+    ),
+
+    /* UI */
+    "ui": (
+        "ui-tone-light": 0.3,
+        "ui-tone-dark": 0.18,
+        "ui-chroma-scale-light": 0.23,
+        "ui-chroma-scale-dark": 0.80,
+
+        "border-color": rgba(0, 0, 0, 0.2),
+        "border-width": 0.1rem,
+        "border-radius": 0.3rem,
+        "border-style": solid,
+
+        "selection-text-color": #fff,
+        "selection-background-color": null,
+        "selection-text-shadow": none,
+
+        "target-highlight-color": null,
+        "target-highlight-color-a": null,
+        "target-highlight-color-b": null,
+
+        "scroll-margin-top": null,
+
+        "tabsize": 4,
+
+        "quotes": '\201c' '\201d' '\2018' '\2019',
+    ),
+
+    /* ELEMENTS */
+    "elements": (
+        /* ROOT */
+        "root-font-size": null,
+        "root-line-height": null,
+
+        /* BODY */
+        "body-padding": 2em,
+        "body-margin": 0 auto,
+        "body-min-width": 250px,
+        "body-max-width": 60em,
+        "body-font-size": null,
+
+        /* SHARED */
+        "media-element-vertical-align": middle,
+        "list-indent": calc(var(--base-rem-space-unit) * 1.5),
+
+        /* ANCHOR */
+        "anchor-text-color": null,
+        "anchor-text-color--alt": null,
+        "anchor-line-width": 0.0625em,
+        "anchor-line-style": dashed,
+        "anchor-line-style--alt": solid,
+        "anchor-image-line-width": 0.1875em,
+        "anchor-image-line-width--alt": null,
+        "anchor-image-line-style": null,
+        "anchor-image-line-style--alt": null,
+        "anchor-image-padding-bottom": 0,
+        "anchor-image-padding-bottom--alt": 0,
+        "anchor-external-link-indicator-padding": 1em,
+
+        /* BLOCKQUOTE */
+        "blockquote-inline-padding": null,
+
+        /* BUTTON */
+        "button-inline-padding": null,
+        "button-text-color": #fff,
+        "button-background-color": null,
+        "button-background-color--alt": -10,
+        "button-border-color": null,
+        "button-border-width": null,
+        "button-border-style": null,
+        "button-border-radius": null,
+        "button-min-height": null,
+
+        /* CAPTION */
+        "caption-padding": null,
+        "caption-background-color": null,
+
+        /* DETAILS */
+        "details-border-width": null,
+        "details-padding": null,
+
+        /* FIELDSET */
+        "fieldset-border-width": null,
+        "fieldset-padding": null,
+
+        /* FOOTER */
+        "footer-padding": null,
+        "footer-text-color": null,
+        "footer-background-color": null,
+
+        /* HEADINGS */
+        "h1-font-size": null,
+        "h1-font-size-px": 52px,
+        "h1-height": null,
+        "h1-height-factor": 2.5,
+        "h2-font-size": null,
+        "h2-font-size-px": 40px,
+        "h2-height": null,
+        "h2-height-factor": 2,
+        "h3-font-size": null,
+        "h3-font-size-px": 30px,
+        "h3-height": null,
+        "h3-height-factor": 1.5,
+        "h4-font-size": null,
+        "h4-font-size-px": 22px,
+        "h4-height": null,
+        "h4-height-factor": 1.5,
+        "h5-font-size": null,
+        "h5-font-size-px": 18px,
+        "h5-height": null,
+        "h5-height-factor": 1,
+        "h6-font-size": null,
+        "h6-font-size-px": 16px,
+        "h6-height": null,
+        "h6-height-factor": 1,
+
+        /* HEADER */
+        "header-padding": null,
+        "header-text-color": null,
+        "header-background-color": null,
+
+        /* HR */
+        "hr-border-color": null,
+        "hr-border-width": null,
+        "hr-border-style": null,
+
+        /* INPUT */
+        "input-inline-padding": null,
+        "input-text-color": null,
+        "input-background-color": #fff,
+        "input-background-color--state-1": null,
+        "input-border-color": null,
+        "input-border-width": null,
+        "input-border-style": null,
+        "input-border-radius": null,
+        "input-min-height": null,
+        "input-file-max-width": 18.5em,
+
+        /* LABEL */
+        "label-block-padding": null,
+
+        /* LEGEND */
+        "legend-border-width": 0,
+        "legend-inline-padding": null,
+
+        /* MAIN */
+        "main-padding": null,
+        "main-background-color": null,
+
+        /* MARK */
+        "mark-background-color": null,
+        "mark-text-color": null,
+
+        /* OPTGROUP */
+        "optgroup-background-color": null,
+        "optgroup-label-background-color": null,
+
+        /* OPTION */
+        "option-inline-padding": null,
+        "option-background-color": null,
+        "option-background-color-state-1": null,
+        "option-background-color-state-2": null,
+
+
+        /* PRE */
+        "pre-background-color": null,
+        "pre-margin-bottom": null,
+        "pre-padding-bottom": null,
+        "pre-margin-bottom--edge": null,
+        "pre-margin-bottom--ff": null,
+        "pre-code-padding": null,
+        "pre-code-line-height": null,
+
+        /* SELECT */
+        "select-inline-padding": null,
+        "select-text-color": null,
+        "select-background-color": #fff,
+        "select-border-color": null,
+        "select-border-width": null,
+        "select-border-style": null,
+        "select-border-radius": null,
+
+        /* SMALL */
+        "small-font-size": 81.25%,
+
+        /* TABLE */
+        "table-border-width": null,
+        "table-border-style": null,
+        "table-border-color": null,
+        "table-background-color": null,
+
+        /* TD */
+        "td-border-width": null,
+        "td-border-style": null,
+        "td-border-color": null,
+        "td-background-color": null,
+        "td-cell-padding": null,
+
+        /* TEXTAREA */
+        "textarea-inline-padding": null,
+        "textarea-text-color": null,
+        "textarea-background-color": #fff,
+        "textarea-border-color": null,
+        "textarea-border-width": null,
+        "textarea-border-style": null,
+        "textarea-border-radius": null,
+        "textarea-resize": vertical,
+
+        /* TH */
+        "th-border-width": null,
+        "th-border-style": null,
+        "th-border-color": null,
+        "th-background-color": null,
+        "th-cell-padding": null,
+
+        /* VIDEO */
+        "video-background-color": #333,
+    ),
+) !default;
+
+$startcss-overrides: () !default;
+
+
+/*
+    Add derived values without overwriting an explicitly configured value.
+
+    This is important because $startcss-overrides should always win over a derived default.
+*/
+@function _fill-null-values($base, $derived) {
+    @each $key, $value in $derived {
+        @if not map.has-key($base, $key) or map.get($base, $key) == null {
+            $base: map.set($base, $key, $value);
+        }
+    }
+
+    @return $base;
+}
+
+
+/*
+    Return true when a value was explicitly supplied through $startcss-overrides.
+
+    This is used by the token layer to distinguish:
+
+        "inherit the broader CSS custom property"
+
+    from:
+
+        "the user deliberately configured a more specific value".
+*/
+@function _was-overridden($group, $name) {
+    $overrides: map.get($startcss-overrides, $group);
+
+    @if $overrides != null and map.has-key($overrides, $name) {
+        @return true;
+    }
+
+    @return false;
+}
+
+@function _derived-tokens($config) {
+    $tokens: map.get($config, "tokens");
+
+    @return _fill-null-values(
+        $tokens,
+        (
+            "base-rem-space-unit": math.div(
+                map.get($tokens, "base-space-unit"),
+                map.get($tokens, "base-font-unit")
+            ) * 1rem,
+            // Not sure if these are really needed beyond math checks:
+            "base-em-ratio": math.div(
+                map.get($tokens, "base-space-unit"),
+                map.get($tokens, "base-font-size")
+            ),
+            "base-rem-1px": math.div(
+                1px,
+                map.get($tokens, "base-font-size")
+            ) * 1rem,
+            "base-em-1px": math.div(
+                1px,
+                map.get($tokens, "base-font-size")
+            ) * 1em,
+            "mq-1-em-px": 0.0625em,
+        )
+    );
+}
+
+@function _derived-ui($config) {
+    $tokens: map.get($config, "tokens");
+    $ui: map.get($config, "ui");
+
+    $base-ui-color: map.get($tokens, "base-ui-color");
+
+    @return _fill-null-values(
+        $ui,
+        (
+            "selection-background-color": color.adjust(
+                color.complement($base-ui-color),
+                $lightness: -30%
+            ),
+            "target-highlight-color": color.adjust(
+                $base-ui-color,
+                $lightness: 20%
+            ),
+            "target-highlight-color-a": color.change(
+                color.adjust($base-ui-color, $lightness: 20%),
+                $alpha: 0.4
+            ),
+            "target-highlight-color-b": color.change(
+                color.adjust($base-ui-color, $lightness: 20%),
+                $alpha: 0
+            ),
+            "scroll-margin-top": map.get(
+                $config,
+                "tokens",
+                "base-rem-space-unit"
+            ) * 2,
+        )
+    );
+}
+
+@function _derived-elements($config) {
+    $tokens: map.get($config, "tokens");
+    $ui: map.get($config, "ui");
+    $elements: map.get($config, "elements");
+
+    $base-font-unit: map.get($tokens, "base-font-unit");
+    $base-font-size: map.get($tokens, "base-font-size");
+
+    $root-font-size: clamp(
+        $base-font-unit,
+        1vw,
+        ($base-font-unit * 1.2)
+    );
+
+    $root-line-height: map.get($tokens, "base-rem-space-unit");
+
+    $body-font-size: math.div(
+        $base-font-size,
+        $base-font-unit
+    ) * 1em;
+
+    $base-ui-color: map.get($tokens, "base-ui-color");
+    $base-background-color: map.get($tokens, "base-background-color");
+    $base-text-color: map.get($tokens, "base-text-color");
+    $base-rem-space-unit: map.get($tokens, "base-rem-space-unit");
+
+    $border-color: map.get($ui, "border-color");
+    $border-width: map.get($ui, "border-width");
+    $border-style: map.get($ui, "border-style");
+    $border-radius: map.get($ui, "border-radius");
+
+    $figure-scroll: map.get($config, "flags", "figure-scroll");
+
+    $table-background-color: null;
+    $td-background-color: null;
+    $th-background-color: null;
+
+    /*@if $figure-scroll {
+        $table-background-color: transparent;
+        $td-background-color: transparent;
+        $th-background-color: color.change(
+            $base-ui-color,
+            $alpha: 0.3
+        );
+    } @else {
+        $table-background-color: color.adjust(
+            $base-ui-color,
+            $lightness: 50%
+        );
+        $td-background-color: #fff;
+        $th-background-color: color.adjust(
+            $base-ui-color,
+            $lightness: 50%
+        );
+    }*/
+    $table-background-color: color.adjust(
+        $base-ui-color,
+        $lightness: 50%
+    );
+    $td-background-color: #fff;
+    $th-background-color: color.adjust(
+        $base-ui-color,
+        $lightness: 50%
+    );
+
+    @return _fill-null-values(
+        $elements,
+        (
+            /* HTML */
+            "root-font-size": $root-font-size,
+            "root-line-height": $root-line-height,
+
+            /* BODY */
+            "body-font-size": $body-font-size,
+
+            /* ANCHOR */
+            "anchor-text-color": $base-text-color,
+            "anchor-text-color--alt": $base-text-color,
+
+            "anchor-image-line-width--alt": map.get(
+                $elements,
+                "anchor-image-line-width"
+            ),
+            "anchor-image-line-style": map.get(
+                $elements,
+                "anchor-line-style"
+            ),
+            "anchor-image-line-style--alt": map.get(
+                $elements,
+                "anchor-line-style--alt"
+            ),
+
+            /* BLOCKQUOTE */
+            "blockquote-inline-padding": $base-rem-space-unit,
+
+            /* BUTTON */
+            "button-inline-padding": math.div(
+                $base-rem-space-unit,
+                4
+            ),
+            "button-background-color": $base-ui-color,
+            "button-border-color": $border-color,
+            "button-border-width": $border-width,
+            "button-border-style": $border-style,
+            "button-border-radius": $border-radius,
+            "button-min-height": $base-rem-space-unit * 1.25,
+
+            /* CAPTION */
+            "caption-padding": $base-rem-space-unit,
+            "caption-background-color": $base-ui-color,
+
+            /* DETAILS */
+            "details-border-width": $border-width,
+            "details-padding": $base-rem-space-unit,
+
+            /* FIELDSET */
+            "fieldset-border-width": $border-width,
+            "fieldset-padding": $base-rem-space-unit,
+
+            /* FOOTER */
+            "footer-padding": $base-rem-space-unit,
+            "footer-text-color": $base-text-color,
+            "footer-background-color": $base-background-color,
+
+            /* HEADINGS */
+            "h1-font-size": math.div(map.get($elements, "h1-font-size-px"), $base-font-size) * 1em,
+            "h1-height": $base-rem-space-unit * map.get($elements, "h1-height-factor"),
+            "h2-font-size": math.div(map.get($elements, "h2-font-size-px"), $base-font-size) * 1em,
+            "h2-height": $base-rem-space-unit * map.get($elements, "h2-height-factor"),
+            "h3-font-size": math.div(map.get($elements, "h3-font-size-px"), $base-font-size) * 1em,
+            "h3-height": $base-rem-space-unit * map.get($elements, "h3-height-factor"),
+            "h4-font-size": math.div(map.get($elements, "h4-font-size-px"), $base-font-size) * 1em,
+            "h4-height": $base-rem-space-unit * map.get($elements, "h4-height-factor"),
+            "h5-font-size": math.div(map.get($elements, "h5-font-size-px"), $base-font-size) * 1em,
+            "h5-height": $base-rem-space-unit * map.get($elements, "h5-height-factor"),
+            "h6-font-size": math.div(map.get($elements, "h6-font-size-px"), $base-font-size) * 1em,
+            "h6-height": $base-rem-space-unit * map.get($elements, "h6-height-factor"),
+
+            /* HEADER */
+            "header-padding": $base-rem-space-unit,
+            "header-text-color": $base-text-color,
+            "header-background-color": $base-background-color,
+
+            /* HR */
+            "hr-border-color": $border-color,
+            "hr-border-width": $border-width,
+            "hr-border-style": $border-style,
+
+            /* INPUT */
+            "input-inline-padding": math.div(
+                $base-rem-space-unit,
+                4
+            ),
+            "input-text-color": $base-text-color,
+            "input-background-color": #fff,
+            "input-background-color--state-1": color.adjust(
+                $base-ui-color,
+                $lightness: 40%
+            ),
+            "input-border-color": $border-color,
+            "input-border-width": $border-width,
+            "input-border-style": $border-style,
+            "input-border-radius": $border-radius,
+            "input-min-height": $base-rem-space-unit * 1.25,
+
+            /* LABEL */
+            "label-block-padding": math.div(
+                $base-rem-space-unit,
+                4
+            ),
+
+            /* LEGEND */
+            "legend-inline-padding": math.div(
+                $base-rem-space-unit,
+                4
+            ),
+
+            /* MAIN */
+            "main-padding": $base-rem-space-unit,
+            "main-background-color": $base-background-color,
+
+            /* MARK */
+            "mark-background-color": #ff0,
+            "mark-text-color": #000,
+
+            /* OPTGROUP */
+            "optgroup-background-color": $base-background-color,
+            "optgroup-label-background-color":  $base-background-color,
+
+            /* OPTION */
+            "option-inline-padding": math.div(
+                $base-rem-space-unit,
+                4
+            ),
+            "option-background-color": $base-background-color,
+            //"option-background-color-state-1": $base-ui-color-lighter,
+            //"option-background-color-state-2": $base-ui-color-darker,
+
+            /* PRE */
+            /*"pre-background-color": color.adjust(
+                $base-ui-color,
+                $lightness: 55%
+            ),*/
+            "pre-margin-bottom": calc(
+                #{$base-rem-space-unit * 2} - 17px
+            ),
+            "pre-margin-bottom--edge": calc(
+                #{$base-rem-space-unit * 2} - 12px
+            ),
+            "pre-margin-bottom--ff": calc(
+                #{$base-rem-space-unit} + 7px
+            ),
+            "pre-padding-bottom": calc(
+                #{$base-rem-space-unit} - 15px
+            ),
+            "pre-code-padding": math.div(
+                $base-rem-space-unit,
+                2
+            ),
+            "pre-code-line-height": $base-rem-space-unit,
+
+            /* SELECT */
+            "select-inline-padding": math.div(
+                $base-rem-space-unit,
+                4
+            ),
+            "select-text-color": $base-text-color,
+            "select-background-color": #fff,
+            "select-border-color": $border-color,
+            "select-border-width": $border-width,
+            "select-border-style": $border-style,
+            "select-border-radius": $border-radius,
+
+            /* TABLE */
+            "table-border-width": $border-width,
+            "table-border-style": $border-style,
+            "table-border-color": $border-color,
+            "table-background-color": $table-background-color,
+
+            /* TD */
+            "td-border-width": $border-width,
+            "td-border-style": $border-style,
+            "td-border-color": $border-color,
+            "td-background-color": $td-background-color,
+            "td-cell-padding": math.div(
+                $base-rem-space-unit,
+                2
+            ),
+
+            /* TEXTAREA */
+            "textarea-inline-padding": math.div(
+                $base-rem-space-unit,
+                4
+            ),
+            "textarea-text-color": $base-text-color,
+            "textarea-background-color": #fff,
+            "textarea-border-color": $border-color,
+            "textarea-border-width": $border-width,
+            "textarea-border-style": $border-style,
+            "textarea-border-radius": $border-radius,
+
+            /* TH */
+            "th-border-width": $border-width,
+            "th-border-style": $border-style,
+            "th-border-color": $border-color,
+            "th-background-color": $th-background-color,
+            "th-cell-padding": math.div(
+                $base-rem-space-unit,
+                2
+            ),
+        )
+    );
+}
+
+$startcss-config: map.deep-merge(
+    $startcss-defaults,
+    $startcss-overrides
+);
+
+$startcss-config: map.merge(
+    $startcss-config,
+    (
+        "tokens": _derived-tokens($startcss-config)
+    )
+);
+
+$startcss-config: map.merge(
+    $startcss-config,
+    (
+        "ui": _derived-ui($startcss-config)
+    )
+);
+
+$startcss-config: map.merge(
+    $startcss-config,
+    (
+        "elements": _derived-elements($startcss-config)
+    )
+);
+
+
+@function base($name) {
+    @return map.get($startcss-config, "base", $name);
+}
+
+
+@function flags($name) {
+    @return map.get($startcss-config, "flags", $name);
+}
+
+
+@function tokens($name) {
+    @return map.get($startcss-config, "tokens", $name);
+}
+
+
+@function ui($name) {
+    @return map.get($startcss-config, "ui", $name);
+}
+
+
+@function elements($name) {
+    @return map.get($startcss-config, "elements", $name);
+}
+
+
+/*
+    Return true when a value was explicitly supplied through $startcss-overrides.
+
+    This is primarily useful to the token layer when a public property has a broader
+    default that should cascade down into a more specific property.
+
+    For example:
+
+        --border-width
+            ↓
+        --table-border-width
+            ↓
+        --td-border-width
+
+    If the user has explicitly configured `td-border-width` in Sass, the token layer
+    should emit that value instead of the inherited table value.
+*/
+@function overridden($group, $name) {
+    @return _was-overridden($group, $name);
+}
+
+
+/*
+@function get($group, $name) {
+    @return map.get($startcss-config, $group, $name);
+}
+*/

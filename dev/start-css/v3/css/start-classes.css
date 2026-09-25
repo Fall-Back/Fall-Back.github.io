@@ -216,6 +216,14 @@
     /* This is the fallback text color - SOMETHING needs to switch this based on ui base color contrast: */
     /*--text-ui-color: var(--color--inverse);
     --text-ui-color: var(--color);*/
+  }
+  @supports (color: oklch(from red l c h)) {
+    :root {
+      --l-threshold: 0.7;
+      --l: clamp(0,(var(--l-threshold) - l) * infinity, 1);
+    }
+  }
+  :root {
     --base-ui-color--text: var(--color);
     --base-border-width: 0.1rem;
     --base-border-style: solid;
@@ -229,12 +237,6 @@
     --sz-xl: calc(var(--base-rem-space-unit) * 4);
     --sz-xxl: calc(var(--base-rem-space-unit) * 8);
     --m: var(--base-rem-space-unit);
-  }
-  @supports (color: oklch(from red l c h)) {
-    :root {
-      --l-threshold: 0.7;
-      --l: clamp(0,(var(--l-threshold) - l) * infinity, 1);
-    }
   }
   /* Output class for reference (tmp): */
   /*.ref {
@@ -483,12 +485,11 @@ button, th {
       1. Remove the bottom border in Firefox 39-.
       2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
   */
-  abbr {
+  address {
     cursor: help;
   }
-  abbr[title] {
+  address[title] {
     border-bottom: none; /* 1 */
-    text-decoration: underline; /* 2 */
     text-decoration: underline dotted; /* 2 */
   }
   /*-------------------------------------------------------------------------------------------------|

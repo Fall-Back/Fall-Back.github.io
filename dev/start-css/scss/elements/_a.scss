@@ -17,17 +17,26 @@
 @mixin emit() {
 
     #{cfg.base("namespace")}a[href] {
+        color: var(--anchor-text-color);
         text-decoration-line: underline;
-        text-decoration-style: cfg.elements("anchor-line-style");
-        text-decoration-thickness: cfg.elements("anchor-line-width");
+        text-decoration-style: var(--anchor-line-style);
+        text-decoration-thickness: var(--anchor-line-width);
 
         touch-action: manipulation; /* [1] */
 
         &:hover,
         &:active {
-            text-decoration: underline cfg.elements("anchor-line-style--alt") currentColor cfg.elements("anchor-line-width");
+            //text-decoration: underline cfg.elements("anchor-line-style--alt") currentColor cfg.elements("anchor-line-width");
+            color: var(--anchor-text-color--alt);
+            text-decoration-line: underline;
+            text-decoration-style: var(--anchor-line-style--alt);
+            text-decoration-thickness: var(--anchor-line-width--alt);
         }
 
+        /*
+            Linked images and SVGs are handled separately so that the anchor decoration
+            doesn't interfere with their own styling.
+        */
         & img:hover,
         & svg:hover {
             outline-color: transparent;
@@ -37,25 +46,25 @@
             1. Make sure focus is still visible in Forced Colour modes.
                 (https://www.sarasoueidan.com/blog/focus-indicators/)
         */
-        &:focus-within {
+        //&:focus-within {
+        &:focus-visible {
             outline: 2px solid transparent; /* [1] */
         }
 
         @if cfg.flags("use-focus-shadow") {
-            &:focus-within {
-                box-shadow: cfg.tokens("outline-shadow");
+            &:focus-visible {
+                box-shadow: var(--outline-shadow);
             }
         }
     }
 
     /*
-        Fix for linked images:
+        Links that contain images need to be an inline block (as a minimum)
     */
     #{cfg.base("namespace")}a[href]:has(> img) {
         display: inline-block;
         vertical-align: middle;
     }
-
 
     /*
         Sometimes anchors can be used without an href, and may contain icons etc, so make sure styles
@@ -65,22 +74,37 @@
         // Give link icons some space unless they're the only child.
         & svg {
             vertical-align: text-top;
-            margin-left: 0.25em;
-            margin-right: 0.25em;
+            //margin-left: 0.25em;
+            //margin-right: 0.25em;
+            margin-inline: var(--sz-xxs);
         }
     }
 
-    @if cfg.elements("anchor-add-external-link-indicator") {
+    @if cfg.flags("anchor-add-external-link-indicator") {
         #{cfg.base("namespace")}a[href][rel~="external"] {
-            padding-right: cfg.elements("anchor-external-link-indicator-padding");
+            /*padding-right: cfg.elements("anchor-external-link-indicator-padding");
             background-image: linear-gradient(45deg, transparent 65%, currentColor 65%);
+            background-repeat: no-repeat;
+            background-position: right 0.4em bottom 0.4em;
+            background-size: 0.6em 0.6em;*/
+            padding-inline-end: var(--anchor-external-link-indicator-padding);
+
+            background-image: linear-gradient(
+                45deg,
+                transparent 65%,
+                currentColor 65%
+            );
             background-repeat: no-repeat;
             background-position: right 0.4em bottom 0.4em;
             background-size: 0.6em 0.6em;
         }
 
+        /*
+            When the link contains an image, the normal background indicator would be obscured by
+            the image, so use a pseudo-element instead.
+        */
         #{cfg.base("namespace")}a[href][rel~="external"]:has(> img) {
-            display: inline-block;
+            /*display: inline-block;
             position: relative;
             background-image: none;
             padding-right: 0;
@@ -94,6 +118,34 @@
                 width: 1.2rem;
                 height: 1.2rem;
                 background-image: linear-gradient(45deg, transparent 50%, #fff 50%, #fff 60%, currentColor 60%);
+                background-repeat: no-repeat;
+                background-position: right top;
+            }*/
+            display: inline-block;
+            position: relative;
+
+            padding-inline-end: 0;
+
+            background-image: none;
+
+            &::after {
+                content: "";
+                display: block;
+
+                position: absolute;
+                inset-inline-end: 0;
+                inset-block-start: 0;
+
+                inline-size: 1.2rem;
+                block-size: 1.2rem;
+
+                background-image: linear-gradient(
+                    45deg,
+                    transparent 50%,
+                    #fff 50%,
+                    #fff 60%,
+                    currentColor 60%
+                );
                 background-repeat: no-repeat;
                 background-position: right top;
             }

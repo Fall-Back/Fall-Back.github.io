@@ -1,10 +1,42 @@
 @charset "UTF-8";
 /* StartCSS/scss/_start-config.scss */
 /*
+    Add derived values without overwriting an explicitly configured value.
+
+    This is important because $startcss-overrides should always win over a derived default.
+*/
+/*
+    Return true when a value was explicitly supplied through $startcss-overrides.
+
+    This is used by the token layer to distinguish:
+
+        "inherit the broader CSS custom property"
+
+    from:
+
+        "the user deliberately configured a more specific value".
+*/
+/*
+    Return true when a value was explicitly supplied through $startcss-overrides.
+
+    This is primarily useful to the token layer when a public property has a broader
+    default that should cascade down into a more specific property.
+
+    For example:
+
+        --border-width
+            ↓
+        --table-border-width
+            ↓
+        --td-border-width
+
+    If the user has explicitly configured `td-border-width` in Sass, the token layer
+    should emit that value instead of the inherited table value.
+*/
+/*
 @function get($group, $name) {
     @return map.get($startcss-config, $group, $name);
 }
-
 */
 /*-------------------------------------------------------------------------------------------------|
 
@@ -636,22 +668,65 @@
 /*! Start-CSS Basic Implementation. Ready-to-use  for testing or simply as-is/=.
 See SCSS file for documentation. */
 /*
-    IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
-    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
+Edge 111+, Chrome 111+, Firefox 121+, Safari 16.2+, iOS 16.2+, modern Android.
+*/
+/*
+    STARTCSS SUPPORT FLOOR
+
+    This feature query establishes the minimum browser capability required by
+    the modern StartCSS build.
+
+    The test is intentionally based on a compatibility proxy rather than
+    individually feature-testing every CSS feature used below. The proxy was
+    chosen because StartCSS's automatic colour-contrast implementation has
+    historically encountered partial-support browser issues which a direct
+    relative-colour @supports test does not reliably distinguish.
+
+    Once inside this block, StartCSS assumes support for all CSS features used
+    by the modern implementation.
+
+    Minimum supported:
+        Chrome / Edge 127+
+        Firefox 128+
+        Safari/iOS 17.2+
+        Opera 113+
+        Samsung: 28+
 */
 @supports (color: oklch(from white l c h/1)) and (font-size-adjust: from-font) {
   :root {
+    /*
+        CORE SPACING
+    */
+    --base-rem-space-unit: 2.4rem;
+    /*
+        SIZES
+    */
+    --sz-xxs: calc(var(--base-rem-space-unit) / 8);
+    --sz-xs: calc(var(--base-rem-space-unit) / 4);
+    --sz-s: calc(var(--base-rem-space-unit) / 2);
+    --sz-m: var(--base-rem-space-unit);
+    --sz-l: calc(var(--base-rem-space-unit) * 2);
+    --sz-xl: calc(var(--base-rem-space-unit) * 4);
+    --sz-xxl: calc(var(--base-rem-space-unit) * 8);
+    /*
+        SHARED SIZING / SHORTCUTS
+    */
+    --list-indent: calc(var(--base-rem-space-unit) * 1.5);
+    --ui-padding-block: var(--sz-xxs);
+    --ui-padding-inline: var(--sz-xs);
+    --m: var(--sz-m);
+    /*
+        CORE TYPOGRAPHY
+    */
     --base-font-family: Lato, sans-serif;
     --monospace-font-family: monospace;
-    --base-rem-space-unit: 2.4rem;
-    --root-font-size: clamp(10px, 1vw, 12px);
-    --root-line-height: 2.4rem;
-    --body-min-width: 250px;
-    --body-max-width: 60em;
-    --body-padding: 2em;
-    --body-margin: 0 auto;
-    --body-font-size: 1.6em;
+    --root-font-size: 0.625em;
+    --root-line-height: var(--base-rem-space-unit);
+    --body-font-size: 1.6rem;
     --small-font-size: 81.25%;
+    /*
+        CORE COLOURS
+    */
     --base-ui-color: #d0ba98;
     --ui-tone-light: 0.3;
     --ui-tone-dark: 0.18;
@@ -695,20 +770,6 @@ See SCSS file for documentation. */
         calc(c * (var(--ui-chroma-scale-dark) * 0.8))
         h
     );
-    /*--base-ui-color-lightest: oklch(from var(--base-ui-color) 0.995 calc(c * 0.28) h);
-    --base-ui-color-lighter:  oklch(from var(--base-ui-color) 0.92  calc(c * 0.48) h);
-    --base-ui-color-light:    oklch(from var(--base-ui-color) 0.84  calc(c * 0.68) h);
-
-    --base-ui-color-dark:     oklch(from var(--base-ui-color) 0.68  calc(c * 0.90) h);
-    --base-ui-color-darker:   oklch(from var(--base-ui-color) 0.54  calc(c * 0.82) h);
-    --base-ui-color-darkest:  oklch(from var(--base-ui-color) 0.38  calc(c * 0.70) h);*/
-    /*--base-ui-color-lightest: hsl(from var(--base-ui-color)  h s calc(l - 90));
-    --base-ui-color-lighter:  hsl(from var(--base-ui-color)  h s calc(l - 60));
-    --base-ui-color-light:    hsl(from var(--base-ui-color)  h s calc(l - 30));
-
-    --base-ui-color-dark:     hsl(from var(--base-ui-color)  h s calc(l - 30));
-    --base-ui-color-darker:   hsl(from var(--base-ui-color)  h s calc(l - 60));
-    --base-ui-color-darkest:  hsl(from var(--base-ui-color)  h s calc(l - 90));*/
     --base-background-color: #fff;
     --base-text-color: #333;
     --base-text-color-inverse: #fff;
@@ -716,41 +777,253 @@ See SCSS file for documentation. */
     --color: var(--base-text-color);
     --color--inverse: var(--base-text-color-inverse);
     --base-ui-color--text: var(--color--inverse);
+    /*
+        CORE UI
+    */
     --base-border-width: 0.1rem;
     --base-border-style: solid;
-    --base-border-color: var(--base-ui-color);
+    --base-border-color: rgba(0, 0, 0, 0.2);
     --base-border-radius: 0.3rem;
+    --outline-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
+    /*
+        AUTO TEXT CONTRAST
+    */
     --l-threshold: 0.7;
-    --l: clamp(0, (var(--l-threshold) - l) * infinity, 1);
-    --sz-xxs: calc(var(--base-rem-space-unit) / 8);
-    --sz-xs: calc(var(--base-rem-space-unit) / 4);
-    --sz-s: calc(var(--base-rem-space-unit) / 2);
-    --sz-m: var(--base-rem-space-unit);
-    --sz-l: calc(var(--base-rem-space-unit) * 2);
-    --sz-xl: calc(var(--base-rem-space-unit) * 4);
-    --sz-xxl: calc(var(--base-rem-space-unit) * 8);
-    --m: var(--base-rem-space-unit);
-    --h1-font-size: 3.25em;
-    --h1-height: 6rem;
-    --h2-font-size: 2.5em;
-    --h2-height: 4.8rem;
-    --h3-font-size:1.875em;
-    --h3-height: 3.6rem;
-    --h4-font-size: 1.375em;
-    --h4-height: 3.6rem;
-    --h5-font-size: 1.125em;
-    --h5-height: 2.4rem;
-    --h6-font-size: 1em;
-    --h6-height: 2.4rem;
+    --l: clamp(
+        0,
+        (var(--l-threshold) - l) * infinity,
+        1
+    );
+    /*
+        HEADINGS
+    */
+    --h1-font-size: 4.8828125rem;
+    --h1-height: round(up, var(--h1-font-size), var(--root-line-height) / 2);
+    --h2-font-size: 3.90625rem;
+    --h2-height: round(up, var(--h2-font-size), var(--root-line-height) / 2);
+    --h3-font-size: 3.125rem;
+    --h3-height: round(up, var(--h3-font-size), var(--root-line-height) / 2);
+    --h4-font-size: 2.5rem;
+    --h4-height: round(up, var(--h4-font-size), var(--root-line-height) / 2);
+    --h5-font-size: 2rem;
+    --h5-height: round(up, var(--h5-font-size), var(--root-line-height) / 2);
+    --h6-font-size: 1.6rem;
+    --h6-height: round(up, var(--h6-font-size), var(--root-line-height) / 2);
+    /*
+        SHARED ELEMENT VALUES
+    */
+    --media-element-vertical-align: middle;
+    --scrollbar-color-thumb: var(--base-ui-color-darker);
+    --scrollbar-color-track: var(--base-ui-color-lighter);
+    --scrollbar-size-legacy: var(--sz-m);
+    /*
+        BODY
+    */
+    --body-min-width: 250px;
+    --body-max-width: 60em;
+    --body-margin: 0 auto;
+    --body-padding: var(--sz-m);
+    /*
+        ANCHOR
+    */
+    --anchor-text-color: var(--base-text-color);
+    --anchor-text-color--alt: var(--base-text-color);
+    --anchor-line-width: 0.0625em;
+    --anchor-line-width--alt: var(--anchor-line-width);
+    --anchor-line-style: dashed;
+    --anchor-line-style--alt: solid;
+    --anchor-image-line-width: 0.1875em;
+    --anchor-image-line-width--alt: var(--anchor-image-line-width);
+    --anchor-image-line-style: var(--anchor-line-style);
+    --anchor-image-line-style--alt: var(--anchor-line-style--alt);
+    --anchor-image-padding-bottom: 0;
+    --anchor-image-padding-bottom--alt: 0;
+    --anchor-external-link-indicator-padding: 1em;
+    /*
+        ASIDE
+    */
+    --aside-padding: ;
+    --aside-text-color: ;
+    --aside-background-color: ;
+    /*
+        BLOCKQUOTE
+    */
+    --blockquote-padding-inline: var(--sz-m);
+    /*
+        BUTTON
+    */
+    --button-padding-inline: var(--ui-padding-inline);
+    --button-padding-block: var(--ui-padding-block);
+    --button-text-color: #fff;
+    --button-background-color: ;
+    --button-background-color--alt: -10;
+    --button-border-color: var(--base-border-color);
+    --button-border-width: var(--base-border-width);
+    --button-border-style: var(--base-border-style);
+    --button-border-radius: var(--base-border-radius);
+    --button-min-height: calc(var(--base-rem-space-unit) * 1.25);
+    /*
+        CAPTION
+    */
+    /*--caption-padding: ;*/
+    --caption-padding: var(--base-rem-space-unit);
+    --caption-background-color: ;
+    /*
+        DETAILS
+    */
+    --details-border-width: var(--base-border-width);
+    /*--details-padding: ;*/
+    --details-padding: var(--base-rem-space-unit);
+    /*
+        DL
+    */
+    --dl-group-space: ;
+    /*
+        FIELDSET
+    */
+    --fieldset-border-width: var(--base-border-width);
+    /*--fieldset-padding: ;*/
+    --fieldset-padding: var(--sz-m);
+    /*
+        FOOTER
+    */
+    /*--footer-padding: ;*/
+    --footer-padding: var(--sz-m);
+    --footer-text-color: ;
+    --footer-background-color: ;
+    /*
+        HEADER
+    */
+    /*--header-padding: ;*/
+    --header-padding: var(--sz-m);
+    --header-text-color: ;
+    --header-background-color: ;
+    /* HR */
+    --hr-border-color: var(--base-border-color);
+    --hr-border-width: var(--base-border-width);
+    --hr-border-style: var(--base-border-style);
+    /*
+        INPUT
+    */
+    --input-padding-inline: ;
+    --input-padding-inline: var(--ui-padding-inline);
+    --input-text-color: ;
+    --input-background-color: #fff;
+    --input-background-color--state-1: ;
+    --input-border-color: var(--base-border-color);
+    --input-border-width: var(--base-border-width);
+    --input-border-style: var(--base-border-style);
+    --input-border-radius: var(--base-border-radius);
+    --input-min-height: calc(var(--base-rem-space-unit) * 1.25);
+    --input-file-max-width:
+        18.5em;
+    /*
+        LABEL
+    */
+    --label-padding-block: var(--sz-xs);
+    /*
+        LEGEND
+    */
+    --legend-border-width: 0;
+    --legend-padding-inline: var(--sz-xs);
+    /*
+        MAIN
+    */
+    /*--main-padding: ;*/
+    --main-padding: var(--sz-m);
+    --main-text-color: ;
+    --main-background-color: var(--base-background-color);
+    /*
+        MARK
+    */
+    --mark-border-width: ;
+    --mark-text-color: ;
+    /*
+        OPTGROUP
+    */
+    --optgroup-background-color: ;
+    --optgroup-label-background-color: ;
+    /*
+        OPTION
+    */
+    --option-padding-inline: var(--ui-padding-inline);
+    --option-background-color: ;
+    --option-background-color-state-1: var(--base-ui-color-lighter);
+    --option-background-color-state-2: var(--base-ui-color-darker);
+    /*
+        PRE
+    */
+    --pre-background-color: var(--base-ui-color-lighter);
+    /*--pre-margin-bottom: ;*/
+    --pre-margin-bottom: calc(var(--base-rem-space-unit) * 2 - 17px);
+    /*--pre-margin-bottom--edge: ;*/
+    --pre-margin-bottom--edge: calc(var(--base-rem-space-unit) * 2 - 12px);
+    /*--pre-margin-bottom--ff: ;*/
+    --pre-margin-bottom--ff: calc(var(--base-rem-space-unit) + 7px);
+    /*--pre-padding-bottom: ;*/
+    --pre-padding-bottom: calc(var(--base-rem-space-unit) - 15px);
+    /*--pre-code-padding: ;*/
+    --pre-code-padding: calc(var(--base-rem-space-unit) / 2);
+    /*--pre-code-line-height: ;*/
+    --pre-code-line-height: var(--root-line-height);
+    /*
+        SELECT
+    */
+    --select-padding-inline-start: var(--ui-padding-inline);
+    --select-padding-inline-end: var(--sz-m);
+    --select-text-color: ;
+    --select-background-color: #fff;
+    --select-border-color: var(--base-border-color);
+    --select-border-width: var(--base-border-width);
+    --select-border-style: var(--base-border-style);
+    --select-border-radius: var(--base-border-radius);
+    /*
+        TABLE
+
+        Public hierarchy:
+
+            --base-border-*
+                ↓
+            --table-border-*
+                ↓
+            --td-border-* / --th-border-*
+    */
     --table-border-width: var(--base-border-width);
     --table-border-style: var(--base-border-style);
-    --table-color: var(--base-ui-color);
-    --th-cell-padding: var(--base-rem-space-unit);
-    --th-border-width: var(--base-border-width);
-    --th-border-color: var(--base-ui-color);
-    --th-color: var(--base-ui-color-lighter);
-    --th-color--text: var(--base-ui-color--text);
-    --list-indent: calc(var(--base-rem-space-unit) * 1.5);
+    --table-border-color: var(--base-border-color);
+    --table-background-color: ;
+    /*
+        TD
+    */
+    --td-border-width: var(--table-border-width);
+    --td-border-style: var(--table-border-style);
+    --td-border-color: var(--table-border-color);
+    --td-background-color: ;
+    /*--td-cell-padding: ;*/
+    --td-cell-padding: var(--sz-s);
+    /*
+        TEXTAREA
+    */
+    --textarea-padding-inline: var(ui-padding-inline);
+    --textarea-text-color: ;
+    --textarea-background-color: #fff;
+    --textarea-border-color: var(--base-border-color);
+    --textarea-border-width: var(--base-border-width);
+    --textarea-border-style: var(--base-border-style);
+    --textarea-border-radius: var(--base-border-radius);
+    --textarea-resize: vertical;
+    /*
+        TH
+    */
+    --th-border-width: var(--table-border-width);
+    --th-border-style: var(--table-border-style);
+    --th-border-color: var(--table-border-color);
+    --th-background-color: ;
+    /*--th-cell-padding: ;*/
+    --th-cell-padding: var(--sz-s);
+    /*
+        VIDEO
+    */
     --video-background-color: #333;
   }
   /*
@@ -762,23 +1035,20 @@ See SCSS file for documentation. */
   }
   /*
       'Global' reset.
-  */
-  * {
-    margin: 0;
-    padding: 0;
-    --color: oklch(from var(--background-color, var(--base-background-color)) var(--l) 0 h / 0.9);
-    color: var(--color);
-  }
-  /*
+
       1. Add box sizing inheritance in all browsers.
       2. Remove repeating backgrounds in all browsers.
   */
   *,
-::before,
-::after {
+*:before,
+*:after {
     box-sizing: inherit; /* 1 */
     background-repeat: no-repeat; /* 2 */
     -webkit-font-smoothing: inherit;
+    margin: 0;
+    padding: 0;
+    --color: oklch(from var(--background-color, var(--base-background-color)) var(--l) 0 h / 0.9);
+    color: var(--color);
   }
   /*
       1. Change the default box-sizing.
@@ -852,29 +1122,37 @@ See SCSS file for documentation. */
     accent-color: var(--base-ui-color);
   }
   html[lang] a[href] {
+    color: var(--anchor-text-color);
     text-decoration-line: underline;
-    text-decoration-style: dashed;
-    text-decoration-thickness: 0.0625em;
+    text-decoration-style: var(--anchor-line-style);
+    text-decoration-thickness: var(--anchor-line-width);
     touch-action: manipulation; /* [1] */
+    /*
+        Linked images and SVGs are handled separately so that the anchor decoration
+        doesn't interfere with their own styling.
+    */
     /*
         1. Make sure focus is still visible in Forced Colour modes.
             (https://www.sarasoueidan.com/blog/focus-indicators/)
     */
   }
   html[lang] a[href]:hover, html[lang] a[href]:active {
-    text-decoration: underline solid currentColor 0.0625em;
+    color: var(--anchor-text-color--alt);
+    text-decoration-line: underline;
+    text-decoration-style: var(--anchor-line-style--alt);
+    text-decoration-thickness: var(--anchor-line-width--alt);
   }
   html[lang] a[href] img:hover, html[lang] a[href] svg:hover {
     outline-color: transparent;
   }
-  html[lang] a[href]:focus-within {
+  html[lang] a[href]:focus-visible {
     outline: 2px solid transparent; /* [1] */
   }
-  html[lang] a[href]:focus-within {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
+  html[lang] a[href]:focus-visible {
+    box-shadow: var(--outline-shadow);
   }
   /*
-      Fix for linked images:
+      Links that contain images need to be an inline block (as a minimum)
   */
   html[lang] a[href]:has(> img) {
     display: inline-block;
@@ -886,30 +1164,55 @@ See SCSS file for documentation. */
   */
   html[lang] a svg {
     vertical-align: text-top;
-    margin-left: 0.25em;
-    margin-right: 0.25em;
+    margin-inline: var(--sz-xxs);
   }
   html[lang] a[href][rel~=external] {
-    padding-right: 1em;
+    /*padding-right: cfg.elements("anchor-external-link-indicator-padding");
+    background-image: linear-gradient(45deg, transparent 65%, currentColor 65%);
+    background-repeat: no-repeat;
+    background-position: right 0.4em bottom 0.4em;
+    background-size: 0.6em 0.6em;*/
+    padding-inline-end: var(--anchor-external-link-indicator-padding);
     background-image: linear-gradient(45deg, transparent 65%, currentColor 65%);
     background-repeat: no-repeat;
     background-position: right 0.4em bottom 0.4em;
     background-size: 0.6em 0.6em;
   }
+  /*
+      When the link contains an image, the normal background indicator would be obscured by
+      the image, so use a pseudo-element instead.
+  */
   html[lang] a[href][rel~=external]:has(> img) {
-    display: inline-block;
+    /*display: inline-block;
     position: relative;
     background-image: none;
     padding-right: 0;
+
+    &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 1.2rem;
+        height: 1.2rem;
+        background-image: linear-gradient(45deg, transparent 50%, #fff 50%, #fff 60%, currentColor 60%);
+        background-repeat: no-repeat;
+        background-position: right top;
+    }*/
+    display: inline-block;
+    position: relative;
+    padding-inline-end: 0;
+    background-image: none;
   }
   html[lang] a[href][rel~=external]:has(> img)::after {
     content: "";
     display: block;
     position: absolute;
-    right: 0;
-    top: 0;
-    width: 1.2rem;
-    height: 1.2rem;
+    inset-inline-end: 0;
+    inset-block-start: 0;
+    inline-size: 1.2rem;
+    block-size: 1.2rem;
     background-image: linear-gradient(45deg, transparent 50%, #fff 50%, #fff 60%, currentColor 60%);
     background-repeat: no-repeat;
     background-position: right top;
@@ -952,7 +1255,7 @@ See SCSS file for documentation. */
     margin-block-end: 0;
   }
   html[lang] audio {
-    vertical-align: middle;
+    vertical-align: var(--media-element-vertical-align);
     height: calc(var(--sz-m) * 1.5);
   }
   html[lang] b {
@@ -961,8 +1264,8 @@ See SCSS file for documentation. */
   html[lang] blockquote {
     margin-block-start: var(--m);
     margin-block-end: var(--m);
-    margin-inline-start: var(--blockquote-inline-padding, var(--sz-s));
-    margin-inline-end: var(--blockquote-inline-padding, var(--sz-s));
+    margin-inline-start: var(--blockquote-padding-inline);
+    margin-inline-end: var(--blockquote-padding-inline);
     font-style: italic;
   }
   html[lang] blockquote:first-child {
@@ -972,7 +1275,7 @@ See SCSS file for documentation. */
     margin-block-end: 0;
   }
   html[lang] button {
-    min-height: 3rem;
+    min-height: var(--button-min-height);
     margin-block: var(--button-block-margin, var(--sz-xxs));
     margin-inline: var(--button-inline-margin, 0);
     border-color: var(--button-border-color, var(--base-ui-color));
@@ -980,10 +1283,10 @@ See SCSS file for documentation. */
     --border-width: var(--button-border-width, var(--base-border-width));
     border-width: var(--border-width);
     border-radius: var(--button-border-radius, var(--base-border-radius));
-    padding-block-start: calc(var(--button-inline-padding, var(--sz-xxs)) - var(--border-width));
-    padding-block-end: calc(var(--button-inline-padding, var(--sz-xxs)) - var(--border-width));
-    padding-inline-end: calc(var(--button-inline-padding, var(--sz-xs)) - var(--border-width));
-    padding-inline-start: calc(var(--button-inline-padding, var(--sz-xs)) - var(--border-width));
+    padding-block-start: calc(var(--button-padding-block) - var(--border-width));
+    padding-block-end: calc(var(--button-padding-block) - var(--border-width));
+    padding-inline-end: calc(var(--button-padding-inline) - var(--border-width));
+    padding-inline-start: calc(var(--button-padding-inline) - var(--border-width));
     --background-color: var(--button-color, var(--base-ui-color));
     background-color: var(--background-color);
     font-weight: inherit;
@@ -1009,26 +1312,26 @@ See SCSS file for documentation. */
   }
   html[lang] button:focus, html[lang] button:focus-visible {
     outline: 2px solid transparent; /* [1] */
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
+    box-shadow: var(--outline-shadow);
   }
   html[lang] button svg {
     vertical-align: text-bottom;
   }
   html[lang] canvas {
-    vertical-align: middle;
+    vertical-align: var(--media-element-vertical-align);
   }
   /*
       1. This overrides TFS, but I need to look into that to see if it's really a good idea.
          Maybe left-align captions for TFS instead.
   */
   html[lang] caption {
-    --background-color: var(--caption-color, var(--table-color, var(--base-ui-color)));
+    --background-color: var(--caption-background-color);
     background-color: var(--background-color);
     display: table-caption;
-    padding-top: var(--caption-padding, var(--sz-s));
-    padding-right: var(--caption-padding, var(--sz-s));
-    padding-bottom: var(--caption-padding, var(--sz-s));
-    padding-left: var(--caption-padding, var(--sz-s));
+    padding-top: var(--caption-padding);
+    padding-right: var(--caption-padding);
+    padding-bottom: var(--caption-padding);
+    padding-left: var(--caption-padding);
     font-weight: bold;
     max-width: none; /* [1] */
   }
@@ -1043,7 +1346,7 @@ See SCSS file for documentation. */
     top: 0; /* [1] */
   }
   html[lang] code {
-    font-family: monospace, monospace; /* [1] */
+    font-family: var(--monospace-font-family), monospace; /* [1] */
     font-size: 1em; /* [2] */
     line-height: 0; /* [3] */
     font-weight: normal; /* [4] */
@@ -1052,10 +1355,10 @@ See SCSS file for documentation. */
     margin-inline-start: var(--list-indent);
   }
   html[lang] details {
-    border-width: var(--details-border-width, var(--base-border-width));
+    border-width: var(--details-border-width);
     border-style: solid;
     border-color: var(--base-ui-color);
-    padding: calc(var(--details-padding, var(--sz-m)) - var(--details-border-width, var(--base-border-width)));
+    padding: calc(var(--details-padding) - var(--details-border-width));
     margin-block-start: var(--m);
     margin-block-end: var(--m);
   }
@@ -1132,10 +1435,10 @@ See SCSS file for documentation. */
   */
   html[lang] fieldset {
     min-width: 0;
-    border-width: var(--fieldset-border-width, var(--base-border-width));
+    border-width: var(--fieldset-border-width);
     border-style: solid;
     border-color: var(--base-ui-color);
-    padding: calc(var(--fieldset-padding, var(--sz-m)) - var(--fieldset-border-width, var(--base-border-width)));
+    padding: calc(var(--fieldset-padding) - var(--fieldset-border-width));
     margin-block-start: var(--m);
     margin-block-end: var(--m);
   }
@@ -1151,7 +1454,6 @@ See SCSS file for documentation. */
     border-width: 0;
   }
   html[lang] figcaption {
-    --m: var(--sz-sm);
     font-size: 0.875em;
     margin-block-start: var(--sz-s);
     margin-block-end: 0;
@@ -1175,7 +1477,7 @@ See SCSS file for documentation. */
     outline: 2px solid transparent; /* [1] */
   }
   html[lang] figure:focus-within {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
+    box-shadow: var(--outline-shadow);
     outline: 2px solid black;
   }
   @media (forced-colors: none) {
@@ -1184,6 +1486,10 @@ See SCSS file for documentation. */
            Setting the figure up as a container allows for the caption to remain in view at
            all times. See the caption element for how that works.
     */
+    html[lang] figure:has(> table) {
+      container-type: inline-size; /* [1] */
+      position: relative; /* [1] */
+    }
     @supports not (scroll-timeline: none) {
       html[lang] figure:has(> table) {
         background-image: linear-gradient(-90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 60%, rgb(255, 255, 255) 100%), linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 60%, rgb(255, 255, 255) 100%), linear-gradient(to right, rgba(0, 0, 20, 0.5), rgba(255, 255, 255, 0)), linear-gradient(to left, rgba(0, 0, 20, 0.5), rgba(255, 255, 255, 0));
@@ -1196,10 +1502,9 @@ See SCSS file for documentation. */
     }
     @supports (scroll-timeline: none) {
       html[lang] figure:has(> table) {
-        border-width: var(--table-border-width, var(--base-border-width));
-        border-style: var(--table-border-style, var(--base-border-style));
-        /* Fix: typo ---th-border-color */
-        border-color: var(--th-border-color, var(--table-base-color, var(--base-ui-color)));
+        border-width: var(--table-border-width);
+        border-style: var(--table-border-style);
+        border-color: var(--table-border-color);
         max-width: 100%;
         --shadow-color: rgb(0 0 0 / 0.4);
         --shadow-size: var(--sz-s);
@@ -1208,8 +1513,6 @@ See SCSS file for documentation. */
         animation: scroll-shadow-inset linear;
         scroll-timeline: --scroll-shadow-timeline inline;
         animation-timeline: --scroll-shadow-timeline;
-        container-type: inline-size; /* [1] */
-        position: relative; /* [1] */
       }
       html[lang] figure:has(> table) > table {
         border-width: 0;
@@ -1377,9 +1680,9 @@ See SCSS file for documentation. */
     display: block;
     inline-size: 100%;
     block-size: 0;
-    border-block-end-width: var(--hr-border-width, var(--base-border-width));
-    border-block-end-style: var(--hr-border-style, var(--base-border-style));
-    border-block-end-color: var(--hr-border-color, var(--base-border-color));
+    border-block-end-width: var(--hr-border-width);
+    border-block-end-style: var(--hr-border-style);
+    border-block-end-color: var(--hr-border-color);
   }
   html[lang] hr:first-child {
     margin-block-start: 0;
@@ -1388,7 +1691,7 @@ See SCSS file for documentation. */
     margin-block-end: 0;
   }
   html[lang] iframe {
-    vertical-align: middle;
+    vertical-align: var(--media-element-vertical-align);
   }
   /*
       1. Fluid images for responsive purposes.
@@ -1398,33 +1701,37 @@ See SCSS file for documentation. */
          are dropped into a page as-is. Safer alternative to using `display: block;`.
       5. Google Maps breaks if `max-width: 100%` acts upon it; use their selector to remove the
          effects.
-      6. If a `width` and/or `height` attribute have been explicitly defined, let's not make the
-         image fluid.
   */
   html[lang] img {
     max-inline-size: 100%; /* [1] */
     block-size: auto; /* [1] */
     border-style: none; /* 2  */
     font-style: italic; /* [3] */
-    vertical-align: var(--media-element-vertical-align, middle); /* [4] */
+    vertical-align: var(--media-element-vertical-align); /* [4] */
   }
   .gm-style html[lang] img { /* [5] */
     max-inline-size: none;
   }
   /*
       Special treatment for images inside links.
+
+      This belongs here rather than in `_a.scss` because this is styling the image's appearance
+      when it is used as a link.
   */
   html[lang] a[href] img {
     border-inline-start: 0;
     border-inline-end: 0;
     border-block-start: 0;
-    border-block-end: var(--anchor-image-line-width, 0.1875em) var(--anchor-image-line-style, dashed) currentColor;
+    border-block-end-width: var(--anchor-image-line-width);
+    border-block-end-style: var(--anchor-image-line-style);
+    border-block-end-color: currentColor;
+    padding-block-end: var(--anchor-image-padding-bottom);
     /*
     &:active,
     &:hover {
         border-block-end: var(
             --anchor-image-line-width--alt,
-            0.1875em
+
         ) solid transparent;
         padding-block-end: var(
             --anchor-image-padding-bottom--alt,
@@ -1434,18 +1741,23 @@ See SCSS file for documentation. */
     */
     /*
         1. Make sure focus is still visible in Forced Colour modes.
-            (https://www.sarasoueidan.com/blog/focus-indicators/)
+           (https://www.sarasoueidan.com/blog/focus-indicators/)
+
+        The image itself is the thing receiving the focus treatment here. The anchor's normal
+        focus treatment remains owned by `_a.scss`.
     */
   }
   html[lang] a[href] img:active, html[lang] a[href] img:hover {
-    border-block-end: var(--anchor-image-line-width--alt, 0.1875em) var(--anchor-image-line-style--alt, solid) currentColor;
-    padding-block-end: var(--anchor-image-padding-bottom--alt, 0);
+    border-block-end-width: var(--anchor-image-line-width--alt);
+    border-block-end-style: var(--anchor-image-line-style--alt);
+    border-block-end-color: currentColor;
+    padding-block-end: var(--anchor-image-padding-bottom--alt);
   }
-  html[lang] a[href] img:focus-within {
+  html[lang] a[href] img:focus-visible {
     outline: 2px solid transparent; /* [1] */
   }
-  html[lang] a[href] img:focus-within {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
+  html[lang] a[href] img:focus-visible {
+    box-shadow: var(--outline-shadow);
   }
   /*
       Here's a problem - if the image has a transparent background, the a's bounding box (which is
@@ -1458,21 +1770,31 @@ See SCSS file for documentation. */
       Broken images could look much better if CSS could detect if they're broken.
       Sadly this isn't natively possible, but using JS onerror on all images can add an attribute
       we can use for styling.
+
+      1. Broken images seem to mess up the line height of the container - probably due to their
+         psuedo contents - so settign this to baseline seems to help avoid this.
+
+      2. I'm not sure why this wasn't always here - the image element in the test page specifies
+         a width and height but without this they don't do anything. With this in place we don't
+         need [1] but keep it in place for now. Don't forget this is mainly for vertical rhythm
+         preservation and is a bit of an edge-case for real-world projects.
   */
   html[lang] img[data-broken] {
     background-color: #ddd;
     outline: 2px solid transparent;
+    display: inline-block; /* [2] */
   }
   html[lang] input {
     max-inline-size: 100%; /* [1] */
-    padding-block-start: calc(var(--sz-xxs) - var(--input-border-width, var(--base-border-width))); /* [2] */
-    padding-inline: var(--input-h-padding, var(--sz-xs));
-    padding-block-end: calc(var(--sz-xxs) - var(--input-border-width, var(--base-border-width))); /* [2] */
-    border-width: var(--input-border-width, var(--base-border-width));
-    border-style: var(--input-border-style, var(--base-border-style));
-    border-color: var(--input-border-color, var(--base-border-color));
-    border-radius: var(--input-border-radius, var(--base-border-radius));
-    background-color: var(--input-background-color, #fff);
+    padding-block-start: calc(var(--sz-xxs) - var(--input-border-width)); /* [2] */
+    padding-inline: var(--input-padding-inline);
+    padding-block-end: calc(var(--sz-xxs) - var(--input-border-width)); /* [2] */
+    border-width: var(--input-border-width);
+    border-style: var(--input-border-style);
+    border-color: var(--input-border-color);
+    border-radius: var(--input-border-radius);
+    --background-color: var(--input-background-color, #fff);
+    background-color: var(--background-color);
     font-size: inherit;
     font-weight: inherit;
     font-style: inherit;
@@ -1480,7 +1802,7 @@ See SCSS file for documentation. */
     touch-action: manipulation; /* [3] */
     vertical-align: middle; /* [4] */
     line-height: inherit; /* [5] */
-    min-block-size: var(--input-min-height, 3rem);
+    min-block-size: var(--input-min-height, );
     margin-block: var(--sz-xxs);
     margin-inline: 0;
   }
@@ -1493,6 +1815,7 @@ html[lang] [type=color]:focus,
 html[lang] [type=date]:focus,
 html[lang] [type=datetime]:focus,
 html[lang] [type=datetime-local]:focus,
+html[lang] [type=email]:focus,
 html[lang] [type=file]:focus,
 html[lang] [type=month]:focus,
 html[lang] [type=number]:focus,
@@ -1509,6 +1832,7 @@ html[lang] [type=color]:focus-visible,
 html[lang] [type=date]:focus-visible,
 html[lang] [type=datetime]:focus-visible,
 html[lang] [type=datetime-local]:focus-visible,
+html[lang] [type=email]:focus-visible,
 html[lang] [type=file]:focus-visible,
 html[lang] [type=month]:focus-visible,
 html[lang] [type=number]:focus-visible,
@@ -1531,6 +1855,7 @@ html[lang] [type=color]:focus,
 html[lang] [type=date]:focus,
 html[lang] [type=datetime]:focus,
 html[lang] [type=datetime-local]:focus,
+html[lang] [type=email]:focus,
 html[lang] [type=file]:focus,
 html[lang] [type=month]:focus,
 html[lang] [type=number]:focus,
@@ -1547,6 +1872,7 @@ html[lang] [type=color]:focus-visible,
 html[lang] [type=date]:focus-visible,
 html[lang] [type=datetime]:focus-visible,
 html[lang] [type=datetime-local]:focus-visible,
+html[lang] [type=email]:focus-visible,
 html[lang] [type=file]:focus-visible,
 html[lang] [type=month]:focus-visible,
 html[lang] [type=number]:focus-visible,
@@ -1558,7 +1884,7 @@ html[lang] [type=text]:focus-visible,
 html[lang] [type=time]:focus-visible,
 html[lang] [type=url]:focus-visible,
 html[lang] [type=week]:focus-visible {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
+    box-shadow: var(--outline-shadow);
   }
   /*
       Without custom styling (appearance: none), Safari doesn't apply the shadow, so breaks
@@ -1568,7 +1894,7 @@ html[lang] [type=week]:focus-visible {
 html[lang] [type=radio]:focus,
 html[lang] [type=checkbox]:focus-visible,
 html[lang] [type=radio]:focus-visible {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
+    box-shadow: var(--outline-shadow);
   }
   /*
       ... so reinstating the outline:
@@ -1582,14 +1908,12 @@ _::-webkit-full-page-media, _:future, :root html[lang] [type=radio]:focus {
   */
   html[lang] [type=checkbox],
 html[lang] [type=radio] {
-    border: 0;
-    background: transparent;
     cursor: pointer;
   }
   html[lang] [type=button],
 html[lang] [type=reset],
 html[lang] [type=submit] {
-    min-height: 3rem;
+    min-height: var(--button-min-height);
     margin-block: var(--button-block-margin, var(--sz-xxs));
     margin-inline: var(--button-inline-margin, 0);
     border-color: var(--button-border-color, var(--base-ui-color));
@@ -1597,10 +1921,10 @@ html[lang] [type=submit] {
     --border-width: var(--button-border-width, var(--base-border-width));
     border-width: var(--border-width);
     border-radius: var(--button-border-radius, var(--base-border-radius));
-    padding-block-start: calc(var(--button-inline-padding, var(--sz-xxs)) - var(--border-width));
-    padding-block-end: calc(var(--button-inline-padding, var(--sz-xxs)) - var(--border-width));
-    padding-inline-end: calc(var(--button-inline-padding, var(--sz-xs)) - var(--border-width));
-    padding-inline-start: calc(var(--button-inline-padding, var(--sz-xs)) - var(--border-width));
+    padding-block-start: calc(var(--button-padding-block) - var(--border-width));
+    padding-block-end: calc(var(--button-padding-block) - var(--border-width));
+    padding-inline-end: calc(var(--button-padding-inline) - var(--border-width));
+    padding-inline-start: calc(var(--button-padding-inline) - var(--border-width));
     --background-color: var(--button-color, var(--base-ui-color));
     background-color: var(--background-color);
     font-weight: inherit;
@@ -1634,7 +1958,7 @@ html[lang] [type=reset]:focus-visible,
 html[lang] [type=submit]:focus,
 html[lang] [type=submit]:focus-visible {
     outline: 2px solid transparent; /* [1] */
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
+    box-shadow: var(--outline-shadow);
   }
   /*
       IE and Edge behave differently (both to other browsers and each other) and so min-height and
@@ -1647,7 +1971,7 @@ html[lang] [type=submit]:focus-visible {
   html[lang] [type=file] {
     inline-size: 100%; /* [1] */
     max-inline-size: var(--input-file-max-width, 18.5em);
-    min-block-size: var(--input-min-height, 3rem);
+    min-block-size: var(--input-min-height, );
     overflow: hidden; /* [2] */
     margin: 0;
     padding: 0;
@@ -1657,7 +1981,7 @@ html[lang] [type=submit]:focus-visible {
       1. Spacing height + 2 sets of input padding, minus border width.
   */
   html[lang] [type=file]::file-selector-button {
-    min-height: 3rem;
+    min-height: var(--button-min-height);
     margin-block: var(--button-block-margin, var(--sz-xxs));
     margin-inline: var(--button-inline-margin, 0);
     border-color: var(--button-border-color, var(--base-ui-color));
@@ -1665,10 +1989,10 @@ html[lang] [type=submit]:focus-visible {
     --border-width: var(--button-border-width, var(--base-border-width));
     border-width: var(--border-width);
     border-radius: var(--button-border-radius, var(--base-border-radius));
-    padding-block-start: calc(var(--button-inline-padding, var(--sz-xxs)) - var(--border-width));
-    padding-block-end: calc(var(--button-inline-padding, var(--sz-xxs)) - var(--border-width));
-    padding-inline-end: calc(var(--button-inline-padding, var(--sz-xs)) - var(--border-width));
-    padding-inline-start: calc(var(--button-inline-padding, var(--sz-xs)) - var(--border-width));
+    padding-block-start: calc(var(--button-padding-block) - var(--border-width));
+    padding-block-end: calc(var(--button-padding-block) - var(--border-width));
+    padding-inline-end: calc(var(--button-padding-inline) - var(--border-width));
+    padding-inline-start: calc(var(--button-padding-inline) - var(--border-width));
     --background-color: var(--button-color, var(--base-ui-color));
     background-color: var(--background-color);
     font-weight: inherit;
@@ -1699,7 +2023,7 @@ html[lang] [type=submit]:focus-visible {
   }
   html[lang] [type=file]::file-selector-button:focus, html[lang] [type=file]::file-selector-button:focus-visible {
     outline: 2px solid transparent; /* [1] */
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
+    box-shadow: var(--outline-shadow);
   }
   @supports (color: oklch(from red l c h)) {
     html[lang] [type=file]::file-selector-button {
@@ -1707,7 +2031,7 @@ html[lang] [type=submit]:focus-visible {
     }
   }
   html[lang] [type=file]::-webkit-file-upload-button {
-    min-height: 3rem;
+    min-height: var(--button-min-height);
     margin-block: var(--button-block-margin, var(--sz-xxs));
     margin-inline: var(--button-inline-margin, 0);
     border-color: var(--button-border-color, var(--base-ui-color));
@@ -1715,10 +2039,10 @@ html[lang] [type=submit]:focus-visible {
     --border-width: var(--button-border-width, var(--base-border-width));
     border-width: var(--border-width);
     border-radius: var(--button-border-radius, var(--base-border-radius));
-    padding-block-start: calc(var(--button-inline-padding, var(--sz-xxs)) - var(--border-width));
-    padding-block-end: calc(var(--button-inline-padding, var(--sz-xxs)) - var(--border-width));
-    padding-inline-end: calc(var(--button-inline-padding, var(--sz-xs)) - var(--border-width));
-    padding-inline-start: calc(var(--button-inline-padding, var(--sz-xs)) - var(--border-width));
+    padding-block-start: calc(var(--button-padding-block) - var(--border-width));
+    padding-block-end: calc(var(--button-padding-block) - var(--border-width));
+    padding-inline-end: calc(var(--button-padding-inline) - var(--border-width));
+    padding-inline-start: calc(var(--button-padding-inline) - var(--border-width));
     --background-color: var(--button-color, var(--base-ui-color));
     background-color: var(--background-color);
     font-weight: inherit;
@@ -1749,7 +2073,7 @@ html[lang] [type=submit]:focus-visible {
   }
   html[lang] [type=file]::-webkit-file-upload-button:focus, html[lang] [type=file]::-webkit-file-upload-button:focus-visible {
     outline: 2px solid transparent; /* [1] */
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
+    box-shadow: var(--outline-shadow);
   }
   @supports (color: oklch(from red l c h)) {
     html[lang] [type=file]::-webkit-file-upload-button {
@@ -1758,18 +2082,18 @@ html[lang] [type=submit]:focus-visible {
   }
   html[lang] [type=color] {
     inline-size: calc(var(--sz-m, ) * 2);
-    block-size: var(--input-min-height, 3rem);
+    block-size: var(--input-min-height, );
   }
   html[lang] [type=color]::-webkit-color-swatch-wrapper {
     padding: 0;
   }
   html[lang] [type=color]::-moz-color-swatch {
     border: 0 !important;
-    border-radius: var(--button-border-radius, 0.3rem);
+    border-radius: var(--button-border-radius, );
   }
   html[lang] [type=color]::-webkit-color-swatch {
     border: 0 !important;
-    border-radius: var(--button-border-radius, 0.3rem);
+    border-radius: var(--button-border-radius, );
   }
   /*
       iOS turns these inputs into selects which are a touch too high.
@@ -1831,7 +2155,7 @@ html[lang] [type=search]::-webkit-search-decoration {
       3. Prevent the element increasing the line-height of the parent.
   */
   html[lang] kbd {
-    font-family: monospace, monospace; /* [1] */
+    font-family: var(--monospace-font-family), monospace; /* [1] */
     font-size: 1em; /* [2] */
     line-height: 0; /* [3] */
   }
@@ -1840,13 +2164,17 @@ html[lang] [type=search]::-webkit-search-decoration {
   */
   html[lang] label {
     display: inline-block;
-    padding-block-start: var(--label-block-padding, var(--sz-xs));
-    padding-block-end: var(--label-block-padding, var(--sz-xs));
+    padding-block-start: var(--label-padding-block);
+    padding-block-end: var(--label-padding-block);
     margin: 0;
     font-weight: bold;
     vertical-align: middle;
     cursor: pointer;
     touch-action: manipulation; /* [1] */
+  }
+  html[lang] fieldset fieldset label {
+    padding-block-start: 0;
+    padding-block-end: 0;
   }
   /*
       Fieldsets and legends can be difficult to style so I'm keep their appearance basically the same
@@ -1854,14 +2182,14 @@ html[lang] [type=search]::-webkit-search-decoration {
       More info here: https://thatemil.com/blog/2015/01/03/reset-your-fieldset/
   */
   html[lang] legend {
-    margin-block-end: calc(var(--base-rem-space-unit) * -1.5);
-    padding-inline: var(--legend-inline-padding, var(--sz-xs));
+    margin-block-end: calc(var(--m) * -1.5);
+    padding-inline: var(--legend-padding-inline);
     max-inline-size: 100%;
-    border-width: var(--legend-border-width, var(--base-border-width));
+    border-width: var(--legend-border-width);
     font-weight: bold;
   }
   html[lang] legend + * {
-    margin-block-start: var(--base-rem-space-unit);
+    margin-block-start: var(--m);
   }
   html[lang] li {
     margin-inline-start: var(--list-indent);
@@ -1873,8 +2201,8 @@ html[lang] li ol {
   html[lang] main {
     width: 100%;
     min-height: 100%;
-    padding: var(--main-padding, var(--sz-m));
-    --background-color: var(--main-background-color, var(--base-background-color));
+    padding: var(--main-padding);
+    --background-color: var(--main-background-color);
     background-color: var(--background-color);
     position: relative;
     margin-block-start: var(--m);
@@ -1887,8 +2215,8 @@ html[lang] li ol {
     margin-block-end: 0;
   }
   html[lang] mark {
-    background: var(--mark-background-color, #ff0);
-    color: var(--mark-text-color, #000);
+    background: var(--mark-background-color);
+    color: var(--mark-text-color);
   }
   html[lang] nav {
     margin-block-start: var(--m);
@@ -1901,7 +2229,7 @@ html[lang] li ol {
     margin-block-end: 0;
   }
   html[lang] object {
-    vertical-align: middle;
+    vertical-align: var(--media-element-vertical-align);
     /*
         1. Make sure focus is still visible in Forced Colour modes.
             (https://www.sarasoueidan.com/blog/focus-indicators/)
@@ -1911,7 +2239,7 @@ html[lang] li ol {
     outline: 2px solid transparent; /* [1] */
   }
   html[lang] object:focus-within {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
+    box-shadow: var(--outline-shadow);
   }
   /*
       1. Make lists behave properly next to floated items.
@@ -1930,37 +2258,38 @@ html[lang] li ol {
     margin-block-end: 0;
   }
   html[lang] optgroup {
-    --background-color: var(--optgroup-color, var(--base-background-color));
+    --background-color: var(--optgroup-background-color);
     background-color: var(--background-color);
     font-weight: bold; /* [1] */
     font-style: inherit;
     font-size: inherit;
     font-family: inherit;
+    /* This works in Firefox but not in Chrome. I need to do more work to research this. */
   }
   html[lang] optgroup::before {
-    padding-inline: var(--option-h-padding, );
+    padding-inline: var(--option-padding-inline);
     min-block-size: var(--base-rem-space-unit);
     line-height: var(--base-rem-space-unit);
-    --background-color: var(--optgroup-label-color, var(--base-ui-color-lightest));
+    --background-color: var(--optgroup-label-background-color);
     background-color: var(--background-color);
   }
   html[lang] optgroup > option {
-    margin-inline-start: calc(var(--option-h-padding, ) * 2);
+    margin-inline-start: calc(var(--option-padding-inline) * 2);
   }
   html[lang] option {
     display: flex; /* [1] */
     align-items: center; /* [1] */
     min-block-size: var(--sz-m);
-    padding-inline: var(--option-inline-padding, var(--sz-xs));
+    padding-inline: var(--option-padding-inline);
     cursor: pointer;
-    --background-color: var(--option-color, var(--base-background-color));
+    --background-color: var(--option-background-color);
     background-color: var(--background-color);
   }
   html[lang] option:hover {
-    --background-color: var(--option-color-state-1, var(--base-ui-color-lighter));
+    --background-color: var(--option-background-color-state-1);
   }
   html[lang] option:checked {
-    --background-color: var(--option-color-state-2, var(--base-ui-color-darker));
+    --background-color: var(--option-background-color-state-2);
   }
   html[lang] p {
     margin-block-start: var(--m);
@@ -1998,16 +2327,16 @@ html[lang] li ol {
   html[lang] pre {
     overflow: auto;
     font-size: 1em; /* [1] */
-    font-family: var(--monospace-font-family, monospace); /* [2] */
-    --background-color: var(--pre-background-color, var(--base-ui-color-lightest));
+    font-family: var(--monospace-font-family); /* [2] */
+    --background-color: var(--pre-background-color);
     background-color: var(--background-color);
     margin-block-start: var(--m);
     margin-block-end: var(--m);
     outline: 2px solid transparent; /* [3] */
     /* [s1] */
-    --pre-scrollbar-color-thumb: var(--scrollbar-color-thumb, var(--base-ui-color-dark));
-    --pre-scrollbar-color-track: var(--scrollbar-color-track, var(--base-ui-color-lighter));
-    --pre-scrollbar-size-legacy: var(--scrollbar-size-legacy, var(--sz-s));
+    --pre-scrollbar-color-thumb: var(--scrollbar-color-thumb);
+    --pre-scrollbar-color-track: var(--scrollbar-color-track);
+    --pre-scrollbar-size-legacy: var(--scrollbar-size-legacy);
     --pre-padding-block-end-legacy: calc(var(--sz-m) - 15px);
     /* [s2] */
     /* [s3] */
@@ -2020,7 +2349,7 @@ html[lang] li ol {
     margin-block-end: 0;
   }
   html[lang] pre:focus-within {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
+    box-shadow: var(--outline-shadow);
   }
   @supports (scrollbar-width: auto) {
     html[lang] pre {
@@ -2053,11 +2382,11 @@ html[lang] li ol {
   */
   html[lang] pre code {
     display: inline-block;
-    padding: var(--pre-code-padding, 1.2rem);
-    line-height: var(---pre-code-line-height, var(--base-line-height)); /* [1] */
+    padding: var(--pre-code-padding);
+    line-height: var(--pre-code-line-height); /* [1] */
   }
   html[lang] progress {
-    vertical-align: middle;
+    vertical-align: var(--media-element-vertical-align);
   }
   /*
       1. Address odd `em`-unit font size rendering in all browsers.
@@ -2066,7 +2395,7 @@ html[lang] li ol {
   */
   html[lang] samp {
     font-size: 1em; /* [1] */
-    font-family: monospace, monospace; /* [2] */
+    font-family: var(--monospace-font-family), monospace; /* [2] */
     line-height: 0; /* [3] */
   }
   html[lang] section {
@@ -2083,10 +2412,10 @@ html[lang] li ol {
     height: calc(var(--sz-m) + var(--sz-xs)); /* [1] */
     min-height: auto;
     margin-block: var(--sz-xxs);
-    border-width: var(--select-border-width, var(--base-border-width));
-    border-style: var(--select-border-style, var(--base-border-style));
-    border-color: var(--select-border-color, var(--base-border-color));
-    border-radius: var(--select-border-radius, var(--base-border-radius));
+    border-width: var(--select-border-width);
+    border-style: var(--select-border-style);
+    border-color: var(--select-border-color);
+    border-radius: var(--select-border-radius);
     font-weight: inherit;
     font-style: inherit;
     font-size: inherit;
@@ -2105,14 +2434,14 @@ html[lang] li ol {
     outline: 2px solid transparent; /* [1] */
   }
   html[lang] select:focus-within {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
+    box-shadow: var(--outline-shadow);
   }
   /*
       1. Make the arrow indicator the same across browsers.
   */
   html[lang] select:not([multiple]) {
-    padding-inline-start: var(--select-inline-start-padding, var(--sz-xs));
-    padding-inline-end: var(--select-inline-end-padding, var(--sz-m));
+    padding-inline-start: var(--select-padding-inline-start);
+    padding-inline-end: var(--select-padding-inline-end);
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 10" fill="%23444"><polygon points="1.41 4.67 2.48 3.18 3.54 4.67 1.41 4.67"/><polygon points="3.54 5.33 2.48 6.82 1.41 5.33 3.54 5.33"/></svg>'); /* [1] */
     background-repeat: no-repeat;
     background-position: calc(100% - var(--sz-xxs)) 0;
@@ -2128,7 +2457,7 @@ html[lang] li ol {
     height: auto;
     vertical-align: top;
     margin-inline: 0;
-    margin-block: calc(var(--select-border-width, var(--base-border-width)) * -1);
+    margin-block: calc(var(--select-border-width) * -1);
   }
   /*
       Apply padding to fudge height in Safari (we need to apply to iOS)...
@@ -2164,7 +2493,7 @@ html[lang] li ol {
       2. Prevent the element increasing the line-height of the parent.
   */
   html[lang] small {
-    font-size: var(--small-font-size, 0.875em); /* [1] */
+    font-size: var(--small-font-size); /* [1] */
     line-height: normal; /* [2] */
   }
   html[lang] strong {
@@ -2199,7 +2528,7 @@ html[lang] li ol {
     outline: 2px solid transparent; /* [1] */
   }
   html[lang] summary:focus-within {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
+    box-shadow: var(--outline-shadow);
   }
   /*@media (forced-colors: none) {*/
   /*
@@ -2281,7 +2610,7 @@ html[lang] li ol {
       2. iOS7 (at least) adds a mystery top margin.
   */
   html[lang] svg {
-    vertical-align: middle;
+    vertical-align: var(--media-element-vertical-align);
     fill: currentColor; /* [1] */
     margin-block-start: 0; /* [2] */
   }
@@ -2292,7 +2621,11 @@ html[lang] li ol {
     /* @TODO - possibly make this configurable to be 'natural' width but cantered instead. (http://alistapart.com/article/web-typography-tables) */
     margin-block-start: var(--m);
     margin-block-end: var(--m);
-    border-color: var(--table-color, var(--base-ui-color));
+    border-width: var(--table-border-width);
+    border-style: var(--table-border-style);
+    border-color: var(--table-border-color);
+    --background-color: var(--table-background-color);
+    background-color: var(--background-color);
     border-collapse: collapse;
     border-spacing: 0;
   }
@@ -2306,30 +2639,32 @@ html[lang] li ol {
       1. Calc to deduct any border-width.
   */
   html[lang] td {
-    padding-block-start: calc(var(--td-cell-padding, var(--th-cell-padding)) - var(--td-border-width, var(--th-border-width))); /* [1] */
-    padding-block-end: var(--td-cell-padding, var(--th-cell-padding));
-    padding-inline-start: var(--td-cell-padding, var(--th-cell-padding));
-    padding-inline-end: var(--td-cell-padding, var(--th-cell-padding));
-    border-width: var(--table-border-width, var(--base-border-width));
-    border-style: var(--table-border-style, var(--base-border-style));
-    border-color: var(--td-border-color, var(--table-color, var(--base-ui-color)));
+    padding-block-start: calc(var(--td-cell-padding) - var(--td-border-width)); /* [1] */
+    padding-block-end: var(--td-cell-padding);
+    padding-inline-start: var(--td-cell-padding);
+    padding-inline-end: var(--td-cell-padding);
+    border-width: var(--td-border-width);
+    border-style: var(--td-border-style);
+    border-color: var(--td-border-color);
+    --background-color: var(--td-background-color);
+    background-color: var(--background-color);
   }
   /*
       Reduce last row table cell padding to counteract the table border to preserve the vertical
       rhythm.
   */
   html[lang] tbody tr:last-child td {
-    padding-block-end: calc(var(--td-cell-padding, var(--th-cell-padding)) - var(--td-border-width, var(--th-border-width))); /* [1] */
+    padding-block-end: calc(var(--td-cell-padding) - var(--td-border-width)); /* [1] */
   }
   html[lang] textarea {
     overflow: auto; /* [2] */
     margin-block-start: calc(var(--base-rem-space-unit) / 12);
     margin-block-end: 0.9rem;
-    padding-inline: var(--textarea-h-padding, 0.6rem);
-    border-width: var(--textarea-border-width, 0.1rem);
-    border-radius: var(--textarea-border-radius, 0.3rem);
-    border-color: var(--textarea-border-color, rgba(0, 0, 0, 0.2));
-    border-style: var(--textarea-border-style, solid);
+    padding-inline: var(--textarea-padding-inline);
+    border-width: var(--textarea-border-width);
+    border-radius: var(--textarea-border-radius);
+    border-color: var(--textarea-border-color);
+    border-style: var(--textarea-border-style);
     font-size: inherit;
     font-family: inherit;
     font-style: inherit;
@@ -2346,7 +2681,7 @@ html[lang] li ol {
     outline: 2px solid transparent; /* [1] */
   }
   html[lang] textarea:focus-within {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
+    box-shadow: var(--outline-shadow);
   }
   /*
       1. Calc to deduct any border-width.
@@ -2356,10 +2691,10 @@ html[lang] li ol {
     padding-block-end: var(--th-cell-padding);
     padding-inline-start: var(--th-cell-padding);
     padding-inline-end: var(--th-cell-padding);
-    border-width: var(--table-border-width, var(--base-border-width));
-    border-style: var(--table-border-style, var(--base-border-style));
-    border-color: var(--th-border-color, var(--table-color, var(--base-ui-color)));
-    --background-color: var(--th-color, var(--base-ui-color-lighter));
+    border-width: var(--th-border-width);
+    border-style: var(--th-border-style);
+    border-color: var(--th-border-color);
+    --background-color: var(--th-background-color);
     background-color: var(--background-color);
   }
   /*
@@ -2398,7 +2733,7 @@ html[lang] li ol {
     outline: 2px solid transparent; /* [2] */
   }
   html[lang] video:focus-within {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
+    box-shadow: var(--outline-shadow);
   }
   /*
       Change the cursor on busy elements in all browsers. (S)
@@ -2526,5 +2861,3 @@ html[lang] li ol {
     white-space: nowrap !important;
   }
 }
-
-/*# sourceMappingURL=start.css.map */

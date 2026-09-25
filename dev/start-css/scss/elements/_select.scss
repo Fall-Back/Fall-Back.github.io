@@ -23,10 +23,10 @@
 
         margin-block: var(--sz-xxs);
 
-        border-width: var(--select-border-width, var(--base-border-width));
-        border-style: var(--select-border-style, var(--base-border-style));
-        border-color: var(--select-border-color, var(--base-border-color));
-        border-radius: var(--select-border-radius, var(--base-border-radius));
+        border-width: var(--select-border-width);
+        border-style: var(--select-border-style);
+        border-color: var(--select-border-color);
+        border-radius: var(--select-border-radius);
 
 
         font-weight: inherit;
@@ -53,7 +53,7 @@
 
         @if cfg.flags("use-focus-shadow") {
             &:focus-within {
-                box-shadow: cfg.tokens("outline-shadow");
+                box-shadow: var(--outline-shadow);
             }
         }
     }
@@ -62,8 +62,8 @@
         1. Make the arrow indicator the same across browsers.
     */
     #{cfg.base("namespace")}select:not([multiple]) {
-        padding-inline-start: var(--select-inline-start-padding, var(--sz-xs));
-        padding-inline-end: var(--select-inline-end-padding, var(--sz-m));
+        padding-inline-start: var(--select-padding-inline-start);
+        padding-inline-end: var(--select-padding-inline-end);
 
         background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 10" fill="%23444"><polygon points="1.41 4.67 2.48 3.18 3.54 4.67 1.41 4.67"/><polygon points="3.54 5.33 2.48 6.82 1.41 5.33 3.54 5.33"/></svg>'); /* [1] */
         background-repeat: no-repeat;
@@ -84,8 +84,8 @@
 
         //margin-block-start: var(--sz-xsx);
         margin-inline: 0;
-        //margin-block-end: calc((var(--sz--xxs) * 3) - (var(--select-border-width, var(--base-border-width)) * 2));
-        margin-block: calc(var(--select-border-width, var(--base-border-width)) * -1);
+        //margin-block-end: calc((var(--sz--xxs) * 3) - (var(--select-border-width) * 2));
+        margin-block: calc(var(--select-border-width) * -1);
     }
 
     /*

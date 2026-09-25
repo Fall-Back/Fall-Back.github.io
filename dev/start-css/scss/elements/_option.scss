@@ -19,19 +19,19 @@
 
         min-block-size: var(--sz-m);
 
-        padding-inline: var(--option-inline-padding, var(--sz-xs));
+        padding-inline: var(--option-padding-inline);
 
         cursor: pointer;
 
-        --background-color: var(--option-color, var(--base-background-color));
+        --background-color: var(--option-background-color);
         background-color: var(--background-color);
 
         &:hover {
-            --background-color: var(--option-color-state-1, var(--base-ui-color-lighter));
+            --background-color: var(--option-background-color-state-1);
         }
 
         &:checked {
-            --background-color: var(--option-color-state-2, var(--base-ui-color-darker));
+            --background-color: var(--option-background-color-state-2);
         }
     }
 }

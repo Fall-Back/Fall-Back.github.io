@@ -17,28 +17,60 @@
 
 @mixin emit() {
     :root {
-        --base-font-family: #{cfg.tokens("base-font-family")};
-        --monospace-font-family: #{cfg.tokens("monospace-font-family")};
-
-        //--base-font-unit: #{cfg.tokens("base-font-unit")};
-        //--base-font-size: #{cfg.tokens("base-font-size")};
-        //--base-space-unit: #{cfg.tokens("base-space-unit")};
-
+        /*
+            CORE SPACING
+        */
         --base-rem-space-unit: #{cfg.tokens("base-rem-space-unit")};
 
 
+        /*
+            SIZES
+        */
+        --sz-xxs: calc(var(--base-rem-space-unit) / 8);
+        --sz-xs: calc(var(--base-rem-space-unit) / 4);
+        --sz-s: calc(var(--base-rem-space-unit) / 2);
+        --sz-m: var(--base-rem-space-unit);
+        --sz-l: calc(var(--base-rem-space-unit) * 2);
+        --sz-xl: calc(var(--base-rem-space-unit) * 4);
+        --sz-xxl: calc(var(--base-rem-space-unit) * 8);
+
+        /*
+            SHARED SIZING / SHORTCUTS
+        */
+        @if cfg.overridden("elements", "list-indent") {
+            --list-indent: #{cfg.elements("list-indent")};
+        } @else {
+            --list-indent: calc(var(--base-rem-space-unit) * 1.5);
+        }
+        @if cfg.overridden("ui", "ui-padding-block") {
+            --ui-padding-block: #{cfg.ui("ui-padding-block")};
+        } @else {
+            --ui-padding-block: var(--sz-xxs);
+        }
+        @if cfg.overridden("ui", "padding-inline") {
+            --ui-padding-inline: #{cfg.ui("ui-padding-inline")};
+        } @else {
+            --ui-padding-inline: var(--sz-xs);
+        }
+
+
+        // Global margin shortcut:
+        --m: var(--sz-m);
+
+        /*
+            CORE TYPOGRAPHY
+        */
+        --base-font-family: #{cfg.tokens("base-font-family")};
+        --monospace-font-family: #{cfg.tokens("monospace-font-family")};
+
         --root-font-size: #{cfg.elements("root-font-size")};
-        --root-line-height: #{cfg.elements("root-line-height")};
-
-
-        --body-min-width: #{cfg.elements("body-min-width")};
-        --body-max-width: #{cfg.elements("body-max-width")};
-        --body-padding: #{cfg.elements("body-padding")};
-        --body-margin: #{cfg.elements("body-margin")};
+        --root-line-height: var(--base-rem-space-unit);
         --body-font-size: #{cfg.elements("body-font-size")};
-
         --small-font-size: #{cfg.elements("small-font-size")};
 
+        /*
+            CORE COLOURS
+        */
         --base-ui-color: #{cfg.tokens("base-ui-color")};
 
         --ui-tone-light: #{cfg.ui("ui-tone-light")};
@@ -90,23 +122,6 @@
             h
         );
 
-        /*--base-ui-color-lightest: oklch(from var(--base-ui-color) 0.995 calc(c * 0.28) h);
-        --base-ui-color-lighter:  oklch(from var(--base-ui-color) 0.92  calc(c * 0.48) h);
-        --base-ui-color-light:    oklch(from var(--base-ui-color) 0.84  calc(c * 0.68) h);
-
-        --base-ui-color-dark:     oklch(from var(--base-ui-color) 0.68  calc(c * 0.90) h);
-        --base-ui-color-darker:   oklch(from var(--base-ui-color) 0.54  calc(c * 0.82) h);
-        --base-ui-color-darkest:  oklch(from var(--base-ui-color) 0.38  calc(c * 0.70) h);*/
-
-        /*--base-ui-color-lightest: hsl(from var(--base-ui-color)  h s calc(l - 90));
-        --base-ui-color-lighter:  hsl(from var(--base-ui-color)  h s calc(l - 60));
-        --base-ui-color-light:    hsl(from var(--base-ui-color)  h s calc(l - 30));
-
-        --base-ui-color-dark:     hsl(from var(--base-ui-color)  h s calc(l - 30));
-        --base-ui-color-darker:   hsl(from var(--base-ui-color)  h s calc(l - 60));
-        --base-ui-color-darkest:  hsl(from var(--base-ui-color)  h s calc(l - 90));*/
-
-
         --base-background-color: #{cfg.tokens("base-background-color")};
         --base-text-color: #{cfg.tokens("base-text-color")};
         --base-text-color-inverse: #{cfg.tokens("base-text-color-inverse")};
@@ -116,51 +131,563 @@
         --color--inverse: var(--base-text-color-inverse);
         --base-ui-color--text: var(--color--inverse);
 
-        --base-border-width: 0.1rem;
-        --base-border-style: solid;
-        --base-border-color: var(--base-ui-color);
-        --base-border-radius: 0.3rem;
 
-        // Values for auto text contrast:
+        /*
+            CORE UI
+        */
+        --base-border-width: #{cfg.ui("border-width")};
+        --base-border-style: #{cfg.ui("border-style")};
+        --base-border-color: #{cfg.ui("border-color")};
+        --base-border-radius: #{cfg.ui("border-radius")};
+
+        --outline-shadow: #{cfg.ui("outline-shadow")};
+
+
+        /*
+            AUTO TEXT CONTRAST
+        */
         --l-threshold: 0.7;
-        --l: clamp(0, (var(--l-threshold) - l) * infinity, 1);
-        //--color: oklch(from var(--background-color) var(--l) 0 h / 0.9);
+        --l: clamp(
+            0,
+            (var(--l-threshold) - l) * infinity,
+            1
+        );
 
 
-        --sz-xxs: calc(var(--base-rem-space-unit) / 8);
-        --sz-xs: calc(var(--base-rem-space-unit) / 4);
-        --sz-s: calc(var(--base-rem-space-unit) / 2);
-        --sz-m: var(--base-rem-space-unit);
-        --sz-l: calc(var(--base-rem-space-unit) * 2);
-        --sz-xl: calc(var(--base-rem-space-unit) * 4);
-        --sz-xxl: calc(var(--base-rem-space-unit) * 8);
-
-        --m: var(--base-rem-space-unit);
-
+        /*
+            HEADINGS
+        */
         --h1-font-size: #{cfg.elements("h1-font-size")};
-        --h1-height: #{cfg.elements("h1-height")};
+        --h1-height: #{'round(up, var(--h1-font-size), var(--root-line-height) / 2)'};
+
         --h2-font-size: #{cfg.elements("h2-font-size")};
-        --h2-height: #{cfg.elements("h2-height")};
-        --h3-font-size:#{cfg.elements("h3-font-size")};
-        --h3-height: #{cfg.elements("h3-height")};
+        --h2-height: #{'round(up, var(--h2-font-size), var(--root-line-height) / 2)'};
+
+        --h3-font-size: #{cfg.elements("h3-font-size")};
+        --h3-height: #{'round(up, var(--h3-font-size), var(--root-line-height) / 2)'};
+
         --h4-font-size: #{cfg.elements("h4-font-size")};
-        --h4-height: #{cfg.elements("h4-height")};
+        --h4-height: #{'round(up, var(--h4-font-size), var(--root-line-height) / 2)'};
+
         --h5-font-size: #{cfg.elements("h5-font-size")};
-        --h5-height: #{cfg.elements("h5-height")};
+        --h5-height: #{'round(up, var(--h5-font-size), var(--root-line-height) / 2)'};
+
         --h6-font-size: #{cfg.elements("h6-font-size")};
-        --h6-height: #{cfg.elements("h6-height")};
+        --h6-height: #{'round(up, var(--h6-font-size), var(--root-line-height) / 2)'};
 
-        --table-border-width: var(--base-border-width);
-        --table-border-style: var(--base-border-style);
-        --table-color: var(--base-ui-color);
-        --th-cell-padding: var(--base-rem-space-unit);
-        --th-border-width: var(--base-border-width);
-        --th-border-color: var(--base-ui-color);
-        --th-color: var(--base-ui-color-lighter);
-        --th-color--text: var(--base-ui-color--text);
 
-        --list-indent: #{cfg.elements("list-indent")};
+        /*
+            SHARED ELEMENT VALUES
+        */
+        --media-element-vertical-align: #{cfg.elements("media-element-vertical-align")};
+        --scrollbar-color-thumb: var(--base-ui-color-darker);
+        --scrollbar-color-track: var(--base-ui-color-lighter);
+        --scrollbar-size-legacy: var(--sz-m);
 
-        --video-background-color:  #{cfg.elements("video-background-color")};
+        /*
+            BODY
+        */
+        --body-min-width: #{cfg.elements("body-min-width")};
+        --body-max-width: #{cfg.elements("body-max-width")};
+        --body-margin: #{cfg.elements("body-margin")};
+        @if cfg.overridden("elements", "body-padding") {
+            --body-padding: #{cfg.elements("body-padding")};
+        } @else {
+            --body-padding: var(--sz-m);
+        }
+
+        /*
+            ANCHOR
+        */
+        @if cfg.overridden("elements", "anchor-text-color") {
+            --anchor-text-color: #{cfg.elements("anchor-text-color")};
+        } @else {
+            --anchor-text-color: var(--base-text-color);
+        }
+        @if cfg.overridden("elements", "anchor-text-color--alt") {
+            --anchor-text-color--alt: #{cfg.elements("anchor-text-color--alt")};
+        } @else {
+            --anchor-text-color--alt: var(--base-text-color);
+        }
+
+        --anchor-line-width: #{cfg.elements("anchor-line-width")};
+        @if cfg.overridden("elements", "anchor-line-width--alt") {
+            --anchor-line-width--alt: #{cfg.elements("anchor-line-width--alt")};
+        } @else {
+            --anchor-line-width--alt: var(--anchor-line-width);
+        }
+
+        --anchor-line-style: #{cfg.elements("anchor-line-style")};
+        --anchor-line-style--alt: #{cfg.elements("anchor-line-style--alt")};
+
+        --anchor-image-line-width: #{cfg.elements("anchor-image-line-width")};
+        @if cfg.overridden("elements", "anchor-image-line-width--alt") {
+            --anchor-image-line-width--alt: #{cfg.elements("anchor-image-line-width--alt")};
+        } @else {
+            --anchor-image-line-width--alt: var(--anchor-image-line-width);
+        }
+
+        @if cfg.overridden("elements", "anchor-image-line-style") {
+            --anchor-image-line-style: #{cfg.elements("anchor-image-line-style")};
+        } @else {
+            --anchor-image-line-style: var(--anchor-line-style);
+        }
+
+        @if cfg.overridden("elements", "anchor-image-line-style--alt") {
+            --anchor-image-line-style--alt: #{cfg.elements("anchor-image-line-style--alt")};
+        } @else {
+            --anchor-image-line-style--alt: var(--anchor-line-style--alt);
+        }
+
+        --anchor-image-padding-bottom: #{cfg.elements("anchor-image-padding-bottom")};
+        --anchor-image-padding-bottom--alt: #{cfg.elements("anchor-image-padding-bottom--alt")};
+
+        --anchor-external-link-indicator-padding: #{cfg.elements("anchor-external-link-indicator-padding")};
+
+
+        /*
+            ASIDE
+        */
+        --aside-padding: #{cfg.elements("aside-padding")};
+        --aside-text-color: #{cfg.elements("aside-text-color")};
+        --aside-background-color: #{cfg.elements("aside-background-color")};
+
+
+        /*
+            BLOCKQUOTE
+        */
+        @if cfg.overridden("elements", "blockquote-padding-inline") {
+            --blockquote-padding-inline: #{cfg.elements("blockquote-padding-inline")};
+        } @else {
+            --blockquote-padding-inline: var(--sz-m);
+        }
+
+        /*
+            BUTTON
+        */
+        @if cfg.overridden("elements", "button-padding-inline") {
+            --button-padding-inline: #{cfg.elements("button-padding-inline")};
+        } @else {
+            --button-padding-inline: var(--ui-padding-inline);
+        }
+        @if cfg.overridden("elements", "button-padding-block") {
+            --button-padding-block: #{cfg.elements("button-padding-block")};
+        } @else {
+            --button-padding-block: var(--ui-padding-block);
+        }
+
+        --button-text-color: #{cfg.elements("button-text-color")};
+        --button-background-color: #{cfg.elements("button-background-color")};
+        --button-background-color--alt: #{cfg.elements("button-background-color--alt")};
+
+        @if cfg.overridden("elements", "button-border-color") {
+            --button-border-color: #{cfg.elements("button-border-color")};
+        } @else {
+            --button-border-color: var(--base-border-color);
+        }
+        @if cfg.overridden("elements", "button-border-width") {
+            --button-border-width: #{cfg.elements("button-border-width")};
+        } @else {
+            --button-border-width: var(--base-border-width);
+        }
+        @if cfg.overridden("elements", "button-border-style") {
+            --button-border-style: #{cfg.elements("button-border-style")};
+        } @else {
+            --button-border-style: var(--base-border-style);
+        };
+        @if cfg.overridden("elements", "button-border-radius") {
+            --button-border-radius: #{cfg.elements("button-border-radius")};
+        } @else {
+            --button-border-radius: var(--base-border-radius);
+        };
+
+        --button-min-height: calc(var(--base-rem-space-unit) * 1.25);
+
+        /*
+            CAPTION
+        */
+        /*--caption-padding: #{cfg.elements("caption-padding")};*/
+        --caption-padding: var(--base-rem-space-unit);
+        --caption-background-color: #{cfg.elements("caption-background-color")};
+
+
+        /*
+            DETAILS
+        */
+        @if cfg.overridden("elements", "details-border-width") {
+            --details-border-width: #{cfg.elements("details-border-width")};
+        } @else {
+            --details-border-width: var(--base-border-width);
+        }
+
+        /*--details-padding: #{cfg.elements("details-padding")};*/
+        --details-padding: var(--base-rem-space-unit);
+
+
+        /*
+            DL
+        */
+        --dl-group-space: #{cfg.elements("dl-group-space")};
+
+
+        /*
+            FIELDSET
+        */
+        @if cfg.overridden("elements", "fieldset-border-width") {
+            --fieldset-border-width:
+                #{cfg.elements("fieldset-border-width")};
+        } @else {
+            --fieldset-border-width: var(--base-border-width);
+        }
+
+        /*--fieldset-padding: #{cfg.elements("fieldset-padding")};*/
+        --fieldset-padding: var(--sz-m);
+
+
+        /*
+            FOOTER
+        */
+        /*--footer-padding: #{cfg.elements("footer-padding")};*/
+        --footer-padding: var(--sz-m);
+        --footer-text-color: #{cfg.elements("footer-text-color")};
+        --footer-background-color: #{cfg.elements("footer-background-color")};
+
+
+        /*
+            HEADER
+        */
+        /*--header-padding: #{cfg.elements("header-padding")};*/
+        --header-padding: var(--sz-m);
+        --header-text-color: #{cfg.elements("header-text-color")};
+        --header-background-color: #{cfg.elements("header-background-color")};
+
+
+        /* HR */
+        @if cfg.overridden("elements", "hr-border-color") {
+            --hr-border-color: #{cfg.elements("hr-border-color")};
+        } @else {
+            --hr-border-color: var(--base-border-color);
+        }
+
+        @if cfg.overridden("elements", "hr-border-width") {
+            --hr-border-width: #{cfg.elements("hr-border-width")};
+        } @else {
+            --hr-border-width: var(--base-border-width);
+        }
+
+        @if cfg.overridden("elements", "hr-border-style") {
+            --hr-border-style: #{cfg.elements("hr-border-style")};
+        } @else {
+            --hr-border-style: var(--base-border-style);
+        }
+
+
+        /*
+            INPUT
+        */
+        --input-padding-inline: #{cfg.elements("input-padding-inline")};
+        @if cfg.overridden("elements", "input-padding-inline") {
+            --input-padding-inline: #{cfg.elements("input-padding-inline")};
+        } @else {
+            --input-padding-inline: var(--ui-padding-inline);
+        }
+
+        --input-text-color: #{cfg.elements("input-text-color")};
+        --input-background-color: #{cfg.elements("input-background-color")};
+
+        --input-background-color--state-1: #{cfg.elements("input-background-color--state-1")};
+
+        @if cfg.overridden("elements", "input-border-color") {
+            --input-border-color: #{cfg.elements("input-border-color")};
+        } @else {
+            --input-border-color: var(--base-border-color);
+        }
+
+        @if cfg.overridden("elements", "input-border-width") {
+            --input-border-width: #{cfg.elements("input-border-width")};
+        } @else {
+            --input-border-width: var(--base-border-width);
+        }
+
+        @if cfg.overridden("elements", "input-border-style") {
+            --input-border-style: #{cfg.elements("input-border-style")};
+        } @else {
+            --input-border-style: var(--base-border-style);
+        }
+
+        @if cfg.overridden("elements", "input-border-radius") {
+            --input-border-radius: #{cfg.elements("input-border-radius")};
+        } @else {
+            --input-border-radius: var(--base-border-radius);
+        }
+
+        @if cfg.overridden("elements", "input-min-height") {
+            --input-min-height: #{cfg.elements("input-min-height")};
+        } @else {
+            --input-min-height: calc(var(--base-rem-space-unit) * 1.25);
+        }
+
+
+        @if cfg.elements("input-file-max-width") != false {
+            --input-file-max-width:
+                #{cfg.elements("input-file-max-width")};
+        }
+
+
+        /*
+            LABEL
+        */
+        @if cfg.overridden("elements", "label-padding-block") {
+            --label-padding-block: #{cfg.elements("label-padding-block")};
+        } @else {
+            --label-padding-block: var(--sz-xs);
+        }
+
+
+        /*
+            LEGEND
+        */
+        --legend-border-width: #{cfg.elements("legend-border-width")};
+        @if cfg.overridden("elements", "legend-padding-inline") {
+            --legend-padding-inline: #{cfg.elements("legend-padding-inline")};
+        } @else {
+            --legend-padding-inline: var(--sz-xs);
+        }
+
+
+        /*
+            MAIN
+        */
+        /*--main-padding: #{cfg.elements("main-padding")};*/
+        --main-padding: var(--sz-m);
+        --main-text-color: #{cfg.elements("main-text-color")};
+
+        @if cfg.overridden("elements", "main-background-color") {
+            --main-background-color: #{cfg.elements("main-background-color")};
+        } @else {
+            --main-background-color: var(--base-background-color);
+        }
+
+        /*
+            MARK
+        */
+        --mark-border-width: #{cfg.elements("mark-border-width")};
+        --mark-text-color: #{cfg.elements("mark-text-color")};
+
+
+        /*
+            OPTGROUP
+        */
+        --optgroup-background-color: #{cfg.elements("optgroup-background-color")};
+        --optgroup-label-background-color: #{cfg.elements("optgroup-label-background-color")};
+
+
+        /*
+            OPTION
+        */
+        @if cfg.overridden("elements", "option-padding-inline") {
+            --option-padding-inline: #{cfg.elements("option-padding-inline")};
+        } @else {
+            --option-padding-inline: var(--ui-padding-inline);
+        }
+        --option-background-color: #{cfg.elements("option-background-color")};
+        --option-background-color-state-1: var(--base-ui-color-lighter);
+        --option-background-color-state-2: var(--base-ui-color-darker);
+
+
+        /*
+            PRE
+        */
+        --pre-background-color: var(--base-ui-color-lighter);
+
+        /*--pre-margin-bottom: #{cfg.elements("pre-margin-bottom")};*/
+        --pre-margin-bottom: calc(var(--base-rem-space-unit) * 2 - 17px);
+
+        /*--pre-margin-bottom--edge: #{cfg.elements("pre-margin-bottom--edge")};*/
+        --pre-margin-bottom--edge: calc(var(--base-rem-space-unit) * 2 - 12px);
+
+        /*--pre-margin-bottom--ff: #{cfg.elements("pre-margin-bottom--ff")};*/
+        --pre-margin-bottom--ff: calc(var(--base-rem-space-unit) + 7px);
+
+        /*--pre-padding-bottom: #{cfg.elements("pre-padding-bottom")};*/
+        --pre-padding-bottom: calc(var(--base-rem-space-unit) - 15px);
+
+        /*--pre-code-padding: #{cfg.elements("pre-code-padding")};*/
+        --pre-code-padding: calc(var(--base-rem-space-unit) / 2);
+
+        /*--pre-code-line-height: #{cfg.elements("pre-code-line-height")};*/
+        --pre-code-line-height: var(--root-line-height);
+
+
+        /*
+            SELECT
+        */
+
+        @if cfg.overridden("elements", "select-padding-inline-start") {
+            --select-padding-inline-start: #{cfg.elements("select-padding-inline-start")};
+        } @else {
+            --select-padding-inline-start: var(--ui-padding-inline);
+        }
+        @if cfg.overridden("elements", "select-padding-inline-end") {
+            --select-padding-inline-end: #{cfg.elements("select-padding-inline-end")};
+        } @else {
+            --select-padding-inline-end: var(--sz-m);
+        }
+
+        --select-text-color: #{cfg.elements("select-text-color")};
+        --select-background-color: #{cfg.elements("select-background-color")};
+
+        @if cfg.overridden("elements", "select-border-color") {
+            --select-border-color: #{cfg.elements("select-border-color")};
+        } @else {
+            --select-border-color: var(--base-border-color);
+        }
+
+        @if cfg.overridden("elements", "select-border-width") {
+            --select-border-width: #{cfg.elements("select-border-width")};
+        } @else {
+            --select-border-width: var(--base-border-width);
+        }
+
+        @if cfg.overridden("elements", "select-border-style") {
+            --select-border-style: #{cfg.elements("select-border-style")};
+        } @else {
+            --select-border-style: var(--base-border-style);
+        }
+
+        @if cfg.overridden("elements", "select-border-radius") {
+            --select-border-radius: #{cfg.elements("select-border-radius")};
+        } @else {
+            --select-border-radius: var(--base-border-radius);
+        }
+
+
+        /*
+            TABLE
+
+            Public hierarchy:
+
+                --base-border-*
+                    ↓
+                --table-border-*
+                    ↓
+                --td-border-* / --th-border-*
+        */
+        @if cfg.overridden("elements", "table-border-width") {
+            --table-border-width: #{cfg.elements("table-border-width")};
+        } @else {
+            --table-border-width: var(--base-border-width);
+        }
+
+        @if cfg.overridden("elements", "table-border-style") {
+            --table-border-style: #{cfg.elements("table-border-style")};
+        } @else {
+            --table-border-style: var(--base-border-style);
+        }
+
+        @if cfg.overridden("elements", "table-border-color") {
+            --table-border-color: #{cfg.elements("table-border-color")};
+        } @else {
+            --table-border-color: var(--base-border-color);
+        }
+
+        --table-background-color: #{cfg.elements("table-background-color")};
+
+
+        /*
+            TD
+        */
+        @if cfg.overridden("elements", "td-border-width") {
+            --td-border-width: #{cfg.elements("td-border-width")};
+        } @else {
+            --td-border-width: var(--table-border-width);
+        }
+
+        @if cfg.overridden("elements", "td-border-style") {
+            --td-border-style: #{cfg.elements("td-border-style")};
+        } @else {
+            --td-border-style: var(--table-border-style);
+        }
+
+        @if cfg.overridden("elements", "td-border-color") {
+            --td-border-color: #{cfg.elements("td-border-color")};
+        } @else {
+            --td-border-color: var(--table-border-color);
+        }
+
+        --td-background-color: #{cfg.elements("td-background-color")};
+        /*--td-cell-padding: #{cfg.elements("td-cell-padding")};*/
+        --td-cell-padding: var(--sz-s);
+
+
+        /*
+            TEXTAREA
+        */
+        @if cfg.overridden("elements", "textarea-padding-inline") {
+            --textarea-padding-inline: #{cfg.elements("textarea-padding-inline")};
+        } @else {
+            --textarea-padding-inline: var(ui-padding-inline);
+        }
+
+        --textarea-text-color: #{cfg.elements("textarea-text-color")};
+        --textarea-background-color: #{cfg.elements("textarea-background-color")};
+
+        @if cfg.overridden("elements", "textarea-border-color") {
+            --textarea-border-color: #{cfg.elements("textarea-border-color")};
+        } @else {
+            --textarea-border-color: var(--base-border-color);
+        }
+
+        @if cfg.overridden("elements", "textarea-border-width") {
+            --textarea-border-width: #{cfg.elements("textarea-border-width")};
+        } @else {
+            --textarea-border-width: var(--base-border-width);
+        }
+
+        @if cfg.overridden("elements", "textarea-border-style") {
+            --textarea-border-style: #{cfg.elements("textarea-border-style")};
+        } @else {
+            --textarea-border-style: var(--base-border-style);
+        }
+
+        @if cfg.overridden("elements", "textarea-border-radius") {
+            --textarea-border-radius: #{cfg.elements("textarea-border-radius")};
+        } @else {
+            --textarea-border-radius: var(--base-border-radius);
+        }
+
+        --textarea-resize: #{cfg.elements("textarea-resize")};
+
+
+        /*
+            TH
+        */
+        @if cfg.overridden("elements", "th-border-width") {
+            --th-border-width: #{cfg.elements("th-border-width")};
+        } @else {
+            --th-border-width: var(--table-border-width);
+        }
+
+        @if cfg.overridden("elements", "th-border-style") {
+            --th-border-style: #{cfg.elements("th-border-style")};
+        } @else {
+            --th-border-style: var(--table-border-style);
+        }
+
+        @if cfg.overridden("elements", "th-border-color") {
+            --th-border-color: #{cfg.elements("th-border-color")};
+        } @else {
+            --th-border-color: var(--table-border-color);
+        }
+
+        --th-background-color: #{cfg.elements("th-background-color")};
+        /*--th-cell-padding: #{cfg.elements("th-cell-padding")};*/
+        --th-cell-padding: var(--sz-s);
+
+
+        /*
+            VIDEO
+        */
+        --video-background-color: #{cfg.elements("video-background-color")};
     }
 }

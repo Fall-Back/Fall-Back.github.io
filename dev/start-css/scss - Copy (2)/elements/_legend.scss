@@ -1,0 +1,37 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: legend
+    v4.0.0
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "../start-config" as cfg;
+
+@mixin emit() {
+    /*
+        Fieldsets and legends can be difficult to style so I'm keep their appearance basically the same
+        as the default - just a bit of theming.
+        More info here: https://thatemil.com/blog/2015/01/03/reset-your-fieldset/
+    */
+    #{cfg.base("namespace")}legend {
+        margin-block-end: calc(var(--m) * -1.5);
+
+        padding-inline: var(--legend-inline-padding);
+
+        max-inline-size: 100%;
+
+        border-width: var(--legend-border-width);
+
+        font-weight: bold;
+
+
+
+        // Force the next sibling to have a margin in can one isn't set (e.g. if it's a div) to
+        // compensate for the legend's negative margin.
+
+        & + * {
+            margin-block-start: var(--m);
+        }
+    }
+}

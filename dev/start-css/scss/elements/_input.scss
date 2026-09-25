@@ -20,17 +20,18 @@
     #{cfg.base("namespace")}input {
         max-inline-size: 100%; /* [1] */
 
-        padding-block-start: calc(var(--sz-xxs) - var(--input-border-width, var(--base-border-width))); /* [2] */
-        padding-inline: var(--input-h-padding, var(--sz-xs));
-        padding-block-end: calc(var(--sz-xxs) - var(--input-border-width, var(--base-border-width))); /* [2] */
+        padding-block-start: calc(var(--sz-xxs) - var(--input-border-width)); /* [2] */
+        padding-inline: var(--input-padding-inline);
+        padding-block-end: calc(var(--sz-xxs) - var(--input-border-width)); /* [2] */
 
-        border-width: var(--input-border-width, var(--base-border-width));
-        border-style: var(--input-border-style, var(--base-border-style));
-        border-color: var(--input-border-color, var(--base-border-color));
-        border-radius: var(--input-border-radius, var(--base-border-radius));
+        border-width: var(--input-border-width);
+        border-style: var(--input-border-style);
+        border-color: var(--input-border-color);
+        border-radius: var(--input-border-radius);
 
         //color: $s__input-text-color;
-        background-color: var(--input-background-color, #fff);
+        --background-color: var(--input-background-color, #fff);
+        background-color: var(--background-color);
 
         font-size: inherit; // S
         font-weight: inherit;
@@ -129,7 +130,7 @@
         #{cfg.base("namespace")}[type="time"]:focus-visible,
         #{cfg.base("namespace")}[type="url"]:focus-visible,
         #{cfg.base("namespace")}[type="week"]:focus-visible {
-            box-shadow: cfg.tokens("outline-shadow");
+            box-shadow: var(--outline-shadow);
         }
 
         /*
@@ -140,7 +141,7 @@
         #{cfg.base("namespace")}[type="radio"]:focus,
         #{cfg.base("namespace")}[type="checkbox"]:focus-visible,
         #{cfg.base("namespace")}[type="radio"]:focus-visible {
-            box-shadow: cfg.tokens("outline-shadow");
+            box-shadow: var(--outline-shadow);
         }
 
         /*

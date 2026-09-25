@@ -15,8 +15,8 @@
     #{cfg.base("namespace")}label {
         display: inline-block;
 
-        padding-block-start: var(--label-block-padding, var(--sz-xs));
-        padding-block-end: var(--label-block-padding, var(--sz-xs));
+        padding-block-start: var(--label-padding-block);
+        padding-block-end: var(--label-padding-block);
 
         margin: 0;
 
@@ -27,5 +27,11 @@
         cursor: pointer;
 
         touch-action: manipulation; /* [1] */
+    }
+
+
+    #{cfg.base("namespace")}fieldset fieldset label {
+        padding-block-start: 0;
+        padding-block-end: 0;
     }
 }

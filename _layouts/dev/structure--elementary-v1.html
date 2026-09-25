@@ -1,0 +1,293 @@
+---
+layout: dev/structure
+elementary: true
+cut: em2
+startcss: false
+head_stylesheets: ['/dev/elementary/v1/css/elementary.css']
+head_scripts: ['/dev/elementary/v1/js/script.min.js']
+head_style: |
+    #controls ~ * {
+        display: none;
+    }
+body_end_script: |
+    /* Quick toggler - rather verbose but works in old IE */
+
+    function show_long_content () {
+        var els = document.querySelectorAll("#controls ~ *");
+
+        Array.prototype.forEach.call(els, function(el, i){
+            el.style.display = 'block';
+        });
+    }
+
+    function hide_long_content () {
+        var els = document.querySelectorAll("#controls ~ *");
+
+        Array.prototype.forEach.call(els, function(el, i){
+            el.style.display = 'none';
+        });
+    }
+
+
+    var el = document.getElementById("show");
+    if (el) {
+        if (el.addEventListener) {
+            el.addEventListener("click", show_long_content, false);
+        } else {
+            el.attachEvent('onclick', show_long_content);
+        }
+    }
+
+    var el = document.getElementById("hide");
+    if (el) {
+        if (el.addEventListener) {
+            el.addEventListener("click", hide_long_content, false);
+        } else {
+            el.attachEvent('onclick', hide_long_content);
+        }
+    }
+
+    var sidebar_bottom = document.getElementById("sidebar_bottom") ? false : document.getElementById("sidebar_bottom");
+
+    function show_sidebar_bottom () {
+        if (!sidebar_bottom) {
+            return;
+        }
+        var el = document.createElement('aside');
+        el.id = 'sidebar_bottom';
+        el.innerHTML = sidebar_bottom.innerHTML;
+
+        document.getElementById("main").insertAdjacentElement('afterend', el);
+    }
+
+    function hide_sidebar_bottom () {
+        var el = document.getElementById("sidebar_bottom");
+
+        if (!el) {
+            return;
+        }
+
+        el.parentNode.removeChild(el);
+    }
+
+    var el = document.getElementById("show-sidebar_bottom");
+    if (el) {
+        if (el.addEventListener) {
+            el.addEventListener("click", show_sidebar_bottom, false);
+        } else {
+            el.attachEvent('onclick', show_sidebar_bottom);
+        }
+    }
+
+    var el = document.getElementById("hide-sidebar_bottom");
+    if (el) {
+        if (el.addEventListener) {
+            el.addEventListener("click", hide_sidebar_bottom, false);
+        } else {
+            el.attachEvent('onclick', hide_sidebar_bottom);
+        }
+    }
+---
+
+    <header>
+        <fieldset role="presentation" data-fs-block="background">
+            <nav aria-label="primary">
+                <p>
+                    <b>
+                        <a href="/dev/elementary">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 283.5" aria-labelledby="primary-logo-title" role="img" focussable="false" height="60" width="60" fill="none" stroke="#3C3C3B" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
+                                <title id="primary-logo-title">Elementary</title>
+                                <circle cx="141.7" cy="141.7" r="127.6"/>
+                                <path d="M113.4,234.3L77.9,128c0,0,3.6,7.1,17.7,7.1c14.2,0,39-16,39-28.3c0-12.4-8.8-17.7-15.9-17.7s-15.9,5.3-16,17.7c0,12.4,24.8,28.3,39,28.3s39-16,39-28.3c0-12.4-8.8-17.7-15.9-17.7c-7.1,0-16,5.3-16,17.7c0,12.4,24.8,28.3,39,28.3s17.7-7.1,17.7-7.1l-35.4,106.3"/>
+                            </svg> Elementary
+                        </a>
+                    </b>
+                </p>
+                {% comment %}
+                <p role="list">
+                    <span role="listitem">
+                        {% include nav_item.html
+                            href="/dev/elementary/v1/page-layout-article/"
+                            text="Page Layout - Article"
+                            right_separator="<span> : </span>"
+                        %}
+                    </span>
+                    <span role="listitem">
+                        {% include nav_item.html
+                            href="/dev/elementary/v1/page-layout-listing/"
+                            text="Page Layout - Listing"
+                            right_separator="<span> : </span>"
+                        %}
+                    </span>
+                    <span role="listitem">
+                        {% include nav_item.html
+                            href="/dev/elementary/v1/page-layout-listing-sidebars/"
+                            text="Page Layout - Listing with Sidebars"
+                            right_separator="<span> : </span>"
+                        %}
+                    </span>
+                    <span role="listitem">
+                        {% include nav_item.html
+                            href="/dev/elementary/v1/page-layout-listing-grid/"
+                            text="Page Layout - Listing - Grid"
+                            right_separator="<span> : </span>"
+                        %}
+                    </span>
+                    <span role="listitem">
+                        {% include nav_item.html
+                            href="/dev/elementary/v1/page-layout-listing-columns/"
+                            text="Page Layout - Listing - Columns"
+                            right_separator="<span> : </span>"
+                        %}
+                    </span>
+                    <span role="listitem">
+                        {% include nav_item.html
+                            href="/dev/elementary/v1/components/"
+                            text="Components"
+                        %}
+                    </span>
+                </p>
+                {% endcomment %}
+
+                <details>
+                    <summary>
+                        <svg display="none" focusable="false" aria-hidden="true" width="1.5em" height="1.5em" hidden><use xlink:href="#icon-menu"></use></svg>
+                        <svg display="none" focusable="false" aria-hidden="true" width="1.5em" height="1.5em" hidden><use xlink:href="#icon-cross"></use></svg>
+                        <span data-hidden="visually">Menu</span>
+                    </summary>
+                    <div>
+                        <p role="list">
+                            <span role="listitem">
+                                {% include nav_item.html
+                                    href="/dev/elementary/v1/page-layout-article/"
+                                    text="Page Layout - Article"
+                                    right_separator="<span> : </span>"
+                                %}
+                            </span>
+                            <span role="listitem">
+                                {% include nav_item.html
+                                    href="/dev/elementary/v1/page-layout-listing/"
+                                    text="Page Layout - Listing"
+                                    right_separator="<span> : </span>"
+                                %}
+                            </span>
+                            <span role="listitem">
+                                {% include nav_item.html
+                                    href="/dev/elementary/v1/page-layout-listing-sidebars/"
+                                    text="Page Layout - Listing with Sidebars"
+                                    right_separator="<span> : </span>"
+                                %}
+                            </span>
+                            <span role="listitem">
+                                {% include nav_item.html
+                                    href="/dev/elementary/v1/page-layout-listing-grid/"
+                                    text="Page Layout - Listing - Grid"
+                                    right_separator="<span> : </span>"
+                                %}
+                            </span>
+                            <span role="listitem">
+                                {% include nav_item.html
+                                    href="/dev/elementary/v1/page-layout-listing-columns/"
+                                    text="Page Layout - Listing - Columns"
+                                    right_separator="<span> : </span>"
+                                %}
+                            </span>
+                            <span role="listitem">
+                                {% include nav_item.html
+                                    href="/dev/elementary/v1/components/"
+                                    text="Components"
+                                %}
+                            </span>
+                        </p>
+                    </div>
+                    {% comment %}
+                    <ul>
+                        <li>
+                            {% include nav_item.html
+                                href="/dev/elementary/v1/page-layout-article/"
+                                text="Page Layout - Article"
+                            %}
+                        </li>
+                        <li>
+                            {% include nav_item.html
+                                href="/dev/elementary/v1/page-layout-listing/"
+                                text="Page Layout - Listing"
+                            %}
+                        </li>
+                        <li>
+                            {% include nav_item.html
+                                href="/dev/elementary/v1/page-layout-listing-sidebars/"
+                                text="Page Layout - Listing with Sidebars"
+                            %}
+                        </li>
+                        <li>
+                            {% include nav_item.html
+                                href="/dev/elementary/v1/page-layout-listing-grid/"
+                                text="Page Layout - Listing - Grid"
+                            %}
+                        </li>
+                        <li>
+                            {% include nav_item.html
+                                href="/dev/elementary/v1/page-layout-listing-columns/"
+                                text="Page Layout - Listing - Columns"
+                            %}
+                        </li>
+                        <li>
+                            {% include nav_item.html
+                                href="/dev/elementary/v1/components/"
+                                text="Components"
+                            %}
+                        </li>
+                    </ul>
+                    {% endcomment %}
+                </details>
+            </nav>
+
+            {% if page.page_hero %}
+            {% assign hero_file = page.page_hero | append: ".html" %}
+            {% include {{ hero_file }} %}
+            {% endif %}
+        </fieldset>
+    </header>
+
+
+    {% if page.sidebar_top %}
+    <aside id="sidebar_top">
+        <p>This sidebar could contain anything, like an important notice:</p>
+
+        <h2>Important notice</h2>
+        <p>
+            This notice is quite important but it's not the main content of the page so it's in an
+            aside element but appears above the main element.
+        </p>
+    </aside>
+    {% endif %}
+
+    <main id="main">
+        {{ content }}
+    </main>
+
+    {% if page.sidebar_bottom %}
+    <aside id="sidebar_bottom">
+        <p>This sidebar could contain anything, like this card:</p>
+
+        {% include card.html
+            title="This is a card"
+            hx="2"
+            content="<p>This card contains useful signposting.</p>"
+            cta_url="/components"
+            cta_text="Do a Thing"
+            img_src="/dev/elementary/img/sample-1.jpg"
+            img_alt="Cute kid - looks lost."
+        %}
+    </aside>
+    {% endif %}
+
+    <footer>
+        <p>
+            <a href="#">Top</a>
+        </p>
+        <p>
+            &copy; {{ site.time | date: '%Y' }} Andy Kirk
+        </p>
+    </footer>

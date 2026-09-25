@@ -3,12 +3,14 @@
 
 /*! Start-CSS Basic Implementation. Ready-to-use  for testing or simply as-is/=.
 See SCSS file for documentation. */
-// npx sass --watch start.scss:css/start.css
 
 /*
-    IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
-    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
+Edge 111+, Chrome 111+, Firefox 121+, Safari 16.2+, iOS 16.2+, modern Android.
 */
+// npx sass --watch start.scss:css/start.css
+
+
+
 
 //$s__base-line-height: 24px; // 1.5
 //$s__base-ui-color: #663399; //rebeccapurple #663399 rgb(102,51,153)

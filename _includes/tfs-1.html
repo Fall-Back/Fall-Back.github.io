@@ -1,3 +1,4 @@
+{% assign base_color = include.base_color | default: "#5d4777" %}
     <style>
         /*
             Tiny Fall-Back Styles (https://github.com/Fall-Back/Patterns/edit/master/Page/README.md)
@@ -21,7 +22,7 @@
 
         /* --| Core styles |--------------------------------------------------------------------- */
         html {
-            background: #5d4777;
+            background: {{ base_color }};
         }
 
         body {
@@ -73,7 +74,8 @@
 
         /* The "older browser" message makes use of a fieldset to add a border no matter what: */
         fieldset {
-            border: 1px solid;
+            border-width: 1px;
+            border-style: solid;
             border-color: currentColor;
             margin: 1em 0;
             padding: 1em;
@@ -195,7 +197,9 @@
 
         table {
             width: 100%;
-            border: 1px solid currentColor;
+            border-width: 1px;
+            border-style: solid;
+            border-color: currentColor;
             border-collapse: collapse;
         }
 

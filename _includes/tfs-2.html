@@ -1,3 +1,4 @@
+{% assign base_color = include.base_color | default: "#5d4777" %}
     <style>
         /*
             Tiny Fall-Back Styles continued ...
@@ -33,7 +34,7 @@
         }
 
         [data-fs-block~="inverted"]  {
-            background-color: #5d4777;
+            background-color: {{ base_color }};
             padding: 1em;
         }
 
@@ -49,7 +50,7 @@
         }
 
         [data-fs-block~="border"] {
-            border: 1px solid #5d4777;
+            border: 1px solid {{ base_color }};
             padding: 1em;
         }
 

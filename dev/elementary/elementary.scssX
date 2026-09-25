@@ -1,0 +1,65 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    Elementary base-project (Styleguide)
+
+
+    This file should be used as the starting point for an Elementary-based
+    project. I should not be added to the Elementary library as a SASS file for inclusion as part of
+    that library - though it can appear as an EXAMPLE file as part of the docs.
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "settings" as project;
+
+// Change this path to the correct place where StartCSS is installed. E.g. in bower_components.
+@use "../start-css/scss/start-config" as cfg with (
+    $startcss-overrides: project.$startcss-overrides
+);
+
+@use "../start-css/scss/start" as start;
+
+// -- | Tokens |----------------------------------------------------------------------------------//
+@use "tokens" as tokens;
+
+
+
+@use "scss/_0-elementary" as elementary;
+
+
+
+
+
+
+
+
+
+// ---| Custom |-----------------------------------------------------------------------------------//
+@use "custom" as custom;
+
+
+//------------------------------------------------------------------------------------------------//
+// End if @use block. Starting @includes:
+//------------------------------------------------------------------------------------------------//
+
+// --- StartCSS base ---
+@include start.emit();
+
+
+// -- | Tokens |----------------------------------------------------------------------------------//
+@include tokens.emit();
+
+
+
+
+
+
+
+
+
+
+
+
+
+// -- | One-off styles (Use sparingly) |----------------------------------------------------------//
+
+@include custom.emit();

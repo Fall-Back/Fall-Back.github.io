@@ -1,0 +1,105 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    Elementary base-project (Styleguide)
+
+
+    Settings for Elementary base-project.
+    This file should be used as the starting point for an Elementary-based project. It should not be
+    added to the Elementary library as a SASS file for inclusion as part of that library - though it
+    can appear as an EXAMPLE file as part of the docs.
+
+|-------------------------------------------------------------------------------------------------*/
+
+$startcss-overrides: (
+
+    "tokens": (
+        "base-ui-color": #79260D
+    )
+);
+/*
+$startcss-overrides: (
+
+    "tokens": (
+        "base-font-family": ("Inter", sans-serif),
+        "base-ui-color": #79260D,
+        "base-background-color": #f8f8f8,
+        "base-text-color": #1a1a1a,
+        "outline-shadow": (0 0 0 var(--sz-xxs) #fff, 0 0 0 var(--sz-xs) rgba(0,0,0,.2)),
+        "outline-shadow--inset": (0 0 0 var(--sz-xxs) #fff inset, 0 0 0 var(--sz-xs) rgba(0,0,0,.2) inset)
+    ),
+    "base": (
+        "component-namespace": ".c-",
+        "utility-namespace": ".u-",
+    ),
+    "ui": (
+        "ui-tone-light": 0.28,
+        "ui-tone-dark": 0.13,
+        "ui-chroma-scale-light": 0.35,
+        "ui-chroma-scale-dark": 1.1
+    ),
+    "elements": (
+        "anchor-add-external-link-indicator": true,
+        "body-min-width": 320px,
+        "body-max-width": none,
+        "body-padding": 0,
+        "h1-font-size-px": 40px,
+        "h2-font-size-px": 33px,
+        "h3-font-size-px": 28px,
+        "h4-font-size-px": 23px,
+        "h5-font-size-px": 20px,
+        "h6-font-size-px": 16px,
+        "h1-height-factor": 2,
+        "h2-height-factor": 1.5,
+    )
+);
+
+$main-breakpoint: 100ch;
+
+$colors: (
+    sky: (
+        hex: #69B3E7,
+        light: (
+            tone: 0.3,
+            chroma-scale: 0.1,
+        ),
+    ),
+    cerulean: (
+        hex: #236192,
+    ),
+    peach: (
+        hex: #E56A54,
+    ),
+    saffron: (
+        hex: #FF9E1B,
+        dark: (
+            tone: 0.12,
+            chroma-scale: 1.2,
+        ),
+    ),
+    moss: (
+        hex: #789D4A,
+        light: (
+            tone: 0.25,
+            chroma-scale: 0.6,
+        ),
+    ),
+    verdigris: (
+        hex: #00ABBE,
+    ),
+    neutral: (
+        hex: #8C8279,
+    ),
+    notice: (
+        hex: #a5d1f1,
+    ),
+    success: (
+        hex: #aec492,
+    ),
+    warning: (
+        hex: #ffc576,
+    ),
+    error: (
+        hex: #9b3259,
+    ),
+);
+*/
