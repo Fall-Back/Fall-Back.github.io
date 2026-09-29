@@ -137,6 +137,7 @@ function do_devsass(cb) {
     cb);
 }
 
+
 // And create a minified version in the same folder for dev.
 function do_devcssmin(cb) {
     console.log('Running devcssmin...');
@@ -153,17 +154,59 @@ function do_devcssmin(cb) {
 }
 
 
+// And the same for StartCSS dev.
+function do_startdevsass(cb) {
+    console.log('Running sgtaratdevsass...');
+
+    pump([
+        gulp.src([
+            './devs/start-css/**/*.scss',
+            '!./dev/start-css/v1/**',
+            '!./dev/start-css/v2/**',
+            '!./dev/start-css/v3/**'
+        ], {base: process.cwd()}),
+        sass({outputStyle: 'expanded'}),
+        rename((path) => {
+            path.dirname += "/css";
+        }),
+        gulp.dest((file) => {
+            return file.base;
+        })
+    ],
+    cb);
+}
+
+// And create a minified version in the same folder for dev.
+function do_startdevcssmin(cb) {
+    console.log('Running startdevcssmin...');
+
+    pump([
+        gulp.src('./dev/start-css/**/!(*.min)*.css'),
+        cssmin(),
+        rename({extname: '.min.css'}),
+        gulp.dest((file) => {
+            return file.base;
+        })
+    ],
+    cb);
+}
+
+
 exports.sass   = do_sass;
 exports.cssmin = do_cssmin;
 
 exports.devsass   = do_devsass;
 exports.devcssmin = do_devcssmin;
 
+exports.startdevsass   = do_startdevsass;
+exports.startdevcssmin = do_startdevcssmin;
+
 exports.empty_css_output = empty_css_output;
 
 // This combined task makes it convenient to run all the steps together.
 exports.css = series(empty_css_output, do_sass, do_cssmin);
 exports.devcss = series(do_devsass, do_devcssmin);
+exports.startdevcss = series(do_startdevsass, do_startdevcssmin);
 
 
 
@@ -238,6 +281,11 @@ function do_watch_devcss(cb) {
     watch(css_src + 'dev/**/*.scss', exports.devcss);
 }
 exports.watch_devcss = do_watch_devcss;
+
+function do_watch_startdevcss(cb) {
+    watch(css_src + 'dev/start-css/**/*.scss', exports.startdevcss);
+}
+exports.watch_startdevcss = do_watch_startdevcss;
 
 
 // Watch JS:

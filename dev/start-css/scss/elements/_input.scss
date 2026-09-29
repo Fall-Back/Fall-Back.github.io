@@ -29,7 +29,6 @@
         border-color: var(--input-border-color);
         border-radius: var(--input-border-radius);
 
-        //color: $s__input-text-color;
         --background-color: var(--input-background-color, #fff);
         background-color: var(--background-color);
 
@@ -44,7 +43,7 @@
         vertical-align: middle; /* [4] */
         line-height: inherit; /* [5] */
 
-        min-block-size: var(--input-min-height, #{cfg.elements("input-min-height")});
+        min-block-size: var(--input-min-height);
         margin-block: var(--sz-xxs);
         margin-inline: 0;
     }
@@ -186,10 +185,10 @@
         inline-size: 100%; /* [1] */
 
         @if cfg.elements("input-file-max-width") != false {
-            max-inline-size: var(--input-file-max-width, 18.5em);
+            max-inline-size: var(--input-file-max-width);
         }
 
-        min-block-size: var(--input-min-height, #{cfg.elements("input-min-height")});
+        min-block-size: var(--input-min-height);
 
         overflow: hidden; /* [2] */
 
@@ -204,7 +203,6 @@
     */
     #{cfg.base("namespace")}[type="file"]::file-selector-button {
         @include mixins.s__button;
-        //margin-inline-end: var(--sz-xs, #{cfg.tokens("sz-xs")});
         margin-block: 0;
         margin-inline-start: 0;
         margin-inline-end: var(--sz-xs);
@@ -219,7 +217,6 @@
 
     #{cfg.base("namespace")}[type="file"]::-webkit-file-upload-button {
         @include mixins.s__button;
-        //margin-inline-end: var(--sz-xs, #{cfg.tokens("sz-xs")});
         margin-block: 0;
         margin-inline-start: 0;
         margin-inline-end: var(--sz-xs);
@@ -235,8 +232,8 @@
     // Unify color input appearance:
     // In FF (noticed in v 129) the coloured box for color inputs is 2px too high.
     #{cfg.base("namespace")}[type="color"] {
-        inline-size: calc(var(--sz-m, #{cfg.tokens("sz-m")}) * 2);
-        block-size: var(--input-min-height, #{cfg.elements("input-min-height")});
+        inline-size: var(--sz-l);
+        block-size: var(--input-min-height);
     }
 
     #{cfg.base("namespace")}[type="color"]::-webkit-color-swatch-wrapper {
@@ -246,12 +243,12 @@
     // Note these following two can't be combined or the webkit selector fails:
     #{cfg.base("namespace")}[type="color"]::-moz-color-swatch {
         border: 0 !important;
-        border-radius: var(--button-border-radius, #{cfg.elements("button-border-radius")});
+        border-radius: var(--button-border-radius);
     }
 
     #{cfg.base("namespace")}[type="color"]::-webkit-color-swatch {
         border: 0 !important;
-        border-radius: var(--button-border-radius, #{cfg.elements("button-border-radius")});
+        border-radius: var(--button-border-radius);
     }
 
     /*

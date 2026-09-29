@@ -1,0 +1,31 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: table
+    v4.0.0
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "../start-config" as cfg;
+@use "../start-mixins" as mixins;
+
+@mixin emit() {
+    /*
+    */
+    #{cfg.base("namespace")}table {
+        width: 100%;
+        /* @TODO - possibly make this configurable to be 'natural' width but cantered instead. (http://alistapart.com/article/web-typography-tables) */
+
+        @include mixins.s__block_margins();
+
+        border-width: var(--table-border-width);
+        border-style: var(--table-border-style);
+        border-color: var(--table-border-color);
+
+        --background-color: var(--table-background-color);
+        background-color: var(--background-color);
+
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+}

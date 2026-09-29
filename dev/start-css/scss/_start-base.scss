@@ -1,4 +1,3 @@
-
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS ELEMENT: base styles
@@ -10,7 +9,6 @@
 @use "start-config" as cfg;
 
 
-
 @mixin emit() {
 
 
@@ -18,8 +16,8 @@
         1. Use a more readable tab size (opinionated).
     */
     :root {
-        quotes: cfg.ui("quotes");
-        tab-size: cfg.ui("tabsize") /* 1 */
+        quotes: var(--quotes);
+        tab-size: var(--tab-size); /* 1 */
     }
 
     /*
@@ -38,6 +36,12 @@
         margin:  0;
         padding: 0;
 
+    }
+
+    *,
+    *:before,
+    *:after,
+    ::selection {
         // Calculate auto-contrast text color:
         --color: oklch(from var(--background-color, var(--base-background-color)) var(--l) 0 h / 0.9);
         color: var(--color);

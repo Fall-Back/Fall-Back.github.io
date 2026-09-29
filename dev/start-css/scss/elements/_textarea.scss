@@ -41,7 +41,7 @@
 
         touch-action: manipulation; /* [4] */
 
-        resize: var(--textarea-resize, #{cfg.elements("textarea-resize")});
+        resize: var(--textarea-resize);
 
         /*
             1. Make sure focus is still visible in Forced Colour modes.

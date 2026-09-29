@@ -34,4 +34,9 @@
             margin-block-start: var(--m);
         }
     }
+
+
+    #{cfg.base("namespace")}fieldset fieldset legend {
+        padding-inline: 0;
+    }
 }

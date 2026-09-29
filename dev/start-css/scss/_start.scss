@@ -110,6 +110,8 @@
 @use "elements/video" as video;
 
 @use "extras/start-accessibility" as accessibility;
+@use "extras/start-behaviour" as behaviour;
+@use "extras/start-experimental" as experimental;
 @use "extras/start-visibility" as visibility;
 
 @mixin emit() {
@@ -134,6 +136,8 @@
             Safari/iOS 17.2+
             Opera 113+
             Samsung: 28+
+
+        https://caniuse.com/mdn-css_properties_font-size-adjust_from-font,css-relative-colors
     */
     @supports ((color: oklch(from white l c h / 1)) and (font-size-adjust: from-font)) {
         @include tokens.emit();
@@ -200,6 +204,8 @@
         @include video.emit();
 
         @include accessibility.emit();
+        @include behaviour.emit();
+        @include experimental.emit();
         @include visibility.emit();
     }
 }

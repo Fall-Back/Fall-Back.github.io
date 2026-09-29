@@ -14,10 +14,10 @@
         1. Calc to deduct any border-width.
     */
     #{cfg.base("namespace")}td {
-        padding-block-start: calc(var(--td-cell-padding) - var(--td-border-width));  /* [1] */
-        padding-block-end: var(--td-cell-padding);
-        padding-inline-start: var(--td-cell-padding);
-        padding-inline-end: var(--td-cell-padding);
+        padding-block-start: calc(var(--td-padding) - var(--td-border-width));  /* [1] */
+        padding-block-end: var(--td-padding);
+        padding-inline-start: var(--td-padding);
+        padding-inline-end: var(--td-padding);
 
         border-width: var(--td-border-width);
         border-style: var(--td-border-style);
@@ -32,6 +32,6 @@
         rhythm.
     */
     #{cfg.base("namespace")}tbody tr:last-child td {
-        padding-block-end: calc(var(--td-cell-padding) - var(--td-border-width));  /* [1] */
+        padding-block-end: calc(var(--td-padding) - var(--td-border-width));  /* [1] */
     }
 }

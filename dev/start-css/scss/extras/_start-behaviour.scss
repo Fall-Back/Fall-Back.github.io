@@ -1,0 +1,63 @@
+/*! Start-CSS Behaviour. See SCSS file for documentation. */
+/*-------------------------------------------------------------------------------------------------|
+
+    GLOBAL BEHAVIOUR
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "../start-config" as cfg;
+
+
+@mixin emit() {
+    /*
+        1. Remove the tapping delay from clickable elements.
+    */
+    [tabindex] {
+        touch-action: manipulation; /* 1 */
+    }
+
+
+    /*
+        Specify the background color, font color, and drop shadow of text selections.
+    */
+    ::selection {
+        --background-color: var(--selection-background-color);
+        background-color: var(--background-color);
+
+        text-shadow: var(--selection-text-shadow);
+    }
+
+    /*
+        Highlight :target-ed headings
+        Note I can't select the whole section without it being wrapped in something, and I don't
+        want to mess around with that.
+    */
+    main :target {
+        animation: target-fade 3s 1;
+    }
+
+    @keyframes target-fade {
+        0% { box-shadow: 0 0 0 1.2rem var(--target-highlight-color-a), 0 0 0 100vmax var(--target-highlight-color-a) inset; }
+        100% { box-shadow: 0 0 0 1.2rem var(--target-highlight-color-b), 0 0 0 100vmax var(--target-highlight-color-b) inset; }
+    }
+
+    /*
+        Give some space to elements targeted by fragments:
+    */
+    [id] {
+        scroll-margin-top: var(--scroll-margin-top);
+    }
+
+
+    @if cfg.flags("use-layout") {
+        body > * {
+            margin-bottom: 0;
+        }
+    }
+
+
+    [data-fs-layout~="stack"] > * + * {
+        margin-top: var(--m);
+    }
+}
