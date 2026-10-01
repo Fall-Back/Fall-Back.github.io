@@ -176,7 +176,6 @@ $startcss-defaults: (
 
         /* INPUT */
         "input-background-color": #fff,
-        "input-background-color--state-1": null,
         "input-border-color": null,
         "input-border-radius": null,
         "input-border-style": null,
@@ -201,12 +200,12 @@ $startcss-defaults: (
 
 
         /* MARK */
-        "mark-background-color": null,
-        "mark-text-color": null,
+        "mark-background-color": #ff0,
+        "mark-text-color": #000,
 
 
         /* OPTGROUP */
-        "optgroup-background-color": null,
+        "optgroup-background-color": #fff,
         "optgroup-label-background-color": null,
 
 
@@ -219,12 +218,13 @@ $startcss-defaults: (
 
         /* PRE */
         "pre-background-color": null,
+        "pre-code-padding": null,
+        "pre-code-line-height": null,
         /*"pre-margin-bottom": null,
         "pre-padding-bottom": null,
         "pre-margin-bottom--edge": null,
-        "pre-margin-bottom--ff": null,
-        "pre-code-padding": null,
-        "pre-code-line-height": null,*/
+        "pre-margin-bottom--ff": null,/*
+
 
 
         /* SELECT */

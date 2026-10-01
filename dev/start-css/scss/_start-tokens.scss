@@ -472,7 +472,6 @@
             INPUT
         */
         --input-background-color: #{cfg.elements("input-background-color")};
-        --input-background-color--state-1: #{cfg.elements("input-background-color--state-1")};
         @if cfg.overridden("elements", "input-border-color") {
             --input-border-color: #{cfg.elements("input-border-color")};
         } @else {
@@ -554,7 +553,11 @@
             OPTGROUP
         */
         --optgroup-background-color: #{cfg.elements("optgroup-background-color")};
-        --optgroup-label-background-color: #{cfg.elements("optgroup-label-background-color")};
+        @if cfg.overridden("elements", "optgroup-label-background-color") {
+            --optgroup-label-background-color: #{cfg.elements("optgroup-label-background-color")};
+        } @else {
+            --optgroup-label-background-color: var(--base-ui-color-lightest);
+        }
 
 
         /*
@@ -586,6 +589,16 @@
         } @else {
             --pre-background-color: var(--base-ui-color-lighter);
         }
+        @if cfg.overridden("elements", "pre-code-padding") {
+            --pre-code-padding: #{cfg.elements("pre-code-padding")};
+        } @else {
+            --pre-code-padding: #{'calc(var(--base-rem-space-unit) / 2)'};
+        }
+        @if cfg.overridden("elements", "pre-code-line-height") {
+            --pre-code-line-height: #{cfg.elements("pre-code-line-height")};
+        } @else {
+            --pre-code-line-height: var(--root-line-height);
+        }
 
         --pre-margin-bottom: #{'calc(var(--base-rem-space-unit) * 2 - 17px)'};
 
@@ -600,10 +613,6 @@
         --pre-padding-bottom: #{
             'calc(var(--base-rem-space-unit) - 15px)'
         };
-
-        --pre-code-padding: #{'calc(var(--base-rem-space-unit) / 2)'};
-
-        --pre-code-line-height: var(--root-line-height);
 
 
         /*

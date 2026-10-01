@@ -918,7 +918,6 @@ Edge 111+, Chrome 111+, Firefox 121+, Safari 16.2+, iOS 16.2+, modern Android.
         INPUT
     */
     --input-background-color: #fff;
-    --input-background-color--state-1: ;
     --input-border-color: var(--base-border-color);
     --input-border-radius: var(--base-border-radius);
     --input-border-style: var(--base-border-style);
@@ -943,13 +942,13 @@ Edge 111+, Chrome 111+, Firefox 121+, Safari 16.2+, iOS 16.2+, modern Android.
     /*
         MARK
     */
-    --mark-background-color: ;
-    --mark-text-color: ;
+    --mark-background-color: #ff0;
+    --mark-text-color: #000;
     /*
         OPTGROUP
     */
-    --optgroup-background-color: ;
-    --optgroup-label-background-color: ;
+    --optgroup-background-color: #fff;
+    --optgroup-label-background-color: var(--base-ui-color-lightest);
     /*
         OPTION
     */
@@ -961,12 +960,12 @@ Edge 111+, Chrome 111+, Firefox 121+, Safari 16.2+, iOS 16.2+, modern Android.
         PRE
     */
     --pre-background-color: var(--base-ui-color-lighter);
+    --pre-code-padding: calc(var(--base-rem-space-unit) / 2);
+    --pre-code-line-height: var(--root-line-height);
     --pre-margin-bottom: calc(var(--base-rem-space-unit) * 2 - 17px);
     --pre-margin-bottom--edge: calc(var(--base-rem-space-unit) * 2 - 12px);
     --pre-margin-bottom--ff: calc(var(--base-rem-space-unit) + 7px);
     --pre-padding-bottom: calc(var(--base-rem-space-unit) - 15px);
-    --pre-code-padding: calc(var(--base-rem-space-unit) / 2);
-    --pre-code-line-height: var(--root-line-height);
     /*
         SELECT
     */
