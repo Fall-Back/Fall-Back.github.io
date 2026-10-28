@@ -45,9 +45,9 @@ calculations available in these comments in case I need to refer back to them in
     ============================================================================================
 
     Assign custom properties to :root.
-    These are the thing StartCSS provides to make it useful, it's not a definitive catelogue.
+    These are the things StartCSS provides to make it useful, it's not a definitive catalogue.
     The values set here can be overridden using SASS (config overrides) or in CSS as :root variable
-    overrides without having to re-specify each selector. However, if you want to Add styles then
+    overrides without having to re-specify each selector. However, if you want to ADD styles then
     this should be done in the usual way (by specifying the selectors and declarations).
 
 |-------------------------------------------------------------------------------------------------*/
@@ -684,10 +684,74 @@ calculations available in these comments in case I need to refer back to them in
 }
 
 */
+/*! End Start-CSS. */
 /*! Start-CSS Basic Implementation. Ready-to-use  for testing or simply as-is/=.
 See SCSS file for documentation. */
 /*
-Edge 111+, Chrome 111+, Firefox 121+, Safari 16.2+, iOS 16.2+, modern Android.
+    STARTCSS SUPPORT FLOOR
+
+    This feature query establishes the minimum browser capability required by
+    the modern StartCSS build.
+
+    The test is intentionally based on a compatibility proxy rather than
+    individually feature-testing every CSS feature used below. The proxy was
+    chosen because StartCSS's automatic colour-contrast implementation has
+    historically encountered partial-support browser issues which a direct
+    relative-colour @supports test does not reliably distinguish.
+
+    Once inside this block, StartCSS assumes support for all CSS features used
+    by the modern implementation.
+
+    Minimum supported:
+        Chrome / Edge 127+
+        Firefox 128+
+        Safari/iOS 17.2+
+        Opera 113+
+        Samsung: 28+
+
+    https://caniuse.com/mdn-css_properties_font-size-adjust_from-font,css-relative-colors
+
+@supports ((color: oklch(from white l c h / 1)) and (font-size-adjust: from-font)) {...}
+*/
+/*
+
+@TODO
+=====
+
+* Later: modernise legacy SELECT browser handling.
+* Later: modernise legacy PRE browser handling and scrollbar compensation.
+* Safari 17.3, 18.4:
+   * PRE element scrollbar bad
+   * Broken image size - no alt text visible.
+   * 26.4 (why the jump?) PRE scrollbar is like the touch one, img still an issue
+
+*/
+/* USE THIS FOR TESTING OVERRIDES: */
+/*
+@use "scss/start-config" with (
+    $startcss-overrides: (
+        "tokens": (
+            "base-space-unit": 32px,
+            "base-ui-color": #3976a8,
+        ),
+        "elements": (
+            "heading-scale": 1.15,
+            "button-border-width": 0.3rem,
+            "table-border-width": 0.2rem,
+            "td-border-width": 0.1rem,
+            "body-background-color": #fafafa,
+        )
+    )
+);
+*/
+/*
+@use "scss/start-config" with (
+    $startcss-overrides: (
+        "elements": (
+            "main-background-color": #333333,
+        )
+    )
+);
 */
 /*
     STARTCSS SUPPORT FLOOR
@@ -793,11 +857,8 @@ Edge 111+, Chrome 111+, Firefox 121+, Safari 16.2+, iOS 16.2+, modern Android.
     );
     --base-background-color: #fff;
     --base-text-color: #333;
-    --base-text-color-inverse: #fff;
     --background-color: var(--base-background-color);
     --color: var(--base-text-color);
-    --color--inverse: var(--base-text-color-inverse);
-    --base-ui-color--text: var(--color--inverse);
     /*
         CORE UI
     */
@@ -849,12 +910,17 @@ Edge 111+, Chrome 111+, Firefox 121+, Safari 16.2+, iOS 16.2+, modern Android.
     --scrollbar-color-track: var(--base-ui-color-lighter);
     --scrollbar-size-legacy: var(--sz-m);
     /*
+        HTML
+    */
+    --html-background-color: var(--base-ui-color-darker);
+    /*
         BODY
     */
     --body-margin: 0 auto;
     --body-max-width: 60em;
     --body-min-width: 250px;
     --body-padding: var(--sz-m);
+    --body-background-color: var(--base-ui-color-dark);
     /*
         ANCHOR
     */
@@ -869,8 +935,6 @@ Edge 111+, Chrome 111+, Firefox 121+, Safari 16.2+, iOS 16.2+, modern Android.
     --anchor-line-style--alt: solid;
     --anchor-line-width: 0.0625em;
     --anchor-line-width--alt: var(--anchor-line-width);
-    --anchor-text-color: var(--base-text-color);
-    --anchor-text-color--alt: var(--base-text-color);
     /*
         BLOCKQUOTE
     */
@@ -1123,7 +1187,6 @@ Edge 111+, Chrome 111+, Firefox 121+, Safari 16.2+, iOS 16.2+, modern Android.
     accent-color: var(--base-ui-color);
   }
   html[lang] a[href] {
-    color: var(--anchor-text-color);
     text-decoration-line: underline;
     text-decoration-style: var(--anchor-line-style);
     text-decoration-thickness: var(--anchor-line-width);
@@ -1138,7 +1201,6 @@ Edge 111+, Chrome 111+, Firefox 121+, Safari 16.2+, iOS 16.2+, modern Android.
     */
   }
   html[lang] a[href]:hover, html[lang] a[href]:active {
-    color: var(--anchor-text-color--alt);
     text-decoration-line: underline;
     text-decoration-style: var(--anchor-line-style--alt);
     text-decoration-thickness: var(--anchor-line-width--alt);
@@ -1288,7 +1350,7 @@ Edge 111+, Chrome 111+, Firefox 121+, Safari 16.2+, iOS 16.2+, modern Android.
     padding-block-end: calc(var(--button-padding-block) - var(--border-width));
     padding-inline-end: calc(var(--button-padding-inline) - var(--border-width));
     padding-inline-start: calc(var(--button-padding-inline) - var(--border-width));
-    --background-color: var(--button-color);
+    --background-color: var(--button-background-color);
     background-color: var(--background-color);
     font-weight: inherit;
     font-style: inherit;
@@ -1308,7 +1370,7 @@ Edge 111+, Chrome 111+, Firefox 121+, Safari 16.2+, iOS 16.2+, modern Android.
     */
   }
   html[lang] button:hover, html[lang] button:active {
-    --background-color: var(--button-background-color-alt);
+    --background-color: var(--button-background-color--alt);
     background-color: var(--background-color);
   }
   html[lang] button:focus, html[lang] button:focus-visible {
@@ -1486,10 +1548,16 @@ Edge 111+, Chrome 111+, Firefox 121+, Safari 16.2+, iOS 16.2+, modern Android.
         1. Tables that are very wide risk their captions being hidden off-screen.
            Setting the figure up as a container allows for the caption to remain in view at
            all times. See the caption element for how that works.
+
+        2. Due to the scrolling effect the table needs to be transparent. If the container
+           is a darker colour the text contrast can be very poor, so fix this as a white
+           background for now.
+           @TODO later versions should attempt to make this configurable or auto-contrast.
     */
     html[lang] figure:has(> table) {
       container-type: inline-size; /* [1] */
       position: relative; /* [1] */
+      background-color: #fff; /* [2] */
     }
     @supports not (scroll-timeline: none) {
       html[lang] figure:has(> table) {
@@ -1728,19 +1796,6 @@ Edge 111+, Chrome 111+, Firefox 121+, Safari 16.2+, iOS 16.2+, modern Android.
     border-block-end-color: currentColor;
     padding-block-end: var(--anchor-image-padding-bottom);
     /*
-    &:active,
-    &:hover {
-        border-block-end: var(
-            --anchor-image-line-width--alt,
-
-        ) solid transparent;
-        padding-block-end: var(
-            --anchor-image-padding-bottom--alt,
-            0
-        );
-    }
-    */
-    /*
         1. Make sure focus is still visible in Forced Colour modes.
            (https://www.sarasoueidan.com/blog/focus-indicators/)
 
@@ -1781,7 +1836,8 @@ Edge 111+, Chrome 111+, Firefox 121+, Safari 16.2+, iOS 16.2+, modern Android.
          preservation and is a bit of an edge-case for real-world projects.
   */
   html[lang] img[data-broken] {
-    background-color: #ddd;
+    --background-color: #ddd;
+    background-color: var(--background-color);
     outline: 2px solid transparent;
     display: inline-block; /* [2] */
   }
@@ -1926,7 +1982,7 @@ html[lang] [type=submit] {
     padding-block-end: calc(var(--button-padding-block) - var(--border-width));
     padding-inline-end: calc(var(--button-padding-inline) - var(--border-width));
     padding-inline-start: calc(var(--button-padding-inline) - var(--border-width));
-    --background-color: var(--button-color);
+    --background-color: var(--button-background-color);
     background-color: var(--background-color);
     font-weight: inherit;
     font-style: inherit;
@@ -1950,7 +2006,7 @@ html[lang] [type=reset]:hover,
 html[lang] [type=reset]:active,
 html[lang] [type=submit]:hover,
 html[lang] [type=submit]:active {
-    --background-color: var(--button-background-color-alt);
+    --background-color: var(--button-background-color--alt);
     background-color: var(--background-color);
   }
   html[lang] [type=button]:focus, html[lang] [type=button]:focus-visible,
@@ -1994,7 +2050,7 @@ html[lang] [type=submit]:focus-visible {
     padding-block-end: calc(var(--button-padding-block) - var(--border-width));
     padding-inline-end: calc(var(--button-padding-inline) - var(--border-width));
     padding-inline-start: calc(var(--button-padding-inline) - var(--border-width));
-    --background-color: var(--button-color);
+    --background-color: var(--button-background-color);
     background-color: var(--background-color);
     font-weight: inherit;
     font-style: inherit;
@@ -2019,7 +2075,7 @@ html[lang] [type=submit]:focus-visible {
     border-end-end-radius: 0;
   }
   html[lang] [type=file]::file-selector-button:hover, html[lang] [type=file]::file-selector-button:active {
-    --background-color: var(--button-background-color-alt);
+    --background-color: var(--button-background-color--alt);
     background-color: var(--background-color);
   }
   html[lang] [type=file]::file-selector-button:focus, html[lang] [type=file]::file-selector-button:focus-visible {
@@ -2044,7 +2100,7 @@ html[lang] [type=submit]:focus-visible {
     padding-block-end: calc(var(--button-padding-block) - var(--border-width));
     padding-inline-end: calc(var(--button-padding-inline) - var(--border-width));
     padding-inline-start: calc(var(--button-padding-inline) - var(--border-width));
-    --background-color: var(--button-color);
+    --background-color: var(--button-background-color);
     background-color: var(--background-color);
     font-weight: inherit;
     font-style: inherit;
@@ -2069,7 +2125,7 @@ html[lang] [type=submit]:focus-visible {
     border-end-end-radius: 0;
   }
   html[lang] [type=file]::-webkit-file-upload-button:hover, html[lang] [type=file]::-webkit-file-upload-button:active {
-    --background-color: var(--button-background-color-alt);
+    --background-color: var(--button-background-color--alt);
     background-color: var(--background-color);
   }
   html[lang] [type=file]::-webkit-file-upload-button:focus, html[lang] [type=file]::-webkit-file-upload-button:focus-visible {
@@ -2420,7 +2476,7 @@ html[lang] li ol {
     font-style: inherit;
     font-size: inherit;
     font-family: inherit;
-    line-height: var(--base-line-height);
+    line-height: var(--root-line-height);
     vertical-align: middle;
     text-transform: none;
     cursor: pointer;
@@ -2524,7 +2580,6 @@ html[lang] li ol {
   html[lang] details > summary::before {
     display: block;
     content: "";
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 20' xml:space='preserve'%3E%3Cpath d='m0 0 18 10L0 20V0z'/%3E%3C/svg%3E");
     position: absolute;
     width: 0.8em;
     height: 0.8em;
@@ -2532,6 +2587,11 @@ html[lang] li ol {
     margin-inline-start: -1.2em;
     transition: transform 0.5s ease;
     transform-origin: 40% 50%;
+    background-color: currentColor;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 20'%3E%3Cpath d='m0 0 18 10L0 20V0z'/%3E%3C/svg%3E");
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
   }
   html[lang] details[open] > summary::before {
     transform: rotate(90deg);
@@ -2659,7 +2719,7 @@ html[lang] li ol {
   */
   html[lang] th {
     padding-block-start: calc(var(--th-padding) - var(--th-border-width)); /* [1] */
-    padding-block-end: var(--th-padding);
+    padding-block-end: calc(var(--th-padding) - var(--th-border-width)); /* [1] */
     padding-inline-start: var(--th-padding);
     padding-inline-end: var(--th-padding);
     border-width: var(--th-border-width);
@@ -2920,3 +2980,17 @@ html[lang] input[type=radio] {
     white-space: nowrap !important;
   }
 }
+/*
+Use this in DEV TOOLS to test CSS cascade overrides.
+:root {
+    --base-rem-space-unit: 3.2rem;
+    --base-ui-color: #3976a8;
+    --heading-scale: 1.15;
+    --button-border-width: 0.3rem;
+    --table-border-width: 0.2rem;
+    --td-border-width: 0.1rem;
+    --body-background-color: #fafafa;
+}
+*/
+
+/*# sourceMappingURL=start.css.map */

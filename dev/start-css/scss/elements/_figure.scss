@@ -38,11 +38,18 @@
                 1. Tables that are very wide risk their captions being hidden off-screen.
                    Setting the figure up as a container allows for the caption to remain in view at
                    all times. See the caption element for how that works.
+
+                2. Due to the scrolling effect the table needs to be transparent. If the container
+                   is a darker colour the text contrast can be very poor, so fix this as a white
+                   background for now.
+                   @TODO later versions should attempt to make this configurable or auto-contrast.
             */
             #{cfg.base("namespace")}figure:has(> table) {
 
                 container-type: inline-size; /* [1] */
                 position: relative; /* [1] */
+
+                background-color: #fff; /* [2] */
 
                 @supports not (scroll-timeline: none) {
                     & {

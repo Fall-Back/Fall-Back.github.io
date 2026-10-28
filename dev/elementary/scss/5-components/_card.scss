@@ -1,127 +1,158 @@
 /*-------------------------------------------------------------------------------------------------|
 
     COMPONENTS - CARD
-    =================
+    ============================================================================================
+
+    A self-contained presentation pattern activated by Elementary's
+    configurable CARD selector.
+
+    Visual properties are controlled by Elementary's public CSS tokens,
+    allowing both Sass and CSS consumers to customise the appearance.
 
 |-------------------------------------------------------------------------------------------------*/
 
-@mixin component__card($options: ()) {
-    #{map-get($options, selector)} {
-        --name: card;
+@use "../00-3-selectors" as selectors;
 
-        display: flex;
-        flex-direction: column;
 
-        height: 100%;
+@mixin emit() {
+    @if selectors.$card-selector != false {
 
-        overflow: hidden;
+        #{selectors.$card-selector} {
+            --name: card;
 
-        margin: 0;
+            display: flex;
+            flex-direction: column;
 
-        padding:       #{map-get($options, padding)};
+            height: 100%;
 
-        border:        #{map-get($options, border)};
-        border-radius: #{map-get($options, border-radius)};
+            overflow: hidden;
 
-        --background-color: var(--card-color, var(--base-ui-color-lightest));
-        @include s__theme(var(--card-color--text, var(--base-ui-color-lightest--text)));
+            margin: 0;
 
-        box-shadow:    #{map-get($options, box-shadow)};
+            padding: var(--card-spacing);
 
-        & * {
-            overflow-wrap: break-word;
-            word-wrap: break-word;
-            -webkit-hyphens: auto;
-            hyphens: auto;
+            border-width: var(--card-border-width);
+            border-style: var(--card-border-style);
+            border-color: var(--card-border-color);
+            border-radius: var(--card-border-radius);
+
+            --background-color: var(--card-background-color);
+            background-color: var(--background-color);
+
+            box-shadow: var(--card-box-shadow);
+
+
+            /*
+                CONTENT
+            */
+
+            & * {
+                overflow-wrap: break-word;
+                word-wrap: break-word;
+                -webkit-hyphens: auto;
+                hyphens: auto;
+            }
+
+            & *:only-child {
+                margin-bottom: 0;
+            }
+
+
+            /*
+                HEADER
+            */
+
+            & > header {
+                background-color: transparent;
+                padding: 0;
+
+                & > :last-child {
+                    margin-bottom: 0;
+
+                    & > :last-child {
+                        margin-bottom: 0;
+                    }
+                }
+
+
+                /*
+                    HEADLINE IMAGE
+
+                    Negative margins compensate for the CARD padding,
+                    allowing the image to extend to the card edges.
+                */
+
+                & > div:first-child {
+                    position: relative;
+
+                    overflow: hidden;
+
+                    margin:
+                        calc(var(--card-spacing) * -1)
+                        calc(var(--card-spacing) * -1)
+                        var(--card-spacing);
+
+                    aspect-ratio: var(--card-image-ratio);
+
+                    & > img {
+                        position: absolute;
+                        inset: 0;
+
+                        width: 100%;
+                        height: 100%;
+
+                        object-fit: cover;
+                    }
+                }
+            }
+
+
+            /*
+                BODY
+            */
+
+            & > div {
+                & > :last-child {
+                    margin-bottom: 0;
+
+                    & > :last-child {
+                        margin-bottom: 0;
+                    }
+                }
+
+                /*
+                    Align a CTA when it occupies the final paragraph
+                    of the card body.
+                */
+
+                & > p:last-child > b:only-child {
+                    display: block;
+
+                    text-align: right;
+                }
+            }
+
+
+            /*
+                FOOTER
+            */
+
+            & > footer {
+                margin-top: auto;
+                margin-bottom: 0;
+
+                padding: 0;
+
+                background-color: transparent;
+
+                & > :last-child {
+                    margin-bottom: 0;
+
+                    & > :last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
         }
-
-        & *:only-child {
-            margin-bottom: 0;
-        }
-    }
-
-    // Header:
-    #{map-get($options, selector)} > header {
-        background-color: transparent;
-        padding: 0;
-    }
-
-    #{map-get($options, selector)} > header > :last-child {
-        margin-bottom: #{map-get($options, padding)}
-    }
-
-    #{map-get($options, selector)} > header > :last-child {
-        margin-bottom: 0;
-    }
-
-    #{map-get($options, selector)} > header > :last-child > :last-child  {
-        margin-bottom: 0;
-    }
-
-
-    // Headline image:
-    #{map-get($options, selector)} > header > div:first-child {
-        position: relative;
-
-        overflow: hidden;
-
-        margin: -2.4rem -2.4rem 2.4rem -2.4rem;
-    }
-
-    #{map-get($options, selector)} > header > div:first-child::before {
-        display: block;
-
-        content: "";
-
-        width: 100%;
-
-        padding-top: #{map-get($options, image-ratio)};
-    }
-
-    #{map-get($options, selector)} > header > div:first-child > img {
-        position: absolute;
-        top: 0;
-
-        width: 100%;
-
-        height: 100%;
-
-        object-fit: cover;
-    }
-
-
-    // Body:
-    #{map-get($options, selector)} > div > :last-child {
-        margin-bottom: 0;
-    }
-
-    #{map-get($options, selector)} > div > :last-child > :last-child  {
-        margin-bottom: 0;
-    }
-
-    // CTA:
-    #{map-get($options, selector)} > div > p:last-child > b:only-child {
-        display: block;
-
-        text-align: right;
-    }
-
-
-
-    // Footer:
-    #{map-get($options, selector)} > footer {
-        margin-top: auto;
-        margin-bottom: 0;
-        padding: 0;
-
-        background-color: transparent;
-    }
-
-    #{map-get($options, selector)} > footer > :last-child {
-        margin-bottom: 0;
-    }
-
-    #{map-get($options, selector)} > footer > :last-child > :last-child  {
-        margin-bottom: 0;
     }
 }

@@ -1,51 +1,127 @@
 /*-------------------------------------------------------------------------------------------------|
 
     COMPONENTS - HERO
-    =================
+    ============================================================================================
+
+    A reusable image-led presentation pattern supporting two page contexts:
+
+    1. Page banner: no margin compensation.
+    2. Main header: negative margins compensate for the containing
+       header's padding.
+
+    Both contexts share the same presentation CSS and public tokens.
+
+    Selectors may be independently configured, extended or disabled.
+    Image proportions use native CSS aspect-ratio.
 
 |-------------------------------------------------------------------------------------------------*/
 
-@mixin component__hero($options: ()) {
+@use "sass:list";
+@use "../00-3-selectors" as selectors;
 
-    //selector:      $es__component__hero_1,
-    //padding:       $s__sz-m,
-    //background:    $e__component__hero__background,
-    //image-ratio:   $e__component__hero__image-ratio,
-    //wrap-margin:   0
 
-    #{map-get($options, selector)} {
-        --name: hero;
+@mixin emit() {
 
-        position: relative;
+    /*
+        SHARED HERO PRESENTATION
 
-        overflow: hidden;
+        Build a selector list containing only enabled contexts.
+        This avoids emitting invalid selectors when either context
+        has been disabled.
+    */
 
-        margin: map-get($options, wrap-margin);
-        max-width: none;
-        //margin: -2.4rem -2.4rem 2.4rem -2.4rem;
-        //background: map-get($options, background);
-        --background-color: var(--banner-color, var(--base-ui-color));
-        @include s__theme(var(--banner-color--text, var(--base-ui-color--text)));
+    $hero-selectors: ();
+
+    @if selectors.$hero-1-selector != false {
+        $hero-selectors: list.append(
+            $hero-selectors,
+            selectors.$hero-1-selector,
+            $separator: comma
+        );
     }
 
-    #{map-get($options, selector)}::before {
-        display: block;
-
-        content: "";
-
-        width: 100%;
-
-        padding-top: #{map-get($options, image-ratio)};
+    @if selectors.$hero-2-selector != false {
+        $hero-selectors: list.append(
+            $hero-selectors,
+            selectors.$hero-2-selector,
+            $separator: comma
+        );
     }
 
-    #{map-get($options, selector)} > img {
-        position: absolute;
-        top: 0;
+    @if list.length($hero-selectors) > 0 {
 
-        width: 100%;
+        #{$hero-selectors} {
+            --name: hero;
 
-        height: 100%;
+            position: relative;
 
-        object-fit: cover;
+            overflow: hidden;
+
+            margin: 0;
+
+            max-width: none;
+
+            aspect-ratio: var(--hero-image-ratio);
+
+            --background-color: var(--hero-background-color);
+            background-color: var(--background-color);
+
+            /*
+                HERO IMAGE
+            */
+
+            & > img {
+                position: absolute;
+                inset: 0;
+
+                width: 100%;
+                height: 100%;
+
+                object-fit: cover;
+            }
+        }
+    }
+
+
+    /*
+        PAGE BANNER CONTEXT
+
+        No additional margin compensation is required.
+    */
+
+    @if selectors.$hero-1-selector != false {
+
+        #{selectors.$hero-1-selector} {
+            margin: 0;
+        }
+    }
+
+
+    /*
+        MAIN HEADER CONTEXT
+
+        Compensate for the padding applied to the containing
+        main header.
+
+        The main-header module must use --main-header-spacing
+        for its padding when it is migrated.
+    */
+
+    @if selectors.$hero-2-selector != false {
+
+        #{selectors.$hero-2-selector} {
+            margin:
+                calc(var(--main-header-spacing) * -1)
+                calc(var(--main-header-spacing) * -1)
+                var(--main-header-spacing);
+
+            &:first-child {
+                margin-block-start: calc(var(--main-header-spacing) * -1);
+            }
+
+            &:last-child {
+                margin-block-end: var(--main-header-spacing);
+            }
+        }
     }
 }

@@ -15,7 +15,7 @@
     */
     #{cfg.base("namespace")}th {
         padding-block-start: calc(var(--th-padding) - var(--th-border-width));  /* [1] */
-        padding-block-end: var(--th-padding);
+        padding-block-end: calc(var(--th-padding) - var(--th-border-width));  /* [1] */
         padding-inline-start: var(--th-padding);
         padding-inline-end: var(--th-padding);
 

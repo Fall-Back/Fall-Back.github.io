@@ -49,19 +49,7 @@
         border-block-end-color: currentColor;
 
         padding-block-end: var(--anchor-image-padding-bottom);
-        /*
-        &:active,
-        &:hover {
-            border-block-end: var(
-                --anchor-image-line-width--alt,
-                #{cfg.elements("anchor-image-line-width--alt")}
-            ) solid transparent;
-            padding-block-end: var(
-                --anchor-image-padding-bottom--alt,
-                #{cfg.elements("anchor-image-padding-bottom--alt")}
-            );
-        }
-        */
+
         // We want to mimic link styles for consistency:
         &:active,
         &:hover {
@@ -115,7 +103,8 @@
            preservation and is a bit of an edge-case for real-world projects.
     */
     #{cfg.base("namespace")}img[data-broken] {
-        background-color: #ddd;
+        --background-color: #ddd;
+        background-color: var(--background-color);
         outline: 2px solid transparent;
         //vertical-align: baseline /* [1] */
         display: inline-block; /* [2] */

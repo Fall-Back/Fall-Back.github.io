@@ -1,0 +1,36 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    CONTENT LISTING - FLEXBOX
+    ============================================================================================
+
+    Default listing layout.
+
+    Items use a preferred width but may grow to fill the available
+    space. They wrap onto additional rows when necessary.
+
+    Spacing is provided by CSS gap rather than individual item margins.
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "../00-3-selectors" as selectors;
+
+
+@mixin emit() {
+
+    @if selectors.$listing-selector != false {
+
+        #{selectors.$listing-selector} {
+
+            display: flex;
+            flex-wrap: wrap;
+
+            gap: var(--listing-gutter);
+
+            > * {
+                flex-grow: 1;
+                flex-shrink: 0;
+                flex-basis: var(--listing-item-basis);
+            }
+        }
+    }
+}

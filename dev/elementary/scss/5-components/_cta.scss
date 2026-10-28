@@ -1,42 +1,77 @@
 /*-------------------------------------------------------------------------------------------------|
 
-    CTA
-    ===
+    COMPONENTS - CTA
+    ============================================================================================
+
+    A self-contained call-to-action pattern activated by Elementary's
+    configurable CTA selector.
+
+    Visual styling is controlled by Elementary's public CSS tokens.
+
+    The border width is deducted from the intended spacing so that adding
+    a border does not increase the overall spacing and disturb the
+    vertical rhythm.
 
 |-------------------------------------------------------------------------------------------------*/
 
-@mixin component__cta($options: ()) {
-    #{map-get($options, selector)} {
-        --name: cta;
+@use "../00-3-selectors" as selectors;
 
-        display: inline-block;
 
-        overflow: hidden;
+@mixin emit() {
 
-        margin: 0;
+    @if selectors.$cta-selector != false {
 
-        padding:       #{map-get($options, padding)};
+        #{selectors.$cta-selector} {
+            --name: cta;
 
-        border:        #{map-get($options, border)};
-        border-radius: #{map-get($options, border-radius)};
+            display: inline-block;
 
-        --background-color: var(--cta-color, var(--base-ui-color));
-        @include s__theme(var(--cta-color--text, var(--base-ui-color--text)));
+            overflow: hidden;
 
-        box-shadow:    #{map-get($options, box-shadow)};
+            margin: 0;
 
-        font-weight:   normal;
-        line-height:   $s__sz-m;
+            /*
+                Compensate for the border on all four sides.
 
-        vertical-align: middle;
+                max() prevents negative padding when the border is
+                wider than the intended spacing.
+            */
+            padding-block: max(
+                0px,
+                (var(--cta-spacing) - var(--cta-border-width))
+            );
+            padding-inline: max(
+                0px,
+                (var(--cta-spacing) * 2 - var(--cta-border-width))
+            );
 
-        text-decoration: none;
+            border-width: var(--cta-border-width);
+            border-style: var(--cta-border-style);
+            border-color: var(--cta-border-color);
+            border-radius: var(--cta-border-radius);
 
-        &:hover,
-        &:active,
-        &:focus {
-            --background-color: var(--cta-color, var(--base-ui-color-light));
-            @include s__theme(var(--cta-color--text, var(--base-ui-color-light--text)));
+            --background-color: var(--cta-background-color);
+            background-color: var(--background-color);
+
+            box-shadow: var(--cta-box-shadow);
+
+            font-weight: normal;
+            line-height: var(--root-line-height);
+
+            vertical-align: middle;
+
+            text-decoration: none;
+
+
+            /*
+                INTERACTION STATES
+            */
+            &:hover,
+            &:active,
+            &:focus {
+                --background-color: var(--cta-background-color--alt);
+                background-color: var(--background-color);
+            }
         }
     }
 }

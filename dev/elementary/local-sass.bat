@@ -1,0 +1,1 @@
+npx sass --load-path=../start-css/scss --watch elementary.scss:css/elementary.css

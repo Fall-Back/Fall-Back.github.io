@@ -17,7 +17,6 @@
 @mixin emit() {
 
     #{cfg.base("namespace")}a[href] {
-        color: var(--anchor-text-color);
         text-decoration-line: underline;
         text-decoration-style: var(--anchor-line-style);
         text-decoration-thickness: var(--anchor-line-width);
@@ -27,7 +26,6 @@
         &:hover,
         &:active {
             //text-decoration: underline cfg.elements("anchor-line-style--alt") currentColor cfg.elements("anchor-line-width");
-            color: var(--anchor-text-color--alt);
             text-decoration-line: underline;
             text-decoration-style: var(--anchor-line-style--alt);
             text-decoration-thickness: var(--anchor-line-width--alt);

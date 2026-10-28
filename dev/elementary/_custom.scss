@@ -10,12 +10,12 @@
 
 |-------------------------------------------------------------------------------------------------*/
 
-@use "../start-css/scss/start-config" as cfg;
+@use "start-config" as cfg;
 @use "settings" as project;
 @use "sass:map";
 
 
 @mixin emit() {
 
-    // Add custom CSS here.
+    // Add custom CSS here. KEEP FOR REFERENCE.
 }

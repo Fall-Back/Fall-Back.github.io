@@ -3,33 +3,60 @@
     CONTENT LISTING - COLUMNS
     ============================================================================================
 
+    Alternative CSS multicolumn layout for Elementary's content listings.
+
+    The browser determines the number of columns from the preferred
+    item width. Items flow vertically through the columns rather than
+    horizontally across rows.
+
+    Uses the same public spacing and sizing tokens as the Flexbox
+    and Grid implementations.
+
 |-------------------------------------------------------------------------------------------------*/
 
-@use 'sass:math';
+@use "../00-3-selectors" as selectors;
 
-@mixin content-listing--columns($options: ()) {
-    @supports (columns: 1) {
-        #{map-get($options, selector)} {
+
+@mixin emit($selector: selectors.$listing-selector) {
+
+    @if $selector != false {
+
+        #{$selector} {
+
             display: block;
 
-            padding: #{math.div(map-get($options, gutter), 2)} #{map-get($options, gutter)};
+            columns: var(--listing-item-basis) auto;
 
-            columns: #{map-get($options, basis)} auto;
-            column-gap: #{map-get($options, gutter)};
-        }
+            column-gap: var(--listing-gutter);
 
-        /*
-            1. This fixes an issue where box-shadows break across columns.
-        */
-        #{map-get($options, selector)} > * {
-            margin: 0;
+            /*
+                ITEMS
 
-            transform: translateZ(0); /* [1] */
+                Avoid splitting items between columns.
 
-            break-inside: avoid;
+                translateZ(0) is retained from the original
+                implementation to work around box-shadow rendering
+                issues in multicolumn layouts.
+            */
 
-            & > * {
-                padding: #{math.div(map-get($options, gutter), 2)} 0;
+            > * {
+                margin: 0;
+
+                transform: translateZ(0);
+
+                break-inside: avoid;
+
+                /*
+                    Multicolumn layout doesn't provide the same
+                    vertical gap behaviour as Flexbox or Grid.
+
+                    Apply half the gutter above and below each
+                    item's contents.
+                */
+
+                > * {
+                    padding-block: calc(var(--listing-gutter) / 2);
+                }
             }
         }
     }

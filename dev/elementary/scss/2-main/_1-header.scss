@@ -3,23 +3,26 @@
     MAIN HEADER
     ============================================================================================
 
+    Styles the main content header using Elementary's configurable
+    page-structure selector.
+
+    The spacing token is shared with the HERO component, allowing a HERO
+    within this header to extend to its edges without disrupting the
+    surrounding layout.
+
 |-------------------------------------------------------------------------------------------------*/
 
-/*
-    Page header
-    (note may consider qualifying this with `:first-child` but I don't think it's needed)
-*/
-#{$es__page_main} > * > header {
-    margin: 0;
+@use "../00-3-selectors" as selectors;
 
-    padding: $s__sz-m;
-}
 
-/*
-    If there's no main header - give the h1 some room:
-    ??Not sure - currently require header?
-*
-main > * > h1 {
-    margin-top: 2.4rem;
+@mixin emit() {
+
+    @if selectors.$main-header-selector != false {
+
+        #{selectors.$main-header-selector} {
+            margin: 0;
+
+            padding: var(--main-header-spacing);
+        }
+    }
 }
-*/

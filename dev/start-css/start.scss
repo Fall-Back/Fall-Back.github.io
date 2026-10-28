@@ -5,7 +5,30 @@
 See SCSS file for documentation. */
 
 /*
-Edge 111+, Chrome 111+, Firefox 121+, Safari 16.2+, iOS 16.2+, modern Android.
+    STARTCSS SUPPORT FLOOR
+
+    This feature query establishes the minimum browser capability required by
+    the modern StartCSS build.
+
+    The test is intentionally based on a compatibility proxy rather than
+    individually feature-testing every CSS feature used below. The proxy was
+    chosen because StartCSS's automatic colour-contrast implementation has
+    historically encountered partial-support browser issues which a direct
+    relative-colour @supports test does not reliably distinguish.
+
+    Once inside this block, StartCSS assumes support for all CSS features used
+    by the modern implementation.
+
+    Minimum supported:
+        Chrome / Edge 127+
+        Firefox 128+
+        Safari/iOS 17.2+
+        Opera 113+
+        Samsung: 28+
+
+    https://caniuse.com/mdn-css_properties_font-size-adjust_from-font,css-relative-colors
+
+@supports ((color: oklch(from white l c h / 1)) and (font-size-adjust: from-font)) {...}
 */
 // npx sass --watch start.scss:css/start.css
 
@@ -66,7 +89,7 @@ Edge 111+, Chrome 111+, Firefox 121+, Safari 16.2+, iOS 16.2+, modern Android.
 //---
 
 // Note - using @import is bad for performance. I'm using it here to make the final CSS file self-
-// contained, but if you're not using that final (which is likely), put the <link> in the HTL
+// contained, but if you're not using that final (which is likely), put the <link> in the HTML
 // instead, e.g.:
 // <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
 
@@ -77,33 +100,64 @@ Edge 111+, Chrome 111+, Firefox 121+, Safari 16.2+, iOS 16.2+, modern Android.
 
 
 
-//$s__base-ui-color: #2E8B57;
-//$s__namespace: '.ugc ';
-//$s__namespace: 'main ';
+/*
+
+@TODO
+=====
+
+* Later: modernise legacy SELECT browser handling.
+* Later: modernise legacy PRE browser handling and scrollbar compensation.
+* Safari 17.3, 18.4:
+   * PRE element scrollbar bad
+   * Broken image size - no alt text visible.
+   * 26.4 (why the jump?) PRE scrollbar is like the touch one, img still an issue
+
+*/
 
 
-//$s__root-font-size:         10px;
-//$s__experimental: true;
-//$s__experimental_checkradios: true;
-
-//$s__anchor-text-color: inherit;
-//$s__anchor-text-color--alt: inherit;
-
-
-//@import 'scss/_start.scss';
-
-// MyProject/_styles/style.scss
-// npx sass --watch _styles/style.scss:_styles/style.css
-
-
-
-//@use "settings" as project;
-//@use "../bower_components/Fall-Back-Start-CSS/scss/start-config" with (
-//    $startcss-overrides: project.$startcss-overrides
-//);
-
+/* USE THIS FOR TESTING OVERRIDES: */
+/*
+@use "scss/start-config" with (
+    $startcss-overrides: (
+        "tokens": (
+            "base-space-unit": 32px,
+            "base-ui-color": #3976a8,
+        ),
+        "elements": (
+            "heading-scale": 1.15,
+            "button-border-width": 0.3rem,
+            "table-border-width": 0.2rem,
+            "td-border-width": 0.1rem,
+            "body-background-color": #fafafa,
+        )
+    )
+);
+*/
+/*
+@use "scss/start-config" with (
+    $startcss-overrides: (
+        "elements": (
+            "main-background-color": #333333,
+        )
+    )
+);
+*/
 @use "scss/start" as start;
 
 
 // --- StartCSS base ---
 @include start.emit();
+
+
+/*
+Use this in DEV TOOLS to test CSS cascade overrides.
+:root {
+    --base-rem-space-unit: 3.2rem;
+    --base-ui-color: #3976a8;
+    --heading-scale: 1.15;
+    --button-border-width: 0.3rem;
+    --table-border-width: 0.2rem;
+    --td-border-width: 0.1rem;
+    --body-background-color: #fafafa;
+}
+*/

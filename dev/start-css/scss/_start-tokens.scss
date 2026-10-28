@@ -4,9 +4,9 @@
     ============================================================================================
 
     Assign custom properties to :root.
-    These are the thing StartCSS provides to make it useful, it's not a definitive catelogue.
+    These are the things StartCSS provides to make it useful, it's not a definitive catalogue.
     The values set here can be overridden using SASS (config overrides) or in CSS as :root variable
-    overrides without having to re-specify each selector. However, if you want to Add styles then
+    overrides without having to re-specify each selector. However, if you want to ADD styles then
     this should be done in the usual way (by specifying the selectors and declarations).
 
 |-------------------------------------------------------------------------------------------------*/
@@ -139,12 +139,9 @@
 
         --base-background-color: #{cfg.tokens("base-background-color")};
         --base-text-color: #{cfg.tokens("base-text-color")};
-        --base-text-color-inverse: #{cfg.tokens("base-text-color-inverse")};
 
         --background-color: var(--base-background-color);
         --color: var(--base-text-color);
-        --color--inverse: var(--base-text-color-inverse);
-        --base-ui-color--text: var(--color--inverse);
 
 
         /*
@@ -272,6 +269,16 @@
 
 
         /*
+            HTML
+        */
+        @if cfg.overridden("elements", "html-background-color") {
+            --html-background-color: #{cfg.elements("html-background-color")};
+        } @else {
+            --html-background-color: var(--base-ui-color-darker);
+        }
+
+
+        /*
             BODY
         */
         --body-margin: #{cfg.elements("body-margin")};
@@ -281,6 +288,11 @@
             --body-padding: #{cfg.elements("body-padding")};
         } @else {
             --body-padding: var(--sz-m);
+        }
+        @if cfg.overridden("elements", "body-background-color") {
+            --body-background-color: #{cfg.elements("body-background-color")};
+        } @else {
+            --body-background-color: var(--base-ui-color-dark);
         }
 
 
@@ -313,16 +325,6 @@
             --anchor-line-width--alt: #{cfg.elements("anchor-line-width--alt")};
         } @else {
             --anchor-line-width--alt: var(--anchor-line-width);
-        }
-        @if cfg.overridden("elements", "anchor-text-color") {
-            --anchor-text-color: #{cfg.elements("anchor-text-color")};
-        } @else {
-            --anchor-text-color: var(--base-text-color);
-        }
-        @if cfg.overridden("elements", "anchor-text-color--alt") {
-            --anchor-text-color--alt: #{cfg.elements("anchor-text-color--alt")};
-        } @else {
-            --anchor-text-color--alt: var(--base-text-color);
         }
 
 

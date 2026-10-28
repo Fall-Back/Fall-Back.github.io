@@ -47,6 +47,7 @@
 */
 
 @use "start-tokens" as tokens;
+@use "start-mixins" as mixins;
 @use "start-base" as base;
 
 @use "elements/a" as a;
@@ -139,7 +140,7 @@
 
         https://caniuse.com/mdn-css_properties_font-size-adjust_from-font,css-relative-colors
     */
-    @supports ((color: oklch(from white l c h / 1)) and (font-size-adjust: from-font)) {
+    @include mixins.s__support-floor() {
         @include tokens.emit();
         @include base.emit();
 
@@ -209,3 +210,6 @@
         @include visibility.emit();
     }
 }
+
+
+/*! End Start-CSS. */

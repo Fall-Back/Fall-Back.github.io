@@ -19,6 +19,36 @@
 
 
 /*
+    STARTCSS SUPPORT FLOOR
+    ============================================================================================
+
+    Wraps CSS in StartCSS's minimum browser feature requirements.
+
+    Intended for projects and libraries built on StartCSS, ensuring
+    they use the same browser compatibility floor.
+
+    This condition is maintained centrally by StartCSS and should
+    not be independently redefined by consuming libraries.
+
+    Minimum supported:
+        Chrome / Edge 127+
+        Firefox 128+
+        Safari/iOS 17.2+
+        Opera 113+
+        Samsung: 28+
+
+    https://caniuse.com/mdn-css_properties_font-size-adjust_from-font,css-relative-colors
+*/
+
+@mixin s__support-floor() {
+    @supports (color: oklch(from white l c h / 1))
+        and (font-size-adjust: from-font) {
+        @content;
+    }
+}
+
+
+/*
     Apply a border while preserving the intended overall spacing as closely as possible.
 
     The border width is deducted from the supplied padding so that adding a border does not
@@ -112,7 +142,7 @@
     padding-inline-end:   calc(var(--button-padding-inline) - var(--border-width));
     padding-inline-start: calc(var(--button-padding-inline) - var(--border-width));
 
-    --background-color: var(--button-color);
+    --background-color: var(--button-background-color);
     background-color: var(--background-color);
 
 
@@ -137,7 +167,7 @@
 
     &:hover,
     &:active {
-        --background-color: var(--button-background-color-alt);
+        --background-color: var(--button-background-color--alt);
         background-color: var( --background-color);
     }
 
