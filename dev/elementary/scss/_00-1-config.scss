@@ -17,12 +17,52 @@ $elementary-defaults: (
         "layout-breakpoint": 50em,
     ),
 
-    /* NAVBAR */
-    "navbar" : (
-        "link--border-radius": var(--sz-xs),
-        "link--spacing": var(--sz-s),
-        "height": calc(#{cfg.tokens("base-em-ratio")} * 1.5em),
+
+    /*
+        BANNER
+    */
+    "banner": (
+        "background-color": null,
     ),
+
+    /*
+        BANNER - LOGO
+    */
+    "banner_logo": (
+        "background-color": null,
+        "border-radius": null,
+        "inline-spacing": null,
+        "padding": null,
+    ),
+
+
+    /*
+        BANNER - NAVBAR
+
+        The spacing unit controls the navbar's default dimensions.
+        Individual derived CSS tokens can also be overridden at runtime.
+    */
+    "navbar": (
+        "background-color": null,
+        "link-background-color": null,
+        "link-background-color--alt": null,
+        "link-background-color--current": null,
+        "link-border-radius": null,
+        "navlist-background-color": null,
+        "spacing-unit": null,
+    ),
+
+
+    /*
+        BANNER - NAVBAR - COLLAPSIBLE
+
+        Controls only the optional disclosure mechanism.
+        NAVLIST presentation remains the responsibility of NAVBAR.
+    */
+    "navbar_collapsible": (
+        "panel-shadow": 0 4px 2px -1px rgb(0 0 0 / 0.5),
+    ),
+
 
     /* MAIN */
     "main" : (
@@ -32,10 +72,12 @@ $elementary-defaults: (
         "sidebar-balance": 2,
     ),
 
+
     /* MAIN - HEADER */
     "main_header": (
         "spacing": null,
     ),
+
 
     /* MAIN - CONTENT */
     "main_content": (
@@ -45,6 +87,7 @@ $elementary-defaults: (
         "spacing": null,
         "toc-background-color": #eee,
     ),
+
 
     /*
         MAIN - CONTENT - LISTING
@@ -72,6 +115,16 @@ $elementary-defaults: (
     "sidebar": (
         "background-color": null,
         "background-color--alt": null,
+        "spacing": null,
+    ),
+
+
+    /*
+        FOOTER
+    */
+    "footer": (
+        "background-color": null,
+        "font-size": 0.875em,
         "spacing": null,
     ),
 
@@ -117,39 +170,6 @@ $elementary-defaults: (
 
 ) !default;
 
-@function _derived-navbar($config) {
-    $navbar: map.get($config, "navbar");
-
-    @return map.merge($navbar, (
-        "spacing": calc(map.get($navbar, "height") / 8),
-    ));
-}
-
-@function _derived-main($config) {
-    $main: map.get($config, "main");
-
-    $return: map.merge($main, (
-        "sidebar-balance": #{map.get($main, "sidebar-left-balance")}fr #{map.get($main, "sidebar-right-balance")}fr,
-        "sidebar-balance-factor": math.div(map.get($main, "sidebar-left-balance"), (map.get($main, "sidebar-left-balance") + map.get($main, "sidebar-right-balance"))),
-
-    ));
-
-    @return map.merge($return, (
-        "width-breakpoint": math.div(map.get($cfg, "body-max-width"), map.get($return, "sidebar-balance-factor")),
-        "sidebar-max-width": map.get($return, "sidebar-balance-factor") * 100%,
-    ));
-
-}
-
-@function _derived-main_content_listing($config) {
-    $main_content_listing: map.get($config, "main_content_listing");
-
-
-    @return map.merge($main_content_listing, (
-        "item--basis": calc(100% - #{map.get($main_content_listing, "gutter")}),
-    ));
-
-}
 
 /*
     ELEMENTARY CONFIGURATION
@@ -196,19 +216,6 @@ $elementary-config: map.deep-merge(
 }
 
 
-/*
-$elementary-overrides: () !default;
-
-$elementary-config: map.deep-merge($elementary-defaults, $elementary-overrides);
-$elementary-config: map.merge(
-    $elementary-config,
-    ("navbar": _derived-navbar($elementary-config))
-);
-$elementary-config: map.merge(
-    $elementary-config,
-    ("main": _derived-main($elementary-config))
-);
-*/
 
 /*-------------------------------------------------------------------------------------------------|
 

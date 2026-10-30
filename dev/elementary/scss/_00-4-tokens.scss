@@ -28,8 +28,114 @@
 
             The default balance is 5:2.
         */
-        --page-layout-main-balance: #{cfg.get("main", "main-balance")};
-        --page-layout-sidebar-balance: #{cfg.get("main", "sidebar-balance")};
+        --page-layout-main-balance: #{cfg.get("main", "main-balance")}fr;
+        --page-layout-sidebar-balance: #{cfg.get("main", "sidebar-balance")}fr;
+
+
+        /*
+            BANNER
+        */
+
+        @if cfg.overridden("banner", "background-color") {
+            --banner-background-color: #{cfg.get("banner", "background-color")};
+        } @else {
+            --banner-background-color: var(--base-ui-color);
+        }
+
+
+        /*
+            BANNER - LOGO
+        */
+
+        @if cfg.overridden("banner_logo", "background-color") {
+            --logo-background-color: #{cfg.get("banner_logo", "background-color")};
+        } @else {
+            --logo-background-color: var(--base-ui-color);
+        }
+        @if cfg.overridden("banner_logo", "border-radius") {
+            --logo-border-radius: #{cfg.get("banner_logo", "border-radius")};
+        } @else {
+            --logo-border-radius: var(--base-border-radius);
+        }
+        @if cfg.overridden("banner_logo", "inline-spacing") {
+            --logo-inline-spacing: #{cfg.get("banner_logo", "inline-spacing")};
+        } @else {
+            --logo-inline-spacing: var(--sz-xs);
+        }
+        @if cfg.overridden("banner_logo", "padding") {
+            --logo-padding: #{cfg.get("banner_logo", "padding")};
+        } @else {
+            --logo-padding: var(--sz-xs);
+        }
+
+
+        /*
+            BANNER - NAVBAR
+        */
+
+        @if cfg.overridden("navbar", "background-color") {
+            --navbar-background-color: #{cfg.get("navbar", "background-color")};
+        } @else {
+            --navbar-background-color: transparent;
+        }
+        @if cfg.overridden("navbar", "link-background-color") {
+            --navbar-link-background-color: #{cfg.get("navbar", "link-background-color")};
+        } @else {
+            --navbar-link-background-color: var(--base-ui-color);
+        }
+        @if cfg.overridden("navbar", "link-background-color--alt") {
+            --navbar-link-background-color--alt: #{cfg.get("navbar", "link-background-color--alt")};
+        } @else {
+            --navbar-link-background-color--alt: var(--base-ui-color-lighter);
+        }
+        @if cfg.overridden("navbar", "link-background-color--current") {
+            --navbar-link-background-color--current: #{cfg.get("navbar", "link-background-color--current")};
+        } @else {
+            --navbar-link-background-color--current: var(--base-ui-color-darker);
+        }
+        @if cfg.overridden("navbar", "link-border-radius") {
+            --navbar-link-border-radius: #{cfg.get("navbar", "link-border-radius")};
+        } @else {
+            --navbar-link-border-radius: var(--base-border-radius);
+        }
+        @if cfg.overridden("navbar", "spacing-unit") {
+            --navbar-spacing-unit: #{cfg.get("navbar", "spacing-unit")};
+        } @else {
+            --navbar-spacing-unit: var(--base-rem-space-unit);
+        }
+        @if cfg.overridden("navbar", "navlist-background-color") {
+            --navbar-navlist-background-color:
+                #{cfg.get("navbar", "navlist-background-color")};
+        } @else {
+            --navbar-navlist-background-color: var(--base-ui-color-dark);
+        }
+
+        /*
+            NAVBAR - DERIVED DIMENSIONS
+
+            These values remain CSS custom properties so CSS consumers can
+            override individual dimensions without recompiling Elementary.
+        */
+
+        --navbar-link-line-height: calc(var(--navbar-spacing-unit) * 1.5);
+
+        --navbar-link-padding: calc(var(--navbar-spacing-unit) / 2);
+
+        --navbar-navlist-padding: var(--navbar-spacing-unit);
+
+
+        /*
+            BANNER - NAVBAR - COLLAPSIBLE
+        */
+
+        --navbar-collapsible-panel-shadow: #{cfg.get("navbar_collapsible", "panel-shadow")};
+
+        --navbar-collapsible-toggle-size: calc(var(--navbar-spacing-unit) * 2);
+
+        --navbar-collapsible-toggle-margin: var(--navbar-link-padding);
+
+        --navbar-collapsible-panel-offset: calc(var(--navbar-spacing-unit) * 1.5);
+
 
         /*
             MAIN
@@ -107,6 +213,25 @@
             --sidebar-spacing: #{cfg.get("sidebar", "spacing")};
         } @else {
             --sidebar-spacing: var(--sz-m);
+        }
+
+
+        /*
+            FOOTER
+        */
+
+        @if cfg.overridden("footer", "background-color") {
+            --footer-background-color: #{cfg.get("footer", "background-color")};
+        } @else {
+            --footer-background-color: var(--base-ui-color);
+        }
+
+        --footer-font-size: #{cfg.get("footer", "font-size")};
+
+        @if cfg.overridden("footer", "spacing") {
+            --footer-spacing: #{cfg.get("footer", "spacing")};
+        } @else {
+            --footer-spacing: var(--sz-s);
         }
 
 

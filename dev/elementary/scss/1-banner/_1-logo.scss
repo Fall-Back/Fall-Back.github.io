@@ -1,54 +1,86 @@
 /*-------------------------------------------------------------------------------------------------|
 
-    LOGO
+    BANNER - LOGO
     ============================================================================================
+
+    Styles the site logo within Elementary's page banner.
+
+    Uses StartCSS's spacing, automatic text contrast and outline
+    shadow tokens.
+
+    The logo background can be configured independently through
+    Elementary's public CSS tokens.
 
 |-------------------------------------------------------------------------------------------------*/
 
-#{$es__page_banner__logo} {
-    --name: logo;
-
-    display: inline-block;
-    &  > a[href] {
-        display: inline-block;
-        font-size: 2.5em;
-        line-height: 1;
-
-        /*margin: 0 $s__sz-m $s__sz-xs 0;
-
-        padding: $s__sz-s $s__sz-s $s__sz-xs $s__sz-s;*/
-        padding: $s__sz-xxs;
-        margin: $s__sz-s;
-
-        border: 0;
+@use "../00-3-selectors" as selectors;
 
 
-        //background-color: transparent;
-        //--background-color: #fff;
-        --background-color: var(--logo-color, var(--base-ui-color));
-        @include s__theme(var(--logo-color--text, var(--base-ui-color--text)));
+@mixin emit() {
 
-        & > * {
-            margin: 0;
-            padding: 0;
-        }
+    @if selectors.$logo-selector != false {
 
-        & > svg {
-            fill: none;
-            stroke: oklch(from var(--background-color) var(--l) 0 h/0.9)
+        #{selectors.$logo-selector} {
+            --name: logo;
+
+            display: inline-block;
+
+            & > a[href] {
+                display: inline-flex;
+                align-items: center;
+                gap: var(--logo-inline-spacing);
+
+                font-size: 2.5em;
+                line-height: 1;
+
+                text-decoration: none;
+
+                padding: var(--logo-padding);
+                margin: var(--sz-s);
+
+                border: 0;
+                border-radius: var(--logo-border-radius);
+
+                --background-color: var(--logo-background-color);
+                background-color: var(--background-color);
+
+                /*
+                    Remove spacing from the logo's contents.
+                */
+
+                & > * {
+                    margin: 0;
+                    padding: 0;
+                }
+
+                /*
+                    SVG logos inherit the link's automatically
+                    calculated foreground colour.
+                */
+
+                & > svg {
+                    fill: none;
+                    stroke: currentColor;
+                }
+
+                /*
+                    INTERACTION STATES
+
+                    Reuse StartCSS's existing outline-shadow token
+                    rather than introducing an Elementary-specific
+                    highlight mechanism.
+                */
+
+                &:hover,
+                &:active,
+                &:focus {
+                    text-decoration: none;
+
+                    border: 0;
+
+                    box-shadow: var(--outline-shadow);
+                }
+            }
         }
     }
-}
-
-#{$es__page_banner__logo} > a[href]:hover,
-#{$es__page_banner__logo} > a[href]:active,
-#{$es__page_banner__logo} > a[href]:focus {
-    border: 0;
-
-    @include e__ojbect_highlight();
-
-    //color: $s__anchor-text-color;
-    //background-color: transparent;
-    --background-color: var(--logo-color, var(--base-ui-color));
-    @include s__theme(var(--logo-color--text, var(--base-ui-color--text)));
 }

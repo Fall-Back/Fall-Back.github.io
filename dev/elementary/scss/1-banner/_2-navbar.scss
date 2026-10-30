@@ -1,123 +1,154 @@
 /*-------------------------------------------------------------------------------------------------|
 
-    NAVBAR
+    BANNER - NAVBAR
     ============================================================================================
+
+    Styles Elementary's primary navigation.
+
+    Supports both permanently visible navigation links and navigation
+    presented through the optional COLLAPSIBLE module.
+
+    Layout and visual properties are controlled by Elementary's public
+    CSS tokens, with defaults derived from StartCSS.
+
+    The COLLAPSIBLE module handles the details/summary interaction
+    and expanded navigation panel separately.
 
 |-------------------------------------------------------------------------------------------------*/
 
-#{$es__page_banner__navbar} {
-    --name: navbar;
-
-    position: relative;
-    z-index: 10;
-
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: end;
-
-    max-width: 100%;
-
-    margin: 0;
-    padding: 0;
-    background-color: transparent;
-
-}
+@use "../00-3-selectors" as selectors;
 
 
-#{$es__page_banner__navbar} > * {
-    flex: 1 1 auto;
-}
-/*
-#{$es__page_banner__navbar}   p[role="list"] {
-    flex: 1 1 auto;
-}
-*/
-@if $e__nav-bar__link--spacing == false {
-    #{$es__page_banner__navbar}   p[role="list"],
-    #{$es__page_banner__navbar}   p[role="list"]   span[role="listitem"] {
-        margin-left: 0;
+@mixin emit() {
+
+    @if selectors.$navbar-selector != false {
+
+        #{selectors.$navbar-selector} {
+            --name: navbar;
+
+            position: relative;
+            z-index: 10;
+
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: end;
+
+            max-width: 100%;
+
+            margin: 0;
+            padding: 0;
+
+            --background-color: var(--navbar-background-color);
+            background-color: var(--background-color);
+
+
+            /*
+                NAVBAR CHILDREN
+            */
+
+            > * {
+                flex: 1 1 auto;
+            }
+
+
+            /*
+                LINKS AND SUMMARY
+
+                Share the same basic presentation and sizing.
+                The COLLAPSIBLE module adds toggle-specific styling
+                to summary separately.
+            */
+
+            a[href],
+            summary {
+                display: inline-block;
+
+                margin: 0;
+
+                padding-block: 0;
+                padding-inline: var(--navbar-link-padding);
+
+                border: 0;
+                border-radius: var(--navbar-link-border-radius);
+
+                box-shadow: none;
+
+                line-height: var(--navbar-link-line-height);
+
+                text-decoration: none;
+            }
+
+
+            /*
+                NAVIGATION LINKS
+            */
+
+            a[href] {
+                --background-color: var(--navbar-link-background-color);
+                background-color: var(--background-color);
+
+                /*
+                    CURRENT PAGE
+                */
+
+                &[aria-current] {
+                    --background-color: var(--navbar-link-background-color--current);
+                    background-color: var(--background-color);
+                }
+
+                /*
+                    HOVER AND ACTIVE
+                */
+
+                &:hover,
+                &:active {
+                    --background-color: var(--navbar-link-background-color--alt);
+                    background-color: var(--background-color);
+                    text-decoration: none;
+                }
+            }
+
+
+            /*
+                KEYBOARD FOCUS
+
+                Reuse StartCSS's existing outline shadow.
+                Keep the original restriction to links within
+                the navigation list.
+            */
+
+            p[role="list"] a[href]:focus {
+                box-shadow: var(--outline-shadow);
+            }
+
+            /*
+                NAVLIST
+
+                The navigation list is styled independently of its containing
+                wrapper, so it works both with and without the optional
+                COLLAPSIBLE mechanism.
+
+                The wrapper div is retained in both HTML conventions.
+            */
+
+            p[role="list"] {
+                display: flex;
+                flex-wrap: wrap;
+
+                gap: var(--navbar-link-padding);
+
+                margin: 0;
+                padding: var(--navbar-link-padding);
+
+                --background-color: var(--navbar-navlist-background-color);
+                background-color: var(--background-color);
+
+                & > span[role="listitem"] {
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+        }
     }
 }
-
-
-#{$es__page_banner__navbar}   a[href],
-#{$es__page_banner__navbar}   summary {
-    display: inline-block;
-
-    margin: 0;
-
-    padding-top: 0;
-    padding-right: $e__nav-bar--spacing * 2;
-    padding-bottom: 0;
-    padding-left: $e__nav-bar--spacing * 2;
-
-    border: 0;
-    border-radius: $e__nav-bar__link--border-radius;
-
-    box-shadow: none;
-
-    line-height: $e__nav-bar--height;
-
-    text-decoration: none;
-}
-
-
-#{$es__page_banner__navbar}    a[href] {
-    //color: $e__nav-bar__link--color;
-    //background-color: $e__nav-bar__link--background-color;
-
-    --background-color: var(--navbar-color, var(--base-ui-color));
-    @include s__theme(var(--navbar-color--text, var(--base-ui-color--text)));
-}
-
-#{$es__page_banner__navbar}    a[href][aria-current] {
-    //color: $e__nav-bar__link--color--alt;
-    //background-color: $e__nav-bar__link--background-color--alt2;
-    --background-color: var(--navbar-color-darker, var(--base-ui-color-darker));
-    @include s__theme(var(--navbar-color-darker--text, var(--base-ui-color-darker--text)));
-}
-
-#{$es__page_banner__navbar}    a[href]:hover,
-#{$es__page_banner__navbar}    a[href]:active {
-    border: 0;
-
-    //color: $e__nav-bar__link--color--alt;
-    //background-color: $e__nav-bar__link--background-color--alt;
-    --background-color: var(--navbar-color-lighter, var(--base-ui-color-lighter));
-    @include s__theme(var(--navbar-color-lighter--text, var(--base-ui-color-lighter--text)));
-}
-
-#{$es__page_banner__navbar}   p[role="list"] a[href]:focus {
-    box-shadow: 0 0 0 $s__sz-xs rgba(0,0,0,.3);
-}
-
-
-
-
-/*
-p[role="list"] a[href][aria-current],
-#{$es__page_banner__navbar} > details > summary {
-    color: $e__nav-bar__link--color--alt;
-    background-color: $e__nav-bar__link--background-color--alt2;
-}
-
-
-p[role="list"] a[href]:hover,
-p[role="list"] a[href]:active,
-#{$es__page_banner__navbar} > details > summary:hover,
-#{$es__page_banner__navbar} > details > summary:active {
-    border: 0;
-
-    color: $e__nav-bar__link--color--alt;
-    background-color: $e__nav-bar__link--background-color--alt;
-}
-
-
-p[role="list"] a[href]:focus,
-#{$es__page_banner__navbar} > details > summary:focus {
-    box-shadow: 0 0 0 $s__sz-xs rgba(0,0,0,.3);
-}
-
-
-*/

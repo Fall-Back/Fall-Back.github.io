@@ -21,6 +21,10 @@
 @use "../start-css/scss/start" as start;
 
 
+@use "scss/00-1-config" as elementary-config with (
+    $elementary-overrides: project.$elementary-overrides
+);
+
 @use "scss/00-3-selectors" as selectors with (
     $elementary-selector-extensions: (
         "component-card": ".my-card",

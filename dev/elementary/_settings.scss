@@ -15,5 +15,17 @@ $startcss-overrides: (
 
     "tokens": (
         "base-ui-color": #79260D
+    ),
+    "ui": (
+        "outline-shadow": (0 0 0 var(--sz-xxs) rgba(255, 255, 255, 0.4), 0 0 0 var(--sz-xs) rgba(0, 0, 0, 0.2))
     )
+
+);
+
+$elementary-overrides: (
+
+    "navbar": (
+        "link-border-radius": var(--sz-xs)
+    )
+
 );

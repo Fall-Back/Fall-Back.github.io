@@ -14,161 +14,18 @@
     <body>
         <hidden elements like svg and css-only message>
         <header>
+        ?<aside>
         <main>
-        ?<aside> [1]
+        ?<aside>
         <footer>
-        ?<script> [1]
+        ?<script>
     </body>
     </html>
 
-    NOTES
-    -----
-
-    1.  These elements are optional, and there could be more than one <script> element, but the
-        MAIN POSITION SELECTOR (below) needs to be altered via the $main_position_selector variable
-        so that it takes into account the number of elements invoked.
-        Note that the way this works accounts for there *sometimes* being an aside present or not
-        (so if it's not there the selector matches the main element and makes it span both columns).
-
-
 |-------------------------------------------------------------------------------------------------*/
-/*
-@import '_00-1-config.scss';
-@import '_00-2-mixins.scss';
-@import '_00-3-selectors.scss';
-*/
-
-//@mixin emit() {
-//    /*
-//        Sticky Footer needs this
-//    */
-//    html,
-//    body {
-//        height: 100%;
-//    }
-//
-//    /*
-//        Note we still need the flexbox for the sticky footer in the event of no Grid support or
-//        narrower viewports where the Grid isn't applied but the content is still small enough to
-//        need the sticky footer behavior.
-//    */
-//    body {
-//        display: flex;
-//        flex-direction: column;
-//
-//        //max-width: $e__body_max-width;
-//
-//        padding: 0;
-//    }
-//
-//    body > * {
-//        flex: 0 0 auto;
-//    }
-//
-//
-//    /* Grid */
-//
-//    @supports(display:grid) {
-//        @media only screen and (min-width:50em) {
-//
-//            body {
-//                display: grid;
-//                align-items: stretch;
-//
-//                width: auto;
-//
-//                height: auto;
-//                min-height: 100%;
-//
-//                grid-template-columns: $e__main-sidebar-balance;
-//                //grid-template-rows: max-content auto max-content;
-//                grid-template-rows: auto auto minmax(auto, 1fr) auto;
-//            }
-//
-//            #{$es__page_banner},
-//            #{$es__page_footer} {
-//                padding: $s__sz-s;
-//
-//                grid-column: 1 / -1;
-//            }
-//
-//            #{$es__page_banner} {
-//                grid-row: 1;
-//            }
-//
-//
-//
-//            #{$es__page_main} {
-//                grid-column: 1;
-//
-//                grid-row: 2 / -1; // < added
-//
-//                max-width: 100%;
-//            }
-//
-//            /*
-//                If there's no asides at all, we want the main to span both rows. Note this is the
-//                only way I can think of doing this, but it's fragile - it will break if elements at
-//                this level get added or removed. (note :has() would be better when support is good
-//                enough)
-//                #{$es__page_main_after_banner}:has(+ :not(aside)) {
-//            */
-//            #{$es__page_main_after_banner}:nth-last-child(#{$e__main-position}) {
-//                grid-column: 1 / -1;
-//            }
-//
-//
-//            #{$es__page_sidebar} {
-//                grid-column: 2;
-//                grid-row: 2;
-//            }
-//
-//            /*
-//                If there's no 'bottom' aside, we want the first one span 2 columns. Note this is the
-//                only way I can think of doing this, but it's fragile - it will break if elements at
-//                this level get added or removed.
-//            */
-//            #{$es__page_sidebar}:nth-last-child(#{$e__main-position + 1}) {
-//                grid-row: 2 / -1;
-//            }
-//
-//            #{$es__page_sidebar_after_main} {
-//                grid-column: 2;
-//                grid-row: 3;
-//            }
-//
-//
-//            /*
-//                MAIN POSITION SELECTOR
-//
-//                If there's no aside (sidebar) then main has to span both columns:
-//                Note this is fragile and depends on following the Elementary pattern absolutely.
-//                What it says is that if main is the X from last element, it spans all columns.
-//                If there are more elements after the `main` element (as in, there's the extra
-//                `aside`), then the selector won't match. Change this in local SCSS and be wary of
-//                adding or removing elements via JS.
-//
-//            */
-//            /*#{$es__page_main}:nth-last-child(#{$e__main-position}) {
-//                grid-column: 1 / -1;
-//            }*/
-//
-//            #{$es__page_footer} {
-//                grid-row: -1;
-//            }
-//
-//        }
-//    }
-//}
 
 /*------------------------------------------------------------------------------------------------*/
 
-/*
-    TEMPORARY ELEMENTARY ARCHITECTURE TEST
-
-    The original layout implementation is preserved above while
-    Elementary's Sass module and configuration architecture is migrated.
-*/
 
 @use "start-mixins" as start-mixins;
 
@@ -176,12 +33,19 @@
 @use "00-3-selectors" as selectors;
 @use "00-4-tokens" as tokens;
 
+@use "1-banner" as banner;
+@use "1-banner/1-logo" as logo;
+@use "1-banner/2-navbar" as navbar;
+@use "1-banner/3-collapsible" as collapsible;
+
 @use "2-main" as main;
 @use "2-main/1-header" as main-header;
 @use "2-main/3-content" as main-content;
 @use "2-main/3-content-listing" as main-listing;
 
 @use "3-sidebar" as sidebar;
+
+@use "4-footer" as footer;
 
 @use "5-components/card" as card;
 @use "5-components/cta" as cta;
@@ -194,13 +58,17 @@
     PAGE LAYOUT
     ============================================================================================
 
-    Establishes the page-level layout required for the sticky footer.
+    Establishes the page-level layout and ensures the body occupies
+    at least the available viewport height.
 
-    The page container fills at least the available viewport height,
-    while MAIN's flex properties (defined in _2-main.scss) allow it
-    to expand and push the footer towards the bottom of the viewport.
+    At the configured breakpoint, CSS Grid arranges MAIN and up to
+    two optional sidebars into a two-column layout.
 
-    The responsive Grid layout will be added here separately.
+    Below the breakpoint, normal document flow preserves the HTML
+    reading order.
+
+    The page layout controls positioning; individual modules control
+    the presentation of their respective page regions.
 
 |-------------------------------------------------------------------------------------------------*/
 
@@ -211,18 +79,124 @@
     */
 
     #{selectors.$es_scope} body {
-        display: flex;
-        flex-direction: column;
-
         min-height: 100vh;
         min-height: 100dvh;
+        padding: 0;
     }
 
+
+    /*
+        WIDE-SCREEN PAGE LAYOUT
+        ============================================================================================
+
+        Two-column Grid layout with optional sidebars.
+
+        MAIN occupies the primary column. Sidebars occupy the secondary
+        column, with the first above the second.
+
+        When no sidebars exist, MAIN spans both columns.
+        When only one sidebar exists, it fills the sidebar column.
+
+        Uses :has() to detect sidebar presence rather than relying on
+        the number of trailing siblings.
+    */
+
+    @media only screen and (min-width: cfg.get("base", "layout-breakpoint")) {
+
+        #{selectors.$es_scope} body {
+            display: grid;
+            align-items: stretch;
+
+            width: auto;
+            height: auto;
+
+            grid-template-columns:
+                var(--page-layout-main-balance)
+                var(--page-layout-sidebar-balance);
+
+            grid-template-rows:
+                auto
+                auto
+                minmax(auto, 1fr)
+                auto;
+        }
+
+        /*
+            BANNER AND FOOTER
+
+            Both span the full Grid width.
+        */
+
+        #{selectors.$banner-selector},
+        #{selectors.$footer-selector} {
+            grid-column: 1 / -1;
+        }
+
+        #{selectors.$banner-selector} {
+            grid-row: 1;
+        }
+
+        #{selectors.$footer-selector} {
+            grid-row: -1;
+        }
+
+
+        /*
+            MAIN
+
+            MAIN occupies the first column and spans the two content
+            rows alongside the sidebars.
+        */
+
+        #{selectors.$main-selector} {
+            grid-column: 1;
+            grid-row: 2 / 4;
+
+            max-width: 100%;
+        }
+
+
+        /*
+            SIDEBARS
+
+            The first sidebar precedes MAIN in the document.
+            The second sidebar follows MAIN.
+        */
+
+        #{selectors.$sidebar-selector} {
+            grid-column: 2;
+            grid-row: 2;
+        }
+
+        #{selectors.$sidebar-after-main-selector} {
+            grid-column: 2;
+            grid-row: 3;
+        }
+
+
+        /*
+            OPTIONAL SIDEBAR HANDLING
+
+            No sidebars:
+                MAIN spans both columns.
+
+            Only one sidebar:
+                It spans the available content rows.
+        */
+
+        #{selectors.$es_scope} body:not(:has(> aside)) {
+            & > main {
+                grid-column: 1 / -1;
+            }
+        }
+
+        #{selectors.$es_scope} body:has(> aside):not(:has(> aside ~ aside)) {
+            & > aside {
+                grid-row: 2 / 4;
+            }
+        }
+    }
 }
-
-
-
-
 
 
 
@@ -236,6 +210,12 @@
         // Page layout
         @include emit-page-layout();
 
+        // Banner
+        @include banner.emit();
+        @include logo.emit();
+        @include navbar.emit();
+        @include collapsible.emit();
+
         // Main
         @include main.emit();
         @include main-header.emit();
@@ -245,6 +225,9 @@
         // Sidebar
         @include sidebar.emit();
 
+        // Footer
+        @include footer.emit();
+
         // Components:
         @include card.emit();
         @include cta.emit();
@@ -252,3 +235,11 @@
     }
 
 }
+
+/*
+
+@import '1-banner/_1-logo.scss';
+@import '1-banner/_2-navbar.scss';
+@import '1-banner/_3-collapsible.scss';
+
+*/

@@ -138,6 +138,7 @@ $elementary-selector-extensions: () !default;
 
 $es_scope: "html[data-elementary]" !default;
 
+
 /*-------------------------------------------------------------------------------------------------|
 
     PAGE
@@ -230,6 +231,26 @@ $es__page_sidebar:            "#{$es_scope} body > aside" !default;
 $es__page_sidebar_after_main: "#{$es_scope} body > main + aside" !default;
 $es__page_footer:             "#{$es_scope} body > footer" !default;
 
+/*
+    RESOLVED PAGE BANNER SELECTOR
+*/
+$banner-selector: extend(
+    "page-banner",
+    $es__page_banner
+);
+
+
+/*
+    RESOLVED BANNER INNER SELECTOR
+
+    Supports replacement, extension and disabling while preserving
+    Elementary's default banner structure.
+*/
+$banner-inner-selector: extend(
+    "page-banner-inner",
+    $es__page_banner__inner
+);
+
 
 /*
     RESOLVED MAIN SELECTOR
@@ -259,6 +280,13 @@ $sidebar-after-main-selector: extend(
     $es__page_sidebar_after_main
 );
 
+/*
+    RESOLVED PAGE FOOTER SELECTOR
+*/
+$footer-selector: extend(
+    "page-footer",
+    $es__page_footer
+);
 /*-------------------------------------------------------------------------------------------------|
 
     BANNER - LOGO
@@ -277,6 +305,17 @@ $sidebar-after-main-selector: extend(
 |-------------------------------------------------------------------------------------------------*/
 
 $es__page_banner__logo: "#{$es__page_banner__inner}   nav   b" !default;
+
+/*
+    RESOLVED BANNER LOGO SELECTOR
+
+    Supports replacement, extension and disabling through
+    Elementary's selector configuration.
+*/
+$logo-selector: extend(
+    "page-banner-logo",
+    $es__page_banner__logo
+);
 
 
 /*-------------------------------------------------------------------------------------------------|
@@ -304,6 +343,17 @@ $es__page_banner__logo: "#{$es__page_banner__inner}   nav   b" !default;
 |-------------------------------------------------------------------------------------------------*/
 
 $es__page_banner__navbar: "#{$es__page_banner__inner}   nav" !default;
+
+/*
+    RESOLVED BANNER NAVBAR SELECTOR
+
+    Supports replacement, extension and disabling through
+    Elementary's selector configuration.
+*/
+$navbar-selector: extend(
+    "page-banner-navbar",
+    $es__page_banner__navbar
+);
 
 
 /*------------------------------------------------------------------------------------------------*/
@@ -411,6 +461,18 @@ $listing-selector: extend(
 
 |-------------------------------------------------------------------------------------------------*/
 
+/*
+    COMPONENT SCOPE
+
+    Reusable Elementary components are restricted to the main content
+    region by default.
+
+    This prevents component conventions from accidentally matching
+    similar HTML structures in the page banner or footer.
+
+    Advanced Sass consumers may configure this scope independently.
+*/
+$es_component_scope: $es__page_main !default;
 
 /*-------------------------------------------------------------------------------------------------|
 
@@ -427,7 +489,7 @@ $listing-selector: extend(
 
 |-------------------------------------------------------------------------------------------------*/
 
-$es__component__card: "#{$es_scope} article > div:only-child" !default;
+$es__component__card: "#{$es_component_scope} article > div:only-child" !default;
 
 /*
     RESOLVED CARD SELECTORS
@@ -453,7 +515,7 @@ $card-selector: extend(
 
 |-------------------------------------------------------------------------------------------------*/
 
-$es__component__cta: "#{$es_scope} b > a[href]:only-child" !default;
+$es__component__cta: "#{$es_component_scope} b > a[href]:only-child" !default;
 
 /*
     RESOLVED  CTA SELECTORS
@@ -560,8 +622,8 @@ $hero-2-selector: extend(
 
 |-------------------------------------------------------------------------------------------------*/
 
-$es__component__images--border: "#{$es_scope} b > img:only-child" !default;
-$es__component__images--inset:  "#{$es_scope} b > i:only-child > img:only-child" !default;
+$es__component__images--border: "#{$es_component_scope} b > img:only-child" !default;
+$es__component__images--inset:  "#{$es_component_scope} b > i:only-child > img:only-child" !default;
 
 
 /*-------------------------------------------------------------------------------------------------|
@@ -581,5 +643,5 @@ $es__component__images--inset:  "#{$es_scope} b > i:only-child > img:only-child"
 
 |-------------------------------------------------------------------------------------------------*/
 
-$es__component__info-overlay: "#{$es_scope} header figure > figcaption > details" !default;
+$es__component__info-overlay: "#{$es_component_scope} header figure > figcaption > details" !default;
 

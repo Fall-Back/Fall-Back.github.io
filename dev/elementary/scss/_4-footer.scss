@@ -3,34 +3,42 @@
     FOOTER
     ============================================================================================
 
+    Styles Elementary's page footer.
+
+    The footer's positioning within the page layout is handled by
+    _0-elementary.scss.
+
+    Visual properties are controlled by Elementary's public CSS
+    tokens, with defaults derived from StartCSS where appropriate.
+
 |-------------------------------------------------------------------------------------------------*/
 
-#{$es__page_footer} {
-    margin: 0;
+@use "00-3-selectors" as selectors;
 
-    padding: $s__sz-s;
 
-    font-size: 0.875em;
+@mixin emit() {
 
-    text-align: center;
+    @if selectors.$footer-selector != false {
 
-    --background-color: var(--footer-background-color, var(--base-ui-color));
-    @include s__theme(var(--footer-color--text, var(--base-ui-color--text)));
+        #{selectors.$footer-selector} {
+            margin: 0;
+
+            padding: var(--footer-spacing);
+
+            font-size: var(--footer-font-size);
+
+            text-align: center;
+
+            --background-color: var(--footer-background-color);
+            background-color: var(--background-color);
+
+            /*
+                Remove the bottom margin from direct children.
+            */
+
+            > * {
+                margin-bottom: 0;
+            }
+        }
+    }
 }
-
-#{$es__page_footer} > * {
-    margin-bottom: 0;
-}
-
-//#{$es__page_footer} a[href] {
-//    color: $e__footer--text-color;
-//
-//    &:hover,
-//    &:active {
-//        color: lighten($e__footer--text-color, 20%);
-//    }
-//
-//    &:focus {
-//        box-shadow: 0 0 0 $s__anchor-focus-shadow-width rgba(255,255,255, 0.5);
-//    }
-//}

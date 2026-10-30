@@ -41,7 +41,7 @@
         #{selectors.$listing-selector} {
             list-style-type: none;
 
-            > * {
+            & > * {
                 min-width: var(--listing-item-min-width);
 
                 margin: 0;
@@ -52,7 +52,7 @@
                 --background-color: var(--listing-item-background-color);
                 background-color: var(--background-color);
 
-                > * {
+                & > * {
                     display: block;
                     height: 100%;
                     margin: 0;

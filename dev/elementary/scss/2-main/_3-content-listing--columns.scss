@@ -39,7 +39,7 @@
                 issues in multicolumn layouts.
             */
 
-            > * {
+            & > * {
                 margin: 0;
 
                 transform: translateZ(0);
@@ -54,7 +54,7 @@
                     item's contents.
                 */
 
-                > * {
+                & > * {
                     padding-block: calc(var(--listing-gutter) / 2);
                 }
             }

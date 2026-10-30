@@ -22,9 +22,7 @@
         #{selectors.$main-selector} {
 
             /*
-                1. Expand main to fill space - part of sticky footer.
-
-                2. UPDATE: this may no longer be necessary but keep this note and the CSS it corresponds to for
+                1. UPDATE: this may no longer be necessary but keep this note and the CSS it corresponds to for
                    now pending further testing after the migration is complete.
 
                    There's a weird situation on /page-layout-article/ where there's <pre> in a <div>
@@ -37,19 +35,12 @@
             */
 
             /* [1] */
-            flex: 1 0 auto;
-
-            min-height: 0;
-
-            margin: 0;
-
-            padding: 0;
-
-
-            /* [2] */
             //max-width: $e__main-sidebar-max-width;
             //width: calc((#{$e__main-width-breakpoint} - 100%) * 9999);
             //min-width: 100%;
+
+            margin: 0;
+            padding: 0;
 
             --background-color: var(--main-background-color);
             background-color: var(--background-color);
