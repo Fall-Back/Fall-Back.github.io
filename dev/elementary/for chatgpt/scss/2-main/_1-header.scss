@@ -1,0 +1,111 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    MAIN HEADER
+    ============================================================================================
+
+    Styles the main content header using Elementary's configurable
+    page-structure selector.
+
+    The spacing token is shared with the HERO component, allowing a HERO
+    within this header to extend to its edges without disrupting the
+    surrounding layout.
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "../00-3-selectors" as selectors;
+@use "start-mixins" as mixins;
+
+
+@mixin emit() {
+
+    @if selectors.$main-header-selector != false {
+
+        #{selectors.$main-header-selector} {
+            --name: main-header;
+
+            margin: 0;
+
+            padding: var(--main-header-spacing);
+
+            /*
+                Arrange header contents vertically.
+
+                A HERO figure, when present, appears visually before
+                the heading.
+            */
+
+            display: flex;
+            flex-direction: column;
+
+            & > figure {
+                order: -1;
+            }
+
+            & > h1 {
+                margin-top: 0;
+                margin-bottom: 0;
+
+                padding-inline: var(--main-content-spacing);
+
+                width: 100%;
+                max-width: var(--main-content-measure);
+
+                margin-inline: auto;
+            }
+
+
+            /*
+                CONTENT SPACING
+
+                Apply horizontal padding to elements following the
+                main header.
+            */
+
+            & ~ * {
+                padding-inline: var(--main-content-spacing);
+            }
+
+
+            /*
+                FULL-WIDTH CONTENT
+
+                A div following the main header breaks out of the
+                normal content measure, allowing full-width media
+                and other presentation patterns.
+            */
+
+            & ~ div {
+                max-width: none;
+                padding: 0;
+
+                &:not(:last-child) {
+                    margin-bottom: var(--main-content-spacing);
+                }
+            }
+
+
+            /*
+                FIGURES
+
+                Figures may appear directly within the content wrapper
+                or inside a div used for full-width content.
+
+                StartCSS's bordered mixin compensates for the border
+                width when calculating padding, helping preserve
+                vertical rhythm.
+            */
+
+            & ~ figure,
+            & ~ div > figure {
+                --background-color: var(--main-content-figure-background-color);
+                background-color: var(--background-color);
+
+                clear: both;
+
+                @include mixins.s__bordered(
+                    var(--main-content-spacing)
+                );
+            }
+        }
+    }
+}

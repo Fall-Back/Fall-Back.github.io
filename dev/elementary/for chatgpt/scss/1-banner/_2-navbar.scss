@@ -1,0 +1,154 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    BANNER - NAVBAR
+    ============================================================================================
+
+    Styles Elementary's primary navigation.
+
+    Supports both permanently visible navigation links and navigation
+    presented through the optional COLLAPSIBLE module.
+
+    Layout and visual properties are controlled by Elementary's public
+    CSS tokens, with defaults derived from StartCSS.
+
+    The COLLAPSIBLE module handles the details/summary interaction
+    and expanded navigation panel separately.
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "../00-3-selectors" as selectors;
+
+
+@mixin emit() {
+
+    @if selectors.$navbar-selector != false {
+
+        #{selectors.$navbar-selector} {
+            --name: navbar;
+
+            position: relative;
+            z-index: 10;
+
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: end;
+
+            max-width: 100%;
+
+            margin: 0;
+            padding: 0;
+
+            --background-color: var(--navbar-background-color);
+            background-color: var(--background-color);
+
+
+            /*
+                NAVBAR CHILDREN
+            */
+
+            & > * {
+                flex: 1 1 auto;
+            }
+
+
+            /*
+                LINKS AND SUMMARY
+
+                Share the same basic presentation and sizing.
+                The COLLAPSIBLE module adds toggle-specific styling
+                to summary separately.
+            */
+
+            a[href],
+            summary {
+                display: inline-block;
+
+                margin: 0;
+
+                padding-block: 0;
+                padding-inline: var(--navbar-link-padding);
+
+                border: 0;
+                border-radius: var(--navbar-link-border-radius);
+
+                box-shadow: none;
+
+                line-height: var(--navbar-link-line-height);
+
+                text-decoration: none;
+            }
+
+
+            /*
+                NAVIGATION LINKS
+            */
+
+            a[href] {
+                --background-color: var(--navbar-link-background-color);
+                background-color: var(--background-color);
+
+                /*
+                    CURRENT PAGE
+                */
+
+                &[aria-current] {
+                    --background-color: var(--navbar-link-background-color--current);
+                    background-color: var(--background-color);
+                }
+
+                /*
+                    HOVER AND ACTIVE
+                */
+
+                &:hover,
+                &:active {
+                    --background-color: var(--navbar-link-background-color--alt);
+                    background-color: var(--background-color);
+                    text-decoration: none;
+                }
+            }
+
+
+            /*
+                KEYBOARD FOCUS
+
+                Reuse StartCSS's existing outline shadow.
+                Keep the original restriction to links within
+                the navigation list.
+            */
+
+            p[role="list"] a[href]:focus {
+                box-shadow: var(--outline-shadow);
+            }
+
+            /*
+                NAVLIST
+
+                The navigation list is styled independently of its containing
+                wrapper, so it works both with and without the optional
+                COLLAPSIBLE mechanism.
+
+                The wrapper div is retained in both HTML conventions.
+            */
+
+            p[role="list"] {
+                display: flex;
+                flex-wrap: wrap;
+
+                gap: var(--navbar-link-padding);
+
+                margin: 0;
+                padding: var(--navbar-link-padding);
+
+                --background-color: var(--navbar-navlist-background-color);
+                background-color: var(--background-color);
+
+                & > span[role="listitem"] {
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+        }
+    }
+}

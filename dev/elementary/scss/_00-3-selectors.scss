@@ -4,20 +4,36 @@
     ============================================================================================
 
     IMPORTANT: READ BEFORE MODIFYING
+    --------------------------------
 
-    This file defines the HTML conventions used to activate Elementary's
-    presentation patterns.
+    This file defines the HTML conventions used to activate Elementary's presentation patterns.
 
-    Each selector is accompanied by documentation explaining the expected
-    HTML structure and how the pattern is intended to work.
+    Each selector is accompanied by documentation explaining the expected HTML structure and how the
+    pattern is intended to work.
 
-    The default selectors are designed to work together. Some selectors
-    depend on others, and changing one may affect multiple patterns.
+    The default selectors are designed to work together. Some selectors depend on others, and
+    changing one may affect multiple patterns.
+
+
+    SELECTOR ARCHITECTURE
+    --------------------
+
+    Page-structure selectors describe interconnected HTML regions. Their relationships are
+    intentional and must be considered when changing the underlying selectors.
+
+    Component selectors identify reusable presentation patterns. They are independently
+    configurable, although their default selectors may reference page-structure selectors for
+    scoping.
+
+    Internal descendant and sibling relationships remain in the implementation modules rather than
+    being individually configurable.
+
 
     CUSTOMISING SELECTORS — PROCEED WITH CAUTION
+    --------------------------------------------
 
-    You can replace Elementary's default selectors with your own conventions,
-    including class-based selectors.
+    You can replace Elementary's default selectors with your own conventions, including class-based
+    selectors.
 
     However, changing selectors may:
 
@@ -26,39 +42,38 @@
       - Break relationships between dependent selectors.
       - Prevent expected styles from being applied.
 
-    Only customise selectors when you understand the relevant HTML conventions
-    and their dependencies.
+    Only customise selectors when you understand the relevant HTML conventions and their
+    dependencies.
 
-    For visual customisation, use Elementary's configuration and CSS custom
-    properties instead. Changing selectors is not normally necessary.
+    For visual customisation, use Elementary's configuration and CSS custom properties instead.
+    Changing selectors is not normally necessary.
 
     ---
 
-    Elementary relies on context and relative DOM position. This is why it should only be
-    used for 'light' projects, where there isn't much variety and patterns can be closely adhered
-    to.
+    Elementary relies on context and relative DOM position. This is why it should only be used for
+    'lite' projects, where there isn't much variety and patterns can be closely adhered to.
 
     With that in mind, if the conventions are learned, there is some flexibility in the system,
-    particularly in regards to the extract DOM elements that are used, so long as any changes to
+    particularly in regards to the exact DOM elements that are used, so long as any changes to
     the selectors below are carefully considered so as not to introduce conflicts, changes to the
     elements used can work.
 
 
-    Conventions
+    CONVENTIONS
     -----------
 
     DIV
-        DIV's are semantically meaningless/neutral as far as AT is concerned, but since 'div' is
+        DIVs are semantically meaningless/neutral as far as AT is concerned, but since 'div' is
         short for DIVIDER it makes logical sense to the HTML author that it is a division of content
         and thus is appropriate for situations where content may need to be visually separated from
-        it's surroundings.
+        its surroundings.
 
-    Specificity
+    SPECIFICITY
     -----------
 
     Some of the selectors may look overly specific, but it's really important in such a fragile
     system to be as specific as possible; to really say exactly what we mean.
-    For example, on a Listing page when writing the selector we could could say:
+    For example, on a Listing page when writing the selector we could say:
     "Any `ul` that is a direct child of the inner wrapper should be a Gallery"
     This would be `div > ul`. However, we use `div > header ~ ul` because what we really mean to say
     is "Any `ul` AFTER the `header`", because if there was a list BEFORE the `header` for some
@@ -100,41 +115,6 @@
 @use "sass:map";
 @use "sass:selector";
 
-/*
-    OPTIONAL SELECTOR EXTENSIONS
-
-    Add extra selectors without replacing Elementary's default HTML
-    conventions. Keys identify patterns, not CSS properties.
-
-    Advanced users may still replace individual $es__... variables
-    through Sass module configuration.
-*/
-$elementary-selector-extensions: () !default;
-
-
-/*
-    Combine a configured selector with optional additional selectors.
-
-    Returns false when the base selector is disabled.
-*/
-@function extend($name, $base) {
-    @if $base == false {
-        @return false;
-    }
-
-    $extra: map.get($elementary-selector-extensions, $name);
-
-    @if $extra == null or $extra == false {
-        @return selector.parse($base);
-    }
-
-    @return selector.parse("#{$base}, #{$extra}");
-}
-
-
-
-//$es__css-only: "body > div:first-of-type" !default;
-//$es__css-only: "[data-css-only=\"true\"]" !default;
 
 $es_scope: "html[data-elementary]" !default;
 
@@ -204,8 +184,8 @@ $es_scope: "html[data-elementary]" !default;
         ```
 
     SIDEBAR (ASIDE)
-        Optional. They can be up to 2 - one above the main adn one below. Both ca be omitted on all
-        or only some pages and the layout should retain it's integrity. This means the DOM is quite
+        Optional. They can be up to 2 - one before main and one after. Both can be omitted on all or
+        only some pages and the layout should retain its integrity. This means the DOM is quite
         fragile and sensitive to change so be careful. More on that later.
 
         ```
@@ -223,70 +203,40 @@ $es_scope: "html[data-elementary]" !default;
 
 |-------------------------------------------------------------------------------------------------*/
 
+
+/*
+    PAGE - STRUCTURAL BUILDING BLOCKS
+    ============================================================================================
+
+    These selectors identify the fundamental elements participating
+    in Elementary's page layout.
+
+    Consumers may replace them with alternative element, class or
+    attribute selectors.
+
+    Each must be a single compound selector, without combinators
+    or comma-separated alternatives, because Elementary uses them
+    to construct parent/child and sibling relationships.
+
+    Examples:
+        main
+        .main
+        main.content
+        [data-region="main"]
+*/
+
+$es_main_element: "main" !default;
+$es_sidebar_element: "aside" !default;
+
+
 $es__page_banner:             "#{$es_scope} body > header" !default;
 $es__page_banner__inner:      "#{$es_scope} body > header > fieldset" !default;
-$es__page_main:               "#{$es_scope} body > main" !default;
-$es__page_main_after_banner:  "#{$es_scope} body > header + main" !default;
-$es__page_sidebar:            "#{$es_scope} body > aside" !default;
-$es__page_sidebar_after_main: "#{$es_scope} body > main + aside" !default;
+$es__page_main:               "#{$es_scope} body > #{$es_main_element}" !default;
+$es__page_sidebar:            "#{$es_scope} body > #{$es_sidebar_element}" !default;
+$es__page_sidebar_after_main: "#{$es_scope} body > #{$es_main_element} + #{$es_sidebar_element}" !default;
 $es__page_footer:             "#{$es_scope} body > footer" !default;
 
-/*
-    RESOLVED PAGE BANNER SELECTOR
-*/
-$banner-selector: extend(
-    "page-banner",
-    $es__page_banner
-);
 
-
-/*
-    RESOLVED BANNER INNER SELECTOR
-
-    Supports replacement, extension and disabling while preserving
-    Elementary's default banner structure.
-*/
-$banner-inner-selector: extend(
-    "page-banner-inner",
-    $es__page_banner__inner
-);
-
-
-/*
-    RESOLVED MAIN SELECTOR
-
-    Supports replacement, extension and disabling through Elementary's
-    selector configuration.
-
-    Other page-structure selectors may depend on MAIN, so their
-    relationships should be preserved when configuring selectors.
-*/
-$main-selector: extend(
-    "page-main",
-    $es__page_main
-);
-
-
-/*
-    RESOLVED SIDEBAR SELECTORS
-*/
-$sidebar-selector: extend(
-    "page-sidebar",
-    $es__page_sidebar
-);
-
-$sidebar-after-main-selector: extend(
-    "page-sidebar-after-main",
-    $es__page_sidebar_after_main
-);
-
-/*
-    RESOLVED PAGE FOOTER SELECTOR
-*/
-$footer-selector: extend(
-    "page-footer",
-    $es__page_footer
-);
 /*-------------------------------------------------------------------------------------------------|
 
     BANNER - LOGO
@@ -296,26 +246,17 @@ $footer-selector: extend(
 
     ```
         <header>
-            <b>
-                <a/>
-            </b>
+            <na>
+                <b>
+                    <a/>
+                </b>
+            </nav>
             ...
         </header>
     ```
 |-------------------------------------------------------------------------------------------------*/
 
 $es__page_banner__logo: "#{$es__page_banner__inner}   nav   b" !default;
-
-/*
-    RESOLVED BANNER LOGO SELECTOR
-
-    Supports replacement, extension and disabling through
-    Elementary's selector configuration.
-*/
-$logo-selector: extend(
-    "page-banner-logo",
-    $es__page_banner__logo
-);
 
 
 /*-------------------------------------------------------------------------------------------------|
@@ -343,17 +284,6 @@ $logo-selector: extend(
 |-------------------------------------------------------------------------------------------------*/
 
 $es__page_banner__navbar: "#{$es__page_banner__inner}   nav" !default;
-
-/*
-    RESOLVED BANNER NAVBAR SELECTOR
-
-    Supports replacement, extension and disabling through
-    Elementary's selector configuration.
-*/
-$navbar-selector: extend(
-    "page-banner-navbar",
-    $es__page_banner__navbar
-);
 
 
 /*------------------------------------------------------------------------------------------------*/
@@ -428,27 +358,9 @@ $navbar-selector: extend(
 |-------------------------------------------------------------------------------------------------*/
 
 $es__page_main__header: "#{$es__page_main} > * > header" !default;
-$main-header-selector: extend(
-    "page-main-header",
-    $es__page_main__header
-);
-
 $es__page_main__header--article: "#{$es__page_main} > article > header" !default;
-
 $es__page_main__header--listing: "#{$es__page_main} > div > header" !default;
 $es__page_main__header--listing__list: "#{$es__page_main__header--listing} ~ div[role=\"list\"]" !default;
-
-
-/*
-    RESOLVED LISTING SELECTOR
-
-    Supports replacement, extension and disabling through Elementary's
-    selector configuration.
-*/
-$listing-selector: extend(
-    "page-main-content-listing",
-    $es__page_main__header--listing__list
-);
 
 
 /*-------------------------------------------------------------------------------------------------|
@@ -456,19 +368,23 @@ $listing-selector: extend(
     COMPONENTS
     --------------------------------------------------------------------------------------------
 
-    Components are meant to be reusable in any context so extra care/steps have been taken with
-    the markup and selectors.
+    Components are reusable presentation patterns identified by HTML conventions.
+
+    Most components are scoped to MAIN by default. Some also support additional contexts, such as
+    SIDEBAR or BANNER.
+
+    Consumers may replace a component's selector, but the internal HTML relationships expected by
+    that component remain unchanged.
 
 |-------------------------------------------------------------------------------------------------*/
 
 /*
     COMPONENT SCOPE
 
-    Reusable Elementary components are restricted to the main content
-    region by default.
+    The default scope for ordinary reusable components is MAIN.
 
-    This prevents component conventions from accidentally matching
-    similar HTML structures in the page banner or footer.
+    Individual components may explicitly support additional contexts where their HTML conventions
+    require it (e.g. CARD in SIDEBAR, HERO and INFO OVERLAY in BANNER).
 
     Advanced Sass consumers may configure this scope independently.
 */
@@ -489,19 +405,7 @@ $es_component_scope: $es__page_main !default;
 
 |-------------------------------------------------------------------------------------------------*/
 
-$es__component__card: "#{$es_component_scope} article > div:only-child" !default;
-
-/*
-    RESOLVED CARD SELECTORS
-    ============================================================================================
-
-    CARD includes any optional selector extensions.
-*/
-
-$card-selector: extend(
-    "component-card",
-    $es__component__card
-);
+$es__component__card: "#{$es_component_scope} article > div:only-child, #{$es__page_sidebar} article > div:only-child" !default;
 
 
 /*-------------------------------------------------------------------------------------------------|
@@ -510,25 +414,13 @@ $card-selector: extend(
     --------------------------------------------------------------------------------------------
 
     ```
-    <b>\<a/></b>
+    <b><a/></b>
     ```
 
 |-------------------------------------------------------------------------------------------------*/
 
-$es__component__cta: "#{$es_component_scope} b > a[href]:only-child" !default;
+$es__component__cta: "#{$es_component_scope} b > a[href]:only-child, #{$es__page_sidebar} b > a[href]:only-child" !default;
 
-/*
-    RESOLVED  CTA SELECTORS
-    ============================================================================================
-
-    CTA follows the resolved CARD selector, so additional card contexts
-    automatically receive the CTA pattern.
-*/
-
-$cta-selector: extend(
-    "component-cta",
-    $es__component__cta
-);
 
 /*-------------------------------------------------------------------------------------------------|
 
@@ -536,7 +428,7 @@ $cta-selector: extend(
     --------------------------------------------------------------------------------------------
 
     Hero components can be in one of 2 positions depending on the semantics of the content.
-    They cna be in the page banner for landing or listing pages:
+    They can be in the page banner for landing or listing pages:
 
     ```
     <body>
@@ -552,7 +444,7 @@ $cta-selector: extend(
     </body>
     ```
 
-    ir they could be in the header of the main element for article content pages:
+    or they could be in the header of the main element for article content pages:
 
     ```
     <main>
@@ -571,20 +463,6 @@ $cta-selector: extend(
 
 $es__component__hero_1: "#{$es__page_banner__inner} > figure" !default;
 $es__component__hero_2: "#{$es__page_main__header} > figure" !default;
-
-/*
-    Resolve both HERO contexts independently.
-*/
-
-$hero-1-selector: extend(
-    "component-hero-1",
-    $es__component__hero_1
-);
-
-$hero-2-selector: extend(
-    "component-hero-2",
-    $es__component__hero_2
-);
 
 
 /*-------------------------------------------------------------------------------------------------|
@@ -606,7 +484,7 @@ $hero-2-selector: extend(
     COMPONENTS - IMAGES
     --------------------------------------------------------------------------------------------
 
-    This patter (ab)uses HTML semantics to provide images with <b> borders and <i> inset padding.
+    This pattern uses HTML semantics to provide images with <b> borders and <i> inset padding.
     This is fudge, but a justifiable one - those elements are intended to describe stylistic
     differences, which they do and there's no ambiguous styling visible to the users as we're
     applying them images. If images fail to loaded and the alt-text is visible, this styling
@@ -631,17 +509,26 @@ $es__component__images--inset:  "#{$es_component_scope} b > i:only-child > img:o
     COMPONENTS - INFO OVERLAY
     --------------------------------------------------------------------------------------------
 
+    INFO OVERLAY can appear in two contexts:
+
+    1. Within the page banner.
+    2. Within the main content area.
+
+    Both contexts share identical presentation rules and are combined
+    into a single configurable selector.
+
+    Te complete selector can be replaced or disabled through Sass module configuration..
+
     ```
     <header>
         <figure>
             <figcaption>
                 <details/>
-            <figcaption>
-        <figure>
+            </figcaption>
+        </figure>
     </header>
     ```
 
 |-------------------------------------------------------------------------------------------------*/
 
-$es__component__info-overlay: "#{$es_component_scope} header figure > figcaption > details" !default;
-
+$es__component__info-overlay: "#{$es__page_banner__inner} figure > figcaption > details, #{$es_component_scope} header figure > figcaption > details" !default;

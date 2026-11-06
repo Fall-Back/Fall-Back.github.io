@@ -1,0 +1,235 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    ELEMENTARY CONFIG
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+@use "start-config" as cfg;
+
+@use "sass:map";
+
+
+$elementary-defaults: (
+    /* BASE */
+    "base": (
+        "layout-breakpoint": 50em,
+    ),
+
+
+    /*
+        BANNER
+    */
+    "banner": (
+        "background-color": null,
+    ),
+
+    /*
+        BANNER - LOGO
+    */
+    "banner_logo": (
+        "background-color": null,
+        "border-radius": null,
+        "inline-spacing": null,
+        "padding": null,
+    ),
+
+
+    /*
+        BANNER - NAVBAR
+
+        The spacing unit controls the navbar's default dimensions.
+        Individual derived CSS tokens can also be overridden at runtime.
+    */
+    "navbar": (
+        "background-color": null,
+        "link-background-color": null,
+        "link-background-color--alt": null,
+        "link-background-color--current": null,
+        "link-border-radius": null,
+        "navlist-background-color": null,
+        "spacing-unit": null,
+    ),
+
+
+    /*
+        BANNER - NAVBAR - COLLAPSIBLE
+
+        Controls only the optional disclosure mechanism.
+        NAVLIST presentation remains the responsibility of NAVBAR.
+    */
+    "navbar_collapsible": (
+        "panel-shadow": 0 4px 2px -1px rgb(0 0 0 / 0.5),
+    ),
+
+
+    /* MAIN */
+    "main" : (
+        "background-color": null,
+        "main-balance": 5,
+        "sidebar-balance": 2,
+    ),
+
+
+    /* MAIN - HEADER */
+    "main_header": (
+        "spacing": null,
+    ),
+
+
+    /* MAIN - CONTENT */
+    "main_content": (
+        "figure-background-color": null,
+        "measure": 70rem,
+        "sidebar-width": 30%,
+        "spacing": null,
+        "toc-background-color": #eee,
+    ),
+
+
+    /*
+        MAIN - CONTENT - LISTING
+
+        display-type selects one layout implementation at compile time.
+        Only the selected implementation is included in the output.
+
+        All three layouts share the same CSS tokens for gutter spacing
+        and preferred item width.
+
+        null = use the default CSS token relationship.
+    */
+    "main_content_listing": (
+        "display-type": flexbox, // flexbox | grid | columns
+        "gutter": null,
+        "item--background-color": transparent,
+        "item--basis": 25rem,
+        "item--min-width": 0,
+    ),
+
+
+    /*
+        SIDEBAR
+    */
+    "sidebar": (
+        "background-color": null,
+        "background-color--alt": null,
+        "spacing": null,
+    ),
+
+
+    /*
+        FOOTER
+    */
+    "footer": (
+        "background-color": null,
+        "font-size": 0.875em,
+        "spacing": null,
+    ),
+
+
+    /*
+        COMPONENTS - CARD
+
+        null = use the CSS token cascade defined in _00-4-tokens.scss.
+        A Sass consumer may override any of these values.
+    */
+    "component_card": (
+        "background-color": null,
+        "border-color": null,
+        "border-radius": null,
+        "border-style": null,
+        "border-width": null,
+        "box-shadow": null,
+        "image-ratio": #{'2 / 1'},
+        "spacing": null,
+    ),
+
+    /*
+        COMPONENTS - CTA
+    */
+    "component_cta": (
+        "background-color": null,
+        "background-color--alt": null,
+        "border-color": null,
+        "border-radius": null,
+        "border-style": null,
+        "border-width": null,
+        "box-shadow": none,
+        "spacing": null,
+    ),
+
+    /*
+        COMPONENTS - HERO
+    */
+    "component_hero": (
+        "background-color": null,
+        "image-ratio": #{'3 / 1'},
+    ),
+
+
+    /*
+        COMPONENTS - IMAGES
+    */
+    "component_images": (
+        "background-color": null,
+        "border-color": null,
+        "border-style": null,
+        "border-width": null,
+        "inset": null,
+    ),
+
+
+    /*
+        COMPONENTS - INFO OVERLAY
+    */
+    "component_info_overlay": (
+        "background-color": rgb(0 0 0 / 0.7),
+        "spacing-unit": null,
+        "toggle-background-color--alt": rgb(255 255 255 / 0.3),
+    ),
+
+) !default;
+
+
+/*
+    ELEMENTARY CONFIGURATION
+    ============================================================================================
+
+    Merge the library defaults with project-specific overrides.
+
+    The resulting map is used for compile-time configuration and for
+    establishing the default values of Elementary's CSS custom properties.
+
+    Selector configuration is handled separately in _00-3-selectors.scss.
+*/
+
+$elementary-overrides: () !default;
+
+$elementary-config: map.deep-merge(
+    $elementary-defaults,
+    $elementary-overrides
+);
+
+
+/*
+    CONFIGURATION ACCESSORS
+*/
+
+@function get($group, $name) {
+    @return map.get($elementary-config, $group, $name);
+}
+
+
+/*
+    Return true when a setting has been explicitly overridden by the
+    consuming Sass project.
+
+    This allows the token layer to distinguish an explicit value from
+    a default relationship to another CSS custom property.
+*/
+
+@function overridden($group, $name) {
+    $group-overrides: map.get($elementary-overrides, $group);
+
+    @return $group-overrides != null
+        and map.has-key($group-overrides, $name);
+}

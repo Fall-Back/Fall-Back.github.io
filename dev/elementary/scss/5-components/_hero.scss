@@ -32,18 +32,18 @@
 
     $hero-selectors: ();
 
-    @if selectors.$hero-1-selector != false {
+    @if selectors.$es__component__hero_1 != false {
         $hero-selectors: list.append(
             $hero-selectors,
-            selectors.$hero-1-selector,
+            selectors.$es__component__hero_1,
             $separator: comma
         );
     }
 
-    @if selectors.$hero-2-selector != false {
+    @if selectors.$es__component__hero_2 != false {
         $hero-selectors: list.append(
             $hero-selectors,
-            selectors.$hero-2-selector,
+            selectors.$es__component__hero_2,
             $separator: comma
         );
     }
@@ -89,9 +89,9 @@
         No additional margin compensation is required.
     */
 
-    @if selectors.$hero-1-selector != false {
+    @if selectors.$es__component__hero_1 != false {
 
-        #{selectors.$hero-1-selector} {
+        #{selectors.$es__component__hero_1} {
             margin: 0;
         }
     }
@@ -107,9 +107,9 @@
         for its padding when it is migrated.
     */
 
-    @if selectors.$hero-2-selector != false {
+    @if selectors.$es__component__hero_2 != false {
 
-        #{selectors.$hero-2-selector} {
+        #{selectors.$es__component__hero_2} {
             margin:
                 calc(var(--main-header-spacing) * -1)
                 calc(var(--main-header-spacing) * -1)

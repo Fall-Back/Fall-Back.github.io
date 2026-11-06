@@ -1,0 +1,238 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    ELEMENTARY
+    ============================================================================================
+
+    A classless design system built on START-CSS.
+
+    Expected structure for core Elementary to work:
+
+    <html>
+    <head>
+        ...
+    </head>
+    <body>
+        <hidden elements like svg and css-only message>
+        <header>
+        ?<aside>
+        <main>
+        ?<aside>
+        <footer>
+    </body>
+    </html>
+
+|-------------------------------------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------------------------------------*/
+
+
+@use "start-mixins" as start-mixins;
+
+@use "00-1-config" as cfg;
+@use "00-3-selectors" as selectors;
+@use "00-4-tokens" as tokens;
+
+@use "1-banner" as banner;
+@use "1-banner/1-logo" as logo;
+@use "1-banner/2-navbar" as navbar;
+@use "1-banner/3-collapsible" as collapsible;
+
+@use "2-main" as main;
+@use "2-main/1-header" as main-header;
+@use "2-main/3-content" as main-content;
+@use "2-main/3-content-listing" as main-listing;
+
+@use "3-sidebar" as sidebar;
+
+@use "4-footer" as footer;
+
+@use "5-components/card" as card;
+@use "5-components/cta" as cta;
+@use "5-components/hero" as hero;
+@use "5-components/images" as images;
+@use "5-components/info-overlay" as info-overlay;
+
+
+
+/*-------------------------------------------------------------------------------------------------|
+
+    PAGE LAYOUT
+    ============================================================================================
+
+    Establishes the page-level layout and ensures the body occupies at least the available viewport
+    height.
+
+    At the configured breakpoint, CSS Grid arranges MAIN and up to two optional sidebars into a
+    two-column layout.
+
+    Below the breakpoint, normal document flow preserves the HTML reading order.
+
+    The page layout controls positioning; individual modules control the presentation of their
+    respective page regions.
+
+|-------------------------------------------------------------------------------------------------*/
+
+@mixin emit-page-layout() {
+
+    /*
+        BASE PAGE LAYOUT
+    */
+
+    #{selectors.$es_scope} body {
+        min-height: 100vh;
+        min-height: 100dvh;
+        padding: 0;
+    }
+
+
+    /*
+        WIDER-SCREEN PAGE LAYOUT
+        ============================================================================================
+
+        Two-column Grid layout with optional sidebars.
+
+        MAIN occupies the primary column. Sidebars occupy the secondary column, with the first above
+        the second.
+
+        When no sidebars exist, MAIN spans both columns. When only one sidebar exists, it fills the
+        sidebar column.
+
+        Uses :has() to detect sidebar presence rather than relying on the number of trailing
+        siblings.
+    */
+
+    @media only screen and (min-width: cfg.get("base", "layout-breakpoint")) {
+
+        #{selectors.$es_scope} body {
+            display: grid;
+            align-items: stretch;
+
+            width: auto;
+            height: auto;
+
+            grid-template-columns:
+                var(--page-layout-main-balance)
+                var(--page-layout-sidebar-balance);
+
+            grid-template-rows:
+                auto
+                auto
+                minmax(auto, 1fr)
+                auto;
+        }
+
+        /*
+            BANNER AND FOOTER
+
+            Both span the full Grid width.
+        */
+
+        #{selectors.$banner-selector},
+        #{selectors.$footer-selector} {
+            grid-column: 1 / -1;
+        }
+
+        #{selectors.$banner-selector} {
+            grid-row: 1;
+        }
+
+        #{selectors.$footer-selector} {
+            grid-row: -1;
+        }
+
+
+        /*
+            MAIN
+
+            MAIN occupies the first column and spans the two content rows alongside the sidebars.
+        */
+
+        #{selectors.$main-selector} {
+            grid-column: 1;
+            grid-row: 2 / 4;
+
+            max-width: 100%;
+        }
+
+
+        /*
+            SIDEBARS
+
+            The first sidebar precedes MAIN in the document. The second sidebar follows MAIN.
+        */
+
+        #{selectors.$sidebar-selector} {
+            grid-column: 2;
+            grid-row: 2;
+        }
+
+        #{selectors.$sidebar-after-main-selector} {
+            grid-column: 2;
+            grid-row: 3;
+        }
+
+
+        /*
+            OPTIONAL SIDEBAR HANDLING
+
+            No sidebars:
+                MAIN spans both columns.
+
+            Only one sidebar:
+                It spans the available content rows.
+        */
+
+        #{selectors.$es_scope} body:not(:has(> aside)) {
+            & > main {
+                grid-column: 1 / -1;
+            }
+        }
+
+        #{selectors.$es_scope} body:has(> aside):not(:has(> aside ~ aside)) {
+            & > aside {
+                grid-row: 2 / 4;
+            }
+        }
+    }
+}
+
+
+
+
+@mixin emit() {
+
+    @include start-mixins.s__support-floor() {
+
+        // Elementary's public CSS tokens:
+        @include tokens.emit();
+
+        // Page layout
+        @include emit-page-layout();
+
+        // Banner
+        @include banner.emit();
+        @include logo.emit();
+        @include navbar.emit();
+        @include collapsible.emit();
+
+        // Main
+        @include main.emit();
+        @include main-header.emit();
+        @include main-content.emit();
+        @include main-listing.emit();
+
+        // Sidebar
+        @include sidebar.emit();
+
+        // Footer
+        @include footer.emit();
+
+        // Components:
+        @include card.emit();
+        @include cta.emit();
+        @include hero.emit();
+        @include images.emit();
+        @include info-overlay.emit();
+    }
+
+}

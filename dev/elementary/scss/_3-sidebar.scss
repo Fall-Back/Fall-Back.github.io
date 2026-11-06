@@ -23,9 +23,11 @@
         SIDEBAR - DEFAULT
     */
 
-    @if selectors.$sidebar-selector != false {
+    @if selectors.$es__page_sidebar != false {
 
-        #{selectors.$sidebar-selector} {
+        #{selectors.$es__page_sidebar} {
+            --name: sidebar--top;
+
             margin: 0;
 
             padding: var(--sidebar-spacing);
@@ -40,9 +42,11 @@
         SIDEBAR - AFTER MAIN
     */
 
-    @if selectors.$sidebar-after-main-selector != false {
+    @if selectors.$es__page_sidebar_after_main != false {
 
-        #{selectors.$sidebar-after-main-selector} {
+        #{selectors.$es__page_sidebar_after_main} {
+            --name: sidebar--bottom;
+
             --background-color: var(--sidebar-background-color--alt);
             background-color: var(--background-color);
         }

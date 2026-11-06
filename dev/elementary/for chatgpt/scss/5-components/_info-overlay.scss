@@ -1,0 +1,190 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    COMPONENTS - INFO OVERLAY
+    ============================================================================================
+
+    Provides a compact disclosure control for supplementary information
+    associated with an image, such as attribution or credits.
+
+    Expected HTML convention:
+
+    <figure>
+        <img ...>
+        <figcaption>
+            <details>
+                <summary>
+                    <svg>Information icon</svg>
+                    <svg>Close icon</svg>
+                    <small>Accessible label</small>
+                </summary>
+                <small>Supplementary information...</small>
+            </details>
+        </figcaption>
+    </figure>
+
+    The overlay is positioned in the top-right corner.
+
+    Native details/summary behaviour provides disclosure without
+    requiring JavaScript.
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "../00-3-selectors" as selectors;
+
+
+@mixin emit() {
+
+    @if selectors.$info-overlay-selector != false {
+
+        #{selectors.$info-overlay-selector} {
+            --name: image-overlay;
+
+            /*
+                OVERLAY CONTAINER
+
+                Closed: compact circular control.
+                Open: expands to accommodate information content.
+            */
+
+            position: absolute;
+
+            inset-block-start: calc(var(--info-overlay-spacing-unit) / 4);
+            inset-inline-end: calc(var(--info-overlay-spacing-unit) / 4);
+
+            width: var(--info-overlay-spacing-unit);
+            height: var(--info-overlay-spacing-unit);
+
+            margin: 0;
+            padding: 0;
+
+            border: 0;
+            border-radius: calc(var(--info-overlay-spacing-unit) / 2);
+
+            --background-color: var(--info-overlay-background-color);
+            background-color: var(--background-color);
+
+            /*
+                Remove StartCSS's generic details decoration.
+            */
+
+            &::after {
+                display: none;
+            }
+
+
+            /*
+                TOGGLE
+
+                The summary remains the interactive control in both
+                the closed and expanded states.
+            */
+
+            & > summary {
+                position: absolute;
+                z-index: 1;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                width: var(--info-overlay-spacing-unit);
+                height: var(--info-overlay-spacing-unit);
+
+                margin: 0;
+                padding: 0;
+
+                border-radius: calc(var(--info-overlay-spacing-unit) / 2);
+
+                list-style: none;
+                cursor: pointer;
+
+                &::before {
+                    display: none;
+                }
+
+                &::-webkit-details-marker {
+                    display: none;
+                }
+
+                /*
+                    SVG ICON STATES
+
+                    First SVG: information icon.
+                    Second SVG: close icon.
+                */
+
+                & > svg:first-of-type {
+                    display: inline;
+                }
+
+                & > svg:last-of-type {
+                    display: none;
+                }
+
+                /*
+                    INTERACTION
+                */
+
+                &:hover,
+                &:focus,
+                &:active {
+                    background-color:
+                        var(--info-overlay-toggle-background-color--alt);
+                }
+            }
+
+
+            /*
+                INFORMATION CONTENT
+
+                The padding leaves room for the toggle in the
+                expanded state.
+
+                Overqualifying the selector to override StartCSS :last-child selector.
+            */
+
+            & > summary + small:nth-child(n) {
+                position: relative;
+                display: block;
+
+                max-width: calc(100% - var(--info-overlay-spacing-unit));
+
+                padding-block-start: var(--info-overlay-spacing-unit);
+                padding-block-end: var(--info-overlay-spacing-unit);
+                padding-inline-start: var(--info-overlay-spacing-unit);
+                padding-inline-end: calc(var(--info-overlay-spacing-unit) * 1.5);
+            }
+
+
+            /*
+                EXPANDED STATE
+            */
+
+            &[open] {
+                inset-block-start: 0;
+                inset-inline-end: 0;
+
+                width: auto;
+                height: auto;
+
+                border-radius: 0;
+
+                & > summary {
+                    inset-block-start:
+                        calc(var(--info-overlay-spacing-unit) / 4);
+
+                    inset-inline-end:
+                        calc(var(--info-overlay-spacing-unit) / 4);
+
+                    & > svg:first-of-type {
+                        display: none;
+                    }
+
+                    & > svg:last-of-type {
+                        display: inline;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -18,9 +18,11 @@
 
 @mixin emit() {
 
-    @if selectors.$footer-selector != false {
+    @if selectors.$es__page_footer != false {
 
-        #{selectors.$footer-selector} {
+        #{selectors.$es__page_footer} {
+            --name: footer;
+
             margin: 0;
 
             padding: var(--footer-spacing);
@@ -36,7 +38,7 @@
                 Remove the bottom margin from direct children.
             */
 
-            > * {
+            & > * {
                 margin-bottom: 0;
             }
         }

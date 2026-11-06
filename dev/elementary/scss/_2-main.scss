@@ -17,27 +17,23 @@
 
 @mixin emit() {
 
-    @if selectors.$main-selector != false {
+    @if selectors.$es__page_main != false {
 
-        #{selectors.$main-selector} {
+        #{selectors.$es__page_main} {
+            --name: main;
 
             /*
-                1. UPDATE: this may no longer be necessary but keep this note and the CSS it corresponds to for
-                   now pending further testing after the migration is complete.
+                Prevent MAIN's contents from forcing its CSS Grid column wider
+                than the allocated space.
 
-                   There's a weird situation on /page-layout-article/ where there's <pre> in a <div>
-                   demonstrating the use of the <div> to create a full-width container (one that breaks
-                   out of the max-width column). But the <pre> has long content and isn't scrolling,
-                   it's pushing everything out to fit the content and I can't figure out a simple
-                   fix (or even understand why it's doing it).
-                   But, since we have a known max-width for the body and a known column balance, we can work out
-                   what the max-width for the main column should be and use that to fix it.
+                Grid items have an automatic minimum width based on their content.
+                Elements with large intrinsic widths (e.g. <pre> containing long,
+                unwrapped lines) can therefore cause the column to expand.
+
+                Setting min-width: 0 allows MAIN to shrink to its allocated Grid
+                track width, leaving overflowing content to scroll independently.
             */
-
-            /* [1] */
-            //max-width: $e__main-sidebar-max-width;
-            //width: calc((#{$e__main-width-breakpoint} - 100%) * 9999);
-            //min-width: 100%;
+            min-width: 0;
 
             margin: 0;
             padding: 0;

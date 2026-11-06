@@ -17,7 +17,7 @@
 @use "../00-3-selectors" as selectors;
 
 
-@mixin emit($selector: selectors.$listing-selector) {
+@mixin emit($selector: selectors.$es__page_main__header--listing__list) {
 
     @if $selector != false {
 

@@ -1,0 +1,54 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    LAYOUT SIDEBAR
+    ============================================================================================
+
+    Sidebars contain site-wide content such as navigation, search,
+    sign-up forms, donation links or featured content or ads.
+
+    This module controls their visual presentation only.
+    Sidebar positioning is handled by Elementary's page layout.
+
+    The sidebar immediately following MAIN uses an alternate
+    background colour.
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "00-3-selectors" as selectors;
+
+
+@mixin emit() {
+
+    /*
+        SIDEBAR - DEFAULT
+    */
+
+    @if selectors.$sidebar-selector != false {
+
+        #{selectors.$sidebar-selector} {
+            --name: sidebar--top;
+
+            margin: 0;
+
+            padding: var(--sidebar-spacing);
+
+            --background-color: var(--sidebar-background-color);
+            background-color: var(--background-color);
+        }
+    }
+
+
+    /*
+        SIDEBAR - AFTER MAIN
+    */
+
+    @if selectors.$sidebar-after-main-selector != false {
+
+        #{selectors.$sidebar-after-main-selector} {
+            --name: sidebar--bottom;
+
+            --background-color: var(--sidebar-background-color--alt);
+            background-color: var(--background-color);
+        }
+    }
+}

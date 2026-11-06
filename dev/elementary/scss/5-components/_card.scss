@@ -15,9 +15,9 @@
 
 
 @mixin emit() {
-    @if selectors.$card-selector != false {
+    @if selectors.$es__component__card != false {
 
-        #{selectors.$card-selector} {
+        #{selectors.$es__component__card} {
             --name: card;
 
             display: flex;

@@ -18,7 +18,6 @@
         <main>
         ?<aside>
         <footer>
-        ?<script>
     </body>
     </html>
 
@@ -50,6 +49,8 @@
 @use "5-components/card" as card;
 @use "5-components/cta" as cta;
 @use "5-components/hero" as hero;
+@use "5-components/images" as images;
+@use "5-components/info-overlay" as info-overlay;
 
 
 
@@ -58,17 +59,16 @@
     PAGE LAYOUT
     ============================================================================================
 
-    Establishes the page-level layout and ensures the body occupies
-    at least the available viewport height.
+    Establishes the page-level layout and ensures the body occupies at least the available viewport
+    height.
 
-    At the configured breakpoint, CSS Grid arranges MAIN and up to
-    two optional sidebars into a two-column layout.
+    At the configured breakpoint, CSS Grid arranges MAIN and up to two optional sidebars into a
+    two-column layout.
 
-    Below the breakpoint, normal document flow preserves the HTML
-    reading order.
+    Below the breakpoint, normal document flow preserves the HTML reading order.
 
-    The page layout controls positioning; individual modules control
-    the presentation of their respective page regions.
+    The page layout controls positioning; individual modules control the presentation of their
+    respective page regions.
 
 |-------------------------------------------------------------------------------------------------*/
 
@@ -86,19 +86,19 @@
 
 
     /*
-        WIDE-SCREEN PAGE LAYOUT
+        WIDER-SCREEN PAGE LAYOUT
         ============================================================================================
 
         Two-column Grid layout with optional sidebars.
 
-        MAIN occupies the primary column. Sidebars occupy the secondary
-        column, with the first above the second.
+        MAIN occupies the primary column. Sidebars occupy the secondary column, with the first above
+        the second.
 
-        When no sidebars exist, MAIN spans both columns.
-        When only one sidebar exists, it fills the sidebar column.
+        When no sidebars exist, MAIN spans both columns. When only one sidebar exists, it fills the
+        sidebar column.
 
-        Uses :has() to detect sidebar presence rather than relying on
-        the number of trailing siblings.
+        Uses :has() to detect sidebar presence rather than relying on the number of trailing
+        siblings.
     */
 
     @media only screen and (min-width: cfg.get("base", "layout-breakpoint")) {
@@ -122,21 +122,21 @@
         }
 
         /*
-            BANNER AND FOOTER
+                BANNER AND FOOTER
 
             Both span the full Grid width.
         */
 
-        #{selectors.$banner-selector},
-        #{selectors.$footer-selector} {
+        #{selectors.$es__page_banner},
+        #{selectors.$es__page_footer} {
             grid-column: 1 / -1;
         }
 
-        #{selectors.$banner-selector} {
+        #{selectors.$es__page_banner} {
             grid-row: 1;
         }
 
-        #{selectors.$footer-selector} {
+        #{selectors.$es__page_footer} {
             grid-row: -1;
         }
 
@@ -144,11 +144,10 @@
         /*
             MAIN
 
-            MAIN occupies the first column and spans the two content
-            rows alongside the sidebars.
+            MAIN occupies the first column and spans the two content rows alongside the sidebars.
         */
 
-        #{selectors.$main-selector} {
+        #{selectors.$es__page_main} {
             grid-column: 1;
             grid-row: 2 / 4;
 
@@ -159,18 +158,46 @@
         /*
             SIDEBARS
 
-            The first sidebar precedes MAIN in the document.
-            The second sidebar follows MAIN.
+            The first sidebar precedes MAIN in the document. The second sidebar follows MAIN.
         */
 
-        #{selectors.$sidebar-selector} {
+        #{selectors.$es__page_sidebar} {
             grid-column: 2;
             grid-row: 2;
         }
 
-        #{selectors.$sidebar-after-main-selector} {
+        #{selectors.$es__page_sidebar_after_main} {
             grid-column: 2;
             grid-row: 3;
+        }
+
+        /*
+            OPTIONAL SIDEBAR HANDLING
+
+            Uses Elementary's configurable structural building blocks.
+
+            No sidebars:
+                MAIN spans both columns.
+
+            Only one sidebar:
+                It spans both content rows.
+        */
+
+        #{selectors.$es_scope} body {
+
+            &:not(:has(> #{selectors.$es_sidebar_element})) {
+                & > #{selectors.$es_main_element} {
+                    grid-column: 1 / -1;
+                }
+            }
+
+            &:has(> #{selectors.$es_sidebar_element}):not(
+                :has(> #{selectors.$es_sidebar_element} ~ #{selectors.$es_sidebar_element})
+            ) {
+                & > #{selectors.$es_sidebar_element} {
+                    grid-row: 2 / 4;
+                }
+            }
         }
 
 
@@ -184,17 +211,17 @@
                 It spans the available content rows.
         */
 
-        #{selectors.$es_scope} body:not(:has(> aside)) {
-            & > main {
-                grid-column: 1 / -1;
-            }
-        }
-
-        #{selectors.$es_scope} body:has(> aside):not(:has(> aside ~ aside)) {
-            & > aside {
-                grid-row: 2 / 4;
-            }
-        }
+        //#{selectors.$es_scope} body:not(:has(> aside)) {
+        //    & > main {
+        //        grid-column: 1 / -1;
+        //    }
+        //}
+        //
+        //#{selectors.$es_scope} body:has(> aside):not(:has(> aside ~ aside)) {
+        //    & > aside {
+        //        grid-row: 2 / 4;
+        //    }
+        //}
     }
 }
 
@@ -204,6 +231,7 @@
 @mixin emit() {
 
     @include start-mixins.s__support-floor() {
+
         // Elementary's public CSS tokens:
         @include tokens.emit();
 
@@ -232,14 +260,8 @@
         @include card.emit();
         @include cta.emit();
         @include hero.emit();
+        @include images.emit();
+        @include info-overlay.emit();
     }
 
 }
-
-/*
-
-@import '1-banner/_1-logo.scss';
-@import '1-banner/_2-navbar.scss';
-@import '1-banner/_3-collapsible.scss';
-
-*/

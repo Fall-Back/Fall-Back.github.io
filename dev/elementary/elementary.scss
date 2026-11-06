@@ -1,11 +1,50 @@
 /*-------------------------------------------------------------------------------------------------|
 
-    Elementary base-project (Styleguide)
+    ELEMENTARY BASE-PROJECT (STYLEGUIDE)
+    ============================================================================================
 
 
-    This file should be used as the starting point for an Elementary-based
-    project. I should not be added to the Elementary library as a SASS file for inclusion as part of
-    that library - though it can appear as an EXAMPLE file as part of the docs.
+    This file should be used as the starting point for an Elementary-based project. It should not be
+    added to the Elementary library as a SASS file for inclusion as part of that library - though it
+    can appear as an EXAMPLE file as part of the docs.
+
+
+
+    SASS DEPENDENCIES AND LOAD PATHS
+    --------------------------------------------------------------------------------------------
+
+    Elementary depends on StartCSS.
+
+    Both libraries can be installed in any location, provided Sass can resolve their modules through
+    its load paths.
+
+    The project entry point should use explicit paths to import and configure each library.
+
+    Elementary also imports some StartCSS modules directly, so the StartCSS scss directory must be
+    available as a Sass load path.
+
+    Example directory structure:
+
+        project/
+            _sass-libs/
+                start-css/
+                    scss/
+                elementary/
+                    scss/
+            styles/
+                style.scss
+            css/
+
+    Example compilation command (run from styles/):
+
+        npx sass --load-path=../_sass-libs
+                 --load-path=../_sass-libs/start-css/scss
+                 --watch style.scss:../css/style.css
+
+    Adjust the paths to match your installation.
+
+    The order of @use declarations is important: configure StartCSS and Elementary before loading
+    their respective main modules.
 
 |-------------------------------------------------------------------------------------------------*/
 
@@ -18,19 +57,26 @@
     $startcss-overrides: project.$startcss-overrides
 );
 
-@use "../start-css/scss/start" as start;
 
+@use "start" as start;
+
+
+// ---| Elementary |------------------------------------------------------------------------------//
 
 @use "scss/00-1-config" as elementary-config with (
     $elementary-overrides: project.$elementary-overrides
 );
 
-@use "scss/00-3-selectors" as selectors with (
-    $elementary-selector-extensions: (
-        "component-card": ".my-card",
-        "component-cta": ".my-cta"
-    )
-);
+@use "scss/00-3-selectors" as selectors;
+
+// EXAMPLE - DO NOT DELETE
+//@use "scss/00-3-selectors" as selectors with (
+//    $elementary-selector-extensions: (
+//        "es__component__card": ".my-card",
+//        "es__component__cta": ".my-cta"
+//    )
+//);
+
 
 // This allows me to include the CSS for all listing layout options for testing purposes:
 @use "sass:selector";
@@ -39,7 +85,6 @@
 @use "scss/2-main/3-content-listing--columns" as listing-columns;
 
 
-// ---| Elementary |------------------------------------------------------------------------------//
 @use "scss/_0-elementary" as elementary;
 
 
@@ -67,7 +112,7 @@
 
 @include listing-grid.emit(
     selector.replace(
-        selectors.$listing-selector,
+        selectors.$es__page_main__header--listing__list,
         "[data-elementary]",
         "[data-elementary]#page-layout-listing-grid"
     )
@@ -75,7 +120,7 @@
 
 @include listing-columns.emit(
     selector.replace(
-        selectors.$listing-selector,
+        selectors.$es__page_main__header--listing__list,
         "[data-elementary]",
         "[data-elementary]#page-layout-listing-columns"
     )

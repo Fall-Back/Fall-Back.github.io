@@ -20,15 +20,15 @@
 
 @mixin emit() {
 
-    @if selectors.$navbar-selector != false {
+    @if selectors.$es__page_banner__navbar != false {
 
-        #{selectors.$navbar-selector} {
+        #{selectors.$es__page_banner__navbar} {
 
             /*
                 COLLAPSIBLE CONTAINER
             */
 
-            > details {
+            &  > details {
                 --name: collapsible;
 
                 position: static;
@@ -62,7 +62,7 @@
                     The second SVG represents the open state.
                 */
 
-                > summary {
+                & > summary {
                     position: relative;
                     z-index: 3;
 
@@ -112,7 +112,7 @@
                         it from the visual layout.
                     */
 
-                    > span {
+                    & > span {
                         position: absolute;
 
                         width: 1px;
@@ -164,7 +164,7 @@
                     padding, gaps and link styling.
                 */
 
-                > summary + div {
+                & > summary + div {
                     position: absolute;
                     z-index: 2;
 
@@ -185,11 +185,13 @@
                     */
 
                     &::after {
+                        --pointer-height: calc(var(--navbar-collapsible-panel-offset) - var(--navbar-link-padding));
                         content: "";
 
                         position: absolute;
 
-                        inset-block-start: -2rem;
+                        //inset-block-start: calc(var(--navbar-collapsible-panel-offset) * -0.5);
+                        inset-block-start: calc(var(--pointer-height) * -1);
                         inset-inline-end: calc(
                             var(--navbar-collapsible-toggle-margin)
                             + var(--navbar-collapsible-toggle-size) / 2
@@ -200,7 +202,8 @@
                         height: 0;
 
                         border-style: solid;
-                        border-width: 0 2rem 2rem;
+                        //border-width: 0 2rem 2rem;
+                        border-width: 0 2rem var(--pointer-height);
 
                         border-color:
                             transparent

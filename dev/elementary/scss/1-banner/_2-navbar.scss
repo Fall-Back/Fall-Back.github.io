@@ -21,9 +21,9 @@
 
 @mixin emit() {
 
-    @if selectors.$navbar-selector != false {
+    @if selectors.$es__page_banner__navbar != false {
 
-        #{selectors.$navbar-selector} {
+        #{selectors.$es__page_banner__navbar} {
             --name: navbar;
 
             position: relative;
@@ -47,7 +47,7 @@
                 NAVBAR CHILDREN
             */
 
-            > * {
+            & > * {
                 flex: 1 1 auto;
             }
 
@@ -139,7 +139,7 @@
                 gap: var(--navbar-link-padding);
 
                 margin: 0;
-                padding: var(--navbar-link-padding);
+                padding: var(--navbar-navlist-padding);
 
                 --background-color: var(--navbar-navlist-background-color);
                 background-color: var(--background-color);

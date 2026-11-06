@@ -747,125 +747,40 @@ calculations available in these comments in case I need to refer back to them in
 */
 /*-------------------------------------------------------------------------------------------------|
 
-    BANNER
-    --------------------------------------------------------------------------------------------
-
-    Nothing here yet, but keep this comment block as a reminder.
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    BANNER - LOGO
-    --------------------------------------------------------------------------------------------
-
-    Nothing here yet, but keep this comment block as a reminder.
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    BANNER - NAVBAR
-    --------------------------------------------------------------------------------------------
-
-    Nothing here yet, but keep this comment block as a reminder.
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    MAIN
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    MAIN - CONTENT
-    --------------------------------------------------------------------------------------------
-
-    Nothing here yet, but keep this comment block as a reminder.
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    MAIN - CONTENT - LISTING
-    --------------------------------------------------------------------------------------------
-
-    Nothing here yet, but keep this comment block as a reminder.
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    SIDEBAR
-    --------------------------------------------------------------------------------------------
-
-    Nothing here yet, but keep this comment block as a reminder.
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    FOOTER
-    --------------------------------------------------------------------------------------------
-
-    Nothing here yet, but keep this comment block as a reminder.
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    COMPONENTS
-    --------------------------------------------------------------------------------------------
-
-    Components are meant to be reusable in any context so extra care/steps have been taken with
-    the markup and selectors.
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    COMPONENTS - CARD
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    COMPONENTS - CTA
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    COMPONENTS - HERO
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    COMPONENTS - IMAGES
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    COMPONENTS - INFO OVERLAY
-    --------------------------------------------------------------------------------------------
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
     ELEMENTARY SELECTORS
     ============================================================================================
 
     IMPORTANT: READ BEFORE MODIFYING
+    --------------------------------
 
-    This file defines the HTML conventions used to activate Elementary's
-    presentation patterns.
+    This file defines the HTML conventions used to activate Elementary's presentation patterns.
 
-    Each selector is accompanied by documentation explaining the expected
-    HTML structure and how the pattern is intended to work.
+    Each selector is accompanied by documentation explaining the expected HTML structure and how the
+    pattern is intended to work.
 
-    The default selectors are designed to work together. Some selectors
-    depend on others, and changing one may affect multiple patterns.
+    The default selectors are designed to work together. Some selectors depend on others, and
+    changing one may affect multiple patterns.
+
+
+    SELECTOR ARCHITECTURE
+    --------------------
+
+    Page-structure selectors describe interconnected HTML regions. Their relationships are
+    intentional and must be considered when changing the underlying selectors.
+
+    Component selectors identify reusable presentation patterns. They are independently
+    configurable, although their default selectors may reference page-structure selectors for
+    scoping.
+
+    Internal descendant and sibling relationships remain in the implementation modules rather than
+    being individually configurable.
+
 
     CUSTOMISING SELECTORS — PROCEED WITH CAUTION
+    --------------------------------------------
 
-    You can replace Elementary's default selectors with your own conventions,
-    including class-based selectors.
+    You can replace Elementary's default selectors with your own conventions, including class-based
+    selectors.
 
     However, changing selectors may:
 
@@ -874,39 +789,38 @@ calculations available in these comments in case I need to refer back to them in
       - Break relationships between dependent selectors.
       - Prevent expected styles from being applied.
 
-    Only customise selectors when you understand the relevant HTML conventions
-    and their dependencies.
+    Only customise selectors when you understand the relevant HTML conventions and their
+    dependencies.
 
-    For visual customisation, use Elementary's configuration and CSS custom
-    properties instead. Changing selectors is not normally necessary.
+    For visual customisation, use Elementary's configuration and CSS custom properties instead.
+    Changing selectors is not normally necessary.
 
     ---
 
-    Elementary relies on context and relative DOM position. This is why it should only be
-    used for 'light' projects, where there isn't much variety and patterns can be closely adhered
-    to.
+    Elementary relies on context and relative DOM position. This is why it should only be used for
+    'lite' projects, where there isn't much variety and patterns can be closely adhered to.
 
     With that in mind, if the conventions are learned, there is some flexibility in the system,
-    particularly in regards to the extract DOM elements that are used, so long as any changes to
+    particularly in regards to the exact DOM elements that are used, so long as any changes to
     the selectors below are carefully considered so as not to introduce conflicts, changes to the
     elements used can work.
 
 
-    Conventions
+    CONVENTIONS
     -----------
 
     DIV
-        DIV's are semantically meaningless/neutral as far as AT is concerned, but since 'div' is
+        DIVs are semantically meaningless/neutral as far as AT is concerned, but since 'div' is
         short for DIVIDER it makes logical sense to the HTML author that it is a division of content
         and thus is appropriate for situations where content may need to be visually separated from
-        it's surroundings.
+        its surroundings.
 
-    Specificity
+    SPECIFICITY
     -----------
 
     Some of the selectors may look overly specific, but it's really important in such a fragile
     system to be as specific as possible; to really say exactly what we mean.
-    For example, on a Listing page when writing the selector we could could say:
+    For example, on a Listing page when writing the selector we could say:
     "Any `ul` that is a direct child of the inner wrapper should be a Gallery"
     This would be `div > ul`. However, we use `div > header ~ ul` because what we really mean to say
     is "Any `ul` AFTER the `header`", because if there was a list BEFORE the `header` for some
@@ -941,20 +855,6 @@ calculations available in these comments in case I need to refer back to them in
     </body>
     ```
 |-------------------------------------------------------------------------------------------------*/
-/*
-    OPTIONAL SELECTOR EXTENSIONS
-
-    Add extra selectors without replacing Elementary's default HTML
-    conventions. Keys identify patterns, not CSS properties.
-
-    Advanced users may still replace individual $es__... variables
-    through Sass module configuration.
-*/
-/*
-    Combine a configured selector with optional additional selectors.
-
-    Returns false when the base selector is disabled.
-*/
 /*-------------------------------------------------------------------------------------------------|
 
     PAGE
@@ -1020,8 +920,8 @@ calculations available in these comments in case I need to refer back to them in
         ```
 
     SIDEBAR (ASIDE)
-        Optional. They can be up to 2 - one above the main adn one below. Both ca be omitted on all
-        or only some pages and the layout should retain it's integrity. This means the DOM is quite
+        Optional. They can be up to 2 - one before main and one after. Both can be omitted on all or
+        only some pages and the layout should retain its integrity. This means the DOM is quite
         fragile and sensitive to change so be careful. More on that later.
 
         ```
@@ -1039,28 +939,24 @@ calculations available in these comments in case I need to refer back to them in
 
 |-------------------------------------------------------------------------------------------------*/
 /*
-    RESOLVED PAGE BANNER SELECTOR
-*/
-/*
-    RESOLVED BANNER INNER SELECTOR
+    PAGE - STRUCTURAL BUILDING BLOCKS
+    ============================================================================================
 
-    Supports replacement, extension and disabling while preserving
-    Elementary's default banner structure.
-*/
-/*
-    RESOLVED MAIN SELECTOR
+    These selectors identify the fundamental elements participating
+    in Elementary's page layout.
 
-    Supports replacement, extension and disabling through Elementary's
-    selector configuration.
+    Consumers may replace them with alternative element, class or
+    attribute selectors.
 
-    Other page-structure selectors may depend on MAIN, so their
-    relationships should be preserved when configuring selectors.
-*/
-/*
-    RESOLVED SIDEBAR SELECTORS
-*/
-/*
-    RESOLVED PAGE FOOTER SELECTOR
+    Each must be a single compound selector, without combinators
+    or comma-separated alternatives, because Elementary uses them
+    to construct parent/child and sibling relationships.
+
+    Examples:
+        main
+        .main
+        main.content
+        [data-region="main"]
 */
 /*-------------------------------------------------------------------------------------------------|
 
@@ -1071,19 +967,15 @@ calculations available in these comments in case I need to refer back to them in
 
     ```
         <header>
-            <b>
-                <a/>
-            </b>
+            <na>
+                <b>
+                    <a/>
+                </b>
+            </nav>
             ...
         </header>
     ```
 |-------------------------------------------------------------------------------------------------*/
-/*
-    RESOLVED BANNER LOGO SELECTOR
-
-    Supports replacement, extension and disabling through
-    Elementary's selector configuration.
-*/
 /*-------------------------------------------------------------------------------------------------|
 
     BANNER - NAVBAR
@@ -1107,12 +999,6 @@ calculations available in these comments in case I need to refer back to them in
     </header>
     ```
 |-------------------------------------------------------------------------------------------------*/
-/*
-    RESOLVED BANNER NAVBAR SELECTOR
-
-    Supports replacement, extension and disabling through
-    Elementary's selector configuration.
-*/
 /*------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------|
 
@@ -1179,29 +1065,27 @@ calculations available in these comments in case I need to refer back to them in
     ```
 
 |-------------------------------------------------------------------------------------------------*/
-/*
-    RESOLVED LISTING SELECTOR
-
-    Supports replacement, extension and disabling through Elementary's
-    selector configuration.
-*/
 /*-------------------------------------------------------------------------------------------------|
 
     COMPONENTS
     --------------------------------------------------------------------------------------------
 
-    Components are meant to be reusable in any context so extra care/steps have been taken with
-    the markup and selectors.
+    Components are reusable presentation patterns identified by HTML conventions.
+
+    Most components are scoped to MAIN by default. Some also support additional contexts, such as
+    SIDEBAR or BANNER.
+
+    Consumers may replace a component's selector, but the internal HTML relationships expected by
+    that component remain unchanged.
 
 |-------------------------------------------------------------------------------------------------*/
 /*
     COMPONENT SCOPE
 
-    Reusable Elementary components are restricted to the main content
-    region by default.
+    The default scope for ordinary reusable components is MAIN.
 
-    This prevents component conventions from accidentally matching
-    similar HTML structures in the page banner or footer.
+    Individual components may explicitly support additional contexts where their HTML conventions
+    require it (e.g. CARD in SIDEBAR, HERO and INFO OVERLAY in BANNER).
 
     Advanced Sass consumers may configure this scope independently.
 */
@@ -1219,36 +1103,23 @@ calculations available in these comments in case I need to refer back to them in
     ```
 
 |-------------------------------------------------------------------------------------------------*/
-/*
-    RESOLVED CARD SELECTORS
-    ============================================================================================
-
-    CARD includes any optional selector extensions.
-*/
 /*-------------------------------------------------------------------------------------------------|
 
     COMPONENTS - CTA
     --------------------------------------------------------------------------------------------
 
     ```
-    <b>\<a/></b>
+    <b><a/></b>
     ```
 
 |-------------------------------------------------------------------------------------------------*/
-/*
-    RESOLVED  CTA SELECTORS
-    ============================================================================================
-
-    CTA follows the resolved CARD selector, so additional card contexts
-    automatically receive the CTA pattern.
-*/
 /*-------------------------------------------------------------------------------------------------|
 
     COMPONENTS - HERO
     --------------------------------------------------------------------------------------------
 
     Hero components can be in one of 2 positions depending on the semantics of the content.
-    They cna be in the page banner for landing or listing pages:
+    They can be in the page banner for landing or listing pages:
 
     ```
     <body>
@@ -1264,7 +1135,7 @@ calculations available in these comments in case I need to refer back to them in
     </body>
     ```
 
-    ir they could be in the header of the main element for article content pages:
+    or they could be in the header of the main element for article content pages:
 
     ```
     <main>
@@ -1280,9 +1151,6 @@ calculations available in these comments in case I need to refer back to them in
     ```
 
 |-------------------------------------------------------------------------------------------------*/
-/*
-    Resolve both HERO contexts independently.
-*/
 /*-------------------------------------------------------------------------------------------------|
 
     ///COMPONENTS - ICON
@@ -1298,7 +1166,7 @@ calculations available in these comments in case I need to refer back to them in
     COMPONENTS - IMAGES
     --------------------------------------------------------------------------------------------
 
-    This patter (ab)uses HTML semantics to provide images with <b> borders and <i> inset padding.
+    This pattern uses HTML semantics to provide images with <b> borders and <i> inset padding.
     This is fudge, but a justifiable one - those elements are intended to describe stylistic
     differences, which they do and there's no ambiguous styling visible to the users as we're
     applying them images. If images fail to loaded and the alt-text is visible, this styling
@@ -1318,13 +1186,23 @@ calculations available in these comments in case I need to refer back to them in
     COMPONENTS - INFO OVERLAY
     --------------------------------------------------------------------------------------------
 
+    INFO OVERLAY can appear in two contexts:
+
+    1. Within the page banner.
+    2. Within the main content area.
+
+    Both contexts share identical presentation rules and are combined
+    into a single configurable selector.
+
+    Te complete selector can be replaced or disabled through Sass module configuration..
+
     ```
     <header>
         <figure>
             <figcaption>
                 <details/>
-            <figcaption>
-        <figure>
+            </figcaption>
+        </figure>
     </header>
     ```
 
@@ -1578,6 +1456,53 @@ calculations available in these comments in case I need to refer back to them in
 |-------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------|
 
+    COMPONENTS - IMAGES
+    ============================================================================================
+
+    Provides two image presentation conventions:
+
+    Bordered:
+        <b><img></b>
+
+    Inset:
+        <b><i><img></i></b>
+
+    Both treatments use Elementary's public CSS tokens and inherit
+    StartCSS defaults where appropriate.
+
+|-------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------|
+
+    COMPONENTS - INFO OVERLAY
+    ============================================================================================
+
+    Provides a compact disclosure control for supplementary information
+    associated with an image, such as attribution or credits.
+
+    Expected HTML convention:
+
+    <figure>
+        <img ...>
+        <figcaption>
+            <details>
+                <summary>
+                    <svg>Information icon</svg>
+                    <svg>Close icon</svg>
+                    <small>Accessible label</small>
+                </summary>
+                <small>Supplementary inf$banner-selectorormation...</small>
+            </details>
+        </figcaption>
+    </figure>
+
+    The overlay is positioned in the top-right corner.
+
+    Native details/summary behaviour provides disclosure without
+    requiring JavaScript.
+
+|-------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------|
+
     ELEMENTARY
     ============================================================================================
 
@@ -1596,7 +1521,6 @@ calculations available in these comments in case I need to refer back to them in
         <main>
         ?<aside>
         <footer>
-        ?<script>
     </body>
     </html>
 
@@ -1607,26 +1531,18 @@ calculations available in these comments in case I need to refer back to them in
     PAGE LAYOUT
     ============================================================================================
 
-    Establishes the page-level layout and ensures the body occupies
-    at least the available viewport height.
+    Establishes the page-level layout and ensures the body occupies at least the available viewport
+    height.
 
-    At the configured breakpoint, CSS Grid arranges MAIN and up to
-    two optional sidebars into a two-column layout.
+    At the configured breakpoint, CSS Grid arranges MAIN and up to two optional sidebars into a
+    two-column layout.
 
-    Below the breakpoint, normal document flow preserves the HTML
-    reading order.
+    Below the breakpoint, normal document flow preserves the HTML reading order.
 
-    The page layout controls positioning; individual modules control
-    the presentation of their respective page regions.
+    The page layout controls positioning; individual modules control the presentation of their
+    respective page regions.
 
 |-------------------------------------------------------------------------------------------------*/
-/*
-
-@import '1-banner/_1-logo.scss';
-@import '1-banner/_2-navbar.scss';
-@import '1-banner/_3-collapsible.scss';
-
-*/
 /*-------------------------------------------------------------------------------------------------|
 
     Elementary base-project (Styleguide)
@@ -1640,12 +1556,51 @@ calculations available in these comments in case I need to refer back to them in
 |-------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------|
 
-    Elementary base-project (Styleguide)
+    ELEMENTARY BASE-PROJECT (STYLEGUIDE)
+    ============================================================================================
 
 
-    This file should be used as the starting point for an Elementary-based
-    project. I should not be added to the Elementary library as a SASS file for inclusion as part of
-    that library - though it can appear as an EXAMPLE file as part of the docs.
+    This file should be used as the starting point for an Elementary-based project. It should not be
+    added to the Elementary library as a SASS file for inclusion as part of that library - though it
+    can appear as an EXAMPLE file as part of the docs.
+
+
+
+    SASS DEPENDENCIES AND LOAD PATHS
+    --------------------------------------------------------------------------------------------
+
+    Elementary depends on StartCSS.
+
+    Both libraries can be installed in any location, provided Sass can resolve their modules through
+    its load paths.
+
+    The project entry point should use explicit paths to import and configure each library.
+
+    Elementary also imports some StartCSS modules directly, so the StartCSS scss directory must be
+    available as a Sass load path.
+
+    Example directory structure:
+
+        project/
+            _sass-libs/
+                start-css/
+                    scss/
+                elementary/
+                    scss/
+            styles/
+                style.scss
+            css/
+
+    Example compilation command (run from styles/):
+
+        npx sass --load-path=../_sass-libs
+                 --load-path=../_sass-libs/start-css/scss
+                 --watch style.scss:../css/style.css
+
+    Adjust the paths to match your installation.
+
+    The order of @use declarations is important: configure StartCSS and Elementary before loading
+    their respective main modules.
 
 |-------------------------------------------------------------------------------------------------*/
 /*
@@ -2286,10 +2241,10 @@ calculations available in these comments in case I need to refer back to them in
     --background-color: var(--caption-background-color);
     background-color: var(--background-color);
     display: table-caption;
-    padding-top: var(--caption-padding);
-    padding-right: var(--caption-padding);
-    padding-bottom: var(--caption-padding);
-    padding-left: var(--caption-padding);
+    padding-block-start: var(--caption-padding);
+    padding-inline-start: var(--caption-padding);
+    padding-block-end: var(--caption-padding);
+    padding-inline-end: var(--caption-padding);
     font-weight: bold;
     max-width: none; /* [1] */
   }
@@ -2341,16 +2296,16 @@ calculations available in these comments in case I need to refer back to them in
         --content-padding: 0;
         --duration: 0.5s;
         --duration-2: 0.75s;
-        transition: height var(--duration) ease, opacity var(--duration) ease, content-visibility var(--duration) ease allow-discrete, margin-top var(--duration-2) ease, padding var(--duration-2) ease;
+        transition: height var(--duration) ease, opacity var(--duration) ease, content-visibility var(--duration) ease allow-discrete, margin-block-start var(--duration-2) ease, padding var(--duration-2) ease;
         height: 0;
-        margin-top: 0;
+        margin-block-start: 0;
         padding: 0;
         opacity: 0;
         overflow: clip;
       }
       html[lang] details[open]::details-content {
         height: auto;
-        margin-top: var(--sz-m);
+        margin-block-start: var(--sz-m);
         padding: var(--content-padding);
         opacity: 1;
       }
@@ -3507,16 +3462,16 @@ html[lang] li ol {
     line-height: inherit;
   }
   html[lang] details > summary + * {
-    margin-top: 0;
-    padding-top: 0;
+    margin-block-start: 0;
+    padding-block-start: 0;
   }
   html[lang] details :last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
+    margin-block-end: 0;
+    padding-block-end: 0;
   }
   @supports not selector(::details-content) {
     html[lang] details[open] > summary {
-      margin-bottom: var(--sz-m);
+      margin-block-end: var(--sz-m);
     }
   }
   /*
@@ -3880,8 +3835,10 @@ html[lang] input[type=radio] {
     /*
         PAGE LAYOUT - COLUMN BALANCE
 
-        Unitless values representing the relative widths of the main
-        content and sidebar columns.
+        Relative widths of the main content and sidebar columns.
+
+        Sass configuration uses unitless ratios; the emitted CSS
+        custom properties include the fr unit.
 
         The default balance is 5:2.
     */
@@ -3916,7 +3873,7 @@ html[lang] input[type=radio] {
     */
     --navbar-link-line-height: calc(var(--navbar-spacing-unit) * 1.5);
     --navbar-link-padding: calc(var(--navbar-spacing-unit) / 2);
-    --navbar-navlist-padding: var(--navbar-spacing-unit);
+    --navbar-navlist-padding: calc(var(--navbar-spacing-unit) / 2);
     /*
         BANNER - NAVBAR - COLLAPSIBLE
     */
@@ -3986,6 +3943,20 @@ html[lang] input[type=radio] {
     */
     --hero-background-color: var(--base-ui-color-lightest);
     --hero-image-ratio: 3 / 1;
+    /*
+        COMPONENTS - IMAGES
+    */
+    --image-background-color: var(--main-background-color);
+    --image-border-color: var(--base-border-color);
+    --image-border-style: var(--base-border-style);
+    --image-border-width: var(--base-border-width);
+    --image-inset: var(--sz-s);
+    /*
+        COMPONENTS - INFO OVERLAY
+    */
+    --info-overlay-background-color: rgba(0, 0, 0, 0.7);
+    --info-overlay-spacing-unit: var(--sz-m);
+    --info-overlay-toggle-background-color--alt: rgba(255, 255, 255, 0.3);
   }
   /*
       BASE PAGE LAYOUT
@@ -3996,19 +3967,19 @@ html[lang] input[type=radio] {
     padding: 0;
   }
   /*
-      WIDE-SCREEN PAGE LAYOUT
+      WIDER-SCREEN PAGE LAYOUT
       ============================================================================================
 
       Two-column Grid layout with optional sidebars.
 
-      MAIN occupies the primary column. Sidebars occupy the secondary
-      column, with the first above the second.
+      MAIN occupies the primary column. Sidebars occupy the secondary column, with the first above
+      the second.
 
-      When no sidebars exist, MAIN spans both columns.
-      When only one sidebar exists, it fills the sidebar column.
+      When no sidebars exist, MAIN spans both columns. When only one sidebar exists, it fills the
+      sidebar column.
 
-      Uses :has() to detect sidebar presence rather than relying on
-      the number of trailing siblings.
+      Uses :has() to detect sidebar presence rather than relying on the number of trailing
+      siblings.
   */
   @media only screen and (min-width: 50em) {
     html[data-elementary] body {
@@ -4020,7 +3991,7 @@ html[lang] input[type=radio] {
       grid-template-rows: auto auto minmax(auto, 1fr) auto;
     }
     /*
-        BANNER AND FOOTER
+            BANNER AND FOOTER
 
         Both span the full Grid width.
     */
@@ -4037,8 +4008,7 @@ html[data-elementary] body > footer {
     /*
         MAIN
 
-        MAIN occupies the first column and spans the two content
-        rows alongside the sidebars.
+        MAIN occupies the first column and spans the two content rows alongside the sidebars.
     */
     html[data-elementary] body > main {
       grid-column: 1;
@@ -4048,8 +4018,7 @@ html[data-elementary] body > footer {
     /*
         SIDEBARS
 
-        The first sidebar precedes MAIN in the document.
-        The second sidebar follows MAIN.
+        The first sidebar precedes MAIN in the document. The second sidebar follows MAIN.
     */
     html[data-elementary] body > aside {
       grid-column: 2;
@@ -4062,11 +4031,13 @@ html[data-elementary] body > footer {
     /*
         OPTIONAL SIDEBAR HANDLING
 
+        Uses Elementary's configurable structural building blocks.
+
         No sidebars:
             MAIN spans both columns.
 
         Only one sidebar:
-            It spans the available content rows.
+            It spans both content rows.
     */
     html[data-elementary] body:not(:has(> aside)) > main {
       grid-column: 1/-1;
@@ -4074,11 +4045,21 @@ html[data-elementary] body > footer {
     html[data-elementary] body:has(> aside):not(:has(> aside ~ aside)) > aside {
       grid-row: 2/4;
     }
+    /*
+        OPTIONAL SIDEBAR HANDLING
+
+        No sidebars:
+            MAIN spans both columns.
+
+        Only one sidebar:
+            It spans the available content rows.
+    */
   }
   /*
       PAGE BANNER
   */
   html[data-elementary] body > header {
+    --name: banner;
     margin: 0;
     padding: 0;
     /*
@@ -4092,7 +4073,9 @@ html[data-elementary] body > footer {
       BANNER INNER WRAPPER
   */
   html[data-elementary] body > header > fieldset {
+    --name: banner__inner;
     position: relative;
+    z-index: 999;
     margin: 0;
     padding: 0;
     border: 0 none;
@@ -4229,7 +4212,7 @@ html[data-elementary] body > header > fieldset nav summary {
     flex-wrap: wrap;
     gap: var(--navbar-link-padding);
     margin: 0;
-    padding: var(--navbar-link-padding);
+    padding: var(--navbar-navlist-padding);
     --background-color: var(--navbar-navlist-background-color);
     background-color: var(--background-color);
   }
@@ -4359,14 +4342,15 @@ html[data-elementary] body > header > fieldset nav summary {
     */
   }
   html[data-elementary] body > header > fieldset nav > details > summary + div::after {
+    --pointer-height: calc(var(--navbar-collapsible-panel-offset) - var(--navbar-link-padding));
     content: "";
     position: absolute;
-    inset-block-start: -2rem;
+    inset-block-start: calc(var(--pointer-height) * -1);
     inset-inline-end: calc(var(--navbar-collapsible-toggle-margin) + var(--navbar-collapsible-toggle-size) / 2 - 2rem);
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 0 2rem 2rem;
+    border-width: 0 2rem var(--pointer-height);
     border-color: transparent transparent var(--navbar-navlist-background-color);
   }
   html[data-elementary] body > header > fieldset nav > details[role=search] form {
@@ -4374,32 +4358,28 @@ html[data-elementary] body > header > fieldset nav summary {
     z-index: 10;
   }
   html[data-elementary] body > main {
+    --name: main;
     /*
-        1. UPDATE: this may no longer be necessary but keep this note and the CSS it corresponds to for
-           now pending further testing after the migration is complete.
+        Prevent MAIN's contents from forcing its CSS Grid column wider
+        than the allocated space.
 
-           There's a weird situation on /page-layout-article/ where there's <pre> in a <div>
-           demonstrating the use of the <div> to create a full-width container (one that breaks
-           out of the max-width column). But the <pre> has long content and isn't scrolling,
-           it's pushing everything out to fit the content and I can't figure out a simple
-           fix (or even understand why it's doing it).
-           But, since we have a known max-width for the body and a known column balance, we can work out
-           what the max-width for the main column should be and use that to fix it.
+        Grid items have an automatic minimum width based on their content.
+        Elements with large intrinsic widths (e.g. <pre> containing long,
+        unwrapped lines) can therefore cause the column to expand.
+
+        Setting min-width: 0 allows MAIN to shrink to its allocated Grid
+        track width, leaving overflowing content to scroll independently.
     */
-    /* [1] */
+    min-width: 0;
     margin: 0;
     padding: 0;
     --background-color: var(--main-background-color);
     background-color: var(--background-color);
   }
   html[data-elementary] body > main > * > header {
+    --name: main-header;
     margin: 0;
     padding: var(--main-header-spacing);
-  }
-  /*
-      MAIN HEADER AND FOLLOWING CONTENT
-  */
-  html[data-elementary] body > main > * > header {
     /*
         Arrange header contents vertically.
 
@@ -4408,6 +4388,37 @@ html[data-elementary] body > header > fieldset nav summary {
     */
     display: flex;
     flex-direction: column;
+  }
+  html[data-elementary] body > main > * > header > figure {
+    order: -1;
+  }
+  html[data-elementary] body > main > * > header > h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-inline: var(--main-content-spacing);
+    width: 100%;
+    max-width: var(--main-content-measure);
+    margin-inline: auto;
+  }
+  /*
+      ARTICLE CONTENT
+
+      Long-form article content is constrained to a readable measure
+      and centred within the available width.
+
+      width: 100% also accommodates elements that StartCSS renders
+      using display: table or other intrinsically sized layouts.
+  */
+  html[data-elementary] body > main > article > header {
+    /*
+        TABLE OF CONTENTS
+
+        A nav immediately following the article header is
+        treated as the Table of Contents.
+
+        Its existing float and responsive sizing behaviour
+        is preserved.
+    */
     /*
         CONTENT SPACING
 
@@ -4432,62 +4443,8 @@ html[data-elementary] body > header > fieldset nav summary {
         vertical rhythm.
     */
   }
-  html[data-elementary] body > main > * > header > figure {
-    order: -1;
-  }
-  html[data-elementary] body > main > * > header > h1 {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-inline: var(--main-content-spacing);
-    width: 100%;
-    max-width: var(--main-content-measure);
-    margin-inline: auto;
-  }
-  html[data-elementary] body > main > * > header ~ * {
-    padding-inline: var(--main-content-spacing);
-  }
-  html[data-elementary] body > main > * > header ~ div {
-    max-width: none;
-    padding: 0;
-  }
-  html[data-elementary] body > main > * > header ~ div:not(:last-child) {
-    margin-bottom: var(--main-content-spacing);
-  }
-  html[data-elementary] body > main > * > header ~ figure, html[data-elementary] body > main > * > header ~ div > figure {
-    --background-color: var(--main-content-figure-background-color);
-    background-color: var(--background-color);
-    clear: both;
-    border-width: var(--base-border-width);
-    border-style: var(--base-border-style);
-    border-color: var(--base-border-color);
-    padding: calc(var(--main-content-spacing) - var(--base-border-width));
-  }
-  /*
-      ARTICLE CONTENT
-
-      Long-form article content is constrained to a readable measure
-      and centred within the available width.
-
-      width: 100% also accommodates elements that StartCSS renders
-      using display: table or other intrinsically sized layouts.
-  */
-  html[data-elementary] body > main > article > header {
-    /*
-        TABLE OF CONTENTS
-
-        A nav immediately following the article header is
-        treated as the Table of Contents.
-
-        Its existing float and responsive sizing behaviour
-        is preserved.
-    */
-  }
-  html[data-elementary] body > main > article > header ~ * {
-    width: 100%;
-    max-width: var(--main-content-measure);
-    margin-inline: auto;
-  }
   html[data-elementary] body > main > article > header + nav {
+    --name: toc;
     font-size: smaller;
     margin: var(--main-content-spacing);
     padding: var(--main-content-spacing);
@@ -4498,6 +4455,28 @@ html[data-elementary] body > header > fieldset nav summary {
     width: calc((var(--main-content-measure) - 100%) * 9999);
     max-width: calc(100% - var(--main-content-spacing) * 2);
   }
+  html[data-elementary] body > main > article > header ~ * {
+    width: 100%;
+    max-width: var(--main-content-measure);
+    margin-inline: auto;
+    padding-inline: var(--main-content-spacing);
+  }
+  html[data-elementary] body > main > article > header ~ div {
+    max-width: none;
+    padding: 0;
+  }
+  html[data-elementary] body > main > article > header ~ div:not(:last-child) {
+    margin-bottom: var(--main-content-spacing);
+  }
+  html[data-elementary] body > main > article > header ~ figure, html[data-elementary] body > main > article > header ~ div > figure {
+    --background-color: var(--main-content-figure-background-color);
+    background-color: var(--background-color);
+    clear: both;
+    border-width: var(--base-border-width);
+    border-style: var(--base-border-style);
+    border-color: var(--base-border-color);
+    padding: calc(var(--main-content-spacing) - var(--base-border-width));
+  }
   /*
       IMAGES
 
@@ -4507,7 +4486,9 @@ html[data-elementary] body > header > fieldset nav summary {
     width: 100%;
   }
   html[data-elementary] body > main > div > header ~ div[role=list] {
+    --name: main-listing;
     list-style-type: none;
+    padding: var(--listing-gutter);
   }
   html[data-elementary] body > main > div > header ~ div[role=list] > * {
     min-width: var(--listing-item-min-width);
@@ -4542,6 +4523,7 @@ html[data-elementary] body > header > fieldset nav summary {
       SIDEBAR - DEFAULT
   */
   html[data-elementary] body > aside {
+    --name: sidebar--top;
     margin: 0;
     padding: var(--sidebar-spacing);
     --background-color: var(--sidebar-background-color);
@@ -4551,10 +4533,12 @@ html[data-elementary] body > header > fieldset nav summary {
       SIDEBAR - AFTER MAIN
   */
   html[data-elementary] body > main + aside {
+    --name: sidebar--bottom;
     --background-color: var(--sidebar-background-color--alt);
     background-color: var(--background-color);
   }
   html[data-elementary] body > footer {
+    --name: footer;
     margin: 0;
     padding: var(--footer-spacing);
     font-size: var(--footer-font-size);
@@ -4568,7 +4552,7 @@ html[data-elementary] body > header > fieldset nav summary {
   html[data-elementary] body > footer > * {
     margin-bottom: 0;
   }
-  html[data-elementary] body > main article > div:only-child, .my-card {
+  html[data-elementary] body > main article > div:only-child, html[data-elementary] body > aside article > div:only-child {
     --name: card;
     display: flex;
     flex-direction: column;
@@ -4596,16 +4580,16 @@ html[data-elementary] body > header > fieldset nav summary {
         FOOTER
     */
   }
-  html[data-elementary] body > main article > div:only-child *, .my-card * {
+  html[data-elementary] body > main article > div:only-child *, html[data-elementary] body > aside article > div:only-child * {
     overflow-wrap: break-word;
     word-wrap: break-word;
     -webkit-hyphens: auto;
     hyphens: auto;
   }
-  html[data-elementary] body > main article > div:only-child *:only-child, .my-card *:only-child {
+  html[data-elementary] body > main article > div:only-child *:only-child, html[data-elementary] body > aside article > div:only-child *:only-child {
     margin-bottom: 0;
   }
-  html[data-elementary] body > main article > div:only-child > header, .my-card > header {
+  html[data-elementary] body > main article > div:only-child > header, html[data-elementary] body > aside article > div:only-child > header {
     background-color: transparent;
     padding: 0;
     /*
@@ -4615,54 +4599,54 @@ html[data-elementary] body > header > fieldset nav summary {
         allowing the image to extend to the card edges.
     */
   }
-  html[data-elementary] body > main article > div:only-child > header > :last-child, .my-card > header > :last-child {
+  html[data-elementary] body > main article > div:only-child > header > :last-child, html[data-elementary] body > aside article > div:only-child > header > :last-child {
     margin-bottom: 0;
   }
-  html[data-elementary] body > main article > div:only-child > header > :last-child > :last-child, .my-card > header > :last-child > :last-child {
+  html[data-elementary] body > main article > div:only-child > header > :last-child > :last-child, html[data-elementary] body > aside article > div:only-child > header > :last-child > :last-child {
     margin-bottom: 0;
   }
-  html[data-elementary] body > main article > div:only-child > header > div:first-child, .my-card > header > div:first-child {
+  html[data-elementary] body > main article > div:only-child > header > div:first-child, html[data-elementary] body > aside article > div:only-child > header > div:first-child {
     position: relative;
     overflow: hidden;
     margin: calc(var(--card-spacing) * -1) calc(var(--card-spacing) * -1) var(--card-spacing);
     aspect-ratio: var(--card-image-ratio);
   }
-  html[data-elementary] body > main article > div:only-child > header > div:first-child > img, .my-card > header > div:first-child > img {
+  html[data-elementary] body > main article > div:only-child > header > div:first-child > img, html[data-elementary] body > aside article > div:only-child > header > div:first-child > img {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-  html[data-elementary] body > main article > div:only-child > div, .my-card > div {
+  html[data-elementary] body > main article > div:only-child > div, html[data-elementary] body > aside article > div:only-child > div {
     /*
         Align a CTA when it occupies the final paragraph
         of the card body.
     */
   }
-  html[data-elementary] body > main article > div:only-child > div > :last-child, .my-card > div > :last-child {
+  html[data-elementary] body > main article > div:only-child > div > :last-child, html[data-elementary] body > aside article > div:only-child > div > :last-child {
     margin-bottom: 0;
   }
-  html[data-elementary] body > main article > div:only-child > div > :last-child > :last-child, .my-card > div > :last-child > :last-child {
+  html[data-elementary] body > main article > div:only-child > div > :last-child > :last-child, html[data-elementary] body > aside article > div:only-child > div > :last-child > :last-child {
     margin-bottom: 0;
   }
-  html[data-elementary] body > main article > div:only-child > div > p:last-child > b:only-child, .my-card > div > p:last-child > b:only-child {
+  html[data-elementary] body > main article > div:only-child > div > p:last-child > b:only-child, html[data-elementary] body > aside article > div:only-child > div > p:last-child > b:only-child {
     display: block;
     text-align: right;
   }
-  html[data-elementary] body > main article > div:only-child > footer, .my-card > footer {
+  html[data-elementary] body > main article > div:only-child > footer, html[data-elementary] body > aside article > div:only-child > footer {
     margin-top: auto;
     margin-bottom: 0;
     padding: 0;
     background-color: transparent;
   }
-  html[data-elementary] body > main article > div:only-child > footer > :last-child, .my-card > footer > :last-child {
+  html[data-elementary] body > main article > div:only-child > footer > :last-child, html[data-elementary] body > aside article > div:only-child > footer > :last-child {
     margin-bottom: 0;
   }
-  html[data-elementary] body > main article > div:only-child > footer > :last-child > :last-child, .my-card > footer > :last-child > :last-child {
+  html[data-elementary] body > main article > div:only-child > footer > :last-child > :last-child, html[data-elementary] body > aside article > div:only-child > footer > :last-child > :last-child {
     margin-bottom: 0;
   }
-  html[data-elementary] body > main b > a[href]:only-child, .my-cta {
+  html[data-elementary] body > main b > a[href]:only-child, html[data-elementary] body > aside b > a[href]:only-child {
     --name: cta;
     display: inline-block;
     overflow: hidden;
@@ -4690,7 +4674,7 @@ html[data-elementary] body > header > fieldset nav summary {
         INTERACTION STATES
     */
   }
-  html[data-elementary] body > main b > a[href]:only-child:hover, html[data-elementary] body > main b > a[href]:only-child:active, html[data-elementary] body > main b > a[href]:only-child:focus, .my-cta:hover, .my-cta:active, .my-cta:focus {
+  html[data-elementary] body > main b > a[href]:only-child:hover, html[data-elementary] body > main b > a[href]:only-child:active, html[data-elementary] body > main b > a[href]:only-child:focus, html[data-elementary] body > aside b > a[href]:only-child:hover, html[data-elementary] body > aside b > a[href]:only-child:active, html[data-elementary] body > aside b > a[href]:only-child:focus {
     --background-color: var(--cta-background-color--alt);
     background-color: var(--background-color);
   }
@@ -4746,6 +4730,134 @@ html[data-elementary] body > header > fieldset nav summary {
   }
   html[data-elementary] body > main > * > header > figure:last-child {
     margin-block-end: var(--main-header-spacing);
+  }
+  /*
+      BORDERED IMAGE
+  */
+  html[data-elementary] body > main b > img:only-child {
+    --name: border-image;
+    border-width: var(--image-border-width);
+    border-style: var(--image-border-style);
+    border-color: var(--image-border-color);
+  }
+  /*
+      INSET IMAGE
+  */
+  html[data-elementary] body > main b > i:only-child > img:only-child {
+    --name: inset-image;
+    border-width: var(--image-border-width);
+    border-style: var(--image-border-style);
+    border-color: var(--image-border-color);
+    padding: calc(var(--image-inset) - var(--image-border-width));
+    --background-color: var(--image-background-color);
+    background-color: var(--background-color);
+  }
+  html[data-elementary] body > header > fieldset figure > figcaption > details, html[data-elementary] body > main header figure > figcaption > details {
+    --name: image-overlay;
+    /*
+        OVERLAY CONTAINER
+
+        Closed: compact circular control.
+        Open: expands to accommodate information content.
+    */
+    position: absolute;
+    inset-block-start: calc(var(--info-overlay-spacing-unit) / 4);
+    inset-inline-end: calc(var(--info-overlay-spacing-unit) / 4);
+    width: var(--info-overlay-spacing-unit);
+    height: var(--info-overlay-spacing-unit);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: calc(var(--info-overlay-spacing-unit) / 2);
+    --background-color: var(--info-overlay-background-color);
+    background-color: var(--background-color);
+    /*
+        Remove StartCSS's generic details decoration.
+    */
+    /*
+        TOGGLE
+
+        The summary remains the interactive control in both
+        the closed and expanded states.
+    */
+    /*
+        INFORMATION CONTENT
+
+        The padding leaves room for the toggle in the
+        expanded state.
+
+        Overqualifying the selector to override StartCSS :last-child selector.
+    */
+    /*
+        EXPANDED STATE
+    */
+  }
+  html[data-elementary] body > header > fieldset figure > figcaption > details::after, html[data-elementary] body > main header figure > figcaption > details::after {
+    display: none;
+  }
+  html[data-elementary] body > header > fieldset figure > figcaption > details > summary, html[data-elementary] body > main header figure > figcaption > details > summary {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--info-overlay-spacing-unit);
+    height: var(--info-overlay-spacing-unit);
+    margin: 0;
+    padding: 0;
+    border-radius: calc(var(--info-overlay-spacing-unit) / 2);
+    list-style: none;
+    cursor: pointer;
+    /*
+        SVG ICON STATES
+
+        First SVG: information icon.
+        Second SVG: close icon.
+    */
+    /*
+        INTERACTION
+    */
+  }
+  html[data-elementary] body > header > fieldset figure > figcaption > details > summary::before, html[data-elementary] body > main header figure > figcaption > details > summary::before {
+    display: none;
+  }
+  html[data-elementary] body > header > fieldset figure > figcaption > details > summary::-webkit-details-marker, html[data-elementary] body > main header figure > figcaption > details > summary::-webkit-details-marker {
+    display: none;
+  }
+  html[data-elementary] body > header > fieldset figure > figcaption > details > summary > svg:first-of-type, html[data-elementary] body > main header figure > figcaption > details > summary > svg:first-of-type {
+    display: inline;
+  }
+  html[data-elementary] body > header > fieldset figure > figcaption > details > summary > svg:last-of-type, html[data-elementary] body > main header figure > figcaption > details > summary > svg:last-of-type {
+    display: none;
+  }
+  html[data-elementary] body > header > fieldset figure > figcaption > details > summary:hover, html[data-elementary] body > header > fieldset figure > figcaption > details > summary:focus, html[data-elementary] body > header > fieldset figure > figcaption > details > summary:active, html[data-elementary] body > main header figure > figcaption > details > summary:hover, html[data-elementary] body > main header figure > figcaption > details > summary:focus, html[data-elementary] body > main header figure > figcaption > details > summary:active {
+    background-color: var(--info-overlay-toggle-background-color--alt);
+  }
+  html[data-elementary] body > header > fieldset figure > figcaption > details > summary + small:nth-child(n), html[data-elementary] body > main header figure > figcaption > details > summary + small:nth-child(n) {
+    position: relative;
+    display: block;
+    max-width: calc(100% - var(--info-overlay-spacing-unit));
+    padding-block-start: var(--info-overlay-spacing-unit);
+    padding-block-end: var(--info-overlay-spacing-unit);
+    padding-inline-start: var(--info-overlay-spacing-unit);
+    padding-inline-end: calc(var(--info-overlay-spacing-unit) * 1.5);
+  }
+  html[data-elementary] body > header > fieldset figure > figcaption > details[open], html[data-elementary] body > main header figure > figcaption > details[open] {
+    inset-block-start: 0;
+    inset-inline-end: 0;
+    width: auto;
+    height: auto;
+    border-radius: 0;
+  }
+  html[data-elementary] body > header > fieldset figure > figcaption > details[open] > summary, html[data-elementary] body > main header figure > figcaption > details[open] > summary {
+    inset-block-start: calc(var(--info-overlay-spacing-unit) / 4);
+    inset-inline-end: calc(var(--info-overlay-spacing-unit) / 4);
+  }
+  html[data-elementary] body > header > fieldset figure > figcaption > details[open] > summary > svg:first-of-type, html[data-elementary] body > main header figure > figcaption > details[open] > summary > svg:first-of-type {
+    display: none;
+  }
+  html[data-elementary] body > header > fieldset figure > figcaption > details[open] > summary > svg:last-of-type, html[data-elementary] body > main header figure > figcaption > details[open] > summary > svg:last-of-type {
+    display: inline;
   }
 }
 /*

@@ -1,0 +1,86 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    BANNER - LOGO
+    ============================================================================================
+
+    Styles the site logo within Elementary's page banner.
+
+    Uses StartCSS's spacing, automatic text contrast and outline
+    shadow tokens.
+
+    The logo background can be configured independently through
+    Elementary's public CSS tokens.
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "../00-3-selectors" as selectors;
+
+
+@mixin emit() {
+
+    @if selectors.$logo-selector != false {
+
+        #{selectors.$logo-selector} {
+            --name: logo;
+
+            display: inline-block;
+
+            & > a[href] {
+                display: inline-flex;
+                align-items: center;
+                gap: var(--logo-inline-spacing);
+
+                font-size: 2.5em;
+                line-height: 1;
+
+                text-decoration: none;
+
+                padding: var(--logo-padding);
+                margin: var(--sz-s);
+
+                border: 0;
+                border-radius: var(--logo-border-radius);
+
+                --background-color: var(--logo-background-color);
+                background-color: var(--background-color);
+
+                /*
+                    Remove spacing from the logo's contents.
+                */
+
+                & > * {
+                    margin: 0;
+                    padding: 0;
+                }
+
+                /*
+                    SVG logos inherit the link's automatically
+                    calculated foreground colour.
+                */
+
+                & > svg {
+                    fill: none;
+                    stroke: currentColor;
+                }
+
+                /*
+                    INTERACTION STATES
+
+                    Reuse StartCSS's existing outline-shadow token
+                    rather than introducing an Elementary-specific
+                    highlight mechanism.
+                */
+
+                &:hover,
+                &:active,
+                &:focus {
+                    text-decoration: none;
+
+                    border: 0;
+
+                    box-shadow: var(--outline-shadow);
+                }
+            }
+        }
+    }
+}

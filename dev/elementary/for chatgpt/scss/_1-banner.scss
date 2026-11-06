@@ -1,0 +1,65 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    BANNER
+    ============================================================================================
+
+    Styles Elementary's page banner and its inner wrapper.
+
+    The banner provides the structural container for the site logo,
+    navigation and other banner content.
+
+    Layout and presentation of those elements are handled by their
+    respective modules.
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "00-3-selectors" as selectors;
+
+
+@mixin emit() {
+
+    /*
+        PAGE BANNER
+    */
+
+    @if selectors.$banner-selector != false {
+
+        #{selectors.$banner-selector} {
+            --name:  banner;
+
+            margin: 0;
+            padding: 0;
+
+            /*
+                Paragraphs within the banner have no margins.
+            */
+
+            p {
+                margin: 0;
+            }
+        }
+    }
+
+
+    /*
+        BANNER INNER WRAPPER
+    */
+
+    @if selectors.$banner-inner-selector != false {
+
+        #{selectors.$banner-inner-selector} {
+            --name: banner__inner;
+
+            position: relative;
+            z-index: 999; // @TODO - should proably have this (and a stacking system) configurable.
+
+            margin: 0;
+            padding: 0;
+
+            border: 0 none;
+
+            --background-color: var(--banner-background-color);
+            background-color: var(--background-color);
+        }
+    }
+}

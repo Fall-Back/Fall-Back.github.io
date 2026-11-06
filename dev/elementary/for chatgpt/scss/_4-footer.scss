@@ -1,0 +1,46 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    FOOTER
+    ============================================================================================
+
+    Styles Elementary's page footer.
+
+    The footer's positioning within the page layout is handled by
+    _0-elementary.scss.
+
+    Visual properties are controlled by Elementary's public CSS
+    tokens, with defaults derived from StartCSS where appropriate.
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "00-3-selectors" as selectors;
+
+
+@mixin emit() {
+
+    @if selectors.$footer-selector != false {
+
+        #{selectors.$footer-selector} {
+            --name: footer;
+
+            margin: 0;
+
+            padding: var(--footer-spacing);
+
+            font-size: var(--footer-font-size);
+
+            text-align: center;
+
+            --background-color: var(--footer-background-color);
+            background-color: var(--background-color);
+
+            /*
+                Remove the bottom margin from direct children.
+            */
+
+            & > * {
+                margin-bottom: 0;
+            }
+        }
+    }
+}

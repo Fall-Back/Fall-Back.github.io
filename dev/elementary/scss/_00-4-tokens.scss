@@ -23,8 +23,10 @@
         /*
             PAGE LAYOUT - COLUMN BALANCE
 
-            Unitless values representing the relative widths of the main
-            content and sidebar columns.
+            Relative widths of the main content and sidebar columns.
+
+            Sass configuration uses unitless ratios; the emitted CSS
+            custom properties include the fr unit.
 
             The default balance is 5:2.
         */
@@ -121,7 +123,7 @@
 
         --navbar-link-padding: calc(var(--navbar-spacing-unit) / 2);
 
-        --navbar-navlist-padding: var(--navbar-spacing-unit);
+        --navbar-navlist-padding: calc(var(--navbar-spacing-unit) / 2);
 
 
         /*
@@ -344,5 +346,56 @@
         }
 
         --hero-image-ratio: #{cfg.get("component_hero", "image-ratio")};
+
+
+        /*
+            COMPONENTS - IMAGES
+        */
+
+        @if cfg.overridden("component_images", "background-color") {
+            --image-background-color: #{cfg.get("component_images", "background-color")};
+        } @else {
+            --image-background-color: var(--main-background-color);
+        }
+
+        @if cfg.overridden("component_images", "border-color") {
+            --image-border-color: #{cfg.get("component_images", "border-color")};
+        } @else {
+            --image-border-color: var(--base-border-color);
+        }
+
+        @if cfg.overridden("component_images", "border-style") {
+            --image-border-style: #{cfg.get("component_images", "border-style")};
+        } @else {
+            --image-border-style: var(--base-border-style);
+        }
+
+        @if cfg.overridden("component_images", "border-width") {
+            --image-border-width: #{cfg.get("component_images", "border-width")};
+        } @else {
+            --image-border-width: var(--base-border-width);
+        }
+
+        @if cfg.overridden("component_images", "inset") {
+            --image-inset: #{cfg.get("component_images", "inset")};
+        } @else {
+            --image-inset: var(--sz-s);
+        }
+
+
+        /*
+            COMPONENTS - INFO OVERLAY
+        */
+
+        --info-overlay-background-color: #{cfg.get("component_info_overlay", "background-color")};
+
+        @if cfg.overridden("component_info_overlay", "spacing-unit") {
+            --info-overlay-spacing-unit: #{cfg.get("component_info_overlay", "spacing-unit")};
+        } @else {
+            --info-overlay-spacing-unit: var(--sz-m);
+        }
+
+        --info-overlay-toggle-background-color--alt: #{cfg.get("component_info_overlay", "toggle-background-color--alt")};
     }
+
 }

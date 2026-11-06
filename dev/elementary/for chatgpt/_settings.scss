@@ -1,0 +1,31 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    Elementary base-project (Styleguide)
+
+
+    Settings for Elementary base-project.
+    This file should be used as the starting point for an Elementary-based project. It should not be
+    added to the Elementary library as a SASS file for inclusion as part of that library - though it
+    can appear as an EXAMPLE file as part of the docs.
+    Essentially we're testing the successful overrice of the StartCSS base colour.
+
+|-------------------------------------------------------------------------------------------------*/
+
+$startcss-overrides: (
+
+    "tokens": (
+        "base-ui-color": #79260D
+    ),
+    "ui": (
+        "outline-shadow": (0 0 0 var(--sz-xxs) rgba(255, 255, 255, 0.4), 0 0 0 var(--sz-xs) rgba(0, 0, 0, 0.2))
+    )
+
+);
+
+$elementary-overrides: (
+
+    "navbar": (
+        "link-border-radius": var(--sz-xs)
+    )
+
+);

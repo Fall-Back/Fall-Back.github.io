@@ -20,10 +20,10 @@
 
         display: table-caption;
 
-        padding-top: var(--caption-padding);
-        padding-right: var(--caption-padding);
-        padding-bottom: var(--caption-padding);
-        padding-left: var(--caption-padding);
+        padding-block-start: var(--caption-padding);
+        padding-inline-start: var(--caption-padding);
+        padding-block-end: var(--caption-padding);
+        padding-inline-end: var(--caption-padding);
 
         font-weight: bold;
 

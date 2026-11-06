@@ -1,0 +1,83 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    MAIN - CONTENT - LISTING
+    ============================================================================================
+
+    Provides the shared presentation rules for Elementary's content
+    listings and selects one layout implementation at compile time.
+
+    Available layouts:
+        flexbox  - Default, wrapping items that can grow to fill rows.
+        grid     - Grid layout with preferred item widths.
+        columns  - Multicolumn layout with preferred column widths.
+
+    Only the selected layout implementation is emitted.
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "../00-1-config" as cfg;
+@use "../00-3-selectors" as selectors;
+
+@use "3-content-listing--flexbox" as flexbox;
+@use "3-content-listing--grid" as grid;
+@use "3-content-listing--columns" as columns;
+
+
+@mixin emit() {
+
+    $display-type: cfg.get(
+        "main_content_listing",
+        "display-type"
+    );
+
+    @if $display-type != flexbox
+        and $display-type != grid
+        and $display-type != columns {
+        @error "Unknown Elementary listing display-type: #{$display-type}. Expected flexbox, grid or columns.";
+    }
+
+    @if selectors.$listing-selector != false {
+
+        #{selectors.$listing-selector} {
+            --name: main-listing;
+
+            list-style-type: none;
+
+            padding: var(--listing-gutter);
+
+            & > * {
+                min-width: var(--listing-item-min-width);
+
+                margin: 0;
+                padding: 0;
+
+                border: 0;
+
+                --background-color: var(--listing-item-background-color);
+                background-color: var(--background-color);
+
+                & > * {
+                    display: block;
+                    height: 100%;
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+        }
+
+
+        /*
+            SELECTED LAYOUT
+
+            display-type is a Sass-only configuration setting.
+        */
+
+        @if $display-type == flexbox {
+            @include flexbox.emit();
+        } @else if $display-type == grid {
+            @include grid.emit();
+        } @else if $display-type == columns {
+            @include columns.emit();
+        }
+    }
+}

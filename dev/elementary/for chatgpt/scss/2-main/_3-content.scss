@@ -1,0 +1,94 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    MAIN - CONTENT
+    ============================================================================================
+
+    Controls the presentation of content within Elementary's main area.
+
+    The main header is a configurable page-structure selector. Internal
+    relationships, including descendants and following siblings, remain
+    defined here as part of Elementary's HTML conventions.
+
+    Visual values use Elementary and StartCSS custom properties.
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "../00-3-selectors" as selectors;
+
+
+@mixin emit() {
+
+    /*
+        ARTICLE CONTENT
+
+        Long-form article content is constrained to a readable measure
+        and centred within the available width.
+
+        width: 100% also accommodates elements that StartCSS renders
+        using display: table or other intrinsically sized layouts.
+    */
+
+    @if selectors.$es__page_main__header--article != false {
+
+        #{selectors.$es__page_main__header--article} {
+
+            & ~ * {
+                width: 100%;
+                max-width: var(--main-content-measure);
+
+                margin-inline: auto;
+            }
+
+
+            /*
+                TABLE OF CONTENTS
+
+                A nav immediately following the article header is
+                treated as the Table of Contents.
+
+                Its existing float and responsive sizing behaviour
+                is preserved.
+            */
+
+            & + nav {
+                --name: toc;
+
+                font-size: smaller;
+
+                margin: var(--main-content-spacing);
+                padding: var(--main-content-spacing);
+
+                --background-color: var(--main-content-toc-background-color);
+                background-color: var(--background-color);
+
+                float: right;
+
+                min-width: var(--main-content-sidebar-width);
+
+                width: calc(
+                    (var(--main-content-measure) - 100%) * 9999
+                );
+
+                max-width: calc(
+                    100% - var(--main-content-spacing) * 2
+                );
+            }
+        }
+    }
+
+
+    /*
+        IMAGES
+
+        Images within the main region occupy the available width.
+    */
+
+    @if selectors.$es__page_main != false {
+
+        #{selectors.$es__page_main} {
+            img {
+                width: 100%;
+            }
+        }
+    }
+}

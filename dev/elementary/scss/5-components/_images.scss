@@ -1,22 +1,61 @@
 /*-------------------------------------------------------------------------------------------------|
 
     COMPONENTS - IMAGES
-    ===================
+    ============================================================================================
+
+    Provides two image presentation conventions:
+
+    Bordered:
+        <b><img></b>
+
+    Inset:
+        <b><i><img></i></b>
+
+    Both treatments use Elementary's public CSS tokens and inherit
+    StartCSS defaults where appropriate.
 
 |-------------------------------------------------------------------------------------------------*/
 
-#{$es__component__images--border} {
-    --name: border-image;
-    border: $e__image-border;
-};
+@use "../00-3-selectors" as selectors;
+@use "start-mixins" as mixins;
 
-#{$es__component__images--inset} {
-    --name: inset-image;
 
-    padding: $e__image-inset;
+@mixin emit() {
 
-    border: $e__image-border;
+    /*
+        BORDERED IMAGE
+    */
 
-    --background-color: var(--image-color, var(--base-ui-color));
-    @include s__theme(var(--image-color--text, var(--base-ui-color--text)));
-};
+    @if selectors.$es__component__images--border != false {
+
+        #{selectors.$es__component__images--border} {
+            --name: border-image;
+
+            border-width: var(--image-border-width);
+            border-style: var(--image-border-style);
+            border-color: var(--image-border-color);
+        }
+    }
+
+
+    /*
+        INSET IMAGE
+    */
+
+    @if selectors.$es__component__images--inset != false {
+
+        #{selectors.$es__component__images--inset} {
+            --name: inset-image;
+
+            @include mixins.s__bordered(
+                var(--image-inset),
+                var(--image-border-width),
+                var(--image-border-color),
+                var(--image-border-style)
+            );
+
+            --background-color: var(--image-background-color);
+            background-color: var(--background-color);
+        }
+    }
+}

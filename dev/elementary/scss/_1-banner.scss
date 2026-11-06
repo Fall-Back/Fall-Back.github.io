@@ -22,9 +22,11 @@
         PAGE BANNER
     */
 
-    @if selectors.$banner-selector != false {
+    @if selectors.$es__page_banner != false {
 
-        #{selectors.$banner-selector} {
+        #{selectors.$es__page_banner} {
+            --name:  banner;
+
             margin: 0;
             padding: 0;
 
@@ -43,10 +45,13 @@
         BANNER INNER WRAPPER
     */
 
-    @if selectors.$banner-inner-selector != false {
+    @if selectors.$es__page_banner__inner != false {
 
-        #{selectors.$banner-inner-selector} {
+        #{selectors.$es__page_banner__inner} {
+            --name: banner__inner;
+
             position: relative;
+            z-index: 999; // @TODO - should proably have this (and a stacking system) configurable.
 
             margin: 0;
             padding: 0;

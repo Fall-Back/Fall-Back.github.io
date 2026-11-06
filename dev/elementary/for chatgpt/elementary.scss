@@ -1,0 +1,85 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    Elementary base-project (Styleguide)
+
+
+    This file should be used as the starting point for an Elementary-based
+    project. I should not be added to the Elementary library as a SASS file for inclusion as part of
+    that library - though it can appear as an EXAMPLE file as part of the docs.
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "settings" as project;
+
+// ---| StartCSS |--------------------------------------------------------------------------------//
+
+// Change this path to the correct place where StartCSS is installed. E.g. in bower_components.
+@use "start-config" as cfg with (
+    $startcss-overrides: project.$startcss-overrides
+);
+
+@use "../start-css/scss/start" as start;
+
+
+@use "scss/00-1-config" as elementary-config with (
+    $elementary-overrides: project.$elementary-overrides
+);
+
+@use "scss/00-3-selectors" as selectors;
+// EXAMPLE - DO NOT DELETE
+//@use "scss/00-3-selectors" as selectors with (
+//    $elementary-selector-extensions: (
+//        "component-card": ".my-card",
+//        "component-cta": ".my-cta"
+//    )
+//);
+
+
+// This allows me to include the CSS for all listing layout options for testing purposes:
+@use "sass:selector";
+
+@use "scss/2-main/3-content-listing--grid" as listing-grid;
+@use "scss/2-main/3-content-listing--columns" as listing-columns;
+
+
+// ---| Elementary |------------------------------------------------------------------------------//
+@use "scss/_0-elementary" as elementary;
+
+
+// ---| Custom |----------------------------------------------------------------------------------//
+@use "custom" as custom;
+
+
+//------------------------------------------------------------------------------------------------//
+// End if @use block. Starting @includes:
+//------------------------------------------------------------------------------------------------//
+@include start.emit();
+@include elementary.emit();
+
+
+// -- | One-off styles (Use sparingly) |----------------------------------------------------------//
+@include custom.emit();
+
+
+/*
+    STYLEGUIDE ONLY
+
+    Demonstrate alternative listing layouts without changing
+    Elementary's configured default.
+*/
+
+@include listing-grid.emit(
+    selector.replace(
+        selectors.$listing-selector,
+        "[data-elementary]",
+        "[data-elementary]#page-layout-listing-grid"
+    )
+);
+
+@include listing-columns.emit(
+    selector.replace(
+        selectors.$listing-selector,
+        "[data-elementary]",
+        "[data-elementary]#page-layout-listing-columns"
+    )
+);

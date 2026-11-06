@@ -101,18 +101,18 @@
     }
 
     #{cfg.base("namespace")}details > summary + * {
-        margin-top: 0;
-        padding-top: 0;
+        margin-block-start: 0;
+        padding-block-start: 0;
     }
 
     #{cfg.base("namespace")}details :last-child {
-        margin-bottom: 0;
-        padding-bottom: 0;
+        margin-block-end: 0;
+        padding-block-end: 0;
     }
 
     @supports not selector(::details-content) {
         #{cfg.base("namespace")}details[open] > summary {
-            margin-bottom: var(--sz-m);
+            margin-block-end: var(--sz-m);
         }
     }
 }

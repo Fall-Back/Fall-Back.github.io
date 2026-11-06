@@ -19,9 +19,9 @@
 
 @mixin emit() {
 
-    @if selectors.$cta-selector != false {
+    @if selectors.$es__component__cta != false {
 
-        #{selectors.$cta-selector} {
+        #{selectors.$es__component__cta} {
             --name: cta;
 
             display: inline-block;

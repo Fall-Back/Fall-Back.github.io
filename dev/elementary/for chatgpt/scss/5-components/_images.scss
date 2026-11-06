@@ -1,0 +1,61 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    COMPONENTS - IMAGES
+    ============================================================================================
+
+    Provides two image presentation conventions:
+
+    Bordered:
+        <b><img></b>
+
+    Inset:
+        <b><i><img></i></b>
+
+    Both treatments use Elementary's public CSS tokens and inherit
+    StartCSS defaults where appropriate.
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "../00-3-selectors" as selectors;
+@use "start-mixins" as mixins;
+
+
+@mixin emit() {
+
+    /*
+        BORDERED IMAGE
+    */
+
+    @if selectors.$image-border-selector != false {
+
+        #{selectors.$image-border-selector} {
+            --name: border-image;
+
+            border-width: var(--image-border-width);
+            border-style: var(--image-border-style);
+            border-color: var(--image-border-color);
+        }
+    }
+
+
+    /*
+        INSET IMAGE
+    */
+
+    @if selectors.$image-inset-selector != false {
+
+        #{selectors.$image-inset-selector} {
+            --name: inset-image;
+
+            @include mixins.s__bordered(
+                var(--image-inset),
+                var(--image-border-width),
+                var(--image-border-color),
+                var(--image-border-style)
+            );
+
+            --background-color: var(--image-background-color);
+            background-color: var(--background-color);
+        }
+    }
+}

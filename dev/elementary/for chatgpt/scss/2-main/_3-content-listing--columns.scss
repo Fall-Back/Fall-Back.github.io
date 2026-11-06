@@ -1,0 +1,63 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    CONTENT LISTING - COLUMNS
+    ============================================================================================
+
+    Alternative CSS multicolumn layout for Elementary's content listings.
+
+    The browser determines the number of columns from the preferred
+    item width. Items flow vertically through the columns rather than
+    horizontally across rows.
+
+    Uses the same public spacing and sizing tokens as the Flexbox
+    and Grid implementations.
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "../00-3-selectors" as selectors;
+
+
+@mixin emit($selector: selectors.$listing-selector) {
+
+    @if $selector != false {
+
+        #{$selector} {
+
+            display: block;
+
+            columns: var(--listing-item-basis) auto;
+
+            column-gap: var(--listing-gutter);
+
+            /*
+                ITEMS
+
+                Avoid splitting items between columns.
+
+                translateZ(0) is retained from the original
+                implementation to work around box-shadow rendering
+                issues in multicolumn layouts.
+            */
+
+            & > * {
+                margin: 0;
+
+                transform: translateZ(0);
+
+                break-inside: avoid;
+
+                /*
+                    Multicolumn layout doesn't provide the same
+                    vertical gap behaviour as Flexbox or Grid.
+
+                    Apply half the gutter above and below each
+                    item's contents.
+                */
+
+                & > * {
+                    padding-block: calc(var(--listing-gutter) / 2);
+                }
+            }
+        }
+    }
+}

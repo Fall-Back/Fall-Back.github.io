@@ -18,9 +18,9 @@
 
 @mixin emit() {
 
-    @if selectors.$logo-selector != false {
+    @if selectors.$es__page_banner__logo != false {
 
-        #{selectors.$logo-selector} {
+        #{selectors.$es__page_banner__logo} {
             --name: logo;
 
             display: inline-block;

@@ -1,0 +1,401 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    ELEMENTARY TOKENS
+    ============================================================================================
+
+    Public CSS custom properties for Elementary's presentation patterns.
+
+    Elementary builds on StartCSS and reuses its existing design tokens
+    wherever appropriate.
+
+    These tokens establish the default visual relationships. Sass consumers
+    may configure Elementary's defaults at build time, while CSS consumers
+    may override the emitted custom properties at runtime.
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "00-1-config" as cfg;
+
+
+@mixin emit() {
+    :root {
+
+        /*
+            PAGE LAYOUT - COLUMN BALANCE
+
+            Relative widths of the main content and sidebar columns.
+
+            Sass configuration uses unitless ratios; the emitted CSS
+            custom properties include the fr unit.
+
+            The default balance is 5:2.
+        */
+        --page-layout-main-balance: #{cfg.get("main", "main-balance")}fr;
+        --page-layout-sidebar-balance: #{cfg.get("main", "sidebar-balance")}fr;
+
+
+        /*
+            BANNER
+        */
+
+        @if cfg.overridden("banner", "background-color") {
+            --banner-background-color: #{cfg.get("banner", "background-color")};
+        } @else {
+            --banner-background-color: var(--base-ui-color);
+        }
+
+
+        /*
+            BANNER - LOGO
+        */
+
+        @if cfg.overridden("banner_logo", "background-color") {
+            --logo-background-color: #{cfg.get("banner_logo", "background-color")};
+        } @else {
+            --logo-background-color: var(--base-ui-color);
+        }
+        @if cfg.overridden("banner_logo", "border-radius") {
+            --logo-border-radius: #{cfg.get("banner_logo", "border-radius")};
+        } @else {
+            --logo-border-radius: var(--base-border-radius);
+        }
+        @if cfg.overridden("banner_logo", "inline-spacing") {
+            --logo-inline-spacing: #{cfg.get("banner_logo", "inline-spacing")};
+        } @else {
+            --logo-inline-spacing: var(--sz-xs);
+        }
+        @if cfg.overridden("banner_logo", "padding") {
+            --logo-padding: #{cfg.get("banner_logo", "padding")};
+        } @else {
+            --logo-padding: var(--sz-xs);
+        }
+
+
+        /*
+            BANNER - NAVBAR
+        */
+
+        @if cfg.overridden("navbar", "background-color") {
+            --navbar-background-color: #{cfg.get("navbar", "background-color")};
+        } @else {
+            --navbar-background-color: transparent;
+        }
+        @if cfg.overridden("navbar", "link-background-color") {
+            --navbar-link-background-color: #{cfg.get("navbar", "link-background-color")};
+        } @else {
+            --navbar-link-background-color: var(--base-ui-color);
+        }
+        @if cfg.overridden("navbar", "link-background-color--alt") {
+            --navbar-link-background-color--alt: #{cfg.get("navbar", "link-background-color--alt")};
+        } @else {
+            --navbar-link-background-color--alt: var(--base-ui-color-lighter);
+        }
+        @if cfg.overridden("navbar", "link-background-color--current") {
+            --navbar-link-background-color--current: #{cfg.get("navbar", "link-background-color--current")};
+        } @else {
+            --navbar-link-background-color--current: var(--base-ui-color-darker);
+        }
+        @if cfg.overridden("navbar", "link-border-radius") {
+            --navbar-link-border-radius: #{cfg.get("navbar", "link-border-radius")};
+        } @else {
+            --navbar-link-border-radius: var(--base-border-radius);
+        }
+        @if cfg.overridden("navbar", "spacing-unit") {
+            --navbar-spacing-unit: #{cfg.get("navbar", "spacing-unit")};
+        } @else {
+            --navbar-spacing-unit: var(--base-rem-space-unit);
+        }
+        @if cfg.overridden("navbar", "navlist-background-color") {
+            --navbar-navlist-background-color:
+                #{cfg.get("navbar", "navlist-background-color")};
+        } @else {
+            --navbar-navlist-background-color: var(--base-ui-color-dark);
+        }
+
+        /*
+            NAVBAR - DERIVED DIMENSIONS
+
+            These values remain CSS custom properties so CSS consumers can
+            override individual dimensions without recompiling Elementary.
+        */
+
+        --navbar-link-line-height: calc(var(--navbar-spacing-unit) * 1.5);
+
+        --navbar-link-padding: calc(var(--navbar-spacing-unit) / 2);
+
+        --navbar-navlist-padding: var(--navbar-spacing-unit);
+
+
+        /*
+            BANNER - NAVBAR - COLLAPSIBLE
+        */
+
+        --navbar-collapsible-panel-shadow: #{cfg.get("navbar_collapsible", "panel-shadow")};
+
+        --navbar-collapsible-toggle-size: calc(var(--navbar-spacing-unit) * 2);
+
+        --navbar-collapsible-toggle-margin: var(--navbar-link-padding);
+
+        --navbar-collapsible-panel-offset: calc(var(--navbar-spacing-unit) * 1.5);
+
+
+        /*
+            MAIN
+        */
+        @if cfg.overridden("main", "background-color") {
+            --main-background-color: #{cfg.get("main", "background-color")};
+        } @else {
+            --main-background-color: var(--base-background-color);
+        }
+
+
+        /*
+            MAIN - HEADER
+        */
+        @if cfg.overridden("main_header", "spacing") {
+            --main-header-spacing: #{cfg.get("main_header", "spacing")};
+        } @else {
+            --main-header-spacing: var(--sz-m);
+        }
+
+
+        /*
+            MAIN - CONTENT
+        */
+
+        --main-content-measure: #{cfg.get("main_content", "measure")};
+        --main-content-sidebar-width: #{cfg.get("main_content", "sidebar-width")};
+        --main-content-toc-background-color: #{cfg.get("main_content", "toc-background-color")};
+
+        @if cfg.overridden("main_content", "figure-background-color") {
+            --main-content-figure-background-color:
+                #{cfg.get("main_content", "figure-background-color")};
+        } @else {
+            --main-content-figure-background-color: var(--base-ui-color-lightest);
+        }
+
+        @if cfg.overridden("main_content", "spacing") {
+            --main-content-spacing: #{cfg.get("main_content", "spacing")};
+        } @else {
+            --main-content-spacing: var(--sz-m);
+        }
+
+
+        /*
+            MAIN - CONTENT - LISTING
+        */
+
+        @if cfg.overridden("main_content_listing", "gutter") {
+            --listing-gutter: #{cfg.get("main_content_listing", "gutter")};
+        } @else {
+            --listing-gutter: var(--sz-m);
+        }
+        --listing-item-basis: #{cfg.get("main_content_listing", "item--basis")};
+        --listing-item-min-width: #{cfg.get("main_content_listing", "item--min-width")};
+        --listing-item-background-color: #{cfg.get("main_content_listing", "item--background-color")};
+
+
+        /*
+            SIDEBAR
+        */
+
+        @if cfg.overridden("sidebar", "background-color") {
+            --sidebar-background-color: #{cfg.get("sidebar", "background-color")};
+        } @else {
+            --sidebar-background-color: var(--base-ui-color-lighter);
+        }
+
+        @if cfg.overridden("sidebar", "background-color--alt") {
+            --sidebar-background-color--alt: #{cfg.get("sidebar", "background-color--alt")};
+        } @else {
+            --sidebar-background-color--alt: var(--base-ui-color-light);
+        }
+
+        @if cfg.overridden("sidebar", "spacing") {
+            --sidebar-spacing: #{cfg.get("sidebar", "spacing")};
+        } @else {
+            --sidebar-spacing: var(--sz-m);
+        }
+
+
+        /*
+            FOOTER
+        */
+
+        @if cfg.overridden("footer", "background-color") {
+            --footer-background-color: #{cfg.get("footer", "background-color")};
+        } @else {
+            --footer-background-color: var(--base-ui-color);
+        }
+
+        --footer-font-size: #{cfg.get("footer", "font-size")};
+
+        @if cfg.overridden("footer", "spacing") {
+            --footer-spacing: #{cfg.get("footer", "spacing")};
+        } @else {
+            --footer-spacing: var(--sz-s);
+        }
+
+
+        /*
+            COMPONENTS - CARD
+        */
+
+        @if cfg.overridden("component_card", "background-color") {
+            --card-background-color: #{cfg.get("component_card", "background-color")};
+        } @else {
+            --card-background-color: var(--base-ui-color-lightest);
+        }
+
+        @if cfg.overridden("component_card", "border-color") {
+            --card-border-color: #{cfg.get("component_card", "border-color")};
+        } @else {
+            --card-border-color: #fff;
+        }
+
+        @if cfg.overridden("component_card", "border-radius") {
+            --card-border-radius: #{cfg.get("component_card", "border-radius")};
+        } @else {
+            --card-border-radius: var(--sz-s);
+        }
+
+        @if cfg.overridden("component_card", "border-style") {
+            --card-border-style: #{cfg.get("component_card", "border-style")};
+        } @else {
+            --card-border-style: var(--base-border-style);
+        }
+
+        @if cfg.overridden("component_card", "border-width") {
+            --card-border-width: #{cfg.get("component_card", "border-width")};
+        } @else {
+            --card-border-width: var(--base-border-width);
+        }
+
+        @if cfg.overridden("component_card", "box-shadow") {
+            --card-box-shadow: #{cfg.get("component_card", "box-shadow")};
+        } @else {
+            --card-box-shadow: 0 0 var(--sz-s) rgb(0 0 0 / 0.2);
+        }
+
+        --card-image-ratio: #{cfg.get("component_card", "image-ratio")};
+
+        @if cfg.overridden("component_card", "spacing") {
+            --card-spacing: #{cfg.get("component_card", "spacing")};
+        } @else {
+            --card-spacing: var(--sz-m);
+        }
+
+
+        /*
+            COMPONENTS - CTA
+        */
+
+        @if cfg.overridden("component_cta", "background-color") {
+            --cta-background-color: #{cfg.get("component_cta", "background-color")};
+        } @else {
+            --cta-background-color: var(--base-ui-color);
+        }
+
+        @if cfg.overridden("component_cta", "background-color--alt") {
+            --cta-background-color--alt: #{cfg.get("component_cta", "background-color--alt")};
+        } @else {
+            --cta-background-color--alt: var(--base-ui-color-light);
+        }
+
+        @if cfg.overridden("component_cta", "border-color") {
+            --cta-border-color: #{cfg.get("component_cta", "border-color")};
+        } @else {
+            --cta-border-color: var(--base-border-color);
+        }
+
+        @if cfg.overridden("component_cta", "border-radius") {
+            --cta-border-radius: #{cfg.get("component_cta", "border-radius")};
+        } @else {
+            --cta-border-radius: var(--base-border-radius);
+        }
+
+        @if cfg.overridden("component_cta", "border-style") {
+            --cta-border-style: #{cfg.get("component_cta", "border-style")};
+        } @else {
+            --cta-border-style: var(--base-border-style);
+        }
+
+        @if cfg.overridden("component_cta", "border-width") {
+            --cta-border-width: #{cfg.get("component_cta", "border-width")};
+        } @else {
+            --cta-border-width: 0px;
+        }
+
+        --cta-box-shadow: #{cfg.get("component_cta", "box-shadow")};
+
+        @if cfg.overridden("component_cta", "spacing") {
+            --cta-spacing: #{cfg.get("component_cta", "spacing")};
+        } @else {
+            --cta-spacing: var(--sz-xs);
+        }
+
+
+        /*
+            COMPONENTS - HERO
+        */
+
+        @if cfg.overridden("component_hero", "background-color") {
+            --hero-background-color: #{cfg.get("component_hero", "background-color")};
+        } @else {
+            --hero-background-color: var(--base-ui-color-lightest);
+        }
+
+        --hero-image-ratio: #{cfg.get("component_hero", "image-ratio")};
+
+
+        /*
+            COMPONENTS - IMAGES
+        */
+
+        @if cfg.overridden("component_images", "background-color") {
+            --image-background-color: #{cfg.get("component_images", "background-color")};
+        } @else {
+            --image-background-color: var(--main-background-color);
+        }
+
+        @if cfg.overridden("component_images", "border-color") {
+            --image-border-color: #{cfg.get("component_images", "border-color")};
+        } @else {
+            --image-border-color: var(--base-border-color);
+        }
+
+        @if cfg.overridden("component_images", "border-style") {
+            --image-border-style: #{cfg.get("component_images", "border-style")};
+        } @else {
+            --image-border-style: var(--base-border-style);
+        }
+
+        @if cfg.overridden("component_images", "border-width") {
+            --image-border-width: #{cfg.get("component_images", "border-width")};
+        } @else {
+            --image-border-width: var(--base-border-width);
+        }
+
+        @if cfg.overridden("component_images", "inset") {
+            --image-inset: #{cfg.get("component_images", "inset")};
+        } @else {
+            --image-inset: var(--sz-s);
+        }
+
+
+        /*
+            COMPONENTS - INFO OVERLAY
+        */
+
+        --info-overlay-background-color: #{cfg.get("component_info_overlay", "background-color")};
+
+        @if cfg.overridden("component_info_overlay", "spacing-unit") {
+            --info-overlay-spacing-unit: #{cfg.get("component_info_overlay", "spacing-unit")};
+        } @else {
+            --info-overlay-spacing-unit: var(--sz-m);
+        }
+
+        --info-overlay-toggle-background-color--alt: #{cfg.get("component_info_overlay", "toggle-background-color--alt")};
+    }
+
+}

@@ -1,125 +1,190 @@
 /*-------------------------------------------------------------------------------------------------|
 
     COMPONENTS - INFO OVERLAY
-    =========================
+    ============================================================================================
+
+    Provides a compact disclosure control for supplementary information
+    associated with an image, such as attribution or credits.
+
+    Expected HTML convention:
+
+    <figure>
+        <img ...>
+        <figcaption>
+            <details>
+                <summary>
+                    <svg>Information icon</svg>
+                    <svg>Close icon</svg>
+                    <small>Accessible label</small>
+                </summary>
+                <small>Supplementary inf$banner-selectorormation...</small>
+            </details>
+        </figcaption>
+    </figure>
+
+    The overlay is positioned in the top-right corner.
+
+    Native details/summary behaviour provides disclosure without
+    requiring JavaScript.
 
 |-------------------------------------------------------------------------------------------------*/
 
-@use 'sass:math';
+@use "../00-3-selectors" as selectors;
 
-@mixin component__info-overlay($options: ()) {
 
-    #{map-get($options, selector)} {
-        --name: image-overlay;
+@mixin emit() {
 
-        position: absolute;
-        #{map-get($options, x-position)}: #{math.div(map-get($options, spacing-unit), 4)};
-        #{map-get($options, y-position)}: #{math.div(map-get($options, spacing-unit), 4)};
+    @if selectors.$es__component__info-overlay != false {
 
-        width: #{map-get($options, spacing-unit)};
-        height: #{map-get($options, spacing-unit)};
+        #{selectors.$es__component__info-overlay} {
+            --name: image-overlay;
 
-        margin: 0;
+            /*
+                OVERLAY CONTAINER
 
-        padding: 0;
+                Closed: compact circular control.
+                Open: expands to accommodate information content.
+            */
 
-        border: 0;
-        border-radius: #{math.div(map-get($options, spacing-unit), 2)};
+            position: absolute;
 
-        //color: #fff;
-        //background: rgba(0,0,0,0.7);
-        --background-color: rgba(0,0,0,0.7);
-        @include s__theme(#fff);
+            inset-block-start: calc(var(--info-overlay-spacing-unit) / 4);
+            inset-inline-end: calc(var(--info-overlay-spacing-unit) / 4);
 
-        a[href] {
-            color: #fff;
-        }
+            width: var(--info-overlay-spacing-unit);
+            height: var(--info-overlay-spacing-unit);
 
-        &[open] {
-            border-radius: 0;
-            #{map-get($options, y-position)}: 0;
-            #{map-get($options, x-position)}: 0;
-            width: auto;
-            height: auto;
+            margin: 0;
+            padding: 0;
+
+            border: 0;
+            border-radius: calc(var(--info-overlay-spacing-unit) / 2);
+
+            --background-color: var(--info-overlay-background-color);
+            background-color: var(--background-color);
+
+            /*
+                Remove StartCSS's generic details decoration.
+            */
+
+            &::after {
+                display: none;
+            }
+
+
+            /*
+                TOGGLE
+
+                The summary remains the interactive control in both
+                the closed and expanded states.
+            */
 
             & > summary {
-                #{map-get($options, y-position)}: #{math.div(map-get($options, spacing-unit), 4)};
-                #{map-get($options, x-position)}: #{math.div(map-get($options, spacing-unit), 4)};
+                position: absolute;
+                z-index: 1;
 
-                & > svg:first-of-type {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                width: var(--info-overlay-spacing-unit);
+                height: var(--info-overlay-spacing-unit);
+
+                margin: 0;
+                padding: 0;
+
+                border-radius: calc(var(--info-overlay-spacing-unit) / 2);
+
+                list-style: none;
+                cursor: pointer;
+
+                &::before {
                     display: none;
                 }
 
-                & > svg:last-of-type {
+                &::-webkit-details-marker {
+                    display: none;
+                }
+
+                /*
+                    SVG ICON STATES
+
+                    First SVG: information icon.
+                    Second SVG: close icon.
+                */
+
+                & > svg:first-of-type {
                     display: inline;
+                }
+
+                & > svg:last-of-type {
+                    display: none;
+                }
+
+                /*
+                    INTERACTION
+                */
+
+                &:hover,
+                &:focus,
+                &:active {
+                    background-color:
+                        var(--info-overlay-toggle-background-color--alt);
+                }
+            }
+
+
+            /*
+                INFORMATION CONTENT
+
+                The padding leaves room for the toggle in the
+                expanded state.
+
+                Overqualifying the selector to override StartCSS :last-child selector.
+            */
+
+            & > summary + small:nth-child(n) {
+                position: relative;
+                display: block;
+
+                max-width: calc(100% - var(--info-overlay-spacing-unit));
+
+                padding-block-start: var(--info-overlay-spacing-unit);
+                padding-block-end: var(--info-overlay-spacing-unit);
+                padding-inline-start: var(--info-overlay-spacing-unit);
+                padding-inline-end: calc(var(--info-overlay-spacing-unit) * 1.5);
+            }
+
+
+            /*
+                EXPANDED STATE
+            */
+
+            &[open] {
+                inset-block-start: 0;
+                inset-inline-end: 0;
+
+                width: auto;
+                height: auto;
+
+                border-radius: 0;
+
+                & > summary {
+                    inset-block-start:
+                        calc(var(--info-overlay-spacing-unit) / 4);
+
+                    inset-inline-end:
+                        calc(var(--info-overlay-spacing-unit) / 4);
+
+                    & > svg:first-of-type {
+                        display: none;
+                    }
+
+                    & > svg:last-of-type {
+                        display: inline;
+                    }
                 }
             }
         }
-
-        &::after {
-            display: none;
-        }
-    }
-
-    /*
-        1. `align-items: center;` is the obvious choice for vertical-center aligning the icons, but
-           for some reason iOS doesn't get it right, so I'm using padding instead for now since the
-           icon or container sizes shouldn't change.
-    */
-    #{map-get($options, selector)} > summary {
-        position: absolute;
-        z-index: 1;
-
-        display: flex;
-        justify-content: center;
-        align-items: center; /* [1] */
-
-        width: #{map-get($options, spacing-unit)};
-
-        height: #{map-get($options, spacing-unit)};
-
-        margin: 0;
-
-        border-radius: #{math.div(map-get($options, spacing-unit), 2)};
-
-        //padding: 0; /* [1] */
-        //padding: 0.2rem; /* [1] */
-
-        //font-size: 1.23076923077em;
-
-        & > svg:first-of-type {
-            display: inline;
-        }
-
-        & > svg:last-of-type {
-            display: none;
-        }
-
-        &::before {
-            display: none;
-        }
-
-        &:hover,
-        &:focus,
-        &:active {
-            background: rgba(255,255,255,0.3);
-        }
-
-        list-style: none;
-        &::-webkit-details-marker {
-            display: none;
-        }
-    }
-
-    #{map-get($options, selector)} > summary + * {
-        position: relative;
-        display: block;
-        @if map-get($options, x-position) == left {
-            left: #{map-get($options, spacing-unit)};
-        }
-
-        max-width: calc(100% - #{map-get($options, spacing-unit)});
-
-        padding: #{map-get($options, spacing-unit) * 1.5} #{map-get($options, spacing-unit) * 1.5} #{map-get($options, spacing-unit)} #{map-get($options, spacing-unit)};
     }
 }

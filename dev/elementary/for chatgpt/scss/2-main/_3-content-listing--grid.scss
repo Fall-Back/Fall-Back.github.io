@@ -1,0 +1,35 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    CONTENT LISTING - GRID
+    ============================================================================================
+
+    Alternative CSS Grid layout for Elementary's content listings.
+
+    Items use a preferred minimum width and expand to fill the
+    available grid columns.
+
+    Spacing and item sizing are controlled by the same public CSS
+    tokens used by the Flexbox and Columns implementations.
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "../00-3-selectors" as selectors;
+
+
+@mixin emit($selector: selectors.$listing-selector) {
+
+    @if $selector != false {
+
+        #{$selector} {
+
+            display: grid;
+
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(var(--listing-item-basis), 1fr)
+            );
+
+            gap: var(--listing-gutter);
+        }
+    }
+}

@@ -17,9 +17,9 @@
 
 @mixin emit() {
 
-    @if selectors.$listing-selector != false {
+    @if selectors.$es__page_main__header--listing__list != false {
 
-        #{selectors.$listing-selector} {
+        #{selectors.$es__page_main__header--listing__list} {
 
             display: flex;
             flex-wrap: wrap;

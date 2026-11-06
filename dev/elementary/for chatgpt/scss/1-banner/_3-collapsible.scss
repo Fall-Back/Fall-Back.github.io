@@ -1,0 +1,230 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    BANNER - NAVBAR - COLLAPSIBLE
+    ============================================================================================
+
+    Optional details/summary disclosure mechanism for Elementary's
+    primary navigation.
+
+    NAVBAR owns the navigation links and NAVLIST presentation.
+    This module controls only the toggle and the positioning and
+    decoration of the expanded panel.
+
+    The NAVLIST retains the same styling whether or not it is wrapped
+    in a details element.
+
+|-------------------------------------------------------------------------------------------------*/
+
+@use "../00-3-selectors" as selectors;
+
+
+@mixin emit() {
+
+    @if selectors.$navbar-selector != false {
+
+        #{selectors.$navbar-selector} {
+
+            /*
+                COLLAPSIBLE CONTAINER
+            */
+
+            &  > details {
+                --name: collapsible;
+
+                position: static;
+
+                display: flex;
+                align-items: center;
+
+                flex: 0 0 auto;
+
+                margin: 0;
+                padding: 0;
+
+                border: 0;
+
+                /*
+                    Remove any decorative pseudo-element inherited
+                    from StartCSS's generic details styling.
+                */
+
+                &::after {
+                    display: none;
+                }
+
+
+                /*
+                    TOGGLE
+
+                    The entire summary is interactive, not just its SVG.
+
+                    The first SVG represents the closed state.
+                    The second SVG represents the open state.
+                */
+
+                & > summary {
+                    position: relative;
+                    z-index: 3;
+
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    inline-size: var(--navbar-collapsible-toggle-size);
+                    min-block-size: var(--navbar-collapsible-toggle-size);
+
+                    margin: var(--navbar-collapsible-toggle-margin);
+                    padding: var(--navbar-link-padding);
+
+                    box-sizing: border-box;
+
+                    border: 0;
+                    border-radius: var(--navbar-link-border-radius);
+
+                    list-style: none;
+
+                    cursor: pointer;
+
+                    &::before {
+                        display: none;
+                    }
+
+                    &::-webkit-details-marker {
+                        display: none;
+                    }
+
+                    /*
+                        SVG STATES
+                    */
+
+                    > svg:first-child {
+                        display: inline-block;
+                    }
+
+                    > svg:nth-child(2) {
+                        display: none;
+                    }
+
+                    /*
+                        VISUALLY HIDDEN LABEL
+
+                        Preserve the accessible text while removing
+                        it from the visual layout.
+                    */
+
+                    & > span {
+                        position: absolute;
+
+                        width: 1px;
+                        height: 1px;
+
+                        padding: 0;
+                        margin: -1px;
+
+                        overflow: hidden;
+                        clip-path: inset(50%);
+
+                        white-space: nowrap;
+                        border: 0;
+                    }
+
+                    /*
+                        INTERACTION HIGHLIGHT
+                    */
+
+                    &:hover,
+                    &:active,
+                    &:focus-visible {
+                        box-shadow: var(--outline-shadow);
+                    }
+                }
+
+
+                /*
+                    OPEN STATE
+                */
+
+                &[open] > summary {
+                    > svg:first-child {
+                        display: none;
+                    }
+
+                    > svg:nth-child(2) {
+                        display: inline-block;
+                    }
+                }
+
+
+                /*
+                    EXPANDED PANEL WRAPPER
+
+                    Position the wrapper across the width of NAVBAR.
+
+                    The NAVLIST inside retains its own background,
+                    padding, gaps and link styling.
+                */
+
+                & > summary + div {
+                    position: absolute;
+                    z-index: 2;
+
+                    inset-inline: 0;
+
+                    margin-block-start: var(--navbar-collapsible-panel-offset);
+
+                    padding: 0;
+
+                    box-shadow: var(--navbar-collapsible-panel-shadow);
+
+
+                    /*
+                        POINTER
+
+                        The pointer uses the NAVLIST background token
+                        so it always matches the visible panel.
+                    */
+
+                    &::after {
+                        --pointer-height: calc(var(--navbar-collapsible-panel-offset) - var(--navbar-link-padding));
+                        content: "";
+
+                        position: absolute;
+
+                        //inset-block-start: calc(var(--navbar-collapsible-panel-offset) * -0.5);
+                        inset-block-start: calc(var(--pointer-height) * -1);
+                        inset-inline-end: calc(
+                            var(--navbar-collapsible-toggle-margin)
+                            + var(--navbar-collapsible-toggle-size) / 2
+                            - 2rem
+                        );
+
+                        width: 0;
+                        height: 0;
+
+                        border-style: solid;
+                        //border-width: 0 2rem 2rem;
+                        border-width: 0 2rem var(--pointer-height);
+
+                        border-color:
+                            transparent
+                            transparent
+                            var(--navbar-navlist-background-color);
+                    }
+                }
+
+
+                /*
+                    SEARCH VARIANT
+
+                    Retain the original stacking behaviour when a
+                    collapsible navigation control contains a search form.
+                */
+
+                &[role="search"] form {
+                    position: relative;
+                    z-index: 10;
+                }
+            }
+        }
+    }
+}

@@ -36,10 +36,14 @@
         @error "Unknown Elementary listing display-type: #{$display-type}. Expected flexbox, grid or columns.";
     }
 
-    @if selectors.$listing-selector != false {
+    @if selectors.$es__page_main__header--listing__list != false {
 
-        #{selectors.$listing-selector} {
+        #{selectors.$es__page_main__header--listing__list} {
+            --name: main-listing;
+
             list-style-type: none;
+
+            padding: var(--listing-gutter);
 
             & > * {
                 min-width: var(--listing-item-min-width);
